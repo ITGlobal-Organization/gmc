@@ -1,0 +1,342 @@
+/* @import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities'; */
+
+@import 'bootstrap/dist/css/bootstrap.css';
+@import "@hennge/vue3-pagination/dist/vue3-pagination.css";
+@import 'sweetalert2/dist/sweetalert2.min.css';
+@import '@vuepic/vue-datepicker/dist/main.css';
+@import '@skeleton-elements/vue/skeleton-elements.css';
+
+/* Import styles*/
+
+@import 'filepond/dist/filepond.min.css';
+@import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
+a {
+    text-decoration: none !important;
+}
+
+.list-none {
+    list-style: none;
+}
+
+.records-cls {
+    width: 25% !important;
+}
+
+.backdrop-shadow {
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+}
+
+.loading {
+    position: fixed;
+    z-index: 999;
+    height: 2em;
+    width: 2em;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+
+/* Transparent Overlay */
+
+.loading:before {
+    content: '';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(rgba(20, 20, 20, .8), rgba(0, 0, 0, .8));
+    background: -webkit-radial-gradient(rgba(20, 20, 20, .8), rgba(0, 0, 0, .8));
+}
+
+
+/* :not(:required) hides these rules from IE9 and below */
+
+.loading:not(:required) {
+    /* hide "loading..." text */
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+
+.loading:not(:required):after {
+    content: '';
+    display: block;
+    font-size: 10px;
+    width: 1em;
+    height: 1em;
+    margin-top: -0.5em;
+    -webkit-animation: spinner 150ms infinite linear;
+    -moz-animation: spinner 150ms infinite linear;
+    -ms-animation: spinner 150ms infinite linear;
+    -o-animation: spinner 150ms infinite linear;
+    animation: spinner 150ms infinite linear;
+    border-radius: 0.5em;
+    -webkit-box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0, rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) 0 1.5em 0 0, rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) -1.5em 0 0 0, rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0, rgba(255, 255, 255, 0.75) 0 -1.5em 0 0, rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;
+    box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0, rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) 0 1.5em 0 0, rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) -1.5em 0 0 0, rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0, rgba(255, 255, 255, 0.75) 0 -1.5em 0 0, rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;
+}
+
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.action-dropdown {
+    color: #000;
+    cursor: pointer;
+}
+
+.dropdown .action-dropdown::after {
+    display: none !important;
+}
+
+.bg-nav-link {
+    background-color: rgba(255, 255, 255, .1) !important;
+    color: #fff !important;
+}
+
+.text-danger {
+    font-size: 12px !important;
+}
+
+.dp-custom-date {
+    overflow-y: scroll;
+    height: 280px;
+}
+
+.dp__action_buttons {
+    width: 53% !important;
+}
+
+.deactive {
+    display: none !important;
+}
+
+.image-modal {
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.spinner-border.text-light.form-loader {
+    width: 20px;
+    height: 20px;
+}
+.spinner-border {
+    position: absolute;
+    right: 100px;
+}
+
+ul {
+    padding: 0 !important;
+    margin-bottom: 0px;
+}
+
+.create-ideas-fields .select2-container--default .select2-selection--single {
+    background-color: #F8F8F8 !important;
+    padding: 22px !important;
+    border: none !important;
+}
+
+.create-ideas-fields .select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 1px !important;
+    overflow: inherit !important;
+}
+
+.create-ideas-fields .select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 8px !important;
+    right: 1px !important;
+}
+
+.error-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.error-actions {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.error-actions .btn {
+    margin-right: 10px;
+}
+
+.ck-file-dialog-button {
+    display: none !important;
+}
+.form-check-input{margin-left: 0 !important;margin-right: 0 !important;}
+.ck-dropdown__button {
+    display: none !important;
+}
+
+.name-edit-field .filepond--root {
+    width: 150px !important;
+    height: 150px !important;
+}
+
+.explore-btn-sec {
+    background: #6c757d;
+    color: #fff;
+    font-size: 15px;
+    display: inline-block;
+    padding: 10px 60px;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: 500;
+    outline: 0;
+    border: 1px solid transparent;
+    margin-right: 10px !important;
+}
+
+.modal {
+    background: #0000004d!important;
+}
+
+
+/* .modal.fade .company-modal {
+    transition: all 1000ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+    transform: translate(100%, 0) scale(1);
+} */
+
+.dig-btn:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.dig-btn {
+    text-decoration: none;
+}
+
+.modal-enter-active {
+    animation: modal-in .5s;
+}
+
+.vue3-emojipicker .pr-4 {
+    /* background-color: #fff !important;
+    color: #000 !important; */
+}
+
+.modal-leave-active {
+    animation: modal-in .5s reverse;
+}
+
+@keyframes modal-in {
+    0% {
+        transform: translate(100%, 0) scale(1);
+    }
+    50% {
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+.error-actions a {
+    text-decoration: none !important;
+    color: #F8F8F8;
+}
+
+.error-actions a:hover {
+    text-decoration: none !important;
+    color: #F8F8F8;
+}
+
+.vue3-emojipicker .w-full {
+    background-color: #fff;
+    color: #000 !important;
+}
+
+
+/* .vue3-emojipicker .pr-4 {
+    background-color: #fff !important;
+} */
+
+.emojibutton__active .vue3-discord-emojipicker__emojibutton {
+    width: 22px !important;
+}
+
+.nav-sidebar .nav-link>.right, .nav-sidebar .nav-link>p>.right{
+    /* top: 1.3rem !important; */
+}
+.card-box-shadow{box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 -2px 3px rgb(0 0 0 / 20%) !important;}
+.select2-container .select2-selection--single{padding: 8px 0 27px 0 !important;}
+
+
