@@ -23,9 +23,9 @@
         <!-- Default box -->
         <div class="card card-secondary card-outline">
             <div class="card-header d-flex justify-content-end">
-                <a class="btn btn-secondary" href="/admin/blogs/create">
-                    {{ Lang.add_new_msg.replace(':attribute',Lang.blog) }}
-                </a>
+                <router-link class="btn btn-secondary" to="/admin/blogs/create">
+                    {{ Lang.add_new_msg(Lang.blog) }}
+                </router-link>
                 
 <!--                <h3 class="card-title">{{ Lang.companies }}</h3>-->
             </div>
@@ -105,9 +105,9 @@ export default {
                 has_html:false,
             },
             {
-                label:Language.name,
-                field:'name',
-                orignal_name:'name',
+                label:Language.title,
+                field:'title',
+                orignal_name:'title',
                 width:'4%',
                 sorted:true,
                 has_html:true,
@@ -121,25 +121,25 @@ export default {
                 has_html:false,
             },
             {
-                label:Language.published_by,
-                field:'published_by',
-                orignal_name:'published_by',
+                label:Language.publisher,
+                field:'publisher',
+                orignal_name:'publisher',
                 width:'4%',
                 sorted:false,
                 has_html:false,
             },
             {
-                label:Language.written_by,
-                field:'written_by',
-                orignal_name:'written_by',
+                label:Language.author,
+                field:'author',
+                orignal_name:'author',
                 width:'4%',
                 sorted:false,
                 has_html:false,
             },
             {
-                label:Language.published_at,
-                field:'published_at',
-                orignal_name:'published_at',
+                label:Language.publish_at,
+                field:'publish_at',
+                orignal_name:'publish_at',
                 width:'4%',
                 sorted:true,
                 has_html:false,
@@ -176,7 +176,7 @@ export default {
                             return 'fa fa-edit mr-2'
                         },
                         action:(row) =>{
-                            window.location.href = '/admin/blogs/edit/'+row.id
+                            ref.$router.push('/admin/blogs/edit/'+row.id)
                         }
                     },
                     {
@@ -226,13 +226,13 @@ export default {
         },
         async getBlogs(){
 
-            const { blogs, getBlogs } = useBlogs();
+            const { records, getAll } = useBlogs();
             this.loader = true
             let ref = this
 
             try{
-                await getBlogs(ref.pageNo,ref.pageSize,ref.orderBy,ref.order,ref.filter);
-                ref.data = blogs
+                await getAll(ref.pageNo,ref.pageSize,ref.orderBy,ref.order,ref.filter);
+                ref.data = records
                 ref.loader = false;
             }catch(e){
                 ref.loader = false;
@@ -257,7 +257,7 @@ export default {
                         const { _delete } = useBlogs();
                         await _delete(id)
                         ref.getBlogs(ref.pageNo,ref.pageSize,ref.filter);
-                        successAlert(Language.success_msg.replace(':attribute',Language.page).replace(':action',Language.deleted))
+                        successAlert(Language.success_msg.replace(':attribute',Language.blog).replace(':action',Language.deleted))
 
                 })
         },

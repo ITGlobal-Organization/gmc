@@ -220,6 +220,12 @@ export const Language = {
     placholder_msg: function(attribute){
         return "Enter "+ attribute;
     },
+    add_new_msg: function(attribute){
+        return "Add New " + attribute
+    },
+    create_msg: function(attribute){
+        return "Create " + attribute
+    },
     password_mismatch:"Password Does Not Match",
     categories:"Categories",
     category:"Category",
@@ -244,5 +250,8 @@ export const Language = {
     quoted_price:"Quoted Price",
     quantity:"Quantity",
     shipment_address:"Shipment Address",
-    backing:"Backings"
+    backing:"Backings",
+    author:"Author",
+    publisher:"Publisher",
+    publish_at:"Publish At"
 };

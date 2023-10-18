@@ -4,21 +4,21 @@ import { useRouter } from 'vue-router';
 import useService from '../services';
 
 export default function useBlogs() {
-    const blogs = ref([]);
+    const records = ref([]);
     const errors = ref([]);
-    const blog = ref({});
+    const record = ref({});
     
 
     const { errorAlert } = useService();
-    const getBlogs = async(pageNo, limit, orderBy, order, data) => {
+    const getAll = async(pageNo, limit, orderBy, order, data) => {
         await axiosWrapper.get(`/admin/blogs/ajax?length=${limit}&start=${pageNo}&orderBy=${orderBy}&order=${order}`, data).then((response) => {
-            blogs.value = response.data.data
+            records.value = response.data.data
         }).catch((e) => {
             errorAlert(e.message);
         })
     }
 
-    const storeBlog = async(data) => {
+    const store = async(data) => {
 
         await axiosWrapper.post(`/admin/blogs`, data);
     }
@@ -29,16 +29,16 @@ export default function useBlogs() {
     const update = async(id, data) => {
         await axiosWrapper.put(`/admin/blogs/update/${id}`, data)
     }
-    const getBlog = async(id) => {
+    const get = async(id) => {
         await axiosWrapper.get(`/admin/blogs/${id}`).then((response) => {
-            blog.value = response.data
+            record.value = response.data.data
         }).catch((e) => {
             errorAlert(e.message);
         })
     }
-    const getBlogsPublic = async() => {
+    const getAllPublic = async() => {
         await axiosWrapper.get(`/blogs`).then((response) => {
-            blogs.value = response.data.data
+            records.value = response.data.data
         }).catch((e) => {
             errorAlert(e.message);
         })
@@ -48,13 +48,13 @@ export default function useBlogs() {
         await axiosWrapper.destroy(`/admin/blogs/delete/${id}`);
     }
     return {
-        getBlogs,
-        getBlogsPublic,
-        blogs,
-        storeBlog,
+        getAll,
+        getAllPublic,
+        records,
+        store,
         udpateStatus,
-        getBlog,
-        blog,
+        get,
+        record,
         update,
         errors,
         _delete

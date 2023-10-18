@@ -227,8 +227,9 @@ class BaseController extends Controller
 // Save files
     public function saveFiles(Request $request){
         $media = 0;
+        $files = $request->file('files');
         if (isset($request->files)) {
-            $media =  Helper::saveMedia($request->files,$request->model,'main',$request->id);
+            $media =  Helper::saveMedia($files,$request->model,'main',$request->id);
             return $media->id;
         }
         return true;

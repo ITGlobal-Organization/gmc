@@ -45,16 +45,14 @@ data(){
         loader:false,
         errors:{},
         FormFields:[],
-        developerOptions:[],
-        typesOptions:[],
-        citiesOptions:[],
         form:{
-            name:'',
+            title:'',
                 slug:'',
                 description:'',
-                published_by:'',
-                written_by:'',
-                published_at:'',    
+                publish_at:'',
+                author:'',
+                publisher:'',
+                is_active:0, 
                 media:[],
                 gallery:[]
         },
@@ -64,11 +62,11 @@ data(){
 mounted(){
     let ref = this;
     
-    ref.edit();
+   
     ref.FormFields = [
     {
-                    label:Language.name,
-                    field:"name",
+                    label:Language.title,
+                    field:"title",
                     class:"form-control",
                     grid:"col-md-12 col-12",
                     type:"text",
@@ -100,10 +98,10 @@ mounted(){
                     required:true,
                 },
                 {
-                    label:Language.written_by,
-                    field:"written_by",
+                    label:Language.author,
+                    field:"author",
                     class:"form-control",
-                    grid:"col-md-12 col-12",
+                    grid:"col-md-6 col-12",
                     type:"text",
                     placeholder:function(){
                         return "Enter "+this.label
@@ -111,10 +109,10 @@ mounted(){
                     required:true,
                 },
                 {
-                    label:Language.published_at,
-                    field:"published_at",
+                    label:Language.publish_at,
+                    field:"publish_at",
                     class:"form-control",
-                    grid:"col-md-12 col-12",
+                    grid:"col-md-6 col-12",
                     type:"date",
                     placeholder:function(){
                         return "Enter "+this.label
@@ -122,7 +120,47 @@ mounted(){
                     required:true,
                 },
                 {
-                    label:Language.thumbnail_image,
+                    label:Language.publisher,
+                    field:"publisher",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.status,
+                    field:"is_active",
+                    class:"vue-select1",
+                    grid:"col-md-6 col-12",
+                    type:"select",
+                    isdynamic:false,
+                    searchable:true,
+                    options:function(){
+                            if(this.isdynamic){
+                                return ref.options;            
+                            }
+                            return [
+                                {
+                                    text:Language.active,
+                                    id:1
+                                },
+                                {
+                                    text:Language.inactive,
+                                    id:0
+                                }
+                            ];
+                    },
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+                    
+                    required:true,
+                },
+                {
+                    label:Language.image,
                     field:"gallery",
                     class:"files",
                     grid:"col-md-12 col-12",
@@ -130,89 +168,26 @@ mounted(){
                     placeholder:function(){
                         return "Upload"+this.label
                     },
-                    multiple:true,
-                    server:{
-                        process : (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
-                            if(ref.id == 0){
-                                const formData = new FormData();
-                                formData.append(fieldName, file, file.name);
-                                
-                                const request = new XMLHttpRequest();
-                                request.open('POST', '/admin/blogs/media/store');
-
-                                request.upload.onprogress = (e) => {
-                                    progress(e.lengthComputable, e.loaded, e.total);
-                                };
-
-                    
-                                let data = [];
-                                request.onload = function () {
-                                    if (request.status >= 200 && request.status < 300) {
-                                        // the load method accepts either a string (id) or an object
-                                        load(request.responseText);
-                                        
-                                        //data.push(request.response);
-                                        ref.form.media.push(request.response);
-                                        
-                                    } else {
-                                        // Can call the error method if something is wrong, should exit after
-                                        error('oh no');
-                                    }
-                                };
-
-                                request.send(formData);
-
-                                // Should expose an abort method so the request can be cancelled
-                                return {
-                                    abort: () => {
-                                        // This function is entered if the user has tapped the cancel button
-                                        request.abort();
-                                        // Let FilePond know the request has been cancelled
-                                        abort();
-                                    },
-                                };
-                            }else{
-                                load(Date.now());
-                            }
-                            
-                            
-                        },
-                        revert: (uniqueFileId, load, error) => {
-                            const formData = new FormData();
-                            
-                            //formData.append(fieldName, file, file.name);
-                            console.log(uniqueFileId)
-                            const request = new XMLHttpRequest();
-                            request.open('DELETE', '/admin/properties/media/delete/'+uniqueFileId);
-                            request.onload = function () {
-                                if (request.status >= 200 && request.status < 300) {
-                                    // the load method accepts either a string (id) or an object
-                                    load(request.responseText);
-                                    ref.FormData.media.splice(uniqueFileId,1);
-                                } else {
-                                    // Can call the error method if something is wrong, should exit after
-                                    error('oh no');
-                                }
-                            };
-                            load();
-                        }
-                    },
+                    multiple:false,
+                    model:`App\\Models\\Blog`,
                     required:false,
-                    fileType:"image/jpeg, image/png"
+                    fileType:"image/jpeg, image/png",
+                    maxFiles:1
                 },
                 
         ]
+        ref.edit();
 },
 methods:{
     async update(){
         const {update,errors} = useBlogs();
         const {successAlert,errorAlert} = useService();
         this.loader =true;
-        
+        let ref = this;
         await update(this.id,this.form).then(async (response) => {
             successAlert(Language.success_msg.replace(':attribute',Language.blog).replace(':action',Language.updated))
             setTimeout(() => {
-                window.location.href = '/admin/blogs';
+                ref.$router.push('/admin/blogs')
             }, 3000);
         }).catch((e) => {
             if(e.response.status === 422){
@@ -228,18 +203,19 @@ methods:{
         
     },
     async edit(){
-            const {blog,getBlog} = useBlogs();
+            const {record,get} = useBlogs();
             
-            await getBlog(this.id);
-            
-            this.form.name = blog.value.name;
-            this.form.slug = blog.value.slug;
-            this.form.written_by = blog.value.written_by;
-            this.form.published_at = blog.value.published_at;
-            this.form.published_by = blog.value.published_by;
-            this.form.description = blog.value.description?blog.value.description:"";
+            await get(this.id);
+            console.log(record.value);
+            this.form.title = record.value.title;
+            this.form.slug = record.value.slug;
+            this.form.author = record.value.author;
+            this.form.publish_at = record.value.publish_at;
+            this.form.publisher = record.value.publisher;
+            this.form.is_active = record.value.is_active;
+            this.form.description = record.value.description?record.value.description:"";
            
-            this.form.gallery = blog.value.media;
+            this.form.gallery = record.value.media;
             let data = []
             let ref = this;
             data = this.form.gallery.map(gall => {
@@ -247,7 +223,7 @@ methods:{
             }) 
             console.log(data);
             this.form.gallery = data;
-            blog.value.media.filter(gallery => {
+            record.value.media.filter(gallery => {
                 ref.form.media.push(gallery.id);
             }) 
     },

@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ Lang.create_msg.replace(':attribute',Lang.blog) }}</h1>
+                    <h1>{{ Lang.create_msg(Lang.blog) }}</h1>
                 </div>
                 <!-- <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -53,12 +53,12 @@ export default {
             typesOptions:[],
             citiesOptions:[],
             FormData:{
-                name:'',
+                title:'',
                 slug:'',
                 description:'',
-                published_by:'',
-                written_by:'',
-                published_at:'',    
+                publish_at:new Date(),
+                author:'',
+                publisher:'', 
                 media:[],
                 gallery:[]
             },
@@ -69,8 +69,8 @@ export default {
         let ref = this;
         ref.FormFields = [
                 {
-                    label:Language.name,
-                    field:"name",
+                    label:Language.title,
+                    field:"title",
                     class:"form-control",
                     grid:"col-md-12 col-12",
                     type:"text",
@@ -102,10 +102,10 @@ export default {
                     required:true,
                 },
                 {
-                    label:Language.written_by,
-                    field:"written_by",
+                    label:Language.author,
+                    field:"author",
                     class:"form-control",
-                    grid:"col-md-12 col-12",
+                    grid:"col-md-4 col-12",
                     type:"text",
                     placeholder:function(){
                         return "Enter "+this.label
@@ -113,10 +113,10 @@ export default {
                     required:true,
                 },
                 {
-                    label:Language.published_by,
-                    field:"published_by",
+                    label:Language.publisher,
+                    field:"publisher",
                     class:"form-control",
-                    grid:"col-md-12 col-12",
+                    grid:"col-md-4 col-12",
                     type:"text",
                     placeholder:function(){
                         return "Enter "+this.label
@@ -125,9 +125,9 @@ export default {
                 },
                 {
                     label:Language.published_at,
-                    field:"published_at",
+                    field:"publish_at",
                     class:"form-control",
-                    grid:"col-md-12 col-12",
+                    grid:"col-md-4 col-12",
                     type:"date",
                     placeholder:function(){
                         return "Enter "+this.label
@@ -136,7 +136,7 @@ export default {
                 },
                
                 {
-                    label:Language.thumbnail_image,
+                    label:Language.image,
                     field:"gallery",
                     class:"files",
                     grid:"col-md-12 col-12",
@@ -144,76 +144,11 @@ export default {
                     placeholder:function(){
                         return "Upload"+this.label
                     },
-                    multiple:true,
-                    server:{
-                        process : (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
-                            const formData = new FormData();
-                            formData.append(fieldName, file, file.name);
-                            
-                            const request = new XMLHttpRequest();
-                            
-                            request.open('POST', '/admin/blogs/media/store');
-                            request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content')); 
-                            request.upload.onprogress = (e) => {
-                                progress(e.lengthComputable, e.loaded, e.total);
-                            };
-
-                  
-                            let data = [];
-                            request.onload = function () {
-                                if (request.status >= 200 && request.status < 300) {
-                                    // the load method accepts either a string (id) or an object
-                                    load(request.responseText);
-                                    
-                                    //data.push(request.response);
-                                    ref.FormData.media.push(request.response);
-                                    
-                                } else {
-                                    // Can call the error method if something is wrong, should exit after
-                                    error('oh no');
-                                }
-                            };
-
-                            request.send(formData);
-
-                            // Should expose an abort method so the request can be cancelled
-                            return {
-                                abort: () => {
-                                    // This function is entered if the user has tapped the cancel button
-                                    request.abort();
-
-                                    // Let FilePond know the request has been cancelled
-                                    abort();
-                                },
-                            };
-                            
-                        },
-                        revert: (uniqueFileId, load, error) => {
-                            const formData = new FormData();
-                            
-                            //formData.append(fieldName, file, file.name);
-                            console.log(uniqueFileId)
-                            const request = new XMLHttpRequest();
-                            request.open('DELETE', '/admin/properties/media/delete/'+uniqueFileId);
-
-                            request.onload = function () {
-                                if (request.status >= 200 && request.status < 300) {
-                                    // the load method accepts either a string (id) or an object
-                                    load(request.responseText);
-                                    ref.FormData.media.splice(uniqueFileId,1);
-                                } else {
-                                    // Can call the error method if something is wrong, should exit after
-                                    error('oh no');
-                                }
-                            };
-
-                            request.send(formData);
-                            load();
-                        },
-                        //store:"/admin/properties/media/store",
-                    },
+                    multiple:false,
+                    model:`App\\Models\\Blog`,
                     required:false,
-                    fileType:"image/jpeg, image/png"
+                    fileType:"image/jpeg, image/png",
+                    maxFiles:1
                 },
                 
         ]
@@ -225,14 +160,15 @@ export default {
 
     methods:{
         async store(){
-            const {storeBlog,errors} = useBlogs();
+            const {store,errors} = useBlogs();
             const {successAlert,errorAlert} = useService();
             this.loader =true;
+            let ref = this
             console.log(this.FormData);
-            await storeBlog(this.FormData).then(async (response) => {
+            await store(this.FormData).then(async (response) => {
                 successAlert(Language.success_msg.replace(':attribute',Language.blog).replace(':action',Language.saved))
                 setTimeout(() => {
-                    window.location.href = '/admin/blogs';
+                    ref.$router.push('/admin/blogs')
                 }, 3000);
             }).catch((e) => {
                 if(e.response.status === 422){

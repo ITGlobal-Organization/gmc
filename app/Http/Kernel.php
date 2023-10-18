@@ -21,6 +21,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+       
     ];
 
     /**
@@ -45,18 +46,18 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
         'admin' => [
-            'api',
-            'auth:sanctum',
+            'web',
+            'auth',
             'role:admin',
         ],
         'employee' => [
-            'api',
-            'auth:sanctum',
+            'web',
+            'auth',
             'role:employee',
         ],
         'user' => [
-            'api',
-            'auth:sanctum',
+            'web',
+            'auth',
             'role:user',
         ],
     ];
@@ -79,5 +80,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+        'cart' => \App\Http\Middleware\CartMiddleware::class,
     ];
 }

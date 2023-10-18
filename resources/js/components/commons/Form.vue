@@ -69,6 +69,17 @@
                       </ul>
                     </div>
                 </div>
+                <div class="form-group" v-else-if="field.type == 'date'">
+                
+                    <label class="form-label">{{ field.label}}</label>
+                                <Datepicker v-model="data[field.field]" :class="errors[field.field]?'is-invalid ':''" autoApply :enableTimePicker="false" menuClassName="dp-custom-date" :placeholder="field.placeholder()" />
+                                <!-- <input type="text" id="order_date"  :placeholder="Lang.placholder_msg(Lang.order_date)" class="form-control" name="order_date"  v-model="FormData.order_date" required="true" > -->
+                                <div v-if="errors[field.field]">
+                                    <ul>
+                                        <li class="text-danger" style="list-style:none;" v-for="(error,index) in errors[field.field]" :key="index">{{ error }}</li>
+                                    </ul>
+                                </div>
+                </div>
                 <div class="form-group" v-else>
                     <label class="form-label">{{ field.label }}</label>
                     <input :type="field.type" id="field.field"  :placeholder="field.placeholder()" :class="field.class" :name="field.field"  v-model="data[field.field]" :required="field.required" >
@@ -108,6 +119,7 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css
 const FilePond = vueFilePond(FilePondPluginFileValidateType, FilePondPluginImagePreview);
 import useGenerals from '../../composables/general';
 import { axiosWrapper } from '../../helpers';
+import Datepicker from '@vuepic/vue-datepicker';
 export default {
     props:{
         fields:Array,
@@ -122,6 +134,7 @@ export default {
         ckeditor: CKEditor.component,
         Select2,
         FilePond,
+        Datepicker
         // VueGoogleAutocomplete
 
     },
@@ -143,7 +156,7 @@ export default {
                             process : async (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
                                 const { uploadMedia } = useGenerals();
                                 const formData = new FormData();
-                                formData.append(fieldName, file, file.name);
+                                formData.append('files', file, file.name);
                                 formData.append('model', model);
                                 formData.append('id',ref.id)
 

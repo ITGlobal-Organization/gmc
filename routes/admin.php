@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
 
-
+Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+// Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+Route::get('/ajax', [DashboardController::class, 'index'])->name('admin.dashboard.ajax');
+Route::get('/registrations/month', [DashboardController::class, 'getRegistrationsPreMonth'])->name('admin.registrations');
 // Blogs
 Route::prefix('blogs')->group(function(){
     Route::get('/',[BlogController::class, 'index'])->name('admin.blogs.index');
