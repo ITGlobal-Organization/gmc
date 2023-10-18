@@ -1,123 +1,73 @@
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding">
-<div class="ft-line"></div>
-
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 footer-bg">
 <div class="middle">
 
-<!--Start Custom Patches-->
-<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 margin-bot10 border">
-<div class="ft-heading">Custom Patches</div>
 
-<div id="list4">
+<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 mb-25">
+<h4>About us</h4>
+<div class="footer-bar"></div>
+<p class="p">
+Perthshire Chamber of Commerce (PCC) is an independent, non-profit making, non-political business membership organisation.
+Our focus is on championing the issues that matter to our members.
+</p>
+	
+</div>
+	
+	
+<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 mb-25">
+<h4>Our Services</h4>
+<div class="footer-bar"></div>	
+	
+<div id="list5">
     <ul>
-      <li><a href="#">Chenille</a></li>
-      <li><a href="#">PVC Rubber</a></li>
-      <li><a href="#">Leather</a></li>
-      <li><a href="#">Sublimated</a></li>
-      <li><a href="#">Woven</a></li>
-	  <li><a href="#">Sequin</a></li>
-	  <li><a href="#">Beaded</a></li> 
+      <li><a href="#">Graphics & Design</a></li>
+      <li><a href="#">Programming & Tech</a></li>
+      <li><a href="#">Video & Animation</a></li>
+      <li><a href="#">Writing & Translation</a></li>
+      <li><a href="#">Digital Marketing</a></li>
+	  <li><a href="#">Ecommerces</a></li>
     </ul>
     <div class="clr"></div>
 </div>	
 	
-	
 <div class="clr"></div>	
 </div>
-<!--End Custom Patches-->	
 	
 	
-<!--Start Custom Products-->
-<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 margin-bot10 border">
-<div class="ft-heading">Custom Products</div>
-
-<div id="list4">
+<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 mb-25">
+<h4>Useful Links</h4>
+<div class="footer-bar"></div>	
+	
+<div id="list5">
     <ul>
-      <li><a href="#">Pins</a></li>
-      <li><a href="#">Challenge Coins</a></li>
-      <li><a href="#">Keychains</a></li>
-      <li><a href="#">Spin Coin</a></li>
-      <li><a href="#">Bottle Opener</a></li>
-	  <li><a href="#">Socks</a></li>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Contact</a></li>
     </ul>
     <div class="clr"></div>
 </div>	
 	
-	
 <div class="clr"></div>	
 </div>
-<!--End Custom Products-->	
+
+<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 mb-25">
+<img src="{{ asset(config('site_config.assets.logo')) }}" width="100%" alt="" class="mb-25"/>
 	
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding text-center">
+<h4>Stay Connected</h4>
+<span class="social-media1"> <a href="#"><i class="fab fa-facebook-f" title="Facebook"></i></a> </span> 
+<span class="social-media1"> <a href="#"><i class="fab fa-instagram" title="Instagram"></i></a> </span>
+<span class="social-media1"> <a href="#"><i class="fab fa-youtube" title="Youtube"></i></a> </span>
+<span class="social-media1"> <a href="#"><i class="fab fa-linkedin" title="Linkedin"></i></a> </span>
+ <div class="clr"></div>
+</div>	
 
-<!--Start Assets-->
-<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 margin-bot10 border">
-<div class="ft-heading">Assets</div>
-
-<div id="list4">
-    <ul>
-      <li><a href="#">Thread Charts</a></li>
-      <li><a href="#">Iron On Instruction</a></li>
-      <li><a href="#">Patch Shapes</a></li>
-      <li><a href="#">Backing Guide</a></li>
-      <li><a href="#">Woven vs Embroidery</a></li>
-	  <li><a href="#">Size Guide</a></li>
-    </ul>
-    <div class="clr"></div>
 </div>	
 	
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding text-center white">© Copyright 2023. All Right Reserved.</div>
 	
-<div class="clr"></div>	
+<div class="clr"></div>
 </div>
-<!--End Assets-->		
-	
-	
-<!--Start Assets-->
-<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 margin-bot10 border text-center">
-<img src="{{ custom_asset('logo.png') }}" alt=""/>
-	
-<p class="p">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
-
-	
-<span class="social-media"> 
-<a href="#">
-<i class="fab fa-facebook-f"></i>
-<span class="sr-only">Facebook</span></a>
-</span>	
-	
-<span class="social-media"> 
-<a href="#">
-<i class="fab fa-twitter"></i>
-<span class="sr-only">Twitter</span></a>
-</span>
-	
-	
-<span class="social-media"> 
-<a href="#">
-<i class="fab fa-linkedin-in"></i>
-<span class="sr-only">Linkedin</span></a>
-</span>
-
-<span class="social-media"> 
-<a href="#">
-<i class="fab fa-instagram"></i>
-<span class="sr-only">Instagram</span></a>
-</span>
-	
-	
-	
-<div class="clr"></div>	
-</div>
-<!--End Assets-->	
-	
-	
-
-	
-	
-	<div class="clr"></div>
-</div>
-	
-<div class="ft-copy">
-2023 © All rights reserved.
-</div>
-
 <div class="clr"></div>
 </div>
