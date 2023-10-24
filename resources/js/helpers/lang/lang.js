@@ -253,5 +253,7 @@ export const Language = {
     backing:"Backings",
     author:"Author",
     publisher:"Publisher",
-    publish_at:"Publish At"
+    publish_at:"Publish At",
+    postal_code:"Postal Code",
+    roles:"Roles",
 };

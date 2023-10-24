@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\BaseController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 // Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -20,9 +22,22 @@ Route::prefix('blogs')->group(function(){
     Route::put('/update/{id}',[BlogController::class, 'update'])->name('admin.blogs.update');
     Route::delete('/delete/{id}',[BlogController::class, 'destroy'])->name('admin.blogs.destroy');
 
-    //Media
-    Route::prefix('media')->group(function () {
-        Route::post('/store',[BlogController::class, 'saveFiles']);
-        Route::delete('/delete/{id}',[BlogController::class, 'deleteFile']);
-    });
+
 });
+
+// Users
+Route::prefix('users')->group(function(){
+    Route::get('/',[RegisteredUserController::class, 'index'])->name('admin.users.index');
+    Route::get('/user',[RegisteredUserController::class, 'getUsers'])->name('admin.users.get');
+    Route::get('/ajax', [RegisteredUserController::class, 'render'])->name('admin.users.ajax');
+    Route::get('/create',[RegisteredUserController::class, 'create'])->name('admin.users.create');
+    Route::post('/',[RegisteredUserController::class, 'store'])->name('admin.users.store');
+    Route::get('/roles',[BaseController::class, 'getAllRoles'])->name('admin.users.roles');
+    Route::get('/{id}',[RegisteredUserController::class, 'get'])->name('admin.users.header');
+    Route::get('/edit/{id}',[RegisteredUserController::class, 'edit'])->name('admin.users.edit');
+    Route::put('/update/{id}',[RegisteredUserController::class, 'update'])->name('admin.users.update');
+    Route::delete('/delete/{id}',[RegisteredUserController::class, 'destroy'])->name('admin.users.destroy');
+
+    
+});
+

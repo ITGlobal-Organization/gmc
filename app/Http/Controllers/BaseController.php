@@ -11,6 +11,7 @@ use App\Helpers\Helper;
 use App\Traits\Validation;
 use App\Mail\ContactUs;
 use App\Models\Media;
+use App\Models\User;
 use Pusher\Pusher;
 use DB;
 use Carbon\Carbon;
@@ -221,8 +222,13 @@ class BaseController extends Controller
     }
 // Get
     public function get(Request $request,$id){
-        $result = $this->model->first('id',$id);
-        return $this->sendResponse($result);
+        try{
+            $result = $this->model->first('id',$id);
+            return $this->sendResponse($result);
+        }catch(\Exception $e){
+            return $this->sendError(trans('validation.custom.errors.server-errors'));
+        }
+        
     }
 // Save files
     public function saveFiles(Request $request){
@@ -252,5 +258,17 @@ class BaseController extends Controller
         }
 
 
+    }
+
+    public function getAllRoles()
+    {
+        try{
+            $User = new User();
+            return $this->sendResponse($User->getRoles());
+        }catch(\Exception $e){
+            Log::error($e);
+            return $this->sendError(trans('validation.custom.errors.server-errors'));
+        }
+        
     }
 }

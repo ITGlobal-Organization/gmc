@@ -82,7 +82,7 @@
                 </div>
                 <div class="form-group" v-else>
                     <label class="form-label">{{ field.label }}</label>
-                    <input :type="field.type" id="field.field"  :placeholder="field.placeholder()" :class="field.class" :name="field.field"  v-model="data[field.field]" :required="field.required" >
+                    <input :type="field.type" :id="index"  :placeholder="field.placeholder()" :class="field.class" :name="field.field"  v-model="data[field.field]" :required="field.required" >
                     <div v-if="errors[field.field]">
                       <ul>
                           <li class="text-danger" style="list-style:none;" v-for="(error,index) in errors[field.field]" :key="index">{{ error }}</li>

@@ -145,7 +145,9 @@ return [
     'attach_file' => 'Attach File',
     'shipping_to_a_different_address' => 'Ship to a new address',
     'quantity'  => 'Quantity',
-    'delete' => 'Delete'
+    'delete' => 'Delete',
+    'users' => 'Users',
+    'user' => 'User'
     
 
 

@@ -36,6 +36,7 @@
 import {Language} from '../../../helpers/lang/lang';
 import Form from '../../commons/Form.vue';
 import useBlogs from '../../../composables/blogs';
+import useUsers from '../../../composables/users';
 import useService  from '../../../services/index';
 import { axiosWrapper } from '../../../helpers';
 
@@ -47,6 +48,7 @@ export default {
         return {
             Lang:Language,
             loader:false,
+            users:[],
             errors:{},
             FormFields:[],
             developerOptions:[],
@@ -67,6 +69,7 @@ export default {
     },
     mounted(){ 
         let ref = this;
+        ref.getAllUsers();
         ref.FormFields = [
                 {
                     label:Language.title,
@@ -104,12 +107,21 @@ export default {
                 {
                     label:Language.author,
                     field:"author",
-                    class:"form-control",
+                    class:"vue-select1",
                     grid:"col-md-4 col-12",
-                    type:"text",
-                    placeholder:function(){
-                        return "Enter "+this.label
+                    type:"select",
+                    isdynamic:true,
+                    searchable:true,
+                    options:function(){
+                            if(this.isdynamic){
+                                return ref.users;            
+                            }
+                            return [];
                     },
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+                    
                     required:true,
                 },
                 {
@@ -189,7 +201,14 @@ export default {
         setFormData(field,data){
             this.FormData[field] = data; 
             console.log(this.FormData);
+        },
+        async getAllUsers(){
+            const {records,getAllPublic} = useUsers();
+            await getAllPublic();
+            this.users = records.value;
+
         }
+
 
    }
 }

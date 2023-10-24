@@ -32,6 +32,7 @@ import {Language} from '../../../helpers/lang/lang';
 import Form from '../../commons/Form.vue';
 import useBlogs from '../../../composables/blogs';
 import useService  from '../../../services/index';
+import useUsers from '../../../composables/users';
 
 
 export default {
@@ -45,6 +46,7 @@ data(){
         loader:false,
         errors:{},
         FormFields:[],
+        users:[],
         form:{
             title:'',
                 slug:'',
@@ -62,6 +64,7 @@ data(){
 mounted(){
     let ref = this;
     
+    ref.getAllUsers();
    
     ref.FormFields = [
     {
@@ -100,12 +103,21 @@ mounted(){
                 {
                     label:Language.author,
                     field:"author",
-                    class:"form-control",
+                    class:"vue-select1",
                     grid:"col-md-6 col-12",
-                    type:"text",
-                    placeholder:function(){
-                        return "Enter "+this.label
+                    type:"select",
+                    isdynamic:true,
+                    searchable:true,
+                    options:function(){
+                            if(this.isdynamic){
+                                return ref.users;            
+                            }
+                            return [];
                     },
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+                    
                     required:true,
                 },
                 {
@@ -227,6 +239,13 @@ methods:{
                 ref.form.media.push(gallery.id);
             }) 
     },
+
+    async getAllUsers(){
+            const {records,getAllPublic} = useUsers();
+            await getAllPublic();
+            this.users = records.value;
+
+    }
 
 
 }

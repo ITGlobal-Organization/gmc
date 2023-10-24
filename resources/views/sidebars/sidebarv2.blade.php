@@ -4,7 +4,8 @@
 	
 <div id="list7">
 	@php 
-		$Menus = config('menu.'.$User->roles[0]->name.'.sidebar')
+		
+		$Menus = config('menu.'.strtolower($User->roles[0]->name).'.sidebar')
 		
 	@endphp
 	

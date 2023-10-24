@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('images/fav-icon.png') }}">
 
-        <title>{{ env('APP_NAME')}} - {{ isset($title)?$title:'Admin'}}</title>
+        <title>{{ config('app.name')}} - {{ isset($title)?$title:'Admin'}}</title>
 
         <!-- Fonts -->
         <link

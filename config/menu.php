@@ -20,6 +20,15 @@ return [
                 'access' => 'admin',
                 'submenu' => [],
             ],
+            [
+                'name' => 'users',
+                'route' => 'users.index',
+                'icon' => 'nav-icon fas fa-users',
+                'has_submenu' => false,
+                'submenu_icon' => '',
+                'access' => 'admin',
+                'submenu' => [],
+            ],
 
 
 
