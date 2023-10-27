@@ -23,6 +23,10 @@ import EditFooter from '../components/admin/footers/EditFooter.vue';
 import Blogs from '../components/admin/blogs/Blogs.vue';
 import CreateBlog from '../components/admin/blogs/CreateBlog.vue';
 import EditBlog from '../components/admin/blogs/EditBlog.vue';
+// Directories
+import Directory from '../components/admin/directories/Directory.vue';
+import CreateDirectory from '../components/admin/directories/CreateDirectory.vue';
+import EditDirectory from '../components/admin/directories/EditDirectory.vue';
 // Users
 import UserIndex from '../components/admin/users/Index.vue';
 import UserCreate from '../components/admin/users/Create.vue';
@@ -118,6 +122,25 @@ const routes = [
         component: EditBlog,
         props: true,
     },
+    // Directories
+    {
+        path: "/admin/directory",
+        name: "admin.directory",
+        component: Directory,
+        props: true,
+    },
+    {
+        path: "/admin/directory/create",
+        name: "admin.directory.create",
+        component: CreateDirectory,
+        props: true,
+    },
+    {
+        path: "/admin/directory/edit/:id",
+        name: "admin.directory.edit",
+        component: EditDirectory,
+        props: true,
+    },
     // Users
     {
         path: "/admin/users",
@@ -137,7 +160,7 @@ const routes = [
         component: UserEdit,
         props: true,
     },
- 
+
 
 
 

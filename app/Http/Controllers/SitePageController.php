@@ -8,7 +8,7 @@ use App\Helpers\Helper;
 use App\Models\CustomForm;
 use App\Mail\CustomForm as MailForm;
 use App\Models\Page;
-use App\Models\Product;
+// use App\Models\Product;
 use Log;
 
 class SitePageController extends BaseController
@@ -18,7 +18,7 @@ class SitePageController extends BaseController
     private $Page;
     private $product;
     public function __construct(CustomForm $customForm,Page $page,Product $product){
-        
+
         $this->customForm = $customForm;
         $this->Page = $page;
         $this->product = $product;
@@ -27,14 +27,14 @@ class SitePageController extends BaseController
     public function renderMainPage(Request $request){
 
         try{
-            
+
             $Page = Page::where('is_active',1)->where('is_home_page',1)->first();
             return view(config('site_config.assets.home_pages').$Page->view,[
                 'title' => $Page->name,
             ]);
 
         }catch(\Exception $e){
-            
+
             return view(config('site_config.assets.home_pages').'indexv1',[
                 'title' => 'Home',
             ]);
@@ -45,10 +45,10 @@ class SitePageController extends BaseController
     }
 
     public function renderSitePages(Request $request,$page){
-        
+
         $Page = Page::where('is_active',1)->where('slug',$page)->first();
         try{
-            
+
             if(!isset($Page)){
                 // if($page == 'blogs'){
                 //     return redirect()->route('blogs');
@@ -140,7 +140,7 @@ class SitePageController extends BaseController
         $this->product->setStart(1);
         $this->product->setOrderBy('created_at');
         $className = $this->product->class_name;
-        
+
         $Products = $this->product->getAll([['categories','products.category_id','=','categories.id']],['products.id','products.category_id','products.name','products.description','products.product_code','categories.name as category','images.image_url'],[['products.category_id','=',$request->category]]);
         // dd($request);
         // dd($Products);

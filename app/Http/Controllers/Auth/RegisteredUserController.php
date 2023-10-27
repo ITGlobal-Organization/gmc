@@ -33,7 +33,7 @@ class RegisteredUserController extends BaseController
         $this->user = $user;
         $this->Media = $media;
         $this->user->setRules();
-       
+
     }
 
     public function setGeneralFilters(Request $request)
@@ -51,13 +51,13 @@ class RegisteredUserController extends BaseController
      *
      * @throws \Illuminate\Validation\ValidationException
      */
- 
+
     public function store(Request $request)
     {
-        
+
          $request->validate($this->user->getRules());
         try {
-           
+
 
             DB::beginTransaction();
             $data = $request->except(['_token','password_confirmation','password','role_id','media']);
@@ -68,8 +68,8 @@ class RegisteredUserController extends BaseController
             $data['is_approved'] = 1;
 
             $user = User::create($data);
-                 
-           
+
+
             DB::commit();
             $user->assignRole($request->role_id);
             DB::commit();
@@ -137,34 +137,33 @@ class RegisteredUserController extends BaseController
             $result['media'] = Media::where('model','App\\Models\\User')->where('model_id',  $id)->get();
             return $this->sendResponse($result);
         }catch(\Exception $e){
-        
+
             return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
-        
+
     }
 
     // Update
     public function update(Request $request,$id){
         $rules = $this->user->getRules();
+
         foreach($rules as $key => $rule){
             if(strpos($rule,'unique')){
                 $rules[$key] = $rule.','.$key.','.$id;
             }
         }
-
-        if($request->password != ''){
-            $rules['password'] = 'confirmed|min:8';
-        }
+        // if($request->password != ''){
+        //     $rules['password'] = 'confirmed|min:8';
+        // }
 
         $request->validate($rules);
-        
         try {
             DB::beginTransaction();
             $data = $request->except(['_token','password_confirmation','role_id','media','gallery']);
 
            User::where('id',$id)->update($data);
 
-           
+
             DB::commit();
             $User = User::findorfail($id);
 
@@ -172,7 +171,7 @@ class RegisteredUserController extends BaseController
                 $User->assignRole($request->role_id);
                 DB::commit();
             }
-            
+
             $this->user->id = $id;
             if ($request->has('media')) {
 
@@ -211,10 +210,10 @@ class RegisteredUserController extends BaseController
             return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
     }
-    
+
     // Get all users for select
     public function getUsers(){
-        
+
         try{
             $result = User::selectRaw('id,CONCAT(first_name," ",last_name) as text,created_at')
             ->get();

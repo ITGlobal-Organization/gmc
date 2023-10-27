@@ -29,17 +29,25 @@ return [
                 'access' => 'admin',
                 'submenu' => [],
             ],
-
+            [
+                'name' => 'directory',
+                'route' => 'directory.index',
+                'icon' => 'nav-icon fas fa-tachometer-alt',
+                'has_submenu' => false,
+                'submenu_icon' => '',
+                'access' => 'admin',
+                'submenu' => [],
+            ],
 
 
 
         ],
     ],
-   
-   
 
-  
-    
+
+
+
+
 
 
 ];

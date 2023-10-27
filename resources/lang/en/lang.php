@@ -78,6 +78,8 @@ return [
     'book_now' => 'Book Now',
     'blogs' => 'Blogs',
     'blog' => 'Blog',
+    'directories' => 'Directories',
+    'directory' => 'Directory',
     'learn_more' => 'Learn More',
     'view_all' => 'View All',
     'read_more' => 'Read More',
@@ -148,7 +150,7 @@ return [
     'delete' => 'Delete',
     'users' => 'Users',
     'user' => 'User'
-    
+
 
 
 ];
