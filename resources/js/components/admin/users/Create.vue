@@ -57,6 +57,13 @@ export default {
                 username:'',
                 phone_no:'',
                 company:'',
+                tel_no:'',
+                website:'',
+                venue_url:'',
+                facebook_url:'',
+                instagram_url:'',
+                youtube_url:'',
+                linkedin_url:'',
                 is_approved:0,
                 role_id:0,
                 media:[],
@@ -178,6 +185,83 @@ export default {
                 {
                     label:Language.phone,
                     field:"phone",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.tel_no,
+                    field:"tel_no",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.website,
+                    field:"website",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.venue_url,
+                    field:"venue_url",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.facebook_url,
+                    field:"facebook_url",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.instagram_url,
+                    field:"instagram_url",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.youtube_url,
+                    field:"youtube_url",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.linkedin_url,
+                    field:"linkedin_url",
                     class:"form-control",
                     grid:"col-md-6 col-12",
                     type:"text",

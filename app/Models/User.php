@@ -49,6 +49,13 @@ class User extends Authenticatable
         'postalcode',
         'email',
         'password',
+        'tel_no',
+        'venue_url',
+        'website',
+        'facebook_url',
+        'youtube_url',
+        'instagram_url',
+        'linkedin_url',
         'is_approved',
         'is_active'
     ];

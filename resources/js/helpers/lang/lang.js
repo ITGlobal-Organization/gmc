@@ -263,6 +263,13 @@ export const Language = {
     eventcalender:"Event Calender",
     eventcalenders:"Event Calenders",
     venue:"Venue",
-    event_date:"Event Date"
+    event_date:"Event Date",
 
+    tel_no:"Tel No",
+    website:"Website",
+    venue_url:"Venue Url",
+    facebook_url:"Facebook Url",
+    instagram_url:"Instagram Url",
+    youtube_url:"YouTube Url",
+    linkedin_url:"Linkedin Url",
 };
