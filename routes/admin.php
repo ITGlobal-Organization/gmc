@@ -7,6 +7,8 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\DirectoryController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\SpaceFinderController;
+use App\Http\Controllers\EventCalenderController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 // Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -35,10 +37,30 @@ Route::prefix('directory')->group(function(){
     Route::get('/edit/{id}',[DirectoryController::class, 'edit'])->name('admin.directory.edit');
     Route::put('/update/{id}',[DirectoryController::class, 'update'])->name('admin.directory.update');
     Route::delete('/delete/{id}',[DirectoryController::class, 'destroy'])->name('admin.directory.destroy');
-
-
 });
 
+//SpaceFinder
+Route::prefix('spacefinder')->group(function(){
+    Route::get('/',[SpaceFinderController::class, 'index'])->name('admin.spacefinder.index');
+    Route::get('/ajax', [SpaceFinderController::class, 'render'])->name('admin.spacefinder.ajax');
+    Route::get('/create',[SpaceFinderController::class, 'create'])->name('admin.spacefinder.create');
+    Route::post('/',[SpaceFinderController::class, 'store'])->name('admin.spacefinder.store');
+    Route::get('/{id}',[SpaceFinderController::class, 'get'])->name('admin.spacefinder.header');
+    Route::get('/edit/{id}',[SpaceFinderController::class, 'edit'])->name('admin.spacefinder.edit');
+    Route::put('/update/{id}',[SpaceFinderController::class, 'update'])->name('admin.spacefinder.update');
+    Route::delete('/delete/{id}',[SpaceFinderController::class, 'destroy'])->name('admin.spacefinder.destroy');
+});
+//Event Calender
+Route::prefix('eventcalender')->group(function(){
+    Route::get('/',[EventCalenderController::class, 'index'])->name('admin.eventcalender.index');
+    Route::get('/ajax', [EventCalenderController::class, 'render'])->name('admin.eventcalender.ajax');
+    Route::get('/create',[EventCalenderController::class, 'create'])->name('admin.eventcalender.create');
+    Route::post('/',[EventCalenderController::class, 'store'])->name('admin.eventcalender.store');
+    Route::get('/{id}',[EventCalenderController::class, 'get'])->name('admin.eventcalender.header');
+    Route::get('/edit/{id}',[EventCalenderController::class, 'edit'])->name('admin.eventcalender.edit');
+    Route::put('/update/{id}',[EventCalenderController::class, 'update'])->name('admin.eventcalender.update');
+    Route::delete('/delete/{id}',[EventCalenderController::class, 'destroy'])->name('admin.eventcalender.destroy');
+});
 // Users
 Route::prefix('users')->group(function(){
     Route::get('/',[RegisteredUserController::class, 'index'])->name('admin.users.index');

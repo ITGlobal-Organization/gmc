@@ -8,16 +8,16 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Models\BaseModel;
 use Auth;
 
-class Blog extends BaseModel
+class EventCalender extends BaseModel
 {
     use HasFactory;
-    protected static $table_name = 'blogs';
-    protected $table = "blogs";
-    public $class_name = 'App\Models\Blog';
+    protected static $table_name = 'event_calenders';
+    protected $table = "event_calenders";
+    public $class_name = 'App\Models\EventCalender';
     public $class_dynamic = true;
-    
+
     protected $fillable = [
-        'title','description','publisher','publish_at','author','is_active','is_delete','is_approved','slug'
+        'title','description','is_active','is_delete','is_approved','event_date','price','venue'
     ];
 
     protected $rules = [];
@@ -36,19 +36,19 @@ class Blog extends BaseModel
     //         }else{
     //             $builder->where('blogs.is_delete', '=', 0)->where('blogs.is_active','=',1)->where('is_approved',1);
     //         }
-           
+
     //     });
     // }
 
 
     public function getRecordDataTable($request){
         if($request->has('search') && $request->search !=''){
-            $this->setFilters(['title','like','%'.$request->search.'%']);     
+            $this->setFilters(['title','like','%'.$request->search.'%']);
         }
 
         $condition = [];
         $result = [];
-        $this->setSelectedColumn(['id','title','slug','publisher','author','publish_at','created_at','is_active','is_approved']);
+        $this->setSelectedColumn(['id','title','created_at','is_active','is_approved','event_date','venue','price']);
 
         $this->setRenderColumn([
             [
@@ -63,29 +63,33 @@ class Blog extends BaseModel
                 'html' => false,
                 'link' => 'property',
                 'link_column' => 'slug',
-                
+
             ],
             [
-                'name' => 'slug',
+                'name' => 'event_date',
                 'type' => 'string',
                 'html' => false,
+                'link' => 'property',
+                'link_column' => 'event_date',
+
             ],
             [
-                'name' => 'publish_at',
+                'name' => 'venue',
                 'type' => 'string',
                 'html' => false,
+                'link' => 'property',
+                'link_column' => 'venue',
+
             ],
             [
-                'name' => 'publisher',
+                'name' => 'pride',
                 'type' => 'string',
                 'html' => false,
+                'link' => 'property',
+                'link_column' => 'pride',
+
             ],
-            [
-                'name' => 'author',
-                'type' => 'string',
-                'html' => false,
-            ],
-           
+
             [
                 'name' => 'created_at',
                 'type' => 'string',
@@ -95,7 +99,7 @@ class Blog extends BaseModel
                 'name' => 'is_active',
                 'type' => 'boolean',
                 'html' => false,
-                
+
             ],
             [
                 'name' => 'status',
@@ -104,14 +108,14 @@ class Blog extends BaseModel
                 'condition_column' => 'is_active',
                 'class_dynamic' => false,
             ],
-            
+
 
         ]);
 
         $result = $this->getAllDatatables([],
         $this->getSelectedColumns(),
         [],'',[]);
-            
+
         return $result;
     }
 }

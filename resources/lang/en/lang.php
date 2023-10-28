@@ -149,8 +149,10 @@ return [
     'quantity'  => 'Quantity',
     'delete' => 'Delete',
     'users' => 'Users',
-    'user' => 'User'
-
-
+    'user' => 'User',
+    'spacefinder'=>'Space Finder',
+    'spacefinders'=>'Space Finders',
+    'eventcalender'=>'Event Calender',
+    'eventcalenders'=>'Event Calenders'
 
 ];

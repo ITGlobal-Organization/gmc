@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Models\BaseModel;
 use Auth;
 
-class Directory extends BaseModel
+class SpaceFinder extends BaseModel
 {
     use HasFactory;
-    protected static $table_name = 'directories';
-    protected $table = "directories";
-    public $class_name = 'App\Models\Directory';
+    protected static $table_name = 'space_finders';
+    protected $table = "space_finders";
+    public $class_name = 'App\Models\SpaceFinder';
     public $class_dynamic = true;
 
     protected $fillable = [
@@ -65,22 +65,6 @@ class Directory extends BaseModel
                 'link_column' => 'slug',
 
             ],
-            // [
-            //     'name' => 'slug',
-            //     'type' => 'string',
-            //     'html' => false,
-            // ],
-            // [
-            //     'name' => 'publish_at',
-            //     'type' => 'string',
-            //     'html' => false,
-            // ],
-            // [
-            //     'name' => 'publisher',
-            //     'type' => 'string',
-            //     'html' => false,
-            // ],
-
 
             [
                 'name' => 'created_at',

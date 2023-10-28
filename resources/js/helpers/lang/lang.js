@@ -258,4 +258,11 @@ export const Language = {
     publish_at:"Publish At",
     postal_code:"Postal Code",
     roles:"Roles",
+    spacefinder:"Space Finder",
+    spacefinders:"Space Finders",
+    eventcalender:"Event Calender",
+    eventcalenders:"Event Calenders",
+    venue:"Venue",
+    event_date:"Event Date"
+
 };
