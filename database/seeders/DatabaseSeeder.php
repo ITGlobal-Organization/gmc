@@ -23,40 +23,40 @@ class DatabaseSeeder extends Seeder
         DB::table('roles')->insert([
             'name' => 'user',
         ]);
-        DB::table('roles')->insert([
-            'name' => 'customer',
-        ]);
-        DB::table('roles')->insert([
-            'name' => 'employee',
-        ]);
-        DB::table('permissions')->insert([
-            'name' => 'create',
-        ]);
-        DB::table('permissions')->insert([
-            'name' => 'edit',
-        ]);
-        DB::table('permissions')->insert([
-            'name' => 'delete',
-        ]);
-        DB::table('permissions')->insert([
-            'name' => 'update',
-        ]);
-        DB::table('role_has_permissions')->insert([
-            'role_id' => 1,
-            'permission_id'=>1
-        ]);
-        DB::table('role_has_permissions')->insert([
-            'role_id' => 1,
-            'permission_id'=>2
-        ]);
-        DB::table('role_has_permissions')->insert([
-            'role_id' => 1,
-            'permission_id'=>3
-        ]);
-        DB::table('role_has_permissions')->insert([
-            'role_id' => 1,
-            'permission_id'=>4
-        ]);
+        // DB::table('roles')->insert([
+        //     'name' => 'customer',
+        // ]);
+        // DB::table('roles')->insert([
+        //     'name' => 'employee',
+        // ]);
+        // DB::table('permissions')->insert([
+        //     'name' => 'create',
+        // ]);
+        // DB::table('permissions')->insert([
+        //     'name' => 'edit',
+        // ]);
+        // DB::table('permissions')->insert([
+        //     'name' => 'delete',
+        // ]);
+        // DB::table('permissions')->insert([
+        //     'name' => 'update',
+        // ]);
+        // DB::table('role_has_permissions')->insert([
+        //     'role_id' => 1,
+        //     'permission_id'=>1
+        // ]);
+        // DB::table('role_has_permissions')->insert([
+        //     'role_id' => 1,
+        //     'permission_id'=>2
+        // ]);
+        // DB::table('role_has_permissions')->insert([
+        //     'role_id' => 1,
+        //     'permission_id'=>3
+        // ]);
+        // DB::table('role_has_permissions')->insert([
+        //     'role_id' => 1,
+        //     'permission_id'=>4
+        // ]);
         DB::table('users')->insert([
             'name' => 'admin',
             'email'=>'admin@gmail.com',

@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ Lang.blogs }}</h1>
+                    <h1>{{ Lang.users }}</h1>
                 </div>
                 <!-- <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -18,15 +18,15 @@
         </section>
         <!-- Main content -->
         <div class="loading" v-if="loader">Loading</div>
-        <section class="content" v-else>
+        <section class="content">
 
         <!-- Default box -->
         <div class="card card-secondary card-outline">
             <div class="card-header d-flex justify-content-end">
-                <router-link class="btn btn-secondary" to="/admin/blogs/create">
-                    {{ Lang.add_new_msg(Lang.blog) }}
+                <router-link class="btn btn-secondary" to="/admin/users/create">
+                    {{ Lang.add_new_msg(Lang.user) }}
                 </router-link>
-                
+
 <!--                <h3 class="card-title">{{ Lang.companies }}</h3>-->
             </div>
             <div class="card-body p-0" v-if="data">
@@ -51,7 +51,7 @@
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
-        
+
         </section>
 
     <!-- /.content -->
@@ -60,10 +60,10 @@
 
 
 <script>
-import useBlogs from '../../../composables/blogs';
+import useUsers from '../../../composables/users';
 import {Language} from '../../../helpers/lang/lang';
 import Datatables from '../../commons/Datatables.vue';
-import useService  from '../../../services';
+import useService  from '../../../services/';
 import VueElementLoading from 'vue-element-loading';
 
 
@@ -105,49 +105,49 @@ export default {
                 has_html:false,
             },
             {
-                label:Language.title,
-                field:'title',
-                orignal_name:'title',
+                label:Language.first_name,
+                field:'first_name',
+                orignal_name:'first_name',
                 width:'4%',
                 sorted:true,
                 has_html:true,
             },
             {
-                label:Language.slug,
-                field:'slug',
-                orignal_name:'slug',
+                label:Language.last_name,
+                field:'last_name',
+                orignal_name:'last_name',
                 width:'4%',
                 sorted:false,
                 has_html:false,
             },
             {
-                label:Language.publisher,
-                field:'publisher',
-                orignal_name:'publisher',
+                label:Language.email,
+                field:'email',
+                orignal_name:'email',
                 width:'4%',
                 sorted:false,
                 has_html:false,
             },
             {
-                label:Language.author,
-                field:'author',
-                orignal_name:'author',
+                label:Language.address,
+                field:'address',
+                orignal_name:'address',
                 width:'4%',
                 sorted:false,
                 has_html:false,
             },
             {
-                label:Language.publish_at,
-                field:'publish_at',
-                orignal_name:'publish_at',
+                label:Language.company,
+                field:'company',
+                orignal_name:'company',
                 width:'4%',
-                sorted:true,
+                sorted:false,
                 has_html:false,
             },
             {
                 label:Language.status,
                 field:'status',
-                orignal_name:'is_active',
+                orignal_name:'is_approved',
                 width:'4%',
                 sorted:false,
                 has_html:true,
@@ -176,7 +176,8 @@ export default {
                             return 'fa fa-edit mr-2'
                         },
                         action:(row) =>{
-                            ref.$router.push('/admin/blogs/edit/'+row.id)
+                            ref.$router.push('/admin/users/edit/'+row.id)
+
                         }
                     },
                     {
@@ -187,7 +188,7 @@ export default {
                             return 'fa fa-trash mr-2'
                         },
                         action:(row) =>{
-                            
+
                             ref._delete(row.id);
                         }
                     }
@@ -199,34 +200,34 @@ export default {
 
             },
         ]
-        this.getBlogs(this.pageNo,this.pageSize,this.filter);
+        this.getEmployees(this.pageNo,this.pageSize,this.filter);
     },
 
     methods:{
         setPageNo(pageNo){
             this.pageNo = pageNo;
 
-            this.getBlogs(this.pageNo,this.pageSize,this.filter);
+            this.getEmployees(this.pageNo,this.pageSize,this.filter);
         },
         setPageSize(pageSize){
             this.pageSize = pageSize
-            this.getBlogs();
+            this.getEmployees();
         },
         setOrder(orderBy){
             this.orderBy = orderBy
             this.order = this.order == 'desc'?'asc':'desc';
-            this.getBlogs();
+            this.getEmployees();
         },
         setFilter(filter){
             this.filter = {
                 search:filter
             }
 
-            this.getBlogs(this.pageNo,this.pageSize,this.filter);
+            this.getEmployees(this.pageNo,this.pageSize,this.filter);
         },
-        async getBlogs(){
+        async getEmployees(){
 
-            const { records, getAll } = useBlogs();
+            const { records, getAll } = useUsers();
             this.loader = true
             let ref = this
 
@@ -239,14 +240,15 @@ export default {
             }
 
         },
+
         async updateStatus(id){
             const {confirmAlert} = useService();
             let ref = this
                 confirmAlert(async () => {
                     this.loader = true
-                        const { udpateStatus } = useBlogs();
+                        const { udpateStatus } = useUsers();
                         await udpateStatus(id)
-                        ref.getBlogs(ref.pageNo,ref.pageSize,ref.filter);
+                        ref.getProperties(ref.pageNo,ref.pageSize,ref.filter);
                 })
         },
         async _delete(id){
@@ -254,14 +256,14 @@ export default {
             let ref = this
                 confirmAlert(async () => {
                     this.loader = true
-                        const { _delete } = useBlogs();
+                        const { _delete } = useUsers();
                         await _delete(id)
-                        ref.getBlogs(ref.pageNo,ref.pageSize,ref.filter);
-                        successAlert(Language.success_msg.replace(':attribute',Language.blog).replace(':action',Language.deleted))
+                        ref.getEmployees(ref.pageNo,ref.pageSize,ref.filter);
+                        successAlert(Language.success_msg.replace(':attribute',Language.employee).replace(':action',Language.deleted))
 
                 })
         },
-        
+
         async update(){
             const {update,errors} = useCategories();
             const {errorAlert,successAlert} = useService();
@@ -277,7 +279,7 @@ export default {
                         ref.store_modal_loader = false;
                         ref.is_show_modal = false;
                         ref.id = 0;
-                        ref.getBlogs();
+                        ref.getProperties();
                     }).catch((e) => {
                         ref.store_modal_loader = false;
                         if(e.response.status === 422){

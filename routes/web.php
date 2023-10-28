@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AddonController;
 use App\Http\Controllers\SizeController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BorderController;
 use App\Http\Controllers\BackingController;
 use App\Http\Controllers\Employee\EmployeeController;
@@ -32,21 +31,20 @@ Route::get('/error', function(){
     return view('errors.404');
 });
 
-//get-product to show in modal
-Route::get('/get-product-images',[ProductController::class,'getProducts'])->name('get-product-images');
-//order-form
-Route::get('/order-form',function(){
-    return view('pages.order-form');
-})->name('order-form');
 
 // NewsLetter
 Route::post('/newsletter',[BaseController::class,'newsletterSubscription'])->name('newsletter.subscribe');
-Route::post('/contact-us',[BaseController::class,'saveContactForm'])->name('contact-us');
-// Custom Form Posting
-
-Route::post('/custom-form/get-a-quote',[SitePageController::class,'storeCustomForm'])->name('custom-form-posting');
 
 
+Route::prefix('blogs')->group(function () {
+    Route::get('/',function(){
+        return view('blogs.blogs');
+    })->name('blogs');
+
+    Route::get('/{slug}',function(){
+        return view('blogs.blog-detail');
+    })->name('blog');
+});
 
 
 Route::prefix('developer')->group(function () {
@@ -63,33 +61,21 @@ Route::prefix('developer')->group(function () {
 });
 
 
+require __DIR__ . '/auth.php';
+
+Route::prefix('admin')->middleware(['auth:sanctum','admin'])->group(function () {
+    require __DIR__ . '/admin.php';
+});
 
 
 
 
-
-Route::get('/featured-products',[SitePageController::class,'getListingProducts'])->name('home.featured-products');
+// Route::get('/featured-products',[SitePageController::class,'getListingProducts'])->name('home.featured-products');
 // Route::get('/',function(){
 //     return redirect()->route('admin.login');
 // })->name('home');
 // Categories
-Route::get('/categories',[CategoryController::class,'categories'])->name('categories.all');
-// Addons
-Route::get('/addons',[AddonController::class,'addons'])->name('addons.all');
-// Backings
-Route::get('/backings',[BackingController::class,'backings'])->name('backings.all');
-// Sizes
-Route::get('/sizes/{id}',[ProductController::class,'getProductSizes'])->name('sizes.all');
-//Products
-Route::get('/products',[ProductController::class,'products'])->name('products.all');
-//Customers
-Route::get('/customers',[CustomerController::class,'customers'])->name('customers.all');
-//Employee
-Route::get('/employees',[EmployeeController::class,'employees'])->name('employees.all');
-//Border
-Route::get('/borders',[BorderController::class,'borders'])->name('borders.all');
-//status
-Route::get('/statuses',[OrderController::class, 'getAllStatuses'])->name('statuses.all');
+
 // Static Pages
 Route::get('/',[SitePageController::class,'renderMainPage'])->name('home');
 Route::get('/{page}',[SitePageController::class,'renderSitePages'])->name('site-pages');

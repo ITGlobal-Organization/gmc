@@ -1,43 +1,62 @@
 <?php
 
 return [
-    'member' => [
-        'invite' => [
-            'email' => 'required|email|unique:users,email|unique:invites,email',
-        ]
-    ],
-    'scheme' => [
+    'blogs' => [
         'store' => [
-            'name'  => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,gif,svg,ico,jpg',
-            'imd' => 'required|string|max:8|min:6|unique:schemes'
+            'title' => 'required',
+            'slug' => 'required',
+            'author' => 'required|exists:users,id',
+            'publisher' => 'required',
+            'publish_at' => 'required|date',
+            'description' => 'required'
         ],
         'edit' => [
-            'name'  => 'required|string',
-            'imd' => 'required|string|max:8|min:6|unique:schemes'
+            'title' => 'required',
+            'slug' => 'required',
+            'author' => 'required|exists:users,id',
+            'publisher' => 'required',
+            'publish_at' => 'required|date',
+            'description' => 'required'
         ]
     ],
-    'cards' => [
+
+    'users' => [
         'store' => [
-            'card_no' => 'required|string|min:16|max:19|unique:cards',
-            'scheme_id' => 'required|integer|exists:schemes,id',
-            'date_expiry' => 'required|string|min:4|max:4',
-            'cvv' => 'required|string|min:3|max:3',
-            'is_financial' => 'required|boolean',
-            'card_type' => 'required|string',
-            'image1' => 'required|image|mimes:jpeg,png,gif,svg,ico,jpg',
-            'image2' => 'required|image|mimes:jpeg,png,gif,svg,ico,jpg',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:users',
+            'phone' => 'required|min:11',
+            'postalcode' => 'required',
+            'address' => 'required',
+            'company' => 'required',
+            'tel_no' => 'required',
+            'website' => 'required|url',
+            'venue_url' => 'required|url',
+            'facebook_url' => 'required|url',
+            'instagram_url' => 'required|url',
+            'youtube_url' => 'required|url',
+            'linkedin_url' => 'required|url',
+            'password' => 'required|password|confirmed|min:8',
+            'is_approved' => 'required|numeric|min:0|max:1',
         ],
         'edit' => [
-            'card_no' => 'required|string|min:16|max:19|unique:cards',
-            'scheme_id' => 'required|integer|exists:schemes,id',
-            'date_expiry' => 'required|string|min:4|max:4',
-            'cvv' => 'required|string|min:3|max:3',
-            'is_financial' => 'required|boolean',
-            'card_type' => 'required|string',
-            'image1' => 'required|image|mimes:jpeg,png,gif,svg,ico,jpg',
-            'image2' => 'required|image|mimes:jpeg,png,gif,svg,ico,jpg',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:users',
+            'phone' => 'required',
+            'postalcode' => 'required',
+            'address' => 'required',
+            'company' => 'required',
+            'tel_no' => 'required',
+            'website' => 'required|url',
+            'venue_url' => 'required|url',
+            'facebook_url' => 'required|url',
+            'instagram_url' => 'required|url',
+            'youtube_url' => 'required|url',
+            'linkedin_url' => 'required|url',
+            'is_approved' => 'required|numeric|min:0|max:1',
         ]
-    ]
+    ],
+
 
 ]; 
