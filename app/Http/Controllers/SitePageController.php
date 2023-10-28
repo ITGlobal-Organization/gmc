@@ -8,7 +8,7 @@ use App\Helpers\Helper;
 use App\Models\CustomForm;
 use App\Mail\CustomForm as MailForm;
 use App\Models\Page;
-// use App\Models\Product;
+
 use Log;
 
 class SitePageController extends BaseController
@@ -17,7 +17,7 @@ class SitePageController extends BaseController
     private $customForm;
     private $Page;
     private $product;
-    public function __construct(CustomForm $customForm,Page $page,Product $product){
+    public function __construct(CustomForm $customForm,Page $page){
 
         $this->customForm = $customForm;
         $this->Page = $page;
