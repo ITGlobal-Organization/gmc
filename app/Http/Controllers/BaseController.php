@@ -143,9 +143,8 @@ class BaseController extends Controller
             // Return a JSON response with validation errors
             return $this->sendError('',$e->errors(),422,[]);
         }
-        
 
-        
+
         try {
             DB::beginTransaction();
 
@@ -170,7 +169,7 @@ class BaseController extends Controller
             // return $result;
             return $this->sendResponse([], trans('messages.success_msg',['action' => trans('lang.saved')]));
         } catch (\Exception $e) {
-            //   dd($e->getMessage());
+            dd($e->getMessage());
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
@@ -184,6 +183,7 @@ class BaseController extends Controller
                 $rules[$key] = $rule.','.$key.','.$id;
             }
         }
+        // dd($request);
 
         try {
             // Validate the incoming request data
@@ -193,7 +193,7 @@ class BaseController extends Controller
             // Return a JSON response with validation errors
             return $this->sendError('',$e->errors(),422,[]);
         }
-        
+
         try {
             DB::beginTransaction();
             $data = $request->except(['_token','media','gallery','image','image1','image2']);
@@ -228,7 +228,7 @@ class BaseController extends Controller
         }catch(\Exception $e){
             return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
-        
+
     }
 // Save files
     public function saveFiles(Request $request){
@@ -269,6 +269,6 @@ class BaseController extends Controller
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
-        
+
     }
 }

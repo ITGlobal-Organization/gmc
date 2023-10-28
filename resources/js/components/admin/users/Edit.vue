@@ -71,7 +71,7 @@ data(){
 mounted(){
     let ref = this;
 
-    
+
     ref.getRoles();
     ref.edit();
         ref.FormFields = [
@@ -132,7 +132,7 @@ mounted(){
                     },
                     options:function(){
                             if(this.isdynamic){
-                                return ref.roles;            
+                                return ref.roles;
                             }
                             return [];
                     },
@@ -180,7 +180,7 @@ mounted(){
                         return Language.placholder_msg(this.label)
                     },
                     required:true,
-                }, 
+                },
                 {
                     label:Language.phone,
                     field:"phone",
@@ -216,7 +216,7 @@ mounted(){
                     },
                     options:function(){
                             if(this.isdynamic){
-                                return ref.options;            
+                                return ref.options;
                             }
                             return [
                                 {
@@ -230,7 +230,7 @@ mounted(){
                             ];
                     },
                 },
-              
+
                 {
                     label:Language.profile_picture,
                     field:"gallery",
@@ -246,7 +246,7 @@ mounted(){
                     fileType:"image/jpeg, image/png",
                     maxFiles:1
                 },
-                
+
         ]
 },
 methods:{
@@ -254,21 +254,21 @@ methods:{
         const {update,errors} = useUsers();
         const {successAlert,errorAlert} = useService();
         this.loader =true;
-        if(this.password != '' && this.form.password != this.form.password_confirmation){
-                errorAlert(this.Lang.password_mismatch)
-                return
-        }
+        // if(this.password != '' && this.form.password != this.form.password_confirmation){
+        //         errorAlert(this.Lang.password_mismatch)
+        //         return
+        // }
         let ref = this;
         await update(this.id,this.form).then(async (response) => {
             successAlert(Language.success_msg.replace(':attribute',Language.user).replace(':action',Language.updated))
             setTimeout(() => {
-               
+
                 if(user.employee != undefined){
                     ref.$router.push(route+'/user')
-                    
+
                 }else{
                     ref.$router.push(route+'/users')
-                    
+
                 }
             }, 3000);
         }).catch((e) => {

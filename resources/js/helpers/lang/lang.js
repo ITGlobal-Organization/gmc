@@ -196,6 +196,8 @@ export const Language = {
     project:"Project",
     blogs:"Blogs",
     blog:"Blog",
+    directories:"Directories",
+    directory:"Directory",
     written_by:"Written By",
     published_by:"Published By",
     published_at:"Published At",

@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BaseController;
+use App\Http\Controllers\DirectoryController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 // Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -24,6 +25,19 @@ Route::prefix('blogs')->group(function(){
 
 
 });
+//Directory
+Route::prefix('directory')->group(function(){
+    Route::get('/',[DirectoryController::class, 'index'])->name('admin.directory.index');
+    Route::get('/ajax', [DirectoryController::class, 'render'])->name('admin.directory.ajax');
+    Route::get('/create',[DirectoryController::class, 'create'])->name('admin.directory.create');
+    Route::post('/',[DirectoryController::class, 'store'])->name('admin.directory.store');
+    Route::get('/{id}',[DirectoryController::class, 'get'])->name('admin.directory.header');
+    Route::get('/edit/{id}',[DirectoryController::class, 'edit'])->name('admin.directory.edit');
+    Route::put('/update/{id}',[DirectoryController::class, 'update'])->name('admin.directory.update');
+    Route::delete('/delete/{id}',[DirectoryController::class, 'destroy'])->name('admin.directory.destroy');
+
+
+});
 
 // Users
 Route::prefix('users')->group(function(){
@@ -38,6 +52,6 @@ Route::prefix('users')->group(function(){
     Route::put('/update/{id}',[RegisteredUserController::class, 'update'])->name('admin.users.update');
     Route::delete('/delete/{id}',[RegisteredUserController::class, 'destroy'])->name('admin.users.destroy');
 
-    
+
 });
 
