@@ -258,4 +258,11 @@ export const Language = {
     publish_at:"Publish At",
     postal_code:"Postal Code",
     roles:"Roles",
+    tel_no:"Tel No",
+    website:"Website",
+    venue_url:"Venue Url",
+    facebook_url:"Facebook Url",
+    instagram_url:"Instagram Url",
+    youtube_url:"YouTube Url",
+    linkedin_url:"Linkedin Url",
 };

@@ -130,14 +130,14 @@ class RegisteredUserController extends BaseController
 
     public function get(Request $request,$id){
         try{
-            $result = User::select('users.id','users.first_name','users.last_name','users.email','users.company','users.phone','users.address','users.username','users.postalcode','model_has_roles.role_id as role_id','users.created_at','users.is_approved')->join('model_has_roles','model_has_roles.model_id','=','users.id')
+            $result = User::select('users.id','users.first_name','users.last_name','users.email','users.company','users.phone','users.address','users.username','users.postalcode','model_has_roles.role_id as role_id','users.created_at','users.is_approved','users.tel_no','users.website','users.venue_url','users.facebook_url','users.instagram_url','users.linkedin_url','users.youtube_url')->join('model_has_roles','model_has_roles.model_id','=','users.id')
             ->where('model_has_roles.model_type','=','App\\Models\\User')
             ->where('users.id',$id)
             ->firstorfail();
             $result['media'] = Media::where('model','App\\Models\\User')->where('model_id',  $id)->get();
             return $this->sendResponse($result);
         }catch(\Exception $e){
-
+            dd($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
 
