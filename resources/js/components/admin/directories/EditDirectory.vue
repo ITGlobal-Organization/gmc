@@ -4,9 +4,9 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ Lang.edit_msg.replace(':attribute',Lang.blog) }}</h1>
+                    <h1>{{ Lang.edit_msg.replace(':attribute',Lang.directory) }}</h1>
                 </div>
-            
+
             </div>
         </div>
     </section>
@@ -16,7 +16,7 @@
 
     <!-- Default box -->
     <div class="card card-secondary card-outline">
-        
+
         <div class="card-body">
             <Form :fields="FormFields" :data="form" :action="update" :name="name" :errors="errors"/>
         </div>
@@ -24,13 +24,13 @@
         <!-- /.card-body -->
     </div>
     <!-- /.card -->
-    
+
     </section>
 </template>
 <script>
 import {Language} from '../../../helpers/lang/lang';
 import Form from '../../commons/Form.vue';
-import useBlogs from '../../../composables/blogs';
+import useDirectory from '../../../composables/directories';
 import useService  from '../../../services/index';
 import useUsers from '../../../composables/users';
 
@@ -49,23 +49,22 @@ data(){
         users:[],
         form:{
             title:'',
-                slug:'',
                 description:'',
-                publish_at:'',
+                // publish_at:'',
                 author:'',
-                publisher:'',
-                is_active:0, 
+                // publisher:'',
+                is_active:0,
                 media:[],
                 gallery:[]
         },
-        name:"Update Blog",
+        name:"Update Directory",
     }
 },
 mounted(){
     let ref = this;
-    
+
     ref.getAllUsers();
-   
+
     ref.FormFields = [
     {
                     label:Language.title,
@@ -78,17 +77,17 @@ mounted(){
                     },
                     required:true,
                 },
-                {
-                    label:Language.slug,
-                    field:"slug",
-                    class:"form-control",
-                    grid:"col-md-12 col-12",
-                    type:"text",
-                    placeholder:function(){
-                        return "Enter "+this.label
-                    },
-                    required:true,
-                },
+                // {
+                //     label:Language.slug,
+                //     field:"slug",
+                //     class:"form-control",
+                //     grid:"col-md-12 col-12",
+                //     type:"text",
+                //     placeholder:function(){
+                //         return "Enter "+this.label
+                //     },
+                //     required:true,
+                // },
                 {
                     label:Language.description,
                     field:"description",
@@ -110,38 +109,38 @@ mounted(){
                     searchable:true,
                     options:function(){
                             if(this.isdynamic){
-                                return ref.users;            
+                                return ref.users;
                             }
                             return [];
                     },
                     placeholder:function(){
                         return Language.placholder_msg(this.label)
                     },
-                    
+
                     required:true,
                 },
-                {
-                    label:Language.publish_at,
-                    field:"publish_at",
-                    class:"form-control",
-                    grid:"col-md-6 col-12",
-                    type:"date",
-                    placeholder:function(){
-                        return "Enter "+this.label
-                    },
-                    required:true,
-                },
-                {
-                    label:Language.publisher,
-                    field:"publisher",
-                    class:"form-control",
-                    grid:"col-md-6 col-12",
-                    type:"text",
-                    placeholder:function(){
-                        return "Enter "+this.label
-                    },
-                    required:true,
-                },
+                // {
+                //     label:Language.publish_at,
+                //     field:"publish_at",
+                //     class:"form-control",
+                //     grid:"col-md-6 col-12",
+                //     type:"date",
+                //     placeholder:function(){
+                //         return "Enter "+this.label
+                //     },
+                //     required:true,
+                // },
+                // {
+                //     label:Language.publisher,
+                //     field:"publisher",
+                //     class:"form-control",
+                //     grid:"col-md-6 col-12",
+                //     type:"text",
+                //     placeholder:function(){
+                //         return "Enter "+this.label
+                //     },
+                //     required:true,
+                // },
                 {
                     label:Language.status,
                     field:"is_active",
@@ -152,7 +151,7 @@ mounted(){
                     searchable:true,
                     options:function(){
                             if(this.isdynamic){
-                                return ref.options;            
+                                return ref.options;
                             }
                             return [
                                 {
@@ -168,7 +167,7 @@ mounted(){
                     placeholder:function(){
                         return Language.placholder_msg(this.label)
                     },
-                    
+
                     required:true,
                 },
                 {
@@ -181,25 +180,25 @@ mounted(){
                         return "Upload"+this.label
                     },
                     multiple:false,
-                    model:`App\\Models\\Blog`,
+                    model:`App\\Models\\Directory`,
                     required:false,
                     fileType:"image/jpeg, image/png",
                     maxFiles:1
                 },
-                
+
         ]
         ref.edit();
 },
 methods:{
     async update(){
-        const {update,errors} = useBlogs();
+        const {update,errors} = useDirectory();
         const {successAlert,errorAlert} = useService();
         this.loader =true;
         let ref = this;
         await update(this.id,this.form).then(async (response) => {
-            successAlert(Language.success_msg.replace(':attribute',Language.blog).replace(':action',Language.updated))
+            successAlert(Language.success_msg.replace(':attribute',Language.directory).replace(':action',Language.updated))
             setTimeout(() => {
-                ref.$router.push('/admin/blogs')
+                ref.$router.push('/admin/directory')
             }, 3000);
         }).catch((e) => {
             if(e.response.status === 422){
@@ -211,33 +210,33 @@ methods:{
             }
         });;
         this.loader =false;
-       
-        
+
+
     },
     async edit(){
-            const {record,get} = useBlogs();
-            
+            const {record,get} = useDirectory();
+
             await get(this.id);
             console.log(record.value);
             this.form.title = record.value.title;
-            this.form.slug = record.value.slug;
+            // this.form.slug = record.value.slug;
             this.form.author = record.value.author;
-            this.form.publish_at = record.value.publish_at;
-            this.form.publisher = record.value.publisher;
+            // this.form.publish_at = record.value.publish_at;
+            // this.form.publisher = record.value.publisher;
             this.form.is_active = record.value.is_active;
             this.form.description = record.value.description?record.value.description:"";
-           
+
             this.form.gallery = record.value.media;
             let data = []
             let ref = this;
             data = this.form.gallery.map(gall => {
                 return gall.image_url;
-            }) 
+            })
             console.log(data);
             this.form.gallery = data;
             record.value.media.filter(gallery => {
                 ref.form.media.push(gallery.id);
-            }) 
+            })
     },
 
     async getAllUsers(){

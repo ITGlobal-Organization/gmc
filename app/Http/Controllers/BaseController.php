@@ -11,6 +11,7 @@ use App\Helpers\Helper;
 use App\Traits\Validation;
 use App\Mail\ContactUs;
 use App\Models\Media;
+use App\Models\User;
 use Pusher\Pusher;
 use DB;
 use Carbon\Carbon;
@@ -142,9 +143,8 @@ class BaseController extends Controller
             // Return a JSON response with validation errors
             return $this->sendError('',$e->errors(),422,[]);
         }
-        
 
-        
+
         try {
             DB::beginTransaction();
 
@@ -169,7 +169,7 @@ class BaseController extends Controller
             // return $result;
             return $this->sendResponse([], trans('messages.success_msg',['action' => trans('lang.saved')]));
         } catch (\Exception $e) {
-            //   dd($e->getMessage());
+            dd($e->getMessage());
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
@@ -183,6 +183,7 @@ class BaseController extends Controller
                 $rules[$key] = $rule.','.$key.','.$id;
             }
         }
+        // dd($request);
 
         try {
             // Validate the incoming request data
@@ -192,7 +193,7 @@ class BaseController extends Controller
             // Return a JSON response with validation errors
             return $this->sendError('',$e->errors(),422,[]);
         }
-        
+
         try {
             DB::beginTransaction();
             $data = $request->except(['_token','media','gallery','image','image1','image2']);
@@ -221,8 +222,13 @@ class BaseController extends Controller
     }
 // Get
     public function get(Request $request,$id){
-        $result = $this->model->first('id',$id);
-        return $this->sendResponse($result);
+        try{
+            $result = $this->model->first('id',$id);
+            return $this->sendResponse($result);
+        }catch(\Exception $e){
+            return $this->sendError(trans('validation.custom.errors.server-errors'));
+        }
+
     }
 // Save files
     public function saveFiles(Request $request){
@@ -251,6 +257,18 @@ class BaseController extends Controller
             return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
 
+
+    }
+
+    public function getAllRoles()
+    {
+        try{
+            $User = new User();
+            return $this->sendResponse($User->getRoles());
+        }catch(\Exception $e){
+            Log::error($e);
+            return $this->sendError(trans('validation.custom.errors.server-errors'));
+        }
 
     }
 }

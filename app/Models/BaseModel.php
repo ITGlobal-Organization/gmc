@@ -286,10 +286,7 @@ class BaseModel extends Model
 
     }
 
-    public static function getAllRoles()
-    {
-        return DB::table('roles')->select('id', 'name')->where('name', '<>', config('constant.admin'))->get();
-    }
+   
 
     public static function getAllRoleById($id)
     {

@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AddonController;
 use App\Http\Controllers\SizeController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BorderController;
 use App\Http\Controllers\BackingController;
 use App\Http\Controllers\Employee\EmployeeController;
@@ -71,7 +70,7 @@ Route::prefix('admin')->middleware(['auth:sanctum','admin'])->group(function () 
 
 
 
-Route::get('/featured-products',[SitePageController::class,'getListingProducts'])->name('home.featured-products');
+// Route::get('/featured-products',[SitePageController::class,'getListingProducts'])->name('home.featured-products');
 // Route::get('/',function(){
 //     return redirect()->route('admin.login');
 // })->name('home');

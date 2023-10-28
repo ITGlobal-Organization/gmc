@@ -8,6 +8,7 @@ use App\Helpers\Helper;
 use App\Models\CustomForm;
 use App\Mail\CustomForm as MailForm;
 use App\Models\Page;
+// use App\Models\Product;
 use Log;
 
 class SitePageController extends BaseController
@@ -16,8 +17,8 @@ class SitePageController extends BaseController
     private $customForm;
     private $Page;
     private $product;
-    public function __construct(CustomForm $customForm,Page $page){
-        
+    public function __construct(CustomForm $customForm,Page $page,Product $product){
+
         $this->customForm = $customForm;
         $this->Page = $page;
       
@@ -26,14 +27,14 @@ class SitePageController extends BaseController
     public function renderMainPage(Request $request){
 
         try{
-            
+
             $Page = Page::where('is_active',1)->where('is_home_page',1)->first();
             return view(config('site_config.assets.home_pages').$Page->view,[
                 'title' => $Page->name,
             ]);
 
         }catch(\Exception $e){
-            
+
             return view(config('site_config.assets.home_pages').'indexv1',[
                 'title' => 'Home',
             ]);
@@ -44,10 +45,10 @@ class SitePageController extends BaseController
     }
 
     public function renderSitePages(Request $request,$page){
-        
+
         $Page = Page::where('is_active',1)->where('slug',$page)->first();
         try{
-            
+
             if(!isset($Page)){
                 // if($page == 'blogs'){
                 //     return redirect()->route('blogs');

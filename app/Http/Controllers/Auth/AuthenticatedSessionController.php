@@ -42,9 +42,9 @@ class AuthenticatedSessionController extends BaseController
     {
         $request->authenticate();
 
-        // $request->session()->regenerate();
-        auth()->user()->signin_at = Carbon::now();
-        
+        $request->session()->regenerate();
+        auth()->user()->login_at = Carbon::now();
+        auth()->user()->is_login = 1;
         auth()->user()->save();
 
         $user = auth()->user();
@@ -52,12 +52,15 @@ class AuthenticatedSessionController extends BaseController
         if(!$user->hasRole('admin')){
             $user[auth()->user()->roles[0]->name] = auth()->user()->{auth()->user()->roles[0]->name};
         }
-
+        $redirect_route = session('redirected_route');
+        if(!isset($redirect_route)){
+            $redirect_route = route(strtolower(auth()->user()->roles[0]->name).'.dashboard');
+        }
         return $this->sendResponse([
             'token' => auth()->user()->createToken('API Token')->plainTextToken,
             'user' => json_encode($user),
-            
-        ]);
+            'route' => $redirect_route,
+        ],trans('messages.logged_in'));
 
     }
 

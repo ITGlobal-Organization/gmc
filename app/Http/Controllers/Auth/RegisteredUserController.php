@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\BaseController;
 use App\Models\User;
 use App\Models\BaseModel;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use App\Http\Requests\Auth\RegisterRequest;
@@ -16,12 +15,8 @@ use App\Http\Controllers\Controller;
 use DB;
 use Carbon\Carbon;
 use App\Helpers\Helper;
-use Illuminate\Contracts\Encryption\DecryptException;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Validation\ValidationException;
-use App\Mail\OtpMail;
-use App\Models\Member;
-use App\Models\Invite;
+use App\Models\Media;
+
 
 
 
@@ -32,14 +27,22 @@ class RegisteredUserController extends BaseController
      *
      * @return \Illuminate\View\View
      */
-    private $user,$member,$invite;
+    private $user,$Media;
 
-    public function __construct(User $user,Member $member,Invite $invite){
+    public function __construct(User $user,Media $media){
         $this->user = $user;
-        $this->member = $member;
-        $this->invite = $invite;
+        $this->Media = $media;
+        $this->user->setRules();
+
     }
 
+    public function setGeneralFilters(Request $request)
+    {
+        $this->user->setLength($request->has('length') ? $request->length : 10);
+        $this->user->setStart($request->has('start') ? $request->start : 1);
+        $this->user->setOrderBy($request->has('orderBy') ? $request->orderBy : 'created_at');
+        $this->user->setOrder($request->has('order') ? $request->order : 'desc');
+    }
     /**
      * Handle an incoming registration request.
      *
@@ -48,56 +51,39 @@ class RegisteredUserController extends BaseController
      *
      * @throws \Illuminate\Validation\ValidationException
      */
- 
+
     public function store(Request $request)
     {
-        // auth()->logout();
 
+         $request->validate($this->user->getRules());
         try {
-            // Validate the incoming request data
-            $request->validate([
-                'name' => ['required',config('constant.form_attributes.name.min'),config('constant.form_attributes.name.max')],
-                'email' => ['required','unique:users,email','email'],
-                'phone' => ['required','string',config('constant.form_attributes.phone.min'),config('constant.form_attributes.phone.max')],
-                'age' => ['required','integer'],
-                'dob'  => ['required','date'],
-               ]);
 
-            // Your controller logic goes here if validation passes
-        } catch (ValidationException $e) {
-            // Return a JSON response with validation errors
-            return $this->sendError('',$e->errors(),422,[]);
-        }
-       
-        try {
-           
 
             DB::beginTransaction();
-            $data = $request->input();
-            
+            $data = $request->except(['_token','password_confirmation','password','role_id','media']);
+            $data['password'] = Hash::make($request->password);
             // store user
-            $data['is_active'] = 0;
+            // dd($request->role_id);
+            $data['is_active'] = 1;
+            $data['is_approved'] = 1;
+
             $user = User::create($data);
-                       
-            $response = $this->sendOtp($request);
+
+
             DB::commit();
-            $user->assignRole('2');
+            $user->assignRole($request->role_id);
             DB::commit();
 
-            
-            
-            if($response == ""){
-                if(isset($request->ref_token) && isset($request->user_id)){
-                    $this->member->store([
-                        'user_id' => $request->user_id,
-                        'member_id' => $user->id
-                    ]);
+            if ($request->has('media')) {
+                //$response = Helper::saveMedia($request->image,$this->model->class_name,$result->id);
+
+                foreach($request->media as $media){
+                   // dd($this->Media);
+                    $this->Media->updateByColumn([
+                        'model_id' => $user->id,
+                    ],$media);
                 }
-                return $this->sendResponse([], trans('messages.otp_sent'));
             }
-                
-            else
-                return $this->sendError('Error while processing request');
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -107,130 +93,135 @@ class RegisteredUserController extends BaseController
     }
 
 
-    public function validateOtp(Request $request){
+    public function index(Request $request){
+        return view('admin.crud.index',[
+             'title' => trans('lang.users'),
+             'name'  => trans('lang.user'),
+        ]);
+    }
 
-        try {
-            // Validate the incoming request data
-            $request->validate([
-                
-                'email' => ['required','email'],
-                'otp'  => ['required','string','max:4','min:4'],
-               ]);
+    public function create(Request $request){
+        return view('admin.crud.create',[
+            'title' => trans('lang.users').' | '.trans('lang.create'),
+            'name' => 'blog',
+        ]);
+    }
 
-            // Your controller logic goes here if validation passes
-        } catch (ValidationException $e) {
-            // Return a JSON response with validation errors
-            return $this->sendError('',$e->errors(),422,[]);
-        }
+    public function edit(Request $request){
+        return view('admin.crud.edit',[
+            'title' => trans('lang.users').' | '.trans('lang.edit'),
+            'name' => 'blog',
+        ]);
+    }
 
+    public function render(Request $request){
         try{
-            
-            $otp = $request->otp;
-           
-            $Otp = DB::table('otps')->select('otp')->where('otps.email','=',$request->email)
-            ->where('otps.expires_at','<=',Carbon::now())
-            ->where('otps.is_expired',0)->orderBy('otps.id','desc');
-
-            $OtpFound = $Otp->first();
-        
-            // dd($OtpFound);
-            if(isset($OtpFound)){
-                if(Crypt::decryptString($OtpFound->otp) == $otp){
-                    $Otp->update([
-                        'is_expired' => 1,
-                        'expires_at' => Carbon::now()
-                    ]);
-                    return $this->sendResponse([],trans('messages.otp_vlidated'));
-                }
-                return $this->sendError(trans('messages.invalid_otp'));
-            
-            }else{
-                return $this->sendError(trans('messages.invalid_otp'));
-            }
-
+            $response = [];
+            $this->setGeneralFilters($request);
+            $response = $this->user->getRecordDataTable($request);
+            return $this->sendResponse($response);
         }catch(\Exception $e){
-            return $this->sendError(trans('messages.error_msg',['action' => 'validation'])); 
+            dd($e);
+            Log::error($e);
+            return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
-        
+
     }
 
-    public function sendOtp(Request $request){
-
+    public function get(Request $request,$id){
         try{
-            $Otp = $this->generateRandomInteger();
-            
-            DB::table('otps')->insert([
-                'otp' => Crypt::encryptString($Otp),
-                'is_expired' => 0,
-                'expires_at' => Carbon::now()->addMinute(),
-                'email' => $request->email,
-                'created_at' => Carbon::now()
-            ]);
-            $mail = Helper::sendMail($request->email,new OtpMail( [
-                'email' => $request->email,
-                'otp' => $Otp
-            ]),config('mail.from.MAIL_FROM_ADDRESS'));
-
-            return $mail;
-
-        }catch(Exception $e){
-            Log::error($e->getMessage());
-            return false;
-        }
-    }
-
-    public function generateRandomInteger($length = 4) {
-        $min = pow(10, $length - 1);
-        $max = pow(10, $length) - 1;
-        
-        return random_int($min, $max);
-    }
-
-    public function generatePinOrPassword(Request $request){
-        try {
-            // Validate the incoming request data
-            $request->validate([
-                
-                'email' => ['required','email','exists:users,email'],
-                'pin'  => ['required','string','max:5','min:4'],
-               ]);
-
-            // Your controller logic goes here if validation passes
-        } catch (ValidationException $e) {
-            // Return a JSON response with validation errors
-            return $this->sendError('',$e->errors(),422,[]);
+            $result = User::select('users.id','users.first_name','users.last_name','users.email','users.company','users.phone','users.address','users.username','users.postalcode','model_has_roles.role_id as role_id','users.created_at','users.is_approved','users.tel_no','users.website','users.venue_url','users.facebook_url','users.instagram_url','users.linkedin_url','users.youtube_url')->join('model_has_roles','model_has_roles.model_id','=','users.id')
+            ->where('model_has_roles.model_type','=','App\\Models\\User')
+            ->where('users.id',$id)
+            ->firstorfail();
+            $result['media'] = Media::where('model','App\\Models\\User')->where('model_id',  $id)->get();
+            return $this->sendResponse($result);
+        }catch(\Exception $e){
+            dd($e);
+            return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
 
+    }
+
+    // Update
+    public function update(Request $request,$id){
+        $rules = $this->user->getRules();
+
+        foreach($rules as $key => $rule){
+            if(strpos($rule,'unique')){
+                $rules[$key] = $rule.','.$key.','.$id;
+            }
+        }
+        // if($request->password != ''){
+        //     $rules['password'] = 'confirmed|min:8';
+        // }
+
+        $request->validate($rules);
         try {
-           
             DB::beginTransaction();
- 
-            $user = User::where('email',$request->email)->where('is_active',0)->first();
-            
-            if(isset($user)){
-                // $User = User::find($user->id);
-                $user->update([
-                    'password' => Hash::make($request->pin),
-                    'is_active' => 1,
-                    'signin_at' => Carbon::now(),
-                ]);
+            $data = $request->except(['_token','password_confirmation','role_id','media','gallery']);
+
+           User::where('id',$id)->update($data);
+
+
+            DB::commit();
+            $User = User::findorfail($id);
+
+            if(!$User->hasRole($request->role_id)){
+                $User->assignRole($request->role_id);
                 DB::commit();
-                Auth::login($user);
-                 return $this->sendResponse([
-                        'token' => auth()->user()->createToken('API Token')->plainTextToken,
-                        'user' => json_encode($user),
-                    ], trans('messages.pin_generated_successfully'));
-                
             }
 
-            return $this->sendError('messages.user_not_found');
+            $this->user->id = $id;
+            if ($request->has('media')) {
 
+                foreach($request->media as $media){
+
+                    $this->Media->updateByColumn([
+                        'model_id' => $id,
+                        'model' => 'App\\Models\\User'
+                    ],$media);
+
+                }
+            }
+            DB::commit();
+            // return $id;
+            return $this->sendResponse([], trans('messages.success_msg', ['action' => trans('lang.updated')]));
         } catch (\Exception $e) {
-            DB::rollBack();
+            DB::rollback();
+            dd($e);
             Log::error($e);
-            return $this->sendError('Error while inserting (' . $e->getMessage() . ')');
+            return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
+    }
 
+    // destroy
+    public function destroy(Request $request,$id){
+        try{
+            DB::beginTransaction();
+            $user = User::findorfail($id);
+            $status=$user->delete($id);
+
+            DB::commit();
+            return $this->sendResponse([],'Your data has been '.trans('messages.success_msg',['action' => trans('lang.delete')]));
+        }catch(Exception $e){
+            DB::rollback();
+            Log::error($e);
+            return $this->sendError(trans('validation.custom.errors.server-errors'));
+        }
+    }
+
+    // Get all users for select
+    public function getUsers(){
+
+        try{
+            $result = User::selectRaw('id,CONCAT(first_name," ",last_name) as text,created_at')
+            ->get();
+            return $this->sendResponse($result);
+        }catch(\Exception $e){
+            dd($e);
+            return $this->sendError(trans('validation.custom.errors.server-errors'));
+        }
     }
 
 }

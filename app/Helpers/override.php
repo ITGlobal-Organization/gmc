@@ -14,9 +14,9 @@ if (!function_exists('prefix_route')) {
             $name = $name;
         } else {
             //                $name = app()->getLocale() . '.'. $getuserrole .'.'. $name;
-            $name = $getuserrole . '.' . $name;
+            $name = strtolower($getuserrole) . '.' . $name;
         }
-        //   dd($name);
+       
         return app('url')->route($name, $parameters, $absolute);
     }
 }
