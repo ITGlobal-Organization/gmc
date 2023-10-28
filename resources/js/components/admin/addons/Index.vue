@@ -285,7 +285,7 @@ mounted(){
                     required:false,
                     fileType:"image/jpeg, image/png",
                     maxFiles:1
-            },
+                },
             
             
         ]

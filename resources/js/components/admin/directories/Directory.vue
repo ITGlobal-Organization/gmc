@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ Lang.blogs }}</h1>
+                    <h1>{{ Lang.directory }}</h1>
                 </div>
                 <!-- <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -23,10 +23,10 @@
         <!-- Default box -->
         <div class="card card-secondary card-outline">
             <div class="card-header d-flex justify-content-end">
-                <router-link class="btn btn-secondary" to="/admin/blogs/create">
-                    {{ Lang.add_new_msg(Lang.blog) }}
+                <router-link class="btn btn-secondary" to="/admin/directory/create">
+                    {{ Lang.add_new_msg(Lang.directory) }}
                 </router-link>
-                
+
 <!--                <h3 class="card-title">{{ Lang.companies }}</h3>-->
             </div>
             <div class="card-body p-0" v-if="data">
@@ -51,7 +51,7 @@
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
-        
+
         </section>
 
     <!-- /.content -->
@@ -60,7 +60,7 @@
 
 
 <script>
-import useBlogs from '../../../composables/blogs';
+import useDirectory from '../../../composables/directories';
 import {Language} from '../../../helpers/lang/lang';
 import Datatables from '../../commons/Datatables.vue';
 import useService  from '../../../services';
@@ -113,35 +113,11 @@ export default {
                 has_html:true,
             },
             {
-                label:Language.slug,
-                field:'slug',
-                orignal_name:'slug',
-                width:'4%',
-                sorted:false,
-                has_html:false,
-            },
-            {
-                label:Language.publisher,
-                field:'publisher',
-                orignal_name:'publisher',
-                width:'4%',
-                sorted:false,
-                has_html:false,
-            },
-            {
                 label:Language.author,
                 field:'author',
                 orignal_name:'author',
                 width:'4%',
                 sorted:false,
-                has_html:false,
-            },
-            {
-                label:Language.publish_at,
-                field:'publish_at',
-                orignal_name:'publish_at',
-                width:'4%',
-                sorted:true,
                 has_html:false,
             },
             {
@@ -176,7 +152,7 @@ export default {
                             return 'fa fa-edit mr-2'
                         },
                         action:(row) =>{
-                            ref.$router.push('/admin/blogs/edit/'+row.id)
+                            ref.$router.push('/admin/directory/edit/'+row.id)
                         }
                     },
                     {
@@ -187,7 +163,7 @@ export default {
                             return 'fa fa-trash mr-2'
                         },
                         action:(row) =>{
-                            
+
                             ref._delete(row.id);
                         }
                     }
@@ -199,34 +175,34 @@ export default {
 
             },
         ]
-        this.getBlogs(this.pageNo,this.pageSize,this.filter);
+        this.getDirectories(this.pageNo,this.pageSize,this.filter);
     },
 
     methods:{
         setPageNo(pageNo){
             this.pageNo = pageNo;
 
-            this.getBlogs(this.pageNo,this.pageSize,this.filter);
+            this.getDirectories(this.pageNo,this.pageSize,this.filter);
         },
         setPageSize(pageSize){
             this.pageSize = pageSize
-            this.getBlogs();
+            this.getDirectories();
         },
         setOrder(orderBy){
             this.orderBy = orderBy
             this.order = this.order == 'desc'?'asc':'desc';
-            this.getBlogs();
+            this.getDirectories();
         },
         setFilter(filter){
             this.filter = {
                 search:filter
             }
 
-            this.getBlogs(this.pageNo,this.pageSize,this.filter);
+            this.getDirectories(this.pageNo,this.pageSize,this.filter);
         },
-        async getBlogs(){
+        async getDirectories(){
 
-            const { records, getAll } = useBlogs();
+            const { records, getAll } = useDirectory();
             this.loader = true
             let ref = this
 
@@ -244,9 +220,9 @@ export default {
             let ref = this
                 confirmAlert(async () => {
                     this.loader = true
-                        const { udpateStatus } = useBlogs();
+                        const { udpateStatus } = useDirectory();
                         await udpateStatus(id)
-                        ref.getBlogs(ref.pageNo,ref.pageSize,ref.filter);
+                        ref.getDirectories(ref.pageNo,ref.pageSize,ref.filter);
                 })
         },
         async _delete(id){
@@ -254,14 +230,14 @@ export default {
             let ref = this
                 confirmAlert(async () => {
                     this.loader = true
-                        const { _delete } = useBlogs();
+                        const { _delete } = useDirectory();
                         await _delete(id)
-                        ref.getBlogs(ref.pageNo,ref.pageSize,ref.filter);
-                        successAlert(Language.success_msg.replace(':attribute',Language.blog).replace(':action',Language.deleted))
+                        ref.getDirectories(ref.pageNo,ref.pageSize,ref.filter);
+                        successAlert(Language.success_msg.replace(':attribute',Language.directory).replace(':action',Language.deleted))
 
                 })
         },
-        
+
         async update(){
             const {update,errors} = useCategories();
             const {errorAlert,successAlert} = useService();
@@ -277,7 +253,7 @@ export default {
                         ref.store_modal_loader = false;
                         ref.is_show_modal = false;
                         ref.id = 0;
-                        ref.getBlogs();
+                        ref.getDirectories();
                     }).catch((e) => {
                         ref.store_modal_loader = false;
                         if(e.response.status === 422){

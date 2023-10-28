@@ -11,26 +11,43 @@ return [
                 'access' => 'admin',
                 'submenu' => [],
             ],
-            // [
-            //     'name' => 'employees',
-            //     'route' => 'employees.index',
-            //     'icon' => 'nav-icon fas fa-users',
-            //     'has_submenu' => false,
-            //     'submenu_icon' => '',
-            //     'access' => 'admin',
-            //     'submenu' => [],
-            // ],
-
+            [
+                'name' => 'blogs',
+                'route' => 'blogs.index',
+                'icon' => 'nav-icon fas fa-users',
+                'has_submenu' => false,
+                'submenu_icon' => '',
+                'access' => 'admin',
+                'submenu' => [],
+            ],
+            [
+                'name' => 'users',
+                'route' => 'users.index',
+                'icon' => 'nav-icon fas fa-users',
+                'has_submenu' => false,
+                'submenu_icon' => '',
+                'access' => 'admin',
+                'submenu' => [],
+            ],
+            [
+                'name' => 'directory',
+                'route' => 'directory.index',
+                'icon' => 'nav-icon fas fa-tachometer-alt',
+                'has_submenu' => false,
+                'submenu_icon' => '',
+                'access' => 'admin',
+                'submenu' => [],
+            ],
 
 
 
         ],
     ],
-   
-   
 
-  
-    
+
+
+
+
 
 
 ];

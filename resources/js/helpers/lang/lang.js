@@ -196,6 +196,8 @@ export const Language = {
     project:"Project",
     blogs:"Blogs",
     blog:"Blog",
+    directories:"Directories",
+    directory:"Directory",
     written_by:"Written By",
     published_by:"Published By",
     published_at:"Published At",
@@ -219,6 +221,12 @@ export const Language = {
     sign_out:"Sign Out",
     placholder_msg: function(attribute){
         return "Enter "+ attribute;
+    },
+    add_new_msg: function(attribute){
+        return "Add New " + attribute
+    },
+    create_msg: function(attribute){
+        return "Create " + attribute
     },
     password_mismatch:"Password Does Not Match",
     categories:"Categories",
@@ -244,5 +252,17 @@ export const Language = {
     quoted_price:"Quoted Price",
     quantity:"Quantity",
     shipment_address:"Shipment Address",
-    backing:"Backings"
+    backing:"Backings",
+    author:"Author",
+    publisher:"Publisher",
+    publish_at:"Publish At",
+    postal_code:"Postal Code",
+    roles:"Roles",
+    tel_no:"Tel No",
+    website:"Website",
+    venue_url:"Venue Url",
+    facebook_url:"Facebook Url",
+    instagram_url:"Instagram Url",
+    youtube_url:"YouTube Url",
+    linkedin_url:"Linkedin Url",
 };

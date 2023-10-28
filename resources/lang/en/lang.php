@@ -78,6 +78,8 @@ return [
     'book_now' => 'Book Now',
     'blogs' => 'Blogs',
     'blog' => 'Blog',
+    'directories' => 'Directories',
+    'directory' => 'Directory',
     'learn_more' => 'Learn More',
     'view_all' => 'View All',
     'read_more' => 'Read More',
@@ -145,8 +147,10 @@ return [
     'attach_file' => 'Attach File',
     'shipping_to_a_different_address' => 'Ship to a new address',
     'quantity'  => 'Quantity',
-    'delete' => 'Delete'
-    
+    'delete' => 'Delete',
+    'users' => 'Users',
+    'user' => 'User'
+
 
 
 ];

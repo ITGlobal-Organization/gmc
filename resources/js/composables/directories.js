@@ -3,15 +3,15 @@ import { axiosWrapper } from '../helpers/index';
 import { useRouter } from 'vue-router';
 import useService from '../services';
 
-export default function useBlogs() {
+export default function useDirectory() {
     const records = ref([]);
     const errors = ref([]);
     const record = ref({});
-    
+
 
     const { errorAlert } = useService();
     const getAll = async(pageNo, limit, orderBy, order, data) => {
-        await axiosWrapper.get(`/admin/blogs/ajax?length=${limit}&start=${pageNo}&orderBy=${orderBy}&order=${order}`, data).then((response) => {
+        await axiosWrapper.get(`/admin/directory/ajax?length=${limit}&start=${pageNo}&orderBy=${orderBy}&order=${order}`, data).then((response) => {
             records.value = response.data.data
         }).catch((e) => {
             errorAlert(e.message);
@@ -20,32 +20,32 @@ export default function useBlogs() {
 
     const store = async(data) => {
 
-        await axiosWrapper.post(`/admin/blogs`, data);
+        await axiosWrapper.post(`/admin/directory`, data);
     }
     const udpateStatus = async(id) => {
-        await axiosWrapper.put(`/admin/blogs/update/status`, { id })
+        await axiosWrapper.put(`/admin/directory/update/status`, { id })
     }
 
     const update = async(id, data) => {
-        await axiosWrapper.put(`/admin/blogs/update/${id}`, data)
+        await axiosWrapper.put(`/admin/directory/update/${id}`, data)
     }
     const get = async(id) => {
-        await axiosWrapper.get(`/admin/blogs/${id}`).then((response) => {
+        await axiosWrapper.get(`/admin/directory/${id}`).then((response) => {
             record.value = response.data.data
         }).catch((e) => {
             errorAlert(e.message);
         })
     }
     const getAllPublic = async() => {
-        await axiosWrapper.get(`/blogs`).then((response) => {
+        await axiosWrapper.get(`/directory`).then((response) => {
             records.value = response.data.data
         }).catch((e) => {
             errorAlert(e.message);
         })
     }
-    
+
     const _delete  =async(id) => {
-        await axiosWrapper.destroy(`/admin/blogs/delete/${id}`);
+        await axiosWrapper.destroy(`/admin/directory/delete/${id}`);
     }
     return {
         getAll,
