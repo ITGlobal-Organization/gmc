@@ -47,7 +47,7 @@ class BlogController extends BaseController
         if(isset($request->sort_by) && $request->sort_by != ""){
             $sort = explode('-',$request->sort_by);
             $this->blog->setOrderBy($sort[0]);
-            $this->blog->setOrderBy($sort[1]);
+            $this->blog->setOrder($sort[1]);
         }
         $Blogs = $this->blog->getAll([['users','users.id','=','blogs.author']],['blogs.title','blogs.description','blogs.created_at','images.image_url','blogs.slug']);
 
