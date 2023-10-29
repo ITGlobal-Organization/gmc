@@ -37,4 +37,26 @@ class BlogController extends BaseController
             'name' => 'blog',
         ]);
     }
+
+    public function getBlogsListing(Request $request){
+        if(isset($request->sort_by) && $request->sort_by != ""){
+            $sort = explode('-',$request->sort_by);
+            $this->blogs->setOrderBy($sort[0]);
+            $this->blogs->setOrderBy($sort[1]);
+        }
+
+        $Blogs = $this->blog->getAll([['users','users.id','=','blogs.author']],['blogs.title','blogs.description','blogs.created_at']);
+
+        if($request->ajax()){
+            return view('sections.blogs',[
+                'Blogs' => $Blogs,
+            ]);
+        }
+
+        return view('blogs.blogs',[
+            'title' => trans('lang.blogs'),
+        ]);
+
+        
+    }
 }

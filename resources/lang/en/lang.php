@@ -153,9 +153,12 @@ return [
     'spacefinder'=>'Space Finder',
     'spacefinders'=>'Space Finders',
     'eventcalender'=>'Event Calender',
-    'eventcalenders'=>'Event Calenders,
+    'eventcalenders'=>'Event Calenders',
     'listing' => 'Listing',
     'found' => 'Found',
+    'sort_by' => "Sort By",
+    'latest_to_oldest' => "Latest Listing",
+    'oldest_to_latest' => "Oldest Listing",
 
 
 

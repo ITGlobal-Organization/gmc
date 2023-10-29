@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\BaseModel;
+use App\Models\User;
 use Auth;
 
 class Blog extends BaseModel
@@ -113,5 +114,9 @@ class Blog extends BaseModel
         [],'',[]);
             
         return $result;
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class,'author');
     }
 }
