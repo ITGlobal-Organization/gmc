@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ Lang.create_msg(Lang.directory) }}</h1>
+                    <h1>{{ Lang.create_msg(Lang.eventcalender) }}</h1>
                 </div>
                 <!-- <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -35,10 +35,10 @@
 <script>
 import {Language} from '../../../helpers/lang/lang';
 import Form from '../../commons/Form.vue';
-import useDirectory from '../../../composables/directories';
 import useUsers from '../../../composables/users';
 import useService  from '../../../services/index';
 import { axiosWrapper } from '../../../helpers';
+import useEventCalender from '../../../composables/eventcalenders';
 
 export default {
     components:{
@@ -57,11 +57,13 @@ export default {
             FormData:{
                 title:'',
                 description:'',
-                // author:'',
+                venue:'',
+                event_date:'',
+                price:'',
                 media:[],
                 gallery:[]
             },
-            name:"Create Directory",
+            name:"Create Event",
         }
     },
     mounted(){
@@ -79,6 +81,17 @@ export default {
                     },
                     required:true,
                 },
+                {
+                    label:Language.venue,
+                    field:"venue",
+                    class:"form-control",
+                    grid:"col-md-4 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
                 // {
                 //     label:Language.slug,
                 //     field:"slug",
@@ -90,17 +103,6 @@ export default {
                 //     },
                 //     required:true,
                 // },
-                {
-                    label:Language.description,
-                    field:"description",
-                    class:"form-control",
-                    type:"textarea",
-                    grid:"col-md-12 col-12",
-                    placeholder:function(){
-                        return "Enter "+this.label
-                    },
-                    required:true,
-                },
                 // {
                 //     label:Language.author,
                 //     field:"author",
@@ -132,17 +134,39 @@ export default {
                 //     },
                 //     required:true,
                 // },
-                // {
-                //     label:Language.published_at,
-                //     field:"publish_at",
-                //     class:"form-control",
-                //     grid:"col-md-4 col-12",
-                //     type:"date",
-                //     placeholder:function(){
-                //         return "Enter "+this.label
-                //     },
-                //     required:true,
-                // },
+                {
+                    label:Language.event_date,
+                    field:"event_date",
+                    class:"form-control",
+                    grid:"col-md-4 col-12",
+                    type:"date",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.price,
+                    field:"price",
+                    class:"form-control",
+                    grid:"col-md-4 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.description,
+                    field:"description",
+                    class:"form-control",
+                    type:"textarea",
+                    grid:"col-md-12 col-12",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
 
                 {
                     label:Language.image,
@@ -154,7 +178,7 @@ export default {
                         return "Upload"+this.label
                     },
                     multiple:false,
-                    model:`App\\Models\\Directory`,
+                    model:`App\\Models\\EventCalender`,
                     required:false,
                     fileType:"image/jpeg, image/png",
                     maxFiles:1
@@ -169,15 +193,15 @@ export default {
 
     methods:{
         async store(){
-            const {store,errors} = useDirectory();
+            const {store,errors} = useEventCalender();
             const {successAlert,errorAlert} = useService();
             this.loader =true;
             let ref = this
             console.log(this.FormData);
             await store(this.FormData).then(async (response) => {
-                successAlert(Language.success_msg.replace(':attribute',Language.directory).replace(':action',Language.saved))
+                successAlert(Language.success_msg.replace(':attribute',Language.eventcalender).replace(':action',Language.saved))
                 setTimeout(() => {
-                    ref.$router.push('/admin/directory')
+                    ref.$router.push('/admin/eventcalender')
                 }, 3000);
             }).catch((e) => {
                 if(e.response.status === 422){

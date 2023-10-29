@@ -1,5 +1,5 @@
-let show_password = false;
-const config = {
+show_password = false;
+config = {
     timeout: 3000,
 }
 

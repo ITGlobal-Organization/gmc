@@ -82,9 +82,10 @@
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 <div id="list2">
     <ul>
-      <li><a href="#"><i class="fa fa-chevron-right"></i> Home</a></li>
-      <li><a href="#"><i class="fa fa-chevron-right"></i> Login</a></li>
-	  <li><a href="#"><i class="fa fa-chevron-right"></i> Join</a></li>
+      <li><a href="{{ route('home') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.home')}}</a></li>
+      <li><a href="{{ route('login') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.login')}}</a></li>
+	  <li><a href="{{ route('register') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.join')}}</a></li>
+    <li><a href="{{ route('blogs.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.blogs')}}</a></li>
       <li><a href="#"><i class="fa fa-chevron-right"></i> Benefits</a></li>
       <li><a href="#"><i class="fa fa-chevron-right"></i> Directory</a></li>
       <li><a href="#"><i class="fa fa-chevron-right"></i> Space Finder</a></li>

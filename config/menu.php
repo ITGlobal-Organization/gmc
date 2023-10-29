@@ -38,6 +38,24 @@ return [
                 'access' => 'admin',
                 'submenu' => [],
             ],
+            [
+                'name' => 'spacefinder',
+                'route' => 'spacefinder.index',
+                'icon' => 'nav-icon fas fa-tachometer-alt',
+                'has_submenu' => false,
+                'submenu_icon' => '',
+                'access' => 'admin',
+                'submenu' => [],
+            ],
+            [
+                'name' => 'eventcalender',
+                'route' => 'eventcalender.index',
+                'icon' => 'nav-icon fas fa-tachometer-alt',
+                'has_submenu' => false,
+                'submenu_icon' => '',
+                'access' => 'admin',
+                'submenu' => [],
+            ],
 
 
 

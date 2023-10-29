@@ -55,47 +55,7 @@ return [
                 'has_submenu' => false,
                 'submenu' => []
             ],
-            [
-                'name' => 'about_us',
-                'link' => 'about-us',
-                'is_main' => false,
-                'class' => 'menu-item',
-                'type' => 'page',
-                'link-class' => 'menu-link ',
-                'has_submenu' => false,
-                'submenu' => []
-            ],
-            [
-                'name' => 'services',
-                'link' => 'services',
-                'is_main' => false,
-                'class' => 'menu-item',
-                'type' => 'page',
-                'link-class' => 'menu-link ',
-                'has_submenu' => false,
-                'submenu' => []
-            ],
-            [
-                'name' => 'blogs',
-                'link' => 'blogs',
-                'is_main' => false,
-                'class' => 'menu-item',
-                'type' => 'link',
-                'link-class' => 'menu-link',
-                'has_submenu' => false,
-                'submenu' => []
-            ],
-
-            [
-                'name' => 'book_now',
-                'link' => 'contact-us',
-                'is_main' => false,
-                'class' => 'menu-item',
-                'type' => 'page',
-                'link-class' => 'menu-link',
-                'has_submenu' => false,
-                'submenu' => []
-            ],
+ 
             // [
             //     'name' => 'geo_location',
             //     'link' => 'contact-us',
@@ -126,10 +86,7 @@ return [
                 'name' => 'services',
                 'link'  => 'services',
             ],
-            [
-                'name' => 'blogs',
-                'link'  => 'blogs',
-            ]
+     
         ]
 
     ],

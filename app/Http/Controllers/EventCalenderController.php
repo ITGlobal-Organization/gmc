@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
-use App\Models\Benifit;
+use App\Models\EventCalender;
 use App\Models\Media;
 
-class BenifitController extends BaseController
+class EventCalenderController extends BaseController
 {
-    private $benifit,$media,$user;
-    public function __construct(Benifit $benifit,Media $media) {
-        $this->benifit$benifit = $benifit;
+    private $eventCalender,$media,$user;
+    public function __construct(EventCalender $eventCalender,Media $media) {
+        $this->eventCalender = $eventCalender;
 
-        $this->setModel($benifit);
+        $this->setModel($eventCalender);
         $this->setMedia($media);
     }
 

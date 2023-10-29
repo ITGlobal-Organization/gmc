@@ -149,7 +149,18 @@ return [
     'quantity'  => 'Quantity',
     'delete' => 'Delete',
     'users' => 'Users',
-    'user' => 'User'
+    'user' => 'User',
+    'spacefinder'=>'Space Finder',
+    'spacefinders'=>'Space Finders',
+    'eventcalender'=>'Event Calender',
+    'eventcalenders'=>'Event Calenders',
+    'listing' => 'Listing',
+    'found' => 'Found',
+    'sort_by' => "Sort By",
+    'latest_to_oldest' => "Latest Listing",
+    'oldest_to_latest' => "Oldest Listing",
+    'by' => 'By',
+    'latest-post' => "Latest Post",
 
 
 

@@ -1,34 +1,40 @@
-@extends('layouts.layoutv1')
+@extends('layouts.layoutv2')
 @section('content')
-    @include('banners.bannerv4',[
-    'heading' => "<span>Our</span> Blogs",
-    'subheading' => "Check out our blogs to learn more about how and why you should protect your vehicle today!"
-    ])
-@php
-   $Blogs = trans('content.blogs');
-   
-@endphp
-    <!-- OUR BLOGS SECTION BEGIN -->
-   <section class="our-blogs-pg-sec">
-      <div class="container">
-         <div class="row">
-            @foreach($Blogs['blogs'] as $blog)
-            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-               <div class="inner-blogs">
-                  <img src="{{ asset(config('site_config.assets.images').$blog['image']) }}" alt="image" class="img-fluid">
-                  <h6>{{ $blog['heading']}}</h6>
-                  <p>{{ $blog['description']}}</p>
-                  <a href="{{ route($blog['link'],$blog['slug']) }}">{{ trans('lang.read_more')}}<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-               </div>
-            </div>
-            @endforeach
-         </div>
-         <div class="blogs-load-more">
-            <a href="" class="load-more">{{ trans('lang.load_more')}}</a>
-         </div>
-      </div>
-   </section>
-   <!-- OUR BLOGS SECTION END -->
-    @include('sections.newsletterv1')
+	<!--Start Middle-->
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
+		<div class="middle mtb-60">
 
+			<h1 class="mb-40 text-center">{{ trans('lang.blogs')}} {{trans('lang.categories')}}</h1>
+
+			<div class="blogs">
+
+			</div>	
+
+
+
+			<div class="clr"></div>
+		</div>
+		<div class="clr"></div>
+	</div>
+	<!--End Middle-->
+
+@endsection
+@section('scripts')
+
+<script>
+
+	sort_by = "";
+
+	$(document).on("change",'.sort_by',function(){
+		sort_by = $(this).val();
+		getBlogsListing();
+	});
+
+	$(document).ready(function(){
+		getBlogsListing();
+	})
+	function getBlogsListing(){
+		ajaxGet("{{route('blogs.ajax')}}",{sort_by},".blogs",responseType='html');
+	}
+</script>
 @endsection

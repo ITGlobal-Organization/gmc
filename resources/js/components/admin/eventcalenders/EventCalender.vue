@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ Lang.directory }}</h1>
+                    <h1>{{ Lang.eventcalender }}</h1>
                 </div>
                 <!-- <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -23,8 +23,8 @@
         <!-- Default box -->
         <div class="card card-secondary card-outline">
             <div class="card-header d-flex justify-content-end">
-                <router-link class="btn btn-secondary" to="/admin/directory/create">
-                    {{ Lang.add_new_msg(Lang.directory) }}
+                <router-link class="btn btn-secondary" to="/admin/eventcalender/create">
+                    {{ Lang.add_new_msg(Lang.eventcalender) }}
                 </router-link>
 
 <!--                <h3 class="card-title">{{ Lang.companies }}</h3>-->
@@ -60,7 +60,7 @@
 
 
 <script>
-import useDirectory from '../../../composables/directories';
+import useEventCalender from '../../../composables/eventcalenders';
 import {Language} from '../../../helpers/lang/lang';
 import Datatables from '../../commons/Datatables.vue';
 import useService  from '../../../services';
@@ -112,6 +112,30 @@ export default {
                 sorted:true,
                 has_html:true,
             },
+            {
+                label:Language.venue,
+                field:'title',
+                orignal_name:'title',
+                width:'4%',
+                sorted:true,
+                has_html:true,
+            },
+            {
+                label:Language.event_date,
+                field:'title',
+                orignal_name:'title',
+                width:'4%',
+                sorted:true,
+                has_html:true,
+            },
+             {
+                label:Language.price,
+                field:'title',
+                orignal_name:'title',
+                width:'4%',
+                sorted:true,
+                has_html:true,
+            },
             // {
             //     label:Language.author,
             //     field:'author',
@@ -152,7 +176,7 @@ export default {
                             return 'fa fa-edit mr-2'
                         },
                         action:(row) =>{
-                            ref.$router.push('/admin/directory/edit/'+row.id)
+                            ref.$router.push('/admin/eventcalender/edit/'+row.id)
                         }
                     },
                     {
@@ -175,34 +199,34 @@ export default {
 
             },
         ]
-        this.getDirectories(this.pageNo,this.pageSize,this.filter);
+        this.getEventCalenders(this.pageNo,this.pageSize,this.filter);
     },
 
     methods:{
         setPageNo(pageNo){
             this.pageNo = pageNo;
 
-            this.getDirectories(this.pageNo,this.pageSize,this.filter);
+            this.getEventCalenders(this.pageNo,this.pageSize,this.filter);
         },
         setPageSize(pageSize){
             this.pageSize = pageSize
-            this.getDirectories();
+            this.getEventCalenders();
         },
         setOrder(orderBy){
             this.orderBy = orderBy
             this.order = this.order == 'desc'?'asc':'desc';
-            this.getDirectories();
+            this.getEventCalenders();
         },
         setFilter(filter){
             this.filter = {
                 search:filter
             }
 
-            this.getDirectories(this.pageNo,this.pageSize,this.filter);
+            this.getEventCalenders(this.pageNo,this.pageSize,this.filter);
         },
-        async getDirectories(){
+        async getEventCalenders(){
 
-            const { records, getAll } = useDirectory();
+            const { records, getAll } = useEventCalender();
             this.loader = true
             let ref = this
 
@@ -220,9 +244,9 @@ export default {
             let ref = this
                 confirmAlert(async () => {
                     this.loader = true
-                        const { udpateStatus } = useDirectory();
+                        const { udpateStatus } = useEventCalender();
                         await udpateStatus(id)
-                        ref.getDirectories(ref.pageNo,ref.pageSize,ref.filter);
+                        ref.getEventCalenders(ref.pageNo,ref.pageSize,ref.filter);
                 })
         },
         async _delete(id){
@@ -230,10 +254,10 @@ export default {
             let ref = this
                 confirmAlert(async () => {
                     this.loader = true
-                        const { _delete } = useDirectory();
+                        const { _delete } = useEventCalender();
                         await _delete(id)
-                        ref.getDirectories(ref.pageNo,ref.pageSize,ref.filter);
-                        successAlert(Language.success_msg.replace(':attribute',Language.directory).replace(':action',Language.deleted))
+                        ref.getEventCalenders(ref.pageNo,ref.pageSize,ref.filter);
+                        successAlert(Language.success_msg.replace(':attribute',Language.eventcalender).replace(':action',Language.deleted))
 
                 })
         },
@@ -253,7 +277,7 @@ export default {
                         ref.store_modal_loader = false;
                         ref.is_show_modal = false;
                         ref.id = 0;
-                        ref.getDirectories();
+                        ref.getEventCalenders();
                     }).catch((e) => {
                         ref.store_modal_loader = false;
                         if(e.response.status === 422){

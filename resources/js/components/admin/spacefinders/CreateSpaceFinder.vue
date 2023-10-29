@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ Lang.create_msg(Lang.directory) }}</h1>
+                    <h1>{{ Lang.create_msg(Lang.spacefinder) }}</h1>
                 </div>
                 <!-- <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -35,7 +35,7 @@
 <script>
 import {Language} from '../../../helpers/lang/lang';
 import Form from '../../commons/Form.vue';
-import useDirectory from '../../../composables/directories';
+import useSpaceFinder from '../../../composables/spacefinders';
 import useUsers from '../../../composables/users';
 import useService  from '../../../services/index';
 import { axiosWrapper } from '../../../helpers';
@@ -61,7 +61,7 @@ export default {
                 media:[],
                 gallery:[]
             },
-            name:"Create Directory",
+            name:"Create Space Finder",
         }
     },
     mounted(){
@@ -154,7 +154,7 @@ export default {
                         return "Upload"+this.label
                     },
                     multiple:false,
-                    model:`App\\Models\\Directory`,
+                    model:`App\\Models\\SpaceFinder`,
                     required:false,
                     fileType:"image/jpeg, image/png",
                     maxFiles:1
@@ -169,15 +169,15 @@ export default {
 
     methods:{
         async store(){
-            const {store,errors} = useDirectory();
+            const {store,errors} = useSpaceFinder();
             const {successAlert,errorAlert} = useService();
             this.loader =true;
             let ref = this
             console.log(this.FormData);
             await store(this.FormData).then(async (response) => {
-                successAlert(Language.success_msg.replace(':attribute',Language.directory).replace(':action',Language.saved))
+                successAlert(Language.success_msg.replace(':attribute',Language.spacefinder).replace(':action',Language.saved))
                 setTimeout(() => {
-                    ref.$router.push('/admin/directory')
+                    ref.$router.push('/admin/spacefinder')
                 }, 3000);
             }).catch((e) => {
                 if(e.response.status === 422){

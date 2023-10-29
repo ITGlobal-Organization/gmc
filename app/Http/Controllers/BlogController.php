@@ -37,4 +37,35 @@ class BlogController extends BaseController
             'name' => 'blog',
         ]);
     }
+
+    public function blogs(Request $request){
+        return view('blogs.blogs',[
+            'title' => trans('lang.blogs'),
+        ]);
+    }
+    public function getBlogsListing(Request $request){
+        if(isset($request->sort_by) && $request->sort_by != ""){
+            $sort = explode('-',$request->sort_by);
+            $this->blog->setOrderBy($sort[0]);
+            $this->blog->setOrder($sort[1]);
+        }
+        $Blogs = $this->blog->getAll([['users','users.id','=','blogs.author']],['blogs.title','blogs.description','blogs.created_at','images.image_url','blogs.slug']);
+
+        return view('sections.blogs',[
+            'Blogs' => $Blogs,
+        ]);
+    }
+
+    public function getBlog(Request $request,$slug){
+        $Blog = $this->blog->first('slug',$slug,'=',['user'],[],['blogs.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
+
+        $this->blog->setLength(10);
+        $LatestBlogs = $this->blog->getAll([['users','users.id','=','blogs.author']],['blogs.title','blogs.description','blogs.created_at','images.image_url','blogs.slug']);
+
+        return view('blogs.blog-detail',[
+            'Blog' => $Blog,
+            'LatestBlog' => $LatestBlogs,
+            'title' => trans('lang.blog').' | '. $Blog->title
+        ]);
+    }
 }

@@ -319,6 +319,7 @@ class BaseModel extends Model
         // dd($this->has_images);
         if($this->has_images){
             $data->leftjoin('images','images.model_id',$this->table.'.id')->where('images.model','=',$this->class_name)->orWhereNull('images.model');
+            
         }
         
         if (count($join) > 0) {
@@ -328,8 +329,8 @@ class BaseModel extends Model
             // $data = static::with($relation)->selectRaw(implode(',', $select));
         }
 
-        if (count($where) > 0) {
-            foreach ($where as $condition) {
+        if (count($this->getFilters()) > 0) {
+            foreach ($this->getFilters() as $condition) {
                 $data->where($condition[0], $condition[1], $condition[2]);
             }
         }
