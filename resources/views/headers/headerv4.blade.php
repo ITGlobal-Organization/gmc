@@ -1,100 +1,153 @@
-<!--Start Top Header Area-->
-<div id="London" class="w3-container w3-display-container city">
-  <span onclick="this.parentElement.style.display='none'"
-  class="w3-button w3-large w3-display-topright">&times;</span>
-Limited time offer! Get up to <i><b>40% OFF</b></i> on all products
-</div>
-<!--End Top Header Area-->
-
-<!--Start Header Area-->
-<div class="middle">
-
-<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 boeder margin-bot5">
-  <a href="#"><img src="images/logo.png" alt="" title=""/></a>
-</div>
-
-<!--Start Search Box Desktop and Tablet-->
-<div class="col-xs-2 col-sm-6 col-md-6 col-lg-6 boeder block">
-<div class="search-box">
-<input type="image" class="search-btn" img="" src="{{custom_asset('brn-search.png')}}">
-<input type="text" placeholder="Search Product" class="search-input">
-<div class="clr"></div>
-</div>
-<div class="clr"></div>
-</div>
-<!--End Search Box Desktop and Tablet-->
-
-
-<!--Start Search Box Mobile-->
-<div class="col-xs-2 col-sm-6 col-md-6 col-lg-6 boeder none">
-<a href="#" class="show_hide1" title="Search">
-<div class="icon-genral">
-<i class="fas fa-search"></i>
-</div>
-</a>
-<div class="clr"></div>
-</div>
-<div class="sliding-search">
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
-			<div class="search-box">
-				<input type="image" class="search-btn" img="" src="{{custom_asset('brn-search.png')}}">
-<input type="text" placeholder="Search Product" class="search-input">
-<div class="clr"></div>
-			</div>
-
+<!--Start Banner Area-->
+<div id="myCarousel" class="carousel slide" data-ride="carousel"> 
+  <!-- Indicators -->
+  
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+    <li data-target="#myCarousel" data-slide-to="4"></li>
+    <li data-target="#myCarousel" data-slide-to="5"></li>
+  </ol>
+  
+  <div class="carousel-inner">
+    <div class="item active">
+	<a href="#"><img src="{{ custom_asset('banner1.jpg') }}" alt="First slide" width="100%"></a>
+	  <div class="banner-text">
+			<h2 class="white">Perthshire Chamber of Commerce</h2>
 		</div>
-		<div class="clr"></div>
+	 </div>
+    <div class="item">
+	<a href="#"><img src="{{ custom_asset('banner2.jpg') }}" alt="First slide" width="100%"></a>
+	  <div class="banner-text">
+			<h2 class="white">Perthshire Chamber of Commerce</h2>
+		</div>
+	 </div>
+    <div class="item">
+	<a href="#"><img src="{{ custom_asset('banner3.jpg') }}" alt="First slide" width="100%"></a>
+	  <div class="banner-text">
+			<h2 class="white">Perthshire Chamber of Commerce</h2>
+		</div>
+	 </div>
+    <div class="item">
+	<a href="#"><img src="{{ custom_asset('banner4.jpg') }}" alt="First slide" width="100%"></a>
+	  <div class="banner-text">
+			<h2 class="white">Perthshire Chamber of Commerce</h2>
+		</div>
+	 </div>
+    <div class="item">
+	<a href="#"><img src="{{ custom_asset('banner5.jpg') }}" alt="First slide" width="100%"></a>
+	  <div class="banner-text">
+			<h2 class="white">Perthshire Chamber of Commerce</h2>
+		</div>
+	 </div>
+    <div class="item">
+	<a href="#"><img src="{{ custom_asset('banner6.jpg') }}" alt="First slide" width="100%"></a>
+	  <div class="banner-text">
+			<h2 class="white">Perthshire Chamber of Commerce</h2>
+		</div>
+	 </div>
   </div>
-<!--End Search Box Mobile-->
+  
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+  
+  </div>
+<!--End Banner Area-->
 
-<!--Start Login Desktop and Mobile Tablet-->
-<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 boeder text-center">
-<div class="login-btn block"><a href="#">Login</a></div>
-<div class="icon-genral none">
-<a href="#" title="Login"><i class="far fa-sign-in" style="color: #ffffff;"></i></a>
-</div>
-</div>
-<!--End Login Desktop and Mobile Tablet-->
+<!--Start Header Top Area-->
+<div class="header">
 
-<!--Start Cart Desktop and Tablet-->
-<div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 boeder text-center margin-top16 text-center">
-<a href="#"><img src="{{custom_asset('cart.png')}}"  class="block"/></a>
-<div class="cart-text block">05</div>
-
-<div class="icon-genral none">
-<a href="#" title="Cart"><i class="far fa-shopping-bag" style="color: #ffffff;"></i></a>
+<div class="col-xs-10 col-sm-10 col-md-10 col-lg-9 border padding">
+ <a href="#"><img src="{{ asset(config('site_config.assets.logo')) }}" alt=""/></a>
 </div>
-</div>
-<!--End Cart Desktop and Tablet-->
+	
+<div class="col-xs-2 col-sm-2 col-md-2 col-lg-3 border padding text-center">
+<div class="top-nav none">
 
+
+ <div id="list1">
+    <ul class="list1">
+      <li><a href="#"><i class="fas fa-home" style="color: #ffffff;"></i>&nbsp; Home &nbsp;&nbsp;|</a></li>
+       <li><a href="#"><i class="fas fa-sign-in-alt" style="color: #ffffff;"></i>&nbsp; Login &nbsp;&nbsp;|</a></li>
+      <li><a href="#"><i class="fas fa-user" style="color: #ffffff;"></i>&nbsp; Join</a></li>
+    </ul>
+  </div>
+	
+</div>
+
+<!--Start Nav Mobile and Table-->
+<div class="block">
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+<div id="list2">
+    <ul>
+      <li><a href="#"><i class="fa fa-chevron-right"></i> Home</a></li>
+      <li><a href="#"><i class="fa fa-chevron-right"></i> Login</a></li>
+	  <li><a href="#"><i class="fa fa-chevron-right"></i> Join</a></li>
+      <li><a href="#"><i class="fa fa-chevron-right"></i> Benefits</a></li>
+      <li><a href="#"><i class="fa fa-chevron-right"></i> Directory</a></li>
+      <li><a href="#"><i class="fa fa-chevron-right"></i> Space Finder</a></li>
+	        <li><a href="#"><i class="fa fa-chevron-right"></i> Events Calendar</a></li>
+		      <li><a href="#"><i class="fa fa-chevron-right"></i> Platinum Partners</a></li>
+		      <li><a href="#"><i class="fa fa-chevron-right"></i> Jobs Hub</a></li>
+		      <li><a href="#"><i class="fa fa-chevron-right"></i> About</a></li>
+		      <li><a href="#"><i class="fa fa-chevron-right"></i> International</a></li>
+		      <li><a href="#"><i class="fa fa-chevron-right"></i> Mentoring</a></li>
+		      <li><a href="#"><i class="fa fa-chevron-right"></i> Contact Us</a></li>
+    </ul>
+    <div class="clr"></div>
+</div>
+
+</div>
+<img src="{{ custom_asset('icon-menu-mob.png') }}" alt="menu" title="Menu" onclick="openNav()" class="mbm">	
+</div>
+<!--End Nav Mobile and Table-->	
+	
+<div class="clr"></div>	
+</div>
 
 <div class="clr"></div>
 </div>
-<!--End Header Area-->
+<!--End Header Top Area-->
 
+<!--Start Nav Desktop Area-->
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nav1 none">
+<div class="middle">
+ <div class="list2">
+    <ul class="list2">
+      <li><a href="#">Home</a></li>
+       <li><a href="#">Benefits</a></li>
+      <li><a href="#">Directory</a></li>
+      <li><a href="#">Space Finder</a></li>
+      <li><a href="#">Events Calendar</a></li>
+      <li><a href="#">Platinum Partners</a></li>
+      <li><a href="#">Jobs Hub</a></li>
+	  <li><a href="#">About</a></li>
+	  <li><a href="#">International</a></li>
+	 <li><a href="#">Mentoring</a></li>
+		<li><a href="#">Contact Us</a></li>
+    </ul>
+  </div>	
+<div class="clr"></div>	
+	
+</div>
+<div class="clr"></div>
+</div>
+<!--End Nav Desktop Area-->
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js" type="text/javascript"></script>
-<script type="text/javascript">
-	$( document ).ready( function () {
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 
-
-		$( ".sliding-search" ).hide();
-		$( ".show_hide1" ).show();
-
-		$( '.show_hide1' ).click( function () {
-			$( ".sliding-search" ).slideToggle();
-		} );
-
-	} );
-</script>
 
 <script>
-function openCity(cityName) {
-  var i;
-  var x = document.getElementsByClassName("city");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  document.getElementById(cityName).style.display = "block";
+function openNav() {
+  document.getElementById("mySidenav").style.width = "300px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
 }
 </script>

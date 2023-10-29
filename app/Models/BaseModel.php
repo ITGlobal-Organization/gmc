@@ -328,8 +328,8 @@ class BaseModel extends Model
             // $data = static::with($relation)->selectRaw(implode(',', $select));
         }
 
-        if (count($where) > 0) {
-            foreach ($where as $condition) {
+        if (count($this->getFilters()) > 0) {
+            foreach ($this->getFilters() as $condition) {
                 $data->where($condition[0], $condition[1], $condition[2]);
             }
         }

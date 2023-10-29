@@ -153,6 +153,10 @@ return [
     'spacefinder'=>'Space Finder',
     'spacefinders'=>'Space Finders',
     'eventcalender'=>'Event Calender',
-    'eventcalenders'=>'Event Calenders'
+    'eventcalenders'=>'Event Calenders,
+    'listing' => 'Listing',
+    'found' => 'Found',
+
+
 
 ];

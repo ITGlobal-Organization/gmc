@@ -8,7 +8,7 @@ use App\Helpers\Helper;
 use App\Models\CustomForm;
 use App\Mail\CustomForm as MailForm;
 use App\Models\Page;
-// use App\Models\Product;
+
 use Log;
 
 class SitePageController extends BaseController
@@ -17,11 +17,11 @@ class SitePageController extends BaseController
     private $customForm;
     private $Page;
     private $product;
-    public function __construct(CustomForm $customForm,Page $page,Product $product){
+    public function __construct(CustomForm $customForm,Page $page){
 
         $this->customForm = $customForm;
         $this->Page = $page;
-        $this->product = $product;
+      
     }
 
     public function renderMainPage(Request $request){
@@ -133,25 +133,5 @@ class SitePageController extends BaseController
         }
     }
 
-
-    // Get Featured Products top rated
-    public function getListingProducts(Request $request){
-        $this->product->setLength(8);
-        $this->product->setStart(1);
-        $this->product->setOrderBy('created_at');
-        $className = $this->product->class_name;
-
-        $Products = $this->product->getAll([['categories','products.category_id','=','categories.id']],['products.id','products.category_id','products.name','products.description','products.product_code','categories.name as category','images.image_url'],[['products.category_id','=',$request->category]]);
-        // dd($request);
-        // dd($Products);
-        if($request->ajax()){
-            return $this->sendResponse($Products);
-        }
-
-        return view('sections.wigets.featured-products',[
-            'Products' => $Products,
-            'category' => $request->category
-        ]);
-    }
 
 }

@@ -69,7 +69,7 @@ CREATE TABLE `images` (
   `extension` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_active` tinyint DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,7 +78,7 @@ CREATE TABLE `images` (
 
 LOCK TABLES `images` WRITE;
 /*!40000 ALTER TABLE `images` DISABLE KEYS */;
-INSERT INTO `images` VALUES (38,'App\\Models\\Blog',5,'http://gmc.test/media/about-4.jpg',0,'main','2023-10-18 00:22:35','2023-10-22 08:07:13','about-4.jpg','jpg',1),(39,'App\\Models\\Blog',2,'http://gmc.test/media/b1.png',0,'main','2023-10-18 00:32:13','2023-10-18 02:02:55','b1.png','png',1),(40,'App\\Models\\Blog',3,'http://gmc.test/media/aboutus-car.png',0,'main','2023-10-18 08:00:19','2023-10-18 08:00:22','aboutus-car.png','png',1),(41,'App\\Models\\Blog',4,'http://gmc.test/media/b3.png',0,'main','2023-10-18 08:02:52','2023-10-18 08:18:37','b3.png','png',1),(42,'App\\Models\\Employee',0,'http://gmc.test/media/about-4.jpg',0,'main','2023-10-22 02:39:55','2023-10-22 02:39:55','about-4.jpg','jpg',1),(43,'App\\Models\\User',0,'http://gmc.test/media/about-4.jpg',0,'main','2023-10-22 03:25:36','2023-10-22 03:25:36','about-4.jpg','jpg',1),(44,'App\\Models\\User',66,'http://gmc.test/media/b2.png',0,'main','2023-10-22 04:21:11','2023-10-22 04:27:15','b2.png','png',1),(45,'App\\Models\\Blog',6,'http://gmc.test/media/b2.png',0,'main','2023-10-22 08:04:38','2023-10-22 08:12:44','b2.png','png',1),(46,'App\\Models\\Blog',0,'http://gmc.test/media/1.jpg',0,'main','2023-10-22 08:06:14','2023-10-22 08:06:14','1.jpg','jpg',1),(47,'App\\Models\\User',0,'http://gmc.test/media/1.jpg',0,'main','2023-10-22 08:11:30','2023-10-22 08:11:30','1.jpg','jpg',1),(48,'App\\Models\\User',68,'http://gmc.test/media/app_bg.jpg',0,'main','2023-10-22 08:19:59','2023-10-22 08:20:02','app_bg.jpg','jpg',1);
+INSERT INTO `images` VALUES (38,'App\\Models\\Blog',5,'http://gmc.test/media/about-4.jpg',0,'main','2023-10-18 00:22:35','2023-10-22 08:07:13','about-4.jpg','jpg',1),(39,'App\\Models\\Blog',2,'http://gmc.test/media/b1.png',0,'main','2023-10-18 00:32:13','2023-10-18 02:02:55','b1.png','png',1),(40,'App\\Models\\Blog',3,'http://gmc.test/media/aboutus-car.png',0,'main','2023-10-18 08:00:19','2023-10-18 08:00:22','aboutus-car.png','png',1),(41,'App\\Models\\Blog',4,'http://gmc.test/media/b3.png',0,'main','2023-10-18 08:02:52','2023-10-18 08:18:37','b3.png','png',1),(42,'App\\Models\\Employee',0,'http://gmc.test/media/about-4.jpg',0,'main','2023-10-22 02:39:55','2023-10-22 02:39:55','about-4.jpg','jpg',1),(43,'App\\Models\\User',0,'http://gmc.test/media/about-4.jpg',0,'main','2023-10-22 03:25:36','2023-10-22 03:25:36','about-4.jpg','jpg',1),(44,'App\\Models\\User',66,'http://gmc.test/media/b2.png',0,'main','2023-10-22 04:21:11','2023-10-22 04:27:15','b2.png','png',1),(45,'App\\Models\\Blog',6,'http://gmc.test/media/b2.png',0,'main','2023-10-22 08:04:38','2023-10-22 08:12:44','b2.png','png',1),(46,'App\\Models\\Blog',0,'http://gmc.test/media/1.jpg',0,'main','2023-10-22 08:06:14','2023-10-22 08:06:14','1.jpg','jpg',1),(47,'App\\Models\\User',0,'http://gmc.test/media/1.jpg',0,'main','2023-10-22 08:11:30','2023-10-22 08:11:30','1.jpg','jpg',1),(48,'App\\Models\\User',68,'http://gmc.test/media/app_bg.jpg',0,'main','2023-10-22 08:19:59','2023-10-22 08:20:02','app_bg.jpg','jpg',1),(49,'App\\Models\\User',69,'http://gmc.test/media/404.png',0,'main','2023-10-28 07:52:25','2023-10-28 07:52:43','404.png','png',1);
 /*!40000 ALTER TABLE `images` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -157,7 +157,7 @@ CREATE TABLE `model_has_roles` (
 
 LOCK TABLES `model_has_roles` WRITE;
 /*!40000 ALTER TABLE `model_has_roles` DISABLE KEYS */;
-INSERT INTO `model_has_roles` VALUES (5,'App\\Models\\User',60),(6,'App\\Models\\User',66),(6,'App\\Models\\User',67),(6,'App\\Models\\User',68);
+INSERT INTO `model_has_roles` VALUES (5,'App\\Models\\User',60),(6,'App\\Models\\User',66),(6,'App\\Models\\User',67),(6,'App\\Models\\User',68),(6,'App\\Models\\User',69);
 /*!40000 ALTER TABLE `model_has_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -207,7 +207,7 @@ CREATE TABLE `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -216,7 +216,7 @@ CREATE TABLE `personal_access_tokens` (
 
 LOCK TABLES `personal_access_tokens` WRITE;
 /*!40000 ALTER TABLE `personal_access_tokens` DISABLE KEYS */;
-INSERT INTO `personal_access_tokens` VALUES (10,'App\\Models\\User',60,'API Token','ee83b7399affc9893abc6efdc938cd950c7b487e44079cc499af5d787eac2e1f','[\"*\"]',NULL,'2023-10-22 08:14:57','2023-10-22 08:14:57'),(11,'App\\Models\\User',60,'API Token','f576ebacbcdf749b1a3c5beb509376620e36bcfc00444dde7969d0ca4fc638d5','[\"*\"]',NULL,'2023-10-24 10:52:45','2023-10-24 10:52:45');
+INSERT INTO `personal_access_tokens` VALUES (10,'App\\Models\\User',60,'API Token','ee83b7399affc9893abc6efdc938cd950c7b487e44079cc499af5d787eac2e1f','[\"*\"]',NULL,'2023-10-22 08:14:57','2023-10-22 08:14:57'),(11,'App\\Models\\User',60,'API Token','f576ebacbcdf749b1a3c5beb509376620e36bcfc00444dde7969d0ca4fc638d5','[\"*\"]','2023-10-28 07:40:27','2023-10-24 10:52:45','2023-10-28 07:40:27'),(12,'App\\Models\\User',60,'API Token','88b8c1b9bfe2e93bc80f14a3109fa337a5066d9388de998e53fa4a26960d1fda','[\"*\"]',NULL,'2023-10-28 07:41:23','2023-10-28 07:41:23');
 /*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -379,10 +379,17 @@ CREATE TABLE `users` (
   `postalcode` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_approved` tinyint DEFAULT '0',
   `username` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tel_no` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `venue_url` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `website` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facebook_url` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtube_url` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instagram_url` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `linkedin_url` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`),
   KEY `users_stripe_id_index` (`stripe_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -391,7 +398,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (60,'admin','admin@gmail.com','03332424345','2023-10-14 07:55:16',0,'$2y$10$siVjd8k6VvqYKgExJI7Exu2wRVHm3Td5HxHfmeke5V6Vz0MkWTL3a',1,0,'2023-10-21 09:10:24',0,'2023-10-22 13:13:15',NULL,NULL,'2023-10-24 10:52:44',1,'2023-10-24 10:52:44',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL),(62,'Xena','gagorahyn@mailinator.com','1 2919651647',NULL,0,'$2y$10$uW88SHkbQvTtJdYqHfCff.OqCzjWFDSfu/Y4OXIVKcwzY.2GmKQUy',1,0,NULL,0,NULL,NULL,'2023-10-22 03:25:39','2023-10-22 03:25:39',0,NULL,NULL,NULL,NULL,NULL,'Hodges','Middleton Donaldson Inc','Molestias totam itaq','Temporibus est fuga',1,NULL),(66,'Xena','gagorahyn1@mailinator.com','1 2919651647',NULL,0,'',1,0,NULL,0,NULL,NULL,'2023-10-22 03:31:46','2023-10-22 04:27:15',0,NULL,NULL,NULL,NULL,NULL,'Hodges','Middleton Donaldson Inc','Molestias totam itaq','Temporibus est fuga',1,'xena'),(67,'Hillary','jufymeqew@mailinator.com','3161620852',NULL,0,'',1,0,NULL,0,NULL,NULL,'2023-10-22 08:11:35','2023-10-22 08:12:03',0,NULL,NULL,NULL,NULL,NULL,'Roman','Morton Hale Plc','Neque molestiae temp','Id harum dolores ut',1,'adminuser'),(68,'Hope','qopegafo@mailinator.com','12356487965',NULL,0,'$2y$10$8MK2thXDeVW8zAzidXAPK.SwxjBMv1dBRNDdmSeZTFkdXTdfCsrFi',1,0,NULL,0,NULL,NULL,'2023-10-22 08:20:01','2023-10-22 08:20:01',0,NULL,NULL,NULL,NULL,NULL,'Howell','Jenkins and Petty Inc','Delectus eos non n','Aut iste sapiente mi',1,'hezelu');
+INSERT INTO `users` VALUES (60,'admin','admin@gmail.com','03332424345','2023-10-14 07:55:16',0,'$2y$10$siVjd8k6VvqYKgExJI7Exu2wRVHm3Td5HxHfmeke5V6Vz0MkWTL3a',1,0,'2023-10-21 09:10:24',0,'2023-10-22 13:13:15',NULL,NULL,'2023-10-28 07:41:23',1,'2023-10-28 07:41:23',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(62,'Xena','gagorahyn@mailinator.com','1 2919651647',NULL,0,'$2y$10$uW88SHkbQvTtJdYqHfCff.OqCzjWFDSfu/Y4OXIVKcwzY.2GmKQUy',1,0,NULL,0,NULL,NULL,'2023-10-22 03:25:39','2023-10-22 03:25:39',0,NULL,NULL,NULL,NULL,NULL,'Hodges','Middleton Donaldson Inc','Molestias totam itaq','Temporibus est fuga',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(66,'Xena','gagorahyn1@mailinator.com','1 2919651647',NULL,0,'',1,0,NULL,0,NULL,NULL,'2023-10-22 03:31:46','2023-10-22 04:27:15',0,NULL,NULL,NULL,NULL,NULL,'Hodges','Middleton Donaldson Inc','Molestias totam itaq','Temporibus est fuga',1,'xena',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(67,'Hillary','jufymeqew@mailinator.com','3161620852',NULL,0,'',1,0,NULL,0,NULL,NULL,'2023-10-22 08:11:35','2023-10-22 08:12:03',0,NULL,NULL,NULL,NULL,NULL,'Roman','Morton Hale Plc','Neque molestiae temp','Id harum dolores ut',1,'adminuser',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(68,'Hope','qopegafo@mailinator.com','12356487965',NULL,0,'$2y$10$8MK2thXDeVW8zAzidXAPK.SwxjBMv1dBRNDdmSeZTFkdXTdfCsrFi',1,0,NULL,0,NULL,NULL,'2023-10-22 08:20:01','2023-10-22 08:20:01',0,NULL,NULL,NULL,NULL,NULL,'Howell','Jenkins and Petty Inc','Delectus eos non n','Aut iste sapiente mi',1,'hezelu',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(69,'Acton','fusohidim@mailinator.com','1235478622',NULL,0,'$2y$10$kQ8d8w/QeX1l6o1FShYjRONrEYkmCWUScbdYQiLOgTS4ApRurPtlG',1,0,NULL,0,NULL,NULL,'2023-10-28 07:52:43','2023-10-28 07:52:43',0,NULL,NULL,NULL,NULL,NULL,'Finley','Sherman Cotton Traders','Earum earum id paria','Commodo obcaecati au',1,'ririqir','02145786622222','https://www.cuxykyfafe.ws','https://www.cuxykyfafe.ws','https://www.cuxykyfafe.ws','https://www.cuxykyfafe.ws','https://www.cuxykyfafe.ws','https://www.cuxykyfafe.ws');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -412,4 +419,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-27  1:36:25
+-- Dump completed on 2023-10-29 13:16:17
