@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ Lang.edit_msg.replace(':attribute',Lang.directory) }}</h1>
+                    <h1>{{ Lang.edit_msg.replace(':attribute',Lang.spacefinder) }}</h1>
                 </div>
 
             </div>
@@ -30,7 +30,7 @@
 <script>
 import {Language} from '../../../helpers/lang/lang';
 import Form from '../../commons/Form.vue';
-import useDirectory from '../../../composables/directories';
+import useSpaceFinder from '../../../composables/spacefinders';
 import useService  from '../../../services/index';
 import useUsers from '../../../composables/users';
 
@@ -57,7 +57,7 @@ data(){
                 media:[],
                 gallery:[]
         },
-        name:"Update Directory",
+        name:"Update Space Finder",
     }
 },
 mounted(){
@@ -180,7 +180,7 @@ mounted(){
                         return "Upload"+this.label
                     },
                     multiple:false,
-                    model:`App\\Models\\Directory`,
+                    model:`App\\Models\\Space Finder`,
                     required:false,
                     fileType:"image/jpeg, image/png",
                     maxFiles:1
@@ -191,14 +191,14 @@ mounted(){
 },
 methods:{
     async update(){
-        const {update,errors} = useDirectory();
+        const {update,errors} = useSpaceFinder();
         const {successAlert,errorAlert} = useService();
         this.loader =true;
         let ref = this;
         await update(this.id,this.form).then(async (response) => {
-            successAlert(Language.success_msg.replace(':attribute',Language.directory).replace(':action',Language.updated))
+            successAlert(Language.success_msg.replace(':attribute',Language.spacefinder).replace(':action',Language.updated))
             setTimeout(() => {
-                ref.$router.push('/admin/directory')
+                ref.$router.push('/admin/spacefinder')
             }, 3000);
         }).catch((e) => {
             if(e.response.status === 422){
@@ -214,7 +214,7 @@ methods:{
 
     },
     async edit(){
-            const {record,get} = useDirectory();
+            const {record,get} = useSpaceFinder();
 
             await get(this.id);
             console.log(record.value);

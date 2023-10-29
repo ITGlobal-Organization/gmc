@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ Lang.directory }}</h1>
+                    <h1>{{ Lang.spacefinder }}</h1>
                 </div>
                 <!-- <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -23,8 +23,8 @@
         <!-- Default box -->
         <div class="card card-secondary card-outline">
             <div class="card-header d-flex justify-content-end">
-                <router-link class="btn btn-secondary" to="/admin/directory/create">
-                    {{ Lang.add_new_msg(Lang.directory) }}
+                <router-link class="btn btn-secondary" to="/admin/spacefinder/create">
+                    {{ Lang.add_new_msg(Lang.spacefinder) }}
                 </router-link>
 
 <!--                <h3 class="card-title">{{ Lang.companies }}</h3>-->
@@ -60,7 +60,7 @@
 
 
 <script>
-import useDirectory from '../../../composables/directories';
+import useSpaceFinder from '../../../composables/spacefinders';
 import {Language} from '../../../helpers/lang/lang';
 import Datatables from '../../commons/Datatables.vue';
 import useService  from '../../../services';
@@ -152,7 +152,7 @@ export default {
                             return 'fa fa-edit mr-2'
                         },
                         action:(row) =>{
-                            ref.$router.push('/admin/directory/edit/'+row.id)
+                            ref.$router.push('/admin/spacefinder/edit/'+row.id)
                         }
                     },
                     {
@@ -175,34 +175,34 @@ export default {
 
             },
         ]
-        this.getDirectories(this.pageNo,this.pageSize,this.filter);
+        this.getSpaceFinders(this.pageNo,this.pageSize,this.filter);
     },
 
     methods:{
         setPageNo(pageNo){
             this.pageNo = pageNo;
 
-            this.getDirectories(this.pageNo,this.pageSize,this.filter);
+            this.getSpaceFinders(this.pageNo,this.pageSize,this.filter);
         },
         setPageSize(pageSize){
             this.pageSize = pageSize
-            this.getDirectories();
+            this.getSpaceFinders();
         },
         setOrder(orderBy){
             this.orderBy = orderBy
             this.order = this.order == 'desc'?'asc':'desc';
-            this.getDirectories();
+            this.getSpaceFinders();
         },
         setFilter(filter){
             this.filter = {
                 search:filter
             }
 
-            this.getDirectories(this.pageNo,this.pageSize,this.filter);
+            this.getSpaceFinders(this.pageNo,this.pageSize,this.filter);
         },
-        async getDirectories(){
+        async getSpaceFinders(){
 
-            const { records, getAll } = useDirectory();
+            const { records, getAll } = useSpaceFinder();
             this.loader = true
             let ref = this
 
@@ -220,9 +220,9 @@ export default {
             let ref = this
                 confirmAlert(async () => {
                     this.loader = true
-                        const { udpateStatus } = useDirectory();
+                        const { udpateStatus } = useSpaceFinder();
                         await udpateStatus(id)
-                        ref.getDirectories(ref.pageNo,ref.pageSize,ref.filter);
+                        ref.getSpaceFinders(ref.pageNo,ref.pageSize,ref.filter);
                 })
         },
         async _delete(id){
@@ -230,9 +230,9 @@ export default {
             let ref = this
                 confirmAlert(async () => {
                     this.loader = true
-                        const { _delete } = useDirectory();
+                        const { _delete } = useSpaceFinder();
                         await _delete(id)
-                        ref.getDirectories(ref.pageNo,ref.pageSize,ref.filter);
+                        ref.getSpaceFinders(ref.pageNo,ref.pageSize,ref.filter);
                         successAlert(Language.success_msg.replace(':attribute',Language.directory).replace(':action',Language.deleted))
 
                 })
@@ -253,7 +253,7 @@ export default {
                         ref.store_modal_loader = false;
                         ref.is_show_modal = false;
                         ref.id = 0;
-                        ref.getDirectories();
+                        ref.getSpaceFinders();
                     }).catch((e) => {
                         ref.store_modal_loader = false;
                         if(e.response.status === 422){

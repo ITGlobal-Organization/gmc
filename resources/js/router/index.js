@@ -27,6 +27,14 @@ import EditBlog from '../components/admin/blogs/EditBlog.vue';
 import Directory from '../components/admin/directories/Directory.vue';
 import CreateDirectory from '../components/admin/directories/CreateDirectory.vue';
 import EditDirectory from '../components/admin/directories/EditDirectory.vue';
+// SpaceFinders
+import SpaceFinder from '../components/admin/spacefinders/SpaceFinder.vue';
+import CreateSpaceFinder from '../components/admin/spacefinders/CreateSpaceFinder.vue';
+import EditSpaceFinder from '../components/admin/spacefinders/EditSpaceFinder.vue';
+// EventCalender
+import EventCalender from '../components/admin/eventcalenders/EventCalender.vue';
+import CreateEventCalender from '../components/admin/eventcalenders/CreateEventCalender.vue';
+import EditEventCalender from '../components/admin/eventcalenders/EditEventCalender.vue';
 // Users
 import UserIndex from '../components/admin/users/Index.vue';
 import UserCreate from '../components/admin/users/Create.vue';
@@ -139,6 +147,44 @@ const routes = [
         path: "/admin/directory/edit/:id",
         name: "admin.directory.edit",
         component: EditDirectory,
+        props: true,
+    },
+    // SpaceFinder
+    {
+        path: "/admin/spacefinder",
+        name: "admin.spacefinder",
+        component: SpaceFinder,
+        props: true,
+    },
+    {
+        path: "/admin/spacefinder/create",
+        name: "admin.spacefinder.create",
+        component: CreateSpaceFinder,
+        props: true,
+    },
+    {
+        path: "/admin/spacefinder/edit/:id",
+        name: "admin.spacefinder.edit",
+        component: EditSpaceFinder,
+        props: true,
+    },
+    // EventCalender
+    {
+        path: "/admin/eventcalender",
+        name: "admin.eventcalender",
+        component: EventCalender,
+        props: true,
+    },
+    {
+        path: "/admin/eventcalender/create",
+        name: "admin.eventcalender.create",
+        component: CreateEventCalender,
+        props: true,
+    },
+    {
+        path: "/admin/eventcalender/edit/:id",
+        name: "admin.eventcalender.edit",
+        component: EditEventCalender,
         props: true,
     },
     // Users
