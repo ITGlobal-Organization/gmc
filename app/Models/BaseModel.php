@@ -319,6 +319,7 @@ class BaseModel extends Model
         // dd($this->has_images);
         if($this->has_images){
             $data->leftjoin('images','images.model_id',$this->table.'.id')->where('images.model','=',$this->class_name)->orWhereNull('images.model');
+            
         }
         
         if (count($join) > 0) {

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\BaseModel;
 use App\Models\User;
+use Carbon\Carbon;
 use Auth;
 
 class Blog extends BaseModel
@@ -16,6 +17,7 @@ class Blog extends BaseModel
     protected $table = "blogs";
     public $class_name = 'App\Models\Blog';
     public $class_dynamic = true;
+    protected $has_images = true;
     
     protected $fillable = [
         'title','description','publisher','publish_at','author','is_active','is_delete','is_approved','slug'
@@ -118,5 +120,10 @@ class Blog extends BaseModel
 
     public function user(){
         return $this->belongsTo(User::class,'author');
+    }
+
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('M Y');
     }
 }

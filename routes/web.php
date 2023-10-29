@@ -30,11 +30,10 @@ Route::post('/newsletter',[BaseController::class,'newsletterSubscription'])->nam
 
 
 Route::prefix('blogs')->group(function () {
-    Route::get('/',[BlogController::class,'getBlogsListing'])->name('blogs.index');
+    Route::get('/',[BlogController::class,'blogs'])->name('blogs.index');
+    Route::get('/ajax',[BlogController::class,'getBlogsListing'])->name('blogs.ajax');
 
-    Route::get('/{slug}',function(){
-        return view('blogs.blog-detail');
-    })->name('blog');
+    Route::get('/{slug}',[BlogController::class,'getBlog'])->name('blogs.get');
 });
 
 

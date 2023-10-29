@@ -23,7 +23,7 @@
 
 <script>
 
-	let sort_by = "";
+	sort_by = "";
 
 	$(document).on("change",'.sort_by',function(){
 		sort_by = $(this).val();
@@ -34,7 +34,7 @@
 		getBlogsListing();
 	})
 	function getBlogsListing(){
-		ajaxGet("{{route('blogs.index')}}",{sort_by},".blogs",responseType='html');
+		ajaxGet("{{route('blogs.ajax')}}",{sort_by},".blogs",responseType='html');
 	}
 </script>
 @endsection
