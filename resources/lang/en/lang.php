@@ -149,7 +149,9 @@ return [
     'quantity'  => 'Quantity',
     'delete' => 'Delete',
     'users' => 'Users',
-    'user' => 'User'
+    'user' => 'User',
+    'listing' => 'Listing',
+    'found' => 'Found',
 
 
 
