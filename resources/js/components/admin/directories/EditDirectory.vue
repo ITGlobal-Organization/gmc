@@ -53,6 +53,7 @@ data(){
                 // publish_at:'',
                 // author:'',
                 // publisher:'',
+                user_id:'',
                 is_active:0,
                 media:[],
                 gallery:[]
@@ -70,11 +71,31 @@ mounted(){
                     label:Language.title,
                     field:"title",
                     class:"form-control",
-                    grid:"col-md-12 col-12",
+                    grid:"col-md-6 col-12",
                     type:"text",
                     placeholder:function(){
                         return "Enter "+this.label
                     },
+                    required:true,
+                },
+                {
+                    label:Language.user,
+                    field:"user_id",
+                    class:"vue-select1",
+                    grid:"col-md-6 col-12",
+                    type:"select",
+                    isdynamic:true,
+                    searchable:true,
+                    options:function(){
+                            if(this.isdynamic){
+                                return ref.users;            
+                            }
+                            return [];
+                    },
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+                    
                     required:true,
                 },
                 // {
@@ -219,6 +240,7 @@ methods:{
             await get(this.id);
             console.log(record.value);
             this.form.title = record.value.title;
+            this.form.user_id = record.value.user_id;
             // this.form.slug = record.value.slug;
             // this.form.author = record.value.author;
             // this.form.publish_at = record.value.publish_at;

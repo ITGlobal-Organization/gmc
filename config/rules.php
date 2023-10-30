@@ -19,7 +19,48 @@ return [
             'description' => 'required'
         ]
     ],
-
+    'directories' => [
+        'store' => [
+            'title' => 'required',
+            'user_id' => 'required|exists:users,id',
+            'description' => 'required'
+        ],
+        'edit' => [
+            'title' => 'required',
+            'user_id' => 'required|exists:users,id',
+            'description' => 'required'
+        ]
+    ],
+    'event_calenders' => [
+        'store' => [
+            'title' => 'required',
+            'event_date' => 'required|date',
+            'user_id' => 'required|exists:users,id',
+            'price' => 'required|double',
+            'venue' => 'required',
+            'description' => 'required'
+        ],
+        'edit' => [
+            'title' => 'required',
+            'event_date' => 'required|date',
+            'user_id' => 'required|exists:users,id',
+            'price' => 'required|double',
+            'venue' => 'required',
+            'description' => 'required'
+        ]
+    ],
+    'space_finders' => [
+        'store' => [
+            'title' => 'required',
+            'user_id' => 'required|exists:users,id',
+            'description' => 'required'
+        ],
+        'edit' => [
+            'title' => 'required',
+            'user_id' => 'required|exists:users,id',
+            'description' => 'required'
+        ]
+    ],
     'users' => [
         'store' => [
             'first_name' => 'required',

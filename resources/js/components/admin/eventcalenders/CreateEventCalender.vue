@@ -56,6 +56,7 @@ export default {
             citiesOptions:[],
             FormData:{
                 title:'',
+                user_id:'',
                 description:'',
                 venue:'',
                 event_date:'',
@@ -74,11 +75,31 @@ export default {
                     label:Language.title,
                     field:"title",
                     class:"form-control",
-                    grid:"col-md-12 col-12",
+                    grid:"col-md-6 col-12",
                     type:"text",
                     placeholder:function(){
                         return "Enter "+this.label
                     },
+                    required:true,
+                },
+                {
+                    label:Language.user,
+                    field:"user_id",
+                    class:"vue-select1",
+                    grid:"col-md-6 col-12",
+                    type:"select",
+                    isdynamic:true,
+                    searchable:true,
+                    options:function(){
+                            if(this.isdynamic){
+                                return ref.users;            
+                            }
+                            return [];
+                    },
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+                    
                     required:true,
                 },
                 {

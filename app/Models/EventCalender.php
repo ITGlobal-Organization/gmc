@@ -17,7 +17,7 @@ class EventCalender extends BaseModel
     public $class_dynamic = true;
 
     protected $fillable = [
-        'title','description','is_active','is_delete','is_approved','event_date','price','venue'
+        'title','description','is_active','is_delete','is_approved','event_date','price','venue','user_id'
     ];
 
     protected $rules = [];
