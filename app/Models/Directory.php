@@ -17,7 +17,7 @@ class Directory extends BaseModel
     public $class_dynamic = true;
 
     protected $fillable = [
-        'title','description','is_active','is_delete','is_approved','user_id'
+        'title','description','is_active','is_delete','is_approved','user_id','slug'
     ];
 
     protected $rules = [];

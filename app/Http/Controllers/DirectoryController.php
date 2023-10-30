@@ -41,7 +41,7 @@ class DirectoryController extends BaseController
 
     public function directories(Request $request){
         return view('blogs.blogs',[
-            'title' => trans('lang.blogs'),
+            'title' => trans('lang.directories'),
         ]);
     }
     public function getDirectoryListing(Request $request){
@@ -50,18 +50,18 @@ class DirectoryController extends BaseController
             $this->directory->setOrderBy($sort[0]);
             $this->directory->setOrder($sort[1]);
         }
-        $Directories = $this->blog->getAll([['users','users.id','=','directories.author']],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
+        $Directories = $this->blog->getAll([['users','users.id','=','directories.user_id']],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
 
-        return view('sections.blogs',[
-            'Blogs' => $Directories,
+        return view('sections.directories',[
+            'Directories' => $Directories,
         ]);
     }
 
     public function getDirectory(Request $request,$slug){
-        $Blog = $this->blog->first('slug',$slug,'=',['user'],[],['blogs.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
+        $Blog = $this->directory->first('slug',$slug,'=',['user'],[],['blogs.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
 
         $this->blog->setLength(10);
-        $LatestBlogs = $this->blog->getAll([['users','users.id','=','blogs.author']],['blogs.title','blogs.description','blogs.created_at','images.image_url','blogs.slug']);
+        $LatestBlogs = $this->directory->getAll([['users','users.id','=','blogs.author']],['blogs.title','blogs.description','blogs.created_at','images.image_url','blogs.slug']);
 
         return view('blogs.blog-detail',[
             'Blog' => $Blog,

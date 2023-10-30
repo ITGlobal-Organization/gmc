@@ -29,11 +29,20 @@ Route::get('/error', function(){
 Route::post('/newsletter',[BaseController::class,'newsletterSubscription'])->name('newsletter.subscribe');
 
 
+// Blogs
 Route::prefix('blogs')->group(function () {
     Route::get('/',[BlogController::class,'blogs'])->name('blogs.index');
     Route::get('/ajax',[BlogController::class,'getBlogsListing'])->name('blogs.ajax');
 
     Route::get('/{slug}',[BlogController::class,'getBlog'])->name('blogs.get');
+});
+
+// Directiories
+Route::prefix('directories')->group(function () {
+    Route::get('/',[BlogController::class,'directories'])->name('directories.index');
+    Route::get('/ajax',[BlogController::class,'getDirectoryListing'])->name('directories.ajax');
+
+    Route::get('/{slug}',[BlogController::class,'getDirectory'])->name('directories.get');
 });
 
 
