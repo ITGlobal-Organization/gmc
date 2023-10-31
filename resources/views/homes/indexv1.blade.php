@@ -2,7 +2,7 @@
 
 @section('content')
 
-<!--Start Tabbing Area-->	
+<!--Start Tabbing Area-->
 <div class="middle mtb-60">
    <div id="container">
       <div id="parentHorizontalTab">
@@ -27,11 +27,11 @@
                            <div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>
                            <div class="box-name">
                               <a href="blog-details.php">
-                              Business Gateway: Managing People – Sustaining Employee Engagement 	
+                              Business Gateway: Managing People – Sustaining Employee Engagement
                               </a>
                            </div>
                            <div class="box-text">
-                              What to expect from this webinar New and established businesses will require a business plan for	
+                              What to expect from this webinar New and established businesses will require a business plan for
                            </div>
                         </div>
                         <div class="clr"></div>
@@ -41,7 +41,7 @@
                </div>
                <div class="clr"></div>
             </div>
-            <!--End All Tab Area-->	
+            <!--End All Tab Area-->
             <!--Start Benefits Tab Area-->
             <div>
                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border margin-tb25">
@@ -55,11 +55,11 @@
                            <div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>
                            <div class="box-name">
                               <a href="#">
-                              Business Gateway: Managing People – Sustaining Employee Engagement 	
+                              Business Gateway: Managing People – Sustaining Employee Engagement
                               </a>
                            </div>
                            <div class="box-text">
-                              What to expect from this webinar New and established businesses will require a business plan for	
+                              What to expect from this webinar New and established businesses will require a business plan for
                            </div>
                         </div>
                         <div class="clr"></div>
@@ -69,7 +69,7 @@
                </div>
                <div class="clr"></div>
             </div>
-            <!--End Benefits Tab Area-->		
+            <!--End Benefits Tab Area-->
             <!--Start Events Tab Area-->
             <div>
                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border margin-tb25">
@@ -83,11 +83,11 @@
                            <div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>
                            <div class="box-name">
                               <a href="blog-details.php">
-                              Business Gateway: Managing People – Sustaining Employee Engagement 	
+                              Business Gateway: Managing People – Sustaining Employee Engagement
                               </a>
                            </div>
                            <div class="box-text">
-                              What to expect from this webinar New and established businesses will require a business plan for	
+                              What to expect from this webinar New and established businesses will require a business plan for
                            </div>
                         </div>
                         <div class="clr"></div>
@@ -97,7 +97,7 @@
                </div>
                <div class="clr"></div>
             </div>
-            <!--End Events Tab Area-->	
+            <!--End Events Tab Area-->
             <!--Start News Tab Area-->
             <div>
                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border margin-tb25">
@@ -111,11 +111,11 @@
                            <div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>
                            <div class="box-name">
                               <a href="blog-details.php">
-                              Business Gateway: Managing People – Sustaining Employee Engagement 	
+                              Business Gateway: Managing People – Sustaining Employee Engagement
                               </a>
                            </div>
                            <div class="box-text">
-                              What to expect from this webinar New and established businesses will require a business plan for	
+                              What to expect from this webinar New and established businesses will require a business plan for
                            </div>
                         </div>
                         <div class="clr"></div>
@@ -125,7 +125,7 @@
                </div>
                <div class="clr"></div>
             </div>
-            <!--End News Tab Area-->		
+            <!--End News Tab Area-->
             <!--Start Platinum Partners Tab Area-->
             <div>
                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border margin-tb25">
@@ -139,11 +139,11 @@
                            <div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>
                            <div class="box-name">
                               <a href="blog-details.php">
-                              Business Gateway: Managing People – Sustaining Employee Engagement 	
+                              Business Gateway: Managing People – Sustaining Employee Engagement
                               </a>
                            </div>
                            <div class="box-text">
-                              What to expect from this webinar New and established businesses will require a business plan for	
+                              What to expect from this webinar New and established businesses will require a business plan for
                            </div>
                         </div>
                         <div class="clr"></div>
@@ -153,14 +153,14 @@
                </div>
                <div class="clr"></div>
             </div>
-            <!--End Platinum Partners Tab Area-->	
+            <!--End Platinum Partners Tab Area-->
          </div>
       </div>
    </div>
    <div class="clr"></div>
 </div>
-<!--End Tabbing Area-->		
-<!--Start About Area-->	
+<!--End Tabbing Area-->
+<!--Start About Area-->
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mtb-60 ab-bg">
    <div class="middle">
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -174,7 +174,7 @@
             <br><br>
             Our focus is on championing the issues that matter to our members, helping promote and protect the interests of local businesses, and ensuring the economic future for the communities of Perthshire.
             <br><br>
-            We cater for all sizes, from sole traders up to some of the area’s largest international employers, for all sectors, and from startups to those already well-established including both rural and urban.  
+            We cater for all sizes, from sole traders up to some of the area’s largest international employers, for all sectors, and from startups to those already well-established including both rural and urban.
             <br><br>
             Perthshire Chamber is the local part of Scottish, British and International Chambers of Commerce and is Scotland’s largest and most influential business to business network.
          </p>
@@ -186,7 +186,7 @@
       <div class="clr"></div>
    </div>
 </div>
-<!--End About Area-->	
+<!--End About Area-->
 <!--Start Platinum Partners Area-->
 <div class="row">
    <div class="middle mtb-60">
@@ -240,9 +240,9 @@
 <script src="{{ custom_asset('owl.carousel.min.js','scripts') }} "></script>
 <script>
    $( document ).ready( function () {
-   
+
    	var owl = $( "#owl-demo" );
-   
+
    	owl.owlCarousel( {
    		items: 5, //10 items above 1000px browser width
    		itemsDesktop: [ 1199, 5 ], //5 items between 1000px and 901px
@@ -250,7 +250,7 @@
    		itemsTablet: [ 768, 4 ], //2 items between 600 and 0
    		itemsMobile: [ 479, 1 ], // itemsMobile disabled - inherit from itemsTablet option
    	} );
-   
+
    	// Custom Navigation Events
    	$( ".next" ).click( function () {
    		owl.trigger( 'owl.next' );
@@ -264,7 +264,7 @@
    	$( ".stop" ).click( function () {
    		owl.trigger( 'owl.stop' );
    	} )
-   
+
    } );
 </script>
 
@@ -285,7 +285,7 @@
    			$info.show();
    		}
    	} );
-   
+
    	// Child Tab
    	$( '#ChildVerticalTab_1' ).easyResponsiveTabs( {
    		type: 'vertical',
@@ -297,7 +297,7 @@
    		active_border_color: '#c1c1c1', // border color for active tabs heads in this group
    		active_content_border_color: '#5AB1D0' // border color for active tabs contect in this group so that it matches the tab head border
    	} );
-   
+
    	//Vertical Tab
    	$( '#parentVerticalTab' ).easyResponsiveTabs( {
    		type: 'vertical', //Types: default, vertical, accordion

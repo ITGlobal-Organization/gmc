@@ -102,12 +102,12 @@
        formData.append('company',$('.sign-company').val());
        formData.append('address',$('.sign-address').val());
        ajaxPost(url,formData,'.contact-success','.contact-error');
-   
+
    })
 </script>
 
     <script>
-      
+
       var input = document.querySelector(".phone");
       window.intlTelInput(input, {
         // allowDropdown: false,
@@ -133,5 +133,5 @@
         // showFlags: false,
         utilsScript: "js/utils.js"
       });
-    </script>	
+    </script>
 @endsection

@@ -37,4 +37,10 @@ class EventCalenderController extends BaseController
             'name' => 'blog',
         ]);
     }
+
+    public function eventCalenders(Request $request){
+        return view('eventcalenders.event-calenders',[
+            'title' => trans('lang.eventcalenders'),
+        ]);
+    }
 }

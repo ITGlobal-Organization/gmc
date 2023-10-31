@@ -9,8 +9,8 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="{{ custom_asset('style.css','css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ custom_asset('extra.css','css') }}" rel="stylesheet" type="text/css">
-	
-	
+
+
 	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.min.css" rel="stylesheet">
 	<link rel="icon" type="image/png" href="{{ custom_asset('favicon.jpg') }}">
 	<link rel="stylesheet" type="text/css" href="{{ custom_asset('font-awesome.min.css','css') }}">
@@ -20,12 +20,12 @@
     <link href="{{ custom_asset('owl.carousel.css','css') }}" rel="stylesheet" type="text/css">
     <link href="{{ custom_asset('owl.theme.css','css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ custom_asset('easy-responsive-tabs.css','css') }}" rel="stylesheet" type="text/css">
-	
+
 	<title>{{ config('app.name')}} | {{ isset($title)?$title:'Page'}}</title>
 </head>
 <body>
 <!--Start Header-->
-@php 
+@php
 	$User = auth()->user();
 @endphp
 

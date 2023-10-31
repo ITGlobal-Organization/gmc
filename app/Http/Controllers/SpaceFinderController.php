@@ -37,4 +37,10 @@ class SpaceFinderController extends BaseController
             'name' => 'blog',
         ]);
     }
+
+    public function spaceFinders(Request $request){
+        return view('space-finders.space-finders',[
+            'title' => trans('lang.spacefinders'),
+        ]);
+    }
 }
