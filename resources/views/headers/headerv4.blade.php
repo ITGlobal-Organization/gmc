@@ -1,7 +1,7 @@
 <!--Start Banner Area-->
-<div id="myCarousel" class="carousel slide" data-ride="carousel"> 
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
-  
+
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -10,7 +10,7 @@
     <li data-target="#myCarousel" data-slide-to="4"></li>
     <li data-target="#myCarousel" data-slide-to="5"></li>
   </ol>
-  
+
   <div class="carousel-inner">
     <div class="item active">
 	<a href="#"><img src="{{ custom_asset('banner1.jpg') }}" alt="First slide" width="100%"></a>
@@ -49,9 +49,9 @@
 		</div>
 	 </div>
   </div>
-  
+
   <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-  
+
   </div>
 <!--End Banner Area-->
 
@@ -61,7 +61,7 @@
 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-9 border padding">
  <a href="#"><img src="{{ asset(config('site_config.assets.logo')) }}" alt=""/></a>
 </div>
-	
+
 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-3 border padding text-center">
 <div class="top-nav none">
 
@@ -73,7 +73,7 @@
       <li><a href="#"><i class="fas fa-user" style="color: #ffffff;"></i>&nbsp; Join</a></li>
     </ul>
   </div>
-	
+
 </div>
 
 <!--Start Nav Mobile and Table-->
@@ -86,26 +86,26 @@
       <li><a href="{{ route('login') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.login')}}</a></li>
 	  <li><a href="{{ route('register') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.join')}}</a></li>
     <li><a href="{{ route('blogs.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.blogs')}}</a></li>
-      <li><a href="#"><i class="fa fa-chevron-right"></i> Benefits</a></li>
-      <li><a href="#"><i class="fa fa-chevron-right"></i> Directory</a></li>
-      <li><a href="#"><i class="fa fa-chevron-right"></i> Space Finder</a></li>
-	        <li><a href="#"><i class="fa fa-chevron-right"></i> Events Calendar</a></li>
-		      <li><a href="#"><i class="fa fa-chevron-right"></i> Platinum Partners</a></li>
-		      <li><a href="#"><i class="fa fa-chevron-right"></i> Jobs Hub</a></li>
-		      <li><a href="#"><i class="fa fa-chevron-right"></i> About</a></li>
-		      <li><a href="#"><i class="fa fa-chevron-right"></i> International</a></li>
-		      <li><a href="#"><i class="fa fa-chevron-right"></i> Mentoring</a></li>
-		      <li><a href="#"><i class="fa fa-chevron-right"></i> Contact Us</a></li>
+      <li><a href="{{ route('site-pages','benifits') }}"><i class="fa fa-chevron-right"></i> Benefits</a></li>
+      <li><a href="{{ route('directories.index') }}"><i class="fa fa-chevron-right"></i> Directory</a></li>
+      <li><a href="{{ route('space-finders.index') }}"><i class="fa fa-chevron-right"></i> Space Finder</a></li>
+	        <li><a href="{{ route('event-calenders.index') }}"><i class="fa fa-chevron-right"></i> Events Calendar</a></li>
+		      <li><a href="{{ route('platinium-partners') }}"><i class="fa fa-chevron-right"></i> Platinum Partners</a></li>
+		      <li><a href="{{ route('jobs-hub') }}"><i class="fa fa-chevron-right"></i> Jobs Hub</a></li>
+		      <li><a href="{{ route('site-pages','about-us') }}"><i class="fa fa-chevron-right"></i> About</a></li>
+		      <li><a href="{{ route('international') }}"><i class="fa fa-chevron-right"></i> International</a></li>
+		      <li><a href="{{ route('mentoring') }}"><i class="fa fa-chevron-right"></i> Mentoring</a></li>
+		      <li><a href="{{ route('site-pages','contact-us') }}"><i class="fa fa-chevron-right"></i> Contact Us</a></li>
     </ul>
     <div class="clr"></div>
 </div>
 
 </div>
-<img src="{{ custom_asset('icon-menu-mob.png') }}" alt="menu" title="Menu" onclick="openNav()" class="mbm">	
+<img src="{{ custom_asset('icon-menu-mob.png') }}" alt="menu" title="Menu" onclick="openNav()" class="mbm">
 </div>
-<!--End Nav Mobile and Table-->	
-	
-<div class="clr"></div>	
+<!--End Nav Mobile and Table-->
+
+<div class="clr"></div>
 </div>
 
 <div class="clr"></div>
@@ -129,9 +129,9 @@
 	 <li><a href="#">Mentoring</a></li>
 		<li><a href="#">Contact Us</a></li>
     </ul>
-  </div>	
-<div class="clr"></div>	
-	
+  </div>
+<div class="clr"></div>
+
 </div>
 <div class="clr"></div>
 </div>

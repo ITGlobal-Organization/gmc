@@ -21,10 +21,11 @@ class SitePageController extends BaseController
 
         $this->customForm = $customForm;
         $this->Page = $page;
-      
+
     }
 
     public function renderMainPage(Request $request){
+
 
         try{
 
@@ -45,6 +46,7 @@ class SitePageController extends BaseController
     }
 
     public function renderSitePages(Request $request,$page){
+
 
         $Page = Page::where('is_active',1)->where('slug',$page)->first();
         try{

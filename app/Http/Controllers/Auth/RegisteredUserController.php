@@ -101,9 +101,16 @@ class RegisteredUserController extends BaseController
     }
 
     public function create(Request $request){
-        return view('admin.crud.create',[
-            'title' => trans('lang.users').' | '.trans('lang.create'),
-            'name' => 'blog',
+
+        if(auth()->user()){
+            return view('admin.crud.create',[
+                'title' => trans('lang.users').' | '.trans('lang.create'),
+                'name' => 'blog',
+            ]);
+        }
+
+        return view('auth.register.'.config('site_config.auth.register_view'),[
+            'title' => trans('lang.register')
         ]);
     }
 

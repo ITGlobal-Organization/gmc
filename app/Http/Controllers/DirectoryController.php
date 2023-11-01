@@ -40,7 +40,7 @@ class DirectoryController extends BaseController
 
 
     public function directories(Request $request){
-        return view('blogs.blogs',[
+        return view('directories.directories',[
             'title' => trans('lang.directories'),
         ]);
     }

@@ -1,7 +1,6 @@
 <div class="text-right menu-set">
 <div id="mySidenav" class="sidenav"> <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
-
 <div id="list7">
 
 	@php
