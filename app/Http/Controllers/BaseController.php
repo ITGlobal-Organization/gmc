@@ -135,6 +135,7 @@ class BaseController extends Controller
     public function store(Request $request){
 
         $rules = $this->model->getRules();
+
         try {
             // Validate the incoming request data
             $request->validate($rules);
@@ -143,6 +144,7 @@ class BaseController extends Controller
             // Return a JSON response with validation errors
             return $this->sendError('',$e->errors(),422,[]);
         }
+
 
 
         try {

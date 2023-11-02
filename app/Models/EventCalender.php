@@ -17,7 +17,8 @@ class EventCalender extends BaseModel
     public $class_dynamic = true;
 
     protected $fillable = [
-        'title','description','is_active','is_delete','is_approved','event_date','price','venue','user_id','slug'
+        'title','description','is_active','is_delete','is_approved','event_date','price','venue','user_id',
+        'slug','time','city','booking_link'
     ];
 
     protected $rules = [];
@@ -48,7 +49,7 @@ class EventCalender extends BaseModel
 
         $condition = [];
         $result = [];
-        $this->setSelectedColumn(['id','title','created_at','is_active','is_approved','event_date','venue','price']);
+        $this->setSelectedColumn(['id','title','created_at','is_active','is_approved','event_date','time','city','venue','price']);
 
         $this->setRenderColumn([
             [
@@ -74,6 +75,22 @@ class EventCalender extends BaseModel
 
             ],
             [
+                'name' => 'time',
+                'type' => 'string',
+                'html' => false,
+                'link' => 'property',
+                'link_column' => 'time',
+
+            ],
+            [
+                'name' => 'city',
+                'type' => 'string',
+                'html' => false,
+                'link' => 'property',
+                'link_column' => 'city',
+
+            ],
+            [
                 'name' => 'venue',
                 'type' => 'string',
                 'html' => false,
@@ -82,11 +99,11 @@ class EventCalender extends BaseModel
 
             ],
             [
-                'name' => 'pride',
+                'name' => 'price',
                 'type' => 'string',
                 'html' => false,
                 'link' => 'property',
-                'link_column' => 'pride',
+                'link_column' => 'price',
 
             ],
 
@@ -102,10 +119,10 @@ class EventCalender extends BaseModel
 
             ],
             [
-                'name' => 'status',
+                'name' => 'is_approved',
                 'type' => 'boolean',
                 'html' => true,
-                'condition_column' => 'is_active',
+                'condition_column' => 'is_approved',
                 'class_dynamic' => false,
             ],
 

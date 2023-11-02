@@ -276,5 +276,9 @@ export const Language = {
     linkedin_url:"Linkedin Url",
     is_approved:"Is Approved",
     yes:"Yes",
-    No:"No"
+    No:"No",
+    time:"Time",
+    event:"Event",
+    city:"City",
+    booking_link:"Booking Link"
 };

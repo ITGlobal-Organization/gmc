@@ -48,17 +48,19 @@ data(){
         FormFields:[],
         users:[],
         form:{
-            title:'',
+                title:'',
+                user_id:'',
                 description:'',
-                event_date:'',
-                price:'',
                 venue:'',
-                // publish_at:'',
-                // publisher:'',
-                is_active:0,
+                event_date:'',
+                time:'',
+                city:'',
+                price:'',
+                booking_link:'',
+                is_approved:'',
                 media:[],
                 gallery:[]
-        },
+            },
         name:"Update Event",
     }
 },
@@ -72,7 +74,7 @@ mounted(){
                     label:Language.title,
                     field:"title",
                     class:"form-control",
-                    grid:"col-md-12 col-12",
+                    grid:"col-md-6 col-12",
                     type:"text",
                     placeholder:function(){
                         return "Enter "+this.label
@@ -83,7 +85,7 @@ mounted(){
                     label:Language.venue,
                     field:"venue",
                     class:"form-control",
-                    grid:"col-md-4 col-12",
+                    grid:"col-md-6 col-12",
                     type:"text",
                     placeholder:function(){
                         return "Enter "+this.label
@@ -144,6 +146,17 @@ mounted(){
                     required:true,
                 },
                 {
+                    label:Language.time,
+                    field:"time",
+                    class:"form-control",
+                    grid:"col-md-4 col-12",
+                    type:"time",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
                     label:Language.price,
                     field:"price",
                     class:"form-control",
@@ -152,6 +165,77 @@ mounted(){
                     placeholder:function(){
                         return "Enter "+this.label
                     },
+                    required:true,
+                },
+                {
+                    label:Language.booking_link,
+                    field:"booking_link",
+                    class:"form-control",
+                    grid:"col-md-4 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.city,
+                    field:"city",
+                    class:"form-control",
+                    grid:"col-md-4 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.user,
+                    field:"user_id",
+                    class:"vue-select1",
+                    grid:"col-md-4 col-12",
+                    type:"select",
+                    isdynamic:true,
+                    searchable:true,
+                    options:function(){
+                            if(this.isdynamic){
+                                return ref.users;
+                            }
+                            return [];
+                    },
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+
+                    required:true,
+                },
+                {
+                    label:Language.is_approved,
+                    field:"is_approved",
+                    class:"vue-select1",
+                    grid:"col-md-2 col-12",
+                    type:"select",
+                    isdynamic:false,
+                    searchable:true,
+                    options:function(){
+                            if(this.isdynamic){
+                                return ref.options;
+                            }
+                            return [
+                                {
+                                    text:Language.yes,
+                                    id:1
+                                },
+                                {
+                                    text:Language.no,
+                                    id:0
+                                }
+                            ];
+                    },
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+
                     required:true,
                 },
                 {
@@ -218,11 +302,12 @@ methods:{
             this.form.event_date = record.value.event_date;
             this.form.price = record.value.price;
             this.form.venue = record.value.venue;
-            // this.form.slug = record.value.slug;
-            // this.form.author = record.value.author;
-            // this.form.publish_at = record.value.publish_at;
-            // this.form.publisher = record.value.publisher;
-            this.form.is_active = record.value.is_active;
+            this.form.time = record.value.time;
+            this.form.user_id = record.value.user_id;
+            this.form.price = record.value.price;
+            this.form.city = record.value.city;
+            this.form.is_approved = record.value.is_approved;
+            this.form.booking_link = record.value.booking_link;
             this.form.description = record.value.description?record.value.description:"";
 
             this.form.gallery = record.value.media;

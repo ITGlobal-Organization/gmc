@@ -57,18 +57,24 @@ return [
         'store' => [
             'title' => 'required',
             'event_date' => 'required|date',
+            'time'=>'required',
+            'city'=>'required',
             'user_id' => 'required|exists:users,id',
-            'price' => 'required|double',
+            'price' => 'required|between:0,999999.99',
             'venue' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'booking_link' => 'url',
         ],
         'edit' => [
             'title' => 'required',
             'event_date' => 'required|date',
+            'time'=>'required',
+            'city'=>'required',
             'user_id' => 'required|exists:users,id',
-            'price' => 'required|double',
+            'price' => 'required|between:0,999999.99',
             'venue' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'booking_link' => 'url',
         ]
     ],
     'space_finders' => [

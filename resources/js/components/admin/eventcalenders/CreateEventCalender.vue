@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ Lang.create_msg(Lang.eventcalender) }}</h1>
+                    <h1>{{ Lang.create_msg(Lang.event) }}</h1>
                 </div>
                 <!-- <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -39,6 +39,8 @@ import useUsers from '../../../composables/users';
 import useService  from '../../../services/index';
 import { axiosWrapper } from '../../../helpers';
 import useEventCalender from '../../../composables/eventcalenders';
+// import VueTimepicker from 'vue3-timepicker'
+// import 'vue3-timepicker/dist/VueTimepicker.css'
 
 export default {
     components:{
@@ -60,7 +62,11 @@ export default {
                 description:'',
                 venue:'',
                 event_date:'',
+                time:'',
+                city:'',
                 price:'',
+                booking_link:'',
+                is_approved:'',
                 media:[],
                 gallery:[]
             },
@@ -83,84 +89,33 @@ export default {
                     required:true,
                 },
                 {
-                    label:Language.user,
-                    field:"user_id",
-                    class:"vue-select1",
-                    grid:"col-md-6 col-12",
-                    type:"select",
-                    isdynamic:true,
-                    searchable:true,
-                    options:function(){
-                            if(this.isdynamic){
-                                return ref.users;            
-                            }
-                            return [];
-                    },
-                    placeholder:function(){
-                        return Language.placholder_msg(this.label)
-                    },
-                    
-                    required:true,
-                },
-                {
                     label:Language.venue,
                     field:"venue",
                     class:"form-control",
-                    grid:"col-md-4 col-12",
+                    grid:"col-md-6 col-12",
                     type:"text",
                     placeholder:function(){
                         return "Enter "+this.label
                     },
                     required:true,
                 },
-                // {
-                //     label:Language.slug,
-                //     field:"slug",
-                //     class:"form-control",
-                //     grid:"col-md-12 col-12",
-                //     type:"text",
-                //     placeholder:function(){
-                //         return "Enter "+this.label
-                //     },
-                //     required:true,
-                // },
-                // {
-                //     label:Language.author,
-                //     field:"author",
-                //     class:"vue-select1",
-                //     grid:"col-md-4 col-12",
-                //     type:"select",
-                //     isdynamic:true,
-                //     searchable:true,
-                //     options:function(){
-                //             if(this.isdynamic){
-                //                 return ref.users;
-                //             }
-                //             return [];
-                //     },
-                //     placeholder:function(){
-                //         return Language.placholder_msg(this.label)
-                //     },
-
-                //     required:true,
-                // },
-                // {
-                //     label:Language.publisher,
-                //     field:"publisher",
-                //     class:"form-control",
-                //     grid:"col-md-4 col-12",
-                //     type:"text",
-                //     placeholder:function(){
-                //         return "Enter "+this.label
-                //     },
-                //     required:true,
-                // },
                 {
                     label:Language.event_date,
                     field:"event_date",
                     class:"form-control",
                     grid:"col-md-4 col-12",
                     type:"date",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.time,
+                    field:"time",
+                    class:"form-control",
+                    grid:"col-md-4 col-12",
+                    type:"time",
                     placeholder:function(){
                         return "Enter "+this.label
                     },
@@ -175,6 +130,77 @@ export default {
                     placeholder:function(){
                         return "Enter "+this.label
                     },
+                    required:true,
+                },
+                {
+                    label:Language.booking_link,
+                    field:"booking_link",
+                    class:"form-control",
+                    grid:"col-md-4 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.city,
+                    field:"city",
+                    class:"form-control",
+                    grid:"col-md-4 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.user,
+                    field:"user_id",
+                    class:"vue-select1",
+                    grid:"col-md-4 col-12",
+                    type:"select",
+                    isdynamic:true,
+                    searchable:true,
+                    options:function(){
+                            if(this.isdynamic){
+                                return ref.users;
+                            }
+                            return [];
+                    },
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+
+                    required:true,
+                },
+                {
+                    label:Language.is_approved,
+                    field:"is_approved",
+                    class:"vue-select1",
+                    grid:"col-md-2 col-12",
+                    type:"select",
+                    isdynamic:false,
+                    searchable:true,
+                    options:function(){
+                            if(this.isdynamic){
+                                return ref.options;
+                            }
+                            return [
+                                {
+                                    text:Language.yes,
+                                    id:1
+                                },
+                                {
+                                    text:Language.no,
+                                    id:0
+                                }
+                            ];
+                    },
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+
                     required:true,
                 },
                 {
@@ -220,7 +246,7 @@ export default {
             let ref = this
             console.log(this.FormData);
             await store(this.FormData).then(async (response) => {
-                successAlert(Language.success_msg.replace(':attribute',Language.eventcalender).replace(':action',Language.saved))
+                successAlert(Language.success_msg.replace(':attribute',Language.event).replace(':action',Language.saved))
                 setTimeout(() => {
                     ref.$router.push('/admin/eventcalender')
                 }, 3000);
