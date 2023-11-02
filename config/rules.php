@@ -22,12 +22,34 @@ return [
     'directories' => [
         'store' => [
             'title' => 'required',
+            'email' => 'required|email|unique:directories',
+            'mobile_no' => 'required|numeric|min:11',
+            'phone' => 'required|numeric|min:11',
+            'address' => 'required|min:3|max:50',
+            'web_url' => 'url',
+            'venue_url' => 'url',
+            'instagram_url' => 'url',
+            'youtube_url' => 'url',
+            'facebook_url' => 'url',
+            'linked_url' => 'url',
             'user_id' => 'required|exists:users,id',
+            'is_approved'=>'required',
             'description' => 'required'
         ],
         'edit' => [
             'title' => 'required',
+            'email' => 'required|email|unique:directories',
+            'mobile_no' => 'required|numeric|min:11',
+            'phone' => 'required|numeric|min:11',
+            'address' => 'required|min:3|max:50',
+            'web_url' => 'url',
+            'venue_url' => 'url',
+            'instagram_url' => 'url',
+            'youtube_url' => 'url',
+            'facebook_url' => 'url',
+            'linked_url' => 'url',
             'user_id' => 'required|exists:users,id',
+            'is_approved'=>'required',
             'description' => 'required'
         ]
     ],
@@ -52,12 +74,34 @@ return [
     'space_finders' => [
         'store' => [
             'title' => 'required',
+            'email' => 'required|email|unique:space_finders',
+            'mobile_no' => 'required|numeric|min:11',
+            'phone' => 'required|numeric|min:11',
+            'address' => 'required|min:3|max:50',
+            'web_url' => 'url',
+            'venue_url' => 'url',
+            'instagram_url' => 'url',
+            'youtube_url' => 'url',
+            'facebook_url' => 'url',
+            'linked_url' => 'url',
             'user_id' => 'required|exists:users,id',
+            'is_approved'=>'required',
             'description' => 'required'
         ],
         'edit' => [
             'title' => 'required',
+            'email' => 'required|email|unique:space_finders',
+            'mobile_no' => 'required|numeric|min:11',
+            'phone' => 'required|numeric|min:11',
+            'address' => 'required|min:3|max:50',
+            'web_url' => 'url',
+            'venue_url' => 'url',
+            'instagram_url' => 'url',
+            'youtube_url' => 'url',
+            'facebook_url' => 'url',
+            'linked_url' => 'url',
             'user_id' => 'required|exists:users,id',
+            'is_approved'=>'required',
             'description' => 'required'
         ]
     ],
@@ -100,4 +144,4 @@ return [
     ],
 
 
-]; 
+];

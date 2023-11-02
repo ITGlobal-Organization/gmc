@@ -191,7 +191,7 @@ export const Language = {
     property_types:"Property Types",
     property_type:"Property Type",
     queries:"Queries",
-    phone:"Phone",
+    // phone:"Phone",
     message:"Message",
     project:"Project",
     blogs:"Blogs",
@@ -264,12 +264,17 @@ export const Language = {
     eventcalenders:"Event Calenders",
     venue:"Venue",
     event_date:"Event Date",
-
+    mobile_no:"Mobile No",
+    phone:"Phone No",
     tel_no:"Tel No",
     website:"Website",
+    web_url:"Website Url",
     venue_url:"Venue Url",
     facebook_url:"Facebook Url",
     instagram_url:"Instagram Url",
     youtube_url:"YouTube Url",
     linkedin_url:"Linkedin Url",
+    is_approved:"Is Approved",
+    yes:"Yes",
+    No:"No"
 };

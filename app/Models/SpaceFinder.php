@@ -17,7 +17,8 @@ class SpaceFinder extends BaseModel
     public $class_dynamic = true;
 
     protected $fillable = [
-        'title','description','is_active','is_delete','is_approved','user_id','slug'
+        'title','description','is_active','is_delete','is_approved','user_id','slug',
+        'mobile_no','phone','address','web_burl','facebook_url','instagram_url','linkedin_url','youtube_url'
     ];
 
     protected $rules = [];
@@ -48,7 +49,7 @@ class SpaceFinder extends BaseModel
 
         $condition = [];
         $result = [];
-        $this->setSelectedColumn(['id','title','created_at','is_active','is_approved']);
+        $this->setSelectedColumn(['id','title','created_at','is_active','is_approved','mobile_no','address','web_url','email']);
 
         $this->setRenderColumn([
             [
@@ -65,7 +66,38 @@ class SpaceFinder extends BaseModel
                 'link_column' => 'slug',
 
             ],
+            [
+                'name' => 'email',
+                'type' => 'string',
+                'html' => false,
+                'link' => 'property',
+                'link_column' => 'email',
 
+            ],
+            [
+                'name' => 'address',
+                'type' => 'string',
+                'html' => false,
+                'link' => 'property',
+                'link_column' => 'address',
+
+            ],
+            [
+                'name' => 'mobile_no',
+                'type' => 'string',
+                'html' => false,
+                'link' => 'property',
+                'link_column' => 'mobile_no',
+
+            ],
+            [
+                'name' => 'web_url',
+                'type' => 'string',
+                'html' => false,
+                'link' => 'property',
+                'link_column' => 'web_url',
+
+            ],
             [
                 'name' => 'created_at',
                 'type' => 'string',
@@ -78,10 +110,10 @@ class SpaceFinder extends BaseModel
 
             ],
             [
-                'name' => 'status',
+                'name' => 'is_approved',
                 'type' => 'boolean',
                 'html' => true,
-                'condition_column' => 'is_active',
+                'condition_column' => 'is_approved',
                 'class_dynamic' => false,
             ],
 

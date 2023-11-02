@@ -112,6 +112,38 @@ export default {
                 sorted:true,
                 has_html:true,
             },
+            {
+                label:Language.email,
+                field:'email',
+                orignal_name:'email',
+                width:'4%',
+                sorted:true,
+                has_html:true,
+            },
+            {
+                label:Language.address,
+                field:'address',
+                orignal_name:'address',
+                width:'4%',
+                sorted:true,
+                has_html:true,
+            },
+            {
+                label:Language.mobile_no,
+                field:'mobile_no',
+                orignal_name:'mobile_no',
+                width:'4%',
+                sorted:true,
+                has_html:true,
+            },
+            {
+                label:Language.web_url,
+                field:'web_url',
+                orignal_name:'web_url',
+                width:'4%',
+                sorted:true,
+                has_html:true,
+            },
             // {
             //     label:Language.author,
             //     field:'author',
@@ -121,9 +153,9 @@ export default {
             //     has_html:false,
             // },
             {
-                label:Language.status,
-                field:'status',
-                orignal_name:'is_active',
+                label:Language.is_approved,
+                field:'is_approved',
+                orignal_name:'is_approved',
                 width:'4%',
                 sorted:false,
                 has_html:true,
@@ -208,7 +240,8 @@ export default {
 
             try{
                 await getAll(ref.pageNo,ref.pageSize,ref.orderBy,ref.order,ref.filter);
-                ref.data = records
+                ref.data = records;
+                console.log(ref.data)
                 ref.loader = false;
             }catch(e){
                 ref.loader = false;
