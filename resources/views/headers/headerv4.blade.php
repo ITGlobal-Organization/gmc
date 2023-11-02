@@ -86,16 +86,16 @@
       <li><a href="{{ route('login') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.login')}}</a></li>
 	  <li><a href="{{ route('register') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.join')}}</a></li>
     <li><a href="{{ route('blogs.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.blogs')}}</a></li>
-      <li><a href="{{ route('site-pages','benifits') }}"><i class="fa fa-chevron-right"></i> Benefits</a></li>
-      <li><a href="{{ route('directories.index') }}"><i class="fa fa-chevron-right"></i> Directory</a></li>
-      <li><a href="{{ route('space-finders.index') }}"><i class="fa fa-chevron-right"></i> Space Finder</a></li>
-	        <li><a href="{{ route('event-calenders.index') }}"><i class="fa fa-chevron-right"></i> Events Calendar</a></li>
-		      <li><a href="{{ route('platinium-partners') }}"><i class="fa fa-chevron-right"></i> Platinum Partners</a></li>
-		      <li><a href="{{ route('jobs-hub') }}"><i class="fa fa-chevron-right"></i> Jobs Hub</a></li>
-		      <li><a href="{{ route('site-pages','about-us') }}"><i class="fa fa-chevron-right"></i> About</a></li>
-		      <li><a href="{{ route('international') }}"><i class="fa fa-chevron-right"></i> International</a></li>
-		      <li><a href="{{ route('mentoring') }}"><i class="fa fa-chevron-right"></i> Mentoring</a></li>
-		      <li><a href="{{ route('site-pages','contact-us') }}"><i class="fa fa-chevron-right"></i> Contact Us</a></li>
+      <li><a href="{{ route('site-pages','benifits') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.benifits')}}</a></li>
+      <li><a href="{{ route('directories.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.directories')}}</a></li>
+      <li><a href="{{ route('space-finders.index') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.spacefinders')}}</a></li>
+	        <li><a href="{{ route('event-calenders.index') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.eventcalenders')}}</a></li>
+		      <li><a href="{{ route('platinium-partners') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.platiniumpartners')}}</a></li>
+		      <li><a href="{{ route('jobs-hub') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.jobshub')}}</a></li>
+		      <li><a href="{{ route('site-pages','about-us') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.about_us')}}</a></li>
+		      <li><a href="{{ route('international') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.international')}}</a></li>
+		      <li><a href="{{ route('mentoring') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.mentoring')}}</a></li>
+		      <li><a href="{{ route('site-pages','contact-us') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.contact')}}</a></li>
     </ul>
     <div class="clr"></div>
 </div>
@@ -117,17 +117,17 @@
 <div class="middle">
  <div class="list2">
     <ul class="list2">
-      <li><a href="#">Home</a></li>
-       <li><a href="#">Benefits</a></li>
-      <li><a href="#">Directory</a></li>
-      <li><a href="#">Space Finder</a></li>
-      <li><a href="#">Events Calendar</a></li>
-      <li><a href="#">Platinum Partners</a></li>
-      <li><a href="#">Jobs Hub</a></li>
-	  <li><a href="#">About</a></li>
-	  <li><a href="#">International</a></li>
-	 <li><a href="#">Mentoring</a></li>
-		<li><a href="#">Contact Us</a></li>
+      <li><a href="{{ route('home') }}">Home</a></li>
+       <li><a href="{{ route('site-pages','benifits') }}">{{ trans('lang.benifits')}}</a></li>
+      <li><a href="{{ route('directories.index') }}">{{ trans('lang.directories')}}</a></li>
+      <li><a href="{{ route('space-finders.index') }}">{{ trans('lang.spacefinders')}}</a></li>
+      <li><a href="{{ route('event-calenders.index') }}">{{ trans('lang.eventcalenders')}}</a></li>
+      <li><a href="{{ route('platinium-partners') }}">{{ trans('lang.platiniumpartners')}}</a></li>
+      <li><a href="{{ route('jobs-hub') }}">{{ trans('lang.jobshub')}}</a></li>
+	  <li><a href="{{ route('site-pages','about-us') }}">{{ trans('lang.about_us')}}</a></li>
+	  <li><a href="{{ route('international') }}">{{ trans('lang.international')}}</a></li>
+	 <li><a href="{{ route('mentoring') }}">{{ trans('lang.mentoring')}}</a></li>
+		<li><a href="{{ route('site-pages','contact-us') }}">{{ trans('lang.contact')}}</a></li>
     </ul>
   </div>
 <div class="clr"></div>
