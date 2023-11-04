@@ -12,7 +12,7 @@ class DirectoryController extends BaseController
     private $directory,$media,$user;
     public function __construct(Directory $directory,Media $media) {
         $this->directory = $directory;
-
+        dd($directory);
         $this->setModel($directory);
         $this->setMedia($media);
     }
@@ -51,9 +51,10 @@ class DirectoryController extends BaseController
             $this->directory->setOrder($sort[1]);
         }
         $Directories = $this->blog->getAll([['users','users.id','=','directories.user_id']],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
-
+      
         return view('sections.directories',[
             'Directories' => $Directories,
+        
         ]);
     }
 

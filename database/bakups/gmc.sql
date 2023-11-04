@@ -34,7 +34,7 @@ CREATE TABLE `blogs` (
   `slug` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_approved` tinyint DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `blogs` */
 
@@ -43,9 +43,7 @@ insert  into `blogs`(`id`,`title`,`description`,`publisher`,`publish_at`,`author
 (3,'Accusantium tempora','<p>sadfj lasdjfl sdajflsdah f;sad fhasdhfasd; f;sdafhsad;fh ;sadhflsd;a hflsdahfl;sad hfl;dsah fl;hsdal ;fhsad;lf; as fsa fh;sdla hfld;sahf sad f a;afh a;slhfas;lh f;asldhf l;asdhf lsad fl hsahf lsdahf lsdahf lsda hflsa;dh fl;sah fd;lsadhf</p>','Natus porro quis tot','2023-10-06 16:59:00',0,1,0,'2023-10-18 13:00:22','2023-10-18 13:00:22','sit-ut-et-quas-id-q',1),
 (4,'Et doloribus consequ','<p>klsadfh skladhfkads fsadl;f jlsa;dfh sa;dlfh l;sadhf sah f;sadh f;lsadfh lsad;hf lsa;hfls;a dhfl; sahflh sal;dfhsdal;hf l;sadh fl;sadhfl; sahflhsda sadf dsafsda fsdaf sdaf sad fsadf sadf sadfsadfsdaf sadfsad</p>','Iure ipsam labore la','2023-10-05 17:02:00',0,0,0,'2023-10-18 13:03:00','2023-10-18 13:18:36','elit-laboris-amet',1),
 (5,'Velit incidunt in o','<p>asfdnslkaj flsdafl ;sadhfl;sdahfl;sad hfl;sdahf ;lsdafh l;sadfhl;dsa fhl;sad hfl;sdahfl;sdahfl;</p>','Excepteur incidunt','2023-10-04 17:06:00',62,1,0,'2023-10-22 13:07:13','2023-10-22 13:07:13','aut-sed-nulla-dolore',1),
-(6,'Distinctio Ea volup','<p>fsdafkds a;jf;dsa jf;sdajf ;sad\'jf;sad fj;asd f;asd jf;\'sadjf;sadjf;</p>','Aliquid atque tenetu','2023-10-04 17:12:00',66,1,0,'2023-10-22 13:12:44','2023-10-27 15:06:35','amet-repellendus-a',1),
-(7,'test','<p>test</p>','Aliquid atque tenetu','2023-10-27 19:06:41',66,1,0,'2023-10-27 15:07:13','2023-10-27 15:07:13','slug',1),
-(8,'new blog','<p>testing</p>','Aliquid atque tenetu','2023-10-27 19:08:20',67,1,0,'2023-10-27 15:08:49','2023-10-27 15:09:04','blog',1);
+(6,'Distinctio Ea volup','<p>fsdafkds a;jf;dsa jf;sdajf ;sad\'jf;sad fj;asd f;asd jf;\'sadjf;sadjf;</p>','Aliquid atque tenetu','2023-10-04 17:12:00',66,1,0,'2023-10-22 13:12:44','2023-10-22 13:12:44','amet-repellendus-a',1);
 
 /*Table structure for table `directories` */
 
@@ -60,15 +58,26 @@ CREATE TABLE `directories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `is_approved` tinyint DEFAULT '1',
+  `user_id` bigint DEFAULT '0',
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mobile_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0',
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0',
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `web_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `venue_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facebook_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instagram_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `linkedin_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtube_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `directories` */
 
-insert  into `directories`(`id`,`title`,`description`,`is_active`,`is_delete`,`created_at`,`updated_at`,`is_approved`) values 
-(7,'test','<p>test</p>',1,0,'2023-10-27 14:29:15','2023-10-27 15:07:44',1),
-(8,'new directory','<p>testing</p>',1,0,'2023-10-27 15:10:54','2023-10-27 15:10:54',1),
-(9,'new','<p>test</p>',1,0,'2023-10-28 18:04:50','2023-10-28 18:16:08',1);
+insert  into `directories`(`id`,`title`,`description`,`is_active`,`is_delete`,`created_at`,`updated_at`,`is_approved`,`user_id`,`slug`,`mobile_no`,`phone`,`address`,`email`,`web_url`,`venue_url`,`facebook_url`,`instagram_url`,`linkedin_url`,`youtube_url`) values 
+(10,'Ut est eiusmod eum','<p>adfjdsal fsdalhf lsdafhl sadfl;asd hflsda flsdah fhsadf hsdlaf hlas dflashd f;lsdahflsdah flsadhl fhsdalf hsdl;ahf;lsdahfldsahfldsahflsdahf;lsdahf;lsedahf</p>',1,0,'2023-10-30 00:43:00','2023-10-30 00:43:00',1,66,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(11,'abc','<p>www.abcd.com</p>',1,0,'2023-11-01 16:43:42','2023-11-01 16:48:54',1,62,NULL,'11111111111','11111111111','www.abcd.com','abc@gmail.com','https://www.abcd.com','https://www.abcd.com','https://www.abcd.com','https://www.abcd.com','https://www.abcd.com','https://www.abcd.com');
 
 /*Table structure for table `event_calenders` */
 
@@ -84,15 +93,21 @@ CREATE TABLE `event_calenders` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `is_approved` tinyint DEFAULT '1',
   `event_date` datetime NOT NULL,
-  `venue` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `venue` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` double NOT NULL,
+  `user_id` bigint DEFAULT '0',
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `time` time DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `booking_link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `event_calenders` */
 
-insert  into `event_calenders`(`id`,`title`,`description`,`is_active`,`is_delete`,`created_at`,`updated_at`,`is_approved`,`event_date`,`venue`,`price`) values 
-(7,'test event','<p>test</p>',1,0,'2023-10-28 18:07:19','2023-10-28 18:16:41',1,'2023-10-03 22:06:00','karachi',40);
+insert  into `event_calenders`(`id`,`title`,`description`,`is_active`,`is_delete`,`created_at`,`updated_at`,`is_approved`,`event_date`,`venue`,`price`,`user_id`,`city`,`time`,`slug`,`booking_link`) values 
+(8,'abc','<p>abc</p>',1,0,'2023-11-02 15:57:36','2023-11-02 15:57:36',NULL,'2023-11-11 19:38:00','abc',40.5,62,'karachi','15:41:00',NULL,NULL),
+(9,'test','<p>test</p>',1,0,'2023-11-02 16:04:57','2023-11-02 16:15:53',1,'2023-11-08 20:04:00','test',40,62,'karachi','16:07:00',NULL,'abc');
 
 /*Table structure for table `images` */
 
@@ -111,7 +126,7 @@ CREATE TABLE `images` (
   `extension` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_active` tinyint DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `images` */
 
@@ -123,20 +138,16 @@ insert  into `images`(`id`,`model`,`model_id`,`image_url`,`is_delete`,`img_type`
 (42,'App\\Models\\Employee',0,'http://gmc.test/media/about-4.jpg',0,'main','2023-10-22 07:39:55','2023-10-22 07:39:55','about-4.jpg','jpg',1),
 (43,'App\\Models\\User',0,'http://gmc.test/media/about-4.jpg',0,'main','2023-10-22 08:25:36','2023-10-22 08:25:36','about-4.jpg','jpg',1),
 (44,'App\\Models\\User',66,'http://gmc.test/media/b2.png',0,'main','2023-10-22 09:21:11','2023-10-22 09:27:15','b2.png','png',1),
-(45,'App\\Models\\Blog',6,'http://gmc.test/media/b2.png',0,'main','2023-10-22 13:04:38','2023-10-27 15:06:35','b2.png','png',1),
+(45,'App\\Models\\Blog',6,'http://gmc.test/media/b2.png',0,'main','2023-10-22 13:04:38','2023-10-22 13:12:44','b2.png','png',1),
 (46,'App\\Models\\Blog',0,'http://gmc.test/media/1.jpg',0,'main','2023-10-22 13:06:14','2023-10-22 13:06:14','1.jpg','jpg',1),
 (47,'App\\Models\\User',0,'http://gmc.test/media/1.jpg',0,'main','2023-10-22 13:11:30','2023-10-22 13:11:30','1.jpg','jpg',1),
-(48,'App\\Models\\User',68,'http://gmc.test/media/app_bg.jpg',0,'main','2023-10-22 13:19:59','2023-10-27 15:06:01','app_bg.jpg','jpg',1),
-(49,'App\\Models\\Directory',9,'http://127.0.0.1:8000/media/download.jpg',0,'main','2023-10-27 14:25:28','2023-10-28 18:16:08','download.jpg','jpg',1),
-(50,'App\\Models\\User',69,'http://127.0.0.1:8000/media/download.jpg',0,'main','2023-10-27 14:52:12','2023-10-27 15:10:26','download.jpg','jpg',1),
-(51,'App\\Models\\Blog',7,'http://127.0.0.1:8000/media/download1.jpg',0,'main','2023-10-27 15:06:32','2023-10-27 15:07:13','download1.jpg','jpg',1),
-(52,'App\\Models\\Blog',8,'http://127.0.0.1:8000/media/download.jpg',0,'main','2023-10-27 15:08:46','2023-10-27 15:09:04','download.jpg','jpg',1),
-(53,'App\\Models\\Directory',8,'http://127.0.0.1:8000/media/download1.jpg',0,'main','2023-10-27 15:10:51','2023-10-27 15:10:54','download1.jpg','jpg',1),
-(54,'App\\Models\\SpaceFinder',8,'http://127.0.0.1:8000/media/download.jpg',0,'main','2023-10-28 14:27:14','2023-10-28 18:16:26','download.jpg','jpg',1),
-(55,'App\\Models\\SpaceFinder',7,'http://127.0.0.1:8000/media/download.jpg',0,'main','2023-10-28 14:27:28','2023-10-28 17:13:47','download.jpg','jpg',1),
-(56,'App\\Models\\SpaceFinder',7,'http://127.0.0.1:8000/media/download.jpg',0,'main','2023-10-28 17:13:44','2023-10-28 17:13:47','download.jpg','jpg',1),
-(57,'App\\Models\\EventCalender',7,'http://127.0.0.1:8000/media/download.jpg',0,'main','2023-10-28 18:07:04','2023-10-28 18:16:41','download.jpg','jpg',1),
-(58,'App\\Models\\SpaceFinder',8,'http://127.0.0.1:8000/media/download.jpg',0,'main','2023-10-28 18:16:23','2023-10-28 18:16:26','download.jpg','jpg',1);
+(48,'App\\Models\\User',68,'http://gmc.test/media/app_bg.jpg',0,'main','2023-10-22 13:19:59','2023-10-22 13:20:02','app_bg.jpg','jpg',1),
+(49,'App\\Models\\User',69,'http://gmc.test/media/404.png',0,'main','2023-10-28 12:52:25','2023-10-28 12:52:43','404.png','png',1),
+(50,'App\\Models\\Directory',10,'http://gmc.test/media/1.jpg',0,'main','2023-10-30 00:42:57','2023-10-30 00:43:00','1.jpg','jpg',1),
+(51,'App\\Models\\Directory',11,'http://gmc.test/media/download.jpg',0,'main','2023-11-01 16:39:12','2023-11-01 16:48:54','download.jpg','jpg',1),
+(52,'App\\Models\\SpaceFinder',9,'http://gmc.test/media/download1.jpg',0,'main','2023-11-01 16:59:07','2023-11-02 14:29:27','download1.jpg','jpg',1),
+(53,'App\\Models\\SpaceFinder',9,'http://gmc.test/media/download1.jpg',0,'main','2023-11-01 16:59:51','2023-11-02 14:29:27','download1.jpg','jpg',1),
+(54,'App\\Models\\SpaceFinder',9,'http://gmc.test/media/download1.jpg',0,'main','2023-11-02 14:29:21','2023-11-02 14:29:27','download1.jpg','jpg',1);
 
 /*Table structure for table `migrations` */
 
@@ -196,6 +207,32 @@ insert  into `model_has_roles`(`role_id`,`model_type`,`model_id`) values
 (6,'App\\Models\\User',68),
 (6,'App\\Models\\User',69);
 
+/*Table structure for table `pages` */
+
+DROP TABLE IF EXISTS `pages`;
+
+CREATE TABLE `pages` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `view` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `layout` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `has_custom_view` tinyint(1) NOT NULL DEFAULT '1',
+  `display_to_menu` tinyint(1) NOT NULL DEFAULT '0',
+  `is_delete` tinyint(1) NOT NULL DEFAULT '0',
+  `is_home_page` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `pages` */
+
+insert  into `pages`(`id`,`name`,`slug`,`view`,`layout`,`description`,`is_active`,`has_custom_view`,`display_to_menu`,`is_delete`,`is_home_page`,`created_at`,`updated_at`) values 
+(1,'Home','home','indexv1','layoutv2',NULL,1,1,1,0,1,NULL,NULL);
+
 /*Table structure for table `permissions` */
 
 DROP TABLE IF EXISTS `permissions`;
@@ -233,17 +270,21 @@ CREATE TABLE `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `personal_access_tokens` */
 
 insert  into `personal_access_tokens`(`id`,`tokenable_type`,`tokenable_id`,`name`,`token`,`abilities`,`last_used_at`,`created_at`,`updated_at`) values 
 (10,'App\\Models\\User',60,'API Token','ee83b7399affc9893abc6efdc938cd950c7b487e44079cc499af5d787eac2e1f','[\"*\"]',NULL,'2023-10-22 13:14:57','2023-10-22 13:14:57'),
-(11,'App\\Models\\User',60,'API Token','f576ebacbcdf749b1a3c5beb509376620e36bcfc00444dde7969d0ca4fc638d5','[\"*\"]',NULL,'2023-10-24 15:52:45','2023-10-24 15:52:45'),
-(12,'App\\Models\\User',60,'API Token','cde37f8987d140417afd42f4105b777802afce6a6482bf94f3aac9bc14b21c4f','[\"*\"]',NULL,'2023-10-27 09:01:42','2023-10-27 09:01:42'),
-(13,'App\\Models\\User',60,'API Token','126d585a576111d1fc143fa67d1b9e3df70eb6a6b3e9a196cd71792045efcc15','[\"*\"]',NULL,'2023-10-27 14:24:12','2023-10-27 14:24:12'),
-(14,'App\\Models\\User',60,'API Token','aec4531f27d29e5127e17be576350f742825946ddc183b57b906cdce672b01f9','[\"*\"]',NULL,'2023-10-28 14:11:25','2023-10-28 14:11:25'),
-(15,'App\\Models\\User',60,'API Token','df3a783b4dcef63dac91be93d94e7c1600727b54aa41fcc65d98994d358fbc30','[\"*\"]',NULL,'2023-10-28 17:05:09','2023-10-28 17:05:09');
+(11,'App\\Models\\User',60,'API Token','f576ebacbcdf749b1a3c5beb509376620e36bcfc00444dde7969d0ca4fc638d5','[\"*\"]','2023-10-28 12:40:27','2023-10-24 15:52:45','2023-10-28 12:40:27'),
+(12,'App\\Models\\User',60,'API Token','88b8c1b9bfe2e93bc80f14a3109fa337a5066d9388de998e53fa4a26960d1fda','[\"*\"]',NULL,'2023-10-28 12:41:23','2023-10-28 12:41:23'),
+(13,'App\\Models\\User',60,'API Token','6b7870907208ccc252573a2b31bc52fc3844d66a4d8693fb38b7e09a567fd358','[\"*\"]',NULL,'2023-10-29 14:33:32','2023-10-29 14:33:32'),
+(14,'App\\Models\\User',60,'API Token','0dbc96f979a2aee910ad6ec41aab59573acaad76da10dd96d6bc82d1ed1a2dfa','[\"*\"]',NULL,'2023-10-29 14:41:07','2023-10-29 14:41:07'),
+(15,'App\\Models\\User',60,'API Token','fb9139ed71e021fa7598edb22ee9cd8002901c6db8d683e1c421a8316d6e90f4','[\"*\"]',NULL,'2023-10-29 14:43:38','2023-10-29 14:43:38'),
+(16,'App\\Models\\User',60,'API Token','cd873166310ae6f039024d1f46257cb5b66b231021c002ae3063f62b44f2f2b0','[\"*\"]',NULL,'2023-10-29 23:59:16','2023-10-29 23:59:16'),
+(17,'App\\Models\\User',60,'API Token','d136574ae27611927e6520aec59a9021abe2b787ea43539406d6cedd04aaf2f9','[\"*\"]',NULL,'2023-11-01 13:44:28','2023-11-01 13:44:28'),
+(18,'App\\Models\\User',60,'API Token','0454720b6a2f9141f727b04cd3821a7dff7f7fce9b0d472842647f76cc50dc3c','[\"*\"]',NULL,'2023-11-01 16:07:10','2023-11-01 16:07:10'),
+(19,'App\\Models\\User',60,'API Token','491026cee5300c30cb531bc058b99eedb324bb70ec75c132a9a14dc6dee03b94','[\"*\"]',NULL,'2023-11-02 14:15:12','2023-11-02 14:15:12');
 
 /*Table structure for table `role_has_permissions` */
 
@@ -299,14 +340,25 @@ CREATE TABLE `space_finders` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `is_approved` tinyint DEFAULT '1',
+  `user_id` bigint DEFAULT '0',
+  `mobile_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `web_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `venue_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facebook_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instagram_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `linkedin_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtube_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `space_finders` */
 
-insert  into `space_finders`(`id`,`title`,`description`,`is_active`,`is_delete`,`created_at`,`updated_at`,`is_approved`) values 
-(7,'test','<p>test</p>',1,0,'2023-10-28 14:27:18','2023-10-28 17:13:47',1),
-(8,'test','<p>testing</p>',1,0,'2023-10-28 18:05:15','2023-10-28 18:16:26',1);
+insert  into `space_finders`(`id`,`title`,`description`,`is_active`,`is_delete`,`created_at`,`updated_at`,`is_approved`,`user_id`,`mobile_no`,`phone`,`email`,`address`,`web_url`,`venue_url`,`facebook_url`,`instagram_url`,`linkedin_url`,`youtube_url`,`slug`) values 
+(9,'abc','<p>https://www.abc.com</p>',1,0,'2023-11-01 16:59:39','2023-11-02 14:29:27',1,69,'11111111111','11111111111','abc@gmail.com','https://www.abc.com','https://www.abc.com','https://www.abc.com','https://www.abc.com','https://www.abc.com','https://www.abc.com','https://www.abc.com',NULL);
 
 /*Table structure for table `subscription_items` */
 
@@ -383,6 +435,13 @@ CREATE TABLE `users` (
   `postalcode` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_approved` tinyint DEFAULT '0',
   `username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tel_no` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `venue_url` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `website` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facebook_url` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtube_url` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instagram_url` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `linkedin_url` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`),
   KEY `users_stripe_id_index` (`stripe_id`)
@@ -390,13 +449,13 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`first_name`,`email`,`phone`,`email_verified_at`,`is_email_verified`,`password`,`is_active`,`is_delete`,`signin_at`,`is_logout`,`logout_at`,`remember_token`,`created_at`,`updated_at`,`is_login`,`login_at`,`stripe_id`,`pm_type`,`pm_last_four`,`trial_ends_at`,`last_name`,`company`,`address`,`postalcode`,`is_approved`,`username`) values 
-(60,'admin','admin@gmail.com','03332424345','2023-10-14 12:55:16',0,'$2y$10$/papctWofeK1HpbbIthTlOzeiHQd.rUzc.cvIzgCUKKDiRjaZSgHa',1,0,'2023-10-21 09:10:24',0,'2023-10-22 13:13:15',NULL,NULL,'2023-10-28 17:05:08',1,'2023-10-28 17:05:08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL),
-(62,'Xena','gagorahyn@mailinator.com','1 2919651647',NULL,0,'$2y$10$uW88SHkbQvTtJdYqHfCff.OqCzjWFDSfu/Y4OXIVKcwzY.2GmKQUy',1,0,NULL,0,NULL,NULL,'2023-10-22 08:25:39','2023-10-22 08:25:39',0,NULL,NULL,NULL,NULL,NULL,'Hodges','Middleton Donaldson Inc','Molestias totam itaq','Temporibus est fuga',1,NULL),
-(66,'Xena','gagorahyn1@mailinator.com','1 2919651647',NULL,0,'',1,0,NULL,0,NULL,NULL,'2023-10-22 08:31:46','2023-10-22 09:27:15',0,NULL,NULL,NULL,NULL,NULL,'Hodges','Middleton Donaldson Inc','Molestias totam itaq','Temporibus est fuga',1,'xena'),
-(67,'Hillary','jufymeqew@mailinator.com','3161620852',NULL,0,'',1,0,NULL,0,NULL,NULL,'2023-10-22 13:11:35','2023-10-22 13:12:03',0,NULL,NULL,NULL,NULL,NULL,'Roman','Morton Hale Plc','Neque molestiae temp','Id harum dolores ut',1,'adminuser'),
-(68,'Hope','qopegafo@mailinator.com','12356487965',NULL,0,'admin123',1,0,NULL,0,NULL,NULL,'2023-10-22 13:20:01','2023-10-27 15:06:01',0,NULL,NULL,NULL,NULL,NULL,'Howell','Jenkins and Petty Inc','Delectus eos non n','Aut iste sapiente mi',1,'admin@gmail.com'),
-(69,'test user','testuser@gmail.com','12356487965',NULL,0,'admin123',1,0,NULL,0,NULL,NULL,'2023-10-27 15:10:10','2023-10-27 15:10:26',0,NULL,NULL,NULL,NULL,NULL,'xyx','abc','R-1998','12345',1,'admin@gmail.com');
+insert  into `users`(`id`,`first_name`,`email`,`phone`,`email_verified_at`,`is_email_verified`,`password`,`is_active`,`is_delete`,`signin_at`,`is_logout`,`logout_at`,`remember_token`,`created_at`,`updated_at`,`is_login`,`login_at`,`stripe_id`,`pm_type`,`pm_last_four`,`trial_ends_at`,`last_name`,`company`,`address`,`postalcode`,`is_approved`,`username`,`tel_no`,`venue_url`,`website`,`facebook_url`,`youtube_url`,`instagram_url`,`linkedin_url`) values 
+(60,'admin','admin@gmail.com','03332424345','2023-10-14 12:55:16',0,'$2y$10$siVjd8k6VvqYKgExJI7Exu2wRVHm3Td5HxHfmeke5V6Vz0MkWTL3a',1,0,'2023-10-21 09:10:24',0,'2023-10-22 13:13:15',NULL,NULL,'2023-11-02 14:15:11',1,'2023-11-02 14:15:11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(62,'Xena','gagorahyn@mailinator.com','1 2919651647',NULL,0,'$2y$10$uW88SHkbQvTtJdYqHfCff.OqCzjWFDSfu/Y4OXIVKcwzY.2GmKQUy',1,0,NULL,0,NULL,NULL,'2023-10-22 08:25:39','2023-10-22 08:25:39',0,NULL,NULL,NULL,NULL,NULL,'Hodges','Middleton Donaldson Inc','Molestias totam itaq','Temporibus est fuga',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(66,'Xena','gagorahyn1@mailinator.com','1 2919651647',NULL,0,'',1,0,NULL,0,NULL,NULL,'2023-10-22 08:31:46','2023-10-22 09:27:15',0,NULL,NULL,NULL,NULL,NULL,'Hodges','Middleton Donaldson Inc','Molestias totam itaq','Temporibus est fuga',1,'xena',NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(67,'Hillary','jufymeqew@mailinator.com','3161620852',NULL,0,'',1,0,NULL,0,NULL,NULL,'2023-10-22 13:11:35','2023-10-22 13:12:03',0,NULL,NULL,NULL,NULL,NULL,'Roman','Morton Hale Plc','Neque molestiae temp','Id harum dolores ut',1,'adminuser',NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(68,'Hope','qopegafo@mailinator.com','12356487965',NULL,0,'$2y$10$8MK2thXDeVW8zAzidXAPK.SwxjBMv1dBRNDdmSeZTFkdXTdfCsrFi',1,0,NULL,0,NULL,NULL,'2023-10-22 13:20:01','2023-10-22 13:20:01',0,NULL,NULL,NULL,NULL,NULL,'Howell','Jenkins and Petty Inc','Delectus eos non n','Aut iste sapiente mi',1,'hezelu',NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(69,'Acton','fusohidim@mailinator.com','1235478622',NULL,0,'$2y$10$kQ8d8w/QeX1l6o1FShYjRONrEYkmCWUScbdYQiLOgTS4ApRurPtlG',1,0,NULL,0,NULL,NULL,'2023-10-28 12:52:43','2023-10-28 12:52:43',0,NULL,NULL,NULL,NULL,NULL,'Finley','Sherman Cotton Traders','Earum earum id paria','Commodo obcaecati au',1,'ririqir','02145786622222','https://www.cuxykyfafe.ws','https://www.cuxykyfafe.ws','https://www.cuxykyfafe.ws','https://www.cuxykyfafe.ws','https://www.cuxykyfafe.ws','https://www.cuxykyfafe.ws');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
