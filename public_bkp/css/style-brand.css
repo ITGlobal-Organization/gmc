@@ -1,0 +1,117 @@
+/*www.oguzhansengul.com*/
+@font-face {
+    font-family: "Inter-Regular";
+    src: url("../fonts/Inter-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Inter-Medium";
+    src: url("../fonts/Inter-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Inter-Bold";
+    src: url("../fonts/Inter-Bold.ttf");
+}
+
+@font-face {
+    font-family: "samsungsharpsans";
+    src: url("../fonts/samsungsharpsans.otf");
+}
+
+@font-face {
+    font-family: "samsungsharpsans-bold";
+    src: url("../fonts/samsungsharpsans-bold.otf");
+}
+
+@font-face {
+    font-family: "samsungsharpsans-medium";
+    src: url("../fonts/samsungsharpsans-medium.otf");
+}
+
+#rcbrandDemo1,
+#rcbrandDemo2,
+#rcbrandDemo3 {
+    display: none;
+}
+
+.rc-rcbrand-container {
+    position: relative;
+    max-width: 100%;
+    margin-bottom: 0px;
+}
+
+.rc-rcbrand-ul {
+    position: relative;
+    width: 99999px;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    text-align: center;
+    overflow: auto;
+}
+
+.rc-rcbrand-inner {
+    position: relative;
+    overflow: hidden;
+    float: left;
+    width: 100%;
+    background-color: transparent;
+    border: 0px solid #ccc;
+}
+
+.rc-rcbrand-item {
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+    position: relative;
+    line-height: 0px;
+}
+
+.rc-rcbrand-item img {
+    max-width: 100%;
+    cursor: pointer;
+    position: relative;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.rc-rcbrand-nav-left,
+.rc-rcbrand-nav-right {
+    padding: 5px 12px 5px 12px;
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+    z-index: 4;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ff0000;
+    font-family: 'Inter-Regular' !important;
+    font-size: 15px;
+    color: #fff;
+}
+
+.rc-rcbrand-nav-left {
+    left: 0px;
+}
+
+.rc-rcbrand-nav-left:before {
+    content: "‹"
+}
+
+.rc-rcbrand-nav-left.disabled {
+    opacity: 0.4;
+}
+
+.rc-rcbrand-nav-right {
+    right: 0px;
+}
+
+.rc-rcbrand-nav-right:before {
+    content: "›"
+}
+
+.rc-rcbrand-nav-right.disabled {
+    opacity: 0.4;
+}

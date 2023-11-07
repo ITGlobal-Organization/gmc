@@ -165,7 +165,8 @@ return [
     'oldest_to_latest' => "Oldest Listing",
     'by' => 'By',
     'latest-post' => "Latest Post",
-    'join' => 'Join Us'
+    'join' => 'Join Us',
+    'benifits' =>"Benifits"
 
 
 

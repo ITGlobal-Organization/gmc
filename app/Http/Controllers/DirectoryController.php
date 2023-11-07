@@ -50,8 +50,7 @@ class DirectoryController extends BaseController
             $this->directory->setOrderBy($sort[0]);
             $this->directory->setOrder($sort[1]);
         }
-        $Directories = $this->blog->getAll([['users','users.id','=','directories.user_id']],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
-
+        $Directories = $this->directory->getAll([['users','users.id','=','directories.user_id']],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
         return view('sections.directories',[
             'Directories' => $Directories,
         ]);

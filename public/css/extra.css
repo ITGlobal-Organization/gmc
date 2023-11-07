@@ -14,12 +14,19 @@
 .mb-40 {
     margin-bottom: 40px !important;
 }
+
 .mb-60 {
     margin-bottom: 60px !important;
 }
 .mb-80 {
     margin-bottom: 80px !important;
 }
+
+.mtb-40 {
+    margin-top: 40px !important;
+	 margin-bottom: 40px !important;
+}
+
 .mtb-25 {
     margin-top: 25px !important;
     margin-bottom: 25px !important;
@@ -58,6 +65,14 @@
     border-bottom: 1px solid #eee;
     margin-bottom: 40px;
 }
+.red{
+color: #FF0004;
+}
+
+.font-12{
+font-size: 12px;
+}
+
 
 @media only screen and (min-width: 250px) and (max-width: 767px) {
 .middle {
@@ -174,6 +189,19 @@ h7 {
 .tooltip1 .tooltiptext1 {
     width: 250px;
 }
+	
+.slidingDiv {
+  width: 200% !important;
+  left: 0%;
+}
+	
+.leftsidenav {
+  height: auto;
+  width:100%;
+  margin-bottom: 30px;
+  }
+	
+
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1799px) {
@@ -204,6 +232,27 @@ h7 {
     object-fit: cover !important;
     background-size: cover !important;
 }
+	
+
+#list40 ul li a {
+	margin:0px 0px 0px -40px;
+	padding:15px 15px 15px 15px;
+	width:118%;
+	height:auto;
+    font-family: 'Montserrat-Regular' !important;
+	font-size:14px;
+	color:#fff;
+	text-decoration:none;
+	float:left;
+    border-bottom: 1px solid #ccc;
+	transition: all 0.4s linear;
+}	
+	
+.leftsidenav {
+  width:100%;
+ }
+	
+
 }
 
 @media only screen and (min-width: 250px) and (max-width: 1799px) {
@@ -271,6 +320,7 @@ h1 {
     font-size: 13px !important;
     line-height: 20px !important;
 }
+	
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1299px) {
@@ -310,4 +360,27 @@ h7 {
 }
 }
 
+@media only screen and (min-width: 250px) and (max-width: 1023px) {
+	.form-none{
+		display: none;
+	}
+
+}
+
+
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+.slidingDiv {
+width: 401% !important;
+    left: -234%;
+}
+
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1919px) {
+.slidingDiv {
+width: 601% !important;
+}
+
+}
 

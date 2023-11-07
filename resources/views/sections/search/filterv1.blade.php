@@ -4,34 +4,34 @@ Search Filter
 
 
 <div class="slidingDiv">
-	
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 padding border mb-25">	
+
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 padding border mb-25">
 <h6>Search Filter</h6>
 </div>
-	
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 padding border mb-25 text-right">	
+
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 padding border mb-25 text-right">
 <a href="#" class="show_hide">
-<i class="fas fa-times-circle fa-spin" style="color: #ff0000;font-size: 18px;"></i>	
+<i class="fas fa-times-circle fa-spin" style="color: #ff0000;font-size: 18px;"></i>
 </a>
 </div>
-	
+
 
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
 <label>What are you looking for?</label>
-<input type="text" class="join-input" value="" placeholder="What are you looking for?">	
-</div>	
-	
-	
+<input type="text" class="join-input" value="" placeholder="What are you looking for?">
+</div>
+
+
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
 <label>Category</label>
-<div id="ms1" class="form-control"></div>	
-</div>	
-	
+<div id="ms1" class="form-control"></div>
+</div>
+
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
 <label>Location</label>
-<input type="text" class="join-input" value="" placeholder="Location">	
+<input type="text" class="join-input" value="" placeholder="Location">
 </div>
-	
+
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
 <label>Range</label>
 <div>
@@ -42,7 +42,7 @@ Search Filter
 
 <div class="clr"></div>
 </div>
-	
+
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
 <label>Review</label>
 <select name="#" class="join-input" aria-required="true">
@@ -53,48 +53,48 @@ Search Filter
 	<option value="4">2 Star & Up</option>
 	<option value="5">1 Star & Up</option>
 	</select>
-</div>	
-	
+</div>
+
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
 <label>Zip/Post Code</label>
-<input type="text" class="join-input" value="" placeholder="Zip/Post Code">	
+<input type="text" class="join-input" value="" placeholder="Zip/Post Code">
 </div>
-	
+
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
 <label>Phone</label>
-<input type="text" class="join-input" value="" placeholder="Phone">	
-</div>	
-	
+<input type="text" class="join-input" value="" placeholder="Phone">
+</div>
+
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
 <label>Phone 2</label>
-<input type="text" class="join-input" value="" placeholder="Phone 2">	
+<input type="text" class="join-input" value="" placeholder="Phone 2">
 </div>
-	
+
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
 <label>Fax</label>
-<input type="text" class="join-input" value="" placeholder="Fax">	
+<input type="text" class="join-input" value="" placeholder="Fax">
 </div>
 
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
 <label>Email</label>
-<input type="text" class="join-input" value="" placeholder="Fax">	
+<input type="text" class="join-input" value="" placeholder="Fax">
 </div>
 
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
 <label>Website</label>
-<input type="text" class="join-input" value="" placeholder="Website">	
-</div>	
-	
-	
+<input type="text" class="join-input" value="" placeholder="Website">
+</div>
+
+
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center mtb-40">
 <input type="submit" class="ct-submit" value="Apply Filters">
-</div>	
-	
-	
 </div>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
-<link href="css/magicsuggest.css" rel="stylesheet" type="text/css">
-<script src="js/magicsuggest.js"></script>
+
+
+</div>
+{{-- <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script> --}}
+{{-- <link href="{{asset('css/magicsuggest.css')}}" rel="stylesheet" type="text/css"> --}}
+<script src="{{asset('js/magicsuggest.js')}}"></script>
 <script>
 $(function() {
         var ms1 = $('#ms1').magicSuggest({
@@ -111,7 +111,7 @@ $(document).ready(function(){
 
     $(".slidingDiv").hide();
 	$(".show_hide").show();
-	
+
 	$('.show_hide').click(function(){
 	$(".slidingDiv").slideToggle();
 	});
