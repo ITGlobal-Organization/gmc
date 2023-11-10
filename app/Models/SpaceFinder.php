@@ -15,6 +15,7 @@ class SpaceFinder extends BaseModel
     protected $table = "space_finders";
     public $class_name = 'App\Models\SpaceFinder';
     public $class_dynamic = true;
+    protected $has_images = true;
 
     protected $fillable = [
         'title','description','is_active','is_delete','is_approved','user_id','slug',
@@ -125,5 +126,8 @@ class SpaceFinder extends BaseModel
         [],'',[]);
 
         return $result;
+    }
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
     }
 }

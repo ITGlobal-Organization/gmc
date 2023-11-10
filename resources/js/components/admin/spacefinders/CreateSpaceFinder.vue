@@ -56,6 +56,7 @@ export default {
             citiesOptions:[],
             FormData:{
                 title:'',
+                slug:'',
                 email:'',
                 mobile_no:'',
                 phone:'',

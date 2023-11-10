@@ -49,6 +49,7 @@ data(){
         users:[],
         form:{
             title:'',
+            slug:'',
                 email:'',
                 mobile_no:'',
                 phone:'',
@@ -318,6 +319,7 @@ methods:{
             this.form.mobile_no = record.value.mobile_no;
             this.form.email = record.value.email;
             this.form.is_active = record.value.is_active;
+            this.form.slug = record.value.slug;
             this.form.is_approved = record.value.is_approved;
             this.form.is_active = record.value.is_active;
             this.form.description = record.value.description?record.value.description:"";

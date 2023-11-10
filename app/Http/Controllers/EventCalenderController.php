@@ -43,4 +43,28 @@ class EventCalenderController extends BaseController
             'title' => trans('lang.eventcalenders'),
         ]);
     }
+    public function getEventsListing(Request $request){
+        if(isset($request->sort_by) && $request->sort_by != ""){
+            $sort = explode('-',$request->sort_by);
+            $this->eventCalender->setOrderBy($sort[0]);
+            $this->eventCalender->setOrder($sort[1]);
+        }
+        $Events=$this->eventCalender->get();
+        // $Events = $this->eventCalender->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.*','images.image_url']);
+        return view('eventcalenders.events-detail',[
+            'Events' => $Events,
+        ]);
+    }
+
+    // public function getEvent(Request $request,$slug){
+    //     $Event = $this->eventCalender->first('slug',$slug,'=',['user'],[],['event_calenders.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
+    //     $this->eventCalender->setLength(10);
+    //     // $LatestBlogs = $this->directory->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.title','event_calenders.description','event_calenders.created_at','images.image_url','event_calenders.slug']);
+
+    //     return view('event-calenders.events-detail',[
+    //         'Event' => $Event,
+    //         // 'LatestBlog' => $LatestBlogs,
+    //         'title' => trans('lang.eventcalender').' | '. $Event->title
+    //     ]);
+    // }
 }

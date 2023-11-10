@@ -82,7 +82,7 @@ return [
     'blog' => 'Blog',
     'directories' => 'Directories',
     'directory' => 'Directory',
-    'platiniumpartners' => 'Platinium Partners',
+    'platiniumpartners' => 'Platinum Partners',
     'jobshub' => 'Jobs Hub',
     'learn_more' => 'Learn More',
     'view_all' => 'View All',
@@ -155,9 +155,9 @@ return [
     'users' => 'Users',
     'user' => 'User',
     'spacefinder'=>'Space Finder',
-    'spacefinders'=>'Space Finders',
-    'eventcalender'=>'Event Calender',
-    'eventcalenders'=>'Event Calenders',
+    'spacefinders'=>'Space Finder',
+    'eventcalender'=>'Event',
+    'eventcalenders'=>'Events',
     'listing' => 'Listing',
     'found' => 'Found',
     'sort_by' => "Sort By",
@@ -166,7 +166,8 @@ return [
     'by' => 'By',
     'latest-post' => "Latest Post",
     'join' => 'Join Us',
-    'benifits' =>"Benifits"
+    'benifits' =>"Benefits",
+    'news'=>'News'
 
 
 

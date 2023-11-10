@@ -57,6 +57,7 @@ export default {
             citiesOptions:[],
             FormData:{
                 title:'',
+                slug:'',
                 email:'',
                 mobile_no:'',
                 phone:'',
@@ -83,6 +84,17 @@ export default {
                 {
                     label:Language.title,
                     field:"title",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.slug,
+                    field:"slug",
                     class:"form-control",
                     grid:"col-md-6 col-12",
                     type:"text",

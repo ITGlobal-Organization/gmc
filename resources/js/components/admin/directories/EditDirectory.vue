@@ -49,6 +49,7 @@ data(){
         users:[],
         form:{
                 title:'',
+                slug:'',
                 email:'',
                 mobile_no:'',
                 phone:'',
@@ -78,6 +79,17 @@ mounted(){
                 {
                     label:Language.title,
                     field:"title",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.slug,
+                    field:"slug",
                     class:"form-control",
                     grid:"col-md-6 col-12",
                     type:"text",
@@ -318,6 +330,7 @@ methods:{
             this.form.email = record.value.email;
             this.form.is_active = record.value.is_active;
             this.form.is_approved = record.value.is_approved;
+            this.form.slug = record.value.slug;
             this.form.description = record.value.description?record.value.description:"";
 
             this.form.gallery = record.value.media;

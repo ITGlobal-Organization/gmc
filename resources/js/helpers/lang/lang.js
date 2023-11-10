@@ -259,9 +259,9 @@ export const Language = {
     postal_code:"Postal Code",
     roles:"Roles",
     spacefinder:"Space Finder",
-    spacefinders:"Space Finders",
-    eventcalender:"Event Calender",
-    eventcalenders:"Event Calenders",
+    spacefinders:"Space Finder",
+    eventcalender:"Event",
+    eventcalenders:"Events",
     venue:"Venue",
     event_date:"Event Date",
     mobile_no:"Mobile No",
@@ -280,5 +280,6 @@ export const Language = {
     time:"Time",
     event:"Event",
     city:"City",
-    booking_link:"Booking Link"
+    booking_link:"Booking Link",
+    news:"News"
 };

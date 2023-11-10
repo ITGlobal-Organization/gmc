@@ -57,8 +57,8 @@ Route::prefix('space-finders')->group(function () {
 // Event-Calenders
 Route::prefix('event-calenders')->group(function () {
     Route::get('/',[EventCalenderController::class,'eventCalenders'])->name('event-calenders.index');
-    Route::get('/ajax',[EventCalenderController::class,'geteventCalenders'])->name('event-calenders.ajax');
-    Route::get('/{slug}',[EventCalenderController::class,'geteventCalender'])->name('event-calenders.get');
+    Route::get('/ajax',[EventCalenderController::class,'getEventsListing'])->name('event-calenders.ajax');
+    Route::get('/{slug}',[EventCalenderController::class,'getEvent'])->name('event-calenders.get');
 });
 
 Route::prefix('developer')->group(function () {

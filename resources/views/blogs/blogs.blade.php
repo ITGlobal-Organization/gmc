@@ -4,11 +4,11 @@
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
 		<div class="middle mtb-60">
 
-			<h1 class="mb-40 text-center">{{ trans('lang.blogs')}} {{trans('lang.categories')}}</h1>
+			<h1 class="mb-40 text-center">{{ trans('lang.news')}} {{trans('lang.categories')}}</h1>
 
 			<div class="blogs">
 
-			</div>	
+			</div>
 
 
 

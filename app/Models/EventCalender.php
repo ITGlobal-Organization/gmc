@@ -15,6 +15,7 @@ class EventCalender extends BaseModel
     protected $table = "event_calenders";
     public $class_name = 'App\Models\EventCalender';
     public $class_dynamic = true;
+    protected $has_images = true;
 
     protected $fillable = [
         'title','description','is_active','is_delete','is_approved','event_date','price','venue','user_id',

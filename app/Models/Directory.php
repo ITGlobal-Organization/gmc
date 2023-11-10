@@ -145,4 +145,26 @@ class Directory extends BaseModel
 
         return $result;
     }
+
+    // public function setTitleAttribute($slug)
+    // {
+    //     $slug = preg_replace("![^a-z0-9]+!i", "-", strtolower($slug));
+
+    //     if(isset($this->id)){
+    //         $obj = self::where('slug',$slug)->where('id','!=',$this->id)->first();
+    //         $this->attributes['slug'] = $slug.'-'.((int)$this->id);
+    //         $this->attributes['title'] = $title;
+    //         return true;
+    //     }
+    //     $obj = self::where('slug',$slug)->first();
+    //     if(isset($obj)){
+    //         $this->attributes['slug'] = $slug.'-'.((int)$obj->id+1);
+    //         return true;
+    //     }
+    //     $this->attributes['slug'] = $slug;
+    //     return true;
+    // }
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
+    }
 }

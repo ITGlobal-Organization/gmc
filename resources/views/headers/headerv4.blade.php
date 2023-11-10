@@ -68,9 +68,9 @@
 
  <div id="list1">
     <ul class="list1">
-      <li><a href="#"><i class="fas fa-home" style="color: #ffffff;"></i>&nbsp; Home &nbsp;&nbsp;|</a></li>
-       <li><a href="#"><i class="fas fa-sign-in-alt" style="color: #ffffff;"></i>&nbsp; Login &nbsp;&nbsp;|</a></li>
-      <li><a href="#"><i class="fas fa-user" style="color: #ffffff;"></i>&nbsp; Join</a></li>
+      <li><a href="{{ route('home') }}"><i class="fas fa-home" style="color: #ffffff;"></i>&nbsp; Home &nbsp;&nbsp;|</a></li>
+       <li><a href="{{ route('login') }}"><i class="fas fa-sign-in-alt" style="color: #ffffff;"></i>&nbsp; Login &nbsp;&nbsp;|</a></li>
+      <li><a href="{{ route('register') }}"><i class="fas fa-user" style="color: #ffffff;"></i>&nbsp; Join</a></li>
     </ul>
   </div>
 
@@ -85,7 +85,7 @@
       <li><a href="{{ route('home') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.home')}}</a></li>
       <li><a href="{{ route('login') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.login')}}</a></li>
 	  <li><a href="{{ route('register') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.join')}}</a></li>
-    <li><a href="{{ route('blogs.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.blogs')}}</a></li>
+    <li><a href="{{ route('blogs.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.news')}}</a></li>
       <li><a href="{{ route('site-pages','benifits') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.benifits')}}</a></li>
       <li><a href="{{ route('directories.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.directories')}}</a></li>
       <li><a href="{{ route('space-finders.index') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.spacefinders')}}</a></li>
@@ -118,6 +118,9 @@
  <div class="list2">
     <ul class="list2">
       <li><a href="{{ route('home') }}">Home</a></li>
+      <li><a href="{{ route('login') }}"> {{ trans('lang.login')}}</a></li>
+	  <li><a href="{{ route('register') }}"> {{ trans('lang.join')}}</a></li>
+      <li><a href="{{ route('blogs.index') }}">{{ trans('lang.news')}}</a></li>
        <li><a href="{{ route('site-pages','benifits') }}">{{ trans('lang.benifits')}}</a></li>
       <li><a href="{{ route('directories.index') }}">{{ trans('lang.directories')}}</a></li>
       <li><a href="{{ route('space-finders.index') }}">{{ trans('lang.spacefinders')}}</a></li>
@@ -137,10 +140,10 @@
 </div>
 <!--End Nav Desktop Area-->
 
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 
 
 <script>

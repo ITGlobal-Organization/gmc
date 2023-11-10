@@ -39,11 +39,10 @@ Our focus is on championing the issues that matter to our members.
 
 <div id="list5">
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Blog</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="{{ route('home') }}">Home</a></li>
+      <li><a href="{{ route('site-pages','about-us') }}">About</a></li>
+      <li><a href="{{ route('blogs.index') }}">Blog</a></li>
+      <li><a href="{{ route('site-pages','contact-us') }}">Contact</a></li>
     </ul>
     <div class="clr"></div>
 </div>

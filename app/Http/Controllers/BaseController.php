@@ -171,7 +171,7 @@ class BaseController extends Controller
             // return $result;
             return $this->sendResponse([], trans('messages.success_msg',['action' => trans('lang.saved')]));
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            // dd($e->getMessage());
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
@@ -236,6 +236,11 @@ class BaseController extends Controller
     public function saveFiles(Request $request){
         $media = 0;
         $files = $request->file('files');
+        if($request->id){
+            $id = $request->id;
+        }else{
+            $id = 0;
+        }
         if (isset($request->files)) {
             $media =  Helper::saveMedia($files,$request->model,'main',$request->id);
             return $media->id;
