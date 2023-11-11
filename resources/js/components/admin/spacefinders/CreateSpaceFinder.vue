@@ -92,6 +92,17 @@ export default {
                     required:true,
                 },
                 {
+                    label:Language.slug,
+                    field:"slug",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
                     label:Language.email,
                     field:"email",
                     class:"form-control",

@@ -167,7 +167,9 @@ return [
     'latest-post' => "Latest Post",
     'join' => 'Join Us',
     'benifits' =>"Benefits",
-    'news'=>'News'
+    'news'=>'News',
+    'platinumpartners'=>"Platinum Partners",
+    'platinumpartner'=>"Platinum Partner",
 
 
 

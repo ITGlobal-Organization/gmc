@@ -281,5 +281,7 @@ export const Language = {
     event:"Event",
     city:"City",
     booking_link:"Booking Link",
-    news:"News"
+    news:"News",
+    platinumpartners:"Platinum Partners",
+    platinumpartner:"Platinum Partner",
 };

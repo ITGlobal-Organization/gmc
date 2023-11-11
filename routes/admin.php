@@ -9,6 +9,7 @@ use App\Http\Controllers\DirectoryController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SpaceFinderController;
 use App\Http\Controllers\EventCalenderController;
+use App\Http\Controllers\PlatinumPartnerController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 // Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -37,6 +38,18 @@ Route::prefix('directory')->group(function(){
     Route::get('/edit/{id}',[DirectoryController::class, 'edit'])->name('admin.directory.edit');
     Route::put('/update/{id}',[DirectoryController::class, 'update'])->name('admin.directory.update');
     Route::delete('/delete/{id}',[DirectoryController::class, 'destroy'])->name('admin.directory.destroy');
+});
+
+//PlatinumPartners
+Route::prefix('platinumpartners')->group(function(){
+    Route::get('/',[PlatinumPartnerController::class, 'index'])->name('admin.platinumpartners.index');
+    Route::get('/ajax', [PlatinumPartnerController::class, 'render'])->name('admin.platinumpartners.ajax');
+    Route::get('/create',[PlatinumPartnerController::class, 'create'])->name('admin.platinumpartners.create');
+    Route::post('/',[PlatinumPartnerController::class, 'store'])->name('admin.platinumpartners.store');
+    Route::get('/{id}',[PlatinumPartnerController::class, 'get'])->name('admin.platinumpartners.header');
+    Route::get('/edit/{id}',[PlatinumPartnerController::class, 'edit'])->name('admin.platinumpartners.edit');
+    Route::put('/update/{id}',[PlatinumPartnerController::class, 'update'])->name('admin.platinumpartners.update');
+    Route::delete('/delete/{id}',[PlatinumPartnerController::class, 'destroy'])->name('admin.platinumpartners.destroy');
 });
 
 //SpaceFinder

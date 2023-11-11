@@ -144,7 +144,6 @@ function ajaxPost(url,data,succssContainer,errorContainer) {
 
 // Ajax get
 function ajaxGet(url,data,dataContainer,responseType='html',callback=null){
-    console.log(responseType)
     $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -211,6 +210,6 @@ function validatePhoneNumberLength(phoneNumber) {
     console.log(phoneNumberPattern.test(phoneNumber))
     if(phoneNumber.length > maxDigits || !phoneNumberPattern.test(phoneNumber))
         return false
-    else 
+    else
         return true
 }
