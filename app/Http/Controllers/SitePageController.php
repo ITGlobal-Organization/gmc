@@ -8,6 +8,9 @@ use App\Helpers\Helper;
 use App\Models\CustomForm;
 use App\Mail\CustomForm as MailForm;
 use App\Models\Page;
+use App\Models\Blog;
+use App\Models\EventCalender;
+use App\Models\PlatinumPartner;
 
 use Log;
 
@@ -17,15 +20,16 @@ class SitePageController extends BaseController
     private $customForm;
     private $Page;
     private $product;
-    public function __construct(CustomForm $customForm,Page $page){
-
+    public function __construct(CustomForm $customForm,Page $page,EventCalender $eventCalender,PlatinumPartner $platinumPartners,Blog $news){
+        $this->eventCalender = $eventCalender;
+        $this->platinumPartners = $platinumPartners;
         $this->customForm = $customForm;
+        $this->news = $news;
         $this->Page = $page;
 
     }
 
     public function renderMainPage(Request $request){
-
 
         try{
 
@@ -133,6 +137,45 @@ class SitePageController extends BaseController
             }
 
         }
+    }
+
+    public function benefitsTab(Request $request){
+
+    }
+
+    public function eventsTab(Request $request){
+        $this->eventCalender->setOrderBy('id');
+        $this->eventCalender->setOrder('desc');
+        $Events = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
+
+        return view('tabs.events',[
+            'Events' => $Events,
+        ]);
+    }
+
+    public function newsTab(Request $request){
+        $this->news->setOrderBy('id');
+        $this->news->setOrder('desc');
+        $News = $this->news->getAll([],['blogs.*','images.image_url']);
+
+        return view('tabs.news',[
+            'News' => $News,
+        ]);
+    }
+
+    public function platinumPartnersTab(Request $request){
+
+        if($request->limit){
+            $view = 'tabs.footer-platinum-partners';
+        }else{
+            $view = 'tabs.platinum-partners';
+        }
+        $this->platinumPartners->setOrderBy('id');
+        $this->platinumPartners->setOrder('desc');
+        $platinumPartners = $this->platinumPartners->getAll([],['platinum_partners.*','images.image_url']);
+        return view($view,[
+            'PlatinumPartners' => $platinumPartners,
+        ]);
     }
 
 

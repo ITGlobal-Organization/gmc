@@ -27,6 +27,10 @@ import EditBlog from '../components/admin/blogs/EditBlog.vue';
 import Directory from '../components/admin/directories/Directory.vue';
 import CreateDirectory from '../components/admin/directories/CreateDirectory.vue';
 import EditDirectory from '../components/admin/directories/EditDirectory.vue';
+// PlatinumPartner
+import PlatinumPartner from '../components/admin/platinumpartners/PlatinumPartners.vue';
+import CreatePlatinumPartner from '../components/admin/platinumpartners/CreatePlatinumPartners.vue';
+import EditPlatinumPartner from '../components/admin/platinumpartners/EditPlatinumPartners.vue';
 // SpaceFinders
 import SpaceFinder from '../components/admin/spacefinders/SpaceFinder.vue';
 import CreateSpaceFinder from '../components/admin/spacefinders/CreateSpaceFinder.vue';
@@ -147,6 +151,25 @@ const routes = [
         path: "/admin/directory/edit/:id",
         name: "admin.directory.edit",
         component: EditDirectory,
+        props: true,
+    },
+    // PlatinumPartner
+    {
+        path: "/admin/platinumpartners",
+        name: "admin.platinumpartners",
+        component: PlatinumPartner,
+        props: true,
+    },
+    {
+        path: "/admin/platinumpartners/create",
+        name: "admin.platinumpartners.create",
+        component: CreatePlatinumPartner,
+        props: true,
+    },
+    {
+        path: "/admin/platinumpartners/edit/:id",
+        name: "admin.platinumpartners.edit",
+        component: EditPlatinumPartner,
         props: true,
     },
     // SpaceFinder

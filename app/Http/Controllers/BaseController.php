@@ -110,7 +110,6 @@ class BaseController extends Controller
             $response = $this->model->getRecordDataTable($request);
             return $this->sendResponse($response);
         }catch(\Exception $e){
-            dd($e);
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
@@ -141,6 +140,7 @@ class BaseController extends Controller
             $request->validate($rules);
             // Your controller logic goes here if validation passes
         } catch (ValidationException $e) {
+
             // Return a JSON response with validation errors
             return $this->sendError('',$e->errors(),422,[]);
         }
@@ -171,7 +171,7 @@ class BaseController extends Controller
             // return $result;
             return $this->sendResponse([], trans('messages.success_msg',['action' => trans('lang.saved')]));
         } catch (\Exception $e) {
-            // dd($e->getMessage());
+            dd($e->getMessage());
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));

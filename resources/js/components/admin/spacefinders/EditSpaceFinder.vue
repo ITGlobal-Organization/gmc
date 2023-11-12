@@ -75,11 +75,22 @@ mounted(){
     ref.getAllUsers();
 
     ref.FormFields = [
-    {
+                {
                     label:Language.title,
                     field:"title",
                     class:"form-control",
                     grid:"col-md-12 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.slug,
+                    field:"slug",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
                     type:"text",
                     placeholder:function(){
                         return "Enter "+this.label
