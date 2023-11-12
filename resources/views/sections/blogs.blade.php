@@ -27,7 +27,6 @@
 								<div class="box-img card-image">
 									<a href="{{ route('blogs.get',$blog->slug) }}"><img src="{{ $blog->image_url }}" alt="" width="100%" class="box-img" /></a>
 								</div>
-								<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i>{{ $blog->created_at}}</div>
 								<div class="box-name">
 									<a href="{{ route('blogs.get',$blog->slug) }}">
 									{{ $blog->title}}
