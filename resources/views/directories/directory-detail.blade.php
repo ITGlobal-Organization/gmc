@@ -27,8 +27,8 @@
                     <!--Start Box 1-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
                         <i class="fas fa-map-marker-alt"
-                            style="color: #ffffff;"></i>&nbsp;&nbsp;<b>{{ $Directory->address }}</b> :
-                        8-11 Riverside Court Mayo Avenue Dundee United Kingdom DD2 1XO
+                            style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Address</b> :{{ $Directory->address }}
+                       
                         <div class="clr"></div>
                     </div>
                     <!--End Box 1-->

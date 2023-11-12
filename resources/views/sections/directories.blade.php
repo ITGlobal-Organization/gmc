@@ -32,7 +32,7 @@
                 <!--<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>-->
                 <div class="box-name mtb-15">
                     <a href="{{ route('directories.get', $directory->slug) }}">
-                        Business Gateway: Managing People – Sustaining Employee Engagement
+                        {{ $directory->title }}
                     </a>
 
                 </div>
