@@ -19,7 +19,7 @@
                 </ul>
                 <div class="resp-tabs-container hor_1">
                     <!--Start All Tab Area-->
-                    <div>
+                    {{-- <div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border margin-tb25">
                             <div class="row">
                                 <?php for($i=1;$i<=8;$i++) : ?>
@@ -47,8 +47,9 @@
                             </div>
                         </div>
                         <div class="clr"></div>
-                    </div>
+                    </div> --}}
                     <!--End All Tab Area-->
+                    @include('tabs.events')
                     @include('tabs.benefits')
                     @include('tabs.events')
                     @include('tabs.news')
@@ -169,7 +170,7 @@
                 tabidentify: 'hor_1', // The tab groups identifier
                 activate: function(event) { // Callback function if tab is switched
                     var $tab = $(this);
-                    var $info = $('#nested-tabInfo2');
+                    var $info = $('#nested-tabInfo2');;
                     var $name = $('span', $info);
                     $name.text($tab.text());
                     $info.show();
@@ -201,6 +202,7 @@
             //onload platinum partners
             ajaxGet("{{ route('platinum-partners-tab.ajax') }}", {}, ".platinum-partners-tab",
                     responseType = 'html');
+
         });
     </script>
 @endsection
