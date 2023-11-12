@@ -40,6 +40,7 @@ import useUsers from '../../../composables/users';
 import useService  from '../../../services/index';
 import { axiosWrapper } from '../../../helpers';
 
+
 export default {
     components:{
         Form,
@@ -56,8 +57,20 @@ export default {
             citiesOptions:[],
             FormData:{
                 title:'',
+                slug:'',
+                email:'',
+                mobile_no:'',
+                phone:'',
+                address:'',
+                web_url:'',
+                venue_url:'',
+                facebook_url:'',
+                youtube_url:'',
+                linkedin_url:'',
+                instagram_url:'',
                 description:'',
-                author:'',
+                user_id:'',
+                // author:'',
                 media:[],
                 gallery:[]
             },
@@ -72,38 +85,137 @@ export default {
                     label:Language.title,
                     field:"title",
                     class:"form-control",
-                    grid:"col-md-12 col-12",
+                    grid:"col-md-6 col-12",
                     type:"text",
                     placeholder:function(){
                         return "Enter "+this.label
                     },
                     required:true,
                 },
-                // {
-                //     label:Language.slug,
-                //     field:"slug",
-                //     class:"form-control",
-                //     grid:"col-md-12 col-12",
-                //     type:"text",
-                //     placeholder:function(){
-                //         return "Enter "+this.label
-                //     },
-                //     required:true,
-                // },
                 {
-                    label:Language.description,
-                    field:"description",
+                    label:Language.slug,
+                    field:"slug",
                     class:"form-control",
-                    type:"textarea",
-                    grid:"col-md-12 col-12",
+                    grid:"col-md-6 col-12",
+                    type:"text",
                     placeholder:function(){
                         return "Enter "+this.label
                     },
                     required:true,
                 },
                 {
-                    label:Language.author,
-                    field:"author",
+                    label:Language.email,
+                    field:"email",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.mobile_no,
+                    field:"mobile_no",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.phone,
+                    field:"phone",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.address,
+                    field:"address",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.web_url,
+                    field:"web_url",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.venue_url,
+                    field:"venue_url",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.facebook_url,
+                    field:"facebook_url",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.instagram_url,
+                    field:"instagram_url",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.youtube_url,
+                    field:"youtube_url",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.linkedin_url,
+                    field:"linkedin_url",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.user,
+                    field:"user_id",
                     class:"vue-select1",
                     grid:"col-md-4 col-12",
                     type:"select",
@@ -121,29 +233,46 @@ export default {
 
                     required:true,
                 },
-                // {
-                //     label:Language.publisher,
-                //     field:"publisher",
-                //     class:"form-control",
-                //     grid:"col-md-4 col-12",
-                //     type:"text",
-                //     placeholder:function(){
-                //         return "Enter "+this.label
-                //     },
-                //     required:true,
-                // },
-                // {
-                //     label:Language.published_at,
-                //     field:"publish_at",
-                //     class:"form-control",
-                //     grid:"col-md-4 col-12",
-                //     type:"date",
-                //     placeholder:function(){
-                //         return "Enter "+this.label
-                //     },
-                //     required:true,
-                // },
+                {
+                    label:Language.is_approved,
+                    field:"is_approved",
+                    class:"vue-select1",
+                    grid:"col-md-2 col-12",
+                    type:"select",
+                    isdynamic:false,
+                    searchable:true,
+                    options:function(){
+                            if(this.isdynamic){
+                                return ref.options;
+                            }
+                            return [
+                                {
+                                    text:Language.yes,
+                                    id:1
+                                },
+                                {
+                                    text:Language.no,
+                                    id:0
+                                }
+                            ];
+                    },
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
 
+                    required:true,
+                },
+                {
+                    label:Language.description,
+                    field:"description",
+                    class:"form-control",
+                    type:"textarea",
+                    grid:"col-md-12 col-12",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
                 {
                     label:Language.image,
                     field:"gallery",

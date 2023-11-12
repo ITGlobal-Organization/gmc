@@ -15,9 +15,11 @@ class Directory extends BaseModel
     protected $table = "directories";
     public $class_name = 'App\Models\Directory';
     public $class_dynamic = true;
+    protected $has_images = true;
 
     protected $fillable = [
-        'title','description','author','is_active','is_delete','is_approved'
+        'title','description','is_active','is_delete','is_approved','user_id','slug',
+        'mobile_no','phone','address','web_url','facebook_url','instagram_url','linkedin_url','youtube_url'
     ];
 
     protected $rules = [];
@@ -48,7 +50,7 @@ class Directory extends BaseModel
 
         $condition = [];
         $result = [];
-        $this->setSelectedColumn(['id','title','author','created_at','is_active','is_approved']);
+        $this->setSelectedColumn(['id','title','created_at','is_active','is_approved','mobile_no','address','web_url','email']);
 
         $this->setRenderColumn([
             [
@@ -65,6 +67,39 @@ class Directory extends BaseModel
                 'link_column' => 'slug',
 
             ],
+            [
+                'name' => 'email',
+                'type' => 'string',
+                'html' => false,
+                'link' => 'property',
+                'link_column' => 'email',
+
+            ],
+            [
+                'name' => 'address',
+                'type' => 'string',
+                'html' => false,
+                'link' => 'property',
+                'link_column' => 'address',
+
+            ],
+            [
+                'name' => 'mobile_no',
+                'type' => 'string',
+                'html' => false,
+                'link' => 'property',
+                'link_column' => 'mobile_no',
+
+            ],
+            [
+                'name' => 'web_url',
+                'type' => 'string',
+                'html' => false,
+                'link' => 'property',
+                'link_column' => 'web_url',
+
+            ],
+
             // [
             //     'name' => 'slug',
             //     'type' => 'string',
@@ -80,11 +115,7 @@ class Directory extends BaseModel
             //     'type' => 'string',
             //     'html' => false,
             // ],
-            [
-                'name' => 'author',
-                'type' => 'string',
-                'html' => false,
-            ],
+
 
             [
                 'name' => 'created_at',
@@ -98,10 +129,10 @@ class Directory extends BaseModel
 
             ],
             [
-                'name' => 'status',
+                'name' => 'is_approved',
                 'type' => 'boolean',
                 'html' => true,
-                'condition_column' => 'is_active',
+                'condition_column' => 'is_approved',
                 'class_dynamic' => false,
             ],
 
@@ -113,5 +144,27 @@ class Directory extends BaseModel
         [],'',[]);
 
         return $result;
+    }
+
+    // public function setTitleAttribute($slug)
+    // {
+    //     $slug = preg_replace("![^a-z0-9]+!i", "-", strtolower($slug));
+
+    //     if(isset($this->id)){
+    //         $obj = self::where('slug',$slug)->where('id','!=',$this->id)->first();
+    //         $this->attributes['slug'] = $slug.'-'.((int)$this->id);
+    //         $this->attributes['title'] = $title;
+    //         return true;
+    //     }
+    //     $obj = self::where('slug',$slug)->first();
+    //     if(isset($obj)){
+    //         $this->attributes['slug'] = $slug.'-'.((int)$obj->id+1);
+    //         return true;
+    //     }
+    //     $this->attributes['slug'] = $slug;
+    //     return true;
+    // }
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
     }
 }

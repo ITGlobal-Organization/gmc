@@ -144,8 +144,8 @@ class BaseModel extends Model
         return true;
     }
     public function getPriceAttribute()
-    {   
-       
+    {
+
         if(!isset(request()->id) && !isset(request()->slug) && !isset($this->id)){
 
             return Helper::priceFormat($this->attributes['price']);
@@ -192,7 +192,7 @@ class BaseModel extends Model
             else
                 $Model = $Model->{$where}($filter[0], $filter[1], $filter[2]);
         }
-       
+
 
         $totalFilteredRecord = $Model->count();
 
@@ -200,7 +200,7 @@ class BaseModel extends Model
         $response = [];
         $result = $Model->skip($this->getLength() * ($this->getStart() - 1))->take($this->getLength())->orderBy($this->getOrderBy(), $this->getOrder())->groupBy($this->table.'.'.$this->getGroupBy())->get();
 
-        
+
         foreach ($result as $key => $row) {
                 $count++;
                 $data = [];
@@ -286,7 +286,7 @@ class BaseModel extends Model
 
     }
 
-   
+
 
     public static function getAllRoleById($id)
     {
@@ -314,13 +314,14 @@ class BaseModel extends Model
 
     public function getAll($join = [], $select = ['*'], $where = [])
     {
-        
+
         $data =  static::selectRaw(implode(',', $select));
         // dd($this->has_images);
         if($this->has_images){
             $data->leftjoin('images','images.model_id',$this->table.'.id')->where('images.model','=',$this->class_name)->orWhereNull('images.model');
+
         }
-        
+
         if (count($join) > 0) {
             foreach ($join as $index => $rel){
                 $data->join($rel[0],$rel[1],$rel[2],$rel[3]);
@@ -328,18 +329,18 @@ class BaseModel extends Model
             // $data = static::with($relation)->selectRaw(implode(',', $select));
         }
 
-        if (count($where) > 0) {
-            foreach ($where as $condition) {
+        if (count($this->getFilters()) > 0) {
+            foreach ($this->getFilters() as $condition) {
                 $data->where($condition[0], $condition[1], $condition[2]);
             }
         }
         if($this->getLength() > 0 )
             $Model = $data->skip($this->getLength() * ($this->getStart() - 1))->take($this->getLength())->orderBy($this->table.'.'.$this->getOrderBy(), $this->getOrder())->groupBy($this->table.'.'.$this->getGroupBy())->get();
-        
+
         // $Model = $data->get();
-        
+
         return $data->groupBy($this->table.'.'.$this->getGroupBy())->get();
-         
+
     }
 
     public function first($column = 'id', $value = 0, $operator = '=', $relation = [],$join=[],$select=['*'])
@@ -406,5 +407,5 @@ class BaseModel extends Model
     public function images(){
         return $this->hasMany(Media::class,'model_id')->where('model',$this->class_name);
     }
-    
+
 }

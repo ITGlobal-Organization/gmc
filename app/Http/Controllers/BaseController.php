@@ -110,7 +110,6 @@ class BaseController extends Controller
             $response = $this->model->getRecordDataTable($request);
             return $this->sendResponse($response);
         }catch(\Exception $e){
-            dd($e);
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
@@ -135,14 +134,17 @@ class BaseController extends Controller
     public function store(Request $request){
 
         $rules = $this->model->getRules();
+
         try {
             // Validate the incoming request data
             $request->validate($rules);
             // Your controller logic goes here if validation passes
         } catch (ValidationException $e) {
+
             // Return a JSON response with validation errors
             return $this->sendError('',$e->errors(),422,[]);
         }
+
 
 
         try {
@@ -234,6 +236,11 @@ class BaseController extends Controller
     public function saveFiles(Request $request){
         $media = 0;
         $files = $request->file('files');
+        if($request->id){
+            $id = $request->id;
+        }else{
+            $id = 0;
+        }
         if (isset($request->files)) {
             $media =  Helper::saveMedia($files,$request->model,'main',$request->id);
             return $media->id;

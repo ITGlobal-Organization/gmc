@@ -19,7 +19,98 @@ return [
             'description' => 'required'
         ]
     ],
-
+    'directories' => [
+        'store' => [
+            'title' => 'required',
+            'email' => 'required|email|unique:directories',
+            'mobile_no' => 'required|numeric|min:11',
+            'phone' => 'required|numeric|min:11',
+            'address' => 'required|min:3|max:50',
+            'web_url' => 'url',
+            'venue_url' => 'url',
+            'instagram_url' => 'url',
+            'youtube_url' => 'url',
+            'facebook_url' => 'url',
+            'linked_url' => 'url',
+            'user_id' => 'required|exists:users,id',
+            'is_approved'=>'required',
+            'description' => 'required'
+        ],
+        'edit' => [
+            'title' => 'required',
+            'email' => 'required|email|unique:directories',
+            'mobile_no' => 'required|numeric|min:11',
+            'phone' => 'required|numeric|min:11',
+            'address' => 'required|min:3|max:50',
+            'web_url' => 'url',
+            'venue_url' => 'url',
+            'instagram_url' => 'url',
+            'youtube_url' => 'url',
+            'facebook_url' => 'url',
+            'linked_url' => 'url',
+            'user_id' => 'required|exists:users,id',
+            'is_approved'=>'required',
+            'description' => 'required'
+        ]
+    ],
+    'event_calenders' => [
+        'store' => [
+            'title' => 'required',
+            'event_date' => 'required|date',
+            'time'=>'required',
+            'city'=>'required',
+            'user_id' => 'required|exists:users,id',
+            'price' => 'required|between:0,999999.99',
+            'venue' => 'required',
+            'description' => 'required',
+            'booking_link' => 'url',
+        ],
+        'edit' => [
+            'title' => 'required',
+            'event_date' => 'required|date',
+            'time'=>'required',
+            'city'=>'required',
+            'user_id' => 'required|exists:users,id',
+            'price' => 'required|between:0,999999.99',
+            'venue' => 'required',
+            'description' => 'required',
+            'booking_link' => 'url',
+        ]
+    ],
+    'space_finders' => [
+        'store' => [
+            'title' => 'required',
+            'email' => 'required|email|unique:space_finders',
+            'mobile_no' => 'required|numeric|min:11',
+            'phone' => 'required|numeric|min:11',
+            'address' => 'required|min:3|max:50',
+            'web_url' => 'url',
+            'venue_url' => 'url',
+            'instagram_url' => 'url',
+            'youtube_url' => 'url',
+            'facebook_url' => 'url',
+            'linked_url' => 'url',
+            'user_id' => 'required|exists:users,id',
+            'is_approved'=>'required',
+            'description' => 'required'
+        ],
+        'edit' => [
+            'title' => 'required',
+            'email' => 'required|email|unique:space_finders',
+            'mobile_no' => 'required|numeric|min:11',
+            'phone' => 'required|numeric|min:11',
+            'address' => 'required|min:3|max:50',
+            'web_url' => 'url',
+            'venue_url' => 'url',
+            'instagram_url' => 'url',
+            'youtube_url' => 'url',
+            'facebook_url' => 'url',
+            'linked_url' => 'url',
+            'user_id' => 'required|exists:users,id',
+            'is_approved'=>'required',
+            'description' => 'required'
+        ]
+    ],
     'users' => [
         'store' => [
             'first_name' => 'required',
@@ -59,4 +150,4 @@ return [
     ],
 
 
-]; 
+];

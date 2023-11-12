@@ -3,14 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\AddonController;
-use App\Http\Controllers\SizeController;
-use App\Http\Controllers\BorderController;
-use App\Http\Controllers\BackingController;
-use App\Http\Controllers\Employee\EmployeeController;
-use App\Http\Controllers\Admin\CustomerController;
-use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\DirectoryController;
+use App\Http\Controllers\SpaceFinderController;
 use Artisan;
 
 
@@ -36,16 +31,42 @@ Route::get('/error', function(){
 Route::post('/newsletter',[BaseController::class,'newsletterSubscription'])->name('newsletter.subscribe');
 
 
+// Blogs
 Route::prefix('blogs')->group(function () {
-    Route::get('/',function(){
-        return view('blogs.blogs');
-    })->name('blogs');
+    Route::get('/',[BlogController::class,'blogs'])->name('blogs.index');
+    Route::get('/ajax',[BlogController::class,'getBlogsListing'])->name('blogs.ajax');
 
-    Route::get('/{slug}',function(){
-        return view('blogs.blog-detail');
-    })->name('blog');
+    Route::get('/{slug}',[BlogController::class,'getBlog'])->name('blogs.get');
 });
 
+// Directiories
+Route::prefix('directories')->group(function () {
+    Route::get('/',[DirectoryController::class,'directories'])->name('directories.index');
+    Route::get('/ajax',[DirectoryController::class,'getDirectoryListing'])->name('directories.ajax');
+
+    Route::get('/{slug}',[DirectoryController::class,'getDirectory'])->name('directories.get');
+});
+
+// Space-Finders
+Route::prefix('space-finders')->group(function () {
+    Route::get('/',[SpaceFinderController::class,'spaceFinders'])->name('space-finders.index');
+    Route::get('/ajax',[SpaceFinderController::class,'getSpaceFindersListing'])->name('space-finders.ajax');
+    Route::get('/{slug}',[SpaceFinderController::class,'getSpaceFinder'])->name('space-finders.get');
+});
+
+// Event-Calenders
+Route::prefix('event-calenders')->group(function () {
+    Route::get('/',[EventCalenderController::class,'eventCalenders'])->name('event-calenders.index');
+    Route::get('/ajax',[EventCalenderController::class,'getEventsListing'])->name('event-calenders.ajax');
+    Route::get('/{slug}',[EventCalenderController::class,'getEvent'])->name('event-calenders.get');
+});
+
+//Tabs
+Route::get('/benefits-tab',[SitePageController::class,'benefitsTab'])->name('benefits-tab.ajax');
+Route::get('/events-tab',[SitePageController::class,'eventsTab'])->name('events-tab.ajax');
+Route::get('/news-tab',[SitePageController::class,'newsTab'])->name('news-tab.ajax');
+Route::get('/platinum-partners-tab',[SitePageController::class,'platinumPartnersTab'])->name('platinum-partners-tab.ajax');
+Route::get('/platinum-partners',[SitePageController::class,'platinumPartners'])->name('platinum-partners.ajax');
 
 Route::prefix('developer')->group(function () {
     Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
@@ -63,18 +84,11 @@ Route::prefix('developer')->group(function () {
 
 require __DIR__ . '/auth.php';
 
+
+
 Route::prefix('admin')->middleware(['auth:sanctum','admin'])->group(function () {
     require __DIR__ . '/admin.php';
 });
-
-
-
-
-// Route::get('/featured-products',[SitePageController::class,'getListingProducts'])->name('home.featured-products');
-// Route::get('/',function(){
-//     return redirect()->route('admin.login');
-// })->name('home');
-// Categories
 
 // Static Pages
 Route::get('/',[SitePageController::class,'renderMainPage'])->name('home');
@@ -84,6 +98,22 @@ Route::get('/{page}',[SitePageController::class,'renderSitePages'])->name('site-
 // media upload
 Route::post('/media/upload',[BaseController::class,'saveFiles'])->name('media-upload');
 Route::delete('/media/delete/{id}',[BaseController::class,'deleteFiles'])->name('media-upload');
+
+Route::get('/platinium-partners',function(){
+    return view('pages.platinium-partners');
+})->name('platinium-partners');
+
+Route::get('/jobs-hub',function(){
+    return view('pages.jobs-hub');
+})->name('jobs-hub');
+
+Route::get('/international',function(){
+    return view('pages.international');
+})->name('international');
+
+Route::get('/mentoring',function(){
+    return view('pages.mentoring');
+})->name('mentoring');
 
 
 

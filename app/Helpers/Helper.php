@@ -16,8 +16,14 @@ use Illuminate\Support\Facades\Crypt;
 
 class Helper
 {
+    // public static $random = random_int(100,999);
+    // public function __construct($random){
+    //     random = $random;
+
+    // }
     public static function getuserrole($id = 0, $type = '')
     {
+
         $roles = [
             config('constants.admin') => __('global.admin'),
             config('constants.company') => __('global.company'),
@@ -116,59 +122,60 @@ class Helper
     {
         $public_path = "";
         $directory = time();
+        (int)$random = random_int(100,999);
         // $id = request()->params('id')?request()->params('id'):$id;
 
-       // dd($file);
+    //    dd($files);
         try{
             if(is_array($files)){
                 foreach($files as $file){
-                    $exitMedia = Media::where('model',$model)->where('image_name',$file->getClientOriginalName())->first();
-    
+                    $exitMedia = Media::where('model',$model)->where('image_name',$random.'_'.$file->getClientOriginalName())->first();
+
                     if(isset($exitMedia)){
                         return $exitMedia;
                     }
-                    if (file_exists(public_path('media/'.$file->getClientOriginalName()))) {
-                        @unlink(public_path('media/'.$file->getClientOriginalName()));
+                    if (file_exists(public_path('media/'.$random.'_'.$file->getClientOriginalName()))) {
+                        @unlink(public_path('media/'.$random.'_'.$file->getClientOriginalName()));
                     }
-    
                     $path = public_path('media/');
-                    $public_path = asset('media/'.$file->getClientOriginalName());
-                    $file->move($path, $file->getClientOriginalName());
+                    $public_path = asset('media/'.$random.'_'.$file->getClientOriginalName());
+                    $file->move($path, $random.'_'.$file->getClientOriginalName());
                     $media = Media::create([
                         'image_url' => $public_path,
                         'model_id' => $id,
                         'model' => $model,
-                        'image_name' => $file->getClientOriginalName(),
+                        'image_name' => $random.'_'.$file->getClientOriginalName(),
                         'img_type' => $file_type,
                         'extension' => $file->getClientOriginalExtension()
                     ]);
-    
+
                 }
 
             }else{
-                $exitMedia = Media::where('model',$model)->where('image_name',$files->getClientOriginalName())->first();
-    
+                // dd("aaaa");
+                $exitMedia = Media::where('model',$model)->where('image_name',$random.'_'.$files->getClientOriginalName())->first();
                     if(isset($exitMedia)){
                         return $exitMedia;
                     }
-                    if (file_exists(public_path('media/'.$files->getClientOriginalName()))) {
-                        @unlink(public_path('media/'.$files->getClientOriginalName()));
+                    if (file_exists(public_path('media/'.$random.'_'.$files->getClientOriginalName()))) {
+                        @unlink(public_path('media/'.$random.'_'.$files->getClientOriginalName()));
                     }
-    
                     $path = public_path('media/');
-                    $public_path = asset('media/'.$files->getClientOriginalName());
-                    $files->move($path, $files->getClientOriginalName());
+                    $public_path = asset('media/'.$random.'_'.$files->getClientOriginalName());
+                    $files->move($path, $random.'_'.$files->getClientOriginalName());
+                    // dd($id);s
                     $media = Media::create([
                         'image_url' => $public_path,
                         'model_id' => $id,
                         'model' => $model,
-                        'image_name' => $files->getClientOriginalName(),
+                        'image_name' => $random.'_'.$files->getClientOriginalName(),
                         'img_type' => $file_type,
                         'extension' => $files->getClientOriginalExtension()
                     ]);
+
             }
-            
-            
+
+
             return $media;
 
         }catch(\Exception $e){
@@ -292,11 +299,11 @@ class Helper
 
     // shorten a text
     public static function shortenTextLength($text){
-        
+
         if(strlen($text) > config('site_config.constants.max-text-length-catalog')){
             return substr($text, 0,config('site_config.constants.max-text-length-catalog')).'...';
         }
-            
+
         return $text;
     }
 
@@ -306,27 +313,27 @@ class Helper
             $filenames = [];
             if(is_array($files)){
                     foreach($files as $file){
-                        if (file_exists(public_path($directory.'/'.$file->getClientOriginalName()))) {
-                            @unlink(public_path($directory.'/'.$file->getClientOriginalName()));
+                        if (file_exists(public_path($directory.'/'.random.'_'.$file->getClientOriginalName()))) {
+                            @unlink(public_path($directory.'/'.random.'_'.$file->getClientOriginalName()));
                         }
-            
+
                         $path = public_path($directory.'/');
-                        $public_path = asset($directory.'/'.date('y-m-d').'-'.$file->getClientOriginalName());
-                        $file->move($path, date('y-m-d').'-'.$file->getClientOriginalName()); 
+                        $public_path = asset($directory.'/'.date('y-m-d').'-'.random.'_'.$file->getClientOriginalName());
+                        $file->move($path, date('y-m-d').'-'.random.'_'.$file->getClientOriginalName());
                         $filenames[] = $public_path;
                     }
             }else{
                 if (file_exists(public_path($directory.'/'.$files->getClientOriginalName()))) {
                     @unlink(public_path($directory.'/'.$files->getClientOriginalName()));
                 }
-    
+
                 $path = public_path($directory.'/');
                 $public_path = asset($directory.'/'.date('y-m-d').'-'.$files->getClientOriginalName());
-                $files->move($path, date('y-m-d').'-'.$files->getClientOriginalName()); 
+                $files->move($path, date('y-m-d').'-'.$files->getClientOriginalName());
                 $filenames[] = $public_path;
             }
-            
-             
+
+
 
             return $filenames;
         } catch (\Exception $e) {
@@ -342,13 +349,13 @@ class Helper
             Log::error($e->getMessage());
             return $str;
         }
-        
+
     }
 
     public static function decryptString($str){
-        
+
         try{
-            
+
             return Crypt::decrypt($str);
         }catch (DecryptException $e){
             Log::error($e->getMessage());

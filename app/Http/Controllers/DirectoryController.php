@@ -37,4 +37,34 @@ class DirectoryController extends BaseController
             'name' => 'blog',
         ]);
     }
+
+
+    public function directories(Request $request){
+        return view('directories.directories',[
+            'title' => trans('lang.directories'),
+        ]);
+    }
+    public function getDirectoryListing(Request $request){
+        if(isset($request->sort_by) && $request->sort_by != ""){
+            $sort = explode('-',$request->sort_by);
+            $this->directory->setOrderBy($sort[0]);
+            $this->directory->setOrder($sort[1]);
+        }
+        $Directories = $this->directory->getAll([['users','users.id','=','directories.user_id']],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
+        return view('sections.directories',[
+            'Directories' => $Directories,
+        ]);
+    }
+
+    public function getDirectory(Request $request,$slug){
+        $Blog = $this->directory->first('slug',$slug,'=',['user'],[],['directories.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
+        $this->directory->setLength(10);
+        // $LatestBlogs = $this->directory->getAll([['users','users.id','=','directories.user_id']],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
+
+        return view('directories.directory-detail',[
+            'Directory' => $Blog,
+            // 'LatestBlog' => $LatestBlogs,
+            'title' => trans('lang.directory').' | '. $Blog->title
+        ]);
+    }
 }

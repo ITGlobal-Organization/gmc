@@ -8,7 +8,10 @@ use App\Helpers\Helper;
 use App\Models\CustomForm;
 use App\Mail\CustomForm as MailForm;
 use App\Models\Page;
-// use App\Models\Product;
+use App\Models\Blog;
+use App\Models\EventCalender;
+use App\Models\PlatinumPartner;
+
 use Log;
 
 class SitePageController extends BaseController
@@ -17,11 +20,13 @@ class SitePageController extends BaseController
     private $customForm;
     private $Page;
     private $product;
-    public function __construct(CustomForm $customForm,Page $page,Product $product){
-
+    public function __construct(CustomForm $customForm,Page $page,EventCalender $eventCalender,PlatinumPartner $platinumPartners,Blog $news){
+        $this->eventCalender = $eventCalender;
+        $this->platinumPartners = $platinumPartners;
         $this->customForm = $customForm;
+        $this->news = $news;
         $this->Page = $page;
-        $this->product = $product;
+
     }
 
     public function renderMainPage(Request $request){
@@ -45,6 +50,7 @@ class SitePageController extends BaseController
     }
 
     public function renderSitePages(Request $request,$page){
+
 
         $Page = Page::where('is_active',1)->where('slug',$page)->first();
         try{
@@ -133,25 +139,44 @@ class SitePageController extends BaseController
         }
     }
 
+    public function benefitsTab(Request $request){
 
-    // Get Featured Products top rated
-    public function getListingProducts(Request $request){
-        $this->product->setLength(8);
-        $this->product->setStart(1);
-        $this->product->setOrderBy('created_at');
-        $className = $this->product->class_name;
+    }
 
-        $Products = $this->product->getAll([['categories','products.category_id','=','categories.id']],['products.id','products.category_id','products.name','products.description','products.product_code','categories.name as category','images.image_url'],[['products.category_id','=',$request->category]]);
-        // dd($request);
-        // dd($Products);
-        if($request->ajax()){
-            return $this->sendResponse($Products);
-        }
+    public function eventsTab(Request $request){
+        $this->eventCalender->setOrderBy('id');
+        $this->eventCalender->setOrder('desc');
+        $Events = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
 
-        return view('sections.wigets.featured-products',[
-            'Products' => $Products,
-            'category' => $request->category
+        return view('tabs.events',[
+            'Events' => $Events,
         ]);
     }
+
+    public function newsTab(Request $request){
+        $this->news->setOrderBy('id');
+        $this->news->setOrder('desc');
+        $News = $this->news->getAll([],['blogs.*','images.image_url']);
+
+        return view('tabs.news',[
+            'News' => $News,
+        ]);
+    }
+
+    public function platinumPartnersTab(Request $request){
+
+        if($request->limit){
+            $view = 'tabs.footer-platinum-partners';
+        }else{
+            $view = 'tabs.platinum-partners';
+        }
+        $this->platinumPartners->setOrderBy('id');
+        $this->platinumPartners->setOrder('desc');
+        $platinumPartners = $this->platinumPartners->getAll([],['platinum_partners.*','images.image_url']);
+        return view($view,[
+            'PlatinumPartners' => $platinumPartners,
+        ]);
+    }
+
 
 }
