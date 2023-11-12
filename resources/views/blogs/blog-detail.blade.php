@@ -10,7 +10,7 @@
 
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding ">
-  <img src="{{ $Blog->media[0]->image_url}}" alt="not found" width="100%" class="blog-img"/>
+  <img src="{{ count($Blog->media)>0?$Blog->media[0]->image_url:custom_asset('image-not-found.png') }}" alt="" width="100%" class="blog-img"/>
 </div>
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding ">
