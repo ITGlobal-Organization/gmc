@@ -99,7 +99,7 @@ function ajaxPost(url,data,succssContainer,errorContainer) {
                     window.location.href = response.data.route;
                 }
             },3000)
-           
+
 
         },
         error:function(error){

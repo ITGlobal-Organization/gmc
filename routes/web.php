@@ -61,6 +61,13 @@ Route::prefix('event-calenders')->group(function () {
     Route::get('/{slug}',[EventCalenderController::class,'getEvent'])->name('event-calenders.get');
 });
 
+//Tabs
+Route::get('/benefits-tab',[SitePageController::class,'benefitsTab'])->name('benefits-tab.ajax');
+Route::get('/events-tab',[SitePageController::class,'eventsTab'])->name('events-tab.ajax');
+Route::get('/news-tab',[SitePageController::class,'newsTab'])->name('news-tab.ajax');
+Route::get('/platinum-partners-tab',[SitePageController::class,'platinumPartnersTab'])->name('platinum-partners-tab.ajax');
+Route::get('/platinum-partners',[SitePageController::class,'platinumPartners'])->name('platinum-partners.ajax');
+
 Route::prefix('developer')->group(function () {
     Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
     Route::get('/artisan', function () {
