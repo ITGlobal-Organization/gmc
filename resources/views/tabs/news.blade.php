@@ -10,8 +10,6 @@
                                 <a href="{{ route('blogs.get',$News->slug) }}"><img src="{{ $News->image_url }}" alt="" width="100%"
                                         class="box-img" /></a>
                             </div>
-                            <div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11,
-                                2022</div>
                             <div class="box-name">
                                 <a href="{{route('blogs.get',$News->slug)}}">
                                     {{$News->title}}
