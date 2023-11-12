@@ -101,7 +101,7 @@ Route::delete('/media/delete/{id}',[BaseController::class,'deleteFiles'])->name(
 
 Route::get('/platinium-partners',function(){
     return view('pages.platinium-partners');
-})->name('platinium-partners');
+})->name('platinium-partners.index');
 
 Route::get('/jobs-hub',function(){
     return view('pages.jobs-hub');

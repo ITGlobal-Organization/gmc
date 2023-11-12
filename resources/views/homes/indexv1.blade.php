@@ -9,7 +9,7 @@
                     <li class="all"><img src="{{ custom_asset('icon1.png') }}" width="15" alt="" />&nbsp; All
                         &nbsp;</li>
                     <li class="benefit"><img src="{{ custom_asset('icon2.png') }}" width="17" alt="" />&nbsp;
-                        Benefits &nbsp;</li>
+                        M2M Offers &nbsp;</li>
                     <li class="event"><img src="{{ custom_asset('icon3.png') }}" width="18" alt="" />&nbsp;
                         Events &nbsp;</li>
                     <li class="news"><img src="{{ custom_asset('icon4.png') }}" width="25" alt="" />&nbsp;
