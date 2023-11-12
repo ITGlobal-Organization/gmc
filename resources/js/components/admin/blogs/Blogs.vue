@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ Lang.blogs }}</h1>
+                    <h1>{{ Lang.news }}</h1>
                 </div>
                 <!-- <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -24,9 +24,9 @@
         <div class="card card-secondary card-outline">
             <div class="card-header d-flex justify-content-end">
                 <router-link class="btn btn-secondary" to="/admin/blogs/create">
-                    {{ Lang.add_new_msg(Lang.blog) }}
+                    {{ Lang.add_new_msg(Lang.news) }}
                 </router-link>
-                
+
 <!--                <h3 class="card-title">{{ Lang.companies }}</h3>-->
             </div>
             <div class="card-body p-0" v-if="data">
@@ -51,7 +51,7 @@
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
-        
+
         </section>
 
     <!-- /.content -->
@@ -187,7 +187,7 @@ export default {
                             return 'fa fa-trash mr-2'
                         },
                         action:(row) =>{
-                            
+
                             ref._delete(row.id);
                         }
                     }
@@ -257,11 +257,11 @@ export default {
                         const { _delete } = useBlogs();
                         await _delete(id)
                         ref.getBlogs(ref.pageNo,ref.pageSize,ref.filter);
-                        successAlert(Language.success_msg.replace(':attribute',Language.blog).replace(':action',Language.deleted))
+                        successAlert(Language.success_msg.replace(':attribute',Language.news).replace(':action',Language.deleted))
 
                 })
         },
-        
+
         async update(){
             const {update,errors} = useCategories();
             const {errorAlert,successAlert} = useService();

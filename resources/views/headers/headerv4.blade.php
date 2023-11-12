@@ -103,7 +103,7 @@
                                     class="fa fa-chevron-right"></i>{{ trans('lang.spacefinders') }}</a></li>
                         <li><a href="{{ route('event-calenders.index') }}"><i
                                     class="fa fa-chevron-right"></i>{{ trans('lang.eventcalenders') }}</a></li>
-                        <li><a href="{{ route('platinium-partners') }}"><i
+                        <li><a href="{{ route('platinum-partners.index') }}"><i
                                     class="fa fa-chevron-right"></i>{{ trans('lang.platiniumpartners') }}</a></li>
                         <li><a href="https://pcjh.co.uk/"><i
                                     class="fa fa-chevron-right"></i>{{ trans('lang.jobshub') }}</a></li>
@@ -145,7 +145,7 @@
                 <li><a href="{{ route('directories.index') }}">{{ trans('lang.directories') }}</a></li>
                 <li><a href="{{ route('space-finders.index') }}">{{ trans('lang.spacefinders') }}</a></li>
                 <li><a href="{{ route('event-calenders.index') }}">{{ trans('lang.eventcalenders') }}</a></li>
-                <li><a href="{{ route('platinium-partners') }}">{{ trans('lang.platiniumpartners') }}</a></li>
+                <li><a href="{{ route('platinum-partners.index') }}">{{ trans('lang.platiniumpartners') }}</a></li>
                 <li><a href="https://pcjh.co.uk/">{{ trans('lang.jobshub') }}</a></li>
                 <li><a href="{{ route('site-pages', 'about-us') }}">{{ trans('lang.about_us') }}</a></li>
                 <li><a href="{{ route('international') }}">{{ trans('lang.international') }}</a></li>

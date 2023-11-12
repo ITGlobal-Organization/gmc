@@ -12,7 +12,7 @@ return [
                 'submenu' => [],
             ],
             [
-                'name' => 'blogs',
+                'name' => 'news',
                 'route' => 'blogs.index',
                 'icon' => 'nav-icon fas fa-users',
                 'has_submenu' => false,
