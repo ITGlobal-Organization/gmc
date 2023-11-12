@@ -8,17 +8,12 @@
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <div class="main-box">
                             <div class="box-img card-image">
-                                <a href="javascript::void(0)"><img src="{{ $PlatinumPartner->image_url }}" alt=""
-                                        width="100%" class="box-img" /></a>
+                                <a href="{{ $PlatinumPartner->url }}"><img src="{{ $PlatinumPartner->image_url }}" alt=""
+                                        style="max-width: 150px; width: 100%; height: auto; margin: auto; display: block;" /></a>
                             </div>
-                            <div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i>
-                                {{ \Carbon\Carbon::parse($PlatinumPartner->created_at)->format('d/M/Y')}}</div>
-
                             <div class="box-name">
-                                <a href="javascript::void(0)">
-                                    {{ $PlatinumPartner->title }}
-                                </a>
-                            </div>
+			    <a href="{{ $PlatinumPartner->url }}" style="color: #ffffff; text-decoration: none; font-size: 24px; background-color: #609897; padding: 5px; display: inline-block;">{{ $PlatinumPartner->title }}</a>
+			    </div>
                             <div class="box-text">
                                 {!! $PlatinumPartner->description !!}
                             </div>
