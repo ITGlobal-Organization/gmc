@@ -7,7 +7,7 @@
             <!--Start Directory Details Area-->
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border">
 
-                <h1 class="mtb-25">Business Gateway: Managing People – Sustaining Employee Engagement</h1>
+                <h1 class="mtb-25">{{ $SpaceFinder->title}}</h1>
 
                 <div class="post-meta">
                     <span class="meta-cats">
@@ -41,9 +41,7 @@
                     <!--Start Box 1-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
                         <i class="fas fa-map-marker-alt fa-spin"
-                            style="color: #ffffff;"></i>&nbsp;&nbsp;<b>{{ $SpaceFinder->address }}</b> : 8-11 Riverside
-                        Court Mayo
-                        Avenue Dundee United Kingdom DD2 1XO
+                            style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Address</b> : {{ $SpaceFinder->address }}
                         <div class="clr"></div>
                     </div>
                     <!--End Box 1-->

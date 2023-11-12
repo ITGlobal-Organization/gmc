@@ -42,8 +42,8 @@
                 </div>
                 <!--<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>-->
                 <div class="box-name mtb-15">
-                    {{ route('space-finders.get', $SpaceFinder->slug) }}
-                    Business Gateway: Managing People – Sustaining Employee Engagement
+                    <a href="{{ route('space-finders.get', $SpaceFinder->slug) }}" >
+                 {!! $SpaceFinder->description !!}
                     </a>
                 </div>
                 <div class="box-text1">
