@@ -35,7 +35,7 @@ Become a members and access a valuable local, national and international network
 </p>
 
 <div class="text-center mtb-25">
-<a href="#"><img src="images/Staff-Board-Members-icon.png" alt=""/></a>
+<a href="staff"><img src="media/Staff-Board-Members-icon.png" alt=""/></a>
 </div>
 
 </div>

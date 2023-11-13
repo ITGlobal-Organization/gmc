@@ -41,7 +41,7 @@ Our focus is on championing the issues that matter to our members.
     <ul>
       <li><a href="{{ route('home') }}">Home</a></li>
       <li><a href="{{ route('site-pages','about-us') }}">About</a></li>
-      <li><a href="{{ route('blogs.index') }}">Blog</a></li>
+      <li><a href="{{ route('blogs.index') }}">News</a></li>
       <li><a href="{{ route('site-pages','contact-us') }}">Contact</a></li>
     </ul>
     <div class="clr"></div>
@@ -55,10 +55,10 @@ Our focus is on championing the issues that matter to our members.
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding text-center">
 <h4>Stay Connected</h4>
-<span class="social-media1"> <a href="#"><i class="fab fa-facebook-f" title="Facebook"></i></a> </span>
-<span class="social-media1"> <a href="#"><i class="fab fa-instagram" title="Instagram"></i></a> </span>
-<span class="social-media1"> <a href="#"><i class="fab fa-youtube" title="Youtube"></i></a> </span>
-<span class="social-media1"> <a href="#"><i class="fab fa-linkedin" title="Linkedin"></i></a> </span>
+<span class="social-media1"> <a href="https://www.facebook.com/PerthshireChamber/"><i class="fab fa-facebook-f" title="Facebook"></i></a> </span>
+<span class="social-media1"> <a href="https://www.instagram.com/perthshire_chamber"><i class="fab fa-instagram" title="Instagram"></i></a> </span>
+<!-- <span class="social-media1"> <a href="#"><i class="fab fa-youtube" title="Youtube"></i></a> </span> -->
+<span class="social-media1"> <a href="https://www.linkedin.com/company/perthshire-chamber-of-commerce"><i class="fab fa-linkedin" title="Linkedin"></i></a> </span>
  <div class="clr"></div>
 </div>
 

@@ -2,7 +2,7 @@
 
 
 <div class="col-xs-8 col-sm-10 col-md-10 col-lg-10 padding border mb-25">
-				<span class="listin-found"><b>{{ trans('lang.blogs')}} &nbsp;({{count($Blogs) }})</b> {{ trans('lang.listing')}} {{ trans('lang.found')}}</span>
+				<span class="listin-found"><b><!--{{ trans('lang.blogs')}}--> &nbsp;({{count($Blogs) }})</b> Articles {{ trans('lang.found')}}</span>
 			</div>
 
 			<div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 padding border mb-25">
@@ -27,7 +27,6 @@
 								<div class="box-img card-image">
 									<a href="{{ route('blogs.get',$blog->slug) }}"><img src="{{ $blog->image_url }}" alt="" width="100%" class="box-img" /></a>
 								</div>
-								<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i>{{ $blog->created_at}}</div>
 								<div class="box-name">
 									<a href="{{ route('blogs.get',$blog->slug) }}">
 									{{ $blog->title}}

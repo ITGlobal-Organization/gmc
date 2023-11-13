@@ -29,7 +29,7 @@
     <i class="fad fa-check" style="--fa-primary-color: #5f439b; --fa-secondary-color: #5f439b;"></i> 50% reported that they now provide personal development plans for employees
     <br><br>
 
-    If Business Mentoring is something that you would be interested in looking further into, then the first stage of the process is for you to complete some forms to give us more information about your business and what you would like to gain from having a mentor then we would process this and can get the mentoring match started. Alternatively, if you would rather discuss this over zoom or a phone call with Vicki, that can be arranged (vicki@perthshirechabmer.co.uk or calling 01738 448325).
+    If Business Mentoring is something that you would be interested in looking further into, then the first stage of the process is for you to complete some forms to give us more information about your business and what you would like to gain from having a mentor then we would process this and can get the mentoring match started. Alternatively, if you would rather discuss this over zoom or a phone call with Vicki, that can be arranged (vicki@perthshirechamber.co.uk or calling 01738 448325).
     <br><br>
     <b>Apply for Perthshire Chamber Mentoring below</b>.
     <br><br>
@@ -39,9 +39,9 @@
 
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border padding mtb-25 text-center">
     <p>
-    <b>Apply to become a Mentor below by clicking on the image which<br> will take you to the application form:  </b>
+    <b>Apply to become a Mentee below by clicking on the image which<br> will take you to the application form:  </b>
     </p>
-    <a href="https://forms.office.com/pages/responsepage.aspx?id=RKCiz2Tc3k6oI7MYN4rqoy89i79NDJpAhKmPXV6oKydUOVJZSDg4Sk9BVkdFNVM2QUlMVFA3UlJTOC4u&web=1&wdLOR=c1AC88E81-EC52-496E-BFE4-B2458BB6BCA2"><img src="images/men1.png" alt=""/></a>
+    <a href="https://forms.office.com/pages/responsepage.aspx?id=RKCiz2Tc3k6oI7MYN4rqoy89i79NDJpAhKmPXV6oKydUOVJZSDg4Sk9BVkdFNVM2QUlMVFA3UlJTOC4u&web=1&wdLOR=c1AC88E81-EC52-496E-BFE4-B2458BB6BCA2"><img src="media/men1.png" alt=""/></a>
     </div>
 
 
@@ -49,7 +49,7 @@
     <p>
     <b>Apply to become a Mentor below by clicking on the image which<br> will take you to the application form:  </b>
     </p>
-    <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=RKCiz2Tc3k6oI7MYN4rqoy89i79NDJpAhKmPXV6oKydUN1Y4VElIS1BCTlZDR1kwMUc2QlpQQlQ4MS4u&wdLOR=c61BCCCCE-31AB-489B-B208-32CAB97F46F7"><img src="images/men2.png" alt=""/></a>
+    <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=RKCiz2Tc3k6oI7MYN4rqoy89i79NDJpAhKmPXV6oKydUN1Y4VElIS1BCTlZDR1kwMUc2QlpQQlQ4MS4u&wdLOR=c61BCCCCE-31AB-489B-B208-32CAB97F46F7"><img src="media/men2.png" alt=""/></a>
     </div>
 
 

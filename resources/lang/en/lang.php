@@ -80,7 +80,7 @@ return [
     'book_now' => 'Book Now',
     'blogs' => 'Blogs',
     'blog' => 'Blog',
-    'directories' => 'Directories',
+    'directories' => 'Directory',
     'directory' => 'Directory',
     'platiniumpartners' => 'Platinum Partners',
     'jobshub' => 'Jobs Hub',
