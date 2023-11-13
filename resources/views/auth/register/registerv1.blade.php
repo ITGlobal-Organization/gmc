@@ -10,7 +10,7 @@
     <br><br>
     Please have a look at our Benefits from the top menu to see what is included.
     <br><br>
-    Our membeship fees offer exellent value for money and return on investment with New Starts trading within their first year being able to take advantage of an introductory rate of £50 + vat.
+    Our membership fees offer excellent value for money and return on investment with New Starts trading within their first year being able to take advantage of an introductory rate of £50 + vat.
     </p>
 
 
