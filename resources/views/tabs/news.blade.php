@@ -11,7 +11,7 @@
                                         class="box-img" /></a>
                             </div>
                             <div class="box-name">
-                                <a href="{{route('blogs.get',$News->slug)}}">
+                                <a href="{{route('blogs.get',$News->slug)}}" style="color: #ffffff; text-decoration: none; font-size: 16px; background-color: #609897; padding: 5px; display: inline-block;">
                                     {{$News->title}}
                                 </a>
                             </div>
