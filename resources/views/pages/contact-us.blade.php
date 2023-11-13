@@ -71,7 +71,7 @@
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mb-20">
-    <textarea class="contact-input" placeholder="Massage"></textarea>
+    <textarea class="contact-input" placeholder="Message"></textarea>
     <div class="clr"></div>
     </div>
 
