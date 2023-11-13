@@ -12,8 +12,7 @@
                 <div class="post-meta">
                     <span class="meta-cats">
                         <i class="fad fa-check" style="--fa-primary-color: #5f439b; --fa-secondary-color: #5f439b;"></i>
-                        <a href="#">Meeting Room,</a>
-                        <a href="#">Party Booking</a>
+                        <a>{{ $SpaceFinder->slug}}</a>
                     </span>
                 </div>
 
