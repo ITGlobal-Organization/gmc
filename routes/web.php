@@ -98,6 +98,10 @@ Route::prefix('admin')->middleware(['auth:sanctum','admin'])->group(function () 
     require __DIR__ . '/admin.php';
 });
 
+
+Route::get('/staff',function(){
+    return view('pages.staff');
+})->name('staff');
 // Static Pages
 Route::get('/',[SitePageController::class,'renderMainPage'])->name('home');
 Route::get('/{page}',[SitePageController::class,'renderSitePages'])->name('site-pages');
@@ -122,6 +126,8 @@ Route::get('/international',function(){
 Route::get('/mentoring',function(){
     return view('pages.mentoring');
 })->name('mentoring');
+
+
 
 
 
