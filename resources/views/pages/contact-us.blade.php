@@ -53,7 +53,7 @@
 
 
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 border mtb-25">
-    <h5 class="mb-20">Send A Massage</h5>
+    <h5 class="mb-20">Send A Message</h5>
 
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mb-20">
     <input type="text" class="serch-input" value="" placeholder="Full Name">
