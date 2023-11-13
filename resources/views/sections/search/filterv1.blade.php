@@ -59,12 +59,12 @@ Search Filter
 
 
 
-<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
 <label>Email</label>
 <input type="text" class="join-input" value="" placeholder="Fax">
 </div>
 
-<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
 <label>Website</label>
 <input type="text" class="join-input" value="" placeholder="Website">
 </div>

@@ -178,5 +178,20 @@ class SitePageController extends BaseController
         ]);
     }
 
+    public function allTab(Request $request){
+        $this->news->setOrderBy('id');
+        $this->news->setOrder('desc');
+        $News = $this->news->getAll([],['blogs.*','images.image_url']);
+
+        $this->eventCalender->setOrderBy('id');
+        $this->eventCalender->setOrder('desc');
+        $Events = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
+
+        return view('tabs.all',[
+            'News' => $News,
+            'Events' => $Events
+        ]);
+    }
+
 
 }
