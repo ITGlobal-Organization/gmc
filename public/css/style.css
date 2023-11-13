@@ -413,12 +413,12 @@ p {
     overflow: hidden;
 }
 .card-image img {
-    transform: scale3d(1.5, 1.5, 3);
-    transition: transform 1s ease-in-out;
+    /*transform: scale3d(1.5, 1.5, 3);
+    transition: transform 1s ease-in-out;*/
 }
 .card-image:hover img, .card-image:focus img, .card-btn-float:focus ~ .card-image img, .card-btn-float:hover ~ .card-image img {
     transform: scale3d(2, 2, 3);
-    transition: transform 3s ease-in-out;
+    transition: transform 4s ease-in-out;
 }
 .blog-img {
     margin: 0px 0px 20px 0px;
