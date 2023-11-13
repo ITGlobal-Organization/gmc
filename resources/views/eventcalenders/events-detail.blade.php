@@ -14,7 +14,7 @@
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-8 border padding border">
 
     <div class="search-oh search-box1">
-        <input type="image" class="oh-btn" img="" src="images/brn-search.png">
+        <input type="image" class="oh-btn" img="" src="media/brn-search.png">
         <input type="text" placeholder="Search" class="oh-input">
         <div class="clr"></div>
     </div>

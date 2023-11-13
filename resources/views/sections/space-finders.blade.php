@@ -48,7 +48,7 @@
                 </div>
                 <div class="box-text1">
                     <i class="fad fa-check"
-                        style="--fa-primary-color: #5f439b; --fa-secondary-color: #5f439b;"></i>&nbsp;Meeting Room +1
+                        style="--fa-primary-color: #5f439b; --fa-secondary-color: #5f439b;"></i>&nbsp;{{$SpaceFinder->slug}}
                 </div>
 
             </div>
