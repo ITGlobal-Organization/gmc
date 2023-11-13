@@ -25,8 +25,6 @@ Route::prefix('blogs')->group(function(){
     Route::get('/edit/{id}',[BlogController::class, 'edit'])->name('admin.blogs.edit');
     Route::put('/update/{id}',[BlogController::class, 'update'])->name('admin.blogs.update');
     Route::delete('/delete/{id}',[BlogController::class, 'destroy'])->name('admin.blogs.destroy');
-
-
 });
 //Directory
 Route::prefix('directory')->group(function(){

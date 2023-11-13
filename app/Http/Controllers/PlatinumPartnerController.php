@@ -39,20 +39,20 @@ class PlatinumPartnerController extends BaseController
     }
 
 
-    public function platinumPartner(Request $request){
-        return view('platinumpartners.platinumpartners',[
+    public function platinumPartners(Request $request){
+        return view('platinumpartners.platinum-partners',[
             'title' => trans('lang.platinumpartners'),
         ]);
     }
-    public function getplatinumPartnersListing(Request $request){
+    public function getPlatinumPartnersListing(Request $request){
         if(isset($request->sort_by) && $request->sort_by != ""){
             $sort = explode('-',$request->sort_by);
-            $this->platinumpartner->setOrderBy($sort[0]);
-            $this->platinumpartner->setOrder($sort[1]);
+            $this->platinumPartner->setOrderBy($sort[0]);
+            $this->platinumPartner->setOrder($sort[1]);
         }
-        $PlatinumPartner = $this->platinumpartner->getAll(['platinum_partners.title','platinum_partners.description','platinum_partners.created_at','images.image_url']);
-        return view('sections.platinumpartners',[
-            'Directories' => $PlatinumPartner,
+        $PlatinumPartner = $this->platinumPartner->getAll([],['platinum_partners.title','platinum_partners.description','platinum_partners.created_at','images.image_url']);
+        return view('sections.platinum-partners',[
+            'PlatinumPartners' => $PlatinumPartner,
         ]);
     }
 

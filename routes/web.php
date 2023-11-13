@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\SpaceFinderController;
+use App\Http\Controllers\PlatinumPartnerController;
 use Artisan;
 
 
@@ -61,13 +62,20 @@ Route::prefix('event-calenders')->group(function () {
     Route::get('/{slug}',[EventCalenderController::class,'getEvent'])->name('event-calenders.get');
 });
 
+
 //Tabs
 Route::get('/benefits-tab',[SitePageController::class,'benefitsTab'])->name('benefits-tab.ajax');
 Route::get('/events-tab',[SitePageController::class,'eventsTab'])->name('events-tab.ajax');
 Route::get('/news-tab',[SitePageController::class,'newsTab'])->name('news-tab.ajax');
 Route::get('/platinum-partners-tab',[SitePageController::class,'platinumPartnersTab'])->name('platinum-partners-tab.ajax');
-Route::get('/platinum-partners',[SitePageController::class,'platinumPartners'])->name('platinum-partners.ajax');
+// Route::get('/platinum-partners',[SitePageController::class,'platinumPartners'])->name('platinum-partners.ajax');
 
+// Platinum-Partners
+Route::prefix('platinum-partners')->group(function () {
+    Route::get('/',[PlatinumPartnerController::class,'platinumPartners'])->name('platinum-partners.index');
+    Route::get('/ajax',[PlatinumPartnerController::class,'getPlatinumPartnersListing'])->name('platinum-partners.ajax');
+    Route::get('/{slug}',[PlatinumPartnerController::class,'getPlatinumPartner'])->name('platinum-partners.get');
+});
 Route::prefix('developer')->group(function () {
     Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
     Route::get('/artisan', function () {
@@ -99,9 +107,9 @@ Route::get('/{page}',[SitePageController::class,'renderSitePages'])->name('site-
 Route::post('/media/upload',[BaseController::class,'saveFiles'])->name('media-upload');
 Route::delete('/media/delete/{id}',[BaseController::class,'deleteFiles'])->name('media-upload');
 
-Route::get('/platinium-partners',function(){
-    return view('pages.platinium-partners');
-})->name('platinium-partners.index');
+// Route::get('/platinium-partners',function(){
+//     return view('pages.platinium-partners');
+// })->name('platinium-partners');
 
 Route::get('/jobs-hub',function(){
     return view('pages.jobs-hub');
