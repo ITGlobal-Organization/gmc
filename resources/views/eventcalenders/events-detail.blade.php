@@ -65,7 +65,7 @@
                     <td class="list20">{{ $Event->venue }}</td>
                     <td class="list20">{{ $Event->city }}</td>
                     <td class="list20">${{ $Event->price }}</td>
-                    <td class=" list30"><span class="btn-download"><a href="{{$Event->booking_link}}">Book Here</a></span></td>
+                    <td class=" list30"><span class="btn-download"><a href="{{$Event->booking_link}}" target="_blank">Book Here</a></span></td>
                 </tr>
             @endforeach
 
