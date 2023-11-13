@@ -138,8 +138,8 @@
         <div class="list2">
             <ul class="list2">
                 <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('login') }}"> {{ trans('lang.login') }}</a></li>
-                <li><a href="{{ route('register') }}"> {{ trans('lang.join') }}</a></li>
+                <!--<li><a href="{{ route('login') }}"> {{ trans('lang.login') }}</a></li>
+                <li><a href="{{ route('register') }}"> {{ trans('lang.join') }}</a></li>-->
                 <li><a href="{{ route('blogs.index') }}">{{ trans('lang.news') }}</a></li>
                 <li><a href="{{ route('site-pages', 'benifits') }}">{{ trans('lang.benifits') }}</a></li>
                 <li><a href="{{ route('directories.index') }}">{{ trans('lang.directories') }}</a></li>
