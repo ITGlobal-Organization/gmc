@@ -241,12 +241,14 @@ p {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 .box-img {
-    margin: 0px 0px 0px 0px;
-    padding: 0px 0px 0px 0px;
-    /*object-fit: cover;*/
-/*background-size: cover;*/
-    height: 250px;
-    border-radius: 10px 10px 0px 0px;
+
+    margin: 0;
+    padding: 0;
+    object-fit: contain;
+    height: 250px; 
+    border-radius: 10px 10px 0 0; 
+    width: 100%;
+
 }
 .box-date {
     margin: auto auto -20px auto;

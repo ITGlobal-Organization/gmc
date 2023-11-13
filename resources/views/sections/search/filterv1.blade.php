@@ -22,10 +22,7 @@ Search Filter
 </div>
 
 
-<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
-<label>Category</label>
-<div id="ms1" class="form-control"></div>
-</div>
+
 
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
 <label>Location</label>
@@ -43,21 +40,11 @@ Search Filter
 <div class="clr"></div>
 </div>
 
-<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
-<label>Review</label>
-<select name="#" class="join-input" aria-required="true">
-	<option value="">Select Review</option>
-	<option value="1">5 Star</option>
-	<option value="2">4 Star & Up</option>
-	<option value="3">3 Star & Up</option>
-	<option value="4">2 Star & Up</option>
-	<option value="5">1 Star & Up</option>
-	</select>
-</div>
+
 
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
-<label>Zip/Post Code</label>
-<input type="text" class="join-input" value="" placeholder="Zip/Post Code">
+<label>Post Code</label>
+<input type="text" class="join-input" value="" placeholder="Post Code">
 </div>
 
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
@@ -70,10 +57,7 @@ Search Filter
 <input type="text" class="join-input" value="" placeholder="Phone 2">
 </div>
 
-<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
-<label>Fax</label>
-<input type="text" class="join-input" value="" placeholder="Fax">
-</div>
+
 
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
 <label>Email</label>
