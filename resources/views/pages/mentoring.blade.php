@@ -6,7 +6,7 @@
     <div class="middle mtb-60">
 
     <h1 class="text-center mb-40">Mentoring</h1>
-    <img src="images/mon-img.jpg" alt="" width="100%" class="blog-img">
+    <!--<img src="images/mon-img.jpg" alt="" width="100%" class="blog-img">-->
 
     <p class="mb-40">
     Business mentoring can help businesses, organisations and social enterprises wishing to realise their personal and business growth ambitions, giving them the ability to move forward with confidence.
