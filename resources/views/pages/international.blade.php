@@ -6,7 +6,7 @@
     <div class="middle mtb-60">
 
     <h1 class="text-center mb-40">International</h1>
-    <img src="images/int-img.jpg" alt="" width="100%" class="blog-img">
+    <!--<img src="images/int-img.jpg" alt="" width="100%" class="blog-img">-->
 
     <h5 class="mtb-25">About the Programme</h5>
     <p>
