@@ -27,7 +27,8 @@ return [
         'phone_min_length' => '10',
         'phone_max_length' => '12',
         'general_string_length' => '100',
-        'base_layout' => 'layouts.layoutv2'
+        'base_layout' => 'layouts.layoutv2',
+        'item_per_page' => 12,
     ],
     'auth'  => [
         'login_view' => 'loginv1',

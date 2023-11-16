@@ -318,7 +318,7 @@ class BaseModel extends Model
         $data =  static::selectRaw(implode(',', $select));
         // dd($this->has_images);
         if($this->has_images){
-            $data->leftjoin('images','images.model_id',$this->table.'.id')->where('images.model','=',$this->class_name)->orWhereNull('images.model');
+            $data->leftjoin('images','images.model_id',$this->table.'.id')->where('images.model','=',$this->class_name);
 
         }
 
@@ -338,6 +338,7 @@ class BaseModel extends Model
             $Model = $data->skip($this->getLength() * ($this->getStart() - 1))->take($this->getLength())->orderBy($this->table.'.'.$this->getOrderBy(), $this->getOrder())->groupBy($this->table.'.'.$this->getGroupBy())->get();
 
         // $Model = $data->get();
+        // dd($data->toSql());
 
         return $data->groupBy($this->table.'.'.$this->getGroupBy())->get();
 

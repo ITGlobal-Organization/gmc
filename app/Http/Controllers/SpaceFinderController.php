@@ -60,7 +60,7 @@ class SpaceFinderController extends BaseController
     public function getSpaceFinder(Request $request,$slug){
         $spaceFinder = $this->spaceFinder->first('slug',$slug,'=',['user'],[],['space_finders.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
 
-        $this->spaceFinder->setLength(10);
+        $this->spaceFinder->setLength(config('site_confing.constants.item_per_page'));
         // $LatestBlogs = $this->directory->getAll([['users','users.id','=','directories.user_id']],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
 
         return view('space-finders.space-finder-detail',[

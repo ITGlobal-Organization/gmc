@@ -135,15 +135,7 @@ class BaseController extends Controller
 
         $rules = $this->model->getRules();
 
-        try {
-            // Validate the incoming request data
-            $request->validate($rules);
-            // Your controller logic goes here if validation passes
-        } catch (ValidationException $e) {
-
-            // Return a JSON response with validation errors
-            return $this->sendError('',$e->errors(),422,[]);
-        }
+        $request->validate($rules);
 
 
 
@@ -187,14 +179,7 @@ class BaseController extends Controller
         }
         // dd($request);
 
-        try {
-            // Validate the incoming request data
-            $request->validate($rules);
-            // Your controller logic goes here if validation passes
-        } catch (ValidationException $e) {
-            // Return a JSON response with validation errors
-            return $this->sendError('',$e->errors(),422,[]);
-        }
+        $request->validate($rules);
 
         try {
             DB::beginTransaction();

@@ -8,8 +8,9 @@
 <div class="latest-text">
 <a href="{{ route('blogs.get',$blog->slug)}}">{{ $blog->title }}</a>
 </div>
-<span class="p-date">{{$blog->created_at }}<div></div></span>
+<span class="p-date">{{$blog->created_at }}</span>
 <div class="border-bot"></div>
 	
 <div class="clr"></div>
+</div>
 @endforeach

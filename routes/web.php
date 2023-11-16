@@ -65,6 +65,7 @@ Route::prefix('event-calenders')->group(function () {
 
 //Tabs
 Route::get('/benefits-tab',[SitePageController::class,'benefitsTab'])->name('benefits-tab.ajax');
+Route::get('/all-tab',[SitePageController::class,'allTab'])->name('all-tab.ajax');
 Route::get('/events-tab',[SitePageController::class,'eventsTab'])->name('events-tab.ajax');
 Route::get('/news-tab',[SitePageController::class,'newsTab'])->name('news-tab.ajax');
 Route::get('/platinum-partners-tab',[SitePageController::class,'platinumPartnersTab'])->name('platinum-partners-tab.ajax');
@@ -98,6 +99,10 @@ Route::prefix('admin')->middleware(['auth:sanctum','admin'])->group(function () 
     require __DIR__ . '/admin.php';
 });
 
+
+Route::get('/staff',function(){
+    return view('pages.staff');
+})->name('staff');
 // Static Pages
 Route::get('/',[SitePageController::class,'renderMainPage'])->name('home');
 Route::get('/{page}',[SitePageController::class,'renderSitePages'])->name('site-pages');
@@ -122,6 +127,8 @@ Route::get('/international',function(){
 Route::get('/mentoring',function(){
     return view('pages.mentoring');
 })->name('mentoring');
+
+
 
 
 

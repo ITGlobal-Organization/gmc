@@ -49,7 +49,7 @@
                         <div class="clr"></div>
                     </div> --}}
                     <!--End All Tab Area-->
-                    @include('tabs.events')
+                    @include('tabs.all')
                     @include('tabs.benefits')
                     @include('tabs.events')
                     @include('tabs.news')
@@ -181,6 +181,10 @@
                 e.preventDefault();
                 ajaxGet("{{ route('events-tab.ajax') }}", {}, ".events-tab", responseType = 'html');
             });
+            $('.all').on('click', function(e) {
+                e.preventDefault();
+                ajaxGet("{{ route('all-tab.ajax') }}", {}, ".all-tab", responseType = 'html');
+            });
             $('.news').on('click', function(e) {
                 e.preventDefault();
                 ajaxGet("{{ route('news-tab.ajax') }}", {}, ".news-tab", responseType = 'html');
@@ -197,6 +201,8 @@
                     responseType = 'html');
              //onload events
             ajaxGet("{{ route('events-tab.ajax') }}", {}, ".events-tab", responseType = 'html');
+            // all tabs onload
+            ajaxGet("{{ route('all-tab.ajax') }}", {}, ".all-tab", responseType = 'html');
             //onload news
             ajaxGet("{{ route('news-tab.ajax') }}", {}, ".news-tab", responseType = 'html');
             //onload platinum partners

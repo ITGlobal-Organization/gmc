@@ -1,3 +1,4 @@
+
 <!--Start Events Tab Area-->
 <div class="all-tab">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border margin-tb25">
@@ -7,13 +8,13 @@
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <div class="main-box">
                             <div class="box-img card-image">
-                                <a href="{{$Event->booking_link}}" target="_blank"><img src="{{$Event->image_url}}" alt="not found"
+                                <a href="{{$Event->booking_link}}"><img src="{{$Event->image_url}}" alt="not found"
                                         width="100%" class="box-img" /></a>
                             </div>
                             <div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i>
                                 {{ \Carbon\Carbon::parse($Event->event_date)->format('d-m-Y')}}</div>
                             <div class="box-name">
-                                <a href="{{$Event->booking_link}}" target="_blank">
+                                <a href="{{$Event->booking_link}}">
                                     {{$Event->title}}
                                 </a>
                             </div>
@@ -33,13 +34,11 @@
                                 <a href="{{ route('blogs.get',$News->slug) }}"><img src="{{ $News->image_url }}" alt="" width="100%"
                                         class="box-img" /></a>
                             </div>
-<div class="box-name" style="display: flex; align-items: center; justify-content: center; height: 70px; background-color: #609897; border-radius: 0px 0px 10px 10px;">
-    <div style="display: flex; justify-content: center; align-items: center;">
-        <a href="{{route('blogs.get',$News->slug)}}" style="color: #ffffff; text-decoration: none; font-size: 14px; padding: 5px;">
-            {{$News->title}}
-        </a>
-    </div>
-</div>
+                            <div class="box-name">
+                                <a href="{{route('blogs.get',$News->slug)}}" style="color: #ffffff; text-decoration: none; font-size: 16px; background-color: #609897; padding: 5px; display: inline-block;">
+                                    {{$News->title}}
+                                </a>
+                            </div>
                             <div class="box-text">
                                 {!! $News->description!!}
                             </div>
@@ -52,4 +51,5 @@
     </div>
     <div class="clr"></div>
 </div>
+
 <!--End Events Tab Area-->
