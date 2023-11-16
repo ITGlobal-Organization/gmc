@@ -127,7 +127,7 @@ return [
             'instagram_url' => 'required|url',
             'youtube_url' => 'required|url',
             'linkedin_url' => 'required|url',
-            'password' => 'required|password|confirmed|min:8',
+            'password' => 'required|confirmed|min:8',
             'is_approved' => 'required|numeric|min:0|max:1',
         ],
         'edit' => [

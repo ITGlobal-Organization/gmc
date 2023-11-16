@@ -11,6 +11,7 @@ use App\Models\Page;
 use App\Models\Blog;
 use App\Models\EventCalender;
 use App\Models\PlatinumPartner;
+use Carbon\Carbon;
 
 use Log;
 
@@ -146,6 +147,15 @@ class SitePageController extends BaseController
     public function eventsTab(Request $request){
         $this->eventCalender->setOrderBy('id');
         $this->eventCalender->setOrder('desc');
+                // Get today's date
+        $today = Carbon::now();
+        $todayFomat = $today->format('Y-m-d');
+        // Get the date one month after today
+        $oneMonthAfter = $today->addMonth();
+        $this->eventCalender->setFilters( ['event_date','>=',$todayFomat]);
+        $this->eventCalender->setFilters(  ['event_date','<=',$oneMonthAfter->format('Y-m-d')]);
+        
+      
         $Events = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
 
         return view('tabs.events',[
@@ -185,6 +195,12 @@ class SitePageController extends BaseController
 
         $this->eventCalender->setOrderBy('id');
         $this->eventCalender->setOrder('desc');
+            $today = Carbon::now();
+        $todayFomat = $today->format('Y-m-d');
+        // Get the date one month after today
+        $oneMonthAfter = $today->addMonth();
+        $this->eventCalender->setFilters( ['event_date','>=',$todayFomat]);
+        $this->eventCalender->setFilters(  ['event_date','<=',$oneMonthAfter->format('Y-m-d')]);
         $Events = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
 
         return view('tabs.all',[
