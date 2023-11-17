@@ -42,15 +42,15 @@
                     <!--End Box 2-->
 
                     <!--Start Box 3-->
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
+                    <!--<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
                         <i class="fas fa-mobile-alt style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Mobile</b> :
                         {{ $Directory->mobile_no }}
-                        <div class="clr"></div>
+                        <div class="clr"></div>-->
                     </div>
                     <!--End Box 3-->
 
                     <!--Start Box 4-->
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
                         <i class="fas fa-envelope-open-text" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Email</b> :
                         {{ $Directory->email }}
                         <div class="clr"></div>
@@ -68,15 +68,15 @@
                   
 
                     <!--Start Box 7-->
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
                         <i class="fas fa-share-alt" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Social Info </b> :
 
                         <span class="social-media2"> <a href="{{ $Directory->facebook_url }}"><i class="fab fa-facebook-f"
                                     title="Facebook"></i></a> </span>
                         <span class="social-media2"> <a href="{{ $Directory->instagram_url }}"><i class="fab fa-instagram"
                                     title="Instagram"></i></a> </span>
-                        <span class="social-media2"> <a href="{{ $Directory->youtube_url }}"><i class="fab fa-youtube"
-                                    title="Youtube"></i></a> </span>
+                        <span class="social-media2"> <a href="{{ $Directory->youtube_url }}"><i class="fab fa-twitter"
+                                    title="Twitter"></i></a> </span>
                         <span class="social-media2"> <a href="{{ $Directory->linkedin_url }}"><i class="fab fa-linkedin"
                                     title="Linkedin"></i></a> </span>
 
