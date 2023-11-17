@@ -6,11 +6,13 @@
     <div class="middle mtb-60">
 
     <h1 class="text-center mb-40">Mentoring</h1>
-    <img src="images/mon-img.jpg" alt="" width="100%" class="blog-img">
+    <!--<img src="media/mon-img.jpg" alt="" width="100%" class="blog-img">-->
 
-    <h5 class="mtb-25">Mentoring</h5>
+    <!--<h5 class="mtb-25">Mentoring</h5>-->
     <p class="mb-40">
-    ambitions, giving them the ability to move forward with confidence.
+    Business mentoring can help businesses, organisations and social enterprises
+    wishing to realise their personal and business growth ambitions, giving them
+    the ability to move forward with confidence.
     <br><br>
     Business Mentoring matches experienced mentors who come from all areas, business sectors with growing businesses. By sharing the entrepreneurial experiences of mentors, this service gives the business the confidence to develop and grow, and opens up a great network of contacts that can open doors and inspire new thinking.
     <br><br>

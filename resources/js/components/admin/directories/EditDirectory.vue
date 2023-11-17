@@ -344,6 +344,7 @@ methods:{
             this.form.is_active = record.value.is_active;
             this.form.is_approved = record.value.is_approved;
             this.form.slug = record.value.slug;
+            this.form.categories =record.value.categories;
             this.form.description = record.value.description?record.value.description:"";
 
             this.form.gallery = record.value.media;

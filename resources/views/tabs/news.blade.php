@@ -10,11 +10,13 @@
                                 <a href="{{ route('blogs.get',$News->slug) }}"><img src="{{ $News->image_url }}" alt="" width="100%"
                                         class="box-img" /></a>
                             </div>
-                            <div class="box-name">
-                                <a href="{{route('blogs.get',$News->slug)}}" style="color: #ffffff; text-decoration: none; font-size: 16px; background-color: #609897; padding: 5px; display: inline-block;">
-                                    {{$News->title}}
-                                </a>
-                            </div>
+<div class="box-name home">
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <a href="{{route('blogs.get',$News->slug)}}" style="color: #ffffff; text-decoration: none; font-size: 14px; padding: 5px;">
+            {{$News->title}}
+        </a>
+    </div>
+</div>
                             <div class="box-text">
                                 {!! $News->description!!}
                             </div>

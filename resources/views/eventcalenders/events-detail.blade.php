@@ -1,5 +1,5 @@
 <h1 class="text-center mb-40">Events</h1>
-<p class="text-center mb-60">
+<p class="text-center">
     Organised to educate, inform and network, our comprehensive programme of events allows something for
     everyone within the business community. Held at various times – from breakfast meetings to supper socials –
     there should be something to work around business and personal commitments.
@@ -58,14 +58,21 @@
             </tr>
 
             @foreach ($Events as $Event)
+                @if(str_contains($Event->price, "-"))
+                    @php $price = explode("-",$Event->price);
+                    $Event->price = "".$price[0]."".$price[1];
+                    @endphp
+                @else
+                    @php $Event->price = "".$Event->price; @endphp
+                @endif
                 <tr>
-                    <td class="list10">{{ date('d-m-Y', strtotime($Event->event_date)) }}</td>
+                    <td class="list10">{{ date('d-M-Y', strtotime($Event->event_date)) }}</td>
                     <td class="list20">{{$Event->title}}</td>
                     <td class="list20">{{\Carbon\Carbon::createFromFormat('H:i:s',$Event->time)->format('h:i A')}}</td>
                     <td class="list20">{{ $Event->venue }}</td>
                     <td class="list20">{{ $Event->city }}</td>
-                    <td class="list20">${{ $Event->price }}</td>
-                    <td class=" list30"><span class="btn-download"><a href="{{$Event->booking_link}}">Book Here</a></span></td>
+                    <td class="list20">{{ $Event->price }}</td>
+                    <td class=" list30"><span class="btn-download"><a href="{{$Event->booking_link}}" target="_blank">Book Now</a></span></td>
                 </tr>
             @endforeach
 

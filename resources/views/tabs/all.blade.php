@@ -7,25 +7,25 @@
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <div class="main-box">
                             <div class="box-img card-image">
-                                <a href="{{$Event->booking_link}}"><img src="{{$Event->image_url}}" alt="not found"
-                                        width="100%" class="box-img" /></a>
+                                <a href="{{$Event->booking_link}}" target="_blank"><img src="{{$Event->image_url}}" alt="not found" width="100%"
+                                         class="box-img" /></a>
                             </div>
                             <div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i>
                                 {{ \Carbon\Carbon::parse($Event->event_date)->format('d-m-Y')}}</div>
                             <div class="box-name">
-                                <a href="{{$Event->booking_link}}">
+                                <a href="{{$Event->booking_link}}" target="_blank">
                                     {{$Event->title}}
                                 </a>
-                            </div>
                             <div class="box-text">
                                 {!! $Event->description !!}
                             </div>
+                        </div>
                         </div>
                         <div class="clr"></div>
                     </div>
                 @endforeach
             @endif
-            @if (isset($News))
+                      @if (isset($News))
                 @foreach ($News as $News)
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <div class="main-box">
@@ -33,11 +33,13 @@
                                 <a href="{{ route('blogs.get',$News->slug) }}"><img src="{{ $News->image_url }}" alt="" width="100%"
                                         class="box-img" /></a>
                             </div>
-                            <div class="box-name">
-                                <a href="{{route('blogs.get',$News->slug)}}" style="color: #ffffff; text-decoration: none; font-size: 16px; background-color: #609897; padding: 5px; display: inline-block;">
-                                    {{$News->title}}
-                                </a>
-                            </div>
+<div class="box-name home home-text">
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <a href="{{route('blogs.get',$News->slug)}}">
+            {{$News->title}}
+        </a>
+    </div>
+</div>
                             <div class="box-text">
                                 {!! $News->description!!}
                             </div>
@@ -45,7 +47,7 @@
                         <div class="clr"></div>
                     </div>
                 @endforeach
-            @endif
+            @endif 
         </div>
     </div>
     <div class="clr"></div>

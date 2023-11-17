@@ -20,14 +20,14 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border-all"></div>	
 			@if(count($Blogs) > 0)
 			
-			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
          @foreach($Blogs as $blog)
 						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 							<div class="main-box">
 								<div class="box-img card-image">
 									<a href="{{ route('blogs.get',$blog->slug) }}"><img src="{{ $blog->image_url }}" alt="" width="100%" class="box-img" /></a>
 								</div>
-								<div class="box-name">
+								<div class="box-name home home-text">
 									<a href="{{ route('blogs.get',$blog->slug) }}">
 									{{ $blog->title}}
 									</a>

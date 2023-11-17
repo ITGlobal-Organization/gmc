@@ -59,7 +59,7 @@ class BlogController extends BaseController
     public function getBlog(Request $request,$slug){
         $Blog = $this->blog->first('slug',$slug,'=',['user'],[],['blogs.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
 
-        $this->blog->setLength(config('site_config.constants.item_per_page'));
+        $this->blog->setLength(1000);
         $LatestBlogs = $this->blog->getAll([['users','users.id','=','blogs.author']],['blogs.title','blogs.description','blogs.created_at','images.image_url','blogs.slug']);
 
         return view('blogs.blog-detail',[

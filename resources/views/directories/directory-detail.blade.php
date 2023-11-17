@@ -27,7 +27,7 @@
                     <!--Start Box 1-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
                         <i class="fas fa-map-marker-alt"
-                            style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Address</b> :{{ $Directory->address }}
+                            style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Address</b> : {{ $Directory->address }}
                        
                         <div class="clr"></div>
                     </div>
@@ -65,13 +65,7 @@
                     </div>
                     <!--End Box 5-->
 
-                    <!--Start Box 6-->
-                   {{-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
-                        <i class="fas fa-link" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Venue Hire URL</b> :
-                        {{ $Directory->venue_url }}
-                        <div class="clr"></div>
-                    </div> --}}
-                    <!--End Box 6-->
+                  
 
                     <!--Start Box 7-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
