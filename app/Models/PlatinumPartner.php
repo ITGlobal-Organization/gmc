@@ -18,7 +18,7 @@ class PlatinumPartner extends BaseModel
     protected $has_images = true;
 
     protected $fillable = [
-        'title','description','is_active','is_delete','is_approved',
+        'title','description','is_active','is_delete','is_approved','web_url'
     ];
 
     protected $rules = [];

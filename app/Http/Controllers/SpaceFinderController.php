@@ -69,4 +69,20 @@ class SpaceFinderController extends BaseController
             'title' => trans('lang.directory').' | '. $spaceFinder->title
         ]);
     }
+
+    public function searchSpaceFinders(Request $request){
+        $data = $request->all();
+        foreach ($data as $key => $value) {
+            if($value != ""){
+                $this->spaceFinder->setFilters([$key,'like','%'.$value.'%']);
+            }
+        }
+        $this->spaceFinder->setOrderBy('id');
+        $this->spaceFinder->setOrder('desc');
+        $spaceFinder = $this->spaceFinder->getAll();
+        return view('sections.space-finders',[
+            'SpaceFinders' => $spaceFinder,
+        ]);
+
+    }
 }

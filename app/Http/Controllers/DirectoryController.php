@@ -67,4 +67,19 @@ class DirectoryController extends BaseController
             'title' => trans('lang.directory').' | '. $Blog->title
         ]);
     }
+    public function searchDirectories(Request $request){
+        $data = $request->all();
+        foreach ($data as $key => $value) {
+            if($value != ""){
+                $this->directory->setFilters([$key,'like','%'.$value.'%']);
+            }
+        }
+        $this->directory->setOrderBy('id');
+        $this->directory->setOrder('desc');
+        $Directories = $this->directory->getAll();
+        return view('sections.directories',[
+            'Directories' => $Directories,
+        ]);
+
+    }
 }

@@ -13,20 +13,40 @@
 	<!--End Middle-->
 @endsection
 @section('scripts')
-<script>
+    <script>
+        sort_by = "";
 
-	sort_by = "";
+        $(document).on("change", '.sort_by', function() {
+            sort_by = $(this).val();
+            getSpaceFinderListing();
+        });
+        $(document).on('click', '.apply-filters', function() {
+            let title = $('.title').val();
+            let email = $('.email').val();
+            let address = $('.address').val();
+            let mobile_no = $('.mobile_no').val();
+            let phone = $('.phone').val();
+            let web_url = $('.web_url').val();
 
-	$(document).on("change",'.sort_by',function(){
-		sort_by = $(this).val();
-		getSpaceFinderListing();
-	});
+            data = {
+                'title': title,
+                'email': email,
+                'address': address,
+                'mobile_no': mobile_no,
+                'phone': phone,
+                'web_url': web_url
+            }
+            ajaxGet("{{ route('space-finders.search') }}", data, ".spacefinders", responseType = 'html')
+        });
 
-	$(document).ready(function(){
-		getSpaceFinderListing();
-	})
-	function getSpaceFinderListing(){
-		ajaxGet("{{route('space-finders.ajax')}}",{sort_by},".spacefinders",responseType='html');
-	}
-</script>
+        $(document).ready(function() {
+            getSpaceFinderListing();
+        })
+
+        function getSpaceFinderListing() {
+            ajaxGet("{{ route('space-finders.ajax') }}", {
+                sort_by
+            }, ".spacefinders", responseType = 'html');
+        }
+    </script>
 @endsection
