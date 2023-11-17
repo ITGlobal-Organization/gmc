@@ -18,8 +18,8 @@
 <span class="day">{{ $Blog->day}}</span>
 <span class="month">{{ $Blog->month}}</span>
 </div>
-<h1>{{ $Blog->title }}</h1>
-<div class="post-meta">
+<h1>{{ $Blog->title }}</h1><br>
+<!-- <div class="post-meta">
 <span class="meta-author">
 <i class="far fa-user"></i>
 <span>{{ trans('lang.by')}}</span>
@@ -32,7 +32,7 @@
 <span class="meta-comments">
 <i class="far fa-comments"></i>
 <a href="#" class="hash-scroll">3 Comments</a></span>
-</div>
+</div> -->
 
 <p>
 {!! $Blog->description !!}
@@ -59,28 +59,28 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding mtb-25">
 
 <div>
-<i class="far fa-user post-author mb-25"></i>
-<h5>Author</h5>
+<!-- <i class="far fa-user post-author mb-25"></i>
+<h5>Author</h5> -->
 </div>
 
 
 <!--Start Author Comments  Area-->
-<div class="col-xs-12 padding">
+<!-- <div class="col-xs-12 padding">
 <img src="/media/benefits/6.jpg" alt="" class="img-thumbnail"/>
 <strong>{{ $Blog->user->first_name.' '.$Blog->user->last_name }}</strong>
 <p class="p-author">
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui.
 </p>
-</div>
+</div> -->
 <!--End Author Comments  Area-->
 
-<div class="col-xs-12 padding mtb-25">
+<!-- <div class="col-xs-12 padding mtb-25">
 <i class="far fa-comments post-author"></i>
 <h5>Comments (3)</h5>
-</div>
+</div> --?
 
 <!--Start Comments list Area-->
-<?php for($i=1;$i<=3;$i++) : ?>
+<!-- <?php for($i=1;$i<=3;$i++) : ?>
 <div class="col-xs-12 padding mb-25">
 
 <img src="/media/comments/<?php echo $i ?>.jpg" alt="" width="100%" class="img-thumbnail img-thumbnail1" />
@@ -101,11 +101,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odi
 
 <div class="clr"></div>
 </div>
-<?php endfor; ?>
+<?php endfor; ?> -->
 <!--End Comments list Area-->
 
 
-<div>
+<!-- <div>
 <h5>Leave a Reply </h5>
 </div>
 
@@ -126,7 +126,7 @@ Your email address will not be published. Required fields are marked *
 <input name="submit" type="submit" id="submit" class="post-sub" value="Post Comment">
 
 
-</div>
+</div>-->
 
 
 <div class="clr"></div>

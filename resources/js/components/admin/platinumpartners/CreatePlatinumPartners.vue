@@ -58,6 +58,7 @@ export default {
             FormData:{
                 title:'',
                 // slug:'',
+                web_url:'',
                 description:'',
                 // author:'',
                 media:[],
@@ -82,6 +83,17 @@ export default {
                     required:true,
                 },
                 {
+                    label:Language.web_url,
+                    field:"web_url",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
                     label:Language.description,
                     field:"description",
                     class:"form-control",
@@ -92,6 +104,7 @@ export default {
                     },
                     required:true,
                 },
+
                 {
                     label:Language.is_approved,
                     field:"is_approved",

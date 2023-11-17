@@ -120,7 +120,7 @@
 
 
     <!--Strat Foram Area-->
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mtb-25">
+    <!--<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mtb-25">
 
     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 border padding form-none"></div>
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 border join-bg">
@@ -346,8 +346,13 @@
     </div>
     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 border padding form-none"></div>
 
-    </div>
+    </div>-->
+        
+<div class="bal-btn"><a href="https://zfrmz.eu/WE4879RxJDaqMSUINzn8" target="_blank"></i> Join Now</a></div> 
+
+
     <!--End Foram Area-->
+
 
 
     <div class="clr"></div>

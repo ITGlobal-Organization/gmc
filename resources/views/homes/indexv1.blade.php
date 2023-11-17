@@ -2,7 +2,7 @@
 
 @section('content')
     <!--Start Tabbing Area-->
-    <div class="middle mtb-60">
+    <div class="middle mtb-30">
         <div id="container">
             <div id="parentHorizontalTab">
                 <ul class="resp-tabs-list hor_1">
@@ -27,7 +27,7 @@
                                     <div class="main-box">
                                         <div class="box-img card-image">
                                             <a href="blog-details.php"><img src="./media/all/<?php echo $i; ?>.jpg"
-                                                    alt="" width="100%" class="box-img" /></a>
+                                                    alt="" width="100%" class="box-img"/></a>
                                         </div>
                                         <div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i>
                                             March 11, 2022</div>
@@ -61,12 +61,12 @@
     </div>
     <!--End Tabbing Area-->
     <!--Start About Area-->
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mtb-60 ab-bg">
-        <div class="middle">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mtb-60 ab-bg">
+       <div class="middle">
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <p>
+                <!--<p>
                     <b>Get TO Know</b>
-                </p>
+                </p>-->
                 <h2>Welcome to</h2>
                 <h3>Perthshire Chamber of Commerce</h3>
                 <p class="text-justify">
@@ -89,15 +89,71 @@
             </div>
             <div class="clr"></div>
         </div>
+         <div class="clr"></div>
     </div>
     <!--End About Area-->
-    <div class="platinum-partners-footer">
+   <!-- <div class="platinum-partners-footer">
 
-    </div>
+    </div> -->
+<div class="row">
+   <div class="middle mtb-60">
+      <h2 class="text-center mtb-60 text-uppercase">Platinum Partners</h2>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+         <div id="owl-demo" class="owl-carousel">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+               <div class="main-brand"><a href="/binngroup"><img src="{{ custom_asset('barnd1.png') }}" alt=""/></a></div>
+               <div class="clr"></div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+               <div class="main-brand"><a href="/blackhills/"><img src="{{ custom_asset('barnd3.png') }}" alt=""/></a></div>
+               <div class="clr"></div>
+            </div>
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+               <div class="main-brand"><a href="/castlewater"><img src="{{ custom_asset('barnd4.png') }}" alt=""/></a></div>
+               <div class="clr"></div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+               <div class="main-brand"><a href="/crunchycarrot"><img src="{{ custom_asset('barnd10.png') }}" alt=""/></a></div>
+               <div class="clr"></div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+               <div class="main-brand"><a href="/flonix"><img src="{{ custom_asset('barnd5.png') }}" alt=""/></a></div>
+               <div class="clr"></div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+               <div class="main-brand"><a href="/uhiperth"><img src="{{ custom_asset('barnd6.png') }}" alt=""/></a></div>
+               <div class="clr"></div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+               <div class="main-brand"><a href="/pa"><img src="{{ custom_asset('barnd7.png') }}" alt=""/></a></div>
+               <div class="clr"></div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+               <div class="main-brand"><a href="/stv"><img src="{{ custom_asset('barnd11.jpg') }}" alt=""/></a></div>
+               <div class="clr"></div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+               <div class="main-brand"><a href="/thorntons"><img src="{{ custom_asset('barnd13.png') }}" alt=""/></a></div>
+               <div class="clr"></div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+               <div class="main-brand"><a href="/tlc"><img src="{{ custom_asset('barnd12.jpg') }}" alt=""/></a></div>
+               <div class="clr"></div>
+            </div>
+            <div class="clr"></div>
+         </div>
+      </div>
+      <div class="clr"></div>
+   </div>
+   <div class="clr"></div>
+</div>
+
+
 @endsection
 
 @section('scripts')
-    <!-- Frontpage Demo -->
+ 
+<!-- Frontpage Demo -->
     <!--End Platinum Partners Area-->
     <!--<script src="js/jquery-1.9.1.min.js"></script>-->
     <script src="{{ custom_asset('owl.carousel.min.js', 'scripts') }} "></script>

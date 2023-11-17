@@ -18,7 +18,7 @@ class Directory extends BaseModel
     protected $has_images = true;
 
     protected $fillable = [
-        'title','description','is_active','is_delete','is_approved','user_id','slug',
+        'title','description','is_active','is_delete','is_approved','user_id','slug','categories',
         'mobile_no','phone','address','web_url','facebook_url','instagram_url','linkedin_url','youtube_url'
     ];
 

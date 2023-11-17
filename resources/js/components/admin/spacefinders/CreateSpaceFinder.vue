@@ -69,6 +69,7 @@ export default {
                 instagram_url:'',
                 description:'',
                 is_approved:'',
+                categories:'',
                 // author:'',
                 media:[],
                 gallery:[]
@@ -105,6 +106,17 @@ export default {
                 {
                     label:Language.email,
                     field:"email",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.categories,
+                    field:"categories",
                     class:"form-control",
                     grid:"col-md-6 col-12",
                     type:"text",
