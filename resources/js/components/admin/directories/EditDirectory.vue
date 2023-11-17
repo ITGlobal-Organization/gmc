@@ -64,6 +64,7 @@ data(){
                 user_id:'',
                 is_approved:'',
                 is_active:0,
+                categories:'',
                 media:[],
                 gallery:[]
         },
@@ -101,6 +102,17 @@ mounted(){
                 {
                     label:Language.email,
                     field:"email",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.categories,
+                    field:"categories",
                     class:"form-control",
                     grid:"col-md-6 col-12",
                     type:"text",
@@ -317,6 +329,7 @@ methods:{
             await get(this.id);
             console.log(record.value);
             this.form.title = record.value.title;
+            this.form.categories =record.value.categories;
             this.form.user_id = record.value.user_id;
             this.form.web_url = record.value.web_url;
             this.form.facebook_url = record.value.facebook_url;

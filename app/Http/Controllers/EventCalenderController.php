@@ -49,7 +49,7 @@ class EventCalenderController extends BaseController
             $this->eventCalender->setOrderBy($sort[0]);
             $this->eventCalender->setOrder($sort[1]);
         }
-        $Events=$this->eventCalender->get();
+        $Events=$this->eventCalender->where('event_date', '>=', today()->format('Y-m-d'))->get();
         // $Events = $this->eventCalender->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.*','images.image_url']);
         return view('eventcalenders.events-detail',[
             'Events' => $Events,

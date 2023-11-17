@@ -63,6 +63,7 @@ data(){
                 description:'',
                 is_approved:'',
                 user_id:'',
+                categories:'',
                 media:[],
                 gallery:[]
         },
@@ -100,6 +101,17 @@ mounted(){
                 {
                     label:Language.email,
                     field:"email",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.categories,
+                    field:"categories",
                     class:"form-control",
                     grid:"col-md-6 col-12",
                     type:"text",
@@ -333,6 +345,7 @@ methods:{
             this.form.slug = record.value.slug;
             this.form.is_approved = record.value.is_approved;
             this.form.is_active = record.value.is_active;
+            this.form.categories = record.value.categories;
             this.form.description = record.value.description?record.value.description:"";
 
             this.form.gallery = record.value.media;

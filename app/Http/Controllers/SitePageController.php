@@ -154,8 +154,8 @@ class SitePageController extends BaseController
         $oneMonthAfter = $today->addMonth();
         $this->eventCalender->setFilters( ['event_date','>=',$todayFomat]);
         $this->eventCalender->setFilters(  ['event_date','<=',$oneMonthAfter->format('Y-m-d')]);
-        
-      
+
+
         $Events = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
 
         return view('tabs.events',[
@@ -209,5 +209,16 @@ class SitePageController extends BaseController
         ]);
     }
 
-
+    public function contactUs(Request $request){
+        $response = $this->contactForm->store($request);
+        $response = [
+            'success'=>true,
+            'message'=>'Your form has been submitted',
+            'route'=>'/',
+            'data'=>[
+                'route'=>'/'
+            ]
+        ];
+        return response()->json($response);
+    }
 }

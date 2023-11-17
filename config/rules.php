@@ -19,6 +19,19 @@ return [
             'description' => 'required'
         ]
     ],
+    'platinum_partners' => [
+        'store' => [
+            'title' => 'required',
+            'web_url' => 'url',
+            'description' => 'required'
+
+        ],
+        'edit' => [
+            'title' => 'required',
+            'web_url' => 'url',
+            'description' => 'required'
+        ]
+    ],
     'directories' => [
         'store' => [
             'title' => 'required',
@@ -34,6 +47,7 @@ return [
             'linked_url' => 'url',
             'user_id' => 'required|exists:users,id',
             'is_approved'=>'required',
+            'categories'=>'required',
             'description' => 'required'
         ],
         'edit' => [
@@ -50,6 +64,7 @@ return [
             'linked_url' => 'url',
             'user_id' => 'required|exists:users,id',
             'is_approved'=>'required',
+            'categories'=>'required',
             'description' => 'required'
         ]
     ],
@@ -92,6 +107,7 @@ return [
             'linked_url' => 'url',
             'user_id' => 'required|exists:users,id',
             'is_approved'=>'required',
+            'categories'=>'required',
             'description' => 'required'
         ],
         'edit' => [
@@ -108,6 +124,7 @@ return [
             'linked_url' => 'url',
             'user_id' => 'required|exists:users,id',
             'is_approved'=>'required',
+            'categories'=>'required',
             'description' => 'required'
         ]
     ],

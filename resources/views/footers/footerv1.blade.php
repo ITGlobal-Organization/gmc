@@ -13,7 +13,7 @@
             <div class="col-lg-3 col-md-3 col-sm-6 col-12">
                <div class="quick-links">
                   <h4>{{ trans('lang.quick_links') }}</h4>
-                  @php 
+                  @php
                      $FooterMenus = config('site_config.menus.footer-menu1');
                   @endphp
                   <ul>
@@ -30,13 +30,7 @@
             <div class="col-lg-3 col-md-3 col-sm-6 col-12">
                <div class="quick-links">
                   <h4>{{ trans('lang.services') }}</h4>
-                  @php 
-                     $Services = trans('content.services.services');
-                  @endphp
-                  <ul>
-                     @foreach($Services as $Service)
-                     <li><a href="{{ route($Service['link'],$Service['slug']) }}">{{ $Service['heading'] }}</a></li>
-                     @endforeach
+
                      <!-- <li><a href="javascript:void(0)">Interior Packages</a></li>
                      <li><a href="javascript:void(0)">Exterior Packages</a></li>
                      <li><a href="javascript:void(0)">Ceramic Coatings</a></li> -->
