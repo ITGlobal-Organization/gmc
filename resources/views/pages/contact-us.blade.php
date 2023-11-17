@@ -1,4 +1,4 @@
-@extends('layouts.layoutv1')
+@extends('layouts.layoutv2')
 
 @section('content')
     <!--Start Middle-->

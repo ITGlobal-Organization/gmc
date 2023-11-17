@@ -245,8 +245,8 @@ p {
     margin: 0;
     padding: 0;
     object-fit: contain;
-    height: 250px;
-    border-radius: 10px 10px 0 0;
+    height: 250px; 
+    border-radius: 10px 10px 0 0; 
     width: 100%;
 
 }
@@ -1601,6 +1601,3 @@ text-decoration: none;
 
   .deactive{display: none !important;}
   li{list-style: none !important;}
-  label.error {
-    color: red !important;
-  }
