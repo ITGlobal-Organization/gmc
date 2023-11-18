@@ -9,9 +9,9 @@
                 <h1 class="mtb-25">{{ $Directory->title }}</h1>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding ">
                     @if(isset($Directory->media[0]))
-                    <img src="{{ $Directory->media[0]->image_url }}" alt="" />
+                    <img src="{{ $Directory->media[0]->image_url }}" alt="" class="blog-img"/>
                     @else
-                    <img src="" alt="" />
+                    <img src="" alt="" class="blog-img"/>
                     @endif
                 </div>
 
