@@ -3,10 +3,10 @@
     <ul>
       <li><a href="benifits"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;Benefits</a></li>
       <li><a href="directories"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;Directory</a></li>
-      <li><a href="><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;List Spaces</a></li>
-      <li><a href="https://forms.zohopublic.eu/itadmin1/form/MembertoMemberDiscount/formperma/IXig2PPCuZuwgDyNlWFaTAEBp3PH8SpF2FFv3vnlsw4" target="_blank""><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;List in Members Marketplace</a></li>
+      <li><a href="https://zfrmz.eu/BcuWgLQd8KOsLenLvBMG" target="_blank"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;List Spaces</a></li>
+      <li><a href="https://zfrmz.eu/jSvnN9jR9r50hVk7G4Bk" target="_blank"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;List in Members Marketplace</a></li>
       <li><a href=""><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;View Members Marketplace</a></li>
-	  <li><a href="https://forms.zohopublic.eu/itadmin1/form/ClientDetails/formperma/zrs9xTRRfuyLcB2iis6Fku-hXX4C30mGmyZCzUwrZG4 target="_blank""><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;Update Company Details</a></li>
+	  <li><a href="https://zfrmz.eu/A3uqIoQs5Wfn8ygME1hQ" target="_blank"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;Update Company Details</a></li>
 	  <li><a href="#"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;About</a></li>
 	  <li><a href="#"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;International</a></li>
 	<li><a href="#"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;Mentoring</a></li>
