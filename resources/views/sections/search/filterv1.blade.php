@@ -23,16 +23,16 @@
         <input type="text" class="join-input" value="" placeholder="Post Code">
     </div> --}}
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
-        <label>Mobile</label>
+        <label>Phone No.</label>
         <input type="text" class="join-input mobile_no" value="" placeholder="Phone" >
     </div>
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
+    <!--<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
         <label>Tel</label>
         <input type="text" class="join-input phone" value="" placeholder="Phone 2">
-    </div>
+    </div>-->
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
         <label>Email</label>
-        <input type="text" class="join-input email" value="" placeholder="Fax">
+        <input type="text" class="join-input email" value="" placeholder="Email">
     </div>
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
         <label>Website</label>
@@ -42,7 +42,7 @@
         <input type="submit" class="ct-submit apply-filters" value="Apply Filters">
     </div>
 </div>
-{{-- <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script> --}}
+
 <link href="{{ asset('css/magicsuggest.css') }}" rel="stylesheet" type="text/css">
 <script src="{{ asset('js/magicsuggest.js') }}"></script>
 <script>
@@ -60,7 +60,7 @@
     });
 </script>
 
-<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+
 <script type="text/javascript">
     $(document).ready(function() {
 
