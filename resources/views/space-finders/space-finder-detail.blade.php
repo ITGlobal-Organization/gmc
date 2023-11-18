@@ -54,15 +54,15 @@
                     <!--End Box 2-->
 
                     <!--Start Box 3-->
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
+                    <!--<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
                         <i class="fas fa-mobile-alt fa-spin" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Mobile</b> :
                         {{ $SpaceFinder->mobile_no }}
                         <div class="clr"></div>
-                    </div>
+                    </div>-->
                     <!--End Box 3-->
 
                     <!--Start Box 4-->
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
                         <i class="fas fa-envelope-open-text fa-spin" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Email</b> :
                         {{ $SpaceFinder->email }}
                         <div class="clr"></div>
@@ -70,7 +70,7 @@
                     <!--End Box 4-->
 
                     <!--Start Box 5-->
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
                         <i class="fas fa-globe fa-spin" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Website </b> :
                         {{ $SpaceFinder->web_url }}
                         <div class="clr"></div>
@@ -78,7 +78,7 @@
                     <!--End Box 5-->
 
                     <!--Start Box 6-->
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
                         <i class="fas fa-link fa-spin" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Venue Hire URL</b> :
                         {{ $SpaceFinder->venue_url }}
                         <div class="clr"></div>
@@ -86,15 +86,15 @@
                     <!--End Box 6-->
 
                     <!--Start Box 7-->
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
                         <i class="fas fa-share-alt fa-spin" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Social Info </b> :
 
                         <span class="social-media2"> <a href="{{ $SpaceFinder->facebook_url }}"><i class="fab fa-facebook-f"
                                     title="Facebook"></i></a> </span>
                         <span class="social-media2"> <a href="{{ $SpaceFinder->instagram_url }}"><i class="fab fa-instagram"
                                     title="Instagram"></i></a> </span>
-                        <span class="social-media2"> <a href="{{ $SpaceFinder->youtube_url }}"><i class="fab fa-youtube"
-                                    title="Youtube"></i></a> </span>
+                        <span class="social-media2"> <a href="{{ $SpaceFinder->youtube_url }}"><i class="fab fa-twitter"
+                                    title="Twitter"></i></a> </span>
                         <span class="social-media2"> <a href="{{ $SpaceFinder->linkedin_url }}"><i class="fab fa-linkedin"
                                     title="Linkedin"></i></a> </span>
 
