@@ -18,9 +18,9 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding ">
                     @if (isset($SpaceFinder->media[0]))
-                        <img src="{{ $SpaceFinder->media[0]->image_url }}" alt="" width="100%" class="blog-img" />
+                        <img src="{{ $SpaceFinder->media[0]->image_url }}" alt="" class="blog-img" />
                     @else
-                        <img src="" alt="" width="100%" class="blog-img" />
+                        <img src="" alt="" class="blog-img" />
                     @endif
                 </div>
 
