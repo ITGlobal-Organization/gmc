@@ -10,36 +10,7 @@
     If you would like to discuss hosting an event or have an idea for our future calendar then contact the
     Chamber office.
 </p>
-<!--Start search Area-->
-<div class="col-xs-12 col-sm-6 col-md-6 col-lg-8 border padding border">
 
-    <div class="search-oh search-box1">
-        <input type="image" class="oh-btn" img="" src="media/brn-search.png">
-        <input type="text" placeholder="Search" class="oh-input">
-        <div class="clr"></div>
-    </div>
-    <div class="clr"></div>
-</div>
-<!--End search Area-->
-
-<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 border padding border">
-
-    <div class="search-ohch">
-        <input class="ohch-input" name="date" id="" placeholder="Date for visit DD-MM-YYYY"
-            required="required" type="date">
-        <div class="clr"></div>
-    </div>
-
-    <span class="ab-to">TO</span>
-
-    <div class="search-ohch">
-        <input class="ohch-input" name="date" id="" placeholder="Date for visit DD-MM-YYYY"
-            required="required" type="date">
-        <div class="clr"></div>
-    </div>
-
-    <div class="clr"></div>
-</div>
 <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 padding border mb-25">
     <select class="pd-sort sort_by">
         <option value="">{{ trans('lang.sort_by') }}</option>
@@ -89,6 +60,36 @@
 </div>
 <!--End Events Tab Area-->
 <!--Start calendar Area-->
+<!--Start search Area-->
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-8 border padding border">
+
+    <div class="search-oh search-box1">
+        <input type="image" class="oh-btn" img="" src="media/brn-search.png">
+        <input type="text" placeholder="Search" class="oh-input">
+        <div class="clr"></div>
+    </div>
+    <div class="clr"></div>
+</div>
+<!--End search Area-->
+
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 border padding border">
+
+    <div class="search-ohch">
+        <input class="ohch-input" name="date" id="" placeholder="Date for visit DD-MM-YYYY"
+            required="required" type="date">
+        <div class="clr"></div>
+    </div>
+
+    <span class="ab-to">TO</span>
+
+    <div class="search-ohch">
+        <input class="ohch-input" name="date" id="" placeholder="Date for visit DD-MM-YYYY"
+            required="required" type="date">
+        <div class="clr"></div>
+    </div>
+
+    <div class="clr"></div>
+</div>
 <!--Start Table listing-->
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding margin-tb35">
     <div class="table-div1">
