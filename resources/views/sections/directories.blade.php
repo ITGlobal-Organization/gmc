@@ -28,13 +28,7 @@
                     <a href="{{ route('directories.get', $directory->slug) }}"><img src="{{ $directory->image_url }}"
                             alt="" width="100%" class="box-img" /></a>
                 </div>
-                <!--<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>-->
-                <div class="box-name mtb-15">
-                    <a href="{{ route('directories.get', $directory->slug) }}">
-                        {{ $directory->title }}
-                    </a>
-
-                </div>
+                <!--<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>--><div class="box-name home home-text">    <div style="display: flex; justify-content: center; align-items: center;">        <a href={{ route('directories.get', $directory->slug) }}>            {{ $directory->title }}        </a>    </div></div>
                 <!--<div class="box-text">
             What to expect from this webinar New and established businesses will require a business plan for
             </div>-->

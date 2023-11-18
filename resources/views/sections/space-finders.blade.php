@@ -39,14 +39,14 @@
                             src="{{ $SpaceFinder->image_url }}" alt="" width="100%" class="box-img" /></a>
                 </div>
                 <!--<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>-->
-                <div class="box-name mtb-15">
+                <div class="box-name home home-text">
+    <div style="display: flex; justify-content: center; align-items: center;">
                     <a href="{{ route('space-finders.get', $SpaceFinder->slug) }}" >
-                 {!! $SpaceFinder->description !!}
-                    </a>
-                </div>
+                 {!! $SpaceFinder->title !!}</a>
+                </div></div>
                 <div class="box-text1">
                     <i class="fad fa-check"
-                        style="--fa-primary-color: #5f439b; --fa-secondary-color: #5f439b;"></i>&nbsp;{{$SpaceFinder->slug}}
+                        style="--fa-primary-color: #5f439b; --fa-secondary-color: #5f439b;"></i>&nbsp;{{$SpaceFinder->categories}}
                 </div>
 
             </div>

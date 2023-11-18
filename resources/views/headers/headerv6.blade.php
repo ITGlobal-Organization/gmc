@@ -1,58 +1,12 @@
 <!--Start Banner Area-->
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
 
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-    <li data-target="#myCarousel" data-slide-to="3"></li>
-    <li data-target="#myCarousel" data-slide-to="4"></li>
-    <li data-target="#myCarousel" data-slide-to="5"></li>
-  </ol>
-
-  <div class="carousel-inner">
     <div class="item active">
-	<a href="#"><img src="{{ custom_asset('banner1.jpg') }}" alt="First slide" width="100%"></a>
+	<a href="#"><img src="{{ custom_asset('103_thorntons.png') }}" alt="First slide" width="100%"></a>
 	  <div class="banner-text">
 			<h1 class="white">Perthshire Chamber of Commerce</h1>
 		</div>
 	 </div>
-    <div class="item">
-	<a href="#"><img src="{{ custom_asset('banner2.jpg') }}" alt="First slide" width="100%"></a>
-	  <div class="banner-text">
-			<h1 class="white">Perthshire Chamber of Commerce</h1>
-		</div>
-	 </div>
-    <div class="item">
-	<a href="#"><img src="{{ custom_asset('banner3.jpg') }}" alt="First slide" width="100%"></a>
-	  <div class="banner-text">
-			<h1 class="white">Perthshire Chamber of Commerce</h1>
-		</div>
-	 </div>
-    <div class="item">
-	<a href="#"><img src="{{ custom_asset('banner4.jpg') }}" alt="First slide" width="100%"></a>
-	  <div class="banner-text">
-			<h1 class="white">Perthshire Chamber of Commerce</h1>
-		</div>
-	 </div>
-    <div class="item">
-	<a href="#"><img src="{{ custom_asset('banner5.jpg') }}" alt="First slide" width="100%"></a>
-	  <div class="banner-text">
-			<h1 class="white">Perthshire Chamber of Commerce</h1>
-		</div>
-	 </div>
-    <div class="item">
-	<a href="#"><img src="{{ custom_asset('banner6.jpg') }}" alt="First slide" width="100%"></a>
-	  <div class="banner-text">
-			<h1 class="white">Perthshire Chamber of Commerce</h1>
-		</div>
-	 </div>
-  </div>
-
-  <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-
-  </div>
 <!--End Banner Area-->
 
 <!--Start Header Top Area-->
