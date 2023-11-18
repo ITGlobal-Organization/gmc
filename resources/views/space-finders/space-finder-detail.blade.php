@@ -12,7 +12,7 @@
                 <div class="post-meta">
                     <span class="meta-cats">
                         <i class="fad fa-check" style="--fa-primary-color: #5f439b; --fa-secondary-color: #5f439b;"></i>
-                        <a>{{ $SpaceFinder->slug}}</a>
+                        <a>{{ $SpaceFinder->categories}}</a>
                     </span>
                 </div>
 
