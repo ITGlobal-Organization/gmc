@@ -18,7 +18,7 @@
     <div class="card card-secondary card-outline">
 
         <div class="card-body">
-            <Form :fields="FormFields" :data="form" :action="update" :name="name" :errors="errors"/>
+            <Form :fields="FormFields" :data="form" :action="update" :name="name" :errors="errors" :id="id"/>
         </div>
 
         <!-- /.card-body -->
