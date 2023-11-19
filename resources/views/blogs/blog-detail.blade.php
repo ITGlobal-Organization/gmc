@@ -43,18 +43,25 @@
 </div>
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding mtb-25">
-<div class="btn_wrap">
-        <span class="share-text"><i class="fas fa-share-alt-square" style="color: #ffffff;font-size: 18px;"></i>&nbsp;Share this post</span>
-        <div class="container">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-             <a href="#"><i class="fab fa-twitter"></i></a>
-             <a href="#"><i class="fab fa-instagram"></i></a>
-             <a href="#"><i class="fab fa-github"></i></a>
-           <a href="#"><i class="fas fa-envelope"></i></a>
-        </div>
+  <div class="btn_wrap">
+    <span class="share-text"><i class="fas fa-share-alt-square" style="color: #ffffff;font-size: 18px;"></i>&nbsp;Share this post</span>
+    <div class="container">
+      <a id="facebook-share" href="#"><i class="fab fa-facebook-f"></i></a>
+      <a id="twitter-share" href="#"><i class="fab fa-twitter"></i></a>
+      <a id="linkedin-share" href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a id="email-share" href="#"><i class="fas fa-envelope"></i></a>
     </div>
-<div class="clr"></div>
+  </div>
+  <div class="clr"></div>
 </div>
+
+<script>
+  // Set the href for Facebook, Twitter, LinkedIn, and Email share links
+  document.getElementById('facebook-share').setAttribute('href', 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href));
+  document.getElementById('twitter-share').setAttribute('href', 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href));
+  document.getElementById('linkedin-share').setAttribute('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(window.location.href));
+  document.getElementById('email-share').setAttribute('href', 'mailto:?body=' + encodeURIComponent(window.location.href));
+</script>
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding mtb-25">
 
