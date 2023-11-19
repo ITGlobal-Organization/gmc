@@ -291,7 +291,7 @@ mounted(){
                         return "Upload"+this.label
                     },
                     multiple:false,
-                    model:`App\\Models\\Space Finder`,
+                    model:`App\\Models\\SpaceFinder`,
                     required:false,
                     fileType:"image/jpeg, image/png",
                     maxFiles:1

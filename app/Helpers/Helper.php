@@ -123,13 +123,14 @@ class Helper
         $public_path = "";
         $directory = time();
         (int)$random = random_int(100,999);
-        // $id = request()->params('id')?request()->params('id'):$id;
+       //  $id = request()->params('id')?request()->params('id'):$id;
 
     //    dd($files);
         try{
             if(is_array($files)){
                 foreach($files as $file){
-                    $exitMedia = Media::where('model',$model)->where('image_name',$file->getClientOriginalName())->first();
+                    $exitMedia = Media::where('model',$model)->where('image_name',$file->getClientOriginalName())->
+                where('model_id',$id)->first();
 
                     if(isset($exitMedia)){
                         return $exitMedia;
@@ -139,7 +140,7 @@ class Helper
                     }
                     $path = public_path('media/');
                     $public_path = asset('media/'.$file->getClientOriginalName());
-                    $file->move($path, $file->getClientOriginalName());
+                    $file->move($path,$file->getClientOriginalName());
                     $media = Media::create([
                         'image_url' => $public_path,
                         'model_id' => $id,
@@ -153,7 +154,10 @@ class Helper
 
             }else{
                 // dd("aaaa");
-                $exitMedia = Media::where('model',$model)->where('image_name',$files->getClientOriginalName())->first();
+                $exitMedia = Media::where('model',$model)->where('image_name',$files->getClientOriginalName())->
+                where('model_id',$id)->first();
+              //  dd($exitMedia,$model,$files->getClientOriginalName());
+                
                     if(isset($exitMedia)){
                         return $exitMedia;
                     }
@@ -162,7 +166,7 @@ class Helper
                     }
                     $path = public_path('media/');
                     $public_path = asset('media/'.$files->getClientOriginalName());
-                    $files->move($path, $files->getClientOriginalName());
+                    $files->move($path,$files->getClientOriginalName());
                     // dd($id);s
                     $media = Media::create([
                         'image_url' => $public_path,
@@ -313,13 +317,13 @@ class Helper
             $filenames = [];
             if(is_array($files)){
                     foreach($files as $file){
-                        if (file_exists(public_path($directory.'/'.$file->getClientOriginalName()))) {
-                            @unlink(public_path($directory.'/'.$file->getClientOriginalName()));
+                        if (file_exists(public_path($directory.'/'.random.'_'.$file->getClientOriginalName()))) {
+                            @unlink(public_path($directory.'/'.random.'_'.$file->getClientOriginalName()));
                         }
 
                         $path = public_path($directory.'/');
-                        $public_path = asset($directory.'/'.date('y-m-d').'-'.$file->getClientOriginalName());
-                        $file->move($path, date('y-m-d').'-'.$file->getClientOriginalName());
+                        $public_path = asset($directory.'/'.date('y-m-d').'-'.random.'_'.$file->getClientOriginalName());
+                        $file->move($path, date('y-m-d').'-'.random.'_'.$file->getClientOriginalName());
                         $filenames[] = $public_path;
                     }
             }else{
