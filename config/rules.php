@@ -78,7 +78,7 @@ return [
             'price' => 'required|between:0,999999.99',
             'venue' => 'required',
             'description' => 'required',
-            'booking_link' => 'url',
+            'booking_link' => '',
         ],
         'edit' => [
             'title' => 'required',
@@ -89,7 +89,7 @@ return [
             'price' => 'required|between:0,999999.99',
             'venue' => 'required',
             'description' => 'required',
-            'booking_link' => 'url',
+            'booking_link' => '',
         ]
     ],
     'space_finders' => [
