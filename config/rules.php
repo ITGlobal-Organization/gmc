@@ -35,7 +35,7 @@ return [
     'directories' => [
         'store' => [
             'title' => 'required',
-            'email' => 'required|email|unique:directories',
+            'email' => 'required',
             'mobile_no' => 'numeric|min:11',
             'phone' => 'numeric|min:11',
             'address' => 'required|min:3|max:150',
@@ -52,7 +52,7 @@ return [
         ],
         'edit' => [
             'title' => 'required',
-            'email' => 'required|email|unique:directories',
+            'email' => 'required',
             'mobile_no' => 'numeric|min:11',
             'phone' => 'numeric|min:11',
             'address' => 'required|min:3|max:150',
