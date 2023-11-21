@@ -144,7 +144,7 @@ p {
     margin: 0px 0px 0px 0px;
     display: inline;
     padding: 0px 0px 0px 0px;
-    width: 100%;
+    width: max-content;
     height: auto;
     float: left;
     border: #FF0000 0px solid;
@@ -196,7 +196,7 @@ p {
 }
 .list2 ul li a {
     margin: 0px 2px 0px 2px;
-    padding: 15px 12px 15px 12px;
+    padding: 15px 11px 15px 11px;
     font-family: 'Montserrat-Medium';
     font-size: 16px;
     text-decoration: none;
@@ -237,21 +237,19 @@ p {
     padding: 0px 0px 0px 0px;
     background-color: #fff;
     border-radius: 10px;
-    height: auto;
+    height: 350px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 .box-img {
-
     margin: 0;
     padding: 0;
-    object-fit: contain;
-    height: 250px; 
+    height: 200px; 
     border-radius: 10px 10px 0 0; 
-    width: 100%;
+    width: 100%; 
     object-fit: contain;
     object-position: center bottom;
-
 }
+
 .box-date {
     margin: auto auto -20px auto;
     padding: 10px 10px 10px 10px;
@@ -281,10 +279,10 @@ p {
     border: 0px solid red;
 }
 .box-text {
-    margin: 0px 0px 20px 0px;
+    margin: 0px 0px 5px 0px;
     padding: 0px 15px 0px 15px;
     width: 100%;
-    height: 70px;
+    height: 55px;
     font-family: 'Montserrat-Regular';
     font-weight: 100;
     font-size: 14px;
@@ -310,13 +308,43 @@ p {
     overflow: hidden;
     border: 0px solid red;
 }
+
+
+.home a{
+display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  background-color: #609897;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 14px;
+  padding: 30px 5px 30px 5px;
+  border-radius: 0px 0px 10px 10px !important;
+  line-height: 19px;
+  margin: 0px 0px 10px 0px;
+}
+
+.home:hover{
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+
+
+
 .ab-bg {
     padding: 75px 0px 75px 0px !important;
-    background-color: #f1f1f1;
+    background-color: #f1f1f1 !important;
+        border: 0px solid red;
 }
+.bal-btn {
+    text-align: center;
+    margin-top: 20px;
+}
+
 .bal-btn a {
-    margin: 15px 0px 35px 0px;
-    padding: 18px 35px 18px 35px;
+    padding: 18px 35px;
     font-size: 16px;
     font-weight: 500;
     color: #fff !important;
@@ -328,6 +356,7 @@ p {
     font-family: 'Montserrat-Regular';
     border: 0px solid red;
 }
+
 .bal-btn :hover {
     background: #609897;
 }
@@ -344,7 +373,7 @@ p {
     margin: 0px 0px 0px 0px;
     padding: 45px 0px 45px 0px;
     height: auto;
-    background-image: url('../images/footer-bg.png');
+    background-image: url('../media/footer-bg.png');
     background-repeat: no-repeat;
     background-position: center;
     object-fit: cover;
@@ -417,12 +446,12 @@ p {
     overflow: hidden;
 }
 .card-image img {
-    transform: scale3d(1.5, 1.5, 3);
-    transition: transform 1s ease-in-out;
+    /*transform: scale3d(1.5, 1.5, 3);
+    transition: transform 0.5s ease-in-out;*/
 }
 .card-image:hover img, .card-image:focus img, .card-btn-float:focus ~ .card-image img, .card-btn-float:hover ~ .card-image img {
     transform: scale3d(2, 2, 3);
-    transition: transform 3s ease-in-out;
+    transition: transform 4s ease-in-out;
 }
 .blog-img {
     margin: 0px 0px 20px 0px;
@@ -996,22 +1025,39 @@ box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
     margin-top: 23px;
 }
 table {
+
     font-family: 'Montserrat-Regular' !important;
+
     border-collapse: collapse;
+
     width: 100%;
+
 }
+
 td, th {
+
     border: 2px solid #fff;
+
     padding: 20px !important;
+
     font-size: 18px;
+
     color: #fff;
+
     text-align: center !important;
+
     font-weight: 600;
+
     background: #2b9acb;
+
     font-family: 'Montserrat-Regular' !important;
+
 }
+
 tr:nth-child(even) {
+
     background-color: #fff;
+
 }
 .list10 {
     padding: 10px 10px 10px 10px;
@@ -1044,17 +1090,17 @@ tr:nth-child(even) {
     font-family: 'Montserrat-Regular' !important;
 }
 .btn-download a {
-    padding: 6px 25px 6px 25px;
-    margin: 5px 0px 5px 0px;
-    font-family: 'Montserrat-Regular' !important;
-    font-size: 14px;
-    font-weight: 100;
-    color: #fff;
-    background-color: #2b9acb;
-    text-align: center;
-    border-radius: 50px;
-    text-decoration: none;
-    display: inherit;
+    padding: 6px 15px 6px 15px;
+  margin: 5px 0px 5px 0px;
+  font-family: 'Montserrat-Regular' !important;
+  font-size: 11px;
+  font-weight: 100;
+  color: #fff;
+  background-color: #2b9acb;
+  text-align: center;
+  border-radius: 50px;
+  text-decoration: none;
+  display: inherit;
 }
 .btn-download :hover {
     color: #fff;
@@ -1093,7 +1139,7 @@ tr:nth-child(even) {
     position: relative;
     top: 5px;
     float: right;
-    left: -12px;/*  position: relative;
+    left: -36px;/*  position: relative;
   display: inline-block;
   border-bottom: 1px dotted black;*/
 }
@@ -1137,6 +1183,7 @@ tr:nth-child(even) {
 }
 .benefits-w {
     width: 50%;
+    border-radius: 10px 0px 0px 10px;
 }
 .benefits-w2 {
     width: 20%;
@@ -1485,10 +1532,10 @@ text-decoration: none;
     bottom: 0;
     right: 0;
   }
-
-
+  
+  
   /* Transparent Overlay */
-
+  
   .loading:before {
     content: '';
     display: block;
@@ -1500,10 +1547,10 @@ text-decoration: none;
     background: radial-gradient(rgba(20, 20, 20, .8), rgba(0, 0, 0, .8));
     background: -webkit-radial-gradient(rgba(20, 20, 20, .8), rgba(0, 0, 0, .8));
   }
-
-
+  
+  
   /* :not(:required) hides these rules from IE9 and below */
-
+  
   .loading:not(:required) {
     /* hide "loading..." text */
     font: 0/0 a;
@@ -1512,7 +1559,7 @@ text-decoration: none;
     background-color: transparent;
     border: 0;
   }
-
+  
   .loading:not(:required):after {
     content: '';
     display: block;
@@ -1529,10 +1576,10 @@ text-decoration: none;
     -webkit-box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0, rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) 0 1.5em 0 0, rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) -1.5em 0 0 0, rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0, rgba(255, 255, 255, 0.75) 0 -1.5em 0 0, rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;
     box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0, rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) 0 1.5em 0 0, rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) -1.5em 0 0 0, rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0, rgba(255, 255, 255, 0.75) 0 -1.5em 0 0, rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;
   }
-
-
+  
+  
   /* Animation */
-
+  
   @-webkit-keyframes spinner {
     0% {
         -webkit-transform: rotate(0deg);
@@ -1549,7 +1596,7 @@ text-decoration: none;
         transform: rotate(360deg);
     }
   }
-
+  
   @-moz-keyframes spinner {
     0% {
         -webkit-transform: rotate(0deg);
@@ -1566,7 +1613,7 @@ text-decoration: none;
         transform: rotate(360deg);
     }
   }
-
+  
   @-o-keyframes spinner {
     0% {
         -webkit-transform: rotate(0deg);
@@ -1583,7 +1630,7 @@ text-decoration: none;
         transform: rotate(360deg);
     }
   }
-
+  
   @keyframes spinner {
     0% {
         -webkit-transform: rotate(0deg);
@@ -1600,6 +1647,9 @@ text-decoration: none;
         transform: rotate(360deg);
     }
   }
-
+  
   .deactive{display: none !important;}
   li{list-style: none !important;}
+    label.error {
+    color: red !important;
+  }
