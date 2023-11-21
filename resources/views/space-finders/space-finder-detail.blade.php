@@ -40,14 +40,14 @@
                     <!--Start Box 1-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
                         <i class="fas fa-map-marker-alt fa-spin"
-                            style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Address</b> : {{ $SpaceFinder->address }}
+                            style="color: #ffffff;"></a></i>&nbsp;&nbsp;<b>Address</b> : {{ $SpaceFinder->address }}
                         <div class="clr"></div>
                     </div>
                     <!--End Box 1-->
 
                     <!--Start Box 2-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
-                        <i class="fas fa-tty fa-spin" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Telephone</b> :
+                        <a href="tel://{{ $SpaceFinder->phone }}"><i class="fas fa-tty fa-spin" style="color: #ffffff;"></a></i>&nbsp;&nbsp;<b>Telephone</b> :
                         {{ $SpaceFinder->phone }}
                         <div class="clr"></div>
                     </div>
@@ -63,7 +63,7 @@
 
                     <!--Start Box 4-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
-                        <i class="fas fa-envelope-open-text fa-spin" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Email</b> :
+                        <a href="mailto://{{ $SpaceFinder->email }}"><i class="fas fa-envelope-open-text fa-spin" style="color: #ffffff;"></a></i>&nbsp;&nbsp;<b>Email</b> :
                         {{ $SpaceFinder->email }}
                         <div class="clr"></div>
                     </div>
@@ -71,7 +71,7 @@
 
                     <!--Start Box 5-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
-                        <i class="fas fa-globe fa-spin" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Website </b> :
+                        <a href="{{ $SpaceFinder->web_url }}" target="_blank"><i class="fas fa-globe fa-spin" style="color: #ffffff;"></a></i>&nbsp;&nbsp;<b>Website </b> :
                         {{ $SpaceFinder->web_url }}
                         <div class="clr"></div>
                     </div>
@@ -79,7 +79,7 @@
 
                     <!--Start Box 6-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
-                        <i class="fas fa-link fa-spin" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Venue Hire URL</b> :
+                        <a href="{{ $SpaceFinder->venue_url }}" target="_blank"><i class="fas fa-link fa-spin" style="color: #ffffff;"></a></i>&nbsp;&nbsp;<b>Venue Hire URL</b> :
                         {{ $SpaceFinder->venue_url }}
                         <div class="clr"></div>
                     </div>
