@@ -354,7 +354,7 @@ display: flex;
     background-color: #2b9acb;
     transition: all 0.4s linear;
     font-family: 'Montserrat-Regular';
-    border: 0px solid red;
+    border: 0px solid red;
 }
 
 .bal-btn :hover {
@@ -447,7 +447,8 @@ display: flex;
 }
 .card-image img {
     /*transform: scale3d(1.5, 1.5, 3);
-    transition: transform 0.5s ease-in-out;*/
+    transition: transform 1s ease-in-out;*/
+
 }
 .card-image:hover img, .card-image:focus img, .card-btn-float:focus ~ .card-image img, .card-btn-float:hover ~ .card-image img {
     transform: scale3d(2, 2, 3);
@@ -1652,4 +1653,6 @@ text-decoration: none;
   li{list-style: none !important;}
     label.error {
     color: red !important;
+
   }
+

@@ -1,4 +1,3 @@
-<!--Start Events Tab Area-->
 <div class="all-tab">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border margin-tb25">
         <div class="row">
@@ -52,4 +51,3 @@
     </div>
     <div class="clr"></div>
 </div>
-<!--End Events Tab Area-->
