@@ -92,6 +92,7 @@ function ajaxPost(url,data,succssContainer,errorContainer) {
             setLoader(true);
         },
         success: function(response) {
+            console.log(response)
             $(succssContainer).addClass("alert alert-success");
             $(succssContainer).text(response.message);
             if(response.data.route){

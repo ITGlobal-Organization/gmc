@@ -18,15 +18,13 @@
     @include('sections.search.filterv1')
 </div>
 <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 padding border mb-25">
-
-    <select class="pd-sort">
-        <option value="hide">Sort by</option>
-        <option value="Name">A to Z</option>
-        <option value="Name">Z to A</option>
-        <option value="Name">Latest Listing</option>
-        <option value="Name">Oldest Listing</option>
+    <select class="pd-sort sort_by">
+        <option value="">{{ trans('lang.sort_by') }}</option>
+        <option value="title-asc">A to Z</option>
+        <option value="title-desc">Z to A</option>
+        <option value="created_at-asc">{{ trans('lang.latest_to_oldest') }}</option>
+        <option value="created_at-desc">{{ trans('lang.oldest_to_latest') }}</option>
     </select>
-
 </div>
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border-all"></div>
@@ -41,14 +39,14 @@
                             src="{{ $SpaceFinder->image_url }}" alt="" width="100%" class="box-img" /></a>
                 </div>
                 <!--<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>-->
-                <div class="box-name mtb-15">
+                <div class="box-name home home-text">
+    <div style="display: flex; justify-content: center; align-items: center;">
                     <a href="{{ route('space-finders.get', $SpaceFinder->slug) }}" >
-                 {!! $SpaceFinder->description !!}
-                    </a>
-                </div>
+                 {!! $SpaceFinder->title !!}</a>
+                </div></div>
                 <div class="box-text1">
                     <i class="fad fa-check"
-                        style="--fa-primary-color: #5f439b; --fa-secondary-color: #5f439b;"></i>&nbsp;{{$SpaceFinder->slug}}
+                        style="--fa-primary-color: #5f439b; --fa-secondary-color: #5f439b;"></i>&nbsp;{{$SpaceFinder->categories}}
                 </div>
 
             </div>

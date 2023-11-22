@@ -49,11 +49,43 @@ class EventCalenderController extends BaseController
             $this->eventCalender->setOrderBy($sort[0]);
             $this->eventCalender->setOrder($sort[1]);
         }
-        $Events=$this->eventCalender->get();
+        $Events=$this->eventCalender->where('event_date', '>=', today()->format('Y-m-d'))->get();
         // $Events = $this->eventCalender->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.*','images.image_url']);
         return view('eventcalenders.events-detail',[
             'Events' => $Events,
         ]);
+    }
+
+    public function searchEventsListing(Request $request){
+
+        try{
+            if(isset($request->search)){
+                $Events=$this->eventCalender->where('event_date', '>=', today()->format('Y-m-d'))->where(function($query)use($request) {
+                        $query->where('title',$request->search)
+                        ->orWhere('venue',$request->search)->orWhere('city',$request->search)->orWhere('price',$request->search);
+                })->orderBy('id','desc')->get();
+
+            }
+            if(isset($request->end_date) && isset($request->start_date)){
+                if($request->start_date == ""){
+                    $startDate = date('Y-m-d');
+                }else{
+                    $startDate = date('Y-m-d',strtotime($request->start_date));
+                }
+                $endDate = date('Y-m-d',strtotime($request->end_date));
+                $Events=$this->eventCalender->whereDate('event_date','>=',$startDate)->whereDate('event_date','<=',$endDate)->orderBy('id','desc')->get();
+            }
+
+            return view('eventcalenders.events-detail',[
+                'Events' => $Events,
+            ]);
+        } catch (\Exception $e) {
+            Log::error($e);
+            $Events=$this->eventCalender->where('event_date', '>=', today()->format('Y-m-d'))->get();
+            return view('eventcalenders.events-detail',[
+                'Events' => $Events,
+            ]);
+        }
     }
 
     // public function getEvent(Request $request,$slug){

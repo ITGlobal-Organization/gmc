@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <!--Start Middle-->
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
     <div class="middle mtb-60">
@@ -91,8 +92,47 @@
     <div class="clr"></div>
     </div>
     <div class="clr"></div>
+
     </div>
     <!--End Middle-->
 @endsection
+@section('scripts')
 
+    <script>
+        $(document).ready(function() {
+            $('#contact-us').validate({
+                rules: {
+                    name: "required",
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    phone: {
+                        required: true,
+                        validatePhone: true
 
+                    },
+                    // message: "required"
+                },
+                messages: {
+                    name: "Please enter your name",
+                    email: {
+                        required: "Please enter your email",
+                        email: "Please enter a valid email"
+                    },
+                    // message: "Please enter a message"
+                },
+                submitHandler: function(form) {
+                    let data = new FormData(form);
+                    ajaxPost("{{ route('contact-us') }}", data, ".success");
+                }
+            });
+        });
+        jQuery.validator.addMethod("validatePhone", function(phone_number, element) {
+            phone_number = phone_number.replace(/\s+/g, "");
+            return this.optional(element) || phone_number.length > 9 &&
+                phone_number.match(/^(\+?1-?)?(\([2-9]\d{2}\)|[2-9]\d{2})-?[2-9]\d{2}-?\d{4}$/);
+        },"Please specify a valid phone number");
+
+    </script>
+@endsection

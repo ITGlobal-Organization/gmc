@@ -5,8 +5,9 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
     <div class="middle mtb-60">
 
-    <h1 class="text-center mb-40">International</h1>
-    <!--<img src="images/int-img.jpg" alt="" width="100%" class="blog-img">-->
+
+    <!--<img src="/media/int-img.jpg" alt="" width="100%" class="blog-img">-->
+
 
     <h5 class="mtb-25">About the Programme</h5>
     <p>

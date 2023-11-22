@@ -49,7 +49,11 @@ class DirectoryController extends BaseController
             $sort = explode('-',$request->sort_by);
             $this->directory->setOrderBy($sort[0]);
             $this->directory->setOrder($sort[1]);
+        }else{
+            $this->directory->setOrderBy('title');
+            $this->directory->setOrder('asc');
         }
+        $this->directory->setLength(config('site_config.constants.item_per_page'));
         $Directories = $this->directory->getAll([['users','users.id','=','directories.user_id']],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
         return view('sections.directories',[
             'Directories' => $Directories,
@@ -59,6 +63,7 @@ class DirectoryController extends BaseController
     public function getDirectory(Request $request,$slug){
         $Blog = $this->directory->first('slug',$slug,'=',['user'],[],['directories.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
         $this->directory->setLength(10);
+
         // $LatestBlogs = $this->directory->getAll([['users','users.id','=','directories.user_id']],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
 
         return view('directories.directory-detail',[
@@ -66,5 +71,21 @@ class DirectoryController extends BaseController
             // 'LatestBlog' => $LatestBlogs,
             'title' => trans('lang.directory').' | '. $Blog->title
         ]);
+    }
+    
+    public function searchDirectories(Request $request){
+        $data = $request->all();
+        foreach ($data as $key => $value) {
+            if($value != ""){
+                $this->directory->setFilters([$key,'like','%'.$value.'%']);
+            }
+        }
+        $this->directory->setOrderBy('id');
+        $this->directory->setOrder('desc');
+        $Directories = $this->directory->getAll();
+        return view('sections.directories',[
+            'Directories' => $Directories,
+        ]);
+
     }
 }

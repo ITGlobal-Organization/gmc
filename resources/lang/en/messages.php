@@ -4,6 +4,7 @@ return [
     'register_successfully' => "Register Successfully",
     'edit' => 'Edit :attribute',
     'success_msg' => ':action Successfully',
+     'logged_in' => 'LoggedIn Successfully',
     'contact_placeholder_msg' => 'How can we help you? Feel free to get in touch!',
     'error_msg' => 'Error while :action',
     'mail_error' => 'Enable to send email, sorry for the inconvience',

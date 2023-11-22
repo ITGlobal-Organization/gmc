@@ -7,7 +7,9 @@
 <div class="middle mtb-60">
 
 <h1 class="text-center mb-40">About us</h1>
+
 <!--<img src="images/ab1-img.png" alt="" width="100%" class="blog-img">-->
+
 
 <h5 class="mtb-25">Welcome to Perthshire Chamber of Commerce</h5>
 <p>

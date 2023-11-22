@@ -18,7 +18,7 @@
     <div class="card card-secondary card-outline">
 
         <div class="card-body">
-            <Form :fields="FormFields" :data="form" :action="update" :name="name" :errors="errors"/>
+            <Form :fields="FormFields" :data="form" :action="update" :name="name" :errors="errors" :id="id"/>
         </div>
 
         <!-- /.card-body -->
@@ -63,6 +63,7 @@ data(){
                 description:'',
                 is_approved:'',
                 user_id:'',
+                categories:'',
                 media:[],
                 gallery:[]
         },
@@ -100,6 +101,17 @@ mounted(){
                 {
                     label:Language.email,
                     field:"email",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.categories,
+                    field:"categories",
                     class:"form-control",
                     grid:"col-md-6 col-12",
                     type:"text",
@@ -279,7 +291,7 @@ mounted(){
                         return "Upload"+this.label
                     },
                     multiple:false,
-                    model:`App\\Models\\Space Finder`,
+                    model:`App\\Models\\SpaceFinder`,
                     required:false,
                     fileType:"image/jpeg, image/png",
                     maxFiles:1
@@ -333,7 +345,9 @@ methods:{
             this.form.slug = record.value.slug;
             this.form.is_approved = record.value.is_approved;
             this.form.is_active = record.value.is_active;
+            this.form.categories = record.value.categories;
             this.form.description = record.value.description?record.value.description:"";
+            this.form.categories = record.value.categories;
 
             this.form.gallery = record.value.media;
             let data = []

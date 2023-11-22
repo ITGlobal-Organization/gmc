@@ -31,6 +31,8 @@ Route::get('/error', function(){
 // NewsLetter
 Route::post('/newsletter',[BaseController::class,'newsletterSubscription'])->name('newsletter.subscribe');
 
+// Contact-Us
+Route::post('/contact-us',[SitePageController::class,'contactUs'])->name('contact-us');
 
 // Blogs
 Route::prefix('blogs')->group(function () {
@@ -47,6 +49,7 @@ Route::prefix('directories')->group(function () {
 
     Route::get('/{slug}',[DirectoryController::class,'getDirectory'])->name('directories.get');
 });
+Route::get('/search-directories',[DirectoryController::class,'searchDirectories'])->name('directories.search');
 
 // Space-Finders
 Route::prefix('space-finders')->group(function () {
@@ -54,6 +57,7 @@ Route::prefix('space-finders')->group(function () {
     Route::get('/ajax',[SpaceFinderController::class,'getSpaceFindersListing'])->name('space-finders.ajax');
     Route::get('/{slug}',[SpaceFinderController::class,'getSpaceFinder'])->name('space-finders.get');
 });
+Route::get('/search-spacefinders',[SpaceFinderController::class,'searchSpaceFinders'])->name('space-finders.search');
 
 // Event-Calenders
 Route::prefix('event-calenders')->group(function () {
@@ -61,6 +65,8 @@ Route::prefix('event-calenders')->group(function () {
     Route::get('/ajax',[EventCalenderController::class,'getEventsListing'])->name('event-calenders.ajax');
     Route::get('/{slug}',[EventCalenderController::class,'getEvent'])->name('event-calenders.get');
 });
+Route::get('/search-events',[EventCalenderController::class,'searchEventsListing'])->name('event-calenders.search');
+
 
 
 //Tabs

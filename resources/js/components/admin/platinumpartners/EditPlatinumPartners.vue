@@ -49,9 +49,11 @@ data(){
         users:[],
         form:{
                 title:'',
+                web_url:'',
                 description:'',
                 is_approved:'',
                 is_active:0,
+
                 media:[],
                 gallery:[]
         },
@@ -67,6 +69,17 @@ mounted(){
                 {
                     label:Language.title,
                     field:"title",
+                    class:"form-control",
+                    grid:"col-md-6 col-12",
+                    type:"text",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                {
+                    label:Language.web_url,
+                    field:"web_url",
                     class:"form-control",
                     grid:"col-md-6 col-12",
                     type:"text",
@@ -168,8 +181,7 @@ methods:{
             this.form.title = record.value.title;
             this.form.description = record.value.description?record.value.description:"";
             this.form.is_approved = record.value.is_approved;
-
-
+            this.form.web_url = record.value.web_url;
             this.form.gallery = record.value.media;
             let data = []
             let ref = this;
