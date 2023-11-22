@@ -118,9 +118,11 @@
                     <td class="list20">{{$Event->title}}</td>
                     <td class="list20">{{\Carbon\Carbon::createFromFormat('H:i:s',$Event->time)->format('h:i A')}}</td>
                     <td class="list20">{{ $Event->venue }}</td>
-                    <td class="list20 disply-table">{{ $Event->city }}</td>
-                    <td class="list20 disply-table">{{ $Event->price }}</td>
-                    <td class=" list30"><span class="btn-download"><a href="{{$Event->booking_link}}" target="_blank">Book Now</a></span></td>
+
+                    <td class="list20">{{ $Event->city }}</td>
+                    <td class="list20">${{ $Event->price }}</td>
+                    <td class=" list30"><span class="btn-download"><a href="{{$Event->booking_link}}" target="_blank">Book Here</a></span></td>
+
                 </tr>
             @endforeach
 

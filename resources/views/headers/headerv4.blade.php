@@ -123,29 +123,31 @@
 
 <!--Start Nav Desktop Area-->
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nav1 none">
-<div class="middle">
- <div class="list2">
-    <ul class="list2">
-      <li><a href="{{ route('home') }}">Home</a></li>
-      <!-- <li><a href="{{ route('login') }}"> {{ trans('lang.login')}}</a></li>
-	  <li><a href="{{ route('register') }}"> {{ trans('lang.join')}}</a></li> -->
-      <li><a href="{{ route('blogs.index') }}">{{ trans('lang.news')}}</a></li>
-       <li><a href="{{ route('site-pages','benifits') }}">{{ trans('lang.benifits')}}</a></li>
-      <li><a href="{{ route('directories.index') }}">{{ trans('lang.directories')}}</a></li>
-      <li><a href="{{ route('space-finders.index') }}">{{ trans('lang.spacefinders')}}</a></li>
-      <li><a href="{{ route('event-calenders.index') }}">{{ trans('lang.eventcalenders')}}</a></li>
-      <li><a href="{{ route('platinum-partners.index') }}">{{ trans('lang.platiniumpartners')}}</a></li>
-      <li><a href="https://pcjh.co.uk/">{{ trans('lang.jobshub')}}</a></li>
-	  <li><a href="{{ route('site-pages','about-us') }}">{{ trans('lang.about_us')}}</a></li>
-	  <li><a href="{{ route('international') }}">{{ trans('lang.international')}}</a></li>
-	 <li><a href="{{ route('mentoring') }}">{{ trans('lang.mentoring')}}</a></li>
-		<li><a href="{{ route('site-pages','contact-us') }}">{{ trans('lang.contact')}}</a></li>
-    </ul>
-  </div>
-<div class="clr"></div>
 
-</div>
-<div class="clr"></div>
+    <div class="middle">
+        <div class="list2">
+            <ul class="list2">
+                <li><a href="{{ route('home') }}">Home</a></li>
+                <!--<li><a href="{{ route('login') }}"> {{ trans('lang.login') }}</a></li>
+                <li><a href="{{ route('register') }}"> {{ trans('lang.join') }}</a></li>-->
+                <li><a href="{{ route('blogs.index') }}">{{ trans('lang.news') }}</a></li>
+                <li><a href="{{ route('site-pages', 'benifits') }}">{{ trans('lang.benifits') }}</a></li>
+                <li><a href="{{ route('directories.index') }}">{{ trans('lang.directories') }}</a></li>
+                <li><a href="{{ route('space-finders.index') }}">{{ trans('lang.spacefinders') }}</a></li>
+                <li><a href="{{ route('event-calenders.index') }}">{{ trans('lang.eventcalenders') }}</a></li>
+                <li><a href="{{ route('platinum-partners.index') }}">{{ trans('lang.platiniumpartners') }}</a></li>
+                <li><a href="https://pcjh.co.uk/">{{ trans('lang.jobshub') }}</a></li>
+                <li><a href="{{ route('site-pages', 'about-us') }}">{{ trans('lang.about_us') }}</a></li>
+                <li><a href="{{ route('international') }}">{{ trans('lang.international') }}</a></li>
+                <li><a href="{{ route('mentoring') }}">{{ trans('lang.mentoring') }}</a></li>
+                <li><a href="{{ route('site-pages', 'contact-us') }}">{{ trans('lang.contact') }}</a></li>
+            </ul>
+        </div>
+        <div class="clr"></div>
+
+    </div>
+    <div class="clr"></div>
+
 </div>
 <!--End Nav Desktop Area-->
 
