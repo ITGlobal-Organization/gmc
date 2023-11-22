@@ -69,8 +69,17 @@
  <div id="list1">
     <ul class="list1">
       <li><a href="{{ route('home') }}"><i class="fas fa-home" style="color: #ffffff;"></i>&nbsp; Home &nbsp;&nbsp;|</a></li>
+      @php 
+         $User = auth()->user();
+      @endphp
+      
+      @if(!isset($User))
        <li><a href="{{ route('login') }}"><i class="fas fa-sign-in-alt" style="color: #ffffff;"></i>&nbsp; Login &nbsp;&nbsp;|</a></li>
       <li><a href="{{ route('register') }}"><i class="fas fa-user" style="color: #ffffff;"></i>&nbsp; Join</a></li>
+      @else
+        <li><a href="{{ route('user.dashboard') }}"><i class="fas fa-user" style="color: #ffffff;"></i>&nbsp; Dashboard &nbsp;&nbsp;|</a></li>
+      <li><a href="{{ route('logout') }}"><i class="fas fa-sign-in-alt" style="color: #ffffff;"></i>&nbsp; Logout</a></li>
+      @endif
     </ul>
   </div>
 
@@ -88,14 +97,14 @@
     <li><a href="{{ route('blogs.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.news')}}</a></li>
       <li><a href="{{ route('site-pages','benifits') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.benifits')}}</a></li>
       <li><a href="{{ route('directories.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.directories')}}</a></li>
-      <li><a href="{{ route('space-finders.index') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.spacefinders')}}</a></li>
-	        <li><a href="{{ route('event-calenders.index') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.eventcalenders')}}</a></li>
-		      <li><a href="{{ route('platinum-partners.index') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.platiniumpartners')}}</a></li>
-		      <li><a href="https://pcjh.co.uk/"><i class="fa fa-chevron-right"></i>{{ trans('lang.jobshub')}}</a></li>
-		      <li><a href="{{ route('site-pages','about-us') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.about_us')}}</a></li>
-		      <li><a href="{{ route('international') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.international')}}</a></li>
-		      <li><a href="{{ route('mentoring') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.mentoring')}}</a></li>
-		      <li><a href="{{ route('site-pages','contact-us') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.contact')}}</a></li>
+      <li><a href="{{ route('space-finders.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.spacefinders')}}</a></li>
+	        <li><a href="{{ route('event-calenders.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.eventcalenders')}}</a></li>
+		      <li><a href="{{ route('platinum-partners.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.platiniumpartners')}}</a></li>
+		      <li><a href="https://pcjh.co.uk/"><i class="fa fa-chevron-right"></i> {{ trans('lang.jobshub')}}</a></li>
+		      <li><a href="{{ route('site-pages','about-us') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.about_us')}}</a></li>
+		      <li><a href="{{ route('international') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.international')}}</a></li>
+		      <li><a href="{{ route('mentoring') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.mentoring')}}</a></li>
+		      <li><a href="{{ route('site-pages','contact-us') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.contact')}}</a></li>
     </ul>
     <div class="clr"></div>
 </div>

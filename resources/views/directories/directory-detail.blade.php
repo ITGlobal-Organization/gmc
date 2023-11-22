@@ -9,9 +9,9 @@
                 <h1 class="mtb-25">{{ $Directory->title }}</h1>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding ">
                     @if(isset($Directory->media[0]))
-                    <img src="{{ $Directory->media[0]->image_url }}" alt="" width="100%" class="blog-img" />
+                    <img src="{{ $Directory->media[0]->image_url }}" alt="" class="blog-img"/>
                     @else
-                    <img src="" alt="" width="100%" class="blog-img" />
+                    <img src="" alt="" class="blog-img"/>
                     @endif
                 </div>
 
@@ -35,7 +35,7 @@
 
                     <!--Start Box 2-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
-                        <i class="fas fa-tty" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Telephone</b> :
+                        <a href="tel://{{ $Directory->phone }}"><i class="fas fa-tty" style="color: #ffffff;"></a></i>&nbsp;&nbsp;<b>Telephone</b> :
                         {{ $Directory->phone }}
                         <div class="clr"></div>
                     </div>
@@ -43,25 +43,28 @@
 
                     <!--Start Box 3-->
                     <!--<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
-                        <i class="fas fa-mobile-alt style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Mobile</b> :
+                        <a href="tel://{{ $Directory->mobile_no }}"><i class="fas fa-mobile-alt style="color: #ffffff;"></a></i>&nbsp;&nbsp;<b>Mobile</b> :
                         {{ $Directory->mobile_no }}
-                        <div class="clr"></div>-->
-                    </div>
+                        <div class="clr"></div>
+                    </div>-->
+
                     <!--End Box 3-->
 
                     <!--Start Box 4-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
-                        <i class="fas fa-envelope-open-text" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Email</b> :
+
+                        <a href="mailto://{{ $Directory->email }}"><i class="fas fa-envelope-open-text" style="color: #ffffff;"></a></i>&nbsp;&nbsp;<b>Email</b> :
+
                         {{ $Directory->email }}
                         <div class="clr"></div>
                     </div>
                     <!--End Box 4-->
 
                     <!--Start Box 5-->
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
-                        <i class="fas fa-globe" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Website </b> :
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
+                        <a href="{{ $Directory->web_url }}" target="_blank"><i class="fas fa-globe" style="color: #ffffff;"></a></i>&nbsp;&nbsp;<b>Website </b> :
                         {{ $Directory->web_url }}
-                        <div class="clr"></div>
+                        <div class="clr"></div> 
                     </div>
                     <!--End Box 5-->
 
