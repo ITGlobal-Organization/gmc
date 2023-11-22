@@ -18,7 +18,7 @@
     <div class="card card-secondary card-outline">
 
         <div class="card-body">
-            <Form :fields="FormFields" :data="form" :action="update" :name="name" :errors="errors"/>
+            <Form :fields="FormFields" :data="form" :action="update" :name="name" :errors="errors" :id="id"/>
         </div>
 
         <!-- /.card-body -->
@@ -291,7 +291,7 @@ mounted(){
                         return "Upload"+this.label
                     },
                     multiple:false,
-                    model:`App\\Models\\Space Finder`,
+                    model:`App\\Models\\SpaceFinder`,
                     required:false,
                     fileType:"image/jpeg, image/png",
                     maxFiles:1

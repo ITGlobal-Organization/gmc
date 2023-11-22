@@ -248,6 +248,7 @@ p {
     width: 100%; 
     object-fit: contain;
     object-position: center bottom;
+
 }
 
 .box-date {
@@ -1652,4 +1653,6 @@ text-decoration: none;
   li{list-style: none !important;}
     label.error {
     color: red !important;
+
   }
+

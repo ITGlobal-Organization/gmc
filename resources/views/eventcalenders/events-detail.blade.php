@@ -65,7 +65,7 @@
 
     <div class="search-oh search-box1">
         <input type="image" class="oh-btn" img="" src="media/brn-search.png">
-        <input type="text" placeholder="Search" class="oh-input">
+        <input type="text" placeholder="Search" class="oh-input search-box">
         <div class="clr"></div>
     </div>
     <div class="clr"></div>
@@ -75,7 +75,7 @@
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 border padding border">
 
     <div class="search-ohch">
-        <input class="ohch-input" name="date" id="" placeholder="Date for visit DD-MM-YYYY"
+        <input class="ohch-input" name="date" id="start-date" placeholder="Date for visit DD-MM-YYYY"
             required="required" type="date">
         <div class="clr"></div>
     </div>
@@ -83,7 +83,7 @@
     <span class="ab-to">TO</span>
 
     <div class="search-ohch">
-        <input class="ohch-input" name="date" id="" placeholder="Date for visit DD-MM-YYYY"
+        <input class="ohch-input" name="date" id="end-date" placeholder="Date for visit DD-MM-YYYY"
             required="required" type="date">
         <div class="clr"></div>
     </div>
