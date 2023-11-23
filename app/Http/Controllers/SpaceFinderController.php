@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Models\SpaceFinder;
 use App\Models\Media;
+use Auth;
 
 class SpaceFinderController extends BaseController
 {
@@ -45,6 +46,8 @@ class SpaceFinderController extends BaseController
     }
 
     public function getSpaceFindersListing(Request $request){
+        // dd($request);
+        $user = Auth::user();
         if(isset($request->sort_by) && $request->sort_by != ""){
             $sort = explode('-',$request->sort_by);
             $this->spaceFinder->setOrderBy($sort[0]);
@@ -53,9 +56,14 @@ class SpaceFinderController extends BaseController
             $this->spaceFinder->setOrderBy('title');
             $this->spaceFinder->setOrder('asc');
         }
-        $SpaceFinders = $this->spaceFinder->getAll([['users','users.id','=','space_finders.user_id']],['space_finders.title','space_finders.description','space_finders.created_at','space_finders.categories','images.image_url','space_finders.slug']);
+        $SpaceFinders = $this->spaceFinder->getAll([['users','users.id','=','space_finders.user_id']],['space_finders.id','space_finders.title','space_finders.description','space_finders.created_at','space_finders.categories','images.image_url','space_finders.slug']);
 
-        return view('sections.space-finders',[
+        if(isset($user) && !$user->hasRole('admin')){
+            $view='user.space-finder';
+        }else{
+            $view='sections.space-finders';
+        }
+        return view($view,[
             'SpaceFinders' => $SpaceFinders,
         ]);
     }
@@ -72,7 +80,7 @@ class SpaceFinderController extends BaseController
             'title' => trans('lang.directory').' | '. $spaceFinder->title
         ]);
     }
-    
+
     public function searchSpaceFinders(Request $request){
         $data = $request->all();
         foreach ($data as $key => $value) {
@@ -87,5 +95,11 @@ class SpaceFinderController extends BaseController
             'SpaceFinders' => $spaceFinder,
         ]);
 
+    }
+
+    public function renderForm(Request $request,$id){
+        $SpaceFinder = $this->spaceFinder->first('id',$id,'=',['user'],[],['space_finders.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
+
+        return view('user.edit.space-finder',['SpaceFinder'=>$SpaceFinder]);
     }
 }

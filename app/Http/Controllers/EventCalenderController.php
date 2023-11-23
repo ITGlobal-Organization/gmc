@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Models\EventCalender;
 use App\Models\Media;
+use Auth;
 
 class EventCalenderController extends BaseController
 {
-    private $eventCalender,$media,$user;
+    private $eventCalender,$media;
+
     public function __construct(EventCalender $eventCalender,Media $media) {
         $this->eventCalender = $eventCalender;
-
         $this->setModel($eventCalender);
         $this->setMedia($media);
     }
@@ -44,27 +45,39 @@ class EventCalenderController extends BaseController
         ]);
     }
     public function getEventsListing(Request $request){
+
+        $user = Auth::user();
         if(isset($request->sort_by) && $request->sort_by != ""){
             $sort = explode('-',$request->sort_by);
             $this->eventCalender->setOrderBy($sort[0]);
             $this->eventCalender->setOrder($sort[1]);
         }
         $Events=$this->eventCalender->where('event_date', '>=', today()->format('Y-m-d'))->get();
-        // $Events = $this->eventCalender->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.*','images.image_url']);
-        return view('eventcalenders.events-detail',[
+        if(isset($user) && !$user->hasRole('admin')){
+            $view='user.events-calendar';
+        }else{
+            $view='eventcalenders.events-detail';
+        }
+        return view($view,[
             'Events' => $Events,
         ]);
     }
+    public function renderForm(Request $request,$id){
 
-    // public function getEvent(Request $request,$slug){
-    //     $Event = $this->eventCalender->first('slug',$slug,'=',['user'],[],['event_calenders.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
-    //     $this->eventCalender->setLength(10);
-    //     // $LatestBlogs = $this->directory->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.title','event_calenders.description','event_calenders.created_at','images.image_url','event_calenders.slug']);
+        $Event=$this->eventCalender->where('id',$request->id)->first();
+        return view('user.edit.events',['Event'=>$Event]);
+    }
 
-    //     return view('event-calenders.events-detail',[
-    //         'Event' => $Event,
-    //         // 'LatestBlog' => $LatestBlogs,
-    //         'title' => trans('lang.eventcalender').' | '. $Event->title
-    //     ]);
-    // }
+    public function update(Request $request,$id){
+        parent::update($request,$id);
+
+        $response = [
+            'success' => true,
+            'data'=>[
+                'route'=>route('user.dashboard')
+            ]
+        ];
+
+        return response()->json($response, 200);
+    }
 }
