@@ -32,6 +32,7 @@
             let mobile_no = $('.mobile_no').val();
             let phone = $('.phone').val();
             let web_url = $('.web_url').val();
+              let category = $('.category').val();
 
             data = {
                 'title':title,
@@ -39,7 +40,8 @@
                 'address':address,
                 'mobile_no':mobile_no,
                 'phone':phone,
-                'web_url':web_url
+                'web_url':web_url,
+                'category':category
             }
             ajaxGet("{{route('directories.search')}}",data,".directories",responseType = 'html')
         });

@@ -33,6 +33,7 @@ import Form from '../../commons/Form.vue';
 import useDirectory from '../../../composables/directories';
 import useService  from '../../../services/index';
 import useUsers from '../../../composables/users';
+import useCategories from '../../../composables/categories';
 
 
 export default {
@@ -47,6 +48,7 @@ data(){
         errors:{},
         FormFields:[],
         users:[],
+        categories:[],
         form:{
                 title:'',
                 slug:'',
@@ -64,7 +66,7 @@ data(){
                 user_id:'',
                 is_approved:'',
                 is_active:0,
-                categories:'',
+                category_id:0,
                 media:[],
                 gallery:[]
         },
@@ -75,6 +77,7 @@ mounted(){
     let ref = this;
 
     ref.getAllUsers();
+    ref.getAllCategories();
 
     ref.FormFields = [
                 {
@@ -111,14 +114,23 @@ mounted(){
                     required:true,
                 },
                 {
-                    label:Language.categories,
-                    field:"categories",
-                    class:"form-control",
+                    label:Language.category,
+                    field:"category_id",
+                    class:"vue-select1",
                     grid:"col-md-6 col-12",
-                    type:"text",
-                    placeholder:function(){
-                        return "Enter "+this.label
+                    type:"select",
+                    isdynamic:true,
+                    searchable:true,
+                    options:function(){
+                            if(this.isdynamic){
+                                return ref.categories;
+                            }
+                            return [];
                     },
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+
                     required:true,
                 },
                 {
@@ -364,6 +376,12 @@ methods:{
             const {records,getAllPublic} = useUsers();
             await getAllPublic();
             this.users = records.value;
+
+    },
+    async getAllCategories(){
+            const {records,getAllPublic} = useCategories();
+            await getAllPublic();
+            this.categories = records.value;
 
     }
 

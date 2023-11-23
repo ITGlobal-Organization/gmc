@@ -47,7 +47,7 @@ return [
             'linked_url' => '',
             'user_id' => 'required|exists:users,id',
             'is_approved'=>'required',
-            'categories'=>'required',
+            'category_id'=>'required|exists:directory_categories,id',
             'description' => 'required'
         ],
         'edit' => [
@@ -64,7 +64,7 @@ return [
             'linked_url' => '',
             'user_id' => 'required|exists:users,id',
             'is_approved'=>'required',
-            'categories'=>'required',
+            'category_id'=>'required|exists:directory_categories,id',
             'description' => 'required'
         ]
     ],

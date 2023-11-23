@@ -44,6 +44,9 @@ import UserIndex from '../components/admin/users/Index.vue';
 import UserCreate from '../components/admin/users/Create.vue';
 import UserEdit from '../components/admin/users/Edit.vue';
 
+// Directory Category
+import CategoryIndex from '../components/admin/categories/Index.vue';
+
 
 const routes = [
 
@@ -141,6 +144,13 @@ const routes = [
         component: Directory,
         props: true,
     },
+       // Directory Category
+    {
+        path: "/admin/directory/categories",
+        name: "admin.directory.category",
+        component: CategoryIndex,
+        props: true,
+    },
     {
         path: "/admin/directory/create",
         name: "admin.directory.create",
@@ -229,6 +239,8 @@ const routes = [
         component: UserEdit,
         props: true,
     },
+
+ 
 
 
 

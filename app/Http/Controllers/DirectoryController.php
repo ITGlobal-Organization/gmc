@@ -76,7 +76,10 @@ class DirectoryController extends BaseController
     public function searchDirectories(Request $request){
         $data = $request->all();
         foreach ($data as $key => $value) {
-            if($value != ""){
+            if($key == 'category'){
+                $this->directory->setFilters(['category_id','=',$value]);
+            }
+            else if($value != ""){
                 $this->directory->setFilters([$key,'like','%'.$value.'%']);
             }
         }

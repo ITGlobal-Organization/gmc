@@ -7,6 +7,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\SpaceFinderController;
 use App\Http\Controllers\PlatinumPartnerController;
+use App\Http\Controllers\CategoryController;
 use Artisan;
 
 
@@ -44,6 +45,7 @@ Route::prefix('blogs')->group(function () {
 
 // Directiories
 Route::prefix('directories')->group(function () {
+    Route::get('/categories',[CategoryController::class,'categories'])->name('directories.category.index');
     Route::get('/',[DirectoryController::class,'directories'])->name('directories.index');
     Route::get('/ajax',[DirectoryController::class,'getDirectoryListing'])->name('directories.ajax');
 

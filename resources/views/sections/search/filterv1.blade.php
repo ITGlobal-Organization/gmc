@@ -30,11 +30,24 @@
         <label>Tel</label>
         <input type="text" class="join-input phone" value="" placeholder="Phone 2">
     </div>-->
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
         <label>Email</label>
         <input type="text" class="join-input email" value="" placeholder="Email">
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
+        <label>Category</label>
+        @php 
+            $category = new App\Models\Category();
+            $Categories = $category->getAll([],['id,name as text']);
+        @endphp
+        <select class="form-control category">
+            <option value="0">Select Category</option>
+        @foreach($Categories as $Category)
+        <option value="{{ $Category->id }}">{{ $Category->text }}</option>
+        @endforeach
+        </select>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
         <label>Website</label>
         <input type="text" class="join-input web_url" value="" placeholder="Website">
     </div>

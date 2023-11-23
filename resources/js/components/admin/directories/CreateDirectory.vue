@@ -37,6 +37,7 @@ import {Language} from '../../../helpers/lang/lang';
 import Form from '../../commons/Form.vue';
 import useDirectory from '../../../composables/directories';
 import useUsers from '../../../composables/users';
+import useCategories from '../../../composables/categories';
 import useService  from '../../../services/index';
 import { axiosWrapper } from '../../../helpers';
 
@@ -50,6 +51,7 @@ export default {
             Lang:Language,
             loader:false,
             users:[],
+            categories:[],
             errors:{},
             FormFields:[],
             developerOptions:[],
@@ -70,7 +72,7 @@ export default {
                 instagram_url:'',
                 description:'',
                 user_id:'',
-                categories:'',
+                category_id:0,
                 // author:'',
                 media:[],
                 gallery:[]
@@ -81,6 +83,7 @@ export default {
     mounted(){
         let ref = this;
         ref.getAllUsers();
+        ref.getAllCategories();
         ref.FormFields = [
                 {
                     label:Language.title,
@@ -116,14 +119,23 @@ export default {
                     required:true,
                 },
                 {
-                    label:Language.categories,
-                    field:"categories",
-                    class:"form-control",
+                    label:Language.category,
+                    field:"category_id",
+                    class:"vue-select1",
                     grid:"col-md-6 col-12",
-                    type:"text",
-                    placeholder:function(){
-                        return "Enter "+this.label
+                    type:"select",
+                    isdynamic:true,
+                    searchable:true,
+                    options:function(){
+                            if(this.isdynamic){
+                                return ref.categories;
+                            }
+                            return [];
                     },
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+
                     required:true,
                 },
                 {
@@ -344,6 +356,12 @@ export default {
             const {records,getAllPublic} = useUsers();
             await getAllPublic();
             this.users = records.value;
+
+        },
+        async getAllCategories(){
+            const {records,getAllPublic} = useCategories();
+            await getAllPublic();
+            this.categories = records.value;
 
         }
 
