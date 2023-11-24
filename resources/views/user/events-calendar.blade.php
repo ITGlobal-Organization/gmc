@@ -41,7 +41,7 @@
 
                 <div class="search-oh search-box1">
                     <input type="image" class="oh-btn" img="" src="{{ asset('images/brn-search.png') }}">
-                    <input type="text" placeholder="Search" class="oh-input">
+                    <input type="text" placeholder="Search" class="oh-input search-box">
                     <div class="clr"></div>
                 </div>
                 <div class="clr"></div>
@@ -52,7 +52,7 @@
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 border padding border">
 
                 <div class="search-ohch">
-                    <input class="ohch-input" name="date" id="" placeholder="Date for visit DD-MM-YYYY"
+                    <input class="ohch-input" name="date" id="start-date" placeholder="Date for visit DD-MM-YYYY"
                         required="required" type="date">
                     <div class="clr"></div>
                 </div>
@@ -104,8 +104,8 @@
                                         @foreach ($Events as $Event)
                                             @if (str_contains($Event->price, '-'))
                                                 @php$price = explode('-', $Event->price);
-                                                    $Event->price = '€' . $price[0] . '-€' . $price[1];
-                                                @endphp
+                                                                                                        $Event->price = '€' . $price[0] . '-€' . $price[1];
+                                                                                                @endphp ?>
                                             @else
                                                 @php $Event->price = "€".$Event->price; @endphp
                                             @endif
@@ -120,15 +120,18 @@
                                                 <td class="list20">{{ $Event->venue }}</td>
                                                 <td class="list20">{{ $Event->city }}</td>
                                                 <td class="list20">{{ $Event->price }}</td>
-                                                <td class=" list30"><span class="btn-download"><a href="{{$Event->booking_link}}">Book
+                                                <td class=" list30"><span class="btn-download"><a
+                                                            href="{{ $Event->booking_link }}">Book
                                                             Here</a></span></td>
                                                 <td class="list20">
                                                     <i class="fas fa-edit" style="color: #0000ff;"></i>
-                                                    <a href="#" style="color: #000;font-size: 14px;" class="edit" data-id="{{$Event->id}}">Edit</a>
+                                                    <a href="#" style="color: #000;font-size: 14px;" class="edit"
+                                                        data-id="{{ $Event->id }}">Edit</a>
                                                 </td>
                                                 <td class="list20">
                                                     <i class="fas fa-trash-alt" style="color: #ff0000;"></i>
-                                                    <a href="#" style="color: #000;font-size: 14px;" class="delete">Delete</a>
+                                                    <a href="#" style="color: #000;font-size: 14px;"
+                                                        class="delete">Delete</a>
                                                 </td>
 
                                             </tr>
@@ -170,12 +173,28 @@
 @endsection
 @section('scripts')
     <script>
-        $('.edit').on('click',function(e){
+        $('.edit').on('click', function(e) {
             e.preventDefault();
             let id = $(this).attr('data-id');
-            window.location.href = "{{route('user.events.edit', '')}}"+"/"+id;
-            // ajaxGet("{{route('user.events.ajax')}}",{id:id},".events",responseType = 'html');
-        })
+            window.location.href = "{{ route('user.events.edit', '') }}" + "/" + id;
+            // ajaxGet("{{ route('user.events.ajax') }}",{id:id},".events",responseType = 'html');
+        });
+        $(document).on('keyup', '.search-box', function() {
+            search = $(this).val();
+            if (search.length > 2) {
+                ajaxGet("{{ route('event-calenders.search') }}", {
+                    search
+                }, ".events", responseType = 'html');
+            }
+        });
+        $(document).on('change', '#end-date', function(ev) {
+            start_date = $('#start-date').val();
+            end_date = $('#end-date').val();
+            ajaxGet("{{ route('event-calenders.search') }}", {
+                start_date: start_date,
+                end_date: end_date
+            }, ".events", responseType = 'html');
+        });
     </script>
     {{-- <link rel="stylesheet" href="{{asset('css/calendar-gc.css')}}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
