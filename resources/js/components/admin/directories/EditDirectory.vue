@@ -341,7 +341,7 @@ methods:{
             await get(this.id);
             console.log(record.value);
             this.form.title = record.value.title;
-            this.form.categories =record.value.categories;
+            this.form.category_id =record.value.category_id;
             this.form.user_id = record.value.user_id;
             this.form.web_url = record.value.web_url;
             this.form.facebook_url = record.value.facebook_url;

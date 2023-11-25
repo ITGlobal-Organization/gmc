@@ -31,6 +31,7 @@ class BaseModel extends Model
     private $render_columns = [];
     protected $rules = [];
     protected $has_images = false;
+    protected $count = 0;
 
     protected static function boot()
     {
@@ -49,8 +50,9 @@ class BaseModel extends Model
 
 
     public function setLength($length)
-    {
-        $this->length = $length > 0 ? $length : $this->length;
+    {   
+       
+        $this->length = $length;
     }
 
     public function setStart($start)
@@ -112,6 +114,17 @@ class BaseModel extends Model
     {
         return $this->groupBy;
     }
+
+    public function setCount($count)
+    {
+        $this->count = $count > 0 ? $count : $this->count;
+    }
+
+    public function getCount()
+    {
+        return $this->count;
+    }
+
 
     public function setSelectedColumn($columns){
         $this->select_columns = $columns;
@@ -316,10 +329,16 @@ class BaseModel extends Model
     {
 
         $data =  static::selectRaw(implode(',', $select));
-        // dd($this->has_images);
-        if($this->has_images){
-            $data->leftjoin('images','images.model_id',$this->table.'.id')->where('images.model','=',$this->class_name);
+          // dd($this->has_images);
+          if($this->has_images){
+            $data->leftjoin('images','images.model_id',$this->table.'.id')->where('images.model','like',str_replace('\\','%',$this->class_name));
 
+        }
+        
+        if (count($this->getFilters()) > 0) {
+            foreach ($this->getFilters() as $condition) {
+                $data->where($condition[0], $condition[1], $condition[2]);
+            }
         }
 
         if (count($join) > 0) {
@@ -328,19 +347,18 @@ class BaseModel extends Model
             }
             // $data = static::with($relation)->selectRaw(implode(',', $select));
         }
+       
+        $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
+      
 
-        if (count($this->getFilters()) > 0) {
-            foreach ($this->getFilters() as $condition) {
-                $data->where($condition[0], $condition[1], $condition[2]);
-            }
-        }
+       
+
         if($this->getLength() > 0 )
-            $Model = $data->skip($this->getLength() * ($this->getStart() - 1))->take($this->getLength())->orderBy($this->table.'.'.$this->getOrderBy(), $this->getOrder())->groupBy($this->table.'.'.$this->getGroupBy())->get();
-
-        // $Model = $data->get();
-        // dd($data->toSql());
-
+           return $data->skip($this->getLength() * ($this->getStart() - 1))->take($this->getLength())->orderBy($this->table.'.'.$this->getOrderBy(), $this->getOrder())->groupBy($this->table.'.'.$this->getGroupBy())->get();
+        
+          
         return $data->groupBy($this->table.'.'.$this->getGroupBy())->get();
+        
 
     }
 

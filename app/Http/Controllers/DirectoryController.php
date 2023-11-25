@@ -7,13 +7,14 @@ use App\Http\Controllers\BaseController;
 use App\Models\Directory;
 use App\Models\Media;
 
+
 class DirectoryController extends BaseController
 {
     private $directory,$media,$user;
     public function __construct(Directory $directory,Media $media) {
         $this->directory = $directory;
 
-        $this->setModel($directory);
+        $this->setModel( $this->directory);
         $this->setMedia($media);
     }
 
@@ -42,27 +43,41 @@ class DirectoryController extends BaseController
     public function directories(Request $request){
         return view('directories.directories',[
             'title' => trans('lang.directories'),
+            'count' => 0
         ]);
     }
     public function getDirectoryListing(Request $request){
-        if(isset($request->sort_by) && $request->sort_by != ""){
-            $sort = explode('-',$request->sort_by);
-            $this->directory->setOrderBy($sort[0]);
-            $this->directory->setOrder($sort[1]);
-        }else{
-            $this->directory->setOrderBy('title');
-            $this->directory->setOrder('asc');
+        $this->setGeneralFilters($request);
+        $this->removeGeneralFilters($request);
+
+        $data = $request->all();
+        foreach ($data as $key => $value) {
+            if($key == 'category' && (isset($value) && $value != "")){
+                $this->directory->setFilters(['category_id','=',$value]);
+            }
+            else if(isset($value) && $value != ""){
+                $this->directory->setFilters([$key,'like','%'.$value.'%']);
+            }
         }
-        $this->directory->setLength(config('site_config.constants.item_per_page'));
+        // $this->directory->setOrderBy('id');
+        // $this->directory->setOrder('desc');
+        // $Directories = $this->directory->getAll();
+        // return view('sections.directories',[
+        //     'Directories' => $Directories,
+        // ]);
+      
         $Directories = $this->directory->getAll([['users','users.id','=','directories.user_id']],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
+      
         return view('sections.directories',[
             'Directories' => $Directories,
+            'count' => $this->directory->getCount(),
+            'page' => $this->directory->getStart()
         ]);
     }
 
     public function getDirectory(Request $request,$slug){
         $Blog = $this->directory->first('slug',$slug,'=',['user'],[],['directories.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
-        $this->directory->setLength(10);
+        // $this->directory->setLength(10);
 
         // $LatestBlogs = $this->directory->getAll([['users','users.id','=','directories.user_id']],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
 
@@ -74,21 +89,7 @@ class DirectoryController extends BaseController
     }
     
     public function searchDirectories(Request $request){
-        $data = $request->all();
-        foreach ($data as $key => $value) {
-            if($key == 'category'){
-                $this->directory->setFilters(['category_id','=',$value]);
-            }
-            else if($value != ""){
-                $this->directory->setFilters([$key,'like','%'.$value.'%']);
-            }
-        }
-        $this->directory->setOrderBy('id');
-        $this->directory->setOrder('desc');
-        $Directories = $this->directory->getAll();
-        return view('sections.directories',[
-            'Directories' => $Directories,
-        ]);
+       
 
     }
 }
