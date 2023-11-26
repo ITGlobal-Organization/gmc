@@ -14,17 +14,30 @@ Route::get('/', [DashboardController::class, 'dashboard'])->name('user.dashboard
 
 //Events
 Route::prefix('events')->group(function(){
-    Route::get('/', [EventCalenderController::class, 'getEventsListing'])->name('user.events');
+    Route::get('/', [EventCalenderController::class, 'eventCalenders'])->name('user.events');
+    Route::post('/', [EventCalenderController::class, 'store'])->name('user.events.store');
     Route::get('/ajax',[EventCalenderController::class,'renderForm'])->name('user.events.ajax');
+    Route::get('/listing',[EventCalenderController::class,'getEventsListing'])->name('user.events.listing');
     Route::get('/edit/{id}',[EventCalenderController::class, 'renderForm'])->name('user.events.edit');
     Route::post('/update/{id}',[EventCalenderController::class, 'update'])->name('user.events.update');
+    Route::post('/delete/{id}',[EventCalenderController::class, 'destroy'])->name('user.events.destroy');
+    Route::get('/create',function(){
+        return view('user.event.create');
+    })->name('user.events.create');
+    Route::delete('/media/delete/{id}',[EventCalenderController::class,'deleteFiles'])->name('user.events.media-upload');
 });
 //SpaceFinders
 Route::prefix('space-finders')->group(function(){
-    Route::get('/', [SpaceFinderController::class, 'getSpaceFindersListing'])->name('user.space-finders');
+    Route::get('/', [SpaceFinderController::class, 'spaceFinders'])->name('user.space-finders');
+    Route::post('/', [SpaceFinderController::class, 'store'])->name('user.space-finders.store');
     Route::get('/ajax',[SpaceFinderController::class,'renderForm'])->name('user.space-finders.ajax');
+    Route::get('/listing',[SpaceFinderController::class,'getSpaceFindersListing'])->name('user.space-finders.listing');
     Route::get('/edit/{id}',[SpaceFinderController::class, 'renderForm'])->name('user.space-finders.edit');
     Route::post('/update/{id}',[SpaceFinderController::class, 'update'])->name('user.space-finders.update');
+    Route::post('/delete/{id}',[SpaceFinderController::class, 'destroy'])->name('user.space-finders.destroy');
+    Route::get('/create',function(){
+        return view('user.space-finder.create');
+    })->name('user.space-finders.create');
 });
 //SpaceFinders
 Route::prefix('details')->group(function(){
