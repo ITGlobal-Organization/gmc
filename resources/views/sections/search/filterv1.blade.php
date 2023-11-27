@@ -1,9 +1,9 @@
 <div class="filter-btn show_hide"><i class="fas fa-filter fa-spin" style="color: #ff8000;"></i>&nbsp;&nbsp;
-    Search Filter
+    {{ trans('lang.search_filter')}}
 </div>
 <div class="slidingDiv">
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 padding border mb-25">
-        <h6>Search Filter</h6>
+        <h6>{{ trans('lang.search_filter')}}</h6>
     </div>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 padding border mb-25 text-right">
         <a href="#" class="show_hide">
@@ -11,48 +11,48 @@
         </a>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
-        <label>What are you looking for?</label>
-        <input type="text" class="join-input title" value="" placeholder="What are you looking for?" >
+        <label>{{trans('lang.filters_title') }}</label>
+        <input type="text" class="join-input title" value="" placeholder="{{trans('lang.filters_title') }}" >
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
-        <label>Location</label>
-        <input type="text" class="join-input address" value="" placeholder="Location" >
+        <label>{{ trans('lang.location')}}</label>
+        <input type="text" class="join-input address" value="" placeholder="{{ trans('lang.location')}}" >
     </div>
     {{-- <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
         <label>Post Code</label>
         <input type="text" class="join-input" value="" placeholder="Post Code">
     </div> --}}
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
-        <label>Phone No.</label>
-        <input type="text" class="join-input mobile_no" value="" placeholder="Phone" >
+        <label>{{ trans('lang.phone') }}</label>
+        <input type="text" class="join-input mobile_no" value="" placeholder="{{ trans('lang.phone') }}" >
     </div>
     <!--<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
         <label>Tel</label>
         <input type="text" class="join-input phone" value="" placeholder="Phone 2">
     </div>-->
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
-        <label>Email</label>
-        <input type="text" class="join-input email" value="" placeholder="Email">
+        <label>{{ trans('lang.email') }}</label>
+        <input type="text" class="join-input email" value="" placeholder="{{ trans('lang.email') }}">
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
-        <label>Category</label>
+        <label>{{ trans('lang.category') }}</label>
         @php 
             $category = new App\Models\Category();
             $Categories = $category->getAll([],['id,name as text']);
         @endphp
         <select class="form-control category">
-            <option value="0">Select Category</option>
+            <option value="0">{{ trans('lang.select_msg',['attribute' => trans('lang.category')]) }}</option>
         @foreach($Categories as $Category)
         <option value="{{ $Category->id }}">{{ $Category->text }}</option>
         @endforeach
         </select>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border mb-20">
-        <label>Website</label>
-        <input type="text" class="join-input web_url" value="" placeholder="Website">
+        <label>{{ trans('lang.website') }}</label>
+        <input type="text" class="join-input web_url" value="" placeholder="{{ trans('lang.website') }}">
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center mtb-40">
-        <input type="submit" class="ct-submit apply-filters" value="Apply Filters">
+        <input type="submit" class="ct-submit apply-filters" value="{{ trans('lang.apply_filters') }}">
     </div>
 </div>
 

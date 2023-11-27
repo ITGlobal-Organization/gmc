@@ -26,6 +26,8 @@ class Directory extends BaseModel
     public function __construct(){
         parent::__construct();
         $this->setRules();
+        $this->setOrderBy('title');
+        $this->setOrder('asc');
     }
 
     public static function boot()

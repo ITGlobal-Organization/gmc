@@ -13,30 +13,36 @@
 	<!--End Middle-->
 @endsection
 @section('scripts')
-    <script>
-        sort_by = "";
+<script>
+       let totalPages = 0;
+        let filters = {
+            order_by:"",
+            order:"",
+            title:"",
+            email:"",
+            address:"",
+            mobile_no:"",
+            phone:"",
+            web_url:"",
+            start:1
+
+        }
 
         $(document).on("change", '.sort_by', function() {
-            sort_by = $(this).val();
+            let sort_by = $(this).val();
+            filters.order_by = sort_by.split('-')[0];
+            filters.order = sort_by.split('-')[1];
             getSpaceFinderListing();
         });
         $(document).on('click', '.apply-filters', function() {
-            let title = $('.title').val();
-            let email = $('.email').val();
-            let address = $('.address').val();
-            let mobile_no = $('.mobile_no').val();
-            let phone = $('.phone').val();
-            let web_url = $('.web_url').val();
+            filters.title = $('.title').val();
+            filters.email = $('.email').val();
+            filters.address = $('.address').val();
+            filters.mobile_no = $('.mobile_no').val();
+            filters.phone = $('.phone').val();
+            filters.web_url = $('.web_url').val();
 
-            data = {
-                'title': title,
-                'email': email,
-                'address': address,
-                'mobile_no': mobile_no,
-                'phone': phone,
-                'web_url': web_url
-            }
-            ajaxGet("{{ route('space-finders.search') }}", data, ".spacefinders", responseType = 'html')
+            getSpaceFinderListing()
         });
 
         $(document).ready(function() {
@@ -44,9 +50,48 @@
         })
 
         function getSpaceFinderListing() {
-            ajaxGet("{{ route('space-finders.ajax') }}", {
-                sort_by
-            }, ".spacefinders", responseType = 'html');
+            ajaxGet("{{ route('space-finders.ajax') }}", filters, ".spacefinders", responseType = 'html');
         }
-    </script>
+
+
+        $(document).on('click','.page',function(e){
+            e.preventDefault();
+            $('.page').removeClass("page-active");
+            $(this).addClass("page-active");
+            filters.start = $(this).text();
+            getSpaceFinderListing();
+        })
+
+        $(document).on('click','.next',function(e){
+        e.preventDefault();
+        totalPages = $('.count').val();
+        if( filters.start  == totalPages){
+            filters.start  = 1;
+            $('.page').removeClass('page-active');
+            $('.pagination a[data-page=page-1]').addClass("page-active");
+            getSpaceFinderListing();
+        }else{
+             filters.start = parseInt(filters.start)+1;
+            $('.page').removeClass('page-active')
+            $('.pagination a[data-page=page-'+ page + ']').addClass("page-active");
+            getSpaceFinderListing();
+        }
+    })
+
+    $(document).on('click','.prev',function(e){
+        e.preventDefault();
+        totalPages = $('.count').val();
+        if( filters.start  == 1){
+            filters.start  = totalPages;
+            $('.page').removeClass('page-active');
+            $('.pagination a[data-page=page-'+ totalPages + ']').addClass("page-active");
+            getSpaceFinderListing();
+        }else{
+             filters.start  = parseInt( filters.start )-1;
+            $('.page').removeClass('page-active');
+            $('.pagination a[data-page=page-'+ page + ']').addClass("page-active");
+            getSpaceFinderListing();
+        }
+    })
+</script>
 @endsection

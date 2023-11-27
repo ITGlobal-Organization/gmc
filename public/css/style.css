@@ -1689,7 +1689,7 @@ text-decoration: none;
 }
 .pagination > a,
 .pagination > span {
-	background: #510270;
+	background: #2b9acb;
 	color: #fff;
 	display: flex !important;
 	justify-content: center;
@@ -1713,11 +1713,11 @@ text-decoration: none;
 	width: 24px;
 }
 .pagination > a.page-active {
-	background: #BC13FE;
+	background: rgb(95, 67, 155);
 	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
 }
 .pagination > a:hover {
-	background: #BC13FE;
+	background: rgb(95, 67, 155);
 }
 .pagination > a:first-child {
 	border-radius: 20px 0 0 20px;

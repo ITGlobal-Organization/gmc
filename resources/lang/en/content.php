@@ -20,20 +20,15 @@ return [
     'top-bar' => [
         'heading' => 'Limited time offer! Get up to <i><b>40% OFF</b></i> on all products'
     ],
-    'featured-products' => [
-        'top-content' => ' <h1 class="margin-bot20">Create any custom design for fashion</h1> accessory and promotional products such as patches, pins, and caps. We offer inexpensive options with no MOQ and fast turnaround. Start today!',
-        'heading'   => 'FEATURED PRODUCTS'
-    ],
-    'login' => [
-        'heading' => 'Welcome Back!',
-        'subheading' => 'Please login to your account',
-        'image' => 'login-img.jpg'
-    ],
-    'sign-up' => [
-        'heading' => 'Get Started',
-        'subheading' => 'Please login to your account',
-        'image' => 'login-img.jpg'
+    'space-finder' => [
+        'description' => "Here we have harnessed space (indoors and out) from within our membership and partners.
+        <br>
+        This includes property for long term let or sale and also space for use and hire by the hour, day, week, month and
+        so on.
+        <br>
+        There is a variety of options with different facilities e.g. parking and catering.
+        <br>
+        Please register to upload space you have to offer or search for your needs if you are looking."
     ]
-    
 
 ];

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Models\EventCalender;
 use App\Models\Media;
+use Auth;
 
 class EventCalenderController extends BaseController
 {
@@ -39,64 +40,94 @@ class EventCalenderController extends BaseController
     }
 
     public function eventCalenders(Request $request){
-        return view('eventcalenders.event-calenders',[
+        $user = Auth::user();
+        if(isset($user) && $user->hasRole('user')){
+            $view= 'user.event.index';
+        }else{
+            $view= 'eventcalenders.event-calenders';
+        }
+        return view($view,[
             'title' => trans('lang.eventcalenders'),
+            'count' => 0
         ]);
     }
     public function getEventsListing(Request $request){
-        if(isset($request->sort_by) && $request->sort_by != ""){
-            $sort = explode('-',$request->sort_by);
-            $this->eventCalender->setOrderBy($sort[0]);
-            $this->eventCalender->setOrder($sort[1]);
+        $user = Auth::user();
+        $this->setGeneralFilters($request);
+        $this->removeGeneralFilters($request);
+        
+
+        $AllEvents = $this->eventCalender->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.*','images.image_url']);
+
+        if(isset($request->search) && $request->search != '') {
+            $this->eventCalender->setFilters(['title','like','%'.$request->search.'%']);
         }
-        $Events=$this->eventCalender->where('event_date', '>=', today()->format('Y-m-d'))->get();
-        // $Events = $this->eventCalender->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.*','images.image_url']);
-        return view('eventcalenders.events-detail',[
+
+        if((isset($request->end_date) && $request->end_date != '') && (isset($request->start_date)) ){
+            if($request->start_date == ""){
+                $startDate = date('Y-m-d');
+            }else{
+                $startDate = date('Y-m-d',strtotime($request->start_date));
+            }
+            $endDate = date('Y-m-d',strtotime($request->end_date));
+            $this->eventCalender->setFilters(['event_date','>=',$startDate]);
+            $this->eventCalender->setFilters(['event_date','<=',$endDate]);
+        }
+
+        $Events = $this->eventCalender->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.*','images.image_url']);
+        
+        if(isset($user) && !$user->hasRole('admin')){
+            $view='user.event.listing';
+        }else{
+            $view='eventcalenders.events-detail';
+        }
+        return view($view,[
             'Events' => $Events,
+            'AllEvents' => $AllEvents,
+            'count' => $this->eventCalender->getCount(),
+            'page' => $this->eventCalender->getStart()
         ]);
     }
 
-    public function searchEventsListing(Request $request){
 
-        try{
-            if(isset($request->search)){
-                $Events=$this->eventCalender->where('event_date', '>=', today()->format('Y-m-d'))->where(function($query)use($request) {
-                        $query->where('title',$request->search)
-                        ->orWhere('venue',$request->search)->orWhere('city',$request->search)->orWhere('price',$request->search);
-                })->orderBy('id','desc')->get();
 
-            }
-            if(isset($request->end_date) && isset($request->start_date)){
-                if($request->start_date == ""){
-                    $startDate = date('Y-m-d');
-                }else{
-                    $startDate = date('Y-m-d',strtotime($request->start_date));
-                }
-                $endDate = date('Y-m-d',strtotime($request->end_date));
-                $Events=$this->eventCalender->whereDate('event_date','>=',$startDate)->whereDate('event_date','<=',$endDate)->orderBy('id','desc')->get();
-            }
+    // public function searchEventsListing(Request $request){
+    //     $user = Auth::user();
+    //     try{
+    //         if(isset($request->search)){
 
-            return view('eventcalenders.events-detail',[
-                'Events' => $Events,
-            ]);
-        } catch (\Exception $e) {
-            Log::error($e);
-            $Events=$this->eventCalender->where('event_date', '>=', today()->format('Y-m-d'))->get();
-            return view('eventcalenders.events-detail',[
-                'Events' => $Events,
-            ]);
-        }
-    }
+    //             $Events=$this->eventCalender->where('event_date', '>=', today()->format('Y-m-d'))->where(function($query)use($request) {
+    //                     $query->where('title','like', '%' . $request->search . '%')
+    //                     ->orWhere('venue','like', '%' . $request->search . '%')->orWhere('city','like', '%' . $request->search . '%')->orWhere('price','like', '%' . $request->search . '%');
+    //             })->orderBy('id','desc')->get();
 
-    // public function getEvent(Request $request,$slug){
-    //     $Event = $this->eventCalender->first('slug',$slug,'=',['user'],[],['event_calenders.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
-    //     $this->eventCalender->setLength(10);
-    //     // $LatestBlogs = $this->directory->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.title','event_calenders.description','event_calenders.created_at','images.image_url','event_calenders.slug']);
-
-    //     return view('event-calenders.events-detail',[
-    //         'Event' => $Event,
-    //         // 'LatestBlog' => $LatestBlogs,
-    //         'title' => trans('lang.eventcalender').' | '. $Event->title
-    //     ]);
+    //         }
+    //         if(isset($request->end_date) && isset($request->start_date)){
+    //             if($request->start_date == ""){
+    //                 $startDate = date('Y-m-d');
+    //             }else{
+    //                 $startDate = date('Y-m-d',strtotime($request->start_date));
+    //             }
+    //             $endDate = date('Y-m-d',strtotime($request->end_date));
+    //             $Events=$this->eventCalender->whereDate('event_date','>=',$startDate)->whereDate('event_date','<=',$endDate)->orderBy('id','desc')->get();
+    //         }
+    //         if(isset($user) && $user->hasRole('user')){
+    //             $view = "user.event.listing";
+    //         }else{
+    //             $view = "eventcalenders.events-detail";
+    //         }
+    //         return view($view,[
+    //             'Events' => $Events,
+    //         ]);
+    //     } catch (\Exception $e) {
+    //         Log::error($e);
+    //         $Events=$this->eventCalender->where('event_date', '>=', today()->format('Y-m-d'))->get();
+    //         return view('eventcalenders.events-detail',[
+    //             'Events' => $Events,
+    //         ]);
+    //     }
     // }
+
+
+
 }

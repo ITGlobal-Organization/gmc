@@ -18,7 +18,7 @@
     <!--End Middle-->
 @endsection
 @section('scripts')
-    <script>
+<script>
         // sort_by = "";
         // page = 1;
         let totalPages = 0;
@@ -61,7 +61,7 @@
         }
 
 
-        
+        // Pagination
         $(document).on('click','.page',function(e){
             e.preventDefault();
             $('.page').removeClass("page-active");
@@ -101,5 +101,5 @@
             getDirectoryListing();
         }
     })
-    </script>
+</script>
 @endsection

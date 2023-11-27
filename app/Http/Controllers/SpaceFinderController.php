@@ -41,22 +41,28 @@ class SpaceFinderController extends BaseController
     public function spaceFinders(Request $request){
         return view('space-finders.space-finders',[
             'title' => trans('lang.spacefinders'),
+            'count' => 0
         ]);
     }
 
     public function getSpaceFindersListing(Request $request){
-        if(isset($request->sort_by) && $request->sort_by != ""){
-            $sort = explode('-',$request->sort_by);
-            $this->spaceFinder->setOrderBy($sort[0]);
-            $this->spaceFinder->setOrder($sort[1]);
-        }else{
-            $this->spaceFinder->setOrderBy('title');
-            $this->spaceFinder->setOrder('asc');
+        
+        $this->setGeneralFilters($request);
+        $this->removeGeneralFilters($request);
+
+        $data = $request->all();
+        foreach ($data as $key => $value) {
+            if($value != ""){
+                $this->spaceFinder->setFilters([$key,'like','%'.$value.'%']);
+            }
         }
+
         $SpaceFinders = $this->spaceFinder->getAll([['users','users.id','=','space_finders.user_id']],['space_finders.title','space_finders.description','space_finders.created_at','space_finders.categories','images.image_url','space_finders.slug']);
 
         return view('sections.space-finders',[
             'SpaceFinders' => $SpaceFinders,
+            'count' => $this->spaceFinder->getCount(),
+            'page' => $this->spaceFinder->getStart()
         ]);
     }
 
@@ -74,12 +80,7 @@ class SpaceFinderController extends BaseController
     }
     
     public function searchSpaceFinders(Request $request){
-        $data = $request->all();
-        foreach ($data as $key => $value) {
-            if($value != ""){
-                $this->spaceFinder->setFilters([$key,'like','%'.$value.'%']);
-            }
-        }
+     
         $this->spaceFinder->setOrderBy('id');
         $this->spaceFinder->setOrder('desc');
         $spaceFinder = $this->spaceFinder->getAll();
