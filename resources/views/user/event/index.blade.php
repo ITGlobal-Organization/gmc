@@ -90,8 +90,20 @@
 @endsection
 @section('scripts')
     <script>
-    sort_by = "";
-    search ="";
+    let filters = {
+        start_date:"",
+        end_date:"",
+        order_by:"",
+        order:"",
+
+    }
+
+	$(document).on("change",'.sort_by',function(){
+		let sort_by = $(this).val();
+        filters.order_by = sort_by.split('-')[0];
+        filters.order = sort_by.split('-')[1];
+		getEventsListing();
+	});
         $(document).ready(function() {
             getEventsListing();
         });
@@ -126,9 +138,9 @@
         });
 
         function getEventsListing() {
-            ajaxGet("{{ route('user.events.listing') }}", {
-                sort_by
-            }, ".events", responseType = 'html');
+            ajaxGet("{{ route('user.events.listing') }}",
+                filters
+            , ".events", responseType = 'html');
         }
     </script>
     {{-- <link rel="stylesheet" href="{{asset('css/calendar-gc.css')}}">

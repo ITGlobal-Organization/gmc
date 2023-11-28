@@ -1672,7 +1672,7 @@ text-decoration: none;
     position: absolute;
 }
 
-    .text-area {
+.text-area {
         padding: 0px 15px 0px 15px;
         margin: 0px 0px 0px 0px;
         width: 100%;
@@ -1687,5 +1687,8 @@ text-decoration: none;
         font-weight: 100;
         border-radius: 10px;
         text-transform: capitalize;
-    }
+}
 
+[class*="error-"] {
+    margin-left: -30px;
+}

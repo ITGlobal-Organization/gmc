@@ -24,9 +24,8 @@
 
                             @foreach ($Events as $Event)
                                 @if (str_contains($Event->price, '-'))
-                                    @php$price = explode('-', $Event->price);
-                                                                                                                                                $Event->price = '€' . $price[0] . '-€' . $price[1];
-                                                                                                                                    @endphp ?> ?>
+                                    @php $price = explode('-', $Event->price);
+                                        $Event->price = '€' . $price[0] . '-€' . $price[1];                                                                                             @endphp ?> ?>
                                 @else
                                     @php $Event->price = "€".$Event->price; @endphp
                                 @endif

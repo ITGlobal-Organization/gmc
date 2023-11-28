@@ -13,93 +13,117 @@
                 <input type="hidden" name="user_id" id="" value="{{ $SpaceFinder->user_id }}">
                 <input type="hidden" name="is_approved" id="" value="{{ $SpaceFinder->is_approved }}">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25">
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                        <label for="title">Title</label>
-                        <input type="text" class="serch-input" value="{{ $SpaceFinder->title }}" placeholder="Title"
-                            name="title">
-                        <div class="clr"></div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
+                            <label for="title">Title</label>
+                            <input type="text" class="serch-input" value="{{ $SpaceFinder->title }}" placeholder="Title"
+                                name="title">
+                                <div class="error-title"></div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
+                            <label for="categories">Categories</label>
+                            <input type="text" class="serch-input" value="{{ $SpaceFinder->categories }}"
+                                placeholder="Categories" name="categories">
+                                <div class="error-categories"></div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
+                            <label for="email">Email</label>
+                            <input type="text" class="serch-input" value="{{ $SpaceFinder->email }}" placeholder="Email"
+                                name="email">
+                                <div class="error-email"></div>
+                            <div class="clr"></div>
+                        </div>
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                        <label for="categories">Categories</label>
-                        <input type="text" class="serch-input" value="{{ $SpaceFinder->categories }}"
-                            placeholder="Categories" name="categories">
-                        <div class="clr"></div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
+                            <label for="mobile_no">Mobile No</label>
+                            <input type="text" class="serch-input" value="{{ $SpaceFinder->mobile_no }}"
+                                placeholder="Mobile No" name="mobile_no">
+                                <div class="error-mobile_no"></div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
+                            <label for="address">Address</label>
+                            <input type="text" class="serch-input" value="{{ $SpaceFinder->address }}"
+                                placeholder="Address" name="address">
+                                <div class="error-address"></div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
+                            <label for="venue_url">Venue</label>
+                            <input type="text" class="serch-input" value="{{ $SpaceFinder->venue_url }}"
+                                placeholder="Venue" name="venue_url">
+                                <div class="error-venue_url"></div>
+                            <div class="clr"></div>
+                        </div>
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                        <label for="email">Email</label>
-                        <input type="text" class="serch-input" value="{{ $SpaceFinder->email }}" placeholder="Email"
-                            name="email">
-                        <div class="clr"></div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
+                            <label for="facebook_url">Facebook Url</label>
+                            <input type="text" class="serch-input" value="{{ $SpaceFinder->facebook_url }}"
+                                placeholder="Facebook Url" name="facebook_url">
+                                <div class="error-facebook_url"></div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
+                            <label for="instagram_url">Instagram Url</label>
+                            <input type="text" class="serch-input" value="{{ $SpaceFinder->instagram_url }}"
+                                placeholder="Instagram Url" name="instagram_url">
+                                <div class="error-instagram_url"></div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
+                            <label for="linkedin_url">LinkedIn Url</label>
+                            <input type="text" class="serch-input" value="{{ $SpaceFinder->linkedin_url }}"
+                                placeholder="LinkedIn Url" name="linkedin_url">
+                                <div class="error-linkedin_url"></div>
+                            <div class="clr"></div>
+                        </div>
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                        <label for="mobile_no">Mobile No</label>
-                        <input type="text" class="serch-input" value="{{ $SpaceFinder->mobile_no }}"
-                            placeholder="Mobile No" name="mobile_no">
-                        <div class="clr"></div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                        <label for="address">Address</label>
-                        <input type="text" class="serch-input" value="{{ $SpaceFinder->address }}" placeholder="Address"
-                            name="address">
-                        <div class="clr"></div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                        <label for="venue_url">Venue</label>
-                        <input type="text" class="serch-input" value="{{ $SpaceFinder->venue_url }}" placeholder="Venue"
-                            name="venue_url">
-                        <div class="clr"></div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                        <label for="facebook_url">Facebook Url</label>
-                        <input type="text" class="serch-input" value="{{ $SpaceFinder->facebook_url }}"
-                            placeholder="Facebook Url" name="facebook_url">
-                        <div class="clr"></div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                        <label for="instagram_url">Instagram Url</label>
-                        <input type="text" class="serch-input" value="{{ $SpaceFinder->instagram_url }}"
-                            placeholder="Instagram Url" name="instagram_url">
-                        <div class="clr"></div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                        <label for="linkedin_url">LinkedIn Url</label>
-                        <input type="text" class="serch-input" value="{{ $SpaceFinder->linkedin_url }}"
-                            placeholder="LinkedIn Url" name="linkedin_url">
-                        <div class="clr"></div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                        <label for="youtube_url">Youtube Url</label>
-                        <input type="text" class="serch-input" value="{{ $SpaceFinder->youtube_url }}"
-                            placeholder="Youtube Url" name="youtube_url">
-                        <div class="clr"></div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                        <label for="web_url">Website Url</label>
-                        <input type="text" class="serch-input" value="{{ $SpaceFinder->web_url }}"
-                            placeholder="Website Url" name="web_url">
-                        <div class="clr"></div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                        <label for="phone">Phone</label>
-                        <input type="text" class="serch-input" value="{{ $SpaceFinder->phone }}" placeholder="Phone"
-                            name="phone">
-                        <div class="clr"></div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
+                            <label for="youtube_url">Youtube Url</label>
+                            <input type="text" class="serch-input" value="{{ $SpaceFinder->youtube_url }}"
+                                placeholder="Youtube Url" name="youtube_url">
+                                <div class="error-youtube_url"></div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
+                            <label for="web_url">Website Url</label>
+                            <input type="text" class="serch-input" value="{{ $SpaceFinder->web_url }}"
+                                placeholder="Website Url" name="web_url">
+                                <div class="error-web_url"></div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
+                            <label for="phone">Phone</label>
+                            <input type="text" class="serch-input" value="{{ $SpaceFinder->phone }}"
+                                placeholder="Phone" name="phone">
+                                <div class="error-phone"></div>
+                            <div class="clr"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25">
+                    <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mb-20">
                         <label for="description">Description</label>
                         <textarea id="w3review" class="text-area" rows="4" name="description" rows="4"
                             value="{{ $SpaceFinder->description }}">{!! $SpaceFinder->description !!}</textarea>
+                        <div class="error-description"></div>
                         <div class="clr"></div>
                     </div>
+                </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25">
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20 img-div" style="position:relative;">
                         <button class="close AClass" type="button">
                             <span>&times;</span>
                         </button>
-                        <img src="{{ $SpaceFinder->media[0]->image_url }}" alt="" data-id="{{$SpaceFinder->media[0]->id}}">
+                        <img src="{{ $SpaceFinder->media[0]->image_url }}" alt=""
+                            data-id="{{ $SpaceFinder->media[0]->id }}">
                         <div class="clr"></div>
                     </div>
                 </div>
@@ -123,6 +147,11 @@
 @endsection
 @section('scripts')
     <script>
+        ClassicEditor
+        .create( document.querySelector( '#w3review' ) )
+        .catch( error => {
+            console.error( error );
+        } );
         $('.update').on('submit', function(e) {
             e.preventDefault();
             var form = new FormData(this);
@@ -143,7 +172,7 @@
         });
 
         $(document).ready(function() {
-            onChangeFile($('.img-div'), $('.upload-div'),$('.AClass'));
+            onChangeFile($('.img-div'), $('.upload-div'), $('.AClass'));
         });
     </script>
 @endsection

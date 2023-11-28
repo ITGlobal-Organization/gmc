@@ -89,6 +89,7 @@ class SpaceFinderController extends BaseController
     }
 
     public function searchSpaceFinders(Request $request){
+        $user = Auth::user();
         $data = $request->all();
         foreach ($data as $key => $value) {
             if($value != ""){
