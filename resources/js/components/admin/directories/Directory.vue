@@ -113,14 +113,6 @@ export default {
                 has_html:true,
             },
             {
-                label:Language.category,
-                field:'category',
-                orignal_name:'category',
-                width:'4%',
-                sorted:true,
-                has_html:true,
-            },
-            {
                 label:Language.email,
                 field:'email',
                 orignal_name:'email',

@@ -66,7 +66,7 @@ data(){
                 user_id:'',
                 is_approved:'',
                 is_active:0,
-                category_id:0,
+                category_ids:0,
                 media:[],
                 gallery:[]
         },
@@ -113,26 +113,7 @@ mounted(){
                     },
                     required:true,
                 },
-                {
-                    label:Language.category,
-                    field:"category_id",
-                    class:"vue-select1",
-                    grid:"col-md-6 col-12",
-                    type:"select",
-                    isdynamic:true,
-                    searchable:true,
-                    options:function(){
-                            if(this.isdynamic){
-                                return ref.categories;
-                            }
-                            return [];
-                    },
-                    placeholder:function(){
-                        return Language.placholder_msg(this.label)
-                    },
-
-                    required:true,
-                },
+                
                 {
                     label:Language.mobile_no,
                     field:"mobile_no",
@@ -236,7 +217,7 @@ mounted(){
                     label:Language.user,
                     field:"user_id",
                     class:"vue-select1",
-                    grid:"col-md-4 col-12",
+                    grid:"col-md-6 col-12",
                     type:"select",
                     isdynamic:true,
                     searchable:true,
@@ -256,7 +237,7 @@ mounted(){
                     label:Language.is_approved,
                     field:"is_approved",
                     class:"vue-select1",
-                    grid:"col-md-2 col-12",
+                    grid:"col-md-6 col-12",
                     type:"select",
                     isdynamic:false,
                     searchable:true,
@@ -274,6 +255,26 @@ mounted(){
                                     id:0
                                 }
                             ];
+                    },
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+
+                    required:true,
+                },
+                {
+                    label:Language.category,
+                    field:"category_ids",
+                    class:"vue-select1",
+                    grid:"col-md-6 col-12",
+                    type:"multi_select",
+                    isdynamic:true,
+                    searchable:true,
+                    options:function(){
+                            if(this.isdynamic){
+                                return ref.categories;
+                            }
+                            return [];
                     },
                     placeholder:function(){
                         return Language.placholder_msg(this.label)
@@ -341,7 +342,6 @@ methods:{
             await get(this.id);
             console.log(record.value);
             this.form.title = record.value.title;
-            this.form.category_id =record.value.category_id;
             this.form.user_id = record.value.user_id;
             this.form.web_url = record.value.web_url;
             this.form.facebook_url = record.value.facebook_url;
@@ -358,10 +358,14 @@ methods:{
             this.form.slug = record.value.slug;
             this.form.categories =record.value.categories;
             this.form.description = record.value.description?record.value.description:"";
-
-            this.form.gallery = record.value.media;
             let data = []
             let ref = this;
+            // record.value.category_ids.map(cat => {
+            //     ref.category_ids.push(cat.id)
+            // })
+            this.form.category_ids = record.value.category_ids?record.value.category_ids:[];
+            this.form.gallery = record.value.media;
+        
             data = this.form.gallery.map(gall => {
                 return gall.image_url;
             })

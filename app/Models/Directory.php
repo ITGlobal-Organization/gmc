@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\BaseModel;
 use Auth;
+use DB;
+use Log;
 
 class Directory extends BaseModel
 {
@@ -53,7 +55,7 @@ class Directory extends BaseModel
 
         $condition = [];
         $result = [];
-        $this->setSelectedColumn(['directories.id','directories.title','directory_categories.name as category','directories.created_at','directories.is_active','directories.is_approved','directories.mobile_no','directories.address','directories.web_url','directories.email']);
+        $this->setSelectedColumn(['directories.id','directories.title','directories.created_at','directories.is_active','directories.is_approved','directories.mobile_no','directories.address','directories.web_url','directories.email']);
 
         $this->setRenderColumn([
             [
@@ -64,14 +66,6 @@ class Directory extends BaseModel
             ],
             [
                 'name' => 'title',
-                'type' => 'string',
-                'html' => false,
-                'link' => 'property',
-                'link_column' => 'slug',
-
-            ],
-            [
-                'name' => 'category',
                 'type' => 'string',
                 'html' => false,
                 'link' => 'property',
@@ -152,7 +146,7 @@ class Directory extends BaseModel
 
         $result = $this->getAllDatatables([],
         $this->getSelectedColumns(),
-        [],'',[['directory_categories','directory_categories.id','=','directories.category_id']]);
+        [],'',[]);
 
         return $result;
     }
@@ -177,5 +171,49 @@ class Directory extends BaseModel
     // }
     public function user(){
         return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function addRelTableRecord($rel_id,$table,$col){
+
+        try{
+             return DB::table($table)->insert([
+                'directory_id' => $this->id,
+                $col => $rel_id,
+                'is_delete' => 0,
+                'is_active' => 1
+            ]);
+        }catch(\Exception $e){
+            Logger::error($e);
+            return 0;
+        }
+       
+    }
+
+    public function deleteRelTableRecord($table){
+
+        try{
+             return DB::table($table)->where([
+                'directory_id' => $this->id,
+            ])->delete();
+        }catch(\Exception $e){
+            Logger::error($e);
+            return 0;
+        }
+       
+    }
+
+    public function getRelTableRecord($table,$col){
+        try{
+            // dd($this->id);
+            return DB::table($table)
+            ->select($col)
+            ->where([
+               'directory_id' => $this->id,
+           ])->pluck($col);
+       }catch(\Exception $e){
+       
+        Log::error($e);
+           return null;
+       }
     }
 }

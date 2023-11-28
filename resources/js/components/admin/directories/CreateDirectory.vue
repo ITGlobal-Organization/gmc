@@ -23,7 +23,7 @@
         <div class="card card-secondary card-outline">
 
             <div class="card-body">
-                <Form :fields="FormFields" :data="FormData" :action="store" :name="name" :errors="errors"/>
+                <Form :fields="FormFields" :data="FormData" :action="store" :name="name" :errors="errors" :id="0"/>
             </div>
 
             <!-- /.card-body -->
@@ -72,7 +72,7 @@ export default {
                 instagram_url:'',
                 description:'',
                 user_id:'',
-                category_id:0,
+                category_ids:[],
                 // author:'',
                 media:[],
                 gallery:[]
@@ -118,26 +118,7 @@ export default {
                     },
                     required:true,
                 },
-                {
-                    label:Language.category,
-                    field:"category_id",
-                    class:"vue-select1",
-                    grid:"col-md-6 col-12",
-                    type:"select",
-                    isdynamic:true,
-                    searchable:true,
-                    options:function(){
-                            if(this.isdynamic){
-                                return ref.categories;
-                            }
-                            return [];
-                    },
-                    placeholder:function(){
-                        return Language.placholder_msg(this.label)
-                    },
-
-                    required:true,
-                },
+                
                 {
                     label:Language.mobile_no,
                     field:"mobile_no",
@@ -241,7 +222,7 @@ export default {
                     label:Language.user,
                     field:"user_id",
                     class:"vue-select1",
-                    grid:"col-md-4 col-12",
+                    grid:"col-md-6 col-12",
                     type:"select",
                     isdynamic:true,
                     searchable:true,
@@ -261,7 +242,7 @@ export default {
                     label:Language.is_approved,
                     field:"is_approved",
                     class:"vue-select1",
-                    grid:"col-md-2 col-12",
+                    grid:"col-md-6 col-12",
                     type:"select",
                     isdynamic:false,
                     searchable:true,
@@ -279,6 +260,26 @@ export default {
                                     id:0
                                 }
                             ];
+                    },
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+
+                    required:true,
+                },
+                {
+                    label:Language.category,
+                    field:"category_ids",
+                    class:"",
+                    grid:"col-md-12 col-12",
+                    type:"multi_select",
+                    isdynamic:true,
+                    searchable:true,
+                    options:function(){
+                            if(this.isdynamic){
+                                return ref.categories;
+                            }
+                            return [];
                     },
                     placeholder:function(){
                         return Language.placholder_msg(this.label)
@@ -361,6 +362,7 @@ export default {
         async getAllCategories(){
             const {records,getAllPublic} = useCategories();
             await getAllPublic();
+            
             this.categories = records.value;
 
         }

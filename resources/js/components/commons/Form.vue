@@ -80,6 +80,25 @@
                                     </ul>
                                 </div>
                 </div>
+                 <div class="form-group" v-else-if="field.type == 'multi_select'">
+                            <label class="form-label">{{ field.label}}</label>
+                            <div :class="'box-container ' + field.class">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" v-model="selectAll" id="flexCheckDefault" @click="selectAllMultiSelect(field.field,field.options())">
+                                    <label class="form-check-label font-weight-bold" for="flexCheckDefault">
+                                        {{ Language.select_all }}
+                                    </label>
+                                    </div>
+                                <div class="form-check " v-for="(option,keyOption) in field.options()" :key="option.id">
+                                <input class="form-check-input" type="checkbox" v-model="data[field.field]" :id="option.id" :value="option.id" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    {{ option.text }}
+                                </label>
+                            </div>
+                            </div>
+                            
+                            
+                        </div>
                 <div class="form-group" v-else>
                     <label class="form-label">{{ field.label }}</label>
                     <input :type="field.type" :id="index"  :placeholder="field.placeholder()" :class="field.class" :name="field.field"  v-model="data[field.field]" :required="field.required" >
@@ -146,7 +165,8 @@ export default {
             files:[],
             fileTag:null,
             autocomplet:null,
-            fileServer:{}
+            fileServer:{},
+            selectAll:false,
         }
     },
     mounted(){
@@ -205,6 +225,19 @@ export default {
         store(){
             this.action();
         },
+        selectAllMultiSelect(field,options){
+            console.log(this.selectAll);
+            if(!this.selectAll){
+                console.log(field,options);
+                let ref = this;
+                options.map(op => {
+                    ref.data[field].push(op.id)
+               })
+            }     
+            else 
+                this.data[field] = [] 
+
+        }
         // getLognitudeLatitude(addressData, placeResultData, id){
         //     if('lognitude' in this.data && 'latitude' in this.data){
         //         this.data.lognitude = placeResultData.geometry.location.lng();

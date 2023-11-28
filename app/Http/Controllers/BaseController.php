@@ -160,7 +160,7 @@ class BaseController extends Controller
 
             if ($request->has('media')) {
                 //$response = Helper::saveMedia($request->image,$this->model->class_name,$result->id);
-
+              
                 foreach($request->media as $media){
                    // dd($this->Media);
                     $this->Media->updateByColumn([
