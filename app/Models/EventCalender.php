@@ -26,6 +26,8 @@ class EventCalender extends BaseModel
     public function __construct(){
         parent::__construct();
         $this->setRules();
+        $this->setOrderBy('event_date');
+        $this->setOrder('desc');
     }
 
     public static function boot()
