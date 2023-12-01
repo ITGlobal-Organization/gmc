@@ -132,4 +132,5 @@
     </div>
     <div class="clr"></div>
 </div>
+@include('sections.pagination.paginationv1')
 <!--End Table listing-->

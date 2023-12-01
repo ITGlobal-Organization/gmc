@@ -284,4 +284,5 @@ export const Language = {
     news:"News",
     platinumpartners:"Platinum Partners",
     platinumpartner:"Platinum Partner",
+    select_all:"Select All"
 };

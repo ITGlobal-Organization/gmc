@@ -107,6 +107,8 @@ return [
     'addons' => 'Addons',
     'addon' => 'Addon',
     'categories' => 'Categories',
+    'category' => 'Category',
+    'location' => 'Location',
     'products' => 'Products',
     'product' => 'Product',
     'sizes' => 'Sizes',
@@ -170,7 +172,14 @@ return [
     'news'=>'News',
     'platinumpartners'=>"Platinum Partners",
     'platinumpartner'=>"Platinum Partner",
-
+    'previous' =>'Previous',
+    'next' =>'Next',
+    'search_filter' => 'Search Filter',
+    'filters_title' => 'What are you looking for?',
+    'apply_filters' => 'Apply Filters',
+    'space_finder' => 'Space Finder',
+    'listings' => 'Listings',
+    
 
 
 ];

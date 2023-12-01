@@ -44,10 +44,19 @@ class BaseController extends Controller
     }
     public function setGeneralFilters(Request $request)
     {
-        $this->model->setLength($request->has('length') ? $request->length : 10);
-        $this->model->setStart($request->has('start') ? $request->start : 1);
-        $this->model->setOrderBy($request->has('orderBy') ? $request->orderBy : 'created_at');
-        $this->model->setOrder($request->has('order') ? $request->order : 'desc');
+        $this->model->setLength(($request->has('length') && $request->length != "") ? $request->length : config('site_config.constants.item_per_page'));
+
+        $this->model->setStart(($request->has('start') && $request->start != "")?$request->start: 1);
+        $this->model->setOrderBy(($request->has('orderBy') && $request->orderBy != "")? $request->orderBy : $this->model->getOrderBy());
+        $this->model->setOrder(($request->has('order') && $request->order != "")? $request->order : $this->model->getOrder());
+    }
+
+    public function removeGeneralFilters(Request $request)
+    {
+        $request->request->remove('length');
+        $request->request->remove('start');
+        $request->request->remove('orderBy');
+        $request->request->remove('order');
     }
 
     public function sendResponse($result = [], $message = '')
@@ -147,7 +156,7 @@ class BaseController extends Controller
 
             if ($request->has('media')) {
                 //$response = Helper::saveMedia($request->image,$this->model->class_name,$result->id);
-
+              
                 foreach($request->media as $media){
                    // dd($this->Media);
                     $this->Media->updateByColumn([

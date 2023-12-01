@@ -49,21 +49,23 @@ class SpaceFinderController extends BaseController
         }
         return view($view,[
             'title' => trans('lang.spacefinders'),
+            'count' => 0
         ]);
     }
 
     public function getSpaceFindersListing(Request $request){
-        // dd($request);
-        $user = Auth::user();
-        if(isset($request->sort_by) && $request->sort_by != ""){
-            $sort = explode('-',$request->sort_by);
-            $this->spaceFinder->setOrderBy($sort[0]);
-            $this->spaceFinder->setOrder($sort[1]);
-        }else{
-            $this->spaceFinder->setOrderBy('title');
-            $this->spaceFinder->setOrder('asc');
+        
+        $this->setGeneralFilters($request);
+        $this->removeGeneralFilters($request);
+
+        $data = $request->all();
+        foreach ($data as $key => $value) {
+            if($value != ""){
+                $this->spaceFinder->setFilters([$key,'like','%'.$value.'%']);
+            }
         }
-        $SpaceFinders = $this->spaceFinder->getAll([['users','users.id','=','space_finders.user_id']],['space_finders.id','space_finders.title','space_finders.description','space_finders.created_at','space_finders.categories','images.image_url','space_finders.slug']);
+
+        $SpaceFinders = $this->spaceFinder->getAll([['users','users.id','=','space_finders.user_id']],['space_finders.title','space_finders.description','space_finders.created_at','space_finders.categories','images.image_url','space_finders.slug']);
 
         if(isset($user) && !$user->hasRole('admin')){
             $view='user.space-finder.listing';
@@ -72,6 +74,8 @@ class SpaceFinderController extends BaseController
         }
         return view($view,[
             'SpaceFinders' => $SpaceFinders,
+            'count' => $this->spaceFinder->getCount(),
+            'page' => $this->spaceFinder->getStart()
         ]);
     }
 
@@ -88,27 +92,21 @@ class SpaceFinderController extends BaseController
         ]);
     }
 
-    public function searchSpaceFinders(Request $request){
-        $user = Auth::user();
-        $data = $request->all();
-        foreach ($data as $key => $value) {
-            if($value != ""){
-                $this->spaceFinder->setFilters([$key,'like','%'.$value.'%']);
-            }
-        }
-        $this->spaceFinder->setOrderBy('id');
-        $this->spaceFinder->setOrder('desc');
-        $spaceFinder = $this->spaceFinder->getAll();
-        if(isset($user) && !$user->hasRole('admin')){
-            $view='user.space-finder.listing';
-        }else{
-            $view='sections.space-finders';
-        }
-        return view($view,[
-            'SpaceFinders' => $spaceFinder,
-        ]);
+    // public function searchSpaceFinders(Request $request){
+     
+    //     $this->spaceFinder->setOrderBy('id');
+    //     $this->spaceFinder->setOrder('desc');
+    //     $spaceFinder = $this->spaceFinder->getAll();
+    //     if(isset($user) && !$user->hasRole('admin')){
+    //         $view='user.space-finder.listing';
+    //     }else{
+    //         $view='sections.space-finders';
+    //     }
+    //     return view($view,[
+    //         'SpaceFinders' => $spaceFinder,
+    //     ]);
 
-    }
+    // }
 
     public function renderForm(Request $request,$id){
         $SpaceFinder = $this->spaceFinder->first('id',$id,'=',['user'],[],['space_finders.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
