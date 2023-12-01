@@ -28,6 +28,9 @@ class CategoryController extends BaseController
 
 
     public function categories(Request $request){
+        if(isset($request->search) && $request->search != ""){
+            $this->category->setFilters(['name','like','%'.$request->search.'%']);
+        }
         $Category = $this->category->getAll([],['id','name as text']);
         return $this->sendResponse($Category);
     }

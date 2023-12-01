@@ -35,8 +35,8 @@ export default function useCategories() {
             errorAlert(e.message);
         })
     }
-    const getAllPublic = async() => {
-        await axiosWrapper.get(`/directories/categories`).then((response) => {
+    const getAllPublic = async(search) => {
+        await axiosWrapper.get(`/directories/categories?search=${search}`).then((response) => {
             records.value = response.data.data
         }).catch((e) => {
             errorAlert(e.message);

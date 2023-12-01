@@ -98,7 +98,7 @@
                             </div>
                             
                             
-                        </div>
+                </div>
                 <div class="form-group" v-else>
                     <label class="form-label">{{ field.label }}</label>
                     <input :type="field.type" :id="index"  :placeholder="field.placeholder()" :class="field.class" :name="field.field"  v-model="data[field.field]" :required="field.required" >
