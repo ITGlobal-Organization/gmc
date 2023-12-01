@@ -123,11 +123,13 @@ class Helper
         $public_path = "";
         $directory = time();
         (int)$random = random_int(100,999);
+
        //  $id = request()->params('id')?request()->params('id'):$id;
 
     //    dd($files);
         try{
             if(is_array($files)){
+
                 foreach($files as $file){
                     $exitMedia = Media::where('model',$model)->where('image_name',$file->getClientOriginalName())->
                 where('model_id',$id)->first();
@@ -153,11 +155,11 @@ class Helper
                 }
 
             }else{
-                // dd("aaaa");
+                // dd($files->getClientOriginalName());
                 $exitMedia = Media::where('model',$model)->where('image_name',$files->getClientOriginalName())->
                 where('model_id',$id)->first();
               //  dd($exitMedia,$model,$files->getClientOriginalName());
-                
+
                     if(isset($exitMedia)){
                         return $exitMedia;
                     }

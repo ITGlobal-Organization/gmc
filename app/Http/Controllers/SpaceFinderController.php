@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Models\SpaceFinder;
 use App\Models\Media;
+use Auth;
+use App\Helpers\Helper;
 
 class SpaceFinderController extends BaseController
 {
@@ -39,12 +41,20 @@ class SpaceFinderController extends BaseController
     }
 
     public function spaceFinders(Request $request){
-        return view('space-finders.space-finders',[
+        $user = Auth::user();
+        if(isset($user) && $user->hasRole('user')){
+            $view = 'user.space-finder.index';
+        }else{
+            $view = 'space-finders.space-finders';
+        }
+        return view($view,[
             'title' => trans('lang.spacefinders'),
         ]);
     }
 
     public function getSpaceFindersListing(Request $request){
+        // dd($request);
+        $user = Auth::user();
         if(isset($request->sort_by) && $request->sort_by != ""){
             $sort = explode('-',$request->sort_by);
             $this->spaceFinder->setOrderBy($sort[0]);
@@ -53,9 +63,14 @@ class SpaceFinderController extends BaseController
             $this->spaceFinder->setOrderBy('title');
             $this->spaceFinder->setOrder('asc');
         }
-        $SpaceFinders = $this->spaceFinder->getAll([['users','users.id','=','space_finders.user_id']],['space_finders.title','space_finders.description','space_finders.created_at','space_finders.categories','images.image_url','space_finders.slug']);
+        $SpaceFinders = $this->spaceFinder->getAll([['users','users.id','=','space_finders.user_id']],['space_finders.id','space_finders.title','space_finders.description','space_finders.created_at','space_finders.categories','images.image_url','space_finders.slug']);
 
-        return view('sections.space-finders',[
+        if(isset($user) && !$user->hasRole('admin')){
+            $view='user.space-finder.listing';
+        }else{
+            $view='sections.space-finders';
+        }
+        return view($view,[
             'SpaceFinders' => $SpaceFinders,
         ]);
     }
@@ -72,8 +87,9 @@ class SpaceFinderController extends BaseController
             'title' => trans('lang.directory').' | '. $spaceFinder->title
         ]);
     }
-    
+
     public function searchSpaceFinders(Request $request){
+        $user = Auth::user();
         $data = $request->all();
         foreach ($data as $key => $value) {
             if($value != ""){
@@ -83,9 +99,59 @@ class SpaceFinderController extends BaseController
         $this->spaceFinder->setOrderBy('id');
         $this->spaceFinder->setOrder('desc');
         $spaceFinder = $this->spaceFinder->getAll();
-        return view('sections.space-finders',[
+        if(isset($user) && !$user->hasRole('admin')){
+            $view='user.space-finder.listing';
+        }else{
+            $view='sections.space-finders';
+        }
+        return view($view,[
             'SpaceFinders' => $spaceFinder,
         ]);
 
+    }
+
+    public function renderForm(Request $request,$id){
+        $SpaceFinder = $this->spaceFinder->first('id',$id,'=',['user'],[],['space_finders.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
+
+        return view('user.space-finder.edit',['SpaceFinder'=>$SpaceFinder]);
+    }
+    public function update(Request $request,$id){
+        if($request->hasFile('image')){
+            $media =  Helper::saveMedia($request->image,"App\Models\SpaceFinder",'main',$id);
+        }
+        parent::update($request,$id);
+        $response = [
+            'success' => true,
+            'data'=>[
+                'route'=>route('user.space-finders')
+            ],
+            'message'=>'Updated Successfully'
+        ];
+        return response()->json($response, 200);
+    }
+    public function destroy(Request $request,$id){
+        parent::destroy($request,$id);
+        $response = [
+            'success' => true,
+            'data'=>[
+                'route'=>route('user.space-finders')
+            ],
+            'message'=>'Deleted Successfully'
+        ];
+        return response()->json($response, 200);
+    }
+    public function store(Request $request){
+        parent::store($request);
+        if($request->hasFile('image')){
+            $media =  Helper::saveMedia($request->image,"App\Models\SpaceFinder",'main',$this->spaceFinder->id);
+        }
+        $response = [
+            'success' => true,
+            'data'=>[
+                'route'=>route('user.space-finders')
+            ],
+            'message'=>'Created Successfully'
+        ];
+        return response()->json($response, 200);
     }
 }
