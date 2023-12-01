@@ -214,3 +214,121 @@ function validatePhoneNumberLength(phoneNumber) {
     else
         return true
 }
+function onChangeFile(img_div,upload_div,close_btn) {
+    $('.file').on('change', function(e) {
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            img_div.children('img').attr('src', e.target.result);
+            img_div.removeClass("hidden");
+            upload_div.addClass("hidden");
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
+    close_btn.on('click', function(e) {
+        e.preventDefault();
+        img_div.children('img').attr("src","");
+        img_div.addClass("hidden");
+        upload_div.removeClass('hidden');
+        let id=$(this).siblings('img').attr("data-id");
+        if(id != ''){
+            $(this).siblings('img').attr("data-id",'');
+            let url = "/media/delete/"+id+"";
+            ajaxDelete(url,id,'','');
+        }
+        resetFile();
+    });
+}
+
+
+function resetFile() {
+    const file = document.querySelector('.file');
+    var emptyFile = document.createElement('input');
+    emptyFile.type = 'file';
+    file.files = emptyFile.files;
+}
+
+function destroy(url,message = '', confirm_color = '#d32525', deny_color = '#6c757d') {
+    swal.fire({
+        title: 'Are you sure?',
+        text: message,
+        icon: 'warning',
+        showDenyButton: true,
+        confirmButtonText: 'Yes',
+        confirmButtonColor: confirm_color,
+        denyButtonText: `No`,
+        denyButtonColor: deny_color,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            ajaxPost(url, {}, ".success");
+        }
+    });
+}
+function ajaxDelete(url,id,succssContainer='',errorContainer='') {
+    console.log("asfhb")
+    $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+     });
+    $.ajax({
+        url: url,
+        method: 'DELETE',
+        id:id,
+        cache: false,
+        contentType: false,
+        processData: false,
+        beforeSend: function() {
+            setLoader(true);
+            console.log(url)
+        },
+        success: function(response) {
+            console.log(response)
+            $(succssContainer).addClass("alert alert-success");
+            $(succssContainer).text(response.message);
+            if(response.data.route){
+                window.location.href = response.data.route;
+            }
+
+        },
+        error:function(error){
+            console.log(error)
+            $(errorContainer).text(error.responseJSON.message);
+            $(errorContainer).addClass("alert alert-danger");
+            if(error.status === 422){
+                let errors = error.responseJSON.errors;
+                let errorsKeys = Object.keys(error.responseJSON.errors)
+                errorsKeys.map((error,index) => {
+                    let html = "<ul>";
+                    errors[error].map((e) => {
+                        html += '<li>'+e+'</li>';
+                    })
+                    html += '</ul>';
+                    $(".error-"+error).html(html);
+                    $(".error-"+error).addClass("text-danger");
+                });
+            }
+        },
+        complete:function(){
+            setLoader(false);
+            setTimeout(() => {
+                $(succssContainer).text('');
+                $(errorContainer).text('');
+
+                $(succssContainer).html('');
+                $(errorContainer).html('');
+
+                $(succssContainer).removeClass('alert alert-success');
+                $(errorContainer).removeClass('alert alert-danger');
+                if($('.errors')){
+
+                    $('.errors').removeClass('text-danger');
+                    $('.errors').html('');
+
+                }
+
+
+            },config.timeout)
+
+        }
+    })
+}

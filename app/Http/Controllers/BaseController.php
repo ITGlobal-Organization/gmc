@@ -119,6 +119,7 @@ class BaseController extends Controller
             $response = $this->model->getRecordDataTable($request);
             return $this->sendResponse($response);
         }catch(\Exception $e){
+            dd($e->getMessage());
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
@@ -147,16 +148,11 @@ class BaseController extends Controller
         $request->validate($rules);
 
 
-
         try {
             DB::beginTransaction();
-
-            $data = $request->except(['_token','media','gallery','attachment','image','image1','image2']);
-            // dd($data);
+            $data = $request->except(['_token','media','gallery','attachment','image','image1','image2','filename']);
             $result = $this->model->store($data);
             $this->model->id = $result;
-            // dd($result);
-            // dd($result);
 
             if ($request->has('media')) {
                 //$response = Helper::saveMedia($request->image,$this->model->class_name,$result->id);
@@ -172,7 +168,7 @@ class BaseController extends Controller
             // return $result;
             return $this->sendResponse([], trans('messages.success_msg',['action' => trans('lang.saved')]));
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            // dd($e->getMessage());
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
@@ -193,7 +189,6 @@ class BaseController extends Controller
         try {
             DB::beginTransaction();
             $data = $request->except(['_token','media','gallery','image','image1','image2']);
-
             $this->model->updateByColumn($data,$id);
             $this->model->id = $id;
             if ($request->has('media')) {
@@ -243,7 +238,7 @@ class BaseController extends Controller
     }
 
     public function deleteFiles(Request $request,$id){
-        //dd($request->files);
+        // dd($request);
         try{
             DB::beginTransaction();
             $response = $this->media->find($id);

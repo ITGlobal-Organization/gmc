@@ -106,6 +106,10 @@ require __DIR__ . '/auth.php';
 Route::prefix('admin')->middleware(['auth:sanctum','admin'])->group(function () {
     require __DIR__ . '/admin.php';
 });
+//User
+Route::prefix('user')->middleware(['auth:sanctum','user'])->group(function () {
+    require __DIR__ . '/user.php';
+});
 
 
 Route::get('/staff',function(){

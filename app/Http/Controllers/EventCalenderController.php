@@ -10,10 +10,10 @@ use Auth;
 
 class EventCalenderController extends BaseController
 {
-    private $eventCalender,$media,$user;
+    private $eventCalender,$media;
+
     public function __construct(EventCalender $eventCalender,Media $media) {
         $this->eventCalender = $eventCalender;
-
         $this->setModel($eventCalender);
         $this->setMedia($media);
     }
@@ -88,8 +88,36 @@ class EventCalenderController extends BaseController
             'page' => $this->eventCalender->getStart()
         ]);
     }
+    public function renderForm(Request $request,$id){
 
+        $Event=$this->eventCalender->where('id',$request->id)->first();
+        return view('user.event.edit',['Event'=>$Event]);
+    }
 
+    public function update(Request $request,$id){
+        parent::update($request,$id);
+
+        $response = [
+            'success' => true,
+            'data'=>[
+                'route'=>route('user.events')
+            ],
+            'message'=>'Updated Successfully'
+        ];
+
+        return response()->json($response, 200);
+    }
+    public function destroy(Request $request,$id){
+        parent::destroy($request,$id);
+        $response = [
+            'success' => true,
+            'data'=>[
+                'route'=>route('user.events')
+            ],
+            'message'=>'Deleted Successfully'
+        ];
+        return response()->json($response, 200);
+    }
 
     // public function searchEventsListing(Request $request){
     //     $user = Auth::user();
@@ -127,6 +155,22 @@ class EventCalenderController extends BaseController
     //         ]);
     //     }
     // }
+
+    public function store(Request $request){
+        parent::store($request);
+        $response = [
+            'success' => true,
+            'data'=>[
+                'route'=>route('user.events')
+            ],
+            'message'=>'Created Successfully'
+        ];
+        return response()->json($response, 200);
+    }
+
+
+
+
 
 
 
