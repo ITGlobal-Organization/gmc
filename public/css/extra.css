@@ -2,8 +2,12 @@
     padding: 0px !important;
 }
 .mtb-60 {
-    margin-top: 60px !important;
-    margin-bottom: 60px !important;
+    margin-top: 15px !important;
+    margin-bottom: 25px !important;
+}
+.mtb-30 {
+    margin-top: 15px !important;
+    margin-bottom: 25px !important;
 }
 
 .mtb-30 {

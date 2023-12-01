@@ -147,4 +147,47 @@ class EventCalenderController extends BaseController
         return response()->json($response, 200);
     }
 
+    public function searchEventsListing(Request $request){
+
+        try{
+            if(isset($request->search)){
+                $Events=$this->eventCalender->where('event_date', '>=', today()->format('Y-m-d'))->where(function($query)use($request) {
+                        $query->where('title',$request->search)
+                        ->orWhere('venue',$request->search)->orWhere('city',$request->search)->orWhere('price',$request->search);
+                })->orderBy('id','desc')->get();
+
+            }
+            if(isset($request->end_date) && isset($request->start_date)){
+                if($request->start_date == ""){
+                    $startDate = date('Y-m-d');
+                }else{
+                    $startDate = date('Y-m-d',strtotime($request->start_date));
+                }
+                $endDate = date('Y-m-d',strtotime($request->end_date));
+                $Events=$this->eventCalender->whereDate('event_date','>=',$startDate)->whereDate('event_date','<=',$endDate)->orderBy('id','desc')->get();
+            }
+
+            return view('eventcalenders.events-detail',[
+                'Events' => $Events,
+            ]);
+        } catch (\Exception $e) {
+            Log::error($e);
+            $Events=$this->eventCalender->where('event_date', '>=', today()->format('Y-m-d'))->get();
+            return view('eventcalenders.events-detail',[
+                'Events' => $Events,
+            ]);
+        }
+    }
+
+    // public function getEvent(Request $request,$slug){
+    //     $Event = $this->eventCalender->first('slug',$slug,'=',['user'],[],['event_calenders.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
+    //     $this->eventCalender->setLength(10);
+    //     // $LatestBlogs = $this->directory->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.title','event_calenders.description','event_calenders.created_at','images.image_url','event_calenders.slug']);
+
+    //     return view('event-calenders.events-detail',[
+    //         'Event' => $Event,
+    //         // 'LatestBlog' => $LatestBlogs,
+    //         'title' => trans('lang.eventcalender').' | '. $Event->title
+    //     ]);
+    // }
 }

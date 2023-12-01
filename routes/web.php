@@ -68,6 +68,7 @@ Route::prefix('event-calenders')->group(function () {
 Route::get('/search-events',[EventCalenderController::class,'searchEventsListing'])->name('event-calenders.search');
 
 
+
 //Tabs
 Route::get('/benefits-tab',[SitePageController::class,'benefitsTab'])->name('benefits-tab.ajax');
 Route::get('/all-tab',[SitePageController::class,'allTab'])->name('all-tab.ajax');
