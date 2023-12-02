@@ -90,47 +90,67 @@
 
     <div class="clr"></div>
 </div>
-<!--Start Table listing-->
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding margin-tb35">
-    <div class="table-div1">
-        <table>
 
-            <tr>
-                <th class="side1">Date</th>
-                <th>Title</th>
-                <th>Time</th>
-                <th>Location</th>
-                <th class="disply-table">City</th>
-                <th class="disply-table">Cost</th>
-                <th class="side2">Booking Link</th>
-            </tr>
+<div id="parentHorizontalTab">
+    <ul class="resp-tabs-list hor_1 resp-tabs-list1">
+        <li>&nbsp; Table View &nbsp;</li>
+        <li>&nbsp; Calendar View &nbsp;</li>
+    </ul>
+    <div class="resp-tabs-container hor_1">
+        <!--Start Table listing-->
+        <div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding margin-tb35">
+                <div class="table-div1">
+                    <table>
 
-            @foreach ($Events as $Event)
-                @if(str_contains($Event->price, "-"))
-                    @php $price = explode("-",$Event->price);
-                    $Event->price = "".$price[0]."".$price[1];
-                    @endphp
-                @else
-                    @php $Event->price = "".$Event->price; @endphp
-                @endif
-                <tr>
-                    <td class="list10">{{ date('d-M-Y', strtotime($Event->event_date)) }}</td>
-                    <td class="list20">{{$Event->title}}</td>
-                    <td class="list20">{{\Carbon\Carbon::createFromFormat('H:i:s',$Event->time)->format('h:i A')}}</td>
-                    <td class="list20">{{ $Event->venue }}</td>
+                        <tr>
+                            <th class="side1">Date</th>
+                            <th>Title</th>
+                            <th>Time</th>
+                            <th>Location</th>
+                            <th class="disply-table">City</th>
+                            <th class="disply-table">Cost</th>
+                            <th class="side2">Booking Link</th>
+                        </tr>
 
-                    <td class="list20">{{ $Event->city }}</td>
-                    <td class="list20">${{ $Event->price }}</td>
-                    <td class=" list30"><span class="btn-download"><a href="{{$Event->booking_link}}" target="_blank">Book Here</a></span></td>
+                        @foreach ($Events as $Event)
+                            @if(str_contains($Event->price, "-"))
+                                @php $price = explode("-",$Event->price);
+                                $Event->price = "".$price[0]."".$price[1];
+                                @endphp
+                            @else
+                                @php $Event->price = "".$Event->price; @endphp
+                            @endif
+                            <tr>
+                                <td class="list10">{{ date('d-M-Y', strtotime($Event->event_date)) }}</td>
+                                <td class="list20">{{$Event->title}}</td>
+                                <td class="list20">{{\Carbon\Carbon::createFromFormat('H:i:s',$Event->time)->format('h:i A')}}</td>
+                                <td class="list20">{{ $Event->venue }}</td>
 
-                </tr>
-            @endforeach
+                                <td class="list20">{{ $Event->city }}</td>
+                                <td class="list20">${{ $Event->price }}</td>
+                                <td class=" list30"><span class="btn-download"><a href="{{$Event->booking_link}}" target="_blank">Book Here</a></span></td>
+
+                            </tr>
+                        @endforeach
 
 
 
-        </table>
+                    </table>
+                </div>
+                <div class="clr"></div>
+            </div>
+        </div>
+         <!--Start Calendar View listing-->		
+         <div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mb-20">
+                <div id="calendar"></div>
+                <div class="clr"></div>
+                </div>
+                 <div class="clr"></div>
+            </div>
+          <!--End Calendar View listing-->  
     </div>
-    <div class="clr"></div>
 </div>
 @include('sections.pagination.paginationv1')
 <!--End Table listing-->

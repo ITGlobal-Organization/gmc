@@ -14,6 +14,10 @@
     <!--End Middle-->
 @endsection
 @section('scripts')
+<link rel="stylesheet" href="{{ custom_asset('calendar-gc.css','css') }}">	
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="{{ custom_asset('calendar-gc.min.js','scripts') }}"></script>
 <script>
 
 	// sort_by = "";
@@ -92,5 +96,77 @@
             getDirectoryListing();
         }
     })
+</script>
+
+
+<script>
+  $(function (e) {
+    var calendar = $("#calendar").calendarGC({
+      dayBegin: 0,
+      prevIcon: '&#x3c;',
+      nextIcon: '&#x3e;',
+      onPrevMonth: function (e) {
+        console.log("prev");
+        console.log(e);
+      },
+      onNextMonth: function (e) {
+        console.log("next");
+        console.log(e);
+      },
+      events: getHoliday(),
+      onclickDate: function (e, data) {
+        console.log(e, data);
+      }
+    });
+  });
+
+  function getHoliday() {
+    var d = new Date();
+    var totalDay = new Date(d.getFullYear(), d.getMonth(), 0).getDate();
+    var events = [];
+
+    for (var i = 1; i <= totalDay; i++) {
+      var newDate = new Date(d.getFullYear(), d.getMonth(), i);
+      if (newDate.getDay() == 0) {   //if Sunday
+        events.push({
+          date: newDate,
+          eventName: "CHAS Launches Biggest Ever Festive Appeal After 25% Increase In Family Support",
+          className: "badge",
+          onclick(e, data) {
+            console.log(data);
+          },
+          dateColor: "red"
+        });
+      }
+      if (newDate.getDay() == 3) {   //if Saturday
+        events.push({
+          date: newDate,
+          eventName: "Build Your Skill: Intermediate Excel #2",
+          className: "badge badge2",
+          onclick(e, data) {
+            console.log(data);
+          },
+          dateColor: "red"
+        });
+      }
+		
+		
+	 if (newDate.getDay() == 5) {   //if Saturday
+        events.push({
+          date: newDate,
+          eventName: "Craighead Wind Farm Community Consultation Invitation",
+          className: "badge badge3",
+          onclick(e, data) {
+            console.log(data);
+          },
+          dateColor: "red"
+        });
+      }
+
+
+    }
+    return events;
+  }
+  getHoliday()
 </script>
 @endsection
