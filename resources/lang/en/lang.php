@@ -179,6 +179,8 @@ return [
     'apply_filters' => 'Apply Filters',
     'space_finder' => 'Space Finder',
     'listings' => 'Listings',
+    'search' => 'Search',
+    'website' => 'Website'
     
 
 

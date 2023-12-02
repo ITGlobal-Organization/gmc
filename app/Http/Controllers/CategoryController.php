@@ -35,5 +35,29 @@ class CategoryController extends BaseController
         return $this->sendResponse($Category);
     }
 
+    public function renderCategoriesView(Request $request){
+        return view('directories.categories.categories',[
+            'title' => trans('lang.directories').' | '.trans('lang.categories'),
+            'count' => 0
+        ]);
+    }
+
+    public function getCategoriesListing(Request $request){
+        $this->setGeneralFilters($request);
+        $this->removeGeneralFilters($request);
+
+        if(isset($request->search) && $request->search != '')
+            $this->category->setFilters(['name','like','%'.$request->search.'%']);
+
+        $this->category->setLength(96);
+        $Categories = $this->category->getAll([],['id','name','slug']);
+
+        return view('directories.categories.listing',[
+            'Categories' => $Categories,
+            'count' => $this->category->getCount(),
+            'page' => $this->category->getStart(),
+            'perPage' => 96
+        ]);
+    }
 
 }

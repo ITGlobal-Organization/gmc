@@ -40,10 +40,10 @@
             $category = new App\Models\Category();
             $Categories = $category->getAll([],['id,name as text']);
         @endphp
-        <select class="form-control category">
-            <option value="0">{{ trans('lang.select_msg',['attribute' => trans('lang.category')]) }}</option>
+        <select class="category select_search">
+            <option value="">{{ trans('lang.select_msg',['attribute' => trans('lang.category')]) }}</option>
         @foreach($Categories as $Category)
-        <option value="{{ $Category->id }}">{{ $Category->text }}</option>
+            <option value="{{ $Category->id }}" {{ $CategoryId == $Category->id?'selected':'' }}>{{ $Category->text }}</option>
         @endforeach
         </select>
     </div>
@@ -84,6 +84,6 @@
         $('.show_hide').click(function() {
             $(".slidingDiv").slideToggle();
         });
-
+        $('.category').select2();
     });
 </script>

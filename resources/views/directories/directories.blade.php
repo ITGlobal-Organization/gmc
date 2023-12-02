@@ -31,11 +31,11 @@
             mobile_no:"",
             phone:"",
             web_url:"",
-            category:"",
+            category:"{{ $CategoryId }}",
             start:1
 
         }
-
+        
         $(document).on("change", '.sort_by', function() {
             let sort_by = $(this).val();
             filters.order_by = sort_by.split('-')[0];
@@ -53,11 +53,14 @@
             getDirectoryListing();
         });
         $(document).ready(function() {
+           
             getDirectoryListing();
+           
         });
 
         function getDirectoryListing() {
             ajaxGet("{{ route('directories.ajax') }}", filters, ".directories", responseType = 'html');
+            
         }
 
 
