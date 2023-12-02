@@ -96,5 +96,9 @@ class Category extends BaseModel
         return $result;
     }
 
+    public function getIdFromColumn($column,$value){
+        return $this->first($column,$value,'=')->id;
+    }
+
     
 }
