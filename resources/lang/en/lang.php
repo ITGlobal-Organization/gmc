@@ -170,7 +170,7 @@ return [
     'news'=>'News',
     'platinumpartners'=>"Platinum Partners",
     'platinumpartner'=>"Platinum Partner",
-
+    'offers'=>'Offers'
 
 
 ];

@@ -24,7 +24,7 @@
                             <label for="categories">Categories</label>
                             <input type="text" class="serch-input" value="" placeholder="Categories"
                                 name="categories">
-                                <div class="error-categories"></div>
+                            <div class="error-categories"></div>
                             <div class="clr"></div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
@@ -74,7 +74,7 @@
                         <label for="linkedin_url">LinkedIn Url</label>
                         <input type="text" class="serch-input" value="" placeholder="LinkedIn Url"
                             name="linkedin_url">
-                            <div class="error-linkedin_url"></div>
+                        <div class="error-linkedin_url"></div>
                         <div class="clr"></div>
                     </div>
                 </div>
@@ -83,14 +83,14 @@
                         <label for="youtube_url">Youtube Url</label>
                         <input type="text" class="serch-input" value="" placeholder="Youtube Url"
                             name="youtube_url">
-                            <div class="error-youtube_url"></div>
+                        <div class="error-youtube_url"></div>
                         <div class="clr"></div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
                         <label for="web_url">Website Url</label>
                         <input type="text" class="serch-input" value="" placeholder="Website Url"
                             name="web_url">
-                            <div class="error-web_url"></div>
+                        <div class="error-web_url"></div>
                         <div class="clr"></div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
@@ -121,7 +121,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25 upload-div">
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20" style="position:relative;">
-                            <input type="file" name="filename[]" class="form-control file">
+                            <input type="file" name="filename[]" class="form-control file" accept=".png,.jpeg,.jpg">
                             <div class="clr"></div>
                         </div>
                     </div>
@@ -141,15 +141,16 @@
 @section('scripts')
     <script>
         ClassicEditor
-        .create( document.querySelector( '#w3review' ) )
-        .catch( error => {
-            console.error( error );
-        } );
+            .create(document.querySelector('#w3review'))
+            .catch(error => {
+                console.error(error);
+            });
         $('.store').on('submit', function(e) {
             e.preventDefault();
             var form = new FormData(this);
             prev_img = $('.img-div').children('img').attr("src");
-            file = $('input[type=file]')[0].files[0];
+            file = $('.file')[0].files[0];
+            console.log(file)
             if (file != "undefined") {
                 form.append('image', file);
             }
@@ -167,5 +168,7 @@
         $(document).ready(function() {
             onChangeFile($('.img-div'), $('.upload-div'), $('.AClass'));
         });
+
+
     </script>
 @endsection

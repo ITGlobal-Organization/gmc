@@ -8,6 +8,7 @@ use App\Models\SpaceFinder;
 use App\Models\Media;
 use Auth;
 use App\Helpers\Helper;
+use DB;
 
 class SpaceFinderController extends BaseController
 {
@@ -63,8 +64,9 @@ class SpaceFinderController extends BaseController
             $this->spaceFinder->setOrderBy('title');
             $this->spaceFinder->setOrder('asc');
         }
-        $SpaceFinders = $this->spaceFinder->getAll([['users','users.id','=','space_finders.user_id']],['space_finders.id','space_finders.title','space_finders.description','space_finders.created_at','space_finders.categories','images.image_url','space_finders.slug']);
-
+        // DB::connection()->enableQueryLog();
+        $SpaceFinders = $this->spaceFinder->getAll([],['space_finders.id','space_finders.title','space_finders.description','space_finders.created_at','space_finders.categories','images.image_url','space_finders.slug']);
+        // dd(DB::getQueryLog());
         if(isset($user) && !$user->hasRole('admin')){
             $view='user.space-finder.listing';
         }else{
@@ -143,8 +145,10 @@ class SpaceFinderController extends BaseController
     public function store(Request $request){
         parent::store($request);
         if($request->hasFile('image')){
+            // dd($request->image);
             $media =  Helper::saveMedia($request->image,"App\Models\SpaceFinder",'main',$this->spaceFinder->id);
         }
+        // dd("ergre");
         $response = [
             'success' => true,
             'data'=>[

@@ -44,10 +44,18 @@ class BaseController extends Controller
     }
     public function setGeneralFilters(Request $request)
     {
-        $this->model->setLength($request->has('length') ? $request->length : 10);
-        $this->model->setStart($request->has('start') ? $request->start : 1);
-        $this->model->setOrderBy($request->has('orderBy') ? $request->orderBy : 'created_at');
-        $this->model->setOrder($request->has('order') ? $request->order : 'desc');
+        $this->model->setLength(($request->has('length') && $request->length != "") ? $request->length : config('site_config.constants.item_per_page'));
+
+        $this->model->setStart(($request->has('start') && $request->start != "")?$request->start: 1);
+        $this->model->setOrderBy(($request->has('order_by') && $request->order_by != "")? $request->order_by : $this->model->getOrderBy());
+        $this->model->setOrder(($request->has('order') && $request->order != "")? $request->order : $this->model->getOrder());
+    }
+    public function removeGeneralFilters(Request $request)
+    {
+        $request->request->remove('length');
+        $request->request->remove('start');
+        $request->request->remove('order_by');
+        $request->request->remove('order');
     }
 
     public function sendResponse($result = [], $message = '')
@@ -141,7 +149,7 @@ class BaseController extends Controller
 
         try {
             DB::beginTransaction();
-            $data = $request->except(['_token','media','gallery','attachment','image','image1','image2','filename']);
+            $data = $request->except(['_token','media','gallery','attachment','image','image1','image2','filename','logo']);
             $result = $this->model->store($data);
             $this->model->id = $result;
 
@@ -159,7 +167,7 @@ class BaseController extends Controller
             // return $result;
             return $this->sendResponse([], trans('messages.success_msg',['action' => trans('lang.saved')]));
         } catch (\Exception $e) {
-            // dd($e->getMessage());
+            dd($e->getMessage());
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
@@ -179,7 +187,7 @@ class BaseController extends Controller
 
         try {
             DB::beginTransaction();
-            $data = $request->except(['_token','media','gallery','image','image1','image2']);
+            $data = $request->except(['_token','media','gallery','image','image1','image2','filename','logo']);
             $this->model->updateByColumn($data,$id);
             $this->model->id = $id;
             if ($request->has('media')) {
@@ -197,6 +205,7 @@ class BaseController extends Controller
             // return $id;
             return $this->sendResponse([], trans('messages.success_msg', ['action' => trans('lang.updated')]));
         } catch (\Exception $e) {
+            dd($e->getMessage());
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
@@ -233,12 +242,14 @@ class BaseController extends Controller
         try{
             DB::beginTransaction();
             $response = $this->media->find($id);
+            // dd($response);
             Helper::unlinkFile($response->image_name);
             $this->media->destroyById($id);
             DB::commit();
             return $this->sendResponse([],trans('messages.success_msg',['action' => trans('lang.deleted')]));
 
         }catch (\Exception $e) {
+            dd($e->getMessage());
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));

@@ -36,7 +36,8 @@ class SpaceFinder extends BaseModel
             $user = Auth::user();
             if(isset($user) && $user->hasRole('admin')){
                 $builder->where($table.'.is_delete', '=', 0);
-            }else if(isset($user)){
+            }
+            else if(isset($user)){
                 $builder->where($table.'.is_delete', '=', 0)->where($table.'.is_active','=',1)->where('user_id',$user->id);
             }
             else{

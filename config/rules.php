@@ -128,6 +128,30 @@ return [
             'description' => 'required'
         ]
     ],
+    'm2m_offers' => [
+        'store' => [
+            'company_name' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:space_finders',
+            'phone' => 'required|numeric|min:11',
+            'web_url' => 'url',
+            'user_id' => 'required|exists:users,id',
+            'is_approved'=>'required',
+            'offer_details' => 'required'
+        ],
+        'edit' => [
+            'company_name' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:space_finders',
+            'phone' => 'required|numeric|min:11',
+            'web_url' => 'url',
+            'user_id' => 'required|exists:users,id',
+            'is_approved'=>'required',
+            'offer_details' => 'required'
+        ]
+    ],
     'users' => [
         'store' => [
             'first_name' => 'required',

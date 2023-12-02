@@ -41,7 +41,6 @@ class EventCalender extends BaseModel
             }else{
                 $builder->where($table.'.is_delete', '=', 0)->where($table.'.is_active','=',1)->where($table.'.is_approved',1);
             }
-
         });
     }
 
