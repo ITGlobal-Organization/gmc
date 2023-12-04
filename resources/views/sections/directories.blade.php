@@ -1,6 +1,6 @@
 <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8 padding border mb-25">
-    <span class="listin-found"><b>{{ trans('lang.directories') }} &nbsp;({{ count($Directories) }})</b> Listings
-        Found</span>
+    <!--<span class="listin-found"><b>{{ trans('lang.directories') }} &nbsp;({{ count($Directories) }})</b> Listings
+        Found</span>-->
 </div>
 
 <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2 border mb-25">
