@@ -38,6 +38,7 @@
         <label>{{ trans('lang.category') }}</label>
         @php 
             $category = new App\Models\Category();
+            $category->setLength(1000);
             $Categories = $category->getAll([],['id,name as text']);
         @endphp
         <select class="category select_search">

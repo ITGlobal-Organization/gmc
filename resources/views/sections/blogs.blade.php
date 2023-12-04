@@ -48,5 +48,5 @@
 			@endif
 
 						
-
+			@include('sections.pagination.paginationv1')
    <!-- OUR BLOGS SECTION END -->
