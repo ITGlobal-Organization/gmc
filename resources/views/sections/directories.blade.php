@@ -1,6 +1,5 @@
 <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8 padding border mb-25">
-    <!--<span class="listin-found"><b>{{ trans('lang.directories') }} &nbsp;({{ $count }})</b> {{ trans('lang.listings')}}
-        {{ trans('lang.found')}}</span>-->
+    <a href=directories/categories> View Categories</a>
 </div>
 
 <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2 border mb-25">
