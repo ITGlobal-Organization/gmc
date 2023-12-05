@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\BaseModel;
+use App\Models\Category;
 use Auth;
 use DB;
 use Log;
@@ -215,5 +216,11 @@ class Directory extends BaseModel
         Log::error($e);
            return null;
        }
+    }
+
+
+    // pivot relation
+    public function categories(){
+        return $this->belongsToMany(Category::class,'category_directory');
     }
 }
