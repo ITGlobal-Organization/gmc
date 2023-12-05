@@ -80,6 +80,24 @@
                             <div class="clr"></div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25">
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20 img-div" style="position:relative;">
+                            <button class="close AClass" type="button">
+                                <span>&times;</span>
+                            </button>
+                            <img src="{{ isset($Event->media[0]->image_url) ? $Event->media[0]->image_url : asset('/media/image-not-found.png') }}" alt=""
+                                data-id="{{ isset($Event->media[0]->id) ?  $Event->media[0]->id : ''}}">
+                            <div class="clr"></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25 upload-div hidden">
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20" style="position:relative;">
+                            <input type="file" name="filename[]" class="form-control file">
+                            <div class="clr"></div>
+                        </div>
+                    </div>
+                </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
                         <input type="submit" class="ct-submit" value="Submit">
                     </div>
@@ -102,13 +120,22 @@
         $('.update').on('submit', function(e) {
             e.preventDefault();
             var form = new FormData(this);
-
-            let id = '<?php echo $Event->id; ?>';
-            let url = "{{ route('user.events.update', '') }}" + "/" + id;
-            ajaxPost(url, form, '.contact-success', '.contact-error')
+            prev_img = $('.img-div').children('img').attr("src");
+            file = $('.file')[0].files[0];
+            if (file != "undefined") {
+                form.append('image', file);
+            }
+            if (prev_img != '') {
+                let id = '<?php echo $Event->id; ?>';
+                let url = "{{ route('user.events.update', '') }}" + "/" + id;
+                ajaxPost(url, form, '.contact-success', '.contact-error');
+            } else {
+                alert("Please Upload Image");
+            }
         })
 
-        // var date = location.match(/(?:\?|&)date=(\d+\/\d+\/\d+)(&|$)/)[1];
-        // $('#calendar').datepicker();
+        $(document).ready(function() {
+            onChangeFile($('.img-div'), $('.upload-div'), $('.AClass'));
+        });
     </script>
 @endsection

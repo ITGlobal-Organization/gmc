@@ -118,7 +118,7 @@ class BaseController extends Controller
             $response = $this->model->getRecordDataTable($request);
             return $this->sendResponse($response);
         }catch(\Exception $e){
-            dd($e->getMessage());
+
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
@@ -167,7 +167,7 @@ class BaseController extends Controller
             // return $result;
             return $this->sendResponse([], trans('messages.success_msg',['action' => trans('lang.saved')]));
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            // dd($e->getMessage());
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
@@ -205,7 +205,7 @@ class BaseController extends Controller
             // return $id;
             return $this->sendResponse([], trans('messages.success_msg', ['action' => trans('lang.updated')]));
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            // dd($e->getMessage());
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
@@ -249,7 +249,7 @@ class BaseController extends Controller
             return $this->sendResponse([],trans('messages.success_msg',['action' => trans('lang.deleted')]));
 
         }catch (\Exception $e) {
-            dd($e->getMessage());
+            // dd($e->getMessage());
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));

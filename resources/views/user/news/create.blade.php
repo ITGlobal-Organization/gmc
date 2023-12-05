@@ -96,7 +96,6 @@
             var form = new FormData(this);
             prev_img = $('.img-div').children('img').attr("src");
             file = $('.file')[0].files[0];
-            console.log(file)
             if (file != "undefined") {
                 form.append('image', file);
             }

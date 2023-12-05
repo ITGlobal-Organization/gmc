@@ -138,4 +138,7 @@ class EventCalender extends BaseModel
 
         return $result;
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

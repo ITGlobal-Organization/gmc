@@ -7,6 +7,7 @@ use App\Http\Controllers\BaseController;
 use App\Models\EventCalender;
 use App\Models\Media;
 use Auth;
+use App\Helpers\Helper;
 
 class EventCalenderController extends BaseController
 {
@@ -68,12 +69,15 @@ class EventCalenderController extends BaseController
         ]);
     }
     public function renderForm(Request $request,$id){
-
+        $Event = $this->eventCalender->first('id',$id,'=',['user'],[],['event_calenders.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
         $Event=$this->eventCalender->where('id',$request->id)->first();
         return view('user.event.edit',['Event'=>$Event]);
     }
 
     public function update(Request $request,$id){
+        if($request->hasFile('image')){
+            $media =  Helper::saveMedia($request->image,"App\Models\EventCalender",'main',$id);
+        }
         parent::update($request,$id);
 
         $response = [
@@ -137,6 +141,9 @@ class EventCalenderController extends BaseController
 
     public function store(Request $request){
         parent::store($request);
+        if($request->hasFile('image')){
+            $media =  Helper::saveMedia($request->image,"App\Models\EventCalender",'main',$this->eventCalender->id);
+        }
         $response = [
             'success' => true,
             'data'=>[
@@ -147,37 +154,37 @@ class EventCalenderController extends BaseController
         return response()->json($response, 200);
     }
 
-    public function searchEventsListing(Request $request){
+    // public function searchEventsListing(Request $request){
 
-        try{
-            if(isset($request->search)){
-                $Events=$this->eventCalender->where('event_date', '>=', today()->format('Y-m-d'))->where(function($query)use($request) {
-                        $query->where('title',$request->search)
-                        ->orWhere('venue',$request->search)->orWhere('city',$request->search)->orWhere('price',$request->search);
-                })->orderBy('id','desc')->get();
+    //     try{
+    //         if(isset($request->search)){
+    //             $Events=$this->eventCalender->where('event_date', '>=', today()->format('Y-m-d'))->where(function($query)use($request) {
+    //                     $query->where('title',$request->search)
+    //                     ->orWhere('venue',$request->search)->orWhere('city',$request->search)->orWhere('price',$request->search);
+    //             })->orderBy('id','desc')->get();
 
-            }
-            if(isset($request->end_date) && isset($request->start_date)){
-                if($request->start_date == ""){
-                    $startDate = date('Y-m-d');
-                }else{
-                    $startDate = date('Y-m-d',strtotime($request->start_date));
-                }
-                $endDate = date('Y-m-d',strtotime($request->end_date));
-                $Events=$this->eventCalender->whereDate('event_date','>=',$startDate)->whereDate('event_date','<=',$endDate)->orderBy('id','desc')->get();
-            }
+    //         }
+    //         if(isset($request->end_date) && isset($request->start_date)){
+    //             if($request->start_date == ""){
+    //                 $startDate = date('Y-m-d');
+    //             }else{
+    //                 $startDate = date('Y-m-d',strtotime($request->start_date));
+    //             }
+    //             $endDate = date('Y-m-d',strtotime($request->end_date));
+    //             $Events=$this->eventCalender->whereDate('event_date','>=',$startDate)->whereDate('event_date','<=',$endDate)->orderBy('id','desc')->get();
+    //         }
 
-            return view('eventcalenders.events-detail',[
-                'Events' => $Events,
-            ]);
-        } catch (\Exception $e) {
-            Log::error($e);
-            $Events=$this->eventCalender->where('event_date', '>=', today()->format('Y-m-d'))->get();
-            return view('eventcalenders.events-detail',[
-                'Events' => $Events,
-            ]);
-        }
-    }
+    //         return view('eventcalenders.events-detail',[
+    //             'Events' => $Events,
+    //         ]);
+    //     } catch (\Exception $e) {
+    //         Log::error($e);
+    //         $Events=$this->eventCalender->where('event_date', '>=', today()->format('Y-m-d'))->get();
+    //         return view('eventcalenders.events-detail',[
+    //             'Events' => $Events,
+    //         ]);
+    //     }
+    // }
 
     // public function getEvent(Request $request,$slug){
     //     $Event = $this->eventCalender->first('slug',$slug,'=',['user'],[],['event_calenders.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
