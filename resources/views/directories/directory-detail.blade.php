@@ -25,7 +25,9 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding ">
                     @foreach($Directory->categories as $Category)
-                    <p>{{ $Category->name.', '}}</p>
+                    <a href="{{ route('directories.index',[
+                            'category' => $Category->slug
+                        ]) }}">{{ $Category->name.', '}}</a>
                     <div class="clr"></div>
                     @endforeach
                 </div>
