@@ -86,15 +86,15 @@ class DirectoryController extends BaseController
     }
 
     public function getDirectory(Request $request,$slug){
-        $Blog = $this->directory->first('slug',$slug,'=',['user'],[],['directories.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
+        $Directory = $this->directory->first('slug',$slug,'=',['user','categories:id,name,slug'],[],['directories.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
         // $this->directory->setLength(10);
-
+        // dd($Directory);
         // $LatestBlogs = $this->directory->getAll([['users','users.id','=','directories.user_id']],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
 
         return view('directories.directory-detail',[
-            'Directory' => $Blog,
+            'Directory' => $Directory,
             // 'LatestBlog' => $LatestBlogs,
-            'title' => trans('lang.directory').' | '. $Blog->title
+            'title' => trans('lang.directory').' | '. $Directory->title
         ]);
     }
     

@@ -53,6 +53,8 @@ class BlogController extends BaseController
 
         return view('sections.blogs',[
             'Blogs' => $Blogs,
+            'count' => $this->blog->getCount(),
+            'page' => $this->blog->getStart()
         ]);
     }
 

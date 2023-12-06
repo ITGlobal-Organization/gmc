@@ -272,7 +272,7 @@ export const Language = {
     venue_url:"Venue Url",
     facebook_url:"Facebook Url",
     instagram_url:"Instagram Url",
-    youtube_url:"YouTube Url",
+    youtube_url:"Twitter Url",
     linkedin_url:"Linkedin Url",
     is_approved:"Is Approved",
     yes:"Yes",

@@ -43,7 +43,7 @@
         }else{
              filters.start = parseInt(filters.start)+1;
             $('.page').removeClass('page-active')
-            $('.pagination a[data-page=page-'+ page + ']').addClass("page-active");
+            $('.pagination a[data-page=page-'+ filters.start + ']').addClass("page-active");
             getCategoriesListings();
         }
     })
@@ -59,7 +59,7 @@
         }else{
              filters.start  = parseInt( filters.start )-1;
             $('.page').removeClass('page-active');
-            $('.pagination a[data-page=page-'+ page + ']').addClass("page-active");
+            $('.pagination a[data-page=page-'+ filters.start + ']').addClass("page-active");
             getCategoriesListings();
         }
     })

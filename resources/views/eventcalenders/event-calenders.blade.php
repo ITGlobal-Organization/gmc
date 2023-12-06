@@ -72,7 +72,7 @@
         }else{
              filters.start = parseInt(filters.start)+1;
             $('.page').removeClass('page-active')
-            $('.pagination a[data-page=page-'+ page + ']').addClass("page-active");
+            $('.pagination a[data-page=page-'+ filters.start+ ']').addClass("page-active");
             getDirectoryListing();
         }
     })
@@ -83,12 +83,12 @@
         if( filters.start  == 1){
             filters.start  = totalPages;
             $('.page').removeClass('page-active');
-            $('.pagination a[data-page=page-'+ totalPages + ']').addClass("page-active");
+            $('.pagination a[data-page=page-'+ filters.start + ']').addClass("page-active");
             getDirectoryListing();
         }else{
              filters.start  = parseInt( filters.start )-1;
             $('.page').removeClass('page-active');
-            $('.pagination a[data-page=page-'+ page + ']').addClass("page-active");
+            $('.pagination a[data-page=page-'+ filters.start + ']').addClass("page-active");
             getDirectoryListing();
         }
     })

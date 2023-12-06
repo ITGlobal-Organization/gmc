@@ -8,9 +8,7 @@
         {{ trans('lang.found')}}</span>
 </div>
 
-<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2 border mb-25">
-    @include('sections.search.filterv1')
-</div>
+
 <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 padding border mb-25">
     <select class="pd-sort sort_by">
         <option value="">{{ trans('lang.sort_by') }}</option>

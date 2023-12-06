@@ -16,6 +16,7 @@
         <option value="">{{ trans('lang.sort_by') }}</option>
         <option value="title-asc">A to Z</option>
         <option value="title-desc">Z to A</option>
+
         <option value="event_date-asc">Upcoming First</option>
         <option value="event_date-desc">Distant First</option>
     </select>
