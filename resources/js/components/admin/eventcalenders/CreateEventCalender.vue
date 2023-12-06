@@ -142,7 +142,7 @@ export default {
                     placeholder:function(){
                         return "Enter "+this.label
                     },
-                    required:true,
+                    required:false,
                 },
                 {
                     label:Language.city,

@@ -35,7 +35,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>   
+                </div>
                 <div class="col-6 col-md-6 col-12 mb-3">
                     <div class="form-group">
                         <label class="form-label">{{ Language.slug }}</label>
@@ -46,7 +46,7 @@
                             </ul>
                         </div>
                     </div>
-                </div> 
+                </div>
                 <div class="col-6 col-md-6 col-12 mb-3">
                     <div class="form-group">
                         <label class="form-label">{{ Language.email }}</label>
@@ -57,7 +57,7 @@
                             </ul>
                         </div>
                     </div>
-                </div> 
+                </div>
                 <div class="col-6 col-md-6 col-12 mb-3">
                     <div class="form-group">
                         <label class="form-label">{{ Language.mobile_no }}</label>
@@ -68,7 +68,7 @@
                             </ul>
                         </div>
                     </div>
-                </div> 
+                </div>
                 <div class="col-6 col-md-6 col-12 mb-3">
                     <div class="form-group">
                         <label class="form-label">{{ Language.phone }}</label>
@@ -79,7 +79,7 @@
                             </ul>
                         </div>
                     </div>
-                </div> 
+                </div>
                 <div class="col-6 col-md-6 col-12 mb-3">
                     <div class="form-group">
                         <label class="form-label">{{ Language.address }}</label>
@@ -90,7 +90,7 @@
                             </ul>
                         </div>
                     </div>
-                </div> 
+                </div>
                 <div class="col-6 col-md-6 col-12 mb-3">
                     <div class="form-group">
                         <label class="form-label">{{ Language.web_url }}</label>
@@ -101,7 +101,7 @@
                             </ul>
                         </div>
                     </div>
-                </div> 
+                </div>
                 <div class="col-6 col-md-6 col-12 mb-3">
                     <div class="form-group">
                         <label class="form-label">{{ Language.facebook_url }}</label>
@@ -112,7 +112,7 @@
                             </ul>
                         </div>
                     </div>
-                </div> 
+                </div>
                 <div class="col-6 col-md-6 col-12 mb-3">
                     <div class="form-group">
                         <label class="form-label">{{ Language.youtube_url }}</label>
@@ -171,7 +171,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-6 col-md-6 col-12 mb-3">
                     <div class="form-group">
                         <label class="form-label">{{ Language.is_approved  }}</label>
@@ -215,8 +215,8 @@
                                 </label>
                             </div>
                             </div>
-                            
-                            
+
+
                 </div>
                 <div class="col-12 col-12 mb-3">
                     <div class="form-group">
@@ -252,7 +252,7 @@
                 </div>
             </form>
             </div>
-     
+
 
             <!-- /.card-body -->
         </div>
@@ -375,7 +375,7 @@ export default {
                     },
                     required:true,
                 },
-                
+
                 {
                     label:Language.mobile_no,
                     field:"mobile_no",
@@ -418,7 +418,7 @@ export default {
                     placeholder:function(){
                         return "Enter "+this.label
                     },
-                    required:true,
+                    required:false,
                 },
                 {
                     label:Language.venue_url,
@@ -429,7 +429,7 @@ export default {
                     placeholder:function(){
                         return "Enter "+this.label
                     },
-                    required:true,
+                    required:false,
                 },
                 {
                     label:Language.facebook_url,
@@ -440,7 +440,7 @@ export default {
                     placeholder:function(){
                         return "Enter "+this.label
                     },
-                    required:true,
+                    required:false,
                 },
                 {
                     label:Language.instagram_url,
@@ -451,7 +451,7 @@ export default {
                     placeholder:function(){
                         return "Enter "+this.label
                     },
-                    required:true,
+                    required:false,
                 },
                 {
                     label:Language.youtube_url,
@@ -462,7 +462,7 @@ export default {
                     placeholder:function(){
                         return "Enter "+this.label
                     },
-                    required:true,
+                    required:false,
                 },
                 {
                     label:Language.linkedin_url,
@@ -473,7 +473,7 @@ export default {
                     placeholder:function(){
                         return "Enter "+this.label
                     },
-                    required:true,
+                    required:false,
                 },
                 {
                     label:Language.user,
@@ -666,7 +666,7 @@ export default {
         async getAllCategories(){
             const {records,getAllPublic} = useCategories();
             await getAllPublic(this.searchMulti);
-            
+
             this.categories = records.value;
 
         },
@@ -678,12 +678,12 @@ export default {
                 options.map(op => {
                     ref.FormData[field].push(op.id)
                })
-            }     
-            else 
-            ref.FormData[field] = [] 
+            }
+            else
+            ref.FormData[field] = []
 
         },
-    
+
 
 
    },
