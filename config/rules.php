@@ -22,7 +22,7 @@ return [
     'platinum_partners' => [
         'store' => [
             'title' => 'required',
-            /'web_url' => 'url',
+            //'web_url' => 'url',
             'description' => 'required'
 
         ],
