@@ -36,6 +36,10 @@ class CategoryController extends BaseController
     }
 
     public function renderCategoriesView(Request $request){
+        if($request->ajax()){
+            // dd('here');
+            return $this->categories($request);
+        }
         return view('directories.categories.categories',[
             'title' => trans('lang.directories').' | '.trans('lang.categories'),
             'count' => 0
@@ -43,8 +47,11 @@ class CategoryController extends BaseController
     }
 
     public function getCategoriesListing(Request $request){
+        ///dd('hrer');
         $this->setGeneralFilters($request);
         $this->removeGeneralFilters($request);
+
+       
 
         if(isset($request->search) && $request->search != '')
             $this->category->setFilters(['name','like','%'.$request->search.'%']);

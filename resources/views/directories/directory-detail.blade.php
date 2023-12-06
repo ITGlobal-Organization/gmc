@@ -22,8 +22,17 @@
 
                     <div class="clr"></div>
                 </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding ">
+                    @foreach($Directory->categories as $Category)
+                    <a href="{{ route('directories.index',[
+                            'category' => $Category->slug
+                        ]) }}">{{ $Category->name.', '}}</a>
+                    <div class="clr"></div>
+                    @endforeach
+                </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding">
-                    <h2 class="mtb-25">Contact Information</h2>
+                    <h2 class="mtb-25">{{ trans('lang.contact')}}</h2>
                     <!--Start Box 1-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
                         <i class="fas fa-map-marker-alt"

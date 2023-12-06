@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\BaseModel;
+use App\Models\Directory;
 use Auth;
 class Category extends BaseModel
 {
@@ -100,5 +101,8 @@ class Category extends BaseModel
         return $this->first($column,$value,'=')->id;
     }
 
-    
+    // Pivot relation
+    public function directories(){
+        return $this->belongsToMany(Directory::class,'category_directory');
+    }
 }
