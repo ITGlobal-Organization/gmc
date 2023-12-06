@@ -16,8 +16,9 @@
         <option value="">{{ trans('lang.sort_by') }}</option>
         <option value="title-asc">A to Z</option>
         <option value="title-desc">Z to A</option>
-        <option value="created_at-asc">{{ trans('lang.latest_to_oldest') }}</option>
-        <option value="created_at-desc">{{ trans('lang.oldest_to_latest') }}</option>
+
+        <option value="event_date-asc">Upcoming First</option>
+        <option value="event_date-desc">Distant First</option>
     </select>
 </div>
 
@@ -132,4 +133,5 @@
     </div>
     <div class="clr"></div>
 </div>
+@include('sections.pagination.paginationv1')
 <!--End Table listing-->

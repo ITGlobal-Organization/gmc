@@ -50,8 +50,8 @@ class BaseModel extends Model
 
 
     public function setLength($length)
-    {
-
+    {   
+       
         $this->length = $length;
     }
 
@@ -333,8 +333,16 @@ class BaseModel extends Model
           if($this->has_images){
             $data->leftjoin('images','images.model_id',$this->table.'.id')->where('images.model','like',str_replace('\\','%',$this->class_name));
 
+
         }
 
+
+        if (count($this->getFilters()) > 0) {
+            foreach ($this->getFilters() as $condition) {
+                $data->where($condition[0], $condition[1], $condition[2]);
+            }
+        }
+        
         if (count($this->getFilters()) > 0) {
             foreach ($this->getFilters() as $condition) {
                 $data->where($condition[0], $condition[1], $condition[2]);
@@ -347,17 +355,23 @@ class BaseModel extends Model
             }
             // $data = static::with($relation)->selectRaw(implode(',', $select));
         }
+       
+        $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
+      
+
 
         $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
 
 
 
 
+
         if($this->getLength() > 0 )
            return $data->skip($this->getLength() * ($this->getStart() - 1))->take($this->getLength())->orderBy($this->table.'.'.$this->getOrderBy(), $this->getOrder())->groupBy($this->table.'.'.$this->getGroupBy())->get();
-
-
+        
+          
         return $data->groupBy($this->table.'.'.$this->getGroupBy())->get();
+        
 
 
     }

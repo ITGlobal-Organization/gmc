@@ -47,7 +47,6 @@ return [
             // 'linked_url' => '',
             'user_id' => 'required|exists:users,id',
             'is_approved'=>'required',
-            'categories'=>'required',
             'description' => 'required'
         ],
         'edit' => [
@@ -64,7 +63,6 @@ return [
             // 'linked_url' => '',
             'user_id' => 'required|exists:users,id',
             'is_approved'=>'required',
-            'categories'=>'required',
             'description' => 'required'
         ]
     ],

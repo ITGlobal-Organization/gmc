@@ -1,22 +1,14 @@
-<h1 class="mb-25 text-center">Space Finder</h1>
+<h1 class="mb-25 text-center">{{ trans('lang.space_finder')}}</h1>
 <p class="mb-40 text-center">
-    Here we have harnessed space (indoors and out) from within our membership and partners.
-    <br>
-    This includes property for long term let or sale and also space for use and hire by the hour, day, week, month and
-    so on.
-    <br>
-    There is a variety of options with different facilities e.g. parking and catering.
-    <br>
-    Please register to upload space you have to offer or search for your needs if you are looking.
+    {!! trans('content.space-finder.description') !!}
 </p>
 
 <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8 padding border mb-25">
-    <span class="listin-found"><b>{{ count($SpaceFinders) }}</b> Listings Found</span>
+    <span class="listin-found"><b>{{ count($SpaceFinders) }}</b> {{ trans('lang.listings')}}
+        {{ trans('lang.found')}}</span>
 </div>
 
-<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2 border mb-25">
-    @include('sections.search.filterv1')
-</div>
+
 <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 padding border mb-25">
     <select class="pd-sort sort_by">
         <option value="">{{ trans('lang.sort_by') }}</option>
@@ -59,3 +51,4 @@
 
 
 <div class="clr"></div>
+@include('sections.pagination.paginationv1')

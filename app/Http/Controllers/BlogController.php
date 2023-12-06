@@ -75,6 +75,8 @@ class BlogController extends BaseController
         }
         return view($view,[
             'Blogs' => $Blogs,
+            'count' => $this->blog->getCount(),
+            'page' => $this->blog->getStart()
         ]);
     }
 

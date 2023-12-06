@@ -77,7 +77,7 @@
        <li><a href="{{ route('login') }}"><i class="fas fa-sign-in-alt" style="color: #ffffff;"></i>&nbsp; Login &nbsp;&nbsp;|</a></li>
       <li><a href="{{ route('register') }}"><i class="fas fa-user" style="color: #ffffff;"></i>&nbsp; Join</a></li>
       @else
-        <li><a href="{{ route('user.dashboard') }}"><i class="fas fa-user" style="color: #ffffff;"></i>&nbsp; Dashboard &nbsp;&nbsp;|</a></li>
+        <li><a href="{{ route('user.dashboard') }}"><i class="fas fa-user" style="color: #ffffff;"></i>&nbsp; Member Dashboard &nbsp;&nbsp;|</a></li>
       <li><a href="{{ route('logout') }}"><i class="fas fa-sign-in-alt" style="color: #ffffff;"></i>&nbsp; Logout</a></li>
       @endif
     </ul>
@@ -90,10 +90,20 @@
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 <div id="list2">
+     @php 
+         $User = auth()->user();
+      @endphp
     <ul>
       <li><a href="{{ route('home') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.home')}}</a></li>
+       @if(!isset($User))
       <li><a href="{{ route('login') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.login')}}</a></li>
 	  <li><a href="{{ route('register') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.join')}}</a></li>
+	  @else
+	       <li><a href="{{ route('user.dashboard') }}"><i class="fa fa-chevron-right"></i>  Member Dashboard</a></li>
+	  <li><a href="{{ route('logout') }}"><i class="fa fa-chevron-right"></i> {{ 'Logout'}}</a></li>
+	  @endif
+	  
+	  
     <li><a href="{{ route('blogs.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.news')}}</a></li>
       <li><a href="{{ route('site-pages','benifits') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.benifits')}}</a></li>
       <li><a href="{{ route('directories.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.directories')}}</a></li>
@@ -102,8 +112,8 @@
 		      <li><a href="{{ route('platinum-partners.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.platiniumpartners')}}</a></li>
 		      <li><a href="https://pcjh.co.uk/"><i class="fa fa-chevron-right"></i> {{ trans('lang.jobshub')}}</a></li>
 		      <li><a href="{{ route('site-pages','about-us') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.about_us')}}</a></li>
-		      <li><a href="{{ route('international') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.international')}}</a></li>
-		      <li><a href="{{ route('mentoring') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.mentoring')}}</a></li>
+		      <li><a href="{{ route('site-pages','international') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.international')}}</a></li>
+		      <li><a href="{{ route('site-pages','mentoring') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.mentoring')}}</a></li>
 		      <li><a href="{{ route('site-pages','contact-us') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.contact')}}</a></li>
     </ul>
     <div class="clr"></div>
@@ -123,31 +133,29 @@
 
 <!--Start Nav Desktop Area-->
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nav1 none">
+<div class="middle">
+ <div class="list2">
+    <ul class="list2">
+      <li><a href="{{ route('home') }}">Home</a></li>
+      <!-- <li><a href="{{ route('login') }}"> {{ trans('lang.login')}}</a></li>
+	  <li><a href="{{ route('register') }}"> {{ trans('lang.join')}}</a></li> -->
+      <li><a href="{{ route('blogs.index') }}">{{ trans('lang.news')}}</a></li>
+       <li><a href="{{ route('site-pages','benifits') }}">{{ trans('lang.benifits')}}</a></li>
+      <li><a href="{{ route('directories.index') }}">{{ trans('lang.directories')}}</a></li>
+      <li><a href="{{ route('space-finders.index') }}">{{ trans('lang.spacefinders')}}</a></li>
+      <li><a href="{{ route('event-calenders.index') }}">{{ trans('lang.eventcalenders')}}</a></li>
+      <li><a href="{{ route('platinum-partners.index') }}">{{ trans('lang.platiniumpartners')}}</a></li>
+      <li><a href="https://pcjh.co.uk/">{{ trans('lang.jobshub')}}</a></li>
+	  <li><a href="{{ route('site-pages','about-us') }}">{{ trans('lang.about_us')}}</a></li>
+	  <li><a href="{{ route('site-pages','international') }}">{{ trans('lang.international')}}</a></li>
+		<li><a href="{{ route('site-pages','mentoring') }}">{{ trans('lang.mentoring')}}</a></li>
+		<li><a href="{{ route('site-pages','contact-us') }}">{{ trans('lang.contact')}}</a></li>
+    </ul>
+  </div>
+<div class="clr"></div>
 
-    <div class="middle">
-        <div class="list2">
-            <ul class="list2">
-                <li><a href="{{ route('home') }}">Home</a></li>
-                <!--<li><a href="{{ route('login') }}"> {{ trans('lang.login') }}</a></li>
-                <li><a href="{{ route('register') }}"> {{ trans('lang.join') }}</a></li>-->
-                <li><a href="{{ route('blogs.index') }}">{{ trans('lang.news') }}</a></li>
-                <li><a href="{{ route('site-pages', 'benifits') }}">{{ trans('lang.benifits') }}</a></li>
-                <li><a href="{{ route('directories.index') }}">{{ trans('lang.directories') }}</a></li>
-                <li><a href="{{ route('space-finders.index') }}">{{ trans('lang.spacefinders') }}</a></li>
-                <li><a href="{{ route('event-calenders.index') }}">{{ trans('lang.eventcalenders') }}</a></li>
-                <li><a href="{{ route('platinum-partners.index') }}">{{ trans('lang.platiniumpartners') }}</a></li>
-                <li><a href="https://pcjh.co.uk/">{{ trans('lang.jobshub') }}</a></li>
-                <li><a href="{{ route('site-pages', 'about-us') }}">{{ trans('lang.about_us') }}</a></li>
-                <li><a href="{{ route('international') }}">{{ trans('lang.international') }}</a></li>
-                <li><a href="{{ route('mentoring') }}">{{ trans('lang.mentoring') }}</a></li>
-                <li><a href="{{ route('site-pages', 'contact-us') }}">{{ trans('lang.contact') }}</a></li>
-            </ul>
-        </div>
-        <div class="clr"></div>
-
-    </div>
-    <div class="clr"></div>
-
+</div>
+<div class="clr"></div>
 </div>
 <!--End Nav Desktop Area-->
 

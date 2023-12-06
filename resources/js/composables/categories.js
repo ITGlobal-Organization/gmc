@@ -10,7 +10,7 @@ export default function useCategories() {
 
     const { errorAlert } = useService();
     const getAll = async(pageNo, limit, orderBy, order, data) => {
-        await axiosWrapper.get(`/admin/categories/ajax?length=${limit}&start=${pageNo}&orderBy=${orderBy}&order=${order}`, data).then((response) => {
+        await axiosWrapper.get(`/admin/directory/categories/ajax?length=${limit}&start=${pageNo}&orderBy=${orderBy}&order=${order}`, data).then((response) => {
             records.value = response.data.data
         }).catch((e) => {
             errorAlert(e.message);
@@ -19,24 +19,24 @@ export default function useCategories() {
 
     const store = async(data) => {
 
-        await axiosWrapper.post(`/admin/categories`, data);
+        await axiosWrapper.post(`/admin/directory/categories`, data);
     }
     const udpateStatus = async(id) => {
-        await axiosWrapper.put(`/admin/categories/update/status`, { id })
+        await axiosWrapper.put(`/admin/directory/categories/update/status`, { id })
     }
 
     const update = async(id, data) => {
-        await axiosWrapper.put(`/admin/categories/update/${id}`, data)
+        await axiosWrapper.put(`/admin/directory/categories/update/${id}`, data)
     }
     const get = async(id) => {
-        await axiosWrapper.get(`/admin/categories/${id}`).then((response) => {
+        await axiosWrapper.get(`/admin/directory/categories/${id}`).then((response) => {
             record.value = response.data.data
         }).catch((e) => {
             errorAlert(e.message);
         })
     }
-    const getAllPublic = async() => {
-        await axiosWrapper.get(`/categories`).then((response) => {
+    const getAllPublic = async(search) => {
+        await axiosWrapper.get(`/directories/categories?search=${search}`).then((response) => {
             records.value = response.data.data
         }).catch((e) => {
             errorAlert(e.message);
@@ -44,7 +44,7 @@ export default function useCategories() {
     }
     
     const _delete  =async(id) => {
-        await axiosWrapper.destroy(`/admin/categories/delete/${id}`);
+        await axiosWrapper.destroy(`/admin/directory/categories/delete/${id}`);
     }
     return {
         getAll,

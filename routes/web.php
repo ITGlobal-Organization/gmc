@@ -7,6 +7,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\SpaceFinderController;
 use App\Http\Controllers\PlatinumPartnerController;
+use App\Http\Controllers\CategoryController;
 use Artisan;
 
 
@@ -44,6 +45,8 @@ Route::prefix('blogs')->group(function () {
 
 // Directiories
 Route::prefix('directories')->group(function () {
+    Route::get('/categories',[CategoryController::class,'renderCategoriesView'])->name('directories.category.index');
+    Route::get('/categories/ajax',[CategoryController::class,'getCategoriesListing'])->name('directories.category.ajax');
     Route::get('/',[DirectoryController::class,'directories'])->name('directories.index');
     Route::get('/ajax',[DirectoryController::class,'getDirectoryListing'])->name('directories.ajax');
 
@@ -109,6 +112,21 @@ Route::prefix('user')->middleware(['auth:sanctum','user'])->group(function () {
     require __DIR__ . '/user.php';
 });
 
+// Route::get('/platinium-partners',function(){
+//     return view('pages.platinium-partners');
+// })->name('platinium-partners');
+
+// Route::get('/jobs-hub',function(){
+//     return view('pages.jobs-hub');
+// })->name('jobs-hub');
+
+// Route::get('/international',function(){
+//     return view('pages.international');
+// })->name('international');
+
+// Route::get('/mentoring',function(){
+//     return view('pages.mentoring');
+// })->name('mentoring');
 
 Route::get('/staff',function(){
     return view('pages.staff');
@@ -122,21 +140,7 @@ Route::get('/{page}',[SitePageController::class,'renderSitePages'])->name('site-
 Route::post('/media/upload',[BaseController::class,'saveFiles'])->name('media-upload');
 Route::delete('/media/delete/{id}',[BaseController::class,'deleteFiles'])->name('media-upload');
 
-// Route::get('/platinium-partners',function(){
-//     return view('pages.platinium-partners');
-// })->name('platinium-partners');
 
-Route::get('/jobs-hub',function(){
-    return view('pages.jobs-hub');
-})->name('jobs-hub');
-
-Route::get('/international',function(){
-    return view('pages.international');
-})->name('international');
-
-Route::get('/mentoring',function(){
-    return view('pages.mentoring');
-})->name('mentoring');
 
 
 

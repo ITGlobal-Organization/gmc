@@ -16,11 +16,20 @@
 @section('scripts')
 <script>
 
-	sort_by = "";
-    search ="";
+	// sort_by = "";
+    // search ="";
+    let filters = {
+        start_date:"",
+        end_date:"",
+        order_by:"",
+        order:"",
+
+    }
 
 	$(document).on("change",'.sort_by',function(){
-		sort_by = $(this).val();
+		let sort_by = $(this).val();
+        filters.order_by = sort_by.split('-')[0];
+        filters.order = sort_by.split('-')[1];
 		getEventsListing();
 	});
 
@@ -28,18 +37,60 @@
 		getEventsListing();
 	})
     $(document).on('keyup','.search-box',function(){
-        search = $(this).val();
-        if(search.length > 2){
-            ajaxGet("{{route('event-calenders.search')}}",{search},".events",responseType='html');
-        }
+        filters.search = $(this).val();
+        setTimeInterval(() => {
+            getEventsListing();
+        },2000)
     });
     $(document).on('change', '#end-date',function (ev) {
-        start_date = $('#start-date').val();
-        end_date = $('#end-date').val();
-        ajaxGet("{{route('event-calenders.search')}}",{start_date:start_date,end_date:end_date},".events",responseType='html');
+        filters.start_date = $('#start-date').val();
+        filters.end_date = $('#end-date').val();
+        getEventsListing();
     });
 	function getEventsListing(){
-		ajaxGet("{{route('event-calenders.ajax')}}",{sort_by},".events",responseType='html');
+		ajaxGet("{{route('event-calenders.ajax')}}",filters,".events",responseType='html');
 	}
+
+
+        // Pagination
+        $(document).on('click','.page',function(e){
+            e.preventDefault();
+            $('.page').removeClass("page-active");
+            $(this).addClass("page-active");
+            filters.start = $(this).text();
+            getDirectoryListing();
+        })
+
+        $(document).on('click','.next',function(e){
+        e.preventDefault();
+        totalPages = $('.count').val();
+        if( filters.start  == totalPages){
+            filters.start  = 1;
+            $('.page').removeClass('page-active');
+            $('.pagination a[data-page=page-1]').addClass("page-active");
+            getDirectoryListing();
+        }else{
+             filters.start = parseInt(filters.start)+1;
+            $('.page').removeClass('page-active')
+            $('.pagination a[data-page=page-'+ filters.start+ ']').addClass("page-active");
+            getDirectoryListing();
+        }
+    })
+
+    $(document).on('click','.prev',function(e){
+        e.preventDefault();
+        totalPages = $('.count').val();
+        if( filters.start  == 1){
+            filters.start  = totalPages;
+            $('.page').removeClass('page-active');
+            $('.pagination a[data-page=page-'+ filters.start + ']').addClass("page-active");
+            getDirectoryListing();
+        }else{
+             filters.start  = parseInt( filters.start )-1;
+            $('.page').removeClass('page-active');
+            $('.pagination a[data-page=page-'+ filters.start + ']').addClass("page-active");
+            getDirectoryListing();
+        }
+    })
 </script>
 @endsection

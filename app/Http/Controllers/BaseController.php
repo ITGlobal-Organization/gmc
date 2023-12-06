@@ -47,14 +47,17 @@ class BaseController extends Controller
         $this->model->setLength(($request->has('length') && $request->length != "") ? $request->length : config('site_config.constants.item_per_page'));
 
         $this->model->setStart(($request->has('start') && $request->start != "")?$request->start: 1);
-        $this->model->setOrderBy(($request->has('order_by') && $request->order_by != "")? $request->order_by : $this->model->getOrderBy());
+        $this->model->setOrderBy(($request->has('orderBy') && $request->orderBy != "")? $request->orderBy : $this->model->getOrderBy());
         $this->model->setOrder(($request->has('order') && $request->order != "")? $request->order : $this->model->getOrder());
     }
+
     public function removeGeneralFilters(Request $request)
     {
         $request->request->remove('length');
         $request->request->remove('start');
+
         $request->request->remove('order_by');
+
         $request->request->remove('order');
     }
 
@@ -155,7 +158,7 @@ class BaseController extends Controller
 
             if ($request->has('media')) {
                 //$response = Helper::saveMedia($request->image,$this->model->class_name,$result->id);
-
+              
                 foreach($request->media as $media){
                    // dd($this->Media);
                     $this->Media->updateByColumn([

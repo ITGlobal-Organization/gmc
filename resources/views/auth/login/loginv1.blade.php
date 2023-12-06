@@ -14,9 +14,9 @@
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 border padding form-none"></div>
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 border join-bg">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mb-20">
-                            <label>Username or Email Address
+                            <label>Email Address
                             </label>
-                            <input type="text" class="join-input email" value="" placeholder="Username or Email Address" name="email">
+                            <input type="text" class="join-input email" value="" placeholder="Email Address" name="email">
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mb-20">
                             <label>Password </label>
