@@ -58,7 +58,7 @@ class EventCalenderController extends BaseController
         
 
         $AllEvents = $this->eventCalender->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.*','images.image_url']);
-
+        
         if(isset($request->search) && $request->search != '') {
             $this->eventCalender->setFilters(['title','like','%'.$request->search.'%']);
         }
@@ -80,6 +80,10 @@ class EventCalenderController extends BaseController
             $view='user.event.listing';
         }else{
             $view='eventcalenders.events-detail';
+        }
+
+        if($request->ajax()){
+            return $this->sendResponse($Events);
         }
         return view($view,[
             'Events' => $Events,

@@ -6,7 +6,7 @@
         <div class="middle mtb-60">
             <div class="events">
 
-			</div>
+			      </div>
             <div class="clr"></div>
         </div>
         <div class="clr"></div>
@@ -18,6 +18,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="{{ custom_asset('calendar-gc.min.js','scripts') }}"></script>
+<link href="{{ custom_asset('easy-responsive-tabs.css','css') }}" rel="stylesheet" type="text/css">
+<script src="{{ custom_asset('easyResponsiveTabs.js','scripts') }}"></script>
 <script>
 
 	// sort_by = "";
@@ -39,6 +41,8 @@
 
 	$(document).ready(function(){
 		getEventsListing();
+  
+ 
 	})
     $(document).on('keyup','.search-box',function(){
         filters.search = $(this).val();
@@ -62,7 +66,7 @@
             $('.page').removeClass("page-active");
             $(this).addClass("page-active");
             filters.start = $(this).text();
-            getDirectoryListing();
+            getEventsListing();
         })
 
         $(document).on('click','.next',function(e){
@@ -72,12 +76,12 @@
             filters.start  = 1;
             $('.page').removeClass('page-active');
             $('.pagination a[data-page=page-1]').addClass("page-active");
-            getDirectoryListing();
+            getEventsListing();
         }else{
              filters.start = parseInt(filters.start)+1;
             $('.page').removeClass('page-active')
             $('.pagination a[data-page=page-'+ page + ']').addClass("page-active");
-            getDirectoryListing();
+            getEventsListing();
         }
     })
 
@@ -88,85 +92,19 @@
             filters.start  = totalPages;
             $('.page').removeClass('page-active');
             $('.pagination a[data-page=page-'+ totalPages + ']').addClass("page-active");
-            getDirectoryListing();
+            getEventsListing();
         }else{
              filters.start  = parseInt( filters.start )-1;
             $('.page').removeClass('page-active');
             $('.pagination a[data-page=page-'+ page + ']').addClass("page-active");
-            getDirectoryListing();
+            getEventsListing();
         }
     })
 </script>
 
 
-<script>
-  $(function (e) {
-    var calendar = $("#calendar").calendarGC({
-      dayBegin: 0,
-      prevIcon: '&#x3c;',
-      nextIcon: '&#x3e;',
-      onPrevMonth: function (e) {
-        console.log("prev");
-        console.log(e);
-      },
-      onNextMonth: function (e) {
-        console.log("next");
-        console.log(e);
-      },
-      events: getHoliday(),
-      onclickDate: function (e, data) {
-        console.log(e, data);
-      }
-    });
-  });
-
-  function getHoliday() {
-    var d = new Date();
-    var totalDay = new Date(d.getFullYear(), d.getMonth(), 0).getDate();
-    var events = [];
-
-    for (var i = 1; i <= totalDay; i++) {
-      var newDate = new Date(d.getFullYear(), d.getMonth(), i);
-      if (newDate.getDay() == 0) {   //if Sunday
-        events.push({
-          date: newDate,
-          eventName: "CHAS Launches Biggest Ever Festive Appeal After 25% Increase In Family Support",
-          className: "badge",
-          onclick(e, data) {
-            console.log(data);
-          },
-          dateColor: "red"
-        });
-      }
-      if (newDate.getDay() == 3) {   //if Saturday
-        events.push({
-          date: newDate,
-          eventName: "Build Your Skill: Intermediate Excel #2",
-          className: "badge badge2",
-          onclick(e, data) {
-            console.log(data);
-          },
-          dateColor: "red"
-        });
-      }
-		
-		
-	 if (newDate.getDay() == 5) {   //if Saturday
-        events.push({
-          date: newDate,
-          eventName: "Craighead Wind Farm Community Consultation Invitation",
-          className: "badge badge3",
-          onclick(e, data) {
-            console.log(data);
-          },
-          dateColor: "red"
-        });
-      }
 
 
-    }
-    return events;
-  }
-  getHoliday()
-</script>
+
+
 @endsection
