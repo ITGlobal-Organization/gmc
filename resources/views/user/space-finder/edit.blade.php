@@ -156,7 +156,7 @@
             e.preventDefault();
             var form = new FormData(this);
             prev_img = $('.img-div').children('img').attr("src");
-            file = $('input[type=file]')[0].files[0];
+            file = $('.file')[0].files[0];
             if (file != "undefined") {
                 form.append('image', file);
             }
