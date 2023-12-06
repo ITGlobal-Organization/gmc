@@ -172,6 +172,7 @@ return [
     'news'=>'News',
     'platinumpartners'=>"Platinum Partners",
     'platinumpartner'=>"Platinum Partner",
+    'offers'=>'Offers'
     'previous' =>'Previous',
     'next' =>'Next',
     'search_filter' => 'Search Filter',
@@ -182,6 +183,7 @@ return [
     'search' => 'Search',
     'website' => 'Website'
     
+
 
 
 ];

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Models\Blog;
 use App\Models\Media;
+use Auth;
+use App\Helpers\Helper;
 
 class BlogController extends BaseController
 {
@@ -39,19 +41,39 @@ class BlogController extends BaseController
     }
 
     public function blogs(Request $request){
-        return view('blogs.blogs',[
+        $user = Auth::user();
+        if(isset($user) && $user->hasRole('user')){
+            $view = 'user.news.index';
+        }else{
+            $view = 'blogs.blogs';
+        }
+        return view($view,[
             'title' => trans('lang.blogs'),
         ]);
     }
     public function getBlogsListing(Request $request){
-        if(isset($request->sort_by) && $request->sort_by != ""){
-            $sort = explode('-',$request->sort_by);
-            $this->blog->setOrderBy($sort[0]);
-            $this->blog->setOrder($sort[1]);
-        }
-        $Blogs = $this->blog->getAll([['users','users.id','=','blogs.author']],['blogs.title','blogs.description','blogs.created_at','images.image_url','blogs.slug']);
 
-        return view('sections.blogs',[
+        $user = Auth::user();
+        $this->setGeneralFilters($request);
+        $this->removeGeneralFilters($request);
+
+        $data = $request->all();
+
+        foreach ($data as $key => $value) {
+            if($value != ""){
+                $this->blog->setFilters([$key,'like','%'.$value.'%']);
+            }
+        }
+        // DB::connection()->enableQueryLog();
+        $Blogs = $this->blog->getAll([],['blogs.*','images.image_url']);
+        // dd($Blogs);
+        // dd(DB::getQueryLog());
+        if(isset($user) && $user->hasRole('user')){
+            $view='user.news.listing';
+        }else{
+            $view='sections.blogs';
+        }
+        return view($view,[
             'Blogs' => $Blogs,
             'count' => $this->blog->getCount(),
             'page' => $this->blog->getStart()
@@ -70,4 +92,53 @@ class BlogController extends BaseController
             'title' => trans('lang.blog').' | '. $Blog->title
         ]);
     }
+
+    public function renderForm(Request $request,$id){
+        $blog = $this->blog->first('id',$id,'=',['user'],[],['blogs.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
+        return view('user.news.edit',['Blog'=>$blog]);
+    }
+
+    public function store(Request $request){
+
+        parent::store($request);
+        if($request->hasFile('image')){
+            $media =  Helper::saveMedia($request->image,"App\Models\Blog",'main',$this->blog->id);
+        }
+        $response = [
+            'success' => true,
+            'data'=>[
+                'route'=>route('user.news')
+            ],
+            'message'=>'Created Successfully'
+        ];
+        return response()->json($response, 200);
+    }
+
+    public function update(Request $request,$id){
+        if($request->hasFile('image')){
+            $media =  Helper::saveMedia($request->image,"App\Models\Blog",'main',$id);
+        }
+        parent::update($request,$id);
+        $response = [
+            'success' => true,
+            'data'=>[
+                'route'=>route('user.news')
+            ],
+            'message'=>'Updated Successfully'
+        ];
+        return response()->json($response, 200);
+    }
+
+    public function destroy(Request $request,$id){
+        parent::destroy($request,$id);
+        $response = [
+            'success' => true,
+            'data'=>[
+                'route'=>route('user.news')
+            ],
+            'message'=>'Deleted Successfully'
+        ];
+        return response()->json($response, 200);
+    }
+
 }

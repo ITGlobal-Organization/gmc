@@ -7,6 +7,7 @@ use App\Http\Controllers\BaseController;
 use App\Models\EventCalender;
 use App\Models\Media;
 use Auth;
+use App\Helpers\Helper;
 
 class EventCalenderController extends BaseController
 {
@@ -89,12 +90,15 @@ class EventCalenderController extends BaseController
         ]);
     }
     public function renderForm(Request $request,$id){
-
+        $Event = $this->eventCalender->first('id',$id,'=',['user'],[],['event_calenders.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
         $Event=$this->eventCalender->where('id',$request->id)->first();
         return view('user.event.edit',['Event'=>$Event]);
     }
 
     public function update(Request $request,$id){
+        if($request->hasFile('image')){
+            $media =  Helper::saveMedia($request->image,"App\Models\EventCalender",'main',$id);
+        }
         parent::update($request,$id);
 
         $response = [
@@ -158,6 +162,9 @@ class EventCalenderController extends BaseController
 
     public function store(Request $request){
         parent::store($request);
+        if($request->hasFile('image')){
+            $media =  Helper::saveMedia($request->image,"App\Models\EventCalender",'main',$this->eventCalender->id);
+        }
         $response = [
             'success' => true,
             'data'=>[
@@ -167,8 +174,6 @@ class EventCalenderController extends BaseController
         ];
         return response()->json($response, 200);
     }
-
-
 
 
 

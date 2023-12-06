@@ -3,7 +3,10 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SpaceFinderController;
+use App\Http\Controllers\M2MOfferController;
 use App\Http\Controllers\EventCalenderController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\DirectoryController;
 // use App\Http\Controllers\OrderController;
 // use App\Http\Controllers\QuoteController;
 // use App\Http\Controllers\CheckoutController;
@@ -39,9 +42,45 @@ Route::prefix('space-finders')->group(function(){
         return view('user.space-finder.create');
     })->name('user.space-finders.create');
 });
-//SpaceFinders
-Route::prefix('details')->group(function(){
-    Route::get('/', [DashboardController::class, 'dashboard'])->name('user.directory-details');
+//DirectoryDetails
+Route::get('/company', [DashboardController::class, 'dashboard'])->name('user.dashboard');
+// Route::prefix('company')->group(function(){
+//     Route::get('/', [DirectoryController::class, 'blogs'])->name('user.company');
+//     Route::post('/', [DirectoryController::class, 'store'])->name('user.company.store');
+//     // Route::get('/ajax',[DirectoryController::class,'renderForm'])->name('user.offers.ajax');
+//     Route::get('/listing',[DirectoryController::class,'getOffersListing'])->name('user.company.listing');
+//     Route::get('/edit/{id}',[DirectoryController::class, 'renderForm'])->name('user.company.edit');
+//     Route::post('/update/{id}',[DirectoryController::class, 'update'])->name('user.company.update');
+//     Route::post('/delete/{id}',[DirectoryController::class, 'destroy'])->name('user.company.destroy');
+//     Route::get('/create',function(){
+//         return view('user.company.create');
+//     })->name('user.company.create');
+// });
+// News
+Route::prefix('news')->group(function(){
+    Route::get('/', [BlogController::class, 'blogs'])->name('user.news');
+    Route::post('/', [BlogController::class, 'store'])->name('user.news.store');
+    // Route::get('/ajax',[BlogController::class,'renderForm'])->name('user.offers.ajax');
+    Route::get('/listing',[BlogController::class,'getBlogsListing'])->name('user.news.listing');
+    Route::get('/edit/{id}',[BlogController::class, 'renderForm'])->name('user.news.edit');
+    Route::post('/update/{id}',[BlogController::class, 'update'])->name('user.news.update');
+    Route::post('/delete/{id}',[BlogController::class, 'destroy'])->name('user.news.destroy');
+    Route::get('/create',function(){
+        return view('user.news.create');
+    })->name('user.news.create');
+});
+//M2MOffers
+Route::prefix('offers')->group(function(){
+    Route::get('/', [M2MOfferController::class, 'Offers'])->name('user.offers');
+    Route::post('/', [M2MOfferController::class, 'store'])->name('user.offers.store');
+    // Route::get('/ajax',[M2MOfferController::class,'renderForm'])->name('user.offers.ajax');
+    Route::get('/listing',[M2MOfferController::class,'getOffersListing'])->name('user.offers.listing');
+    Route::get('/edit/{id}',[M2MOfferController::class, 'renderForm'])->name('user.offers.edit');
+    Route::post('/update/{id}',[M2MOfferController::class, 'update'])->name('user.offers.update');
+    Route::post('/delete/{id}',[M2MOfferController::class, 'destroy'])->name('user.offers.destroy');
+    Route::get('/create',function(){
+        return view('user.offer.create');
+    })->name('user.offers.create');
 });
 // Route::get('/checkout',[CheckoutController::class,'renderCheckOutView'])->name('user.checkout.index');
 // Route::get('/', [DashboardController::class, 'dashboard'])->name('user.dashboard');
