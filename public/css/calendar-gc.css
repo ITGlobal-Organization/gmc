@@ -26,6 +26,7 @@
 }
 
 .gc-calendar .gc-calendar-header button.prev, .gc-calendar .gc-calendar-header button.next {
+  display: none !important;
   height: 36px;
   /* width: 24px; */
   left: 0px;
