@@ -229,12 +229,12 @@ function onChangeFile(img_div,upload_div,close_btn) {
         img_div.children('img').attr("src","");
         img_div.addClass("hidden");
         upload_div.removeClass('hidden');
-        let id=$(this).siblings('img').attr("data-id");
-        if(id != ''){
-            $(this).siblings('img').attr("data-id",'');
-            let url = "/media/delete/"+id+"";
-            ajaxDelete(url,id,'','');
-        }
+        // let id=$(this).siblings('img').attr("data-id");
+        // if(id != ''){
+        //     $(this).siblings('img').attr("data-id",'');
+        //     let url = "/media/delete/"+id+"";
+        //     ajaxDelete(url,id,'','');
+        // }
         resetFile();
     });
 }

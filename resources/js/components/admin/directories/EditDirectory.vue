@@ -35,7 +35,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>   
+            </div>
             <div class="col-6 col-md-6 col-12 mb-3">
                 <div class="form-group">
                     <label class="form-label">{{ Language.slug }}</label>
@@ -46,7 +46,7 @@
                         </ul>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="col-6 col-md-6 col-12 mb-3">
                 <div class="form-group">
                     <label class="form-label">{{ Language.email }}</label>
@@ -57,7 +57,7 @@
                         </ul>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="col-6 col-md-6 col-12 mb-3">
                 <div class="form-group">
                     <label class="form-label">{{ Language.mobile_no }}</label>
@@ -68,7 +68,7 @@
                         </ul>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="col-6 col-md-6 col-12 mb-3">
                 <div class="form-group">
                     <label class="form-label">{{ Language.phone }}</label>
@@ -79,7 +79,7 @@
                         </ul>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="col-6 col-md-6 col-12 mb-3">
                 <div class="form-group">
                     <label class="form-label">{{ Language.address }}</label>
@@ -90,7 +90,7 @@
                         </ul>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="col-6 col-md-6 col-12 mb-3">
                 <div class="form-group">
                     <label class="form-label">{{ Language.web_url }}</label>
@@ -101,7 +101,7 @@
                         </ul>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="col-6 col-md-6 col-12 mb-3">
                 <div class="form-group">
                     <label class="form-label">{{ Language.facebook_url }}</label>
@@ -112,7 +112,7 @@
                         </ul>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="col-6 col-md-6 col-12 mb-3">
                 <div class="form-group">
                     <label class="form-label">{{ Language.youtube_url }}</label>
@@ -171,7 +171,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-6 col-md-6 col-12 mb-3">
                 <div class="form-group">
                     <label class="form-label">{{ Language.is_approved  }}</label>
@@ -215,8 +215,8 @@
                             </label>
                         </div>
                         </div>
-                        
-                        
+
+
             </div>
             <div class="col-12 col-12 mb-3">
                 <div class="form-group">
@@ -252,7 +252,7 @@
             </div>
         </form>
         </div>
- 
+
 
         <!-- /.card-body -->
     </div>
@@ -374,7 +374,7 @@ mounted(){
                     },
                     required:true,
                 },
-                
+
                 {
                     label:Language.mobile_no,
                     field:"mobile_no",
@@ -417,7 +417,7 @@ mounted(){
                     placeholder:function(){
                         return "Enter "+this.label
                     },
-                    required:true,
+                    required:false,
                 },
                 {
                     label:Language.venue_url,
@@ -428,7 +428,7 @@ mounted(){
                     placeholder:function(){
                         return "Enter "+this.label
                     },
-                    required:true,
+                    required:false,
                 },
                 {
                     label:Language.facebook_url,
@@ -439,7 +439,7 @@ mounted(){
                     placeholder:function(){
                         return "Enter "+this.label
                     },
-                    required:true,
+                    required:false,
                 },
                 {
                     label:Language.instagram_url,
@@ -450,7 +450,7 @@ mounted(){
                     placeholder:function(){
                         return "Enter "+this.label
                     },
-                    required:true,
+                    required:false,
                 },
                 {
                     label:Language.youtube_url,
@@ -461,7 +461,7 @@ mounted(){
                     placeholder:function(){
                         return "Enter "+this.label
                     },
-                    required:true,
+                    required:false,
                 },
                 {
                     label:Language.linkedin_url,
@@ -472,7 +472,7 @@ mounted(){
                     placeholder:function(){
                         return "Enter "+this.label
                     },
-                    required:true,
+                    required:false,
                 },
                 {
                     label:Language.user,
@@ -619,7 +619,7 @@ mounted(){
 
         }
         ref.edit();
-    
+
 },
 methods:{
     async update(){
@@ -674,7 +674,7 @@ methods:{
             // })
             this.form.category_ids = record.value.category_ids?record.value.category_ids:[];
             this.form.gallery = record.value.media;
-        
+
             data = this.form.gallery.map(gall => {
                 return gall.image_url;
             })
@@ -705,9 +705,9 @@ methods:{
                 options.map(op => {
                     ref.FormData[field].push(op.id)
                })
-            }     
-            else 
-            ref.FormData[field] = [] 
+            }
+            else
+            ref.FormData[field] = []
 
         },
 

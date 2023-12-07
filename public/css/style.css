@@ -1671,9 +1671,14 @@ text-decoration: none;
     color: red !important;
   }
   .AClass{
-    right:275px;
+    /* right:275px; */
     position: absolute;
 }
+.logo-close{
+    /* right:275px; */
+    position: absolute;
+}
+
 
 .text-area {
         padding: 0px 15px 0px 15px;
@@ -1765,4 +1770,9 @@ text-decoration: none;
 .pagination > a:last-child {
 	border-radius: 0 20px 20px 0;
 }
+
 .event-tabs-cal-list{display: flex;justify-content: end;margin: 56px;}
+
+.select2-container{width: 100% !important;}
+.select2-container .select2-selection--single{height: 49px !important;}
+

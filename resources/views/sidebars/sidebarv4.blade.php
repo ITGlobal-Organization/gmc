@@ -6,11 +6,10 @@
                         style="color: #ffffff;"></i>&nbsp;Directory</a></li>
             <li><a href="{{ route('user.space-finders') }}"><i class="fas fa-arrow-right"
                         style="color: #ffffff;"></i>&nbsp;List Spaces</a></li>
-            <li><a href="https://zfrmz.eu/jSvnN9jR9r50hVk7G4Bk" ><i class="fas fa-arrow-right"
+            <li><a href="{{ route('user.offers') }}" ><i class="fas fa-arrow-right"
                         style="color: #ffffff;"></i>&nbsp;List in Members Marketplace</a></li>
-            <li><a href=""><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;View Members
-                    Marketplace</a></li>
-            <li><a href="{{ route('user.directory-details') }}" ><i class="fas fa-arrow-right"
+            <li><a href="{{ route('user.news') }}"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;News</a></li>
+            <li><a href="{{ route('user.dashboard') }}" ><i class="fas fa-arrow-right"
                         style="color: #ffffff;"></i>&nbsp;Update Company Details</a></li>
             <li><a href="#"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;About</a></li>
             <li><a href="#"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;International</a></li>

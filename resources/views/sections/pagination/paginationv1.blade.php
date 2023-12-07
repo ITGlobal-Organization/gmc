@@ -1,8 +1,11 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <input type="hidden" class="count" value="{{ $count }}"/>
-    @php $totalPages = 0; @endphp
-    @php $totalPages = (int)ceil($count / config('site_config.constants.item_per_page')); @endphp
-    @if($totalPages > 0 && $count > config('site_config.constants.item_per_page'))
+    @php 
+        $totalPages = 0; 
+        $itemPerPage = isset($perPage)?$perPage:config('site_config.constants.item_per_page');
+    @endphp
+    @php $totalPages = (int)ceil($count / $itemPerPage); @endphp
+    @if($totalPages > 0 && $count > $itemPerPage)
  
     <div class="pagination">
         <a href="#" title="previous page" class="prev"><svg fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg> {{ trans('lang.previous')}}</a>

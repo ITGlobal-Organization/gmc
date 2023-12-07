@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Models\Directory;
+use App\Models\Category;
 use App\Models\Media;
 
 
 class DirectoryController extends BaseController
 {
-    private $directory,$media,$user;
-    public function __construct(Directory $directory,Media $media) {
+    private $directory,$media,$user,$category;
+    public function __construct(Directory $directory,Media $media,Category $category) {
         $this->directory = $directory;
-
+        $this->category = $category;
         $this->setModel( $this->directory);
         $this->setMedia($media);
     }
@@ -41,9 +42,15 @@ class DirectoryController extends BaseController
 
 
     public function directories(Request $request){
+        $CategoryId = '';
+        if($request->has('category') && $request->category != ''){
+            $CategoryId = $this->category->getIdFromColumn('slug',$request->category);
+        }
+
         return view('directories.directories',[
             'title' => trans('lang.directories'),
-            'count' => 0
+            'count' => 0,
+            'CategoryId' => $CategoryId
         ]);
     }
     public function getDirectoryListing(Request $request){
@@ -51,9 +58,13 @@ class DirectoryController extends BaseController
         $this->removeGeneralFilters($request);
 
         $data = $request->all();
+        $CategoryId = '';
         foreach ($data as $key => $value) {
             if($key == 'category' && (isset($value) && $value != "")){
+                $CategoryId = $value;
                 $this->directory->setFilters(['directory_categories.id','=',$value]);
+                
+                
             }
             else if(isset($value) && $value != ""){
                 $this->directory->setFilters([$key,'like','%'.$value.'%']);
@@ -69,20 +80,21 @@ class DirectoryController extends BaseController
         return view('sections.directories',[
             'Directories' => $Directories,
             'count' => $this->directory->getCount(),
-            'page' => $this->directory->getStart()
+            'page' => $this->directory->getStart(),
+            'CategoryId' => $CategoryId
         ]);
     }
 
     public function getDirectory(Request $request,$slug){
-        $Blog = $this->directory->first('slug',$slug,'=',['user'],[],['directories.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
+        $Directory = $this->directory->first('slug',$slug,'=',['user','categories:id,name,slug'],[],['directories.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
         // $this->directory->setLength(10);
-
+        // dd($Directory);
         // $LatestBlogs = $this->directory->getAll([['users','users.id','=','directories.user_id']],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
 
         return view('directories.directory-detail',[
-            'Directory' => $Blog,
+            'Directory' => $Directory,
             // 'LatestBlog' => $LatestBlogs,
-            'title' => trans('lang.directory').' | '. $Blog->title
+            'title' => trans('lang.directory').' | '. $Directory->title
         ]);
     }
     

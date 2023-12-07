@@ -73,6 +73,26 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25">
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20 img-div hidden"
+                            style="position:relative;">
+                            <button class="close AClass" type="button">
+                                <span>&times;</span>
+                            </button>
+                            <img src="" alt="" data-id="">
+                            <div class="clr"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25 upload-div">
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20" style="position:relative;">
+                                <input type="file" name="filename[]" class="form-control file" accept=".png,.jpeg,.jpg">
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
                         <input type="submit" class="ct-submit" value="Submit">
                     </div>
@@ -97,11 +117,21 @@
         $('.store').on('submit', function(e) {
             e.preventDefault();
             var form = new FormData(this);
-            let url = "{{ route('user.events.store') }}";
-            ajaxPost(url, form, '.contact-success', '.contact-error')
-        })
-
-        // var date = location.match(/(?:\?|&)date=(\d+\/\d+\/\d+)(&|$)/)[1];
-        // $('#calendar').datepicker();
+            prev_img = $('.img-div').children('img').attr("src");
+            file = $('.file')[0].files[0];
+            if (file != "undefined") {
+                form.append('image', file);
+            }
+            if (prev_img != '') {
+                let id = '';
+                let url = "{{ route('user.events.store') }}";
+                ajaxPost(url, form, '.contact-success', '.contact-error');
+            } else {
+                alert("Please Upload Image")
+            }
+        });
+        $(document).ready(function() {
+            onChangeFile($('.img-div'), $('.upload-div'), $('.AClass'));
+        });
     </script>
 @endsection

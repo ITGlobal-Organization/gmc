@@ -55,7 +55,9 @@ class BaseController extends Controller
     {
         $request->request->remove('length');
         $request->request->remove('start');
-        $request->request->remove('orderBy');
+
+        $request->request->remove('order_by');
+
         $request->request->remove('order');
     }
 
@@ -119,7 +121,7 @@ class BaseController extends Controller
             $response = $this->model->getRecordDataTable($request);
             return $this->sendResponse($response);
         }catch(\Exception $e){
-            dd($e->getMessage());
+
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
@@ -150,7 +152,7 @@ class BaseController extends Controller
 
         try {
             DB::beginTransaction();
-            $data = $request->except(['_token','media','gallery','attachment','image','image1','image2','filename']);
+            $data = $request->except(['_token','media','gallery','attachment','image','image1','image2','filename','logo']);
             $result = $this->model->store($data);
             $this->model->id = $result;
 
@@ -188,7 +190,7 @@ class BaseController extends Controller
 
         try {
             DB::beginTransaction();
-            $data = $request->except(['_token','media','gallery','image','image1','image2']);
+            $data = $request->except(['_token','media','gallery','image','image1','image2','filename','logo']);
             $this->model->updateByColumn($data,$id);
             $this->model->id = $id;
             if ($request->has('media')) {
@@ -206,6 +208,7 @@ class BaseController extends Controller
             // return $id;
             return $this->sendResponse([], trans('messages.success_msg', ['action' => trans('lang.updated')]));
         } catch (\Exception $e) {
+            // dd($e->getMessage());
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
@@ -242,12 +245,14 @@ class BaseController extends Controller
         try{
             DB::beginTransaction();
             $response = $this->media->find($id);
+            // dd($response);
             Helper::unlinkFile($response->image_name);
             $this->media->destroyById($id);
             DB::commit();
             return $this->sendResponse([],trans('messages.success_msg',['action' => trans('lang.deleted')]));
 
         }catch (\Exception $e) {
+            // dd($e->getMessage());
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
