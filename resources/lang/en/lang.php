@@ -179,7 +179,7 @@ return [
     'apply_filters' => 'Apply Filters',
     'space_finder' => 'Space Finder',
     'listings' => 'Listings',
-    
+    'events' => 'Events',
 
 
 ];
