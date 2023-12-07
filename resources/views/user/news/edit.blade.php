@@ -54,8 +54,10 @@
                         <button class="close AClass" type="button">
                             <span>&times;</span>
                         </button>
+                        <div class="box-img card-image">
                         <img src="{{ $Blog->media[0]->image_url }}" alt=""
-                            data-id="{{ $Blog->media[0]->id }}">
+                            data-id="{{ $Blog->media[0]->id }}" class="box-img">
+                        </div>
                         <div class="clr"></div>
                     </div>
                 </div>

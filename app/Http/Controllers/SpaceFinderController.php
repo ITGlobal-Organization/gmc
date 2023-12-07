@@ -55,7 +55,8 @@ class SpaceFinderController extends BaseController
     }
 
     public function getSpaceFindersListing(Request $request){
-        
+
+        $user = auth::user();
         $this->setGeneralFilters($request);
         $this->removeGeneralFilters($request);
 
@@ -67,7 +68,7 @@ class SpaceFinderController extends BaseController
         }
 
 
-        $SpaceFinders = $this->spaceFinder->getAll([[]],['space_finders.title','space_finders.description','space_finders.created_at','space_finders.categories','images.image_url','space_finders.slug']);
+        $SpaceFinders = $this->spaceFinder->getAll([],['space_finders.title','space_finders.description','space_finders.created_at','space_finders.categories','images.image_url','space_finders.slug']);
 
 
         if(isset($user) && !$user->hasRole('admin')){
@@ -83,8 +84,8 @@ class SpaceFinderController extends BaseController
     }
 
     public function getSpaceFinder(Request $request,$slug){
-        $spaceFinder = $this->spaceFinder->first('slug',$slug,'=',['user'],[],['space_finders.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
 
+$spaceFinder = $this->spaceFinder->first('slug',$slug,'=',['user'],[],['space_finders.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
         $this->spaceFinder->setLength(config('site_confing.constants.item_per_page'));
         // $LatestBlogs = $this->directory->getAll([['users','users.id','=','directories.user_id']],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
 
@@ -96,7 +97,7 @@ class SpaceFinderController extends BaseController
     }
 
     // public function searchSpaceFinders(Request $request){
-     
+
     //     $this->spaceFinder->setOrderBy('id');
     //     $this->spaceFinder->setOrder('desc');
     //     $spaceFinder = $this->spaceFinder->getAll();

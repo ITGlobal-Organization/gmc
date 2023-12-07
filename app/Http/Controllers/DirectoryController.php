@@ -7,6 +7,7 @@ use App\Http\Controllers\BaseController;
 use App\Models\Directory;
 use App\Models\Category;
 use App\Models\Media;
+use Auth;
 
 
 class DirectoryController extends BaseController
@@ -63,20 +64,20 @@ class DirectoryController extends BaseController
             if($key == 'category' && (isset($value) && $value != "")){
                 $CategoryId = $value;
                 $this->directory->setFilters(['directory_categories.id','=',$value]);
-                
-                
+
+
             }
             else if(isset($value) && $value != ""){
                 $this->directory->setFilters([$key,'like','%'.$value.'%']);
             }
         }
-      
+
         $Directories = $this->directory->getAll([
             ['users','users.id','=','directories.user_id'],
             ['category_directory','directories.id','=','category_directory.directory_id'],
             ['directory_categories','category_directory.category_id','=','directory_categories.id'],
         ],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
-      
+
         return view('sections.directories',[
             'Directories' => $Directories,
             'count' => $this->directory->getCount(),
@@ -86,7 +87,10 @@ class DirectoryController extends BaseController
     }
 
     public function getDirectory(Request $request,$slug){
+        // dd("sdfd");
+
         $Directory = $this->directory->first('slug',$slug,'=',['user','categories:id,name,slug'],[],['directories.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
+        // dd($Directory);
         // $this->directory->setLength(10);
         // dd($Directory);
         // $LatestBlogs = $this->directory->getAll([['users','users.id','=','directories.user_id']],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
@@ -97,17 +101,17 @@ class DirectoryController extends BaseController
             'title' => trans('lang.directory').' | '. $Directory->title
         ]);
     }
-    
+
     public function store(Request $request){
         $CategoryIds = $request->category_ids;
         $request->request->remove('category_ids');
         $response = parent::store($request);
-       
+
         try{
             foreach($CategoryIds as $Category){
                 $this->directory->addRelTableRecord($Category,'category_directory','category_id');
             }
-          
+
         }catch(Exception $e){
             return $this->sendError(trans('messages.error_msg',['action' => trans('lang.saving')]));
         }
@@ -132,9 +136,10 @@ class DirectoryController extends BaseController
             foreach($CategoryIds as $Category){
                 $this->directory->addRelTableRecord($Category,'category_directory','category_id');
             }
-          
+
         }catch(Exception $e){
             return $this->sendError(trans('messages.error_msg',['action' => trans('lang.saving')]));
         }
     }
+
 }

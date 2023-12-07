@@ -184,10 +184,10 @@ class Directory extends BaseModel
                 'is_active' => 1
             ]);
         }catch(\Exception $e){
-            Logger::error($e);
+            LOG::error($e);
             return 0;
         }
-       
+
     }
 
     public function deleteRelTableRecord($table){
@@ -197,10 +197,10 @@ class Directory extends BaseModel
                 'directory_id' => $this->id,
             ])->delete();
         }catch(\Exception $e){
-            Logger::error($e);
+            LOG::error($e);
             return 0;
         }
-       
+
     }
 
     public function getRelTableRecord($table,$col){
@@ -212,7 +212,7 @@ class Directory extends BaseModel
                'directory_id' => $this->id,
            ])->pluck($col);
        }catch(\Exception $e){
-       
+
         Log::error($e);
            return null;
        }

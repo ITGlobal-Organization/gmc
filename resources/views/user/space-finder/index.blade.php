@@ -40,7 +40,7 @@
         })
 
         function getSpaceFinderListing() {
-            ajaxGet("{{ route('user.space-finders.listing') }}", 
+            ajaxGet("{{ route('user.space-finders.listing') }}",
                 filters
             , ".spacefinders", responseType = 'html');
         }
