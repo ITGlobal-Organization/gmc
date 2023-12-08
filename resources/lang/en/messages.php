@@ -18,6 +18,8 @@ return [
     'user_not_found' => 'User With These Credentials Not Found',
     'invite_sent' => 'Invite Sent Successfully',
     'token_not_found' => 'Token Not Found',
+    'add_new_msg' => 'Add New :attribute',
+    'edit_msg' => 'Edit :attribute',
     'errors' => [
         '500' => [
             'code'  => '500',

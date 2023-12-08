@@ -180,10 +180,13 @@ return [
     'apply_filters' => 'Apply Filters',
     'space_finder' => 'Space Finder',
     'listings' => 'Listings',
-
     'events' => 'Events',
     'search' => 'Search',
-    'website' => 'Website'
+    'website' => 'Website',
+    'event' => 'Event',
+    'events_calendar' => 'Events Calendar',
+    'space_finder' => 'Space Finder',
+    'news' => 'News',
     
 
 
