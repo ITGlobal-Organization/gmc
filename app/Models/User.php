@@ -13,7 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Builder;
 use Carbon\Carbon;
 use App\Models\Role;
-
+use App\Models\Media;
 
 class User extends Authenticatable
 {
@@ -71,7 +71,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-   
+
 
     /**
      * The attributes that should be cast.
@@ -242,7 +242,7 @@ class User extends Authenticatable
             else
                 $Model = $Model->{$where}($filter[0], $filter[1], $filter[2]);
         }
-       
+
 
         $totalFilteredRecord = $Model->count();
 
@@ -250,7 +250,7 @@ class User extends Authenticatable
         $response = [];
         $result = $Model->skip($this->getLength() * ($this->getStart() - 1))->take($this->getLength())->orderBy($this->getOrderBy(), $this->getOrder())->groupBy($this->table.'.'.$this->getGroupBy())->get();
 
-        
+
         foreach ($result as $key => $row) {
                 $count++;
                 $data = [];
@@ -282,9 +282,9 @@ class User extends Authenticatable
 
     public function getRecordDataTable($request){
         if($request->has('search') && $request->search !=''){
-            $this->setFilters(['first_name','like','%'.$request->search.'%']);     
-            $this->setFilters(['last_name','like','%'.$request->search.'%']);     
-            $this->setFilters(['email','like','%'.$request->search.'%']);     
+            $this->setFilters(['first_name','like','%'.$request->search.'%']);
+            $this->setFilters(['last_name','like','%'.$request->search.'%']);
+            $this->setFilters(['email','like','%'.$request->search.'%']);
         }
 
         $condition = [];
@@ -302,7 +302,7 @@ class User extends Authenticatable
                 'name' => 'first_name',
                 'type' => 'string',
                 'html' => false,
-                
+
             ],
             [
                 'name' => 'last_name',
@@ -324,7 +324,7 @@ class User extends Authenticatable
                 'type' => 'string',
                 'html' => false,
             ],
-           
+
             [
                 'name' => 'created_at',
                 'type' => 'string',
@@ -334,7 +334,7 @@ class User extends Authenticatable
                 'name' => 'is_approved',
                 'type' => 'boolean',
                 'html' => false,
-                
+
             ],
             [
                 'name' => 'status',
@@ -343,24 +343,24 @@ class User extends Authenticatable
                 'condition_column' => 'is_approved',
                 'class_dynamic' => false,
             ],
-            
+
 
         ]);
 
         $result = $this->getAllDatatables([],
         $this->getSelectedColumns(),
         [],'',[]);
-            
+
         return $result;
     }
-    
+
     // get Roles
 
     public function getRoles(){
         $roles = new Role();
         return $roles->getAll([],['id','UPPER(name) as text']);
     }
-    
+
     public function getCreatedAtAttribute()
     {
         return Carbon::parse($this->attributes['created_at'])->format(config('constant.date_format'));
@@ -371,6 +371,9 @@ class User extends Authenticatable
         return Carbon::parse($this->attributes['updated_at'])->format(config('constant.date_format'));
     }
 
-
+    public function image()
+    {
+        return $this->hasOne(Media::class,'model_id')->where('model','App\Models\User');
+    }
 
 }

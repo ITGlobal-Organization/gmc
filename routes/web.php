@@ -49,7 +49,6 @@ Route::prefix('directories')->group(function () {
     Route::get('/categories/ajax',[CategoryController::class,'getCategoriesListing'])->name('directories.category.ajax');
     Route::get('/',[DirectoryController::class,'directories'])->name('directories.index');
     Route::get('/ajax',[DirectoryController::class,'getDirectoryListing'])->name('directories.ajax');
-
     Route::get('/{slug}',[DirectoryController::class,'getDirectory'])->name('directories.get');
 });
 Route::get('/search-directories',[DirectoryController::class,'searchDirectories'])->name('directories.search');
