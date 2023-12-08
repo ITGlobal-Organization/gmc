@@ -56,7 +56,7 @@ class EventCalenderController extends BaseController
         $user = Auth::user();
         $this->setGeneralFilters($request);
         $this->removeGeneralFilters($request);
-        
+
 
         $AllEvents = $this->eventCalender->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.*','images.image_url']);
         
@@ -76,7 +76,7 @@ class EventCalenderController extends BaseController
         }
 
         $Events = $this->eventCalender->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.*','images.image_url']);
-        
+
         if(isset($user) && !$user->hasRole('admin')){
             $view='user.event.listing';
         }else{
@@ -95,7 +95,7 @@ class EventCalenderController extends BaseController
     }
     public function renderForm(Request $request,$id){
         $Event = $this->eventCalender->first('id',$id,'=',['user'],[],['event_calenders.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
-        $Event=$this->eventCalender->where('id',$request->id)->first();
+        // $Event=$this->eventCalender->where('id',$request->id)->first();
         return view('user.event.edit',['Event'=>$Event]);
     }
 

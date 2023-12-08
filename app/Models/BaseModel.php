@@ -50,8 +50,8 @@ class BaseModel extends Model
 
 
     public function setLength($length)
-    {   
-       
+    {
+
         $this->length = $length;
     }
 
@@ -342,7 +342,7 @@ class BaseModel extends Model
                 $data->where($condition[0], $condition[1], $condition[2]);
             }
         }
-        
+
         if (count($this->getFilters()) > 0) {
             foreach ($this->getFilters() as $condition) {
                 $data->where($condition[0], $condition[1], $condition[2]);
@@ -355,9 +355,9 @@ class BaseModel extends Model
             }
             // $data = static::with($relation)->selectRaw(implode(',', $select));
         }
-       
+
         $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
-      
+
 
 
         $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
@@ -368,17 +368,17 @@ class BaseModel extends Model
 
         if($this->getLength() > 0 )
            return $data->skip($this->getLength() * ($this->getStart() - 1))->take($this->getLength())->orderBy($this->table.'.'.$this->getOrderBy(), $this->getOrder())->groupBy($this->table.'.'.$this->getGroupBy())->get();
-        
-          
+
+
         return $data->groupBy($this->table.'.'.$this->getGroupBy())->get();
-        
+
 
 
     }
 
     public function first($column = 'id', $value = 0, $operator = '=', $relation = [],$join=[],$select=['*'])
     {
-        // dd($relation);
+
         $result = null;
         if (!empty($relation)) {
             $result = static::with($relation)->where($column, $operator, $value);

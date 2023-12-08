@@ -7,6 +7,7 @@ use App\Http\Controllers\M2MOfferController;
 use App\Http\Controllers\EventCalenderController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DirectoryController;
+// use App\Http\Controllers\DashboardController;
 // use App\Http\Controllers\OrderController;
 // use App\Http\Controllers\QuoteController;
 // use App\Http\Controllers\CheckoutController;
@@ -43,19 +44,11 @@ Route::prefix('space-finders')->group(function(){
     })->name('user.space-finders.create');
 });
 //DirectoryDetails
-Route::get('/company', [DashboardController::class, 'dashboard'])->name('user.dashboard');
-// Route::prefix('company')->group(function(){
-//     Route::get('/', [DirectoryController::class, 'blogs'])->name('user.company');
-//     Route::post('/', [DirectoryController::class, 'store'])->name('user.company.store');
-//     // Route::get('/ajax',[DirectoryController::class,'renderForm'])->name('user.offers.ajax');
-//     Route::get('/listing',[DirectoryController::class,'getOffersListing'])->name('user.company.listing');
-//     Route::get('/edit/{id}',[DirectoryController::class, 'renderForm'])->name('user.company.edit');
-//     Route::post('/update/{id}',[DirectoryController::class, 'update'])->name('user.company.update');
-//     Route::post('/delete/{id}',[DirectoryController::class, 'destroy'])->name('user.company.destroy');
-//     Route::get('/create',function(){
-//         return view('user.company.create');
-//     })->name('user.company.create');
-// });
+// Route::get('/company/edit', [DashboardController::class, 'editProfile'])->name('user.company.edit');
+Route::prefix('profile')->group(function(){
+    Route::get('/edit',[DashboardController::class ,'edit'])->name('user.company.edit');
+    Route::post('/update/{id}',[DashboardController::class, 'update'])->name('user.company.update');
+});
 // News
 Route::prefix('news')->group(function(){
     Route::get('/', [BlogController::class, 'blogs'])->name('user.news');
@@ -82,6 +75,7 @@ Route::prefix('offers')->group(function(){
         return view('user.offer.create');
     })->name('user.offers.create');
 });
+
 // Route::get('/checkout',[CheckoutController::class,'renderCheckOutView'])->name('user.checkout.index');
 // Route::get('/', [DashboardController::class, 'dashboard'])->name('user.dashboard');
 // // Orders
