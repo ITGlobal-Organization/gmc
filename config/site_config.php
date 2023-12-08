@@ -29,6 +29,7 @@ return [
         'general_string_length' => '100',
         'base_layout' => 'layouts.layoutv2',
         'item_per_page' => 12,
+        'events_month_range' => 2
     ],
     'auth'  => [
         'login_view' => 'loginv1',
