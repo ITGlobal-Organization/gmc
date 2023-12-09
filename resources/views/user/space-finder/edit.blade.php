@@ -3,10 +3,9 @@
     <!--Start Middle-->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding events">
         <div class="middle mtb-60">
-            <h1 class="text-center mb-25">Add New</h1>
-            <p class="text-center mb-40">
-                Please get in touch with us by telephone or email. Alternatively, you can use the enquiry form below.
-            </p>
+            <h1 class="text-center mb-25">{{ trans('messages.edit_msg',[
+                    'attribute' => trans('lang.space_finder')
+                ])}}</h1>
             <div class="contact-success"></div>
             <div class="contact-error"></div>
             <form action="" class="update" enctype="multipart/form-data">
@@ -35,8 +34,6 @@
                                 <div class="error-email"></div>
                             <div class="clr"></div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
                             <label for="mobile_no">Mobile No</label>
                             <input type="text" class="serch-input" value="{{ $SpaceFinder->mobile_no }}"
@@ -58,8 +55,6 @@
                                 <div class="error-venue_url"></div>
                             <div class="clr"></div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
                             <label for="facebook_url">Facebook Url</label>
                             <input type="text" class="serch-input" value="{{ $SpaceFinder->facebook_url }}"
@@ -81,8 +76,6 @@
                                 <div class="error-linkedin_url"></div>
                             <div class="clr"></div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
                             <label for="youtube_url">Youtube Url</label>
                             <input type="text" class="serch-input" value="{{ $SpaceFinder->youtube_url }}"
@@ -104,38 +97,35 @@
                                 <div class="error-phone"></div>
                             <div class="clr"></div>
                         </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mb-20">
+                            <label for="description">Description</label>
+                            <textarea id="w3review" class="text-area" rows="4" name="description" rows="4"
+                                value="{{ $SpaceFinder->description }}">{!! $SpaceFinder->description !!}</textarea>
+                            <div class="error-description"></div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25">
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20 img-div" style="position:relative;">
+                                <button class="close AClass" type="button">
+                                    <span>&times;</span>
+                                </button>
+                                <img src="{{ $SpaceFinder->media[0]->image_url }}" alt=""
+                                    data-id="{{ $SpaceFinder->media[0]->id }}">
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25 upload-div hidden">
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20" style="position:relative;">
+                                <input type="file" name="filename[]" class="form-control file">
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right mb-20">
+                            <input type="submit" class="ct-submit" value="Submit">
+                        </div>
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25">
-                    <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mb-20">
-                        <label for="description">Description</label>
-                        <textarea id="w3review" class="text-area" rows="4" name="description" rows="4"
-                            value="{{ $SpaceFinder->description }}">{!! $SpaceFinder->description !!}</textarea>
-                        <div class="error-description"></div>
-                        <div class="clr"></div>
-                    </div>
-                </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25">
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20 img-div" style="position:relative;">
-                        <button class="close AClass" type="button">
-                            <span>&times;</span>
-                        </button>
-                        <img src="{{ $SpaceFinder->media[0]->image_url }}" alt=""
-                            data-id="{{ $SpaceFinder->media[0]->id }}">
-                        <div class="clr"></div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25 upload-div hidden">
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20" style="position:relative;">
-                        <input type="file" name="filename[]" class="form-control file">
-                        <div class="clr"></div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left mb-20">
-                    <input type="submit" class="ct-submit" value="Submit">
-                </div>
+            </div>
+                
         </div>
         </form>
         <div class="clr"></div>
