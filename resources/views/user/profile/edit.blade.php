@@ -3,10 +3,9 @@
     <!--Start Middle-->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding events">
         <div class="middle mtb-60">
-            <h1 class="text-center mb-25">Add New</h1>
-            <p class="text-center mb-40">
-                Please get in touch with us by telephone or email. Alternatively, you can use the enquiry form below.
-            </p>
+            <h1 class="text-center mb-25">{{ trans('messages.edit_msg',[
+                    'attribute' => trans('lang.profile')
+                ])}}</h1>
             <div class="contact-success"></div>
             <div class="contact-error"></div>
             <form action="" class="update" enctype="multipart/form-data">
@@ -34,9 +33,6 @@
                             <div class="error-email"></div>
                             <div class="clr"></div>
                         </div>
-
-                    </div>
-                    <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
                             <label for="phone">Phone</label>
                             <input type="text" class="serch-input" value="{{ $User->phone }}" placeholder="Mobile No"
@@ -58,8 +54,6 @@
                             <div class="error-postalcode"></div>
                             <div class="clr"></div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
                             <label for="facebook_url">Facebook Url</label>
                             <input type="text" class="serch-input" value="{{ $User->facebook_url }}"
@@ -81,8 +75,6 @@
                             <div class="error-linkedin_url"></div>
                             <div class="clr"></div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
                             <label for="youtube_url">Youtube Url</label>
                             <input type="text" class="serch-input" value="{{ $User->youtube_url }}"
@@ -104,8 +96,6 @@
                             <div class="error-tel_no"></div>
                             <div class="clr"></div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
                             <label for="company">Company</label>
                             <input type="text" class="serch-input" value="{{ $User->company }}" placeholder="Company"
@@ -113,27 +103,26 @@
                             <div class="error-company"></div>
                             <div class="clr"></div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25">
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20 img-div" style="position:relative;">
-                        <button class="close AClass" type="button">
-                            <span>&times;</span>
-                        </button>
-                        <img src="{{ isset($User->image->image_url) ? $User->image->image_url : asset('/media/image-not-found.png') }}"
-                            alt="" data-id="{{ isset($User->image->id) ? $User->image->id : '' }}">
-                        <div class="clr"></div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25 upload-div hidden">
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20" style="position:relative;">
-                        <input type="file" name="filename[]" class="form-control file">
-                        <div class="clr"></div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left mb-20">
-                    <input type="submit" class="ct-submit" value="Submit">
-                </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20 img-div" style="position:relative;">
+                            <button class="close AClass" type="button">
+                                <span>&times;</span>
+                            </button>
+                            <img src="{{ isset($User->image->image_url) ? $User->image->image_url : asset('/media/image-not-found.png') }}"
+                                alt="" data-id="{{ isset($User->image->id) ? $User->image->id : '' }}">
+                            <div class="clr"></div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25 upload-div hidden">
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20" style="position:relative;">
+                                <input type="file" name="filename[]" class="form-control file">
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right mb-20">
+                            <input type="submit" class="ct-submit" value="Submit">
+                        </div>
+
+                    
+                
         </div>
         </form>
         <div class="clr"></div>

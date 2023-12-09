@@ -187,7 +187,11 @@ return [
     'events_calendar' => 'Events Calendar',
     'space_finder' => 'Space Finder',
     'news' => 'News',
-    
+    'offers' => "Offers",
+    'offer' => "Offer",
+    'space-finders' => "Space Finders",
+    "space-finder" => "Space Finder",
+    'profile' => 'Profile'
 
 
 
