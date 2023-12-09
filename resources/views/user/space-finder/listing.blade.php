@@ -1,6 +1,6 @@
 <div class="middle mtb-60">
     <div>
-        <h1 class="mb-25 text-center">{{ trans('lang.sapce_finders')}}</h1>
+        <h1 class="mb-25 text-center">{{ trans('lang.space_finders')}}</h1>
         
     </div>
     <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 border padding">

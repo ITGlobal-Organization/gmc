@@ -1,13 +1,11 @@
-<h1 class="mb-25 text-center">{{ trans('lang.space_finder')}}</h1>
+<h1 class="mb-25 text-center">{{ trans('lang.space-finders')}}</h1>
 <p class="mb-40 text-center">
-    {!! trans('content.space-finder.description') !!}
+    {!! trans('content.space-finders.description') !!}
 </p>
 
 <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8 padding border mb-25">
-    <span class="listin-found"><b>{{ count($SpaceFinders) }}</b> {{ trans('lang.listings')}}
-        {{ trans('lang.found')}}</span>
+    <span class="listin-found"><b>{{ $count }}</b> Listings Found</span>
 </div>
-
 
 <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 padding border mb-25">
     <select class="pd-sort sort_by">
@@ -27,15 +25,31 @@
             <div class="main-box">
 
                 <div class="box-img card-image">
-                    <a href="{{ route('space-finders.get', $SpaceFinder->slug) }}"><img
-                            src="{{ $SpaceFinder->image_url }}" alt="" width="100%" class="box-img" /></a>
+        @php 
+         $User = auth()->user();
+      @endphp
+      
+      @if(!isset($User))
+       <a href="{{ route('login') }}"><img src="{{ $SpaceFinder->image_url }}"
+      @else
+        <a href="{{ route('space-finders.get', $SpaceFinder->slug) }}"><img
+                            src="{{ $SpaceFinder->image_url }}"
+      @endif
+                     alt="" width="100%" class="box-img" /></a>
                 </div>
                 <!--<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>-->
                 <div class="box-name home home-text">
     <div style="display: flex; justify-content: center; align-items: center;">
-                    <a href="{{ route('space-finders.get', $SpaceFinder->slug) }}" >
-                 {!! $SpaceFinder->title !!}</a>
-                </div></div>
+     @php 
+         $User = auth()->user();
+      @endphp
+      
+      @if(!isset($User))
+       <a href="{{ route('login') }}">
+      @else
+        <a href="{{ route('space-finders.get', $SpaceFinder->slug) }}">
+      @endif
+          {{ $SpaceFinder->title }}        </a>    </div></div>
                 <div class="box-text1">
                     <i class="fad fa-check"
                         style="--fa-primary-color: #5f439b; --fa-secondary-color: #5f439b;"></i>&nbsp;{{$SpaceFinder->categories}}
@@ -47,8 +61,5 @@
         </div>
     @endforeach
 </div>
-
-
-
 <div class="clr"></div>
 @include('sections.pagination.paginationv1')

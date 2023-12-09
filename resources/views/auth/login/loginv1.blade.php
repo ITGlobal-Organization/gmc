@@ -5,7 +5,7 @@
         <div class="middle mtb-60">
 
             <h1 class="text-center mb-40">User Login</h1>
-
+<div class="bal-btn"><a href="{{ route('register') }}"></i> New Member? Join Now!</a> <a href="https://zfrmz.eu/fsRKMb3zMFky4fpj2RxE" target="_blank"></i> Existing Member? Access Now!</a></div> 
             <!--Strat Foram Area-->
             <form action="" class="login-form">
                 <div class="contact-success"></div>
@@ -14,19 +14,19 @@
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 border padding form-none"></div>
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 border join-bg">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mb-20">
-                            <label>Email Address
+                            <label>Username or Email Address
                             </label>
-                            <input type="text" class="join-input email" value="" placeholder="Email Address" name="email">
+                            <input type="text" class="join-input email" value="" placeholder="Username or Email Address" name="email">
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mb-20">
                             <label>Password </label>
                             <input type="password" class="join-input password" value="" placeholder="Password" name ="password">
 
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border text-right padding mtb-10">
+                            <!--<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border text-right padding mtb-10">
                                 <span class="forget-links" id="btn-forget">
                                     Forget Password?
                                 </span>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
                             <input type="submit" class="ct-submit login" value="Login">
