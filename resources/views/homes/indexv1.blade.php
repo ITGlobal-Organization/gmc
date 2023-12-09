@@ -8,7 +8,7 @@
                 <ul class="resp-tabs-list hor_1">
                     <li class="all"><img src="{{ custom_asset('icon1.png') }}" width="15" alt="" />&nbsp; All
                         &nbsp;</li>
-                    <li class="benefit"><img src="{{ custom_asset('icon2.png') }}" width="17" alt="" />&nbsp;
+                    <li class="offers"><img src="{{ custom_asset('icon2.png') }}" width="17" alt="" />&nbsp;
                         M2M Offers &nbsp;</li>
                     <li class="event"><img src="{{ custom_asset('icon3.png') }}" width="18" alt="" />&nbsp;
                         Events &nbsp;</li>
@@ -50,7 +50,7 @@
                     </div> --}}
                     <!--End All Tab Area-->
                     @include('tabs.all')
-                    @include('tabs.benefits')
+                    @include('tabs.offers')
                     @include('tabs.events')
                     @include('tabs.news')
                     @include('tabs.platinum-partners')
@@ -152,7 +152,7 @@
 @endsection
 
 @section('scripts')
- 
+
 <!-- Frontpage Demo -->
     <!--End Platinum Partners Area-->
     <!--<script src="js/jquery-1.9.1.min.js"></script>-->
@@ -237,6 +237,10 @@
                 e.preventDefault();
                 ajaxGet("{{ route('events-tab.ajax') }}", {}, ".events-tab", responseType = 'html');
             });
+            $('.offers').on('click', function(e) {
+                e.preventDefault();
+                ajaxGet("{{ route('offers-tab.ajax') }}", {}, ".offers-tab", responseType = 'html');
+            });
             $('.all').on('click', function(e) {
                 e.preventDefault();
                 ajaxGet("{{ route('all-tab.ajax') }}", {}, ".all-tab", responseType = 'html');
@@ -264,6 +268,7 @@
             //onload platinum partners
             ajaxGet("{{ route('platinum-partners-tab.ajax') }}", {}, ".platinum-partners-tab",
                     responseType = 'html');
+            ajaxGet("{{ route('offers-tab.ajax') }}", {}, ".offers-tab", responseType = 'html');
 
         });
     </script>

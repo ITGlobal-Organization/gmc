@@ -49,7 +49,7 @@ class PlatinumPartner extends BaseModel
 
         $condition = [];
         $result = [];
-        $this->setSelectedColumn(['id','title','created_at','is_active','is_approved']);
+        $this->setSelectedColumn(['id','title','description','web_url','created_at','is_active','is_approved']);
 
         $this->setRenderColumn([
             [
@@ -64,6 +64,22 @@ class PlatinumPartner extends BaseModel
                 'html' => false,
                 'link' => 'property',
                 'link_column' => 'title',
+
+            ],
+            [
+                'name' => 'description',
+                'type' => 'string',
+                'html' => false,
+                'link' => 'property',
+                'link_column' => 'description',
+
+            ],
+            [
+                'name' => 'web_url',
+                'type' => 'string',
+                'html' => false,
+                'link' => 'property',
+                'link_column' => 'web_url',
 
             ],
 

@@ -113,6 +113,14 @@ export default {
                 has_html:true,
             },
             {
+                label:Language.web_url,
+                field:'web_url',
+                orignal_name:'web_url',
+                width:'4%',
+                sorted:true,
+                has_html:true,
+            },
+            {
                 label:Language.description,
                 field:"description",
                 class:"form-control",
