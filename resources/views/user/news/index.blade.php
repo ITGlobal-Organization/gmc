@@ -1,25 +1,6 @@
-@extends('layouts.layoutv2')
+@extends('layouts.auth')
 @section('content')
-    <style>
-        .addnew-btn a {
-            margin: 0px 0px 0px 0px;
-            padding: 15px 25px 15px 25px !important;
-            width: auto;
-            height: auto;
-            font-size: 14px;
-            color: #fff;
-            border-radius: 10px;
-            font-weight: 100;
-            text-align: center;
-            border: 0px solid #eee;
-            background-color: #2b9acb;
-            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-            font-family: 'Montserrat-Regular';
-            cursor: pointer;
-            display: inline-block;
-            transition: all 0.4s linear;
-        }
-    </style>
+ 
 
     <!--Start Middle-->
 

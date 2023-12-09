@@ -8,7 +8,7 @@
             <div class="main-box border" style="text-align: center;">
                 <div class="box-img card-image" style="padding-top: 50px;">
                     <a href="/binngroup" style="display: block;">
-                        <img src="/media/barnd1.png" alt="" />
+                        <img src="{{ custom_asset('barnd1.png') }}" alt="" />
                     </a>
                 </div>
                 <div class="box-name home home-text">
@@ -26,7 +26,7 @@
             <div class="main-box border" style="text-align: center;">
                 <div class="box-img card-image" style="padding-top: 50px;">
                     <a href="/blackhills" style="display: block;">
-                        <img src="/media/barnd3.png" alt="" />
+                        <img src="{{ custom_asset('barnd3.png') }}" alt="" />
                     </a>
                 </div>
                 <div class="box-name home home-text">
@@ -45,7 +45,7 @@
             <div class="main-box border" style="text-align: center;">
                 <div class="box-img card-image" style="padding-top: 50px;">
                     <a href="/castlewater" style="display: block;">
-                        <img src="/media/barnd4.png" alt="" />
+                        <img src="{{ custom_asset('barnd4.png') }}" alt="" />
                     </a>
                 </div>
                 <div class="box-name home home-text">
@@ -63,7 +63,7 @@
             <div class="main-box border" style="text-align: center;">
                 <div class="box-img card-image" style="padding-top: 50px;">
                     <a href="/crunchycarrot" style="display: block;">
-                        <img src="/media/barnd10.png" alt="" />
+                        <img src="{{ custom_asset('barnd10.png') }}" alt="" />
                     </a>
                 </div>
                 <div class="box-name home home-text">
@@ -82,7 +82,7 @@
             <div class="main-box border" style="text-align: center;">
                 <div class="box-img card-image" style="padding-top: 50px;">
                     <a href="/flonix" style="display: block;">
-                        <img src="/media/barnd5.png" alt="" />
+                        <img src="{{ custom_asset('barnd5.png') }}" alt="" />
                     </a>
                 </div>
                 <div class="box-name home home-text">
@@ -101,7 +101,7 @@
             <div class="main-box border" style="text-align: center;">
                 <div class="box-img card-image" style="padding-top: 50px;">
                     <a href="/uhiperth" style="display: block;">
-                        <img src="/media/barnd6.png" alt="" />
+                        <img src="{{ custom_asset('barnd6.png') }}" alt="" />
                     </a>
                 </div>
                 <div class="box-name home home-text">
@@ -120,7 +120,7 @@
             <div class="main-box border" style="text-align: center;">
                 <div class="box-img card-image" style="padding-top: 50px;">
                     <a href="/pa" style="display: block;">
-                        <img src="/media/barnd7.png" alt="" />
+                        <img src="{{ custom_asset('barnd7.png') }}" alt="" />
                     </a>
                 </div>
                 <div class="box-name home home-text">
@@ -139,7 +139,7 @@
             <div class="main-box border" style="text-align: center;">
                 <div class="box-img card-image" style="padding-top: 20px;">
                     <a href="/stv" style="display: block;">
-                        <img src="/media/barnd11.jpg" alt="" />
+                        <img src="{{ custom_asset('barnd11.jpg') }}" alt="" />
                     </a>
                 </div>
                 <div class="box-name home home-text">
@@ -158,7 +158,7 @@
             <div class="main-box border" style="text-align: center;">
                 <div class="box-img card-image" style="padding-top: 50px;">
                     <a href="/thorntons" style="display: block;">
-                        <img src="/media/barnd13.png" alt="" />
+                        <img src="{{ custom_asset('barnd13.png') }}" alt="" />
                     </a>
                 </div>
                 <div class="box-name home home-text">
@@ -177,7 +177,7 @@
             <div class="main-box border" style="text-align: center;">
                 <div class="box-img card-image" style="padding-top: 5px;">
                     <a href="/tlc" style="display: block;">
-                        <img src="/media/barnd12.jpg" alt="" />
+                        <img src="{{ custom_asset('barnd12.jpg') }}" alt="" />
                     </a>
                 </div>
                 <div class="box-name home home-text">

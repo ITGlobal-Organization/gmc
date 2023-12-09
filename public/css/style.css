@@ -1776,3 +1776,38 @@ text-decoration: none;
 .select2-container{width: 100% !important;}
 .select2-container .select2-selection--single{height: 49px !important;}
 
+.addnew-btn a {
+    margin: 0px 0px 15px 0px;
+    padding: 15px 25px 15px 25px !important;
+    width: auto;
+    height: auto;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 100;
+    text-align: center;
+    border: 0px solid #eee;
+    background-color: #2b9acb;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    font-family: 'Montserrat-Regular';
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.4s linear;
+}
+
+.ct-submit {
+    margin: auto;
+    padding: 20px 30px 20px 30px;
+    width: auto;
+    height: auto;
+    border: 0px solid #836f56;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #2b9acb;
+    color: #fff;
+    border-radius: 10px;
+    outline: 0;
+    text-transform: uppercase;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    font-family: 'Montserrat-Regular' !important;
+  }

@@ -40,6 +40,16 @@ return [
         <br><br>
         If you would like to discuss hosting an event or have an idea for our future calendar then contact the
         Chamber office."
+    ],
+    'space-finders' => [
+        'description' => "Here we have harnessed space (indoors and out) from within our membership and partners.
+        <br>
+        This includes property for long term let or sale and also space for use and hire by the hour, day, week, month and
+        so on.
+        <br>
+        There is a variety of options with different facilities e.g. parking and catering.
+        <br>
+        Please register to upload space you have to offer or search for your needs if you are looking."
     ]
 
 ];

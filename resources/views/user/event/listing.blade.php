@@ -1,18 +1,4 @@
-<div class="middle mtb-60">
-    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 border padding">
-        @include('sidebars.sidebarv4')
-    </div>
-    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 border padding">
-        <div id="container">
-            <div id="parentHorizontalTab">
-                <ul class="resp-tabs-list hor_1 resp-tabs-list1">
-                    <li>&nbsp; Table View &nbsp;</li>
-                    <li>&nbsp; Calendar View &nbsp;</li>
-                </ul>
-                <div class="resp-tabs-container hor_1 ">
-                    <!--Start Table View listing-->
-                    <div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mb-20">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mb-20">
                             <div class="table-div1">
                                 <table>
                                     <tr>
@@ -65,26 +51,3 @@
                             </div>
                             <div class="clr"></div>
                         </div>
-                        <div class="clr"></div>
-                    </div>
-                    <!--End Table View listing-->
-
-                    <!--Start Calendar View listing-->
-                    <div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mb-20">
-
-
-                            <div id="calendar"></div>
-
-                            <div class="clr"></div>
-                        </div>
-                        <div class="clr"></div>
-                    </div>
-                    <!--End Calendar View listing-->
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>

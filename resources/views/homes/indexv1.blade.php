@@ -85,7 +85,7 @@
                 {{-- <div class="bal-btn"><a href="#"><i class="fa fa-long-arrow-right" style="color: #ffffff;" aria-hidden="true"></i> Learn More</a></div> --}}
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 shrink">
-                <img src="{{ custom_asset('ab-img.png') }}" width="100%" alt="" class="blog-img"/>
+                <img src="{{ custom_asset('ab-img.png') }}" width="100%" alt=""  class="blog-img"/>
             </div>
             <div class="clr"></div>
         </div>
