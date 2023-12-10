@@ -3,10 +3,10 @@
     <!--Start Middle-->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding events">
         <div class="middle mtb-60">
-            <h1 class="text-center mb-25">Add New</h1>
-            <p class="text-center mb-40">
-                Please get in touch with us by telephone or email. Alternatively, you can use the enquiry form below.
-            </p>
+            <h1 class="text-center mb-25">{{ trans('messages.edit_msg',[
+                'attribute' => trans('lang.news')
+            ]) }}</h1>
+           
             <div class="contact-success"></div>
             <div class="contact-error"></div>
             <form action="" class="update" enctype="multipart/form-data">
@@ -15,61 +15,54 @@
                 <input type="hidden" name="slug" id="" value="{{ $Blog->slug }}">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label for="title">Title</label>
                             <input type="text" class="serch-input" value="{{ $Blog->title }}" placeholder="Title"
                                 name="title">
                                 <div class="error-title"></div>
                             <div class="clr"></div>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label for="publisher">Publisher</label>
                             <input type="text" class="serch-input" value="{{ $Blog->publisher }}"
                                 placeholder="Publisher" name="publisher">
                                 <div class="error-publisher"></div>
                             <div class="clr"></div>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label for="publish_at">Publish at</label>
                             <input type="date" class="serch-input" value="{{ old('publish_at', \Carbon\Carbon::parse($Blog->publish_at)->format('Y-m-d')) }}" placeholder="Publish at"
                                 name="publish_at">
                                 <div class="error-publish_at"></div>
                             <div class="clr"></div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25">
-                    <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mb-20">
-                        <label for="description">Description</label>
-                        <textarea id="w3review" class="text-area" rows="4" name="description" rows="4"
-                            value="{{ $Blog->description }}">{!! $Blog->description !!}</textarea>
-                        <div class="error-description"></div>
-                        <div class="clr"></div>
-                    </div>
-                </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25">
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20 img-div" style="position:relative;">
-                        <button class="close AClass" type="button">
-                            <span>&times;</span>
-                        </button>
-                        <div class="box-img card-image">
-                        <img src="{{ $Blog->media[0]->image_url }}" alt=""
-                            data-id="{{ $Blog->media[0]->id }}" class="box-img">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mb-20">
+                            <label for="description">Description</label>
+                            <textarea id="w3review" class="text-area" rows="4" name="description" rows="4"
+                                value="{{ $Blog->description }}">{!! $Blog->description !!}</textarea>
+                            <div class="error-description"></div>
+                            <div class="clr"></div>
                         </div>
-                        <div class="clr"></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mb-20 img-div" style="position:relative;">
+                            <button class="close AClass" type="button">
+                                <span>&times;</span>
+                            </button>
+                            <div class="box-img card-image">
+                            <img src="{{ $Blog->media[0]->image_url }}" alt=""
+                                data-id="{{ $Blog->media[0]->id }}" class="box-img">
+                            </div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20" style="position:relative;">
+                            <input type="file" name="filename[]" class="form-control file">
+                            <div class="clr"></div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left mb-20">
+                            <input type="submit" class="ct-submit" value="Submit">
+                        </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25 upload-div hidden">
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20" style="position:relative;">
-                        <input type="file" name="filename[]" class="form-control file">
-                        <div class="clr"></div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left mb-20">
-                    <input type="submit" class="ct-submit" value="Submit">
-                </div>
+                
         </div>
         </form>
         <div class="clr"></div>

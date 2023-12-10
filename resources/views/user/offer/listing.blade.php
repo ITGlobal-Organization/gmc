@@ -1,7 +1,7 @@
 <div class="middle mtb-60">
     <div>
-        <h1 class="mb-25 text-center">Offers</h1>
-        <p class="mb-40 text-center">
+        <h1 class="mb-25 text-center">{{ trans('lang.offers')}}</h1>
+        <!-- <p class="mb-40 text-center">
             Here we have harnessed space (indoors and out) from within our membership and partners.
             <br>
             This includes property for long term let or sale and also space for use and hire by the hour, day, week,
@@ -10,19 +10,19 @@
             There is a variety of options with different facilities e.g. parking and catering.
             <br>
             Please register to upload space you have to offer or search for your needs if you are looking.
-        </p>
+        </p> -->
     </div>
-    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 border padding">
-        @include('sidebars.sidebarv4')
-    </div>
-<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 border padding">
+    
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
     <div class="middle mtb-60">
 
         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6 padding border mb-25">
-            <span class="listin-found"><b>{{ count($Offers) }}</b> Listings Found</span>
+            <span class="listin-found"><b>{{ $count }}</b> {{ trans('lang.listing')}} {{ trans('lang.found')}}</span>
         </div>
         <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 padding border mb-25 text-center">
-            <div class="addnew-btn"><a href="{{ route('user.offers.create') }}">Add New</a></div>
+            <div class="addnew-btn"><a href="{{ route('user.offers.create') }}">{{ trans('messages.add_new_msg',[
+                    'attribute' => trans('lang.offer')
+                ])}}</a></div>
             <div class="clr"></div>
         </div>
         <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 padding border mb-25">

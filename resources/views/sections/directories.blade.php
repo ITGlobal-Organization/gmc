@@ -1,6 +1,11 @@
 <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8 padding border mb-25">
-    <a href=directories/categories> View Categories</a>
+    <a href=directories/categories> View Categories        </a>
 </div>
+
+<!--<div class="col-xs-12 col-sm-7 col-md-7 col-lg-8 padding border mb-25">
+    <span class="listin-found"><a href=categories><b>View Categories</b> </a>
+</span>
+</div>-->
 
 <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2 border mb-25">
     @include('sections.search.filterv1')
@@ -24,11 +29,29 @@
             <div class="main-box">
 
                 <div class="box-img card-image">
-                    <a href="{{ route('directories.get', $directory->slug) }}"><img src="{{ $directory->image_url }}"
-                            alt="" width="100%" class="box-img" /></a>
+      @php 
+         $User = auth()->user();
+      @endphp
+      
+      @if(!isset($User))
+     
+       <a href="{{ route('login') }}"><img src="{{ $directory->image_url }}" alt="" width="100%" class="box-img" /></a>
+      @else
+        <a href="{{ route('directories.get', $directory->slug) }}"><img src="{{ $directory->image_url }}" alt="" width="100%" class="box-img" /></a>
+      @endif
                 </div>
                 <!--<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>-->
-                <div class="box-name home home-text">    <div style="display: flex; justify-content: center; align-items: center;">        <a href={{ route('directories.get', $directory->slug) }}>            {{ $directory->title }}        </a>    </div></div>
+                <div class="box-name home home-text">    <div style="display: flex; justify-content: center; align-items: center;">  
+                                          @php 
+         $User = auth()->user();
+      @endphp
+      
+      @if(!isset($User))
+       <a href="{{ route('login') }}">
+      @else
+        <a href="{{ route('directories.get', $directory->slug) }}">
+      @endif
+          {{ $directory->title }}        </a>    </div></div>
                 <div class="box-text">
             {!! $directory->description !!}
             </div>

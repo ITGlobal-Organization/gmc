@@ -29,6 +29,27 @@ return [
         There is a variety of options with different facilities e.g. parking and catering.
         <br>
         Please register to upload space you have to offer or search for your needs if you are looking."
+    ],
+    'events' => [
+        'description' => "Organised to educate, inform and network, our comprehensive programme of events allows something for
+        everyone within the business community. Held at various times – from breakfast meetings to supper socials –
+        there should be something to work around business and personal commitments.
+        <br><br>
+        Events are intented to bring focus to different areas throughout the whole Shire, where possible we try to
+        alternate between central and rural locations.
+        <br><br>
+        If you would like to discuss hosting an event or have an idea for our future calendar then contact the
+        Chamber office."
+    ],
+    'space-finders' => [
+        'description' => "Here we have harnessed space (indoors and out) from within our membership and partners.
+        <br>
+        This includes property for long term let or sale and also space for use and hire by the hour, day, week, month and
+        so on.
+        <br>
+        There is a variety of options with different facilities e.g. parking and catering.
+        <br>
+        Please register to upload space you have to offer or search for your needs if you are looking."
     ]
 
 ];

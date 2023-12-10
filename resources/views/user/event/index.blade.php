@@ -1,45 +1,15 @@
-@extends('layouts.layoutv2')
+@extends('layouts.auth')
 @section('content')
-    <style>
-        .addnew-btn a {
-            margin: 0px 0px 15px 0px;
-            padding: 15px 25px 15px 25px !important;
-            width: auto;
-            height: auto;
-            font-size: 14px;
-            color: #fff;
-            border-radius: 10px;
-            font-weight: 100;
-            text-align: center;
-            border: 0px solid #eee;
-            background-color: #2b9acb;
-            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-            font-family: 'Montserrat-Regular';
-            cursor: pointer;
-            display: inline-block;
-            transition: all 0.4s linear;
-        }
-    </style>
+
     <!--Start Middle-->
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding ">
     <div class="middle mtb-60">
 
-        <h1 class="text-center mb-40">Events Calendar</h1>
-        <p class="text-center mb-60">
-            Organised to educate, inform and network, our comprehensive programme of events allows something for
-            everyone within the business community. Held at various times – from breakfast meetings to supper socials –
-            there should be something to work around business and personal commitments.
-            <br><br>
-            Events are intented to bring focus to different areas throughout the whole Shire, where possible we try to
-            alternate between central and rural locations.
-            <br><br>
-            If you would like to discuss hosting an event or have an idea for our future calendar then contact the
-            Chamber office.
-        </p>
+        <h1 class="text-center mb-40">{{ trans('lang.events_calendar') }}</h1>
         <div class="success"></div>
         <!--Start search Area-->
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-8 border padding border">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-7 border padding border">
 
             <div class="search-oh search-box1">
                 <input type="image" class="oh-btn" img="" src="{{ asset('media/brn-search.png') }}">
@@ -51,7 +21,7 @@
         <!--End search Area-->
 
         <!--Start calendar Area-->
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 border padding border">
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-5 border padding border">
 
             <div class="search-ohch">
                 <input class="ohch-input" name="date" id="start-date" placeholder="Date for visit DD-MM-YYYY"
@@ -75,7 +45,9 @@
 
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border border text-right">
-            <div class="addnew-btn"><a href="{{route('user.events.create')}}">Add New</a></div>
+            <div class="addnew-btn"><a href="{{route('user.events.create')}}">{{ trans('messages.add_new_msg',[
+                'attribute' => trans('lang.event')
+            ]) }}</a></div>
             <div class="clr"></div>
         </div>
         <div class="events"></div>
