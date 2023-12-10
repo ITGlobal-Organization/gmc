@@ -22,22 +22,22 @@ class M2MOfferController extends BaseController
 
     public function index(Request $request){
         return view('admin.crud.index',[
-             'title' => trans('lang.blogs'),
-             'name'  => trans('lang.border'),
+             'title' => trans('lang.m2m-offers'),
+             'name'  => trans('lang.m2m-offer'),
         ]);
     }
 
     public function create(Request $request){
         return view('admin.crud.create',[
-            'title' => trans('lang.blogs').' | '.trans('lang.create'),
-            'name' => 'blog',
+            'title' => trans('lang.m2m-offers').' | '.trans('lang.create'),
+            'name' =>  trans('lang.m2m-offer'),
         ]);
     }
 
     public function edit(Request $request){
         return view('admin.crud.edit',[
-            'title' => trans('lang.blogs').' | '.trans('lang.edit'),
-            'name' => 'blog',
+            'title' => trans('lang.m2m-offers').' | '.trans('lang.edit'),
+            'name' =>  trans('lang.m2m-offer'),
         ]);
     }
 
