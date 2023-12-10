@@ -151,8 +151,8 @@ class SitePageController extends BaseController
     }
 
     public function eventsTab(Request $request){
-        $this->eventCalender->setOrderBy('id');
-        $this->eventCalender->setOrder('desc');
+        // $this->eventCalender->setOrderBy('id');
+        // $this->eventCalender->setOrder('desc');
                 // Get today's date
         $today = Carbon::now();
         $todayFomat = $today->format('Y-m-d');
@@ -211,8 +211,8 @@ class SitePageController extends BaseController
         $this->news->setOrder('desc');
         $News = $this->news->getAll([],['blogs.*','images.image_url']);
 
-        $this->eventCalender->setOrderBy('id');
-        $this->eventCalender->setOrder('desc');
+        // $this->eventCalender->setOrderBy('id');
+        // $this->eventCalender->setOrder('desc');
             $today = Carbon::now();
         $todayFomat = $today->format('Y-m-d');
         // Get the date one month after today

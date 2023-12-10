@@ -86,6 +86,15 @@ return [
                 'access' => 'admin',
                 'submenu' => [],
             ],
+            [
+                'name' => 'm2m-offers',
+                'route' => 'offers.index',
+                'icon' => 'nav-icon fas fa-tachometer-alt',
+                'has_submenu' => false,
+                'submenu_icon' => '',
+                'access' => 'admin',
+                'submenu' => [],
+            ],
 
 
         ],

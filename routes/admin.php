@@ -11,6 +11,7 @@ use App\Http\Controllers\SpaceFinderController;
 use App\Http\Controllers\EventCalenderController;
 use App\Http\Controllers\PlatinumPartnerController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\M2MOfferController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 // Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -103,5 +104,19 @@ Route::prefix('users')->group(function(){
     Route::delete('/delete/{id}',[RegisteredUserController::class, 'destroy'])->name('admin.users.destroy');
 
 
+});
+
+// Users
+Route::prefix('offers')->group(function(){
+    Route::get('/',[M2MOfferController::class, 'index'])->name('admin.offers.index');
+    // Route::get('/user',[M2MOfferController::class, 'getoffers'])->name('admin.offers.get');
+    Route::get('/ajax', [M2MOfferController::class, 'render'])->name('admin.offers.ajax');
+    Route::get('/create',[M2MOfferController::class, 'create'])->name('admin.offers.create');
+    Route::post('/',[M2MOfferController::class, 'store'])->name('admin.offers.store');
+    // Route::get('/roles',[BaseController::class, 'getAllRoles'])->name('admin.offers.roles');
+    Route::get('/{id}',[M2MOfferController::class, 'get'])->name('admin.offers.header');
+    Route::get('/edit/{id}',[M2MOfferController::class, 'edit'])->name('admin.offers.edit');
+    Route::put('/update/{id}',[M2MOfferController::class, 'update'])->name('admin.offers.update');
+    Route::delete('/delete/{id}',[M2MOfferController::class, 'destroy'])->name('admin.offers.destroy');
 });
 

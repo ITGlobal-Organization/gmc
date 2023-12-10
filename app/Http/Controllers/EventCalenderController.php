@@ -57,7 +57,7 @@ class EventCalenderController extends BaseController
         $this->setGeneralFilters($request);
         $this->removeGeneralFilters($request);
 
-
+        
         $AllEvents = $this->eventCalender->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.*','images.image_url']);
         
         if(isset($request->search) && $request->search != '') {
@@ -78,9 +78,15 @@ class EventCalenderController extends BaseController
         $Events = $this->eventCalender->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.*','images.image_url']);
 
         if(isset($user) && !$user->hasRole('admin')){
+
             $view='user.event.listing';
         }else{
-            $view='eventcalenders.events-detail';
+            if($request->view_type =='table'){
+                $view='eventcalenders.events-detail';
+            }else{
+                $view='eventcalenders.event-details-box';
+            }
+           
         }
 
         if($request->ajax()){
