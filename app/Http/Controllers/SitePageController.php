@@ -12,6 +12,9 @@ use App\Models\Blog;
 use App\Models\EventCalender;
 use App\Models\PlatinumPartner;
 use Carbon\Carbon;
+use App\Models\ContactForm;
+use App\Models\M2MOffer;
+use App\Mail\ContactUs;
 
 use Log;
 
@@ -21,13 +24,14 @@ class SitePageController extends BaseController
     private $customForm;
     private $Page;
     private $product;
-    public function __construct(CustomForm $customForm,Page $page,EventCalender $eventCalender,PlatinumPartner $platinumPartners,Blog $news){
+    public function __construct(CustomForm $customForm,Page $page,EventCalender $eventCalender,PlatinumPartner $platinumPartners,Blog $news,ContactForm $contactForm,M2MOffer $offers){
         $this->eventCalender = $eventCalender;
         $this->platinumPartners = $platinumPartners;
         $this->customForm = $customForm;
         $this->news = $news;
         $this->Page = $page;
-
+        $this->contactForm = $contactForm;
+        $this->offers = $offers;
     }
 
     public function renderMainPage(Request $request){
@@ -173,8 +177,18 @@ class SitePageController extends BaseController
         ]);
     }
 
-    public function platinumPartnersTab(Request $request){
+    public function offersTab(Request $request){
 
+        $this->offers->setOrderBy('id');
+        $this->offers->setOrder('desc');
+        $Offers = $this->offers->getAll([],['m2m_offers.*','images.image_url']);
+        return view('tabs.offers',[
+            'Offers' => $Offers,
+        ]);
+    }
+
+    public function platinumPartnersTab(Request $request){
+        // dd($request->limit);
         if($request->limit){
             $view = 'tabs.footer-platinum-partners';
         }else{
@@ -183,6 +197,7 @@ class SitePageController extends BaseController
         $this->platinumPartners->setOrderBy('id');
         $this->platinumPartners->setOrder('desc');
         $platinumPartners = $this->platinumPartners->getAll([],['platinum_partners.*','images.image_url']);
+        // dd($view);
         return view($view,[
             'PlatinumPartners' => $platinumPartners,
         ]);
@@ -210,15 +225,30 @@ class SitePageController extends BaseController
     }
 
     public function contactUs(Request $request){
-        $response = $this->contactForm->store($request);
-        $response = [
-            'success'=>true,
-            'message'=>'Your form has been submitted',
-            'route'=>'/',
-            'data'=>[
-                'route'=>'/'
-            ]
-        ];
-        return response()->json($response);
+        try{
+            $response = $this->contactForm->store($request);
+            if($response){
+                $data = $this->contactForm->find($response);
+                $message = Helper::sendMail(env('MAIL_FROM_ADDRESS'),new Contactus($data));
+                if($message ==""){
+                    $response = [
+                        'success'=>true,
+                        'message'=>'Your form has been submitted',
+                        'route'=>'/',
+                        'data'=>[
+                            'route'=>'/'
+                        ]
+                    ];
+                    return response()->json($response);
+                }else{
+                    return $this->sendError($message);
+                }
+            }
+        }catch(\Exception $e){
+            Log::error($e->getMessage());
+            return $this->sendError("Cannot Store Form Data");
+        }
+
+
     }
 }
