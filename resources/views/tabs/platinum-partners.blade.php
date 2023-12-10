@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border margin-tb25">
             <div class="row">
-                <h1>hello</h1>
+              
                 @if (isset($PlatinumPartners))
                     @foreach ($PlatinumPartners as $PlatinumPartner)
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">

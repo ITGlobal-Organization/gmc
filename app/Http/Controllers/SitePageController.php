@@ -41,12 +41,14 @@ class SitePageController extends BaseController
             $Page = Page::where('is_active',1)->where('is_home_page',1)->first();
             return view(config('site_config.assets.home_pages').$Page->view,[
                 'title' => $Page->name,
+          
             ]);
 
         }catch(\Exception $e){
 
             return view(config('site_config.assets.home_pages').'indexv1',[
                 'title' => 'Home',
+       
             ]);
         }
 
@@ -214,7 +216,7 @@ class SitePageController extends BaseController
             $today = Carbon::now();
         $todayFomat = $today->format('Y-m-d');
         // Get the date one month after today
-        $oneMonthAfter = $today->addMonth();
+        $oneMonthAfter = $today->addMonth(config('site_config.constants.events_month_range'));
         $this->eventCalender->setFilters( ['event_date','>=',$todayFomat]);
         $this->eventCalender->setFilters(  ['event_date','<=',$oneMonthAfter->format('Y-m-d')]);
         $Events = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);

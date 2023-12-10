@@ -1,8 +1,11 @@
 <div class="all-tab">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border margin-tb25">
         <div class="row">
+           
             @if (isset($Events))
+           
                 @foreach ($Events as $Event)
+                
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <div class="main-box">
                             <div class="box-img card-image">
@@ -23,7 +26,9 @@
                         <div class="clr"></div>
                     </div>
                 @endforeach
+            
             @endif
+
             @if (isset($News))
                 @foreach ($News as $News)
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
