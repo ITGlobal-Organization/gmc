@@ -159,11 +159,14 @@ async function ajaxGet(url,data,dataContainer,responseType='html',callback=null)
         beforeSend: function() {
             setLoader(true);
         },
-        success: async function(response) {
+        success: function(response) {
+         
             if(responseType == 'html'){
+               
                 $(dataContainer).html(response);
             }else if(responseType == 'json'){
-               await callback(response);
+                console.log('here');
+                callback(response);
             }
 
         },
