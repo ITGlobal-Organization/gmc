@@ -58,6 +58,7 @@
         end_date:"",
         order_by:"",
         order:"",
+        start:1,
 
     }
 
@@ -75,43 +76,9 @@
          
        
 	$(document).ready(async function(){
-		getEventsListing()
-       
-        
-	})
-    $(document).on('keyup','.search-box',function(){
-        filters.search = $(this).val();
-        setInterval(() => {
-            getEventsListing()
-        },2000)
-    });
-    $(document).on('change', '#end-date',async function (ev) {
-        filters.start_date = $('#start-date').val();
-        filters.end_date = $('#end-date').val();
-        getEventsListing()
-    });
-	
-    
-    async function getEventsListing (){
-        await ajaxGet("{{route('event-calenders.ajax')}}",filters,".events",responseType='html'); 
+		let events = await getEventsListing(); 
         let ref = $("#calendar");
-        let events = []
-            await ajaxGet("{{route('event-calenders.ajax')}}",{},"",'json', (response) =>{
-                    let data = response.data
-                    for(let i=0 ; i<data.length;i++){
-                        console.log(data);
-                        events.push({
-                            date: new Date(data[i].event_date),
-                            eventName: data[i].title,
-                            className: "badge",
-                            onclick(e, data) {
-                                console.log(data);
-                            },
-                            dateColor: "red"
-                        });
-                    }
-
-                    var calendar = ref.calendarGC({
+            var calendar = ref.calendarGC({
                         dayBegin: 0,
                         prevIcon: '',
                         nextIcon: '',
@@ -127,13 +94,47 @@
                         onclickDate: function (e, data) {
                             console.log(e, data);
                         }
-                    });
-                    // data.forEach((event) => {
-                        
-                    // })
-            
+            });
+	})
+    $(document).on('keyup','.search-box',function(){
+        filters.search = $(this).val();
+        setInterval(() => {
+            getEventsListing()
+        },2000)
+    });
+    $(document).on('change', '#end-date',async function (ev) {
+        filters.start_date = $('#start-date').val();
+        filters.end_date = $('#end-date').val();
+        getEventsListing()
+    });
+	
+    async function getAjaxEvents(){
+       
+        let events = []
+        await ajaxGet("{{route('event-calenders.ajax')}}",{},"",'json', async (response) =>{
+                    let data = await response.data
+                    for(let i=0 ; i<data.length;i++){
+                        console.log(data);
+                        events.push({
+                            date: new Date(data[i].event_date),
+                            eventName: data[i].title,
+                            className: "badge",
+                            onclick(e, data) {
+                                console.log(data);
+                            },
+                            dateColor: "red"
+                        });
+                    }
 
-                }); 
+            }); 
+        return events;
+            
+    }
+    async function getEventsListing (){
+        await ajaxGet("{{route('event-calenders.ajax')}}",filters,".events",responseType='html'); 
+        let events = await getAjaxEvents();
+        console.log('here',events)
+        return events;
     }
 
 

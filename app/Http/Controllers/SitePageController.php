@@ -155,7 +155,8 @@ class SitePageController extends BaseController
         $today = Carbon::now();
         $todayFomat = $today->format('Y-m-d');
         // Get the date one month after today
-        $oneMonthAfter = $today->addMonth();
+        $oneMonthAfter = $today->addMonth(config('site_config.constants.events_month_range'));
+        // dd( $oneMonthAfter,config('site_config.constants.events_month_range'));
         $this->eventCalender->setFilters( ['event_date','>=',$todayFomat]);
         $this->eventCalender->setFilters(  ['event_date','<=',$oneMonthAfter->format('Y-m-d')]);
 
