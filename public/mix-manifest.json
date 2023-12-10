@@ -1,6 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/js/scripts/calendar-gc.js": "/js/scripts/calendar-gc.js",
+    "/js/scripts/calendar-gc.min.js": "/js/scripts/calendar-gc.min.js",
     "/js/scripts/common.js": "/js/scripts/common.js",
     "/js/scripts/easyResponsiveTabs.js": "/js/scripts/easyResponsiveTabs.js",
     "/js/scripts/intlTelInput-jquery.js": "/js/scripts/intlTelInput-jquery.js",
@@ -15,5 +17,6 @@
     "/js/scripts/script.js": "/js/scripts/script.js",
     "/js/scripts/scripts.js": "/js/scripts/scripts.js",
     "/js/scripts/slicarousel.js": "/js/scripts/slicarousel.js",
+    "/js/scripts/toast.min.js": "/js/scripts/toast.min.js",
     "/js/scripts/utils.js": "/js/scripts/utils.js"
 }
