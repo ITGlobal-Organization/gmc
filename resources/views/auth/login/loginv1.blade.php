@@ -14,13 +14,12 @@
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 border padding form-none"></div>
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 border join-bg">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mb-20">
-                            <label>Username or Email Address
-                            </label>
-                            <input type="text" class="join-input email" value="" placeholder="Username or Email Address" name="email">
+                            <label>{{ trans('lang.emal-address') }}</label>
+                            <input type="text" class="join-input email" value="" placeholder="{{ trans('lang.emal-address') }}" name="email">
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mb-20">
-                            <label>Password </label>
-                            <input type="password" class="join-input password" value="" placeholder="Password" name ="password">
+                            <label>{{ trans('lang.password')}} </label>
+                            <input type="password" class="join-input password" value="" placeholder="{{ trans('lang.password')}}" name ="password">
 
                             <!--<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border text-right padding mtb-10">
                                 <span class="forget-links" id="btn-forget">
