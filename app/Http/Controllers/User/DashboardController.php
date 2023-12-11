@@ -17,12 +17,15 @@ class DashboardController extends Controller
     public function dashboard(Request $request){
         // Auth::logout();
         $this->user = Auth::user();
+        // dd(User::with('image')->get());
+        $user = $this->user->where('id',$this->user->id)->with('image')->first();
 
         // $Customer = $this->customer->first('user_id',$this->user->id,'=',[],[
         //     ['users','users.id','=','customers.user_id']
         // ]);
         return view($this->user->roles[0]->name.'.dashboard',[
-            'title' => trans('lang.user').'|'.trans('lang.dashboard')
+            'title' => trans('lang.user').'|'.trans('lang.dashboard'),
+            'user' => $user
         ]);
     }
     public function edit(Request $request){
