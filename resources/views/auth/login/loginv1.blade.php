@@ -14,8 +14,8 @@
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 border padding form-none"></div>
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 border join-bg">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mb-20">
-                            <label>{{ trans('lang.emal-address') }}</label>
-                            <input type="text" class="join-input email" value="" placeholder="{{ trans('lang.emal-address') }}" name="email">
+                            <label>{{ trans('lang.email-address') }}</label>
+                            <input type="text" class="join-input email" value="" placeholder="{{ trans('lang.email-address') }}" name="email">
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mb-20">
                             <label>{{ trans('lang.password')}} </label>
