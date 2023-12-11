@@ -197,7 +197,7 @@ return [
     'table-view' => "Table View",
     'calendar-view' => "Calendar View",
     'box-view' => "Box View",
- 
+    'email-address' => "Email Address",
 
 
 ];
