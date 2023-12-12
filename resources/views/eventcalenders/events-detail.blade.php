@@ -5,8 +5,8 @@
         <option value="title-asc">A to Z</option>
         <option value="title-desc">Z to A</option>
 
-        <option value="event_date-asc">Upcoming First</option>
-        <option value="event_date-desc">Distant First</option>
+        <option value="event_date-desc">Upcoming First</option>
+        <option value="event_date-asc">Distant First</option>
     </select>
 </div>
 
@@ -34,7 +34,7 @@
                             </div>
                             <div class="box-text" style="height: 90px;">
                                 <b>Date:</b> {{ date('d-M-Y', strtotime($Event->event_date)) }} <b>Time:</b> {{\Carbon\Carbon::createFromFormat('H:i:s',$Event->time)->format('h:i A')}}<br>
-                                <b>Venue:</b> {{ $Event->venue }}    
+                                <b>Venue:</b> {{ $Event->venue }}
                                 <b>Price:</b> {{ $Event->price }}<br>
                                 <span class="btn-download"><a href="{{$Event->booking_link}}" target="_blank">Book Now</a>
                             </div>
@@ -47,7 +47,7 @@
     </div>
     <div class="clr"></div>
 </div>
-<!--End Events Tab Area-->                        
+<!--End Events Tab Area-->
 </div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding margin-tb35">
                 <div class="row">

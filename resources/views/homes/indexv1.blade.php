@@ -92,10 +92,9 @@
          <div class="clr"></div>
     </div>
     <!--End About Area-->
-   <!-- <div class="platinum-partners-footer">
-
-    </div> -->
-<div class="row">
+    <div class="platinum-partners-footer">
+    </div>
+{{-- <div class="row">
    <div class="middle mtb-60">
       <h2 class="text-center mtb-60 text-uppercase">Platinum Partners</h2>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -146,7 +145,7 @@
       <div class="clr"></div>
    </div>
    <div class="clr"></div>
-</div>
+</div> --}}
 
 
 @endsection

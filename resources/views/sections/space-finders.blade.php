@@ -12,8 +12,8 @@
         <option value="">{{ trans('lang.sort_by') }}</option>
         <option value="title-asc">A to Z</option>
         <option value="title-desc">Z to A</option>
-        <option value="created_at-asc">{{ trans('lang.latest_to_oldest') }}</option>
-        <option value="created_at-desc">{{ trans('lang.oldest_to_latest') }}</option>
+        <option value="created_at-desc">{{ trans('lang.latest_to_oldest') }}</option>
+        <option value="created_at-asc">{{ trans('lang.oldest_to_latest') }}</option>
     </select>
 </div>
 
@@ -25,10 +25,10 @@
             <div class="main-box">
 
                 <div class="box-img card-image">
-        @php 
+        @php
          $User = auth()->user();
       @endphp
-      
+
       @if(!isset($User))
        <a href="{{ route('login') }}"><img src="{{ $SpaceFinder->image_url }}"
       @else
@@ -40,10 +40,10 @@
                 <!--<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>-->
                 <div class="box-name home home-text">
     <div style="display: flex; justify-content: center; align-items: center;">
-     @php 
+     @php
          $User = auth()->user();
       @endphp
-      
+
       @if(!isset($User))
        <a href="{{ route('login') }}">
       @else
