@@ -25,7 +25,12 @@
 						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 							<div class="main-box">
 								<div class="box-img card-image">
-									<a href="{{ route('blogs.get',$blog->slug) }}"><img src="{{ $blog->image_url }}" alt="" width="100%" class="box-img" /></a>
+									<a href="{{ route('blogs.get',$blog->slug) }}">
+										@include('components.image',[
+										
+											'image' => $blog->image_url 	
+										])
+									</a>
 								</div>
 								<div class="box-name home home-text">
 									<a href="{{ route('blogs.get',$blog->slug) }}">

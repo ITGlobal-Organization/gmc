@@ -151,49 +151,7 @@
 
 
 
-        // Pagination
-        $(document).on('click','.page',async function(e){
-            e.preventDefault();
-            $('.page').removeClass("page-active");
-            $(this).addClass("page-active");
-            filters.start = $(this).text();
-           await getEventsListing()
-        })
-
-        $(document).on('click','.next',async function(e){
-        e.preventDefault();
-        totalPages = $('.count').val();
-        if( filters.start  == totalPages){
-            filters.start  = 1;
-            $('.page').removeClass('page-active');
-            $('.pagination a[data-page=page-1]').addClass("page-active");
-           await getEventsListing()
-        }else{
-             filters.start = parseInt(filters.start)+1;
-            $('.page').removeClass('page-active')
-
-            $('.pagination a[data-page=page-'+filters.start+ ']').addClass("page-active");
-           await getEventsListing()
-
-        }
-    })
-
-    $(document).on('click','.prev',async function(e){
-        e.preventDefault();
-        totalPages = $('.count').val();
-        if( filters.start  == 1){
-            filters.start  = totalPages;
-            $('.page').removeClass('page-active');
-
-            $('.pagination a[data-page=page-'+ totalPages + ']').addClass("page-active");
-           await getEventsListing()
-        }else{
-             filters.start  = parseInt( filters.start )-1;
-            $('.page').removeClass('page-active');
-            $('.pagination a[data-page=page-'+filters.start+ ']').addClass("page-active");
-           await getEventsListing()
-        }
-    })
+       
 
     // tabs
     $(function (e) {
@@ -242,10 +200,11 @@
                 }
             });
 
-               
+            let paginationConfig = {
+            renderFunction:getEventsListing
+        }    
 </script>
-
-
+<script src="{{ custom_asset('pagination.js','scripts')}}"></script>
 
 
 

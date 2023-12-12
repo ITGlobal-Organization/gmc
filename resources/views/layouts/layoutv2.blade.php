@@ -88,7 +88,11 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <!-- Select2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-
+<script>
+let blade_config = {
+	baseUrl : "{{ config('app.url') }}"
+}
+</script>
 <script src="{{ custom_asset('common.js','scripts')}}"></script>
 <script src="{{ custom_asset('owl.carousel.js','scripts') }}"></script>
 <script src="{{ custom_asset('utils.js','scripts') }}"></script>
