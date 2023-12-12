@@ -191,8 +191,13 @@ return [
     'offer' => "Offer",
     'space-finders' => "Space Finders",
     "space-finder" => "Space Finder",
-    'profile' => 'Profile'
-
+    'profile' => 'Profile',
+    'm2m-offers'=>"M2M Offers",
+    'm2m-offer' => "M2M Offer",
+    'table-view' => "Table View",
+    'calendar-view' => "Calendar View",
+    'box-view' => "Box View",
+    'email-address' => "Email Address",
 
 
 ];

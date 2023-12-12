@@ -44,6 +44,11 @@ import UserIndex from '../components/admin/users/Index.vue';
 import UserCreate from '../components/admin/users/Create.vue';
 import UserEdit from '../components/admin/users/Edit.vue';
 
+// Offers
+import OfferIndex from '../components/admin/offers/Index.vue';
+import OfferCreate from '../components/admin/offers/Create.vue';
+import OfferEdit from '../components/admin/offers/Edit.vue';
+
 // Directory Category
 import CategoryIndex from '../components/admin/categories/Index.vue';
 
@@ -240,6 +245,25 @@ const routes = [
         props: true,
     },
 
+     // Offers
+     {
+        path: "/admin/offers",
+        name: "admin.offers",
+        component: OfferIndex,
+        props: true,
+    },
+    {
+        path: "/admin/offers/create",
+        name: "admin.offers.create",
+        component: OfferCreate,
+        props: true,
+    },
+    {
+        path: "/admin/offers/edit/:id",
+        name: "admin.offers.edit",
+        component: OfferEdit,
+        props: true,
+    },
  
 
 

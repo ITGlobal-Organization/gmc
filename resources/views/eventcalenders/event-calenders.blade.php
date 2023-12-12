@@ -15,11 +15,19 @@
                <div id="parentHorizontalTab" class="parentHorizontalTab">
                     <div class="event-tabs-cal-list">
                     <ul class="resp-tabs-list hor_1 resp-tabs-list1">
-                        <li>&nbsp; Table View &nbsp;</li>
-                        <li>&nbsp; Calendar View &nbsp;</li>
+                        <li>&nbsp; {{ trans('lang.box-view')}} &nbsp;</li>
+                        <li>&nbsp; {{ trans('lang.table-view')}} &nbsp;</li>
+                        <li>&nbsp; {{ trans('lang.calendar-view')}} &nbsp;</li>
+                      
                     </ul>
                     </div>
                   <div class="resp-tabs-container hor_1">
+                    <!--Start Table View listing-->	
+                        <div class="events-box">
+                       
+                        
+                       </div>
+                       <!--End Table View listing-->	
                      <!--Start Table View listing-->	
                      <div class="events">
                        
@@ -58,6 +66,8 @@
         end_date:"",
         order_by:"",
         order:"",
+        start:1,
+        view_type:"",
 
     }
 
@@ -75,43 +85,9 @@
          
        
 	$(document).ready(async function(){
-		getEventsListing()
-       
-        
-	})
-    $(document).on('keyup','.search-box',function(){
-        filters.search = $(this).val();
-        setInterval(() => {
-            getEventsListing()
-        },2000)
-    });
-    $(document).on('change', '#end-date',async function (ev) {
-        filters.start_date = $('#start-date').val();
-        filters.end_date = $('#end-date').val();
-        getEventsListing()
-    });
-	
-    
-    async function getEventsListing (){
-        await ajaxGet("{{route('event-calenders.ajax')}}",filters,".events",responseType='html'); 
+		let events = await getEventsListing(); 
         let ref = $("#calendar");
-        let events = []
-            await ajaxGet("{{route('event-calenders.ajax')}}",{},"",'json', (response) =>{
-                    let data = response.data
-                    for(let i=0 ; i<data.length;i++){
-                        console.log(data);
-                        events.push({
-                            date: new Date(data[i].event_date),
-                            eventName: data[i].title,
-                            className: "badge",
-                            onclick(e, data) {
-                                console.log(data);
-                            },
-                            dateColor: "red"
-                        });
-                    }
-
-                    var calendar = ref.calendarGC({
+            var calendar = ref.calendarGC({
                         dayBegin: 0,
                         prevIcon: '',
                         nextIcon: '',
@@ -127,13 +103,50 @@
                         onclickDate: function (e, data) {
                             console.log(e, data);
                         }
-                    });
-                    // data.forEach((event) => {
-                        
-                    // })
-            
+            });
+	})
+    $(document).on('keyup','.search-box',function(){
+        filters.search = $(this).val();
+        setInterval(() => {
+            getEventsListing()
+        },2000)
+    });
+    $(document).on('change', '#end-date',async function (ev) {
+        filters.start_date = $('#start-date').val();
+        filters.end_date = $('#end-date').val();
+        getEventsListing()
+    });
+	
+    async function getAjaxEvents(){
+       
+        let events = []
+        await ajaxGet("{{route('event-calenders.ajax')}}",{},"",'json', async (response) =>{
+                    let data = await response.data
+                    for(let i=0 ; i<data.length;i++){
+                        console.log(data);
+                        events.push({
+                            date: new Date(data[i].event_date),
+                            eventName: data[i].title,
+                            className: "badge",
+                            onclick(e, data) {
+                                console.log(data);
+                            },
+                            dateColor: "red"
+                        });
+                    }
 
-                }); 
+            }); 
+        return events;
+            
+    }
+    async function getEventsListing (){
+        filters.view_type = 'box';
+        await ajaxGet("{{route('event-calenders.ajax')}}",filters,".events-box",responseType='html'); 
+        filters.view_type = 'table';
+        await ajaxGet("{{route('event-calenders.ajax')}}",filters,".events",responseType='html'); 
+        let events = await getAjaxEvents();
+        console.log('here',events)
+        return events;
     }
 
 
@@ -201,6 +214,33 @@
                         $info.show();
                     }
                 } );
+    // Child Tab
+    $('#ChildVerticalTab_1').easyResponsiveTabs({
+                type: 'vertical',
+                width: 'auto',
+                fit: true,
+                tabidentify: 'ver_1', // The tab groups identifier
+                activetab_bg: '#fff', // background color for active tabs in this group
+                inactive_bg: '#F5F5F5', // background color for inactive tabs in this group
+                active_border_color: '#c1c1c1', // border color for active tabs heads in this group
+                active_content_border_color: '#5AB1D0' // border color for active tabs contect in this group so that it matches the tab head border
+            });
+
+            //Vertical Tab
+            $('#parentVerticalTab').easyResponsiveTabs({
+                type: 'vertical', //Types: default, vertical, accordion
+                width: 'auto', //auto or any width like 600px
+                fit: true, // 100% fit in a container
+                closed: 'accordion', // Start closed if in accordion view
+                tabidentify: 'hor_1', // The tab groups identifier
+                activate: function(event) { // Callback function if tab is switched
+                    var $tab = $(this);
+                    var $info = $('#nested-tabInfo2');;
+                    var $name = $('span', $info);
+                    $name.text($tab.text());
+                    $info.show();
+                }
+            });
 
                
 </script>

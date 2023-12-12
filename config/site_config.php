@@ -28,7 +28,7 @@ return [
         'phone_max_length' => '12',
         'general_string_length' => '100',
         'base_layout' => 'layouts.layoutv2',
-        'item_per_page' => 12,
+        'item_per_page' => 44,
         'events_month_range' => 2
     ],
     'auth'  => [
