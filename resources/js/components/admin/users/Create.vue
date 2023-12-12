@@ -6,7 +6,7 @@
                 <div class="col-sm-6">
                     <h1>{{ Lang.create_msg(Lang.user) }}</h1>
                 </div>
-             
+
                 </div>
             </div>
         </section>
@@ -16,7 +16,7 @@
 
         <!-- Default box -->
         <div class="card card-secondary card-outline">
-            
+
             <div class="card-body">
                 <Form :fields="FormFields" :data="FormData" :action="store" :name="name" :errors="errors" id="0"/>
             </div>
@@ -24,7 +24,7 @@
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
-        
+
         </section>
 </template>
 <script>
@@ -56,7 +56,7 @@ export default {
                 postalcode:'',
                 username:'',
                 phone_no:'',
-                company:'',
+                // company:'',
                 tel_no:'',
                 website:'',
                 venue_url:'',
@@ -72,7 +72,7 @@ export default {
             name:"Create User",
         }
     },
-    mounted(){ 
+    mounted(){
         let ref = this;
         ref.getRoles();
         ref.FormFields = [
@@ -133,7 +133,7 @@ export default {
                     },
                     options:function(){
                             if(this.isdynamic){
-                                return ref.roles;            
+                                return ref.roles;
                             }
                             return [];
                     },
@@ -181,7 +181,7 @@ export default {
                         return Language.placholder_msg(this.label)
                     },
                     required:true,
-                }, 
+                },
                 {
                     label:Language.phone,
                     field:"phone",
@@ -270,17 +270,17 @@ export default {
                     },
                     required:true,
                 },
-                {
-                    label:Language.company,
-                    field:"company",
-                    class:"form-control",
-                    grid:"col-md-6 col-12",
-                    type:"text",
-                    placeholder:function(){
-                        return Language.placholder_msg(this.label)
-                    },
-                    required:true,
-                },
+                // {
+                //     label:Language.company,
+                //     field:"company",
+                //     class:"form-control",
+                //     grid:"col-md-6 col-12",
+                //     type:"text",
+                //     placeholder:function(){
+                //         return Language.placholder_msg(this.label)
+                //     },
+                //     required:true,
+                // },
                 {
                     label:Language.status,
                     field:"is_approved",
@@ -294,7 +294,7 @@ export default {
                     },
                     options:function(){
                             if(this.isdynamic){
-                                return ref.options;            
+                                return ref.options;
                             }
                             return [
                                 {
@@ -308,7 +308,7 @@ export default {
                             ];
                     },
                 },
-              
+
                 {
                     label:Language.profile_picture,
                     field:"gallery",
@@ -324,7 +324,7 @@ export default {
                     fileType:"image/jpeg, image/png",
                     maxFiles:1
                 },
-                
+
         ]
 
         // var autocomplete = new google.maps.places.Autocomplete(
@@ -336,7 +336,7 @@ export default {
         async store(){
             const {store,errors} = useUsers();
             const {successAlert,errorAlert} = useService();
-            
+
             if(this.FormData.password != this.FormData.password_confirmation){
                 errorAlert(this.Lang.password_mismatch)
                 return
@@ -360,9 +360,9 @@ export default {
                 }
             });;
             this.loader =false;
-            
-            
-    
+
+
+
         },
         async getRoles(){
             const {records,getRoles} = useUsers();
@@ -371,7 +371,7 @@ export default {
         },
 
         setFormData(field,data){
-            this.FormData[field] = data; 
+            this.FormData[field] = data;
             console.log(this.FormData);
         }
 
