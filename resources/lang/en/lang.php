@@ -198,6 +198,7 @@ return [
     'calendar-view' => "Calendar View",
     'box-view' => "Box View",
     'email-address' => "Email Address",
+    'book_now' => "Book Now"
 
 
 ];

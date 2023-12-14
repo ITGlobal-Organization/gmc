@@ -186,7 +186,26 @@ class EventCalenderController extends BaseController
     }
 
 
+    public function getEvent(Request $request,$view,$slug){
 
+        $Event = $this->eventCalender->first('slug',$slug,'=',['user'],[],['*']);
+      
+        // $view = 'errors.404';
+        if(isset($view) && $view != ''){
+            if($view == 'modal')
+                $view = 'eventcalenders.ajax.event-detail-modal';
+            else
+                $view = '';
+        }else{
+           abort(404);
+        }
+        return view($view,[
+            'Event' => $Event,
+            // 'LatestBlog' => $LatestBlogs,
+          
+        ]);
+}       
+                
 
 
 }

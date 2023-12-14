@@ -33,7 +33,7 @@
                     </form>
                         <!--  Forget Password POPUP-->
                         <div id="forget" class="modal">
-                            <div class="modal-content"> <span class="close" id="close">&times;</span>
+                            <div class="modal-content modal-content-custom"> <span class="close" id="close">&times;</span>
                                 <div class="clr"></div>
                                 <div class="forget-heading">Forget Password</div>
 

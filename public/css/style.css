@@ -250,7 +250,31 @@ p {
     object-position: center bottom;
 }
 
+.box-img-modal {
+    margin: 0;
+    padding: 0;
+    height: 200px; 
+    border-radius: 10px 10px 0 0; 
+    width: 100%; 
+    /* object-fit: contain; */
+    object-position: center bottom;
+}
+
 .box-date {
+    margin: auto auto -20px auto;
+    padding: 10px 10px 10px 10px;
+    background-color: #609897;
+    border-radius: 10px 10px 0px 0px;
+    font-family: 'Montserrat-Regular';
+    font-weight: 400;
+    color: #fff;
+    position: relative;
+    top: -40px;
+    width: 50%;
+    text-align: center;
+}
+
+.box-date-modal {
     margin: auto auto -20px auto;
     padding: 10px 10px 10px 10px;
     background-color: #609897;
@@ -1316,7 +1340,7 @@ tr:nth-child(even) {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 /* Modal Content */
-.modal-content {
+.modal-content-custom {
     padding: 40px 30px 40px 30px;
     background-color: #fefefe;
     margin: auto;
