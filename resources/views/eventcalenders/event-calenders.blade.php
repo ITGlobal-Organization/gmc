@@ -23,16 +23,16 @@
                     </div>
                   <div class="resp-tabs-container hor_1">
                     <!--Start Table View listing-->	
-                        <div class="events-box">
-                       
-                        
-                       </div>
+                    <div>
+                        <div class="events-box"></div>
+                        <div class="clr"></div>
+                    </div>
                        <!--End Table View listing-->	
                      <!--Start Table View listing-->	
-                     <div class="events">
-                       
-                        
-                     </div>
+                     <div>
+                        <div class="events"></div>
+                        <div class="clr"></div>
+                    </div>
                      <!--End Table View listing-->	
                      <!--Start Calendar View listing-->		
                      <div>
@@ -49,18 +49,21 @@
         </div>
         <div class="clr"></div>
     </div>
+   
     <!--End Middle-->
 @endsection
 @section('scripts')
 <link rel="stylesheet" href="{{ custom_asset('calendar-gc.css','css') }}">	
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <script src="{{ custom_asset('calendar-gc.min.js','scripts') }}"></script>
 <script src="{{ custom_asset('easyResponsiveTabs.js','scripts') }}"></script>
 <script>
 
 	// sort_by = "";
     // search ="";
+  
     let filters = {
         start_date:"",
         end_date:"",
@@ -87,6 +90,7 @@
 	$(document).ready(async function(){
 		let events = await getEventsListing(); 
         let ref = $("#calendar");
+        let eventModal = $('#itglobal-modal');
             var calendar = ref.calendarGC({
                         dayBegin: 0,
                         prevIcon: '',
@@ -100,8 +104,10 @@
                         //     console.log(e);
                         // },
                         events: events,
-                        onclickDate: function (e, data) {
-                            console.log(e, data);
+                        onclickDate: function (e, event) {
+                            console.log(event)
+                            // eventModal.modal()
+                            // alert(event)
                         }
             });
 	})
@@ -127,9 +133,12 @@
                         events.push({
                             date: new Date(data[i].event_date),
                             eventName: data[i].title,
-                            className: "badge",
-                            onclick(e, data) {
+                            className: "badge cursor-pointer",
+                            slug:data[i].slug,
+                            onclick:async function(e, data) {
                                 console.log(data);
+                                await ajaxGet("/event-calenders/modal/"+data.slug,{},".modal-data",'html')
+                                $('#itglobal-modal').modal('show');
                             },
                             dateColor: "red"
                         });
@@ -151,49 +160,7 @@
 
 
 
-        // Pagination
-        $(document).on('click','.page',async function(e){
-            e.preventDefault();
-            $('.page').removeClass("page-active");
-            $(this).addClass("page-active");
-            filters.start = $(this).text();
-           await getEventsListing()
-        })
-
-        $(document).on('click','.next',async function(e){
-        e.preventDefault();
-        totalPages = $('.count').val();
-        if( filters.start  == totalPages){
-            filters.start  = 1;
-            $('.page').removeClass('page-active');
-            $('.pagination a[data-page=page-1]').addClass("page-active");
-           await getEventsListing()
-        }else{
-             filters.start = parseInt(filters.start)+1;
-            $('.page').removeClass('page-active')
-
-            $('.pagination a[data-page=page-'+filters.start+ ']').addClass("page-active");
-           await getEventsListing()
-
-        }
-    })
-
-    $(document).on('click','.prev',async function(e){
-        e.preventDefault();
-        totalPages = $('.count').val();
-        if( filters.start  == 1){
-            filters.start  = totalPages;
-            $('.page').removeClass('page-active');
-
-            $('.pagination a[data-page=page-'+ totalPages + ']').addClass("page-active");
-           await getEventsListing()
-        }else{
-             filters.start  = parseInt( filters.start )-1;
-            $('.page').removeClass('page-active');
-            $('.pagination a[data-page=page-'+filters.start+ ']').addClass("page-active");
-           await getEventsListing()
-        }
-    })
+       
 
     // tabs
     $(function (e) {
@@ -242,10 +209,11 @@
                 }
             });
 
-               
+            let paginationConfig = {
+            renderFunction:getEventsListing
+        }    
 </script>
-
-
+<script src="{{ custom_asset('pagination.js','scripts')}}"></script>
 
 
 
