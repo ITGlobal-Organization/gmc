@@ -203,6 +203,9 @@ return [
     'owner' => "Owner",
     'company_detail' => "Company Detail",
     'my_listings' => "My Listings",
-
+    'approved' => "Approved",
+    'not-approved' => "Not Approved",
+    'status' => "Status",
+    'action' => "Action",
 
 ];

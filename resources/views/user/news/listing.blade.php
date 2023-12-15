@@ -31,6 +31,7 @@
         <div class="row">
             @foreach ($Blogs as $Blog)
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="{{ $Blog->is_approved==1?'approved':'notapproved'}}">{{ $Blog->is_approved==1?trans('lang.approved'):trans('lang.not-approved')}}</div>
                     <div class="main-box">
                         <div class="box-img card-image">
                             <a href="spacefinder-details.php"><img src="{{ $Blog->image_url }}" alt=""
@@ -46,18 +47,18 @@
                         <div class="box-text1">
                             <i class="fad fa-check"
                                 style="--fa-primary-color: #5f439b; --fa-secondary-color: #5f439b;"></i>&nbsp;
-                            {!! $Blog->description !!}
+                            {!! App\Helpers\Helper::shortenTextLength($Blog->description) !!}
                         </div>
 
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center">
-                            <i class="fas fa-edit" style="color: #0000ff;"></i>
-                            <a href="#" style="color: #000;font-size: 16px;" class="edit"
-                                data-id="{{ $Blog->id }}">Edit</a>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center edit-btn">
+                           
+                            <a href="#" style="font-size: 16px;" class="edit"
+                                data-id="{{ $Blog->id }}">{{ trans('lang.edit')}}</a>
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center">
-                            <i class="fas fa-trash-alt" style="color: #ff0000;"></i>
-                            <a href="#" style="color: #000;font-size: 16px;" class="delete"
-                                data-id="{{ $Blog->id }}">Delete</a>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center delete-btn">
+                           
+                            <a href="#" style="font-size: 16px;" class="delete"
+                                data-id="{{ $Blog->id }}">{{ trans('lang.delete')}}</a>
                         </div>
 
                         <div class="clr"></div>

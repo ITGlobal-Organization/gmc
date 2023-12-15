@@ -9,8 +9,9 @@
                                         <th>City</th>
                                         <th>Cost</th>
                                         <th>Booking Link</th>
-                                        <th>Edit</th>
-                                        <th class="side2">Delete</th>
+                                        <th>{{ trans('lang.status')}}</th>
+                                        <th>{{ trans('lang.action')}}</th>
+                                     
                                     </tr>
 
                                     @foreach ($Events as $Event)
@@ -31,18 +32,28 @@
                                             <td class="list20">{{ $Event->venue }}</td>
                                             <td class="list20">{{ $Event->city }}</td>
                                             <td class="list20">{{ $Event->price }}</td>
-                                            <td class=" list30"><span class="btn-download"><a
+                                            <td class=" list30">
+                                                <span class="btn-download"><a
                                                         href="{{ $Event->booking_link }}">Book
-                                                        Here</a></span></td>
-                                            <td class="list20">
-                                                <i class="fas fa-edit" style="color: #0000ff;"></i>
-                                                <a href="#" style="color: #000;font-size: 14px;" class="edit"
-                                                    data-id="{{ $Event->id }}">Edit</a>
-                                            </td>
-                                            <td class="list20">
-                                                <i class="fas fa-trash-alt" style="color: #ff0000;"></i>
-                                                <a href="#" style="color: #000;font-size: 14px;" class="delete"
-                                                    data-id="{{ $Event->id }}">Delete</a>
+                                                        Here</a></span>
+                                                    </td>
+                                            <td class="list30"><div class="{{ $Event->is_approved==1?'approved':'notapproved'}}" style="top:0px;">{{ $Event->is_approved==1?trans('lang.approved'):trans('lang.not-approved')}}</div></td>
+                                          
+                                            <td class="list30">
+                                                <div class="row">
+                                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 mb-25 text-center edit-btn">
+                           
+                                                    <a href="#" style="font-size: 12px;" class="edit"
+                                                        data-id="{{ $Event->id }}">{{ trans('lang.edit')}}</a>
+                                                </div>
+                                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 mb-25 text-center delete-btn">
+                                                    
+                                                    <a href="#" style="font-size: 12px;" class="delete"
+                                                        data-id="{{ $Event->id }}">{{ trans('lang.delete')}}</a>
+                                                </div>
+
+                                                </div>
+                                               
                                             </td>
 
                                         </tr>

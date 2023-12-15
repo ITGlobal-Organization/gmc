@@ -33,6 +33,7 @@
             @foreach ($SpaceFinders as $SpaceFinder)
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                     <div class="main-box">
+                    <div class="{{ $SpaceFinder->is_approved==1?'approved':'notapproved'}}">{{ $SpaceFinder->is_approved==1?trans('lang.approved'):trans('lang.not-approved')}}</div>
                         <div class="box-img card-image">
                             <a href="spacefinder-details.php"><img src="{{ $SpaceFinder->image_url }}" alt=""
                                     width="100%" class="box-img" /></a>
@@ -47,18 +48,19 @@
                         <div class="box-text1">
                             <i class="fad fa-check"
                                 style="--fa-primary-color: #5f439b; --fa-secondary-color: #5f439b;"></i>&nbsp;
-                            {!! $SpaceFinder->description !!}
+                         
+                            {!! App\Helpers\Helper::shortenTextLength($SpaceFinder->description) !!}
                         </div>
 
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center">
-                            <i class="fas fa-edit" style="color: #0000ff;"></i>
-                            <a href="#" style="color: #000;font-size: 16px;" class="edit"
-                                data-id="{{ $SpaceFinder->id }}">Edit</a>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center edit-btn">
+                           
+                            <a href="#" style="font-size: 16px;" class="edit"
+                                data-id="{{ $SpaceFinder->id }}">{{ trans('lang.edit')}}</a>
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center">
-                            <i class="fas fa-trash-alt" style="color: #ff0000;"></i>
-                            <a href="#" style="color: #000;font-size: 16px;" class="delete"
-                                data-id="{{ $SpaceFinder->id }}">Delete</a>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center delete-btn">
+                            
+                            <a href="#" style="font-size: 16px;" class="delete"
+                                data-id="{{ $SpaceFinder->id }}">{{ trans('lang.delete')}}</a>
                         </div>
 
                         <div class="clr"></div>

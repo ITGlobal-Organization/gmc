@@ -23,7 +23,7 @@ return [
         'display-limit' => 4,
         'unit' => 'inches',
         'show-cart' => true,
-        'max-text-length-catalog' => 100,
+        'max-text-length-catalog' => 50,
         'phone_min_length' => '10',
         'phone_max_length' => '12',
         'general_string_length' => '100',

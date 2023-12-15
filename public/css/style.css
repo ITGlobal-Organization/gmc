@@ -237,7 +237,8 @@ p {
     padding: 0px 0px 0px 0px;
     background-color: #fff;
     border-radius: 10px;
-    height: 350px;
+    height: auto;
+    min-height: 350px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 .box-img {
@@ -1837,3 +1838,96 @@ text-decoration: none;
   }
   .profile-img{border-radius: 50%;}
   .profile-img img{width: 100%;}
+
+  /* User dashboard listing styling */
+
+  .addnew-btn a{
+    margin: 0px 0px 15px 0px;
+    padding: 15px 25px 15px 25px !important;
+    width: auto;
+    height: auto;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 100;
+    text-align: center;
+    border: 0px solid #eee;
+    background-color: #2b9acb;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    font-family: 'Montserrat-Regular';
+    cursor: pointer;
+  display: inline-block;
+    transition: all 0.4s linear;
+  }
+      
+.edit-btn a{
+    margin: 0px 0px 15px 0px;
+    padding: 15px 15px 15px 15px !important;
+    width: auto;
+    height: auto;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 100;
+    text-align: center;
+    border: 0px solid #eee;
+    background-color: #2b9acb;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    font-family: 'Montserrat-Regular';
+    cursor: pointer;
+  display: inline-block;
+    transition: all 0.4s linear;
+  }
+
+.delete-btn a{
+    margin: 0px 0px 15px 0px;
+    padding: 15px 15px 15px 15px !important;
+    width: auto;
+    height: auto;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 100;
+    text-align: center;
+    border: 0px solid #eee;
+    background-color: #D70407;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    font-family: 'Montserrat-Regular';
+    cursor: pointer;
+  display: inline-block;
+    transition: all 0.4s linear;
+}
+                            
+      
+.approved{
+      width: 100%;
+    height: auto;
+    background-color: green;
+    color: #fff;
+    position: relative;
+    top: 20px;
+    z-index: 1;
+    border-radius: 10px 10px 0px 0px;
+    padding: 8px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+      }
+      
+.notapproved{
+      width: 100%;
+    height: auto;
+    background-color: #D70407;
+    color: #fff;
+    position: relative;
+    top: 20px;
+    z-index: 1;
+    border-radius: 10px 10px 0px 0px;
+    padding: 8px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}	
+
+.list30 .row .edit-btn{margin: 20px 11px 0 0;}
+.list30 .row .delete-btn{margin: 20px 11px 0 0;}
