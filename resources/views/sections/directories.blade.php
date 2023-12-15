@@ -35,9 +35,19 @@
       
       @if(!isset($User))
      
-       <a href="{{ route('login') }}"><img src="{{ $directory->image_url }}" alt="" width="100%" class="box-img" /></a>
+       <a href="{{ route('login') }}">
+       @include('components.image',[
+										
+                                        'image' => $directory->image_url 
+                                    ]) 
+        </a>
       @else
-        <a href="{{ route('directories.get', $directory->slug) }}"><img src="{{ $directory->image_url }}" alt="" width="100%" class="box-img" /></a>
+        <a href="{{ route('directories.get', $directory->slug) }}">
+        @include('components.image',[
+										
+                                        'image' => $directory->image_url 
+                                    ]) 
+        </a>
       @endif
                 </div>
                 <!--<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>-->

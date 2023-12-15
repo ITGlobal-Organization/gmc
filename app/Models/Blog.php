@@ -40,7 +40,7 @@ class Blog extends BaseModel
                 $builder->where($table.'.is_delete', '=', 0);
             }
             else if(isset($user)){
-                $builder->where($table.'.is_delete', '=', 0)->where($table.'.is_active','=',1)->where('author',$user->id);
+                $builder->where($table.'.is_delete', '=', 0)->where('author',$user->id);
             }
             else{
                 $builder->where($table.'.is_delete', '=', 0)->where($table.'.is_active','=',1)->where($table.'.is_approved',1);
