@@ -57,17 +57,32 @@
 </div>
 
 
-<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 border padding">
-@include('sidebars.sidebarv4')
+
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
+	<div class="middle mtb-60">
+		<div class="col-2 text-center mt-10"></div>
+		@if(\Request::route()->getName() =='user.dashboard')
+		<h1 class="mb-40 text-center">{{ trans('messages.welcome_msg',[
+		'attribute' => $User->first_name	
+	])}}</h1>
+			@endif
+	<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 border padding">
+		@include('sidebars.sidebarv4')
+	</div>
+
+	   <!--Start Middle-->
+	   <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 border padding">
+        	@yield('content')
+       </div>
+	</div>
+
+       <!--End Middle-->  
 </div>
+
 <!--Start Left Side-->
 
            
-    <!--Start Middle-->
-    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 border padding">
-        @yield('content')
-       </div>
-       <!--End Middle-->    
+   
 
 
 <!--End Middle-->

@@ -1,9 +1,12 @@
 
 
    
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
-    <div class="middle mtb-60">
 
+    <div class="middle mtb-60">
+    <div>
+        <h1 class="mb-25 text-center">{{ trans('lang.news')}}</h1>
+        
+    </div>
         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6 padding border mb-25">
             <span class="listin-found"><b>{{ count($Blogs) }}</b> Listings Found</span>
         </div>
@@ -70,5 +73,5 @@
         <div class="clr"></div>
     </div>
     <div class="clr"></div>
-</div>
+
 

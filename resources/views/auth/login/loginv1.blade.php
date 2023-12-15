@@ -8,11 +8,12 @@
 <div class="bal-btn"><a href="{{ route('register') }}"></i> New Member? Join Now!</a> <a href="https://zfrmz.eu/fsRKMb3zMFky4fpj2RxE" target="_blank"></i> Existing Member? Access Now!</a></div> 
             <!--Strat Foram Area-->
             <form action="" class="login-form">
-                <div class="contact-success"></div>
-                <div class="contact-error"></div>
+               
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mtb-25">
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 border padding form-none"></div>
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 border join-bg">
+                    <div class="contact-success"></div>
+                <div class="contact-error"></div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mb-20">
                             <label>{{ trans('lang.email-address') }}</label>
                             <input type="text" class="join-input email" value="" placeholder="{{ trans('lang.email-address') }}" name="email">
