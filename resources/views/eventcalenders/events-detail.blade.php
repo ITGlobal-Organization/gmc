@@ -1,9 +1,3 @@
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mb-20">
-<div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 padding border mb-25">
-    <select class="pd-sort sort_by">
-        <option value="">{{ trans('lang.sort_by') }}</option>
-        <option value="title-asc">A to Z</option>
-        <option value="title-desc">Z to A</option>
 
         <option value="event_date-desc">Upcoming First</option>
         <option value="event_date-asc">Distant First</option>
@@ -120,7 +114,7 @@
                     </table>
                 </div>
                 <div class="clr"></div>
-            </div>
+</div>
 @include('sections.pagination.paginationv1')
 
   <!--  -->

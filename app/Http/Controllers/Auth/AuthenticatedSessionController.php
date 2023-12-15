@@ -26,7 +26,8 @@ class AuthenticatedSessionController extends BaseController
     }
 
     public function createAdmin()
-    {
+    {   
+       
         return view('auth.login.adminlogin',[
             'title' => trans('lang.login')
         ]);

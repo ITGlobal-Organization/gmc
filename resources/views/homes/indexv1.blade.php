@@ -188,8 +188,27 @@
 
     <script src="{{ custom_asset('easyResponsiveTabs.js', 'scripts') }}"></script>
     <script type="text/javascript">
+        async function getRenderData(){
+            limit = 10;
+            //onload footer platinum partners
+            // ajaxGet("{{ route('platinum-partners-tab.ajax') }}", {limit}, ".platinum-partners-footer",
+            //         responseType = 'html');
+             //onload events
+            await ajaxGet("{{ route('events-tab.ajax') }}", {}, ".events-tab", responseType = 'html');
+            // all tabs onload
+            await ajaxGet("{{ route('all-tab.ajax') }}", {}, ".all-tab", responseType = 'html');
+            //onload news
+            await ajaxGet("{{ route('news-tab.ajax') }}", {}, ".news-tab", responseType = 'html');
+            //onload platinum partners
+            await ajaxGet("{{ route('platinum-partners-tab.ajax') }}", {}, ".platinum-partners-tab",
+                    responseType = 'html');
+                    await ajaxGet("{{ route('offers-tab.ajax') }}", {}, ".offers-tab", responseType = 'html');
+        }
         $(document).ready(function() {
             //Horizontal Tab
+            
+                getRenderData();
+            
             $('#parentHorizontalTab').easyResponsiveTabs({
                 type: 'default', //Types: default, vertical, accordion
                 width: 'auto', //auto or any width like 600px
@@ -254,20 +273,7 @@
                     responseType = 'html');
             });
 
-            limit = 10;
-            //onload footer platinum partners
-            ajaxGet("{{ route('platinum-partners-tab.ajax') }}", {limit}, ".platinum-partners-footer",
-                    responseType = 'html');
-             //onload events
-            ajaxGet("{{ route('events-tab.ajax') }}", {}, ".events-tab", responseType = 'html');
-            // all tabs onload
-            ajaxGet("{{ route('all-tab.ajax') }}", {}, ".all-tab", responseType = 'html');
-            //onload news
-            ajaxGet("{{ route('news-tab.ajax') }}", {}, ".news-tab", responseType = 'html');
-            //onload platinum partners
-            ajaxGet("{{ route('platinum-partners-tab.ajax') }}", {}, ".platinum-partners-tab",
-                    responseType = 'html');
-            ajaxGet("{{ route('offers-tab.ajax') }}", {}, ".offers-tab", responseType = 'html');
+           
 
         });
     </script>

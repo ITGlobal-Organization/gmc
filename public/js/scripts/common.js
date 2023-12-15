@@ -144,14 +144,14 @@ function ajaxPost(url,data,succssContainer,errorContainer) {
 }
 
 // Ajax get
-function ajaxGet(url,data,dataContainer,responseType='html',callback=null){
+async function ajaxGet(url,data,dataContainer,responseType='html',callback=null){
     $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
           'X-Requested-With':!(responseType =='html')?'XMLHttpRequest':'HttpRequest'
         }
      });
-    $.ajax({
+    await $.ajax({
         url: url,
         method: 'GET',
         data:data,
@@ -160,10 +160,13 @@ function ajaxGet(url,data,dataContainer,responseType='html',callback=null){
             setLoader(true);
         },
         success: function(response) {
+         
             if(responseType == 'html'){
+               
                 $(dataContainer).html(response);
             }else if(responseType == 'json'){
-               callback(response);
+                console.log('here');
+                callback(response);
             }
 
         },
