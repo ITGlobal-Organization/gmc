@@ -50,6 +50,17 @@ return [
         There is a variety of options with different facilities e.g. parking and catering.
         <br>
         Please register to upload space you have to offer or search for your needs if you are looking."
+    ],
+    'dashboard' => [
+        'welcome' =>"  We're excited to have you here. Your personalized dashboard is designed to provide a seamless
+        experience in managing and navigating your account. Here, you'll find everything organized for your
+        convenience. From checking recent activities to updating your profile, this dashboard is your
+        one-stop destination for all your Chamber needs.<br><br>
+
+
+
+        We're committed to making your experience as efficient and enjoyable as possible. Dive in and
+        discover the power of simplicity and efficiency at your fingertips!"
     ]
 
 ];

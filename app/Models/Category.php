@@ -23,6 +23,8 @@ class Category extends BaseModel
     public function __construct(){
         parent::__construct();
         $this->setRules();
+        $this->setOrderBy('name');
+        $this->setOrder('asc');
     }
 
     public function parentCategory(){

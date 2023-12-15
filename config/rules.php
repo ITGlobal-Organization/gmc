@@ -94,7 +94,7 @@ return [
         'store' => [
             'title' => 'required',
             'email' => 'required|email|unique:space_finders',
-            'mobile_no' => 'number|min:11',
+            'mobile_no' => 'required|min:11',
             'phone' => 'numeric|min:11',
             'address' => 'required|min:3|max:50',
             // 'web_url' => '',

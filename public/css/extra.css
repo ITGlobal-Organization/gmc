@@ -259,7 +259,7 @@ display: none;
     }
 
 }
-
+.cursor-pointer{cursor: pointer !important;}
 @media only screen and (min-width: 768px) and (max-width: 1799px) {
 .middle {
     margin: auto;
@@ -303,7 +303,7 @@ display: none;
 }	
 	
 .leftsidenav {
-  width:100%;
+  width:95%;
  }
 }
 
