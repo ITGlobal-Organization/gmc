@@ -8,15 +8,17 @@ use App\Models\EventCalender;
 use App\Models\Media;
 use Auth;
 use App\Helpers\Helper;
+use URL;
 
 class EventCalenderController extends BaseController
 {
-    private $eventCalender,$media;
+    private $eventCalender,$media,$url;
 
-    public function __construct(EventCalender $eventCalender,Media $media) {
+    public function __construct(EventCalender $eventCalender,Media $media,URL $url) {
         $this->eventCalender = $eventCalender;
         $this->setModel($eventCalender);
         $this->setMedia($media);
+        $this->url = $url::current();
     }
 
     public function index(Request $request){
@@ -42,7 +44,7 @@ class EventCalenderController extends BaseController
 
     public function eventCalenders(Request $request){
         $user = Auth::user();
-        if(isset($user) && $user->hasRole('user')){
+        if(isset($user) && $user->hasRole('user') && str_contains($this->url,"user")){
             $view= 'user.event.index';
         }else{
             $view= 'eventcalenders.event-calenders';
@@ -57,9 +59,9 @@ class EventCalenderController extends BaseController
         $this->setGeneralFilters($request);
         $this->removeGeneralFilters($request);
 
-        
+
         $AllEvents = $this->eventCalender->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.*','images.image_url']);
-        
+
         if(isset($request->search) && $request->search != '') {
             $this->eventCalender->setFilters(['title','like','%'.$request->search.'%']);
         }
@@ -77,7 +79,7 @@ class EventCalenderController extends BaseController
 
         $Events = $this->eventCalender->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.*','images.image_url']);
 
-        if(isset($user) && !$user->hasRole('admin')){
+        if(isset($user) && !$user->hasRole('admin') && str_contains($this->url,"user")){
 
             $view='user.event.listing';
         }else{
@@ -86,7 +88,7 @@ class EventCalenderController extends BaseController
             }else{
                 $view='eventcalenders.event-details-box';
             }
-           
+
         }
 
         if($request->ajax()){

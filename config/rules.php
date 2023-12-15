@@ -178,6 +178,7 @@ return [
             'address' => 'required',
             // 'company' => 'required',
             'tel_no' => 'required',
+            'password' => 'sometimes|nullable|confirmed|min:8',
             // 'website' => 'required|url',
             // 'venue_url' => '',
             // 'facebook_url' => 'required|url',

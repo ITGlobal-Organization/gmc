@@ -191,8 +191,8 @@
         async function getRenderData(){
             limit = 10;
             //onload footer platinum partners
-            // ajaxGet("{{ route('platinum-partners-tab.ajax') }}", {limit}, ".platinum-partners-footer",
-            //         responseType = 'html');
+            ajaxGet("{{ route('platinum-partners-tab.ajax') }}", {limit}, ".platinum-partners-footer",
+                    responseType = 'html');
              //onload events
             await ajaxGet("{{ route('events-tab.ajax') }}", {}, ".events-tab", responseType = 'html');
             // all tabs onload
@@ -206,9 +206,9 @@
         }
         $(document).ready(function() {
             //Horizontal Tab
-            
+
                 getRenderData();
-            
+
             $('#parentHorizontalTab').easyResponsiveTabs({
                 type: 'default', //Types: default, vertical, accordion
                 width: 'auto', //auto or any width like 600px
@@ -273,7 +273,7 @@
                     responseType = 'html');
             });
 
-           
+
 
         });
     </script>

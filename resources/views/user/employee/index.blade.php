@@ -4,7 +4,7 @@
 
     <!--Start Middle-->
 
-    <div class="spacefinders"></div>
+    <div class="employees"></div>
     <!--End Middle-->
 @endsection
 @section('scripts')
@@ -17,24 +17,24 @@
 
         }
         $(document).ready(function() {
-            getSpaceFinderListing();
+            getEmployeesListing();
         })
 
-        function getSpaceFinderListing() {
-            ajaxGet("{{ route('user.space-finders.listing') }}",
+        function getEmployeesListing() {
+            ajaxGet("{{ route('user.employees.listing') }}",
                 filters
-            , ".spacefinders", responseType = 'html');
+            , ".employees", responseType = 'html');
         }
         $(document).on('click', '.edit', function(e) {
             e.preventDefault();
             let id = $(this).attr('data-id');
-            window.location.href = "{{ route('user.space-finders.edit', '') }}" + "/" + id;
+            window.location.href = "{{ route('user.employees.edit', '') }}" + "/" + id;
             // ajaxGet("{{ route('user.events.ajax') }}",{id:id},".events",responseType = 'html');
         });
         $(document).on('click', '.delete', function(e) {
             e.preventDefault();
             let id = $(this).attr('data-id');
-            let url = "{{ route('user.space-finders.destroy', '') }}" + "/" + id;
+            let url = "{{ route('user.employees.destroy', '') }}" + "/" + id;
             destroy(url);
         });
 
@@ -43,7 +43,7 @@
             let sort_by = $(this).val();
             filters.order_by = sort_by.split('-')[0];
             filters.order = sort_by.split('-')[1];
-            getSpaceFinderListing();
+            getEmployeesListing();
         });
     </script>
 @endsection

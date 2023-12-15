@@ -7,6 +7,7 @@ use App\Http\Controllers\M2MOfferController;
 use App\Http\Controllers\EventCalenderController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DirectoryController;
+use App\Http\Controllers\EmployeeController;
 // use App\Http\Controllers\DashboardController;
 // use App\Http\Controllers\OrderController;
 // use App\Http\Controllers\QuoteController;
@@ -74,6 +75,21 @@ Route::prefix('offers')->group(function(){
     Route::get('/create',function(){
         return view('user.offer.create');
     })->name('user.offers.create');
+});
+
+//Employees
+Route::prefix('employees')->group(function(){
+    Route::get('/', [EmployeeController::class, 'employees'])->name('user.employees');
+    Route::post('/', [EmployeeController::class, 'store'])->name('user.employees.store');
+    // Route::get('/ajax',[EmployeeController::class,'renderForm'])->name('user.events.ajax');
+    Route::get('/listing',[EmployeeController::class,'getEmployeesListing'])->name('user.employees.listing');
+    Route::get('/edit/{id}',[EmployeeController::class, 'renderForm'])->name('user.employees.edit');
+    Route::post('/update/{id}',[EmployeeController::class, 'update'])->name('user.employees.update');
+    Route::post('/delete/{id}',[EmployeeController::class, 'destroy'])->name('user.employees.destroy');
+    Route::get('/create',function(){
+        return view('user.employee.create');
+    })->name('user.employees.create');
+    // Route::delete('/media/delete/{id}',[EmployeeController::class,'deleteFiles'])->name('user.events.media-upload');
 });
 
 // Route::get('/checkout',[CheckoutController::class,'renderCheckOutView'])->name('user.checkout.index');

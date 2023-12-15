@@ -54,8 +54,7 @@ class RegisteredUserController extends BaseController
 
     public function store(Request $request)
     {
-
-         $request->validate($this->user->getRules());
+        $request->validate($this->user->getRules());
         try {
 
 
@@ -152,6 +151,7 @@ class RegisteredUserController extends BaseController
 
     // Update
     public function update(Request $request,$id){
+
         $rules = $this->user->getRules();
 
         foreach($rules as $key => $rule){
@@ -159,11 +159,15 @@ class RegisteredUserController extends BaseController
                 $rules[$key] = $rule.','.$key.','.$id;
             }
         }
-        // if($request->password != ''){
-        //     $rules['password'] = 'confirmed|min:8';
-        // }
 
         $request->validate($rules);
+        if (!empty($request['password'])) {
+            $request['password'] = Hash::make($request['password']);
+        }
+        else {
+            unset($request['password']);
+        }
+
         try {
             DB::beginTransaction();
             $data = $request->except(['_token','password_confirmation','role_id','media','gallery']);
@@ -196,7 +200,6 @@ class RegisteredUserController extends BaseController
             return $this->sendResponse([], trans('messages.success_msg', ['action' => trans('lang.updated')]));
         } catch (\Exception $e) {
             DB::rollback();
-            dd($e);
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
