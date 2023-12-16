@@ -19,6 +19,7 @@ return [
     'invite_sent' => 'Invite Sent Successfully',
     'token_not_found' => 'Token Not Found',
     'add_new_msg' => 'Add New :attribute',
+    'welcome_msg' => 'Hi, :attribute',
     'edit_msg' => 'Edit :attribute',
     'errors' => [
         '500' => [

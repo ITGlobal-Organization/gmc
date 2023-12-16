@@ -1,7 +1,7 @@
 <div class="leftsidenav">
     <div id="list40">
         <ul>
-            <li><a href="benifits"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;Benefits</a></li>
+            <li><a href="{{ prefix_route('dashboard') }}"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;{{ trans('lang.dashboard')}}</a></li>
             <li><a href="{{ route('user.events') }}"><i class="fas fa-arrow-right"
                         style="color: #ffffff;"></i>&nbsp;Events</a></li>
             <li><a href="{{ route('user.space-finders') }}"><i class="fas fa-arrow-right"

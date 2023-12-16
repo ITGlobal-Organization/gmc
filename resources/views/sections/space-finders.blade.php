@@ -30,12 +30,22 @@
       @endphp
 
       @if(!isset($User))
-       <a href="{{ route('login') }}"><img src="{{ $SpaceFinder->image_url }}"
+       <a href="{{ route('login') }}">
+       @include('components.image',[
+										
+                                        'image' =>  $SpaceFinder->image_url 
+                                    ]) 
+            <img src="" alt="" width="100%" class="box-img" />
+        </a>
       @else
-        <a href="{{ route('space-finders.get', $SpaceFinder->slug) }}"><img
-                            src="{{ $SpaceFinder->image_url }}"
+        <a href="{{ route('space-finders.get', $SpaceFinder->slug) }}">
+        @include('components.image',[
+										
+                                        'image' =>  $SpaceFinder->image_url 
+                                    ]) 
+                        </a>
       @endif
-                     alt="" width="100%" class="box-img" /></a>
+                     
                 </div>
                 <!--<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>-->
                 <div class="box-name home home-text">
