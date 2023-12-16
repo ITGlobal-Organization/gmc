@@ -1,31 +1,33 @@
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
-    <div class="middle mtb-60">
-        <div>
-            <h1 class="mb-25 text-center">{{ trans('lang.spacefinders') }}</h1>
+<div class="middle mtb-60">
+    <div>
+        <h1 class="mb-25 text-center">{{ trans('lang.space_finders')}}</h1>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
+
+
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6 padding border mb-25">
+            <span class="listin-found"><b>{{ count($SpaceFinders) }}</b> {{ trans('lang.listings')}} {{ trans('lang.found')}}</span>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
+        <div class="col-xs-12 col-sm-2 col-md-3 col-lg-3 padding border mb-25 text-center">
+            <div class="addnew-btn"><a href="{{ route('user.space-finders.create') }}">{{ trans('messages.add_new_msg',[
+                    'attribute' => trans('lang.space_finder')
+                ])}}</a></div>
+            <div class="clr"></div>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 padding border mb-25">
+            <select class="pd-sort sort_by">
+                <option value="">{{ trans('lang.sort_by') }}</option>
+                <option value="title-asc">A to Z</option>
+                <option value="title-desc">Z to A</option>
+                <option value="created_at-asc">{{ trans('lang.latest_to_oldest') }}</option>
+                <option value="created_at-desc">{{ trans('lang.oldest_to_latest') }}</option>
+            </select>
 
+        </div>
 
-            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6 padding border mb-25">
-                <span class="listin-found"><b>{{ count($SpaceFinders) }}</b> {{ trans('lang.listings') }}
-                    {{ trans('lang.found') }}</span>
-            </div>
-            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 padding border mb-25 text-center">
-                <div class="addnew-btn"><a
-                        href="{{ route('user.space-finders.create') }}">{{ trans('messages.add_new_msg', [
-                            'attribute' => trans('lang.spacefinder'),
-                        ]) }}</a>
-                </div>
-                <div class="clr"></div>
-            </div>
-            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 padding border mb-25">
-                <select class="pd-sort sort_by">
-                    <option value="">{{ trans('lang.sort_by') }}</option>
-                    <option value="title-asc">A to Z</option>
-                    <option value="title-desc">Z to A</option>
-                    <option value="created_at-asc">{{ trans('lang.latest_to_oldest') }}</option>
-                    <option value="created_at-desc">{{ trans('lang.oldest_to_latest') }}</option>
-                </select>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border-all"></div>
 
         <div class="row">
             @foreach ($SpaceFinders as $SpaceFinder)
@@ -63,11 +65,13 @@
 
                         <div class="clr"></div>
                     </div>
-                @endforeach
-            </div>
 
-            <div class="clr"></div>
+                    <div class="clr"></div>
+                </div>
+            @endforeach
         </div>
+
         <div class="clr"></div>
     </div>
+    <div class="clr"></div>
 </div>

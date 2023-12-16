@@ -198,8 +198,8 @@ return [
     'calendar-view' => "Calendar View",
     'box-view' => "Box View",
     'email-address' => "Email Address",
-    'employees' => "Employees"
-    'book_now' => "Book Now",
+    'employees' => "Employees",
+    // 'book_now' => "Book Now",
     'welcome' => "Welcome",
     'owner' => "Owner",
     'company_detail' => "Company Detail",

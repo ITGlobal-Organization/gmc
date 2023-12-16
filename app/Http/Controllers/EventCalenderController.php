@@ -84,11 +84,12 @@ class EventCalenderController extends BaseController
         }
         $Events = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
         if(isset($user) && !$user->hasRole('admin') && str_contains($this->url,"user")){
-            if($request->view_type == 'table'){
-                $view='user.event.listing';
-            }else{
-                $view='user.event.event-details-box';
-            }
+            $view = "user.event.listing";
+            // if($request->view_type == 'table'){
+            //     $view='user.event.listing';
+            // }else{
+            //     $view='user.event.event-details-box';
+            // }
 
         }else{
             if($request->view_type =='table'){
@@ -98,7 +99,6 @@ class EventCalenderController extends BaseController
             }
 
         }
-
         if($request->ajax()){
             return $this->sendResponse($Events);
         }
@@ -202,7 +202,7 @@ class EventCalenderController extends BaseController
     public function getEvent(Request $request,$view,$slug){
 
         $Event = $this->eventCalender->first('slug',$slug,'=',['user'],[],['*']);
-      
+
         // $view = 'errors.404';
         if(isset($view) && $view != ''){
             if($view == 'modal')
@@ -215,10 +215,10 @@ class EventCalenderController extends BaseController
         return view($view,[
             'Event' => $Event,
             // 'LatestBlog' => $LatestBlogs,
-          
+
         ]);
-}       
-                
+}
+
 
 
 }

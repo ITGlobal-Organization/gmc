@@ -1,11 +1,11 @@
 
 
-   
+
 
     <div class="middle mtb-60">
     <div>
         <h1 class="mb-25 text-center">{{ trans('lang.news')}}</h1>
-        
+
     </div>
         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6 padding border mb-25">
             <span class="listin-found"><b>{{ count($Blogs) }}</b> Listings Found</span>
@@ -51,12 +51,12 @@
                         </div>
 
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center edit-btn">
-                           
+
                             <a href="#" style="font-size: 16px;" class="edit"
                                 data-id="{{ $Blog->id }}">{{ trans('lang.edit')}}</a>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center delete-btn">
-                           
+
                             <a href="#" style="font-size: 16px;" class="delete"
                                 data-id="{{ $Blog->id }}">{{ trans('lang.delete')}}</a>
                         </div>

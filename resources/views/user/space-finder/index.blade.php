@@ -28,6 +28,7 @@
         $(document).on('click', '.edit', function(e) {
             e.preventDefault();
             let id = $(this).attr('data-id');
+            console.log(id)
             window.location.href = "{{ route('user.space-finders.edit', '') }}" + "/" + id;
             // ajaxGet("{{ route('user.events.ajax') }}",{id:id},".events",responseType = 'html');
         });
