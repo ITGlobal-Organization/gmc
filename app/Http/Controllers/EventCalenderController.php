@@ -61,8 +61,10 @@ class EventCalenderController extends BaseController
         $this->setGeneralFilters($request);
         $this->removeGeneralFilters($request);
 
-
+        // $search = "tit";
         $AllEvents = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
+        // DB::enableQueryLog();
+        // $a=$this->eventCalender->Where('title', 'like', '%' . $search . '%')->get();
 
         if(isset($request->search) && $request->search != '') {
             $this->eventCalender->setFilters(['title','like','%'.$request->search.'%']);
@@ -80,9 +82,7 @@ class EventCalenderController extends BaseController
             $this->eventCalender->setFilters(['event_date','<=',$endDate]);
             // dd($endDate);
         }
-
         $Events = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
-
         if(isset($user) && !$user->hasRole('admin') && str_contains($this->url,"user")){
             if($request->view_type == 'table'){
                 $view='user.event.listing';

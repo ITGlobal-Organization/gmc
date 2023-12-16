@@ -212,10 +212,16 @@ $('#ChildVerticalTab_1').easyResponsiveTabs({
    }
         $(document).on('keyup', '.search-box', function() {
             search = $(this).val();
+            let activeTab = $('ul.resp-tabs-list').find('li.resp-tab-active').attr('id');
+            filters.view_type = activeTab;
+            div = ".events-box"
+            if(activeTab == "table"){
+                div = ".events"
+            }
             if (search.length > 2) {
-                ajaxGet("{{ route('event-calenders.search') }}", {
+                ajaxGet("{{ route('user.event-calenders.search') }}", {
                     search
-                }, ".events", responseType = 'html');
+                }, div, responseType = 'html');
             }
         });
         $(document).on('click','.edit' ,function(e) {
