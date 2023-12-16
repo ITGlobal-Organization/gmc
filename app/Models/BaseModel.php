@@ -331,13 +331,7 @@ class BaseModel extends Model
         $data =  static::selectRaw(implode(',', $select));
           // dd($this->has_images);
           if($this->has_images){
-            $class = $this->class_name;
-            $table = $this->table;
-            $data->leftjoin('images',function($leftJoin) use ($class,$table){
-                $leftJoin->on($table.'.id','=','images.model_id')
-                ->where('images.model','like',str_replace('\\','%',$class))
-                ->orwhereNull('images.model');
-            });
+            $data->leftjoin('images','images.model_id',$this->table.'.id')->where('images.model','like',str_replace('\\','%',$this->class_name));
 
 
         }

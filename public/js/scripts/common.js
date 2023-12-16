@@ -178,12 +178,6 @@ async function ajaxGet(url,data,dataContainer,responseType='html',callback=null)
         },
         complete:function(){
             setLoader(false);
-            // Image not found issue
-            $('img').on('error',function(e){
-                e.preventDefault();
-                console.log('here');
-                $(this).attr('src',blade_config.baseUrl+'/media/image-not-found.png');
-            })
         }
     })
 }
@@ -198,9 +192,8 @@ function setLoader(state){
 }
 
 // Image not found issue
-$('img').on('error',function(e){
+$(document).on('error','img',function(e){
     e.preventDefault();
-    console.log('here');
     $(this).attr('src',blade_config.baseUrl+'/media/image-not-found.png');
 })
 

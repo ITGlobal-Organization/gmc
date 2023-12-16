@@ -1,1 +1,0 @@
-<img src="{{ isset($image)?$image:custom_asset('image-not-found.png')}}" alt="" width="100%" class="box-img" />

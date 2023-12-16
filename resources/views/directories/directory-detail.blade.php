@@ -11,7 +11,7 @@
                     @if(isset($Directory->media[0]))
                     <img src="{{ $Directory->media[0]->image_url }}" alt="" class="blog-img"/>
                     @else
-                    <img src="{{ custom_asset('image-not-found.png') }}" alt="" class="blog-img"/>
+                    <img src="" alt="" class="blog-img"/>
                     @endif
                 </div>
 

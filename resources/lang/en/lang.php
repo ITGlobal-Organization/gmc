@@ -156,8 +156,8 @@ return [
     'delete' => 'Delete',
     'users' => 'Users',
     'user' => 'User',
-    'space_finder'=>'Space Finder',
-    'space_finders'=>'Space Finder',
+    'spacefinder'=>'Space Finder',
+    'spacefinders'=>'Space Finder',
     'eventcalender'=>'Event',
     'eventcalenders'=>'Events',
     'listing' => 'Listing',
@@ -199,14 +199,5 @@ return [
     'box-view' => "Box View",
     'email-address' => "Email Address",
     'employees' => "Employees"
-    'book_now' => "Book Now",
-    'welcome' => "Welcome",
-    'owner' => "Owner",
-    'company_detail' => "Company Detail",
-    'my_listings' => "My Listings",
-    'approved' => "Approved",
-    'not-approved' => "Not Approved",
-    'status' => "Status",
-    'action' => "Action",
 
 ];

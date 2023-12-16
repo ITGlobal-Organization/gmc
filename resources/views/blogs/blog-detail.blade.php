@@ -15,8 +15,8 @@
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding ">
 <div class="post-date">
-<!--<span class="day-blog">{{ $Blog->day}}</span>
-<span class="month">{{ $Blog->month}}</span>-->
+<span class="day-blog">{{ $Blog->day}}</span>
+<span class="month">{{ $Blog->month}}</span>
 </div>
 <h1>{{ $Blog->title }}</h1><br>
 <!-- <div class="post-meta">
