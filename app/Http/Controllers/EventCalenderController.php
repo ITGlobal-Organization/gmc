@@ -9,6 +9,7 @@ use App\Models\Media;
 use Auth;
 use App\Helpers\Helper;
 use URL;
+use DB;
 
 class EventCalenderController extends BaseController
 {
@@ -55,33 +56,40 @@ class EventCalenderController extends BaseController
         ]);
     }
     public function getEventsListing(Request $request){
+        // dd($request);
         $user = Auth::user();
         $this->setGeneralFilters($request);
         $this->removeGeneralFilters($request);
 
 
-        $AllEvents = $this->eventCalender->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.*','images.image_url']);
+        $AllEvents = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
 
         if(isset($request->search) && $request->search != '') {
             $this->eventCalender->setFilters(['title','like','%'.$request->search.'%']);
         }
 
-        if((isset($request->end_date) && $request->end_date != '') && (isset($request->start_date)) ){
+        if((isset($request->end_date) && $request->end_date != '')  ){
             if($request->start_date == ""){
                 $startDate = date('Y-m-d');
             }else{
                 $startDate = date('Y-m-d',strtotime($request->start_date));
             }
             $endDate = date('Y-m-d',strtotime($request->end_date));
+            // dd($endDate);
             $this->eventCalender->setFilters(['event_date','>=',$startDate]);
             $this->eventCalender->setFilters(['event_date','<=',$endDate]);
+            // dd($endDate);
         }
 
-        $Events = $this->eventCalender->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.*','images.image_url']);
+        $Events = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
 
         if(isset($user) && !$user->hasRole('admin') && str_contains($this->url,"user")){
+            if($request->view_type == 'table'){
+                $view='user.event.listing';
+            }else{
+                $view='user.event.event-details-box';
+            }
 
-            $view='user.event.listing';
         }else{
             if($request->view_type =='table'){
                 $view='eventcalenders.events-detail';
@@ -94,6 +102,7 @@ class EventCalenderController extends BaseController
         if($request->ajax()){
             return $this->sendResponse($Events);
         }
+        // dd($view);
         return view($view,[
             'Events' => $Events,
             'AllEvents' => $AllEvents,
@@ -146,6 +155,7 @@ class EventCalenderController extends BaseController
     //             })->orderBy('id','desc')->get();
 
     //         }
+    //         // dd($request);
     //         if(isset($request->end_date) && isset($request->start_date)){
     //             if($request->start_date == ""){
     //                 $startDate = date('Y-m-d');
@@ -154,6 +164,7 @@ class EventCalenderController extends BaseController
     //             }
     //             $endDate = date('Y-m-d',strtotime($request->end_date));
     //             $Events=$this->eventCalender->whereDate('event_date','>=',$startDate)->whereDate('event_date','<=',$endDate)->orderBy('id','desc')->get();
+    //         dd($Events);
     //         }
     //         if(isset($user) && $user->hasRole('user')){
     //             $view = "user.event.listing";

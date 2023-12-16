@@ -39,6 +39,16 @@
                                 <span class="btn-download"><a href="{{$Event->booking_link}}" target="_blank">Book Now</a>
                             </div>
                         </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center">
+                            <i class="fas fa-edit" style="color: #0000ff;"></i>
+                            <a href="#" style="color: #000;font-size: 16px;" class="edit"
+                                data-id="{{ $Event->id }}">Edit</a>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center">
+                            <i class="fas fa-trash-alt" style="color: #ff0000;"></i>
+                            <a href="#" style="color: #000;font-size: 16px;" class="delete"
+                                data-id="{{ $Event->id }}">Delete</a>
+                        </div>
                         <div class="clr"></div>
                     </div>
                 @endforeach
