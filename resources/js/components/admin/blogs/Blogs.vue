@@ -22,10 +22,31 @@
 
         <!-- Default box -->
         <div class="card card-secondary card-outline">
-            <div class="card-header d-flex justify-content-end">
-                <router-link class="btn btn-secondary" to="/admin/blogs/create">
-                    {{ Lang.add_new_msg(Lang.news) }}
-                </router-link>
+            <div class="card-header ">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="form-group d-flex col-6">
+                                <Select2  :class="'vue-select1 w-100'"
+                                    :options="Statuses" v-model="approved" :placeholder="'Select' + Lang.status">
+                                </Select2>
+                                <button class="btn btn-secondary ml-2" @click="updateBulkDiscount()">{{ Lang.update}}</button>
+                            </div>
+                        
+                    </div>
+                    <div class="col-4 d-flex justify-content-end">
+                        <div class="row">
+                            <div class="col-12">
+                                <router-link class="btn btn-secondary" to="/admin/blogs/create">
+                                    {{ Lang.add_new_msg(Lang.news) }}
+                                </router-link>
+                            </div>
+                           
+                        </div>
+                       
+                    </div>
+                </div>
+                    
+               
 
 <!--                <h3 class="card-title">{{ Lang.companies }}</h3>-->
             </div>
@@ -65,22 +86,33 @@ import {Language} from '../../../helpers/lang/lang';
 import Datatables from '../../commons/Datatables.vue';
 import useService  from '../../../services';
 import VueElementLoading from 'vue-element-loading';
-
+import Select2 from 'vue3-select2-component';
 
 export default {
 
-  components: { Datatables,VueElementLoading },
+  components: { Datatables,VueElementLoading,Select2 },
 
     data(){
         return {
             Lang:Language,
             data:[],
             columns:[],
+            Statuses:[
+                {
+                    id:1,
+                    text:Language.active,
+                },
+                {
+                    id:0,
+                    text:Language.inactive,
+                }
+            ],
             pageNo:1,
             pageSize:10,
             loader:false,
             order:'desc',
             orderBy:'created_at',
+            approved:0,
             pages:1,
             filter:{
                 search:'',
