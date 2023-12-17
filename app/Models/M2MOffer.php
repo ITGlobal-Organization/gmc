@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\BaseModel;
 use Auth;
+use URL;
 
 class M2MOffer extends BaseModel
 {
@@ -33,10 +34,11 @@ class M2MOffer extends BaseModel
         $table = static::$table_name;
         static::addGlobalScope('active_directories', function (Builder $builder) use($table){
             $user = Auth::user();
+            $url = URL::current();
             if(isset($user) && $user->hasRole('admin')){
                 $builder->where($table.'.is_delete', '=', 0);
             }
-            else if(isset($user)){
+            else if(isset($user) && (str_contains($url,"user"))){
                 $builder->where($table.'.is_delete', '=', 0)->where($table.'.is_active','=',1)->where('user_id',$user->id);
             }
             else{

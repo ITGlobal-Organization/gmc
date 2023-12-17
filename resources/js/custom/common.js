@@ -160,9 +160,9 @@ async function ajaxGet(url,data,dataContainer,responseType='html',callback=null)
             setLoader(true);
         },
         success: function(response) {
-         
+
             if(responseType == 'html'){
-               
+
                 $(dataContainer).html(response);
             }else if(responseType == 'json'){
                 console.log('here');
@@ -228,6 +228,32 @@ function onChangeFile(img_div,upload_div,close_btn) {
     $('.file').on('change', function(e) {
         let reader = new FileReader();
         reader.onload = (e) => {
+            img_div.children('img').attr('src', e.target.result);
+            img_div.removeClass("hidden");
+            upload_div.addClass("hidden");
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
+    close_btn.on('click', function(e) {
+        e.preventDefault();
+        img_div.children('img').attr("src","");
+        img_div.addClass("hidden");
+        upload_div.removeClass('hidden');
+        // let id=$(this).siblings('img').attr("data-id");
+        // if(id != ''){
+        //     $(this).siblings('img').attr("data-id",'');
+        //     let url = "/media/delete/"+id+"";
+        //     ajaxDelete(url,id,'','');
+        // }
+        resetFile();
+    });
+}
+function onChangeLogo(img_div,upload_div,close_btn) {
+    $('.logo').on('change', function(e) {
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            console.log("logo")
+            console.log("img-div",img_div)
             img_div.children('img').attr('src', e.target.result);
             img_div.removeClass("hidden");
             upload_div.addClass("hidden");

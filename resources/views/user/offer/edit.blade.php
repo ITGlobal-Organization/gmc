@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
                             <label for="first_name">First Name</label>
-                            <input type="text" class="serch-input" value="{{ $Offers->title }}" placeholder="First Name"
+                            <input type="text" class="serch-input" value="{{ $Offers->first_name }}" placeholder="First Name"
                                 name="first_name">
                             <div class="error-first_name"></div>
                             <div class="clr"></div>
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                 </div>
-                
+
         </div>
         </form>
         <div class="clr"></div>
