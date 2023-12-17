@@ -8,15 +8,18 @@ use App\Models\EventCalender;
 use App\Models\Media;
 use Auth;
 use App\Helpers\Helper;
+use URL;
+use DB;
 
 class EventCalenderController extends BaseController
 {
-    private $eventCalender,$media;
+    private $eventCalender,$media,$url;
 
-    public function __construct(EventCalender $eventCalender,Media $media) {
+    public function __construct(EventCalender $eventCalender,Media $media,URL $url) {
         $this->eventCalender = $eventCalender;
         $this->setModel($eventCalender);
         $this->setMedia($media);
+        $this->url = $url::current();
     }
 
     public function index(Request $request){
@@ -42,7 +45,7 @@ class EventCalenderController extends BaseController
 
     public function eventCalenders(Request $request){
         $user = Auth::user();
-        if(isset($user) && $user->hasRole('user')){
+        if(isset($user) && $user->hasRole('user') && str_contains($this->url,"user")){
             $view= 'user.event.index';
         }else{
             $view= 'eventcalenders.event-calenders';
@@ -53,45 +56,53 @@ class EventCalenderController extends BaseController
         ]);
     }
     public function getEventsListing(Request $request){
+        // dd($request);
         $user = Auth::user();
         $this->setGeneralFilters($request);
         $this->removeGeneralFilters($request);
 
-        
-        $AllEvents = $this->eventCalender->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.*','images.image_url']);
-        
+        // $search = "tit";
+        $AllEvents = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
+        // DB::enableQueryLog();
+        // $a=$this->eventCalender->Where('title', 'like', '%' . $search . '%')->get();
+
         if(isset($request->search) && $request->search != '') {
             $this->eventCalender->setFilters(['title','like','%'.$request->search.'%']);
         }
 
-        if((isset($request->end_date) && $request->end_date != '') && (isset($request->start_date)) ){
+        if((isset($request->end_date) && $request->end_date != '')  ){
             if($request->start_date == ""){
                 $startDate = date('Y-m-d');
             }else{
                 $startDate = date('Y-m-d',strtotime($request->start_date));
             }
             $endDate = date('Y-m-d',strtotime($request->end_date));
+            // dd($endDate);
             $this->eventCalender->setFilters(['event_date','>=',$startDate]);
             $this->eventCalender->setFilters(['event_date','<=',$endDate]);
+            // dd($endDate);
         }
+        $Events = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
+        if(isset($user) && !$user->hasRole('admin') && str_contains($this->url,"user")){
+            $view = "user.event.listing";
+            // if($request->view_type == 'table'){
+            //     $view='user.event.listing';
+            // }else{
+            //     $view='user.event.event-details-box';
+            // }
 
-        $Events = $this->eventCalender->getAll([['users','users.id','=','event_calenders.user_id']],['event_calenders.*','images.image_url']);
-
-        if(isset($user) && !$user->hasRole('admin')){
-
-            $view='user.event.listing';
         }else{
             if($request->view_type =='table'){
                 $view='eventcalenders.events-detail';
             }else{
                 $view='eventcalenders.event-details-box';
             }
-           
-        }
 
+        }
         if($request->ajax()){
             return $this->sendResponse($Events);
         }
+        // dd($view);
         return view($view,[
             'Events' => $Events,
             'AllEvents' => $AllEvents,
@@ -144,6 +155,7 @@ class EventCalenderController extends BaseController
     //             })->orderBy('id','desc')->get();
 
     //         }
+    //         // dd($request);
     //         if(isset($request->end_date) && isset($request->start_date)){
     //             if($request->start_date == ""){
     //                 $startDate = date('Y-m-d');
@@ -152,6 +164,7 @@ class EventCalenderController extends BaseController
     //             }
     //             $endDate = date('Y-m-d',strtotime($request->end_date));
     //             $Events=$this->eventCalender->whereDate('event_date','>=',$startDate)->whereDate('event_date','<=',$endDate)->orderBy('id','desc')->get();
+    //         dd($Events);
     //         }
     //         if(isset($user) && $user->hasRole('user')){
     //             $view = "user.event.listing";
@@ -189,7 +202,7 @@ class EventCalenderController extends BaseController
     public function getEvent(Request $request,$view,$slug){
 
         $Event = $this->eventCalender->first('slug',$slug,'=',['user'],[],['*']);
-      
+
         // $view = 'errors.404';
         if(isset($view) && $view != ''){
             if($view == 'modal')
@@ -202,10 +215,10 @@ class EventCalenderController extends BaseController
         return view($view,[
             'Event' => $Event,
             // 'LatestBlog' => $LatestBlogs,
-          
+
         ]);
-}       
-                
+}
+
 
 
 }

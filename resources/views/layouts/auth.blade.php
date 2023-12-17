@@ -36,7 +36,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-	
+
 	<title>{{ config('app.name')}} | {{ isset($title)?$title:'Page'}}</title>
 </head>
 <body>
@@ -63,7 +63,7 @@
 		<div class="col-2 text-center mt-10"></div>
 		@if(\Request::route()->getName() =='user.dashboard')
 		<h1 class="mb-40 text-center">{{ trans('messages.welcome_msg',[
-		'attribute' => $User->first_name	
+		'attribute' => $User->first_name
 	])}}</h1>
 			@endif
 	<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 border padding">
@@ -76,13 +76,13 @@
        </div>
 	</div>
 
-       <!--End Middle-->  
+       <!--End Middle-->
 </div>
 
 <!--Start Left Side-->
 
-           
-   
+
+
 
 
 <!--End Middle-->

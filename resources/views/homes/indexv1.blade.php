@@ -92,10 +92,9 @@
          <div class="clr"></div>
     </div>
     <!--End About Area-->
-   <!-- <div class="platinum-partners-footer">
-
-    </div> -->
-<div class="row">
+    <div class="platinum-partners-footer">
+    </div>
+{{-- <div class="row">
    <div class="middle mtb-60">
       <h2 class="text-center mtb-60 text-uppercase">Platinum Partners</h2>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -146,7 +145,7 @@
       <div class="clr"></div>
    </div>
    <div class="clr"></div>
-</div>
+</div> --}}
 
 
 @endsection
@@ -192,8 +191,8 @@
         async function getRenderData(){
             limit = 10;
             //onload footer platinum partners
-            // ajaxGet("{{ route('platinum-partners-tab.ajax') }}", {limit}, ".platinum-partners-footer",
-            //         responseType = 'html');
+            ajaxGet("{{ route('platinum-partners-tab.ajax') }}", {limit}, ".platinum-partners-footer",
+                    responseType = 'html');
              //onload events
             await ajaxGet("{{ route('events-tab.ajax') }}", {}, ".events-tab", responseType = 'html');
             // all tabs onload
@@ -207,9 +206,9 @@
         }
         $(document).ready(function() {
             //Horizontal Tab
-            
+
                 getRenderData();
-            
+
             $('#parentHorizontalTab').easyResponsiveTabs({
                 type: 'default', //Types: default, vertical, accordion
                 width: 'auto', //auto or any width like 600px
@@ -274,7 +273,7 @@
                     responseType = 'html');
             });
 
-           
+
 
         });
     </script>

@@ -68,7 +68,7 @@ Route::prefix('event-calenders')->group(function () {
     Route::get('/{slug}',[EventCalenderController::class,'getEvent'])->name('event-calenders.get');
     Route::get('/{view}/{slug}',[EventCalenderController::class,'getEvent'])->name('event-calenders.get');
 });
-Route::get('/search-events',[EventCalenderController::class,'searchEventsListing'])->name('event-calenders.search');
+Route::get('/search-events',[EventCalenderController::class,'getEventsListing'])->name('event-calenders.search');
 
 
 

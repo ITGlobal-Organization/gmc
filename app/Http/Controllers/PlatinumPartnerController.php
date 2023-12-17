@@ -45,12 +45,10 @@ class PlatinumPartnerController extends BaseController
         ]);
     }
     public function getPlatinumPartnersListing(Request $request){
-        if(isset($request->sort_by) && $request->sort_by != ""){
-            $sort = explode('-',$request->sort_by);
-            $this->platinumPartner->setOrderBy($sort[0]);
-            $this->platinumPartner->setOrder($sort[1]);
-        }
+        $this->setGeneralFilters($request);
+        $this->removeGeneralFilters($request);
         $PlatinumPartner = $this->platinumPartner->getAll([],['platinum_partners.title','platinum_partners.description','platinum_partners.created_at','images.image_url']);
+        // dd($PlatinumPartner);
         return view('sections.platinum-partners',[
             'PlatinumPartners' => $PlatinumPartner,
         ]);
