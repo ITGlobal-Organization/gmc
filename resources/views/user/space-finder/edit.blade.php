@@ -109,8 +109,8 @@
                                 <button class="close AClass" type="button">
                                     <span>&times;</span>
                                 </button>
-                                <img src="{{ $SpaceFinder->media[0]->image_url }}" alt=""
-                                    data-id="{{ $SpaceFinder->media[0]->id }}">
+                                <img src="{{ isset($SpaceFinder->media[0]->image_url) ? $SpaceFinder->media[0]->image_url : asset('/media/image-not-found.png') }}" alt=""
+                                    data-id="{{ isset($SpaceFinder->media[0]->id) ?  $SpaceFinder->media[0]->id : ""}}">
                                 <div class="clr"></div>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                         </div>
                     </div>
             </div>
-                
+
         </div>
         </form>
         <div class="clr"></div>

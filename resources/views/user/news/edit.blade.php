@@ -6,7 +6,7 @@
             <h1 class="text-center mb-25">{{ trans('messages.edit_msg',[
                 'attribute' => trans('lang.news')
             ]) }}</h1>
-           
+
             <div class="contact-success"></div>
             <div class="contact-error"></div>
             <form action="" class="update" enctype="multipart/form-data">
@@ -48,8 +48,8 @@
                                 <span>&times;</span>
                             </button>
                             <div class="box-img card-image">
-                            <img src="{{ $Blog->media[0]->image_url }}" alt=""
-                                data-id="{{ $Blog->media[0]->id }}" class="box-img">
+                            <img src="{{ isset($Blog->media[0]->image_url) ? $Blog->media[0]->image_url : asset('/media/image-not-found.png') }}" alt=""
+                                data-id="{{ isset($Blog->media[0]->id) ? $Blog->media[0]->id : "" }}" class="box-img">
                             </div>
                             <div class="clr"></div>
                         </div>
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                
+
         </div>
         </form>
         <div class="clr"></div>
