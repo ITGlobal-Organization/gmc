@@ -20,6 +20,7 @@ class Blog extends BaseModel
     public $class_name = 'App\Models\Blog';
     public $class_dynamic = true;
     protected $has_images = true;
+    public $status_col = 'is_approved';
 
     protected $fillable = [
         'title','description','publisher','publish_at','author','is_active','is_delete','is_approved','slug'
@@ -110,7 +111,7 @@ class Blog extends BaseModel
                 'html' => false,
             ],
             [
-                'name' => 'is_active',
+                'name' => 'is_approved',
                 'type' => 'boolean',
                 'html' => false,
 
@@ -119,7 +120,7 @@ class Blog extends BaseModel
                 'name' => 'status',
                 'type' => 'boolean',
                 'html' => true,
-                'condition_column' => 'is_active',
+                'condition_column' => 'is_approved',
                 'class_dynamic' => false,
             ],
 

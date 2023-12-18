@@ -22,8 +22,8 @@ export default function useEventCalender() {
 
         await axiosWrapper.post(`/admin/eventcalender`, data);
     }
-    const udpateStatus = async(id) => {
-        await axiosWrapper.put(`/admin/eventcalender/update/status`, { id })
+    const updateStatus = async(data) => {
+        await axiosWrapper.post(`/admin/eventcalender/update/status`, data )
     }
 
     const update = async(id, data) => {
@@ -52,7 +52,7 @@ export default function useEventCalender() {
         getAllPublic,
         records,
         store,
-        udpateStatus,
+        updateStatus,
         get,
         record,
         update,

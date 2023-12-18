@@ -22,8 +22,8 @@ export default function usePlatinumPartner() {
 
         await axiosWrapper.post(`/admin/platinumpartners`, data);
     }
-    const udpateStatus = async(id) => {
-        await axiosWrapper.put(`/admin/platinumpartners/update/status`, { id })
+    const updateStatus = async(data) => {
+        await axiosWrapper.post(`/admin/platinumpartners/update/status`, data )
     }
 
     const update = async(id, data) => {
@@ -52,7 +52,7 @@ export default function usePlatinumPartner() {
         getAllPublic,
         records,
         store,
-        udpateStatus,
+        updateStatus,
         get,
         record,
         update,

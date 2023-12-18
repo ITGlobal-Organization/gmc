@@ -217,8 +217,19 @@ class EventCalenderController extends BaseController
             // 'LatestBlog' => $LatestBlogs,
 
         ]);
-}
+    }       
 
+    public function setGeneralFilters(Request $request)
+    {
+        $this->eventCalender->setLength($request->has('length') ? $request->length : 10);
+        $this->eventCalender->setStart($request->has('start') ? $request->start : 1);
+        $this->eventCalender->setOrderBy($request->has('orderBy') ? $request->orderBy : 'created_at');
+        $this->eventCalender->setOrder($request->has('order') ? $request->order : 'desc');
+        if($request->has('not_approved')){
+            $this->eventCalender->setFilters(['is_approved','=',0]);
+        }
+    }
+                
 
 
 }

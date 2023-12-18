@@ -30,7 +30,7 @@
                     <tr>
                         <th v-for="(item,index) in columns" :key="index" >
                                 <div>
-                                    <input type="checkbox" v-if="checkbox"/>
+                                    <input type="checkbox" v-if="checkbox && index == 0"  v-model="bulk_checked" @click="setBulkChecked()"/>
                                     <label v-else style="cursor:pointer;">
                                         <span class="mr-1">{{ item.label}}</span>
                                         <span v-if="item.sorted" @click="setOrder(item.field)">
@@ -46,8 +46,10 @@
                 
                 <tbody v-if="rows.length > 0">
                     <tr v-for="(row,index) in rows" :key="index">
+                        
                         <td v-for="(column,key) in columns" :key="key">
-                            <p v-if="!column.has_html && column.field != 'action'">{{!row[column.field]?'---':row[column.field].length>25?row[column.field].substring(0,20).concat('...'):row[column.field]}}</p>
+                            <div v-if="column.has_check && column.field != 'action'"> <input v-if="item_checked.length > 0" type="checkbox" v-model="item_checked[index].checked"/></div>
+                            <p v-else-if="!column.has_html && column.field != 'action'">{{!row[column.field]?'---':row[column.field].length>25?row[column.field].substring(0,20).concat('...'):row[column.field]}}</p>
                             <div v-if="column.has_html && column.field != 'action'" v-html="row[column.field]"></div>
                             <div class="dropdown" v-if="column.field == 'action'">
                                     <a class="dropdown-toggle action-dropdown" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -141,6 +143,9 @@
             pageSize:0,
             pageNo:0,
             order:String,
+            bulk_checked:Boolean,
+            setBulkChecked:{type:Function},
+            item_checked:Array,
         },
         components: {
             VPagination,

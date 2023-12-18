@@ -17,6 +17,7 @@ class SpaceFinder extends BaseModel
     public $class_name = 'App\Models\SpaceFinder';
     public $class_dynamic = true;
     protected $has_images = true;
+    public $status_col = 'is_approved';
 
     protected $fillable = [
         'title','description','is_active','is_delete','is_approved','user_id','slug','categories',

@@ -107,6 +107,7 @@ class EmployeeController extends BaseController
     public function update(Request $request,$id){
 
             $rules = config('rules.users.edit');
+            // dd($request);
 
             foreach($rules as $key => $rule){
                 if(strpos($rule,'unique')){
@@ -149,8 +150,9 @@ class EmployeeController extends BaseController
         return response()->json($response, 200);
     }
     public function store(Request $request){
-
-        $request->validate($this->user->getRules());
+        // dd($request);
+        $rules = config('rules.users.store');
+        $request->validate($rules);
 
         try {
             DB::beginTransaction();

@@ -60,7 +60,7 @@ return [
                 ],
             ],
             [
-                'name' => 'spacefinder',
+                'name' => 'space-finder',
                 'route' => 'spacefinder.index',
                 'icon' => 'nav-icon fas fa-tachometer-alt',
                 'has_submenu' => false,

@@ -165,7 +165,7 @@ return [
             // 'facebook_url' => 'required|url',
             // 'instagram_url' => 'required|url',
             // 'youtube_url' => 'required|url',
-            // 'linkedin_url' => 'required|url',
+            // 'linkedin_url' => 'required|url',s
             'password' => 'required|confirmed|min:8',
             'is_approved' => 'required|numeric|min:0|max:1',
         ],
