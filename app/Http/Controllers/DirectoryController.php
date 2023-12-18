@@ -34,6 +34,7 @@ class DirectoryController extends BaseController
         ]);
     }
 
+    
     public function edit(Request $request){
         return view('admin.crud.edit',[
             'title' => trans('lang.blogs').' | '.trans('lang.edit'),
@@ -139,6 +140,17 @@ class DirectoryController extends BaseController
 
         }catch(Exception $e){
             return $this->sendError(trans('messages.error_msg',['action' => trans('lang.saving')]));
+        }
+    }
+
+    public function setGeneralFilters(Request $request)
+    {
+        $this->directory->setLength($request->has('length') ? $request->length : 10);
+        $this->directory->setStart($request->has('start') ? $request->start : 1);
+        $this->directory->setOrderBy($request->has('orderBy') ? $request->orderBy : 'created_at');
+        $this->directory->setOrder($request->has('order') ? $request->order : 'desc');
+        if($request->has('not_approved')){
+            $this->directory->setFilters(['is_approved','=',0]);
         }
     }
 

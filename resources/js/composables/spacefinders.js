@@ -22,8 +22,8 @@ export default function useSpaceFinder() {
 
         await axiosWrapper.post(`/admin/spacefinder`, data);
     }
-    const udpateStatus = async(id) => {
-        await axiosWrapper.put(`/admin/spacefinder/update/status`, { id })
+    const updateStatus = async(data) => {
+        await axiosWrapper.post(`/admin/spacefinder/update/status`,  data)
     }
 
     const update = async(id, data) => {
@@ -52,7 +52,7 @@ export default function useSpaceFinder() {
         getAllPublic,
         records,
         store,
-        udpateStatus,
+        updateStatus,
         get,
         record,
         update,

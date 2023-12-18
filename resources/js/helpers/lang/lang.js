@@ -286,5 +286,9 @@ export const Language = {
     platinumpartner:"Platinum Partner",
     select_all:"Select All",
     offer:"M2M Offer",
-    offers:"M2M Offers"
+    offers:"M2M Offers",
+    view_all:"View All",
+    recent_msg:function(attribute){
+        return "Recently Added " + attribute
+    }
 };

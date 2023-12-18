@@ -21,6 +21,7 @@ return [
     'add_new_msg' => 'Add New :attribute',
     'welcome_msg' => 'Hi, :attribute',
     'edit_msg' => 'Edit :attribute',
+    'count_msg' => 'Total :attribute',
     'errors' => [
         '500' => [
             'code'  => '500',

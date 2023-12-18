@@ -65,8 +65,8 @@
     let filters = {
         start_date:"",
         end_date:"",
-        order_by:"",
-        order:"",
+        order_by:"created_at",
+        order:"desc",
 
     }
 

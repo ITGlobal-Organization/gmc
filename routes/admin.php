@@ -25,6 +25,8 @@ Route::prefix('blogs')->group(function(){
     Route::post('/',[BlogController::class, 'store'])->name('admin.blogs.store');
     Route::get('/{id}',[BlogController::class, 'get'])->name('admin.blogs.header');
     Route::get('/edit/{id}',[BlogController::class, 'edit'])->name('admin.blogs.edit');
+//    update status
+    Route::post('/update/status',[BlogController::class, 'updateStatus'])->name('admin.blogs.update.status');
     Route::put('/update/{id}',[BlogController::class, 'update'])->name('admin.blogs.update');
     Route::delete('/delete/{id}',[BlogController::class, 'destroy'])->name('admin.blogs.destroy');
 });
@@ -50,6 +52,8 @@ Route::prefix('directory')->group(function(){
     Route::post('/',[DirectoryController::class, 'store'])->name('admin.directory.store');
     Route::get('/{id}',[DirectoryController::class, 'get'])->name('admin.directory.header');
     Route::get('/edit/{id}',[DirectoryController::class, 'edit'])->name('admin.directory.edit');
+    //    update status
+    Route::post('/update/status',[DirectoryController::class, 'updateStatus'])->name('admin.directory.update.status');
     Route::put('/update/{id}',[DirectoryController::class, 'update'])->name('admin.directory.update');
     Route::delete('/delete/{id}',[DirectoryController::class, 'destroy'])->name('admin.directory.destroy');
 
@@ -64,6 +68,8 @@ Route::prefix('platinumpartners')->group(function(){
     Route::post('/',[PlatinumPartnerController::class, 'store'])->name('admin.platinumpartners.store');
     Route::get('/{id}',[PlatinumPartnerController::class, 'get'])->name('admin.platinumpartners.header');
     Route::get('/edit/{id}',[PlatinumPartnerController::class, 'edit'])->name('admin.platinumpartners.edit');
+        //    update status
+    Route::post('/update/status',[PlatinumPartnerController::class, 'updateStatus'])->name('admin.platinumpartners.update.status');
     Route::put('/update/{id}',[PlatinumPartnerController::class, 'update'])->name('admin.platinumpartners.update');
     Route::delete('/delete/{id}',[PlatinumPartnerController::class, 'destroy'])->name('admin.platinumpartners.destroy');
 });
@@ -76,6 +82,8 @@ Route::prefix('spacefinder')->group(function(){
     Route::post('/',[SpaceFinderController::class, 'store'])->name('admin.spacefinder.store');
     Route::get('/{id}',[SpaceFinderController::class, 'get'])->name('admin.spacefinder.header');
     Route::get('/edit/{id}',[SpaceFinderController::class, 'edit'])->name('admin.spacefinder.edit');
+          //    update status
+    Route::post('/update/status',[SpaceFinderController::class, 'updateStatus'])->name('admin.spacefinder.update.status');
     Route::put('/update/{id}',[SpaceFinderController::class, 'update'])->name('admin.spacefinder.update');
     Route::delete('/delete/{id}',[SpaceFinderController::class, 'destroy'])->name('admin.spacefinder.destroy');
 });
@@ -87,6 +95,8 @@ Route::prefix('eventcalender')->group(function(){
     Route::post('/',[EventCalenderController::class, 'store'])->name('admin.eventcalender.store');
     Route::get('/{id}',[EventCalenderController::class, 'get'])->name('admin.eventcalender.header');
     Route::get('/edit/{id}',[EventCalenderController::class, 'edit'])->name('admin.eventcalender.edit');
+         //    update status
+    Route::post('/update/status',[EventCalenderController::class, 'updateStatus'])->name('admin.eventcalender.update.status');
     Route::put('/update/{id}',[EventCalenderController::class, 'update'])->name('admin.eventcalender.update');
     Route::delete('/delete/{id}',[EventCalenderController::class, 'destroy'])->name('admin.eventcalender.destroy');
 });
@@ -100,6 +110,8 @@ Route::prefix('users')->group(function(){
     Route::get('/roles',[BaseController::class, 'getAllRoles'])->name('admin.users.roles');
     Route::get('/{id}',[RegisteredUserController::class, 'get'])->name('admin.users.header');
     Route::get('/edit/{id}',[RegisteredUserController::class, 'edit'])->name('admin.users.edit');
+            //    update status
+    Route::post('/update/status',[RegisteredUserController::class, 'updateStatus'])->name('admin.user.update.status');
     Route::put('/update/{id}',[RegisteredUserController::class, 'update'])->name('admin.users.update');
     Route::delete('/delete/{id}',[RegisteredUserController::class, 'destroy'])->name('admin.users.destroy');
 
@@ -116,6 +128,8 @@ Route::prefix('offers')->group(function(){
     // Route::get('/roles',[BaseController::class, 'getAllRoles'])->name('admin.offers.roles');
     Route::get('/{id}',[M2MOfferController::class, 'get'])->name('admin.offers.header');
     Route::get('/edit/{id}',[M2MOfferController::class, 'edit'])->name('admin.offers.edit');
+      //    update status
+    Route::post('/update/status',[M2MOfferController::class, 'updateStatus'])->name('admin.offers.update.status');
     Route::put('/update/{id}',[M2MOfferController::class, 'update'])->name('admin.offers.update');
     Route::delete('/delete/{id}',[M2MOfferController::class, 'destroy'])->name('admin.offers.destroy');
 });

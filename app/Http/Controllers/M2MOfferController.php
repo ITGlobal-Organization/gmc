@@ -170,4 +170,15 @@ class M2MOfferController extends BaseController
         ];
         return response()->json($response, 200);
     }
+
+    public function setGeneralFilters(Request $request)
+    {
+        $this->offer->setLength($request->has('length') ? $request->length : 10);
+        $this->offer->setStart($request->has('start') ? $request->start : 1);
+        $this->offer->setOrderBy($request->has('orderBy') ? $request->orderBy : 'created_at');
+        $this->offer->setOrder($request->has('order') ? $request->order : 'desc');
+        if($request->has('not_approved')){
+            $this->offer->setFilters(['is_approved','=',0]);
+        }
+    }
 }
