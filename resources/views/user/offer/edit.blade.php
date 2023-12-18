@@ -67,8 +67,8 @@
                                 <button class="close AClass" type="button">
                                     <span>&times;</span>
                                 </button>
-                                <img src="{{ $Offers->media[0]->image_url }}" alt=""
-                                    data-id="{{ $Offers->media[0]->id }}">
+                                <img src="{{ isset($Offers->media[0]->image_url) ? $Offers->media[0]->image_url : asset('/media/image-not-found.png') }}" alt=""
+                                    data-id="{{ isset($Offers->media[0]->id) ? $Offers->media[0]->id : "" }}">
                                 <div class="clr"></div>
                             </div>
                         </div>
@@ -83,8 +83,8 @@
                                 <button class="close logo-close" type="button">
                                     <span>&times;</span>
                                 </button>
-                                <img src="{{ $Offers->media[1]->image_url }}" alt=""
-                                    data-id="{{ $Offers->media[1]->id }}">
+                                <img src="{{ isset($Offers->media[1]->image_url) ? $Offers->media[1]->image_url : asset('/media/image-not-found.png') }}" alt=""
+                                    data-id="{{ isset($Offers->media[1]->id) ? $Offers->media[1]->id : "" }}">
                                 <div class="clr"></div>
                             </div>
                         </div>

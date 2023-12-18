@@ -7,15 +7,15 @@
 
                 <!--Start Mid Box 1-->
                 <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 border">
-                    @php 
-                  
-               
+                    @php
+
+
                         $directory = new App\Models\Directory();
                         $Directory=$directory->first('user_id',$user->id,'=');
-                      
+
                     @endphp
                         <div class="mid-box">
-                                
+
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left padding">
                                     <h1 class="mb-40">{{ trans('lang.company_detail')}}</h1>
                                     <div class="profile-img">
@@ -42,7 +42,9 @@
                     <div class="mid-box">
                         <div class="text-center">
                             <img class="profile-user-img img-fluid img-circle"
+
                         src="{{ isset($user->image)?$user->image->image_url:custom_asset('image-not-found.png')}}"
+
                         alt="User profile picture">
                         </div>
                         <h3 class="profile-username text-center">{{ $user->first_name}}</h3>
@@ -85,28 +87,28 @@
                                     <li>&nbsp; {{ trans('lang.events')}} &nbsp;</li>
                                     <li>&nbsp; {{ trans('lang.space_finders')}} &nbsp;</li>
                                     <li>&nbsp; {{ trans('lang.news')}} &nbsp;</li>
-                                
+
                                 </ul>
                                 </div>
                             <div class="resp-tabs-container hor_1">
-                                <!--Start Table View listing-->	
+                                <!--Start Table View listing-->
                                 <div>
                                     <div class="events"></div>
                                     <div class="clr"></div>
                                 </div>
-                                <!--End Table View listing-->	
-                                <!--Start Table View listing-->	
+                                <!--End Table View listing-->
+                                <!--Start Table View listing-->
                                 <div>
                                     <div class="spacefinders"></div>
                                     <div class="clr"></div>
                                 </div>
-                                <!--End Table View listing-->	
-                                <!--Start Calendar View listing-->		
+                                <!--End Table View listing-->
+                                <!--Start Calendar View listing-->
                                 <div>
                                     <div class="news"></div>
                                     <div class="clr"></div>
                                 </div>
-                                <!--End Calendar View listing-->	
+                                <!--End Calendar View listing-->
                             </div>
                         </div>
 
@@ -157,7 +159,7 @@
 
 
 
-         
+
 
             <!--End Middle Side-->
 
@@ -167,12 +169,12 @@
 <script src="{{ custom_asset('easyResponsiveTabs.js','scripts') }}"></script>
 <script>
      async function getMylistings(){
-          await ajaxGet("{{route('event-calenders.ajax')}}",{length:10,order_by:'created_at',order:'desc',view_type:'box'},".events",responseType='html'); 
-          await ajaxGet("{{route('space-finders.ajax')}}",{length:10,order_by:'created_at',order:'desc'},".spacefinders",responseType='html'); 
-          await ajaxGet("{{route('blogs.ajax')}}",{length:10,order_by:'created_at',order:'desc'},".news",responseType='html'); 
+          await ajaxGet("{{route('event-calenders.ajax')}}",{length:10,order_by:'created_at',order:'desc',view_type:'box'},".events",responseType='html');
+          await ajaxGet("{{route('space-finders.ajax')}}",{length:10,order_by:'created_at',order:'desc'},".spacefinders",responseType='html');
+          await ajaxGet("{{route('blogs.ajax')}}",{length:10,order_by:'created_at',order:'desc'},".news",responseType='html');
      }
      $(function (e) {
-        getMylistings();  
+        getMylistings();
     });
    let parent = $( '#parentHorizontalTab' );
                console.log(parent)
