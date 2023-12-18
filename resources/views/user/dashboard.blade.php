@@ -42,7 +42,9 @@
                     <div class="mid-box">
                         <div class="text-center">
                             <img class="profile-user-img img-fluid img-circle"
-                        src="{{ isset($user->image->image_url) ? $user->image->image_url : asset('/media/image-not-found.png')}}"
+
+                        src="{{ isset($user->image)?$user->image->image_url:custom_asset('image-not-found.png')}}"
+
                         alt="User profile picture">
                         </div>
                         <h3 class="profile-username text-center">{{ $user->first_name}}</h3>
