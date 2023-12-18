@@ -16,6 +16,8 @@ class M2MOffer extends BaseModel
     public $class_name = 'App\Models\M2MOffer';
     public $class_dynamic = true;
     protected $has_images = true;
+    public $status_col = 'is_approved';
+
 
     protected $fillable = [
         'company_name','first_name','last_name','offer_details','phone','email','web_url','is_approved','user_id'

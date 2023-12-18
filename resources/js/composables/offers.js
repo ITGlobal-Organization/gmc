@@ -22,8 +22,8 @@ export default function useOffers() {
 
         await axiosWrapper.post(`/admin/offers`, data);
     }
-    const udpateStatus = async(id) => {
-        await axiosWrapper.put(`/admin/offers/update/status`, { id })
+    const updateStatus = async(data) => {
+        await axiosWrapper.post(`/admin/offers/update/status`, data)
     }
 
     const update = async(id, data) => {
@@ -52,7 +52,7 @@ export default function useOffers() {
         getAllPublic,
         records,
         store,
-        udpateStatus,
+        updateStatus,
         get,
         record,
         update,

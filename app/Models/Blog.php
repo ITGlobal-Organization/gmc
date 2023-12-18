@@ -18,6 +18,7 @@ class Blog extends BaseModel
     public $class_name = 'App\Models\Blog';
     public $class_dynamic = true;
     protected $has_images = true;
+    public $status_col = 'is_approved';
 
     protected $fillable = [
         'title','description','publisher','publish_at','author','is_active','is_delete','is_approved','slug'

@@ -272,4 +272,22 @@ class BaseController extends Controller
         }
 
     }
+
+    // update status
+
+    public function updateStatus(Request $request){
+        try{
+            foreach($request->ids as $id){
+                $this->model->updateByColumn([
+                    $this->model->status_col => $request->status
+                ],$id,'id');
+            }
+            
+            return $this->sendResponse([],trans('messages.success_msg',['action' => trans('lang.updated')]));
+        }catch(\Exception $e){
+            dd($e);
+            Log::error($e);
+            return $this->sendError(trans('validation.custom.errors.server-errors'));
+        }
+    }
 }
