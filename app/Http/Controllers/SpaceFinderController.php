@@ -9,13 +9,14 @@ use App\Models\Media;
 use Auth;
 use App\Helpers\Helper;
 use DB;
+use URL;
 
 class SpaceFinderController extends BaseController
 {
-    private $spaceFinder,$media,$user;
-    public function __construct(SpaceFinder $spaceFinder,Media $media) {
+    private $spaceFinder,$media,$user,$url;
+    public function __construct(SpaceFinder $spaceFinder,Media $media,URL $url) {
         $this->spaceFinder = $spaceFinder;
-
+        $this->url = $url::current();
         $this->setModel($spaceFinder);
         $this->setMedia($media);
     }
@@ -43,7 +44,7 @@ class SpaceFinderController extends BaseController
 
     public function spaceFinders(Request $request){
         $user = Auth::user();
-        if(isset($user) && $user->hasRole('user')){
+        if(isset($user) && $user->hasRole('user') && str_contains($this->url,"user")){
             $view = 'user.space-finder.index';
         }else{
             $view = 'space-finders.space-finders';
@@ -68,10 +69,10 @@ class SpaceFinderController extends BaseController
         }
 
 
-        $SpaceFinders = $this->spaceFinder->getAll([],['space_finders.title','space_finders.description','space_finders.created_at','space_finders.categories','images.image_url','space_finders.slug']);
+        $SpaceFinders = $this->spaceFinder->getAll([],['space_finders.id','space_finders.title','space_finders.description','space_finders.created_at','space_finders.categories','images.image_url','space_finders.slug']);
 
 
-        if(isset($user) && !$user->hasRole('admin')){
+        if(isset($user) && !$user->hasRole('admin') && str_contains($this->url,"user")){
             $view='user.space-finder.listing';
         }else{
             $view='sections.space-finders';

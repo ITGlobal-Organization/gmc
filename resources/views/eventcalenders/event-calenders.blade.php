@@ -4,12 +4,12 @@
     <!--Start Middle-->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
         <div class="middle mtb-60">
-            
+
                 <h1 class="text-center mb-40">{{ trans('lang.events')}}</h1>
                 <p class="text-center">
                     {!! trans('content.events.description') !!}
                 </p>
-                
+
             <div class="clr"></div>
             <div id="container">
                <div id="parentHorizontalTab" class="parentHorizontalTab">
@@ -18,23 +18,23 @@
                         <li>&nbsp; {{ trans('lang.box-view')}} &nbsp;</li>
                         <li>&nbsp; {{ trans('lang.table-view')}} &nbsp;</li>
                         <li>&nbsp; {{ trans('lang.calendar-view')}} &nbsp;</li>
-                      
+
                     </ul>
                     </div>
                   <div class="resp-tabs-container hor_1">
-                    <!--Start Table View listing-->	
+                    <!--Start Table View listing-->
                     <div>
                         <div class="events-box"></div>
                         <div class="clr"></div>
                     </div>
-                       <!--End Table View listing-->	
-                     <!--Start Table View listing-->	
+                       <!--End Table View listing-->
+                     <!--Start Table View listing-->
                      <div>
                         <div class="events"></div>
                         <div class="clr"></div>
                     </div>
-                     <!--End Table View listing-->	
-                     <!--Start Calendar View listing-->		
+                     <!--End Table View listing-->
+                     <!--Start Calendar View listing-->
                      <div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mb-20">
                            <div id="calendar"></div>
@@ -42,18 +42,18 @@
                         </div>
                         <div class="clr"></div>
                      </div>
-                     <!--End Calendar View listing-->	
+                     <!--End Calendar View listing-->
                   </div>
                </div>
             </div>
         </div>
         <div class="clr"></div>
     </div>
-   
+
     <!--End Middle-->
 @endsection
 @section('scripts')
-<link rel="stylesheet" href="{{ custom_asset('calendar-gc.css','css') }}">	
+<link rel="stylesheet" href="{{ custom_asset('calendar-gc.css','css') }}">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
          <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
@@ -63,7 +63,7 @@
 
 	// sort_by = "";
     // search ="";
-  
+
     let filters = {
         start_date:"",
         end_date:"",
@@ -80,15 +80,15 @@
         filters.order = sort_by.split('-')[1];
 		getEventsListing()
 	});
-    
+
 
     // $(function (e) {
-           
+
     //      });
-         
-       
+
+
 	$(document).ready(async function(){
-		let events = await getEventsListing(); 
+		let events = await getEventsListing();
         let ref = $("#calendar");
         let eventModal = $('#itglobal-modal');
             var calendar = ref.calendarGC({
@@ -122,9 +122,9 @@
         filters.end_date = $('#end-date').val();
         getEventsListing()
     });
-	
+
     async function getAjaxEvents(){
-       
+
         let events = []
         await ajaxGet("{{route('event-calenders.ajax')}}",{},"",'json', async (response) =>{
                     let data = await response.data
@@ -144,15 +144,15 @@
                         });
                     }
 
-            }); 
+            });
         return events;
-            
+
     }
     async function getEventsListing (){
         filters.view_type = 'box';
-        await ajaxGet("{{route('event-calenders.ajax')}}",filters,".events-box",responseType='html'); 
+        await ajaxGet("{{route('event-calenders.ajax')}}",filters,".events-box",responseType='html');
         filters.view_type = 'table';
-        await ajaxGet("{{route('event-calenders.ajax')}}",filters,".events",responseType='html'); 
+        await ajaxGet("{{route('event-calenders.ajax')}}",filters,".events",responseType='html');
         let events = await getAjaxEvents();
         console.log('here',events)
         return events;
@@ -160,11 +160,11 @@
 
 
 
-       
+
 
     // tabs
     $(function (e) {
-          
+
          });
     let parent = $( '#parentHorizontalTab' );
                 console.log(parent)
@@ -211,7 +211,7 @@
 
             let paginationConfig = {
             renderFunction:getEventsListing
-        }    
+        }
 </script>
 <script src="{{ custom_asset('pagination.js','scripts')}}"></script>
 

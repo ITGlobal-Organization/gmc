@@ -9,7 +9,7 @@
         <h1 class="text-center mb-40">{{ trans('lang.events_calendar') }}</h1>
         <div class="success"></div>
         <!--Start search Area-->
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-7 border padding border">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-6 border padding border">
 
             <div class="search-oh search-box1">
                 <input type="image" class="oh-btn" img="" src="{{ asset('media/brn-search.png') }}">
@@ -21,7 +21,7 @@
         <!--End search Area-->
 
         <!--Start calendar Area-->
-        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-5 border padding border">
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-6 border padding border">
 
             <div class="search-ohch">
                 <input class="ohch-input" name="date" id="start-date" placeholder="Date for visit DD-MM-YYYY"
@@ -82,7 +82,7 @@
         $(document).on('keyup', '.search-box', function() {
             search = $(this).val();
             if (search.length > 2) {
-                ajaxGet("{{ route('event-calenders.search') }}", {
+                ajaxGet("{{ route('user.event-calenders.search') }}", {
                     search
                 }, ".events", responseType = 'html');
             }
@@ -103,7 +103,7 @@
         $(document).on('change', '#end-date', function(ev) {
             start_date = $('#start-date').val();
             end_date = $('#end-date').val();
-            ajaxGet("{{ route('event-calenders.search') }}", {
+            ajaxGet("{{ route('user.event-calenders.search') }}", {
                 start_date: start_date,
                 end_date: end_date
             }, ".events", responseType = 'html');

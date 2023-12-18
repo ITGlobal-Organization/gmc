@@ -9,15 +9,17 @@ use App\Models\Media;
 use Auth;
 use App\Helpers\Helper;
 use DB;
+use URL;
 
 class M2MOfferController extends BaseController
 {
-    private $offer,$media,$user;
+    private $offer,$media,$user,$url;
 
-    public function __construct(M2MOffer $offer,Media $media) {
+    public function __construct(M2MOffer $offer,Media $media,URL $url) {
         $this->offer = $offer;
         $this->setModel($offer);
         $this->setMedia($media);
+        $this->url = $url::current();
     }
 
     public function index(Request $request){
@@ -43,7 +45,7 @@ class M2MOfferController extends BaseController
 
     public function Offers(Request $request){
         $user = Auth::user();
-        if(isset($user) && $user->hasRole('user')){
+        if(isset($user) && $user->hasRole('user') && str_contains($this->url,"user")){
             $view = 'user.offer.index';
         }else{
             $view = 'offers.offers';
@@ -69,7 +71,7 @@ class M2MOfferController extends BaseController
         }
 
         $offers = $this->offer->getAll([],['m2m_offers.*','images.image_url']);
-        if(isset($user) && !$user->hasRole('admin')){
+        if(isset($user) && !$user->hasRole('admin') && str_contains($this->url,"user")){
             $view='user.offer.listing';
         }else{
             $view='sections.offers';

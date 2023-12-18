@@ -8,13 +8,14 @@ use App\Models\Blog;
 use App\Models\Media;
 use Auth;
 use App\Helpers\Helper;
+use URL;
 
 class BlogController extends BaseController
 {
-    private $blog,$media,$user;
-    public function __construct(Blog $blog,Media $media) {
+    private $blog,$media,$user,$url;
+    public function __construct(Blog $blog,Media $media,URL $url) {
         $this->blog = $blog;
-
+        $this->url = $url::current();
         $this->setModel($blog);
         $this->setMedia($media);
     }
@@ -42,7 +43,7 @@ class BlogController extends BaseController
 
     public function blogs(Request $request){
         $user = Auth::user();
-        if(isset($user) && $user->hasRole('user')){
+        if(isset($user) && $user->hasRole('user') && str_contains($this->url,"user")){
             $view = 'user.news.index';
         }else{
             $view = 'blogs.blogs';
@@ -68,7 +69,7 @@ class BlogController extends BaseController
         $Blogs = $this->blog->getAll([],['blogs.*','images.image_url']);
         // dd($Blogs);
         // dd(DB::getQueryLog());
-        if(isset($user) && $user->hasRole('user')){
+        if(isset($user) && $user->hasRole('user') && str_contains($this->url,"user")){
             $view='user.news.listing';
         }else{
             $view='sections.blogs';
