@@ -61,7 +61,7 @@
       @else
         <a href="{{ route('directories.get', $directory->slug) }}">
       @endif
-          {{ $directory->title }}        </a>    </div></div>
+          {{ shortenTextLength($directory->title) }}        </a>    </div></div>
                 <div class="box-text">
             {!! $directory->description !!}
             </div>

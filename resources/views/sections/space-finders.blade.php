@@ -59,7 +59,7 @@
       @else
         <a href="{{ route('space-finders.get', $SpaceFinder->slug) }}">
       @endif
-          {{ $SpaceFinder->title }}        </a>    </div></div>
+          {{ shortenTextLength($SpaceFinder->title) }}        </a>    </div></div>
                 <div class="box-text1">
                     <i class="fad fa-check"
                         style="--fa-primary-color: #5f439b; --fa-secondary-color: #5f439b;"></i>&nbsp;{{$SpaceFinder->categories}}

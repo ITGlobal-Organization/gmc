@@ -54,7 +54,7 @@
                             @endif
                             <tr>
                                 <td class="list10">{{ date('d-M-Y', strtotime($Event->event_date)) }}</td>
-                                <td class="list20">{{$Event->title}}</td>
+                                <td class="list20"> {{ shortenTextLength($Event->title) }}</td>
                                 <td class="list20">{{\Carbon\Carbon::createFromFormat('H:i:s',$Event->time)->format('h:i A')}}</td>
                                 <td class="list20">{{ $Event->venue }}</td>
 
