@@ -144,10 +144,7 @@ class BlogController extends BaseController
 
     public function setGeneralFilters(Request $request)
     {
-        $this->blog->setLength($request->has('length') ? $request->length : 10);
-        $this->blog->setStart($request->has('start') ? $request->start : 1);
-        $this->blog->setOrderBy($request->has('orderBy') ? $request->orderBy : 'created_at');
-        $this->blog->setOrder($request->has('order') ? $request->order : 'desc');
+        parent::setGeneralFilters($request);
         if($request->has('not_approved')){
             $this->blog->setFilters(['is_approved','=',0]);
         }
