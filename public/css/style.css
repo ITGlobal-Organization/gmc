@@ -318,6 +318,13 @@ p {
     overflow: hidden;
     border: 0px solid red;
 }
+.box-text p{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    overflow: hidden;
+}
 .box-text1 {
     margin: 0px 0px 20px 0px;
     padding: 0px 15px 0px 15px;
@@ -1932,3 +1939,4 @@ text-decoration: none;
 .list30 .row .edit-btn{margin: 20px 11px 0 0;}
 .list30 .row .delete-btn{margin: 20px 11px 0 0;}
 .events-tab .main-box{min-height: 500px !important;}
+blockquote{border: none !important;}
