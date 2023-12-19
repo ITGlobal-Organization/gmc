@@ -54,11 +54,7 @@
                             </a>
 
                         </div>
-                        <div class="box-text1">
-                            <i class="fad fa-check"
-                                style="--fa-primary-color: #5f439b; --fa-secondary-color: #5f439b;"></i>&nbsp;
-                            {!! $Offer->description !!}
-                        </div>
+                       
 
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center edit-btn">
                             <a href="#" style="color: #000;font-size: 16px;" class="edit"
