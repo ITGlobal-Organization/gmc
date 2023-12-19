@@ -34,7 +34,7 @@
 								</div>
 								<div class="box-name home home-text">
 									<a href="{{ route('blogs.get',$blog->slug) }}">
-									{{ $blog->title}}
+									{{ shortenTextLength($blog->title) }}
 									</a>
 								</div>
 								<div class="box-text">

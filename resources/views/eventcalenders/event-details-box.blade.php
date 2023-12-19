@@ -20,7 +20,7 @@
             @if (isset($Events))
                 @foreach ($Events as $Event)
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                        <div class="main-box" style="height: 380px;">
+                        <div class="main-box">
                             <div class="box-img card-image">
                           
                                 <a href="{{$Event->booking_link}}" target="_blank">
@@ -34,13 +34,13 @@
                                 {{ \Carbon\Carbon::parse($Event->event_date)->format('d-m-Y')}}</div>
                             <div class="box-name">
                                 <a href="{{$Event->booking_link}}" target="_blank">
-                                    {{$Event->title}}
+                                    {{ shortenTextLength($Event->title) }}
                                 </a>
                             </div>
-                            <div class="box-text" style="height: 90px;">
+                            <div class="box-text" >
                                 <b>Date:</b> {{ date('d-M-Y', strtotime($Event->event_date)) }} <b>Time:</b> {{\Carbon\Carbon::createFromFormat('H:i:s',$Event->time)->format('h:i A')}}<br>
                                 <b>Venue:</b> {{ $Event->venue }}
-                                <b>Price:</b> {{ $Event->price }}<br>
+                                <b>Price:</b> {{ $Event->price }}<br><br>
                                 <span class="btn-download"><a href="{{$Event->booking_link}}" target="_blank">Book Now</a>
                             </div>
                         </div>

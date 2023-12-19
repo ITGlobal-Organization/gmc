@@ -14,7 +14,7 @@
                                 {{ \Carbon\Carbon::parse($Event->event_date)->format('d-m-Y')}}</div>
                             <div class="box-name">
                                 <a href="{{$Event->booking_link}}" target="_blank">
-                                    {{$Event->title}}
+                                {{ shortenTextLength($Event->title) }}
                                 </a>
                             </div>
                             <div class="box-text" style="height: 90px;">
