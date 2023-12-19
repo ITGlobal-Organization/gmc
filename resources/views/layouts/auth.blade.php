@@ -71,7 +71,7 @@
 	</div>
 
 	   <!--Start Middle-->
-	   <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 border padding">
+	   <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 border padding dashboard-layout">
         	@yield('content')
        </div>
 	</div>

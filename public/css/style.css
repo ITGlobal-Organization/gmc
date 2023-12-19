@@ -318,7 +318,7 @@ p {
     overflow: hidden;
     border: 0px solid red;
 }
-.box-text p{
+.box-text  p{
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
@@ -1938,5 +1938,5 @@ text-decoration: none;
 
 .list30 .row .edit-btn{margin: 20px 11px 0 0;}
 .list30 .row .delete-btn{margin: 20px 11px 0 0;}
-.events-tab .main-box{min-height: 500px !important;}
+.dashboard-layout .events-tab .main-box{min-height: 500px !important;}
 blockquote{border: none !important;}
