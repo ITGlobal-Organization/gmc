@@ -1912,7 +1912,7 @@ text-decoration: none;
     background-color: green;
     color: #fff;
     position: relative;
-    top: 20px;
+    /* top: 20px; */
     z-index: 1;
     border-radius: 10px 10px 0px 0px;
     padding: 8px;
@@ -1927,7 +1927,7 @@ text-decoration: none;
     background-color: #D70407;
     color: #fff;
     position: relative;
-    top: 20px;
+    /* top: 20px; */
     z-index: 1;
     border-radius: 10px 10px 0px 0px;
     padding: 8px;
