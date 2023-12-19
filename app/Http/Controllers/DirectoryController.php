@@ -145,10 +145,8 @@ class DirectoryController extends BaseController
 
     public function setGeneralFilters(Request $request)
     {
-        $this->directory->setLength($request->has('length') ? $request->length : 10);
-        $this->directory->setStart($request->has('start') ? $request->start : 1);
-        $this->directory->setOrderBy($request->has('orderBy') ? $request->orderBy : 'created_at');
-        $this->directory->setOrder($request->has('order') ? $request->order : 'desc');
+      
+        parent::setGeneralFilters($request);
         if($request->has('not_approved')){
             $this->directory->setFilters(['is_approved','=',0]);
         }
