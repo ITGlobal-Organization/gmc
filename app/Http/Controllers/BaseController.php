@@ -44,10 +44,21 @@ class BaseController extends Controller
     }
     public function setGeneralFilters(Request $request)
     {
-        $this->model->setLength($request->has('length') ? $request->length : 10);
-        $this->model->setStart($request->has('start') ? $request->start : 1);
-        $this->model->setOrderBy($request->has('orderBy') ? $request->orderBy : 'created_at');
-        $this->model->setOrder($request->has('order') ? $request->order : 'desc');
+        $this->model->setLength(($request->has('length') && $request->length != "") ? $request->length : config('site_config.constants.item_per_page'));
+
+        $this->model->setStart(($request->has('start') && $request->start != "")?$request->start: 1);
+        $this->model->setOrderBy(($request->has('orderBy') && $request->orderBy != "")? $request->orderBy : $this->model->getOrderBy());
+        $this->model->setOrder(($request->has('order') && $request->order != "")? $request->order : $this->model->getOrder());
+    }
+
+    public function removeGeneralFilters(Request $request)
+    {
+        $request->request->remove('length');
+        $request->request->remove('start');
+
+        $request->request->remove('order_by');
+
+        $request->request->remove('order');
     }
 
     public function sendResponse($result = [], $message = '')
@@ -110,7 +121,7 @@ class BaseController extends Controller
             $response = $this->model->getRecordDataTable($request);
             return $this->sendResponse($response);
         }catch(\Exception $e){
-            dd($e);
+
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
@@ -135,29 +146,19 @@ class BaseController extends Controller
     public function store(Request $request){
 
         $rules = $this->model->getRules();
-        try {
-            // Validate the incoming request data
-            $request->validate($rules);
-            // Your controller logic goes here if validation passes
-        } catch (ValidationException $e) {
-            // Return a JSON response with validation errors
-            return $this->sendError('',$e->errors(),422,[]);
-        }
+
+        $request->validate($rules);
 
 
         try {
             DB::beginTransaction();
-
-            $data = $request->except(['_token','media','gallery','attachment','image','image1','image2']);
-            // dd($data);
+            $data = $request->except(['_token','media','gallery','attachment','image','image1','image2','filename','logo']);
             $result = $this->model->store($data);
             $this->model->id = $result;
-            // dd($result);
-            // dd($result);
 
             if ($request->has('media')) {
                 //$response = Helper::saveMedia($request->image,$this->model->class_name,$result->id);
-
+              
                 foreach($request->media as $media){
                    // dd($this->Media);
                     $this->Media->updateByColumn([
@@ -169,7 +170,7 @@ class BaseController extends Controller
             // return $result;
             return $this->sendResponse([], trans('messages.success_msg',['action' => trans('lang.saved')]));
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            // dd($e->getMessage());
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
@@ -185,19 +186,11 @@ class BaseController extends Controller
         }
         // dd($request);
 
-        try {
-            // Validate the incoming request data
-            $request->validate($rules);
-            // Your controller logic goes here if validation passes
-        } catch (ValidationException $e) {
-            // Return a JSON response with validation errors
-            return $this->sendError('',$e->errors(),422,[]);
-        }
+        $request->validate($rules);
 
         try {
             DB::beginTransaction();
-            $data = $request->except(['_token','media','gallery','image','image1','image2']);
-
+            $data = $request->except(['_token','media','gallery','image','image1','image2','filename','logo']);
             $this->model->updateByColumn($data,$id);
             $this->model->id = $id;
             if ($request->has('media')) {
@@ -215,6 +208,7 @@ class BaseController extends Controller
             // return $id;
             return $this->sendResponse([], trans('messages.success_msg', ['action' => trans('lang.updated')]));
         } catch (\Exception $e) {
+            // dd($e->getMessage());
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
@@ -234,6 +228,11 @@ class BaseController extends Controller
     public function saveFiles(Request $request){
         $media = 0;
         $files = $request->file('files');
+        if($request->id){
+            $id = $request->id;
+        }else{
+            $id = 0;
+        }
         if (isset($request->files)) {
             $media =  Helper::saveMedia($files,$request->model,'main',$request->id);
             return $media->id;
@@ -242,16 +241,18 @@ class BaseController extends Controller
     }
 
     public function deleteFiles(Request $request,$id){
-        //dd($request->files);
+        // dd($request);
         try{
             DB::beginTransaction();
             $response = $this->media->find($id);
+            // dd($response);
             Helper::unlinkFile($response->image_name);
             $this->media->destroyById($id);
             DB::commit();
             return $this->sendResponse([],trans('messages.success_msg',['action' => trans('lang.deleted')]));
 
         }catch (\Exception $e) {
+            // dd($e->getMessage());
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
@@ -270,5 +271,23 @@ class BaseController extends Controller
             return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
 
+    }
+
+    // update status
+
+    public function updateStatus(Request $request){
+        try{
+            foreach($request->ids as $id){
+                $this->model->updateByColumn([
+                    $this->model->status_col => $request->status
+                ],$id,'id');
+            }
+            
+            return $this->sendResponse([],trans('messages.success_msg',['action' => trans('lang.updated')]));
+        }catch(\Exception $e){
+            dd($e);
+            Log::error($e);
+            return $this->sendError(trans('validation.custom.errors.server-errors'));
+        }
     }
 }

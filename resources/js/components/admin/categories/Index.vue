@@ -114,7 +114,7 @@ data(){
             media:[],
             gallery:[],
             is_active:1,
-            category_id:0
+           //// category_id:0
 
         },
         name:"Submit",

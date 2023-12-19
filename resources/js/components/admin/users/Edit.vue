@@ -59,7 +59,7 @@ data(){
                 postalcode:'',
                 username:'',
                 phone:'',
-                company:'',
+                // company:'',
                 tel_no:'',
                 website:'',
                 venue_url:'',
@@ -276,17 +276,17 @@ mounted(){
                     },
                     required:true,
                 },
-                {
-                    label:Language.company,
-                    field:"company",
-                    class:"form-control",
-                    grid:"col-md-6 col-12",
-                    type:"text",
-                    placeholder:function(){
-                        return Language.placholder_msg(this.label)
-                    },
-                    required:true,
-                },
+                // {
+                //     label:Language.company,
+                //     field:"company",
+                //     class:"form-control",
+                //     grid:"col-md-6 col-12",
+                //     type:"text",
+                //     placeholder:function(){
+                //         return Language.placholder_msg(this.label)
+                //     },
+                //     required:true,
+                // },
                 {
                     label:Language.status,
                     field:"is_approved",
@@ -377,7 +377,7 @@ methods:{
             this.form.last_name = record.value.last_name;
             this.form.email = record.value.email;
             this.form.address = record.value.address;
-            this.form.company = record.value.company;
+            // this.form.company = record.value.company;
             this.form.tel_no = record.value.tel_no;
             this.form.website = record.value.website;
             this.form.venue_url = record.value.venue_url;

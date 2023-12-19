@@ -20,20 +20,47 @@ return [
     'top-bar' => [
         'heading' => 'Limited time offer! Get up to <i><b>40% OFF</b></i> on all products'
     ],
-    'featured-products' => [
-        'top-content' => ' <h1 class="margin-bot20">Create any custom design for fashion</h1> accessory and promotional products such as patches, pins, and caps. We offer inexpensive options with no MOQ and fast turnaround. Start today!',
-        'heading'   => 'FEATURED PRODUCTS'
+    'space-finder' => [
+        'description' => "Here we have harnessed space (indoors and out) from within our membership and partners.
+        <br>
+        This includes property for long term let or sale and also space for use and hire by the hour, day, week, month and
+        so on.
+        <br>
+        There is a variety of options with different facilities e.g. parking and catering.
+        <br>
+        Please register to upload space you have to offer or search for your needs if you are looking."
     ],
-    'login' => [
-        'heading' => 'Welcome Back!',
-        'subheading' => 'Please login to your account',
-        'image' => 'login-img.jpg'
+    'events' => [
+        'description' => "Organised to educate, inform and network, our comprehensive programme of events allows something for
+        everyone within the business community. Held at various times – from breakfast meetings to supper socials –
+        there should be something to work around business and personal commitments.
+        <br><br>
+        Events are intented to bring focus to different areas throughout the whole Shire, where possible we try to
+        alternate between central and rural locations.
+        <br><br>
+        If you would like to discuss hosting an event or have an idea for our future calendar then contact the
+        Chamber office."
     ],
-    'sign-up' => [
-        'heading' => 'Get Started',
-        'subheading' => 'Please login to your account',
-        'image' => 'login-img.jpg'
+    'space-finders' => [
+        'description' => "Here we have harnessed space (indoors and out) from within our membership and partners.
+        <br>
+        This includes property for long term let or sale and also space for use and hire by the hour, day, week, month and
+        so on.
+        <br>
+        There is a variety of options with different facilities e.g. parking and catering.
+        <br>
+        Please register to upload space you have to offer or search for your needs if you are looking."
+    ],
+    'dashboard' => [
+        'welcome' =>"  We're excited to have you here. Your personalized dashboard is designed to provide a seamless
+        experience in managing and navigating your account. Here, you'll find everything organized for your
+        convenience. From checking recent activities to updating your profile, this dashboard is your
+        one-stop destination for all your Chamber needs.<br><br>
+
+
+
+        We're committed to making your experience as efficient and enjoyable as possible. Dive in and
+        discover the power of simplicity and efficiency at your fingertips!"
     ]
-    
 
 ];

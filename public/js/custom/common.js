@@ -99,7 +99,7 @@ function ajaxPost(url,data,succssContainer,errorContainer) {
                     window.location.href = response.data.route;
                 }
             },3000)
-           
+
 
         },
         error:function(error){
@@ -225,6 +225,8 @@ function getCities() {
         });
         ref.html(html);
 
+
+
     // $.post('https://countriesnow.space/api/v0.1/countries/cities',{
     //     "country": "pakistan"
     // },(response,status)=>{
@@ -232,4 +234,16 @@ function getCities() {
 
     //     ref.html(html);
     // });
+}
+function changeFile() {
+    alert("rg")
+    $('.file').on('change', function(e) {
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            $('.preview-image').removeClass("hidden");
+            $('.upload-div').addClass("hidden");
+            $('.preview-image').children('img').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
 }

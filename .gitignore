@@ -2,7 +2,6 @@
 /public/hot
 /public/storage
 /public/images
-/public/media
 /public/img
 /public/assests/
 /public/fonts
@@ -22,5 +21,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-public/js/scripts
 public/js/app.js
+public/mix-manifest.json
+

@@ -8,7 +8,14 @@ use App\Helpers\Helper;
 use App\Models\CustomForm;
 use App\Mail\CustomForm as MailForm;
 use App\Models\Page;
-// use App\Models\Product;
+use App\Models\Blog;
+use App\Models\EventCalender;
+use App\Models\PlatinumPartner;
+use Carbon\Carbon;
+use App\Models\ContactForm;
+use App\Models\M2MOffer;
+use App\Mail\ContactUs;
+
 use Log;
 
 class SitePageController extends BaseController
@@ -17,11 +24,14 @@ class SitePageController extends BaseController
     private $customForm;
     private $Page;
     private $product;
-    public function __construct(CustomForm $customForm,Page $page,Product $product){
-
+    public function __construct(CustomForm $customForm,Page $page,EventCalender $eventCalender,PlatinumPartner $platinumPartners,Blog $news,ContactForm $contactForm,M2MOffer $offers){
+        $this->eventCalender = $eventCalender;
+        $this->platinumPartners = $platinumPartners;
         $this->customForm = $customForm;
+        $this->news = $news;
         $this->Page = $page;
-        $this->product = $product;
+        $this->contactForm = $contactForm;
+        $this->offers = $offers;
     }
 
     public function renderMainPage(Request $request){
@@ -31,12 +41,14 @@ class SitePageController extends BaseController
             $Page = Page::where('is_active',1)->where('is_home_page',1)->first();
             return view(config('site_config.assets.home_pages').$Page->view,[
                 'title' => $Page->name,
+          
             ]);
 
         }catch(\Exception $e){
 
             return view(config('site_config.assets.home_pages').'indexv1',[
                 'title' => 'Home',
+       
             ]);
         }
 
@@ -45,6 +57,7 @@ class SitePageController extends BaseController
     }
 
     public function renderSitePages(Request $request,$page){
+
 
         $Page = Page::where('is_active',1)->where('slug',$page)->first();
         try{
@@ -133,25 +146,112 @@ class SitePageController extends BaseController
         }
     }
 
+    public function benefitsTab(Request $request){
 
-    // Get Featured Products top rated
-    public function getListingProducts(Request $request){
-        $this->product->setLength(8);
-        $this->product->setStart(1);
-        $this->product->setOrderBy('created_at');
-        $className = $this->product->class_name;
+    }
 
-        $Products = $this->product->getAll([['categories','products.category_id','=','categories.id']],['products.id','products.category_id','products.name','products.description','products.product_code','categories.name as category','images.image_url'],[['products.category_id','=',$request->category]]);
-        // dd($request);
-        // dd($Products);
-        if($request->ajax()){
-            return $this->sendResponse($Products);
-        }
+    public function eventsTab(Request $request){
+        // $this->eventCalender->setOrderBy('id');
+        // $this->eventCalender->setOrder('desc');
+                // Get today's date
+        $today = Carbon::now();
+        $todayFomat = $today->format('Y-m-d');
+        // Get the date one month after today
+        $oneMonthAfter = $today->addMonth(config('site_config.constants.events_month_range'));
+        // dd( $oneMonthAfter,config('site_config.constants.events_month_range'));
+        $this->eventCalender->setFilters( ['event_date','>=',$todayFomat]);
+        $this->eventCalender->setFilters(  ['event_date','<=',$oneMonthAfter->format('Y-m-d')]);
 
-        return view('sections.wigets.featured-products',[
-            'Products' => $Products,
-            'category' => $request->category
+
+        $Events = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
+
+        return view('tabs.events',[
+            'Events' => $Events,
         ]);
     }
 
+    public function newsTab(Request $request){
+        $this->news->setOrderBy('id');
+        $this->news->setOrder('desc');
+        $News = $this->news->getAll([],['blogs.*','images.image_url']);
+
+        return view('tabs.news',[
+            'News' => $News,
+        ]);
+    }
+
+    public function offersTab(Request $request){
+
+        $this->offers->setOrderBy('id');
+        $this->offers->setOrder('desc');
+        $Offers = $this->offers->getAll([],['m2m_offers.*','images.image_url']);
+        return view('tabs.offers',[
+            'Offers' => $Offers,
+        ]);
+    }
+
+    public function platinumPartnersTab(Request $request){
+        // dd($request->limit);
+        if($request->limit){
+            $view = 'tabs.footer-platinum-partners';
+        }else{
+            $view = 'tabs.platinum-partners';
+        }
+        $this->platinumPartners->setOrderBy('id');
+        $this->platinumPartners->setOrder('desc');
+        $platinumPartners = $this->platinumPartners->getAll([],['platinum_partners.*','images.image_url']);
+        // dd($view);
+        return view($view,[
+            'PlatinumPartners' => $platinumPartners,
+        ]);
+    }
+
+    public function allTab(Request $request){
+        $this->news->setOrderBy('id');
+        $this->news->setOrder('desc');
+        $News = $this->news->getAll([],['blogs.*','images.image_url']);
+
+        // $this->eventCalender->setOrderBy('id');
+        // $this->eventCalender->setOrder('desc');
+            $today = Carbon::now();
+        $todayFomat = $today->format('Y-m-d');
+        // Get the date one month after today
+        $oneMonthAfter = $today->addMonth(config('site_config.constants.events_month_range'));
+        $this->eventCalender->setFilters( ['event_date','>=',$todayFomat]);
+        $this->eventCalender->setFilters(  ['event_date','<=',$oneMonthAfter->format('Y-m-d')]);
+        $Events = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
+
+        return view('tabs.all',[
+            'News' => $News,
+            'Events' => $Events
+        ]);
+    }
+
+    public function contactUs(Request $request){
+        try{
+            $response = $this->contactForm->store($request);
+            if($response){
+                $data = $this->contactForm->find($response);
+                $message = Helper::sendMail(env('MAIL_FROM_ADDRESS'),new Contactus($data));
+                if($message ==""){
+                    $response = [
+                        'success'=>true,
+                        'message'=>'Your form has been submitted',
+                        'route'=>'/',
+                        'data'=>[
+                            'route'=>'/'
+                        ]
+                    ];
+                    return response()->json($response);
+                }else{
+                    return $this->sendError($message);
+                }
+            }
+        }catch(\Exception $e){
+            Log::error($e->getMessage());
+            return $this->sendError("Cannot Store Form Data");
+        }
+
+
+    }
 }

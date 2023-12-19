@@ -4,6 +4,7 @@ return [
     'register_successfully' => "Register Successfully",
     'edit' => 'Edit :attribute',
     'success_msg' => ':action Successfully',
+     'logged_in' => 'LoggedIn Successfully',
     'contact_placeholder_msg' => 'How can we help you? Feel free to get in touch!',
     'error_msg' => 'Error while :action',
     'mail_error' => 'Enable to send email, sorry for the inconvience',
@@ -17,6 +18,10 @@ return [
     'user_not_found' => 'User With These Credentials Not Found',
     'invite_sent' => 'Invite Sent Successfully',
     'token_not_found' => 'Token Not Found',
+    'add_new_msg' => 'Add New :attribute',
+    'welcome_msg' => 'Hi, :attribute',
+    'edit_msg' => 'Edit :attribute',
+    'count_msg' => 'Total :attribute',
     'errors' => [
         '500' => [
             'code'  => '500',

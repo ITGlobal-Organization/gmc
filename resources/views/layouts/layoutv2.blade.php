@@ -9,115 +9,104 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="{{ custom_asset('style.css','css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ custom_asset('extra.css','css') }}" rel="stylesheet" type="text/css">
-	
-	
+
+	<link href="{{ custom_asset('easy-responsive-tabs.css','css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset(config('site_config.assets.plugins').'select2/css/select2.css') }}" rel="stylesheet" />
 	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.min.css" rel="stylesheet">
-	<link rel="icon" type="image/png" href="./images/favicon.png">
-	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+	<link rel="icon" type="image/png" href="{{ custom_asset('favicon.jpg') }}">
+	<link rel="stylesheet" type="text/css" href="{{ custom_asset('font-awesome.min.css','css') }}">
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Select2 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+
+
     <link href="{{ custom_asset('owl.carousel.css','css') }}" rel="stylesheet" type="text/css">
     <link href="{{ custom_asset('owl.theme.css','css') }}" rel="stylesheet" type="text/css">
+<!-- 
+	<link href="{{ custom_asset('easy-responsive-tabs.css','css') }}" rel="stylesheet" type="text/css"> -->
+
+
+	<!-- <script src="{{ asset(config('site_config.assets.plugins').'jquery/jquery.js') }}"></script>  -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+	
 
 	<title>{{ config('app.name')}} | {{ isset($title)?$title:'Page'}}</title>
 </head>
 <body>
 <!--Start Header-->
-@php 
+@php
 	$User = auth()->user();
 @endphp
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
-	@include('headers.headerv2',[
+	@include('headers.headerv4',[
 		'User' => $User
 	]);
 </div>
 
 <!--End Header-->
 
-<!-- Start SideBar -->
-@if(isset($User))
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border">
-	@include('sidebars.sidebarv2');
-</div>
-@endif
-<!-- End SideBar -->
+
 <!--Start Middle-->
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
 @include('components.loader')
 @yield('content')
+
 </div>
 <!--End Middle-->
 
 <!--Start Footer-->
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
 @include('footers.footerv2');
+@include('modals.modal')
 </div>
 <!--End Footer-->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
+
+
+
+
+    <!-- <script src="{{ asset(config('site_config.assets.plugins').'jquery/jquery.min.js') }}"></script> -->
+
+
+
+
+
+
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.all.min.js"></script>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <!-- Select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script>
+let blade_config = {
+	baseUrl : "{{ config('app.url') }}"
+}
+</script>
 <script src="{{ custom_asset('common.js','scripts')}}"></script>
 <script src="{{ custom_asset('owl.carousel.js','scripts') }}"></script>
 <script src="{{ custom_asset('utils.js','scripts') }}"></script>
-<script>
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show-head");
-}
-
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn-head')) {
-    var dropdowns = document.getElementsByClassName("dropdownhead-contenthead");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show-head')) {
-        openDropdown.classList.remove('show-head');
-      }
-    }
-  }
-}
-</script>
-
-<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js" type="text/javascript"></script> -->
-<script type="text/javascript">
-	$( document ).ready( function () {
-
-
-		$( ".sliding-search" ).hide();
-		$( ".show_hide1" ).show();
-
-		$( '.show_hide1' ).click( function () {
-			$( ".sliding-search" ).slideToggle();
-		} );
-
-	} );
-</script>
 
 <script>
-function openCity(cityName) {
-  var i;
-  var x = document.getElementsByClassName("city");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
-  }
-  document.getElementById(cityName).style.display = "block";  
-}
-</script>
+		// $(document).ready(function(){
+		// 	$('select').select2();
+		// })
 
-
-<script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "300px";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
-</script> 
+	</script>
 @yield('scripts')
 
 </body>
