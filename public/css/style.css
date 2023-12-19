@@ -237,8 +237,8 @@ p {
     padding: 0px 0px 0px 0px;
     background-color: #fff;
     border-radius: 10px;
-    height: auto;
-    min-height: 400px;
+    height: 425px;
+    /* min-height: 400px; */
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 .box-img {
