@@ -162,10 +162,7 @@ $spaceFinder = $this->spaceFinder->first('slug',$slug,'=',['user'],[],['space_fi
 
     public function setGeneralFilters(Request $request)
     {
-        $this->spaceFinder->setLength($request->has('length') ? $request->length : 10);
-        $this->spaceFinder->setStart($request->has('start') ? $request->start : 1);
-        $this->spaceFinder->setOrderBy($request->has('orderBy') ? $request->orderBy : 'created_at');
-        $this->spaceFinder->setOrder($request->has('order') ? $request->order : 'desc');
+        parent::setGeneralFilters($request);
         if($request->has('not_approved')){
             $this->spaceFinder->setFilters(['is_approved','=',0]);
         }
