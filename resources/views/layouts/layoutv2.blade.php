@@ -93,7 +93,7 @@
     <!-- Select2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script>
-let blade_config = {
+const blade_config = {
 	baseUrl : "{{ config('app.url') }}"
 }
 </script>

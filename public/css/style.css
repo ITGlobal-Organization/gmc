@@ -307,7 +307,7 @@ p {
     margin: 0px 0px 5px 0px;
     padding: 0px 15px 0px 15px;
     width: 100%;
-    height: 55px;
+    /* height: 55px; */
     font-family: 'Montserrat-Regular';
     font-weight: 100;
     font-size: 14px;
@@ -317,6 +317,13 @@ p {
     display: inline-block;
     overflow: hidden;
     border: 0px solid red;
+}
+.box-text  p{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    overflow: hidden;
 }
 .box-text1 {
     margin: 0px 0px 20px 0px;
@@ -1931,3 +1938,5 @@ text-decoration: none;
 
 .list30 .row .edit-btn{margin: 20px 11px 0 0;}
 .list30 .row .delete-btn{margin: 20px 11px 0 0;}
+.dashboard-layout .events-tab .main-box{min-height: 500px !important;}
+blockquote{border: none !important;}

@@ -71,7 +71,7 @@
 	</div>
 
 	   <!--Start Middle-->
-	   <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 border padding">
+	   <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 border padding dashboard-layout">
         	@yield('content')
        </div>
 	</div>
@@ -106,6 +106,11 @@
     <!-- Select2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
+	<script>
+		const blade_config = {
+			baseUrl : "{{ config('app.url') }}"
+		}
+	</script>
 <script src="{{ custom_asset('common.js','scripts')}}"></script>
 <script src="{{ custom_asset('owl.carousel.js','scripts') }}"></script>
 <script src="{{ custom_asset('utils.js','scripts') }}"></script>
