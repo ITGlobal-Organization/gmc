@@ -5,7 +5,7 @@
         <div class="middle mtb-60">
             <h1 class="text-center mb-25">
                 {{ trans('messages.add_new_msg', [
-                    'attribute' => trans('lang.spacefinder'),
+                    'attribute' => trans('lang.user'),
                 ]) }}
             </h1>
             <div class="contact-success"></div>
