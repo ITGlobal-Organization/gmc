@@ -5,7 +5,7 @@
         <div class="middle mtb-60">
             <h1 class="text-center mb-25">
                 {{ trans('messages.add_new_msg', [
-                    'attribute' => trans('lang.spacefinder'),
+                    'attribute' => trans('lang.user'),
                 ]) }}
             </h1>
             <div class="contact-success"></div>
@@ -87,6 +87,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25 upload-div">
                             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20" style="position:relative;">
+                                <label for="img">Upload Profile Picture:</label>
                                 <input type="file" name="filename[]" class="form-control file"
                                     accept=".png,.jpeg,.jpg">
                                 <div class="clr"></div>

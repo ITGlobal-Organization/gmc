@@ -38,7 +38,7 @@
                         <!--<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>-->
                         <div class="box-name mtb-15">
                             <a href="Employee-details.php">
-                                {{ $Employee->title }}
+                                {{ $Employee->first_name }} {{$Employee->last_name}}
                             </a>
 
                         </div>

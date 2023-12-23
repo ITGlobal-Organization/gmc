@@ -6,7 +6,7 @@
             <h1 class="text-center mb-25">{{ trans('messages.add_new_msg',[
                 'attribute' => trans('lang.news')
             ]) }}</h1>
-          
+
             <div class="contact-success"></div>
             <div class="contact-error"></div>
             <form action="" class="store" enctype="multipart/form-data">
@@ -55,18 +55,19 @@
                             <div class="clr"></div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 border mb-20 pt-4" style="position:relative;">
+                            <label for="img">Upload News Image:</label>
                             <input type="file" name="filename[]" class="form-control file" accept=".png,.jpeg,.jpg">
                             <div class="clr"></div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right mb-20">
                             <input type="submit" class="ct-submit" value="Submit">
                         </div>
-                        
+
                     </div>
                     </div>
                 </div>
-        
-                
+
+
         </div>
         </form>
         <div class="clr"></div>
