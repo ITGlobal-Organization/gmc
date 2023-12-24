@@ -70,6 +70,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25 upload-div">
                             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20" style="position:relative;">
+                                <label for="img">Upload Image:</label>
                                 <input type="file" name="filename[]" class="form-control file"
                                     accept=".png,.jpeg,.jpg">
                                 <div class="clr"></div>

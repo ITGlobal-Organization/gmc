@@ -62,7 +62,7 @@ class EmployeeController extends BaseController
         $this->user->removeGeneralFilters($request);
 
 
-        $Employees = $this->user->getAll([],['users.*','images.image_url'],[['user_id','=','62']]);
+        $Employees = $this->user->getAll([],['users.*','images.image_url'],[['user_id','=',$this->user->id]]);
         // dd($Employees);
         return view('user.employee.listing',[
             'Employees' => $Employees,

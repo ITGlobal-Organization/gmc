@@ -54,6 +54,7 @@
                             <div class="clr"></div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20" style="position:relative;">
+                            <label for="img">Upload News Image:</label>
                             <input type="file" name="filename[]" class="form-control file">
                             <div class="clr"></div>
                         </div>
