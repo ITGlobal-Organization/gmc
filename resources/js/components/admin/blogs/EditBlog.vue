@@ -55,6 +55,7 @@ data(){
                 author:'',
                 publisher:'',
                 is_active:0,
+                is_approved:'',
                 media:[],
                 gallery:[]
         },
@@ -142,11 +143,40 @@ mounted(){
                     },
                     required:true,
                 },
+                // {
+                //     label:Language.status,
+                //     field:"is_active",
+                //     class:"vue-select1",
+                //     grid:"col-md-6 col-12",
+                //     type:"select",
+                //     isdynamic:false,
+                //     searchable:true,
+                //     options:function(){
+                //             if(this.isdynamic){
+                //                 return ref.options;
+                //             }
+                //             return [
+                //                 {
+                //                     text:Language.active,
+                //                     id:1
+                //                 },
+                //                 {
+                //                     text:Language.inactive,
+                //                     id:0
+                //                 }
+                //             ];
+                //     },
+                //     placeholder:function(){
+                //         return Language.placholder_msg(this.label)
+                //     },
+
+                //     required:true,
+                // },
                 {
-                    label:Language.status,
-                    field:"is_active",
+                    label:Language.is_approved,
+                    field:"is_approved",
                     class:"vue-select1",
-                    grid:"col-md-6 col-12",
+                    grid:"col-md-2 col-12",
                     type:"select",
                     isdynamic:false,
                     searchable:true,
@@ -156,11 +186,11 @@ mounted(){
                             }
                             return [
                                 {
-                                    text:Language.active,
+                                    text:Language.yes,
                                     id:1
                                 },
                                 {
-                                    text:Language.inactive,
+                                    text:Language.no,
                                     id:0
                                 }
                             ];
@@ -226,7 +256,7 @@ methods:{
             this.form.publisher = record.value.publisher;
             this.form.is_active = record.value.is_active;
             this.form.description = record.value.description?record.value.description:"";
-
+            this.form.is_approved = record.value.is_approved;
             this.form.gallery = record.value.media;
             let data = []
             let ref = this;
