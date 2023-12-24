@@ -295,9 +295,14 @@ export default {
         async updateStatus(){
             const {confirmAlert,errorAlert,successAlert} = useService();
             let ref = this
-            let ids = this.record_checked.filter(record => {
-                    if(record.checked == true) return record.id
+            let ids = []
+             this.record_checked.filter(record => {
+                    if(record.checked == true){
+                        ids.push(record.id)
+                       
+                    } 
                 })
+                console.log(ids)
                 if(ids.length > 0) {
                     confirmAlert(async () => {
                     this.loader = true
