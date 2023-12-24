@@ -317,8 +317,6 @@ p {
     display: inline-block;
     overflow: hidden;
     border: 0px solid red;
-}
-.box-text  p{
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
