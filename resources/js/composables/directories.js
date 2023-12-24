@@ -22,8 +22,8 @@ export default function useDirectory() {
 
         await axiosWrapper.post(`/admin/directory`, data);
     }
-    const udpateStatus = async(id) => {
-        await axiosWrapper.put(`/admin/directory/update/status`, { id })
+    const updateStatus = async(data) => {
+        await axiosWrapper.post(`/admin/directory/update/status`, data)
     }
 
     const update = async(id, data) => {
@@ -52,7 +52,7 @@ export default function useDirectory() {
         getAllPublic,
         records,
         store,
-        udpateStatus,
+        updateStatus,
         get,
         record,
         update,

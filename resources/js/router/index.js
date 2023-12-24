@@ -27,10 +27,30 @@ import EditBlog from '../components/admin/blogs/EditBlog.vue';
 import Directory from '../components/admin/directories/Directory.vue';
 import CreateDirectory from '../components/admin/directories/CreateDirectory.vue';
 import EditDirectory from '../components/admin/directories/EditDirectory.vue';
+// PlatinumPartner
+import PlatinumPartner from '../components/admin/platinumpartners/PlatinumPartners.vue';
+import CreatePlatinumPartner from '../components/admin/platinumpartners/CreatePlatinumPartners.vue';
+import EditPlatinumPartner from '../components/admin/platinumpartners/EditPlatinumPartners.vue';
+// SpaceFinders
+import SpaceFinder from '../components/admin/spacefinders/SpaceFinder.vue';
+import CreateSpaceFinder from '../components/admin/spacefinders/CreateSpaceFinder.vue';
+import EditSpaceFinder from '../components/admin/spacefinders/EditSpaceFinder.vue';
+// EventCalender
+import EventCalender from '../components/admin/eventcalenders/EventCalender.vue';
+import CreateEventCalender from '../components/admin/eventcalenders/CreateEventCalender.vue';
+import EditEventCalender from '../components/admin/eventcalenders/EditEventCalender.vue';
 // Users
 import UserIndex from '../components/admin/users/Index.vue';
 import UserCreate from '../components/admin/users/Create.vue';
 import UserEdit from '../components/admin/users/Edit.vue';
+
+// Offers
+import OfferIndex from '../components/admin/offers/Index.vue';
+import OfferCreate from '../components/admin/offers/Create.vue';
+import OfferEdit from '../components/admin/offers/Edit.vue';
+
+// Directory Category
+import CategoryIndex from '../components/admin/categories/Index.vue';
 
 
 const routes = [
@@ -129,6 +149,13 @@ const routes = [
         component: Directory,
         props: true,
     },
+       // Directory Category
+    {
+        path: "/admin/directory/categories",
+        name: "admin.directory.category",
+        component: CategoryIndex,
+        props: true,
+    },
     {
         path: "/admin/directory/create",
         name: "admin.directory.create",
@@ -139,6 +166,63 @@ const routes = [
         path: "/admin/directory/edit/:id",
         name: "admin.directory.edit",
         component: EditDirectory,
+        props: true,
+    },
+    // PlatinumPartner
+    {
+        path: "/admin/platinumpartners",
+        name: "admin.platinumpartners",
+        component: PlatinumPartner,
+        props: true,
+    },
+    {
+        path: "/admin/platinumpartners/create",
+        name: "admin.platinumpartners.create",
+        component: CreatePlatinumPartner,
+        props: true,
+    },
+    {
+        path: "/admin/platinumpartners/edit/:id",
+        name: "admin.platinumpartners.edit",
+        component: EditPlatinumPartner,
+        props: true,
+    },
+    // SpaceFinder
+    {
+        path: "/admin/spacefinder",
+        name: "admin.spacefinder",
+        component: SpaceFinder,
+        props: true,
+    },
+    {
+        path: "/admin/spacefinder/create",
+        name: "admin.spacefinder.create",
+        component: CreateSpaceFinder,
+        props: true,
+    },
+    {
+        path: "/admin/spacefinder/edit/:id",
+        name: "admin.spacefinder.edit",
+        component: EditSpaceFinder,
+        props: true,
+    },
+    // EventCalender
+    {
+        path: "/admin/eventcalender",
+        name: "admin.eventcalender",
+        component: EventCalender,
+        props: true,
+    },
+    {
+        path: "/admin/eventcalender/create",
+        name: "admin.eventcalender.create",
+        component: CreateEventCalender,
+        props: true,
+    },
+    {
+        path: "/admin/eventcalender/edit/:id",
+        name: "admin.eventcalender.edit",
+        component: EditEventCalender,
         props: true,
     },
     // Users
@@ -160,6 +244,27 @@ const routes = [
         component: UserEdit,
         props: true,
     },
+
+     // Offers
+     {
+        path: "/admin/offers",
+        name: "admin.offers",
+        component: OfferIndex,
+        props: true,
+    },
+    {
+        path: "/admin/offers/create",
+        name: "admin.offers.create",
+        component: OfferCreate,
+        props: true,
+    },
+    {
+        path: "/admin/offers/edit/:id",
+        name: "admin.offers.edit",
+        component: OfferEdit,
+        props: true,
+    },
+ 
 
 
 

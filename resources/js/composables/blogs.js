@@ -22,8 +22,8 @@ export default function useBlogs() {
 
         await axiosWrapper.post(`/admin/blogs`, data);
     }
-    const udpateStatus = async(id) => {
-        await axiosWrapper.put(`/admin/blogs/update/status`, { id })
+    const updateStatus = async(data) => {
+        await axiosWrapper.post(`/admin/blogs/update/status`, data);
     }
 
     const update = async(id, data) => {
@@ -52,7 +52,7 @@ export default function useBlogs() {
         getAllPublic,
         records,
         store,
-        udpateStatus,
+        updateStatus,
         get,
         record,
         update,

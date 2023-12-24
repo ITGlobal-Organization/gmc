@@ -1,145 +1,140 @@
-@extends('layouts.layoutv1')
+@extends('layouts.layoutv2')
 
 @section('content')
-@php $name = explode(' ',$Page->name); @endphp
-@include('banners.bannerv4',[
-   'heading' => count($name)>1? count($name)-2>0?"<span>". implode(" ",array_slice($name,count($name)-2))."</span>":"<span>".$name[0]."</span> ".$name[count($name)-1]:"<span>".$name[0]."</span>",
-    'subheading' => $Page->description
-  ])
-<!-- CONTACT DETAIL SECTION BEGIN -->
-<section class="contact-detail-sec">
-      <div class="container">
-         <div class="row contact-boxes">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
-               <div class="contact-detail-content">
-                  <h6>{{ trans('lang.call_us') }}</h6>
-                  <a href="tel:{{ config('site_config.contacts.phone')}}">{{ config('site_config.contacts.phone')}}</a>
-               </div>
+    <!--Start Middle-->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
+        <div class="middle mtb-60">
+
+            <h1 class="text-center mb-25">Contact us</h1>
+            <p class="text-center mb-40">
+                Please get in touch with us by telephone or email. Alternatively, you can use the enquiry form below.
+            </p>
+
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 border mtb-25">
+
+                <h5 class="mb-20">Get In Touch</h5>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border border-bt padding">
+                    <div class="contact-info">
+                        <i class="fas fa-phone fa-spin"></i>
+                    </div>
+                    <div class="contact-info2"><b>Phone</b> <br><span class="link"><a href="tel:01738448325">01738
+                                448325</a></span></div>
+
+                    <div class="clr"></div>
+                </div>
+
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border border-bt padding">
+                    <div class="contact-info">
+                        <i class="fas fa-mail-bulk fa-spin"></i>
+                    </div>
+                    <div class="contact-info2"><b>Email</b> <br><span class="link"><a
+                                href="mailto:info@perthshirechamber.co.uk">info@perthshirechamber.co.uk</a></span></div>
+
+                    <div class="clr"></div>
+                </div>
+
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border border-bt padding">
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt fa-spin"></i>
+                    </div>
+
+                    <div class="contact-info2"><b>Location</b> <br>Perthshire Chamber of Commerce
+                        66 Tay Sreet Perth United Kingdom PH2 8RA
+
+                    </div>
+
+                    <div class="clr"></div>
+                </div>
+
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
-               <div class="contact-detail-content">
-                  <h6>{{ trans('lang.email_us') }}</h6>
-                  <a href="mailto:{{ config('site_config.contacts.email')}}">{{ config('site_config.contacts.email')}}</a>
-               </div>
+
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 border mtb-25">
+                <h5 class="mb-20">Send A Massage</h5>
+                <div class="success"></div>
+                <form action="#" id="contact-us" enctype="multipart/form-data" method="post">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mb-20">
+                        <input type="text" class="serch-input" value="" placeholder="Full Name" name="name">
+                        <div class="clr"></div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mb-20">
+                        <input type="text" class="serch-input" value="" placeholder="Email" name="email">
+                        <div class="clr"></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mb-20">
+                        <input type="text" class="serch-input" value="" placeholder="Phone" name="phone">
+                        <div class="clr"></div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mb-20">
+                        <textarea class="contact-input" placeholder="Massage" name="message"></textarea>
+                        <div class="clr"></div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left padding">
+                        <input type="submit" class="ct-submit" value="Submit">
+                    </div>
+                </form>
+
+
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-12 col-sm-6">
-               <div class="contact-detail-content">
-                  <h6>{{ trans('lang.follow_us') }}</h6>
-                  <div class="social-icon-links">
-                     <ul>
-                        <li><a href="{{ config('site_config.contacts.instagram')}}"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                        <li><a href="{{ config('site_config.contacts.facebook')}}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                        
-                     </ul>
-                  </div>
-               </div>
+
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2208.3009820697243!2d-3.428790422783098!3d56.393633642450624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48863b3e8d1dc883%3A0x1e21ba5efb7c3ca8!2sThe%20Perthshire%20Chamber%20Of%20Commerce!5e0!3m2!1sen!2s!4v1696781648914!5m2!1sen!2s"
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
-         </div>
-         <div class="row embed-map">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-               <div class="google-map-embed">
-                  <iframe src="{{ config('site_config.contacts.map')}}" width="100%" height="650" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-               </div>
-            </div>
-         </div>
-      </div>
-</section>
- <!-- CONTACT DETAIL SECTION END -->
-<!-- CONTACT FORM SECTION BEGIN -->
-   <section class="contact-form-sec form">
-      @include('contact-forms.formv1',[
-         'heading' => "<span>How Can We</span> Help You?",
-         'description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-         'form' => [
-            'class' => 'contact-form-fields',
-            'container_class' => 'row',
-            'fields' => [
-               [
-                  
-                  'type'  => 'text',
-                  'grid' => 'col-lg-4 col-md-4 col-sm-4 col-12',
-                  'class' => 'field-inner-con',
-                  'field_class' => 'form-field',
-                  'name' => 'first_name',
-                  'placeholder' =>  trans('messages.placeholder',['attribute' => trans('lang.name')]) 
-               ],
-               [
-                  
-                  'type'  => 'email',
-                  'class' => 'field-inner-con',
-                  'grid' => 'col-lg-4 col-md-4 col-sm-4 col-12',
-                  'field_class' => 'form-field',
-                  'name' => 'email',
-                  'placeholder' => trans('messages.placeholder',['attribute' => trans('lang.email')]) 
-               ],
-               [
-                  
-                  'type'  => 'tel',
-                  'class' => 'field-inner-con',
-                  'grid' => 'col-lg-4 col-md-4 col-sm-4 col-12',
-                  'field_class' => 'form-field',
-                  'name' => 'phone',
-                  'placeholder' => trans('messages.placeholder',['attribute' => trans('lang.phone')]) 
-               ],
-               [
-                  
-                  'type'  => 'text',
-                  'class' => 'field-inner-con',
-                  'grid' => 'col-lg-6 col-md-6 col-sm-6 col-12',
-                  'field_class' => 'form-field',
-                  'name' => 'subject',
-                  'placeholder' => trans('messages.placeholder',['attribute' => trans('lang.vehicle-detail')]) 
-               ],
-               [
-                  
-                  'type'  => 'select',
-                  'label' => trans('lang.service'),
-                  'grid' => 'col-lg-6 col-md-6 col-sm-6 col-12',
-                  'class' => 'field-inner-con',
-                  'field_class' => 'form-field',
-                  'name' => 'services',
-                  'options' => [
-                     [
-                        'value' => 'Polishing/Paint Correction',
-                        'text' => 'Polishing/Paint Correction'
-                     ],
-                     [
-                        'value' => 'Ceramic Coating Paint',
-                        'text' => 'Ceramic Coating Paint'
-                     ],
-                     [
-                        'value' => 'Glass Ceramic Coating',
-                        'text' => 'Glass Ceramic Coating'
-                     ],
-                     [
-                        'value' => 'Wheel Ceramic Coating',
-                        'text' => 'Wheel Ceramic Coating'
-                     ],
-                     [
-                        'value' => 'Interior Ceramic Coating',
-                        'text' => 'Interior Ceramic Coating'
-                     ],
-                     [
-                        'value' => 'Paint Protection Film',
-                        'text' => 'Paint Protection Film'
-                     ],
-                  ],
-                  'multiple' => true,
-                  'placeholder' => trans('messages.placeholder',['attribute' => trans('lang.service')]) 
-               ],
-               [
-                  
-                  'type'  => 'textarea',
-                  'class' => 'field-inner-con',
-                  'grid' => 'col-lg-12 col-md-12 col-sm-12 col-12',
-                  'field_class' => 'form-field',
-                  'name' => 'message',
-                  'placeholder' => trans('messages.placeholder',['attribute' => trans('lang.message')]) 
-               ]
-            ]
-         ]
-      ])
-   </section>
-   <!-- CONTACT FORM SECTION END -->
-   @include('sections.newsletterv1')
+
+
+            <div class="clr"></div>
+        </div>
+        <div class="clr"></div>
+
+    </div>
+    <!--End Middle-->
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#contact-us').validate({
+                rules: {
+                    name: "required",
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    phone: {
+                        required: true,
+                        validatePhone: true
+
+                    },
+                    // message: "required"
+                },
+                messages: {
+                    name: "Please enter your name",
+                    email: {
+                        required: "Please enter your email",
+                        email: "Please enter a valid email"
+                    },
+                    // message: "Please enter a message"
+                },
+                submitHandler: function(form) {
+                    let data = new FormData(form);
+                    ajaxPost("{{ route('contact-us') }}", data, ".success");
+                }
+            });
+        });
+        jQuery.validator.addMethod("validatePhone", function(phone_number, element) {
+            phone_number = phone_number.replace(/\s+/g, "");
+            return this.optional(element) || phone_number.length > 9 &&
+                phone_number.match(/^(\+?1-?)?(\([2-9]\d{2}\)|[2-9]\d{2})-?[2-9]\d{2}-?\d{4}$/);
+        }, "Please specify a valid phone number");
+    </script>
 @endsection

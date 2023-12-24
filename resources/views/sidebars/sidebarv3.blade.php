@@ -2,7 +2,6 @@
 <div class="text-right menu-set">
 <div id="mySidenav" class="sidenav"> <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
-	
 <div id="list7">
     <ul>
       <li>
@@ -25,14 +24,14 @@
 		</li>
 	 <li>
 		 <a href="#"><img src="images/profile.png" alt=""/ width="20">&nbsp;&nbsp;Profile</a>
-		</li> 
+		</li>
     </ul>
     <div class="clr"></div>
-</div>	
-	
-	
-	
-	
+</div>
+
+
+
+
 </div>
 <span class="menu-mobile" onclick="openNav()">&#9776;</span>
 </div>
@@ -45,4 +44,4 @@ function openNav() {
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
-</script> 
+</script>

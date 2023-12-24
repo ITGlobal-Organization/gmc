@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ Lang.create_msg(Lang.blog) }}</h1>
+                    <h1>{{ Lang.create_msg(Lang.news) }}</h1>
                 </div>
                 <!-- <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -21,7 +21,7 @@
 
         <!-- Default box -->
         <div class="card card-secondary card-outline">
-            
+
             <div class="card-body">
                 <Form :fields="FormFields" :data="FormData" :action="store" :name="name" :errors="errors"/>
             </div>
@@ -29,7 +29,7 @@
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
-        
+
         </section>
 </template>
 <script>
@@ -60,14 +60,14 @@ export default {
                 description:'',
                 publish_at:new Date(),
                 author:'',
-                publisher:'', 
+                publisher:'',
                 media:[],
                 gallery:[]
             },
-            name:"Create Blog",
+            name:"Create News",
         }
     },
-    mounted(){ 
+    mounted(){
         let ref = this;
         ref.getAllUsers();
         ref.FormFields = [
@@ -114,14 +114,14 @@ export default {
                     searchable:true,
                     options:function(){
                             if(this.isdynamic){
-                                return ref.users;            
+                                return ref.users;
                             }
                             return [];
                     },
                     placeholder:function(){
                         return Language.placholder_msg(this.label)
                     },
-                    
+
                     required:true,
                 },
                 {
@@ -146,7 +146,7 @@ export default {
                     },
                     required:true,
                 },
-               
+
                 {
                     label:Language.image,
                     field:"gallery",
@@ -162,7 +162,7 @@ export default {
                     fileType:"image/jpeg, image/png",
                     maxFiles:1
                 },
-                
+
         ]
 
         // var autocomplete = new google.maps.places.Autocomplete(
@@ -178,7 +178,7 @@ export default {
             let ref = this
             console.log(this.FormData);
             await store(this.FormData).then(async (response) => {
-                successAlert(Language.success_msg.replace(':attribute',Language.blog).replace(':action',Language.saved))
+                successAlert(Language.success_msg.replace(':attribute',Language.news).replace(':action',Language.saved))
                 setTimeout(() => {
                     ref.$router.push('/admin/blogs')
                 }, 3000);
@@ -195,11 +195,11 @@ export default {
             });;
             this.loader =false;
             // this.errors = errors.value;
-            
-    
+
+
         },
         setFormData(field,data){
-            this.FormData[field] = data; 
+            this.FormData[field] = data;
             console.log(this.FormData);
         },
         async getAllUsers(){
