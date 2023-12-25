@@ -221,7 +221,7 @@ class Directory extends BaseModel
 
 
     // pivot relation
-    public function categories(){
+    public function relatedCategories(){
         return $this->belongsToMany(Category::class,'category_directory');
     }
 }
