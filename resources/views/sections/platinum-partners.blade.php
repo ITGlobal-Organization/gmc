@@ -24,10 +24,10 @@
         <div class="main-box">
 
             <div class="brand-img">
-                <a href="#"><img src="{{ $PlatinumPartner->image_url }}" alt="" width="150" /></a>
+                <a href="{{ route('platinum-partners.get',$PlatinumPartner->slug) }}"><img src="{{ $PlatinumPartner->image_url }}" alt="" width="150" /></a>
             </div>
             <div class="brand-name">
-                <a href="#">
+                <a href="{{ route('platinum-partners.get',$PlatinumPartner->slug) }}">
                     {{$PlatinumPartner->title}}
                 </a>
             </div>
