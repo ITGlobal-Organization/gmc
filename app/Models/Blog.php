@@ -47,8 +47,6 @@ class Blog extends BaseModel
             else if(isset($user) && (str_contains($url,"user"))){
 
                 $builder->where($table.'.is_delete', '=', 0)->where($table.'.is_active','=',1)->where('author',$user->id);
-            }else if(isset($user)){
-                $builder->where($table.'.is_delete', '=', 0)->where('author',$user->id);
             }
             else{
                 $builder->where($table.'.is_delete', '=', 0)->where($table.'.is_active','=',1)->where($table.'.is_approved',1);
