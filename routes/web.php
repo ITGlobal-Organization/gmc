@@ -76,7 +76,7 @@ Route::get('/search-events',[EventCalenderController::class,'getEventsListing'])
 Route::get('/benefits-tab',[SitePageController::class,'benefitsTab'])->name('benefits-tab.ajax');
 Route::get('/all-tab',[SitePageController::class,'allTab'])->name('all-tab.ajax');
 Route::get('/events-tab',[SitePageController::class,'eventsTab'])->name('events-tab.ajax');
-Route::get('/offers',[SitePageController::class,'offersTab'])->name('offers-tab.ajax');
+Route::get('/offers-tab',[SitePageController::class,'offersTab'])->name('offers-tab.ajax');
 Route::get('/news-tab',[SitePageController::class,'newsTab'])->name('news-tab.ajax');
 Route::get('/platinum-partners-tab',[SitePageController::class,'platinumPartnersTab'])->name('platinum-partners-tab.ajax');
 // Route::get('/platinum-partners',[SitePageController::class,'platinumPartners'])->name('platinum-partners.ajax');
@@ -86,6 +86,13 @@ Route::prefix('platinum-partners')->group(function () {
     Route::get('/',[PlatinumPartnerController::class,'platinumPartners'])->name('platinum-partners.index');
     Route::get('/ajax',[PlatinumPartnerController::class,'getPlatinumPartnersListing'])->name('platinum-partners.ajax');
     Route::get('/{slug}',[PlatinumPartnerController::class,'getPlatinumPartner'])->name('platinum-partners.get');
+});
+
+// M2MOffers
+Route::prefix('offers')->group(function () {
+    Route::get('/',[M2MOfferController::class,'Offers'])->name('offers.index');
+    Route::get('/ajax',[M2MOfferController::class,'getOffersListing'])->name('offers.ajax');
+    Route::get('/{slug}',[M2MOfferController::class,'getOffer'])->name('offers.get');
 });
 Route::prefix('developer')->group(function () {
     Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);

@@ -24,7 +24,7 @@
         <div class="main-box">
 
             <div class="brand-img">
-                <a href="#"><img src="{{ $PlatinumPartner->image_url }}" alt="" width="150" /></a>
+                <a href="#"><img src="{{ $PlatinumPartner->image_url != "" ?  $PlatinumPartner->image_url : asset('media/image-not-found.png')}}" alt="" width="150" /></a>
             </div>
             <div class="brand-name">
                 <a href="#">
