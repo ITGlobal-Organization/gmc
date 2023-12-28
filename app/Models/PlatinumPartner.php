@@ -34,9 +34,9 @@ class PlatinumPartner extends BaseModel
         static::addGlobalScope('active_platinum_partners', function (Builder $builder) use($table){
             $user = Auth::user();
             if(isset($user) && $user->hasRole('admin')){
-                $builder->where($table.'is_delete', '=', 0);
+                $builder->where($table.'.is_delete', '=', 0);
             }else{
-                $builder->where($table.'is_delete', '=', 0)->where($table.'is_active','=',1)->where($table.'is_approved',1);
+                $builder->where($table.'.is_delete', '=', 0)->where($table.'.is_active','=',1)->where($table.'.is_approved',1);
             }
 
         });
