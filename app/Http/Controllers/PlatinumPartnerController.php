@@ -47,22 +47,21 @@ class PlatinumPartnerController extends BaseController
     public function getPlatinumPartnersListing(Request $request){
         $this->setGeneralFilters($request);
         $this->removeGeneralFilters($request);
-        $PlatinumPartner = $this->platinumPartner->getAll([],['platinum_partners.title','platinum_partners.description','platinum_partners.created_at','images.image_url']);
+        $PlatinumPartner = $this->platinumPartner->getAll([],['platinum_partners.title','platinum_partners.slug','platinum_partners.description','platinum_partners.created_at','images.image_url']);
         // dd($PlatinumPartner);
         return view('sections.platinum-partners',[
             'PlatinumPartners' => $PlatinumPartner,
         ]);
     }
 
-    // public function getDirectory(Request $request,$slug){
-    //     $Blog = $this->directory->first('slug',$slug,'=',['user'],[],['directories.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
-    //     $this->directory->setLength(10);
-    //     // $LatestBlogs = $this->directory->getAll([['users','users.id','=','directories.user_id']],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
+    public function getPlatinumPartner(Request $request,$slug){
+        $PlatinumPartner = $this->platinumPartner->first('slug',$slug,'=',[],[],['*']);
+      
 
-    //     return view('directories.directory-detail',[
-    //         'Directory' => $Blog,
-    //         // 'LatestBlog' => $LatestBlogs,
-    //         'title' => trans('lang.directory').' | '. $Blog->title
-    //     ]);
-    // }
+        return view('platinumpartners.platinum-partner',[
+            'PlatinumPartner' => $PlatinumPartner,
+            // 'LatestBlog' => $LatestBlogs,
+            'title' => trans('lang.platinum-partner').' | '. $PlatinumPartner->title
+        ]);
+    }
 }

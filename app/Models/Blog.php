@@ -47,8 +47,6 @@ class Blog extends BaseModel
             else if(isset($user) && (str_contains($url,"user"))){
 
                 $builder->where($table.'.is_delete', '=', 0)->where($table.'.is_active','=',1)->where('author',$user->id);
-            }else if(isset($user)){
-                $builder->where($table.'.is_delete', '=', 0)->where('author',$user->id);
             }
             else{
                 $builder->where($table.'.is_delete', '=', 0)->where($table.'.is_active','=',1)->where($table.'.is_approved',1);
@@ -141,5 +139,24 @@ class Blog extends BaseModel
     public function getCreatedAtAttribute()
     {
         return Carbon::parse($this->attributes['created_at'])->format('M Y');
+    }
+
+    public function setTitleAttribute($title)
+    {
+        $slug = preg_replace("![^a-z0-9]+!i", "-", strtolower($title));
+
+        if(isset($this->id)){
+            $obj = self::where('slug',$slug)->where('id','!=',$this->id)->first();
+            $this->attributes['slug'] = $slug.'-'.((int)$this->id);
+           
+          
+        }
+        $obj = self::where('slug',$slug)->first();
+        if(isset($obj)){
+            $this->attributes['slug'] = $slug.'-'.((int)$obj->id+1);
+           
+        }
+        $this->attributes['slug'] = $slug;
+        $this->attributes['title'] = $title;
     }
 }
