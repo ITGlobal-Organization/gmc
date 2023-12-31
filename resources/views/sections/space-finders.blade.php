@@ -1,4 +1,4 @@
-<h1 class="mb-25 text-center">{{ trans('lang.space-finders')}}</h1>
+<h1 class="mb-25 text-center">{{ trans('lang.space-finders') }}</h1>
 <p class="mb-40 text-center">
     {!! trans('content.space-finders.description') !!}
 </p>
@@ -25,44 +25,43 @@
             <div class="main-box">
 
                 <div class="box-img card-image">
-        @php
-         $User = auth()->user();
-      @endphp
+                    @php
+                        $User = auth()->user();
+                    @endphp
 
-      @if(!isset($User))
-       <a href="{{ route('login') }}">
-       @include('components.image',[
-										
-                                        'image' =>  $SpaceFinder->image_url 
-                                    ]) 
-            <img src="" alt="" width="100%" class="box-img" />
-        </a>
-      @else
-        <a href="{{ route('space-finders.get', $SpaceFinder->slug) }}">
-        @include('components.image',[
-										
-                                        'image' =>  $SpaceFinder->image_url 
-                                    ]) 
+                    @if (!isset($User))
+                        <a href="{{ route('login') }}">
+                            @include('components.image', [
+                                'image' => $SpaceFinder->image_url,
+                            ])
+                            <img src="" alt="" width="100%" class="box-img" />
                         </a>
-      @endif
-                     
+                    @else
+                        <a href="{{ route('space-finders.get', $SpaceFinder->slug) }}">
+                            @include('components.image', [
+                                'image' => $SpaceFinder->image_url,
+                            ])
+                        </a>
+                    @endif
+
                 </div>
                 <!--<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>-->
                 <div class="box-name home home-text">
-    <div style="display: flex; justify-content: center; align-items: center;">
-     @php
-         $User = auth()->user();
-      @endphp
-
-      @if(!isset($User))
-       <a href="{{ route('login') }}">
-      @else
-        <a href="{{ route('space-finders.get', $SpaceFinder->slug) }}">
-      @endif
-          {{ shortenTextLength($SpaceFinder->title) }}        </a>    </div></div>
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        @php
+                            $User = auth()->user();
+                        @endphp
+                        @if (!isset($User))
+                            <a href="{{ route('login') }}">
+                            @else
+                                <a href="{{ route('space-finders.get', $SpaceFinder->slug) }}">
+                        @endif
+                        {{ shortenTextLength($SpaceFinder->title) }} </a>
+                    </div>
+                </div>
                 <div class="box-text1">
                     <i class="fad fa-check"
-                        style="--fa-primary-color: #5f439b; --fa-secondary-color: #5f439b;"></i>&nbsp;{{$SpaceFinder->categories}}
+                        style="--fa-primary-color: #5f439b; --fa-secondary-color: #5f439b;"></i>&nbsp;{{ $SpaceFinder->categories }}
                 </div>
 
             </div>

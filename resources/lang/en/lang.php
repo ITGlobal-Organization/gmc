@@ -199,6 +199,7 @@ return [
     'box-view' => "Box View",
     'email-address' => "Email Address",
     'employees' => "Employees",
+    'employee' => "Employee",
     // 'book_now' => "Book Now",
     'welcome' => "Welcome",
     'owner' => "Owner",
@@ -208,5 +209,6 @@ return [
     'not-approved' => "Not Approved",
     'status' => "Status",
     'action' => "Action",
+    'here' => "Here"
 
 ];

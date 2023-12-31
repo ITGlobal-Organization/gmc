@@ -45,11 +45,17 @@ Route::prefix('space-finders')->group(function(){
         return view('user.space-finder.create');
     })->name('user.space-finders.create');
 });
-//DirectoryDetails
+//ProfileDetails
 // Route::get('/company/edit', [DashboardController::class, 'editProfile'])->name('user.company.edit');
 Route::prefix('profile')->group(function(){
-    Route::get('/edit',[DashboardController::class ,'edit'])->name('user.company.edit');
-    Route::post('/update/{id}',[DashboardController::class, 'update'])->name('user.company.update');
+    Route::get('/edit',[DashboardController::class ,'edit'])->name('user.profile.edit');
+    Route::post('/update/{id}',[DashboardController::class, 'update'])->name('user.profile.update');
+});
+//DirectoryDetails
+// Route::get('/company/edit', [DashboardController::class, 'editProfile'])->name('user.company.edit');
+Route::prefix('company')->group(function(){
+    Route::get('/edit',[DirectoryController::class ,'edit'])->name('user.company.edit');
+    Route::post('/update/{id}',[DirectoryController::class, 'update'])->name('user.company.update');
 });
 // News
 Route::prefix('news')->group(function(){
