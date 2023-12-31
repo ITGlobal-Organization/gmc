@@ -1,4 +1,4 @@
-<h1 class="mb-80 text-center">Platinum Partners</h1>
+<h1 class="mb-80 text-center">{{ trans('lang.offers') }}</h1>
 {{-- <p class="mb-40 text-center">
     {!! trans('content.space-finders.description') !!}
 </p> --}}
@@ -31,7 +31,7 @@
                                 @include('components.image', [
                                     'image' => $Offer->image_url,
                                 ])
-                                <img src="" alt="" width="100%" class="box-img" />
+                             
                             </a>
                         @else
                             <a href="{{ route('offers.get', $Offer->id) }}">
