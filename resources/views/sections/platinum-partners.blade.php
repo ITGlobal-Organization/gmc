@@ -23,7 +23,7 @@
 
         <div class="main-box"> 
 
-            <div class="brand-img">
+            <div class="brand-img platinum-partners card-image">
 
                 <a href="{{ route('platinum-partners.get',$PlatinumPartner->slug) }}"><img src="{{ $PlatinumPartner->image_url != "" ?  $PlatinumPartner->image_url : asset('media/image-not-found.png')}}" alt="" width="150" /></a>
 
