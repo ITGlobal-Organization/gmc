@@ -21,14 +21,14 @@
     @foreach ($PlatinumPartners as $PlatinumPartner)
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 
-        <div class="main-box">
+        <div class="main-box"> 
 
             <div class="brand-img">
 
                 <a href="{{ route('platinum-partners.get',$PlatinumPartner->slug) }}"><img src="{{ $PlatinumPartner->image_url != "" ?  $PlatinumPartner->image_url : asset('media/image-not-found.png')}}" alt="" width="150" /></a>
 
             </div>
-            <div class="brand-name">
+            <div class="box-name home home-text">
                 <a href="{{ route('platinum-partners.get',$PlatinumPartner->slug) }}">
                     {{$PlatinumPartner->title}}
                 </a>
