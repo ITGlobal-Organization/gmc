@@ -6,7 +6,7 @@
             <div id="owl-demo" class="owl-carousel">
                 @foreach ($PlatinumPartners as $PlatinumPartner)
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="main-brand"><a href="{ route('platinum-partners.get',$PlatinumPartner->slug) }}"><img src="{{ $PlatinumPartner->image_url }}"
+                    <div class="main-brand"><a href="{{ route('platinum-partners.get',$PlatinumPartner->slug) }}"><img src="{{ $PlatinumPartner->image_url }}"
                                 alt="" /></a></div>
                     <div class="clr"></div>
                 </div>
