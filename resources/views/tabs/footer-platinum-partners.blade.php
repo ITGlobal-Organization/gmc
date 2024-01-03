@@ -33,8 +33,10 @@
                 itemsDesktopSmall: [900, 5], // betweem 900px and 601px
                 itemsTablet: [768, 4], //2 items between 600 and 0
                 itemsMobile: [479, 1], // itemsMobile disabled - inherit from itemsTablet option
-                autoplay: true,
-                autoplayTimeout: 3000
+                autoplayTimeout:1000,
+                autoplayHoverPause:true,
+                autoplay:true,
+                loop:true,
             });
 
             // Custom Navigation Events
