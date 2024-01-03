@@ -1,4 +1,4 @@
-<h1 class="mb-80 text-center">Platinum Partners</h1>
+<h1 class="mb-80 text-center">{{ trans('lang.platiniumpartners')}}</h1>
 {{-- <p class="mb-40 text-center">
     {!! trans('content.space-finders.description') !!}
 </p> --}}
