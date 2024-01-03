@@ -159,29 +159,7 @@
     <script>
         $(document).ready(function() {
 
-            var owl = $("#owl-demo");
-
-            owl.owlCarousel({
-                items: 5, //10 items above 1000px browser width
-                itemsDesktop: [1199, 5], //5 items between 1000px and 901px
-                itemsDesktopSmall: [900, 5], // betweem 900px and 601px
-                itemsTablet: [768, 4], //2 items between 600 and 0
-                itemsMobile: [479, 1], // itemsMobile disabled - inherit from itemsTablet option
-            });
-
-            // Custom Navigation Events
-            $(".next").click(function() {
-                owl.trigger('owl.next');
-            })
-            $(".prev").click(function() {
-                owl.trigger('owl.prev');
-            })
-            $(".play").click(function() {
-                owl.trigger('owl.play', 1000); //owl.play event accept autoPlay speed as second parameter
-            })
-            $(".stop").click(function() {
-                owl.trigger('owl.stop');
-            })
+            
 
         });
     </script>
@@ -191,7 +169,7 @@
         async function getRenderData(){
             limit = 10;
             //onload footer platinum partners
-            ajaxGet("{{ route('platinum-partners-tab.ajax') }}", {limit}, ".platinum-partners-footer",
+            await ajaxGet("{{ route('platinum-partners-tab.ajax') }}", {limit}, ".platinum-partners-footer",
                     responseType = 'html');
              //onload events
             await ajaxGet("{{ route('events-tab.ajax') }}", {}, ".events-tab", responseType = 'html');
@@ -273,7 +251,33 @@
                     responseType = 'html');
             });
 
+            var owl = $(".wl-carousel");
 
+            owl.owlCarousel({
+                items: 2, //10 items above 1000px browser width
+                itemsDesktop: [1199, 5], //5 items between 1000px and 901px
+                itemsDesktopSmall: [900, 5], // betweem 900px and 601px
+                itemsTablet: [768, 4], //2 items between 600 and 0
+                itemsMobile: [479, 1], // itemsMobile disabled - inherit from itemsTablet option
+                autoplayTimeout:1000,
+                autoplayHoverPause:true,
+                autoplay:true,
+                loop:true,
+            });
+
+            // Custom Navigation Events
+            $(".next").click(function() {
+                owl.trigger('owl.next');
+            })
+            $(".prev").click(function() {
+                owl.trigger('owl.prev');
+            })
+            $(".play").click(function() {
+                owl.trigger('owl.play', 1000); //owl.play event accept autoPlay speed as second parameter
+            })
+            $(".stop").click(function() {
+                owl.trigger('owl.stop');
+            })
 
         });
     </script>
