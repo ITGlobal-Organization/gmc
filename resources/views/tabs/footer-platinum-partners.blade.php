@@ -6,7 +6,7 @@
             <div id="owl-demo" class="owl-carousel">
                 @foreach ($PlatinumPartners as $PlatinumPartner)
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="main-brand"><a href="{ route('platinum-partners.get',$PlatinumPartner->slug) }}"><img src="{{ $PlatinumPartner->image_url }}"
+                    <div class="main-brand"><a href="{{ route('platinum-partners.get',$PlatinumPartner->slug) }}"><img src="{{ $PlatinumPartner->image_url }}"
                                 alt="" /></a></div>
                     <div class="clr"></div>
                 </div>
@@ -33,6 +33,8 @@
                 itemsDesktopSmall: [900, 5], // betweem 900px and 601px
                 itemsTablet: [768, 4], //2 items between 600 and 0
                 itemsMobile: [479, 1], // itemsMobile disabled - inherit from itemsTablet option
+                autoplay: true,
+                autoplayTimeout: 3000
             });
 
             // Custom Navigation Events
