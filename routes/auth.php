@@ -15,6 +15,7 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\ZohoController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,7 +32,7 @@ Route::middleware('guest')->group(function () {
         ->name('register');
 
     Route::post('login', [AuthenticatedSessionController::class, 'auth'])->name('login.post');
-    Route::post('register', [RegisteredUserController::class, 'storeUser'])->name('register.post');
+    Route::post('register', [ZohoController::class, 'initialize'])->name('register.post');
 
 
 
