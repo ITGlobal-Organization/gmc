@@ -85,9 +85,9 @@ class M2MOfferController extends BaseController
     }
 
     public function getOffer(Request $request,$id){
-        $offer = $this->offer->first('id',$id,'=',['user'],[],['m2m_offers.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
+        $offer = $this->offer->first('slug',$id,'=',['user'],[],['m2m_offers.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
 
-        $this->offer->setLength(config('site_confing.constants.item_per_page'));
+        $this->offer->setLength(config('site_config.constants.item_per_page'));
         // dd($offer);
         return view('offers.offer-details',[
             'Offer' => $offer,

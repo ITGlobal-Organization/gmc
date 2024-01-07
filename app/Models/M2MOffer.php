@@ -155,7 +155,7 @@ class M2MOffer extends BaseModel
         return $this->belongsTo(User::class,'user_id');
     }
 
-    public function setTitleAttribute($title)
+    public function setCompanyNameAttribute($title)
     {
         $slug = preg_replace("![^a-z0-9]+!i", "-", strtolower($title));
 
