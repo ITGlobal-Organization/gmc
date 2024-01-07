@@ -1939,3 +1939,5 @@ text-decoration: none;
 .dashboard-layout .events-tab .main-box{min-height: 500px !important;}
 blockquote{border: none !important;}
 .platinum-partners-card {padding-top: 50px !important;height: 200px !important;}
+.search-con{display: flex;}
+.search-con .clear-filters{margin-left: 20px;}
