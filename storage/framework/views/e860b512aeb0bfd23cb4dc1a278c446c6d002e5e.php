@@ -1,0 +1,1 @@
+<img src="<?php echo e(isset($image)?$image:custom_asset('image-not-found.png')); ?>" alt="" width="100%" class="box-img" /><?php /**PATH /var/www/staging/resources/views/components/image.blade.php ENDPATH**/ ?>

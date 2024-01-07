@@ -12,7 +12,7 @@ return [
         'layouts' => 'layouts.',
         'home_pages' => 'homes.',
         'pages' => 'pages.',
-        'logo'=>'media/logo.png',
+        'logo'=>'media/D7dyke6ZUUPb64P8j09mGyKL5w6XU5.png',
         'image-not-found'=>'images/image-not-found.png',
 
     ],
