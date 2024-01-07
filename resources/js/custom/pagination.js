@@ -4,7 +4,8 @@
     $('.page').removeClass("page-active");
     $(this).addClass("page-active");
     filters.start = $(this).text();
-   await paginationConfig.renderFunction()
+    await paginationConfig.renderFunction();
+   $("html, body").animate({ scrollTop: 500});
 })
 
 $(document).on('click','.page.next',async function(e){
@@ -21,6 +22,7 @@ if( filters.start  == totalPages){
 
     $('.pagination a[data-page=page-'+filters.start+ ']').addClass("page-active");
    await paginationConfig.renderFunction()
+   $("html, body").animate({ scrollTop: 500});
 
 }
 })
@@ -34,10 +36,12 @@ if( filters.start  == 1){
 
     $('.pagination a[data-page=page-'+ totalPages + ']').addClass("page-active");
    await paginationConfig.renderFunction()
+   $("html, body").animate({ scrollTop: 500});
 }else{
      filters.start  = parseInt( filters.start )-1;
     $('.page').removeClass('page-active');
     $('.pagination a[data-page=page-'+filters.start+ ']').addClass("page-active");
    await paginationConfig.renderFunction()
+   $("html, body").animate({ scrollTop: 500});
 }
 })
