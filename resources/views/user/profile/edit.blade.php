@@ -145,13 +145,12 @@
             var form = new FormData(this);
             prev_img = $('.img-div').children('img').attr("src");
             file = $('.file')[0].files[0];
-            console.log(file)
             if (file != undefined) {
                 form.append('image', file);
             }
             if (prev_img != '') {
                 let id = '<?php echo $User->id; ?>';
-                let url = "{{ route('user.company.update', '') }}" + "/" + id;
+                let url = "{{ route('user.profile.update', '') }}" + "/" + id;
                 ajaxPost(url, form, '.contact-success', '.contact-error');
             } else {
                 alert("Please Upload Image")

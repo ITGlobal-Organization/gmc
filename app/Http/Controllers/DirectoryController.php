@@ -8,6 +8,7 @@ use App\Models\Directory;
 use App\Models\Category;
 use App\Models\Media;
 use Auth;
+use App\Helpers\Helper;
 
 
 class DirectoryController extends BaseController
@@ -34,8 +35,18 @@ class DirectoryController extends BaseController
         ]);
     }
 
-    
+
     public function edit(Request $request){
+        $user = auth()->user();
+        if(isset($user)){
+            $result = $this->directory->first('user_id',$user->id,'=',['relatedCategories']);
+            $categories = $this->category->getAll();
+            return view('user.company.edit',[
+                'Company'=>$result,
+                'Categories' => $categories,
+                'title' => trans('lang.company').' | '.trans('lang.edit'),
+            ]);
+        }
         return view('admin.crud.edit',[
             'title' => trans('lang.blogs').' | '.trans('lang.edit'),
             'name' => 'blog',
@@ -128,6 +139,10 @@ class DirectoryController extends BaseController
     }
 
     public function update(Request $request,$id){
+        $user = auth()->user();
+        if($request->hasFile('image') && isset($user) && $user->hasRole('user')){
+            $media =  Helper::saveMedia($request->image,"App\Models\Directory",'main',$id);
+        }
         $CategoryIds = $request->category_ids;
         $request->request->remove('category_ids');
         $response = parent::update($request,$id);
@@ -141,11 +156,22 @@ class DirectoryController extends BaseController
         }catch(Exception $e){
             return $this->sendError(trans('messages.error_msg',['action' => trans('lang.saving')]));
         }
+        if(isset($user) && $user->hasRole('user')){
+            $response = [
+                'success' => true,
+                'data'=>[
+                    'route'=>route('user.dashboard')
+                ],
+                'message'=>'Updated Successfully'
+            ];
+            return response()->json($response, 200);
+        }
+
     }
 
     public function setGeneralFilters(Request $request)
     {
-      
+
         parent::setGeneralFilters($request);
         if($request->has('not_approved')){
             $this->directory->setFilters(['is_approved','=',0]);

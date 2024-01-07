@@ -10,12 +10,16 @@
         <div class="success"></div>
         <!--Start search Area-->
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-6 border padding border">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border border text-right">
+                <div class="addnew-btn clear-filters"><a href="#">Clear Filters</a></div>
+                <div class="clr"></div>
+            </div>
 
-            <div class="search-oh search-box1">
+            {{-- <div class="search-oh search-box1">
                 <input type="image" class="oh-btn" img="" src="{{ asset('media/brn-search.png') }}">
                 <input type="text" placeholder="Search" class="oh-input search-box">
                 <div class="clr"></div>
-            </div>
+            </div> --}}
             <div class="clr"></div>
         </div>
         <!--End search Area-->
@@ -98,6 +102,11 @@
             let id = $(this).attr('data-id');
             let url = "{{ route('user.events.destroy', '') }}" + "/" + id;
             destroy(url);
+        });
+
+        $(document).on('click', '.clear-filters',function(e) {
+            e.preventDefault();
+            getEventsListing();
         });
 
         $(document).on('change', '#end-date', function(ev) {

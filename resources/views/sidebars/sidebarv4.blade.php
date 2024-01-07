@@ -11,8 +11,10 @@
             <li><a href="{{ route('user.offers') }}" ><i class="fas fa-arrow-right"
                         style="color: #ffffff;"></i>&nbsp;List in Members Marketplace</a></li>
             <li><a href="{{ route('user.news') }}"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;News</a></li>
-            <li><a href="{{ route('user.company.edit') }}" ><i class="fas fa-arrow-right"
-                        style="color: #ffffff;"></i>&nbsp;Update Company Details</a></li>
+            <li><a href="{{ route('user.profile.edit') }}" ><i class="fas fa-arrow-right"
+                        style="color: #ffffff;"></i>&nbsp;Edit Profile</a></li>
+                        <li><a href="{{ route('user.company.edit') }}" ><i class="fas fa-arrow-right"
+                            style="color: #ffffff;"></i>&nbsp;Edit Company</a></li>
             <li><a href="#"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;About</a></li>
             <li><a href="#"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;International</a></li>
             <li><a href="#"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;Mentoring</a></li>

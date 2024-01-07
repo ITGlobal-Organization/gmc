@@ -154,4 +154,23 @@ class M2MOffer extends BaseModel
     public function user(){
         return $this->belongsTo(User::class,'user_id');
     }
+
+    public function setCompanyNameAttribute($title)
+    {
+        $slug = preg_replace("![^a-z0-9]+!i", "-", strtolower($title));
+
+        if(isset($this->id)){
+            $obj = self::where('slug',$slug)->where('id','!=',$this->id)->first();
+            $this->attributes['slug'] = $slug.'-'.((int)$this->id);
+           
+          
+        }
+        $obj = self::where('slug',$slug)->first();
+        if(isset($obj)){
+            $this->attributes['slug'] = $slug.'-'.((int)$obj->id+1);
+           
+        }
+        $this->attributes['slug'] = $slug;
+        $this->attributes['title'] = $title;
+    }
 }

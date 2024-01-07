@@ -266,9 +266,7 @@ display: none;
     width: 95%;
     border: 0px solid red;
 }
-.none {
-    display: none;
-}
+
 .block {
     display: block;
 }
@@ -419,6 +417,16 @@ h7 {
 
 }
 
+@media only screen and (min-width: 768px) and (max-width: 1366px) {
+	.form-none{
+		display: none;
+	}
+
+    .none {
+        display: none;
+    }
+
+}
 
 
 @media only screen and (min-width: 768px) and (max-width: 1199px) {

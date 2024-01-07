@@ -1,4 +1,4 @@
-<h1 class="mb-80 text-center">Platinum Partners</h1>
+<h1 class="mb-80 text-center">{{ trans('lang.platiniumpartners')}}</h1>
 {{-- <p class="mb-40 text-center">
     {!! trans('content.space-finders.description') !!}
 </p> --}}
@@ -21,13 +21,15 @@
     @foreach ($PlatinumPartners as $PlatinumPartner)
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 
-        <div class="main-box">
+        <div class="main-box"> 
 
-            <div class="brand-img">
-                <a href="#"><img src="{{ $PlatinumPartner->image_url }}" alt="" width="150" /></a>
+            <div class="brand-img platinum-partners-card card-image">
+
+                <a href="{{ route('platinum-partners.get',$PlatinumPartner->slug) }}"><img src="{{ $PlatinumPartner->image_url != "" ?  $PlatinumPartner->image_url : asset('media/image-not-found.png')}}" alt="" width="150" /></a>
+
             </div>
-            <div class="brand-name">
-                <a href="#">
+            <div class="box-name home home-text">
+                <a href="{{ route('platinum-partners.get',$PlatinumPartner->slug) }}">
                     {{$PlatinumPartner->title}}
                 </a>
             </div>
