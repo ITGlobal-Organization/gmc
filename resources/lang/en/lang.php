@@ -210,7 +210,7 @@ return [
     'status' => "Status",
     'action' => "Action",
     'here' => "Here",
-    'clear-filter' => "Reset",
+    'clear-filter' => "Back",
     'view-categories' => "View Categories",
 
 ];
