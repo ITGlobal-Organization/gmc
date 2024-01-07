@@ -24,6 +24,7 @@
                     <div class="brand-img">
                         @php
                             $User = auth()->user();
+                          
                         @endphp
 
                         @if (!isset($User))
@@ -34,21 +35,19 @@
                              
                             </a>
                         @else
-                            <a href="{{ route('offers.get', $Offer->id) }}">
+                       
+                            <a href="{{ route('offers.get', $Offer->slug) }}">
                                 @include('components.image', [
                                     'image' => $Offer->image_url,
                                 ])
                             </a>
                         @endif
                     </div>
-                    <div class="brand-name">
-                        @php
-                            $User = auth()->user();
-                        @endphp
+                    <div class="brand-name home home-text">
                         @if (!isset($User))
                             <a href="{{ route('login') }}">
                             @else
-                                <a href="{{ route('offers.get', $Offer->id) }}">
+                                <a href="{{ route('offers.get', $Offer->slug) }}">
                         @endif
                         {{ shortenTextLength($Offer->company_name) }} </a>
                     </div>
