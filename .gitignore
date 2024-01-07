@@ -8,8 +8,8 @@
 /public/plugins
 /public/stylear
 /public/svg
-/storage/*.key
-/storage/logs
+/storage
+/storage/
 /vendor
 .env
 .env.backup
