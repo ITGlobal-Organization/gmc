@@ -43,7 +43,7 @@
                             </a>
                         @endif
                     </div>
-                    <div class="brand-name home home-text">
+                    <div class="box-name home home-text">
                         @if (!isset($User))
                             <a href="{{ route('login') }}">
                             @else
