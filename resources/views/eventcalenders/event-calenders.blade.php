@@ -81,12 +81,6 @@
 		getEventsListing()
 	});
 
-
-    // $(function (e) {
-
-    //      });
-
-
 	$(document).ready(async function(){
 		let events = await getEventsListing();
         let ref = $("#calendar");
@@ -113,30 +107,33 @@
 	})
     $(document).on('keyup','.search-box',function(){
         filters.search = $(this).val();
-        setInterval(() => {
-            getEventsListing()
-        },2000)
+        getEventsListing()
+        // setInterval(() => {
+        //     getEventsListing()
+        // },2000)
     });
     $(document).on('change', '#end-date',async function (ev) {
         filters.start_date = $('#start-date').val();
         filters.end_date = $('#end-date').val();
         getEventsListing()
     });
-
+    $(document).on('click', '.clear-filters',async function (ev) {
+        filters = {};
+        getEventsListing();
+    });
     async function getAjaxEvents(){
 
         let events = []
         await ajaxGet("{{route('event-calenders.ajax')}}",{},"",'json', async (response) =>{
                     let data = await response.data
                     for(let i=0 ; i<data.length;i++){
-                        console.log(data);
                         events.push({
                             date: new Date(data[i].event_date),
                             eventName: data[i].title,
                             className: "badge cursor-pointer",
                             slug:data[i].slug,
                             onclick:async function(e, data) {
-                                console.log(data);
+
                                 await ajaxGet("/event-calenders/modal/"+data.slug,{},".modal-data",'html')
                                 $('#itglobal-modal').modal('show');
                             },
@@ -157,10 +154,6 @@
         console.log('here',events)
         return events;
     }
-
-
-
-
 
     // tabs
     $(function (e) {

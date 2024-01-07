@@ -209,6 +209,8 @@ return [
     'not-approved' => "Not Approved",
     'status' => "Status",
     'action' => "Action",
-    'here' => "Here"
+    'here' => "Here",
+    'clear-filter' => "Reset",
+    'view-categories' => "View Categories",
 
 ];
