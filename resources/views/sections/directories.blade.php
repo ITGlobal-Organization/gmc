@@ -2,13 +2,9 @@
 <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8 padding border mb-25">
     <div class="row">
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-5 padding border mb-25">
-            <a href=directories/categories> View Categories        </a>
+            <a href=directories/categories> {{ trans('lang.view-categories')}}       </a>
         </div>
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 padding border mb-25">
-            <div class="filter-btn clear-filters"><i class="fas fa-filter fa-spin" style="color: #ff8000;"></i>&nbsp;&nbsp;
-                Clear Filters
-            </div>
-        </div>
+       
     </div>
 </div>
 

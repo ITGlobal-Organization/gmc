@@ -1,6 +1,6 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding margin-tb35">
     <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border padding border">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border padding border search-con">
 
             <div class="search-oh search-box1">
                 <input type="image" class="oh-btn" img="" src="media/brn-search.png">
@@ -8,12 +8,12 @@
                 <div class="clr"></div>
             </div>
             <div class="clr"></div>
+            <div class="addnew-btn clear-filters"><a href="#">{{ trans('lang.clear-filter')}}</a></div>
         </div>
+       
         <!--End search Area-->
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border padding border">
-                <div class="col-3">
-                    <div class="addnew-btn clear-filters"><a href="#">Clear Filters</a></div>
-                </div>
+                
                 <div class="col-3">
                     <div class="search-ohch">
                         <input class="ohch-input" name="date" id="start-date" placeholder="Date for visit DD-MM-YYYY"
