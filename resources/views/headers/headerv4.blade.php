@@ -144,6 +144,7 @@
        <li><a href="{{ route('site-pages','benifits') }}">{{ trans('lang.benifits')}}</a></li>
       <li><a href="{{ route('directories.index') }}">{{ trans('lang.directories')}}</a></li>
       <li><a href="{{ route('space-finders.index') }}">{{ trans('lang.space_finders')}}</a></li>
+      <li><a href="{{ route('offers.index') }}">{{ trans('lang.offers')}}</a></li>
       <li><a href="{{ route('event-calenders.index') }}">{{ trans('lang.eventcalenders')}}</a></li>
       <li><a href="{{ route('platinum-partners.index') }}">{{ trans('lang.platiniumpartners')}}</a></li>
       <li><a href="https://pcjh.co.uk/">{{ trans('lang.jobshub')}}</a></li>
