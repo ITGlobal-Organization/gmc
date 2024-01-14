@@ -29,7 +29,6 @@
 <p>
 
 {!! $PlatinumPartner->description !!}
-<a href="{{ $PlatinumPartner->web_url }}" target="_blank"/> {{ trans('lang.here')}}</a>
 
 </p>
 

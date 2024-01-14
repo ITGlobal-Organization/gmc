@@ -268,7 +268,7 @@ display: none;
 }
 
 .block {
-    display: block;
+    display: none;
 }
 .header {
     margin: auto;
@@ -424,6 +424,10 @@ h7 {
 
     .none {
         display: none;
+    }
+
+    .block{
+        display:block !important
     }
 
 }

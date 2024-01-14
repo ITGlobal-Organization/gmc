@@ -77,7 +77,7 @@
        <li><a href="{{ route('login') }}"><i class="fas fa-sign-in-alt" style="color: #ffffff;"></i>&nbsp; Login &nbsp;&nbsp;|</a></li>
       <li><a href="{{ route('register') }}"><i class="fas fa-user" style="color: #ffffff;"></i>&nbsp; Join</a></li>
       @else
-        <li><a href="{{ route('user.dashboard') }}"><i class="fas fa-user" style="color: #ffffff;"></i>&nbsp; Member Dashboard &nbsp;&nbsp;|</a></li>
+        <li><a href="{{ route('user.dashboard') }}"><i class="fas fa-user" style="color: #ffffff;"></i>&nbsp;  {{ trans('lang.member_dashboard')}}&nbsp;&nbsp;|</a></li>
       <li><a href="{{ route('logout') }}"><i class="fas fa-sign-in-alt" style="color: #ffffff;"></i>&nbsp; Logout</a></li>
       @endif
     </ul>
@@ -92,6 +92,7 @@
 <div id="list2">
      @php
          $User = auth()->user();
+        
       @endphp
     <ul>
       <li><a href="{{ route('home') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.home')}}</a></li>
@@ -99,23 +100,28 @@
       <li><a href="{{ route('login') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.login')}}</a></li>
 	  <li><a href="{{ route('register') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.join')}}</a></li>
 	  @else
-	       <li><a href="{{ route('user.dashboard') }}"><i class="fa fa-chevron-right"></i>  Member Dashboard</a></li>
+	       <li><a href="{{ route('user.dashboard') }}"><i class="fa fa-chevron-right"></i>   {{ trans('lang.member_dashboard')}}</a></li>
 	  <li><a href="{{ route('logout') }}"><i class="fa fa-chevron-right"></i> {{ 'Logout'}}</a></li>
 	  @endif
+    @php
+        $Sidebar = config('site_config.sidebar.pages');
+    @endphp
+    @foreach ( $Sidebar as $Sidebar)
+    <li>
+        @if($Sidebar['check_login'] == true)
+        @if(isset($User))
+           <a href="{{ route('login') }}"><i class="fa fa-chevron-right"></i> {{ trans($sidebar['name'])}}</a>
+           @endif
+        @else
+            @if($Sidebar['static_route'] == "")
+                <a href="{{ ($Sidebar['parameter'] == '') ? route($Sidebar['route']) :  route($Sidebar['route'],$Sidebar['parameter'])}}"><i class="fa fa-chevron-right"></i> {{ trans($Sidebar['name'])}}</a>
+            @else
+                <a href="{{ $Sidebar['static_route'] }}"><i class="fa fa-chevron-right"></i> {{ trans($Sidebar['name'])}}</a>
+            @endif
+        @endif
+    </li>
+    @endforeach
 
-
-    <li><a href="{{ route('blogs.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.news')}}</a></li>
-    <li><a href="{{ route('site-pages','benifits') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.benifits')}}</a></li>
-    <li><a href="{{ route('directories.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.directories')}}</a></li>
-    <li><a href="{{ route('space-finders.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.space_finders')}}</a></li>
-    <li><a href="{{ route('offers.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.offers')}}</a></li>
-	<li><a href="{{ route('event-calenders.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.eventcalenders')}}</a></li>
-	<li><a href="{{ route('platinum-partners.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.platiniumpartners')}}</a></li>
-	<li><a href="https://pcjh.co.uk/"><i class="fa fa-chevron-right"></i> {{ trans('lang.jobshub')}}</a></li>
-	<li><a href="{{ route('site-pages','about-us') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.about_us')}}</a></li>
-	<li><a href="{{ route('site-pages','international') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.international')}}</a></li>
-	<li><a href="{{ route('site-pages','mentoring') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.mentoring')}}</a></li>
-	<li><a href="{{ route('site-pages','contact-us') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.contact')}}</a></li>
     </ul>
     <div class="clr"></div>
 </div>
@@ -136,22 +142,39 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nav1 none">
 <div class="middle">
  <div class="list2">
+    @php
+         $User = auth()->user();
+         
+      @endphp
     <ul class="list2">
-      <li><a href="{{ route('home') }}">Home</a></li>
-      <!-- <li><a href="{{ route('login') }}"> {{ trans('lang.login')}}</a></li>
-	  <li><a href="{{ route('register') }}"> {{ trans('lang.join')}}</a></li> -->
-      <li><a href="{{ route('blogs.index') }}">{{ trans('lang.news')}}</a></li>
-       <li><a href="{{ route('site-pages','benifits') }}">{{ trans('lang.benifits')}}</a></li>
-      <li><a href="{{ route('directories.index') }}">{{ trans('lang.directories')}}</a></li>
-      <li><a href="{{ route('space-finders.index') }}">{{ trans('lang.space_finders')}}</a></li>
-      <li><a href="{{ route('offers.index') }}">{{ trans('lang.offers')}}</a></li>
-      <li><a href="{{ route('event-calenders.index') }}">{{ trans('lang.eventcalenders')}}</a></li>
-      <li><a href="{{ route('platinum-partners.index') }}">{{ trans('lang.platiniumpartners')}}</a></li>
-      <li><a href="https://pcjh.co.uk/">{{ trans('lang.jobshub')}}</a></li>
-	  <li><a href="{{ route('site-pages','about-us') }}">{{ trans('lang.about_us')}}</a></li>
-	  <li><a href="{{ route('site-pages','international') }}">{{ trans('lang.international')}}</a></li>
-		<li><a href="{{ route('site-pages','mentoring') }}">{{ trans('lang.mentoring')}}</a></li>
-		<li><a href="{{ route('site-pages','contact-us') }}">{{ trans('lang.contact')}}</a></li>
+        <li><a href="{{ route('home') }}">{{ trans('lang.home')}}</a></li>
+        @if(!isset($User))
+       <li><a href="{{ route('login') }}">{{ trans('lang.login')}}</a></li>
+       <li><a href="{{ route('register') }}">{{ trans('lang.join')}}</a></li>
+       @else
+            <li><a href="{{ route('user.dashboard') }}"> {{ trans('lang.member_dashboard')}}</a></li>
+       <li><a href="{{ route('logout') }}">{{ 'Logout'}}</a></li>
+       @endif
+       @php
+       $Sidebar = config('site_config.sidebar.pages');
+   @endphp
+   @foreach ( $Sidebar as $sidebar)
+   <li>
+       @if($sidebar['check_login'] == true)
+        @if(isset($User))
+           <a href="{{ route('login') }}"><i class="fa fa-chevron-right"></i> {{ trans($sidebar['name'])}}</a>
+           @endif
+       @else
+           @if($sidebar['static_route'] == "")
+               <a href="{{ ($sidebar['parameter'] == '') ? route($sidebar['route']) :  route($sidebar['route'],$sidebar['parameter'])}}"><i class="fa fa-chevron-right"></i> {{ trans($sidebar['name'])}}</a>
+           @else
+               <a href="{{ $sidebar['static_route'] }}"><i class="fa fa-chevron-right"></i> {{ trans($sidebar['name'])}}</a>
+           @endif
+       @endif
+   </li>
+   @endforeach
+
+
     </ul>
   </div>
 <div class="clr"></div>
@@ -161,10 +184,7 @@
 </div>
 <!--End Nav Desktop Area-->
 
-<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+
 
 
 <script>
