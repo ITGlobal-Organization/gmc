@@ -8,6 +8,8 @@
                         style="color: #ffffff;"></i>&nbsp;List Spaces</a></li>
             <li><a href="{{ route('user.employees') }}"><i class="fas fa-arrow-right"
                             style="color: #ffffff;"></i>&nbsp;Employees</a></li>
+            <li><a href="{{ route('user.offers') }}"><i class="fas fa-arrow-right"
+                                style="color: #ffffff;"></i>&nbsp;Offers</a></li>
             <li><a href="{{ route('user.offers') }}" ><i class="fas fa-arrow-right"
                         style="color: #ffffff;"></i>&nbsp;List in Members Marketplace</a></li>
             <li><a href="{{ route('user.news') }}"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;News</a></li>
