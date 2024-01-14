@@ -12,7 +12,7 @@
             Please register to upload space you have to offer or search for your needs if you are looking.
         </p> -->
     </div>
-    
+
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
     <div class="middle mtb-60">
 
@@ -50,11 +50,11 @@
                         <!--<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>-->
                         <div class="box-name mtb-15">
                             <a href="#">
-                                {{ $Offer->title }}
+                                {{ $Offer->company_name }}
                             </a>
 
                         </div>
-                       
+
 
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center edit-btn">
                             <a href="#" style="color: #000;font-size: 16px;" class="edit"

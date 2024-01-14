@@ -72,7 +72,7 @@ class SpaceFinderController extends BaseController
         $SpaceFinders = $this->spaceFinder->getAll([],['space_finders.id','space_finders.title','space_finders.description','space_finders.created_at','space_finders.categories','images.image_url','space_finders.slug']);
 
 
-        if(isset($user) && !$user->hasRole('admin') && str_contains($this->url,"user")){
+        if(isset($user) && $user->hasRole('user') && str_contains($this->url,"user")){
             $view='user.space-finder.listing';
         }else{
             $view='sections.space-finders';
