@@ -106,17 +106,17 @@
     @php
         $Sidebar = config('site_config.sidebar.pages');
     @endphp
-    @foreach ( $Sidebar as $Sidebar)
+    @foreach ( $Sidebar as $sidebar)
     <li>
-        @if($Sidebar['check_login'] == true)
+        @if($sidebar['check_login'] == true)
         @if(isset($User))
            <a href="{{ route('login') }}"><i class="fa fa-chevron-right"></i> {{ trans($sidebar['name'])}}</a>
            @endif
         @else
-            @if($Sidebar['static_route'] == "")
-                <a href="{{ ($Sidebar['parameter'] == '') ? route($Sidebar['route']) :  route($Sidebar['route'],$Sidebar['parameter'])}}"><i class="fa fa-chevron-right"></i> {{ trans($Sidebar['name'])}}</a>
+            @if($sidebar['static_route'] == "")
+                <a href="{{ ($sidebar['parameter'] == '') ? route($sidebar['route']) :  route($sidebar['route'],$sidebar['parameter'])}}"><i class="fa fa-chevron-right"></i> {{ trans($sidebar['name'])}}</a>
             @else
-                <a href="{{ $Sidebar['static_route'] }}"><i class="fa fa-chevron-right"></i> {{ trans($Sidebar['name'])}}</a>
+                <a href="{{ $sidebar['static_route'] }}"><i class="fa fa-chevron-right"></i> {{ trans($sidebar['name'])}}</a>
             @endif
         @endif
     </li>
