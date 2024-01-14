@@ -77,7 +77,7 @@
        <li><a href="{{ route('login') }}"><i class="fas fa-sign-in-alt" style="color: #ffffff;"></i>&nbsp; Login &nbsp;&nbsp;|</a></li>
       <li><a href="{{ route('register') }}"><i class="fas fa-user" style="color: #ffffff;"></i>&nbsp; Join</a></li>
       @else
-        <li><a href="{{ route('user.dashboard') }}"><i class="fas fa-user" style="color: #ffffff;"></i>&nbsp; Member Dashboard &nbsp;&nbsp;|</a></li>
+        <li><a href="{{ route('user.dashboard') }}"><i class="fas fa-user" style="color: #ffffff;"></i>&nbsp;  {{ trans('lang.member_dashboard')}}&nbsp;&nbsp;|</a></li>
       <li><a href="{{ route('logout') }}"><i class="fas fa-sign-in-alt" style="color: #ffffff;"></i>&nbsp; Logout</a></li>
       @endif
     </ul>
@@ -92,6 +92,7 @@
 <div id="list2">
      @php
          $User = auth()->user();
+        
       @endphp
     <ul>
       <li><a href="{{ route('home') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.home')}}</a></li>
@@ -99,7 +100,7 @@
       <li><a href="{{ route('login') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.login')}}</a></li>
 	  <li><a href="{{ route('register') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.join')}}</a></li>
 	  @else
-	       <li><a href="{{ route('user.dashboard') }}"><i class="fa fa-chevron-right"></i>  Member Dashboard</a></li>
+	       <li><a href="{{ route('user.dashboard') }}"><i class="fa fa-chevron-right"></i>   {{ trans('lang.member_dashboard')}}</a></li>
 	  <li><a href="{{ route('logout') }}"><i class="fa fa-chevron-right"></i> {{ 'Logout'}}</a></li>
 	  @endif
     @php
@@ -107,8 +108,10 @@
     @endphp
     @foreach ( $Sidebar as $Sidebar)
     <li>
-        @if($Sidebar['check_login'] == true && !isset($User))
-            <a href="{{ route('login') }}"><i class="fa fa-chevron-right"></i> {{ trans($Sidebar['name'])}}</a>
+        @if($Sidebar['check_login'] == true)
+        @if(isset($User))
+           <a href="{{ route('login') }}"><i class="fa fa-chevron-right"></i> {{ trans($sidebar['name'])}}</a>
+           @endif
         @else
             @if($Sidebar['static_route'] == "")
                 <a href="{{ ($Sidebar['parameter'] == '') ? route($Sidebar['route']) :  route($Sidebar['route'],$Sidebar['parameter'])}}"><i class="fa fa-chevron-right"></i> {{ trans($Sidebar['name'])}}</a>
@@ -141,6 +144,7 @@
  <div class="list2">
     @php
          $User = auth()->user();
+         
       @endphp
     <ul class="list2">
         <li><a href="{{ route('home') }}">{{ trans('lang.home')}}</a></li>
@@ -148,21 +152,23 @@
        <li><a href="{{ route('login') }}">{{ trans('lang.login')}}</a></li>
        <li><a href="{{ route('register') }}">{{ trans('lang.join')}}</a></li>
        @else
-            <li><a href="{{ route('user.dashboard') }}"> Member Dashboard</a></li>
+            <li><a href="{{ route('user.dashboard') }}"> {{ trans('lang.member_dashboard')}}</a></li>
        <li><a href="{{ route('logout') }}">{{ 'Logout'}}</a></li>
        @endif
        @php
        $Sidebar = config('site_config.sidebar.pages');
    @endphp
-   @foreach ( $Sidebar as $Sidebar)
+   @foreach ( $Sidebar as $sidebar)
    <li>
-       @if($Sidebar['check_login'] == true && !isset($User))
-           <a href="{{ route('login') }}"><i class="fa fa-chevron-right"></i> {{ trans($Sidebar['name'])}}</a>
+       @if($sidebar['check_login'] == true)
+        @if(isset($User))
+           <a href="{{ route('login') }}"><i class="fa fa-chevron-right"></i> {{ trans($sidebar['name'])}}</a>
+           @endif
        @else
-           @if($Sidebar['static_route'] == "")
-               <a href="{{ ($Sidebar['parameter'] == '') ? route($Sidebar['route']) :  route($Sidebar['route'],$Sidebar['parameter'])}}"><i class="fa fa-chevron-right"></i> {{ trans($Sidebar['name'])}}</a>
+           @if($sidebar['static_route'] == "")
+               <a href="{{ ($sidebar['parameter'] == '') ? route($sidebar['route']) :  route($sidebar['route'],$sidebar['parameter'])}}"><i class="fa fa-chevron-right"></i> {{ trans($sidebar['name'])}}</a>
            @else
-               <a href="{{ $Sidebar['static_route'] }}"><i class="fa fa-chevron-right"></i> {{ trans($Sidebar['name'])}}</a>
+               <a href="{{ $sidebar['static_route'] }}"><i class="fa fa-chevron-right"></i> {{ trans($sidebar['name'])}}</a>
            @endif
        @endif
    </li>
@@ -176,10 +182,7 @@
 </div>
 <!--End Nav Desktop Area-->
 
-<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+
 
 
 <script>
