@@ -110,7 +110,7 @@
     <li>
         @if($sidebar['check_login'] == true)
         @if(isset($User))
-           <a href="{{ route('login') }}"><i class="fa fa-chevron-right"></i> {{ trans($sidebar['name'])}}</a>
+           <a href="{{ route($sidebar['route']) }}"><i class="fa fa-chevron-right"></i> {{ trans($sidebar['name'])}}</a>
            @endif
         @else
             @if($sidebar['static_route'] == "")
@@ -148,13 +148,7 @@
       @endphp
     <ul class="list2">
         <li><a href="{{ route('home') }}">{{ trans('lang.home')}}</a></li>
-        @if(!isset($User))
-       <li><a href="{{ route('login') }}">{{ trans('lang.login')}}</a></li>
-       <li><a href="{{ route('register') }}">{{ trans('lang.join')}}</a></li>
-       @else
-            <li><a href="{{ route('user.dashboard') }}"> {{ trans('lang.member_dashboard')}}</a></li>
-       <li><a href="{{ route('logout') }}">{{ 'Logout'}}</a></li>
-       @endif
+      
        @php
        $Sidebar = config('site_config.sidebar.pages');
    @endphp
@@ -162,7 +156,7 @@
    <li>
        @if($sidebar['check_login'] == true)
         @if(isset($User))
-           <a href="{{ route('login') }}"><i class="fa fa-chevron-right"></i> {{ trans($sidebar['name'])}}</a>
+           <a href="{{ route($sidebar['route']) }}"><i class="fa fa-chevron-right"></i> {{ trans($sidebar['name'])}}</a>
            @endif
        @else
            @if($sidebar['static_route'] == "")
@@ -185,7 +179,9 @@
 <!--End Nav Desktop Area-->
 
 
-
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
 <script>
 function openNav() {
