@@ -45,7 +45,7 @@ class EventCalenderController extends BaseController
 
     public function eventCalenders(Request $request){
         $user = Auth::user();
-        if(isset($user) && $user->hasRole('user') && str_contains($this->url,"user")){
+        if(isset($user) && $user->hasRole('user')  && str_contains($this->url,"user")){
             $view= 'user.event.index';
         }else{
             $view= 'eventcalenders.event-calenders';
@@ -83,7 +83,7 @@ class EventCalenderController extends BaseController
             // dd($endDate);
         }
         $Events = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
-        if(isset($user) && !$user->hasRole('admin') && str_contains($this->url,"user")){
+        if(isset($user) &&  $user->hasRole('user') && str_contains($this->url,"user")){
             $view = "user.event.listing";
             // if($request->view_type == 'table'){
             //     $view='user.event.listing';
@@ -217,7 +217,7 @@ class EventCalenderController extends BaseController
             // 'LatestBlog' => $LatestBlogs,
 
         ]);
-    }       
+    }
 
     public function setGeneralFilters(Request $request)
     {
@@ -226,7 +226,7 @@ class EventCalenderController extends BaseController
             $this->eventCalender->setFilters(['is_approved','=',0]);
         }
     }
-                
+
 
 
 }
