@@ -108,7 +108,7 @@
                                 <span>&times;</span>
                             </button>
                             <img src="{{ isset($User->image->image_url) ? $User->image->image_url : asset('/media/image-not-found.png') }}"
-                                alt="" data-id="{{ isset($User->image->id) ? $User->image->id : '' }}">
+                                alt="Profile Image" data-id="{{ isset($User->image->id) ? $User->image->id : '' }}">
                             <div class="clr"></div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mtb-25 upload-div hidden">

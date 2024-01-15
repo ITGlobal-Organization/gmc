@@ -146,13 +146,13 @@ class SpaceFinder extends BaseModel
         if(isset($this->id)){
             $obj = self::where('slug',$slug)->where('id','!=',$this->id)->first();
             $this->attributes['slug'] = $slug.'-'.((int)$this->id);
-           
-          
+
+
         }
         $obj = self::where('slug',$slug)->first();
         if(isset($obj)){
             $this->attributes['slug'] = $slug.'-'.((int)$obj->id+1);
-           
+
         }
         $this->attributes['slug'] = $slug;
         $this->attributes['title'] = $title;

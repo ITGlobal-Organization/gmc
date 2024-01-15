@@ -12,7 +12,7 @@
             Please register to upload space you have to offer or search for your needs if you are looking.
         </p> -->
     </div>
-    
+
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
     <div class="middle mtb-60">
 
@@ -44,7 +44,7 @@
                 <div class="{{ $Offer->is_approved==1?'approved':'notapproved'}}">{{ $Offer->is_approved==1?trans('lang.approved'):trans('lang.not-approved')}}</div>
                     <div class="main-box">
                         <div class="box-img card-image">
-                            <a href="#"><img src="{{ $Offer->image_url }}" alt=""
+                            <a href="#"><img src="{{ $Offer->image_url }}" alt="Offer Image"
                                     width="100%" class="box-img" /></a>
                         </div>
                         <!--<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>-->
@@ -54,7 +54,7 @@
                             </a>
 
                         </div>
-                       
+
 
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center edit-btn">
                             <a href="#" style="color: #000;font-size: 16px;" class="edit"

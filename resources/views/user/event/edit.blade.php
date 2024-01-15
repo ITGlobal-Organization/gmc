@@ -78,7 +78,7 @@
                             <button class="close AClass" type="button">
                                 <span>&times;</span>
                             </button>
-                            <img src="{{ isset($Event->media[0]->image_url) ? $Event->media[0]->image_url : asset('/media/image-not-found.png') }}" alt=""
+                            <img src="{{ isset($Event->media[0]->image_url) ? $Event->media[0]->image_url : asset('/media/image-not-found.png') }}" alt="Event Image"
                                 data-id="{{ isset($Event->media[0]->id) ?  $Event->media[0]->id : ''}}">
                             <div class="clr"></div>
                         </div>
