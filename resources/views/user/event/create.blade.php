@@ -46,8 +46,8 @@
                         <div class="clr"></div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
-                        <label for="price">City</label>
-                        <input type="text" class="serch-input" value="" placeholder="Cost" name="price">
+                        <label for="price">Price</label>
+                        <input type="text" class="serch-input" value="" placeholder="Price" name="price">
                         <div class="error-price"></div>
                         <div class="clr"></div>
                     </div>
