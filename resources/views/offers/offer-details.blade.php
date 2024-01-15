@@ -32,13 +32,7 @@
 
                     <h2 class="mtb-25">Contact Information</h2>
 
-                    <!--Start Box 1-->
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
-                        <i class="fas fa-map-marker-alt fa-spin"
-                            style="color: #ffffff;"></a></i>&nbsp;&nbsp;<b>Address</b> : {{ $Offer->address }}
-                        <div class="clr"></div>
-                    </div>
-                    <!--End Box 1-->
+               
 
                     <!--Start Box 2-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
