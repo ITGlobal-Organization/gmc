@@ -148,13 +148,7 @@
       @endphp
     <ul class="list2">
         <li><a href="{{ route('home') }}">{{ trans('lang.home')}}</a></li>
-        @if(!isset($User))
-       <li><a href="{{ route('login') }}">{{ trans('lang.login')}}</a></li>
-       <li><a href="{{ route('register') }}">{{ trans('lang.join')}}</a></li>
-       @else
-            <li><a href="{{ route('user.dashboard') }}"> {{ trans('lang.member_dashboard')}}</a></li>
-       <li><a href="{{ route('logout') }}">{{ 'Logout'}}</a></li>
-       @endif
+      
        @php
        $Sidebar = config('site_config.sidebar.pages');
    @endphp
