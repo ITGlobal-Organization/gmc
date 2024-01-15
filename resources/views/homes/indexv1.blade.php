@@ -154,7 +154,7 @@
 
 <!-- Frontpage Demo -->
     <!--End Platinum Partners Area-->
-    <script src="{{ custom_asset('jquery-1.9.1.min.js', 'scripts') }}"></script>
+    <!-- <script src="{{ custom_asset('jquery-1.9.1.min.js', 'scripts') }}"></script> -->
     <script src="{{ custom_asset('owl.carousel.min.js', 'scripts') }} "></script>
     <script>
         $(document).ready(function() {

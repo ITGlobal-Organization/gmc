@@ -124,14 +124,14 @@ return [
                 'name'=>'lang.directories',
                 'route'=>'directories.index',
                 'static_route'=>'',
-                'check_login'=>true,
+                'check_login'=>false,
                 'parameter' => ''
             ],
             [
                 'name'=>'lang.space_finders',
                 'route'=>'space-finders.index',
                 'static_route'=>'',
-                'check_login'=>true,
+                'check_login'=>false,
                 'parameter' => ''
             ],
             [
