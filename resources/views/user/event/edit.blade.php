@@ -53,7 +53,7 @@
                         <div class="clr"></div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                        <label for="price">City</label>
+                        <label for="price">Price</label>
                         <input type="text" class="serch-input" value="{{ $Event->price }}" placeholder="Cost"
                             name="price">
                             <div class="error-price"></div>
