@@ -107,7 +107,7 @@
                                     <span>&times;</span>
                                 </button>
                                 <img src="{{ isset($Company->media[0]->image_url) ? $Company->media[0]->image_url : asset('/media/image-not-found.png') }}"
-                                    alt="" data-id="{{ isset($Company->image->id) ? $Company->image->id : '' }}">
+                                    alt="Logo" data-id="{{ isset($Company->image->id) ? $Company->image->id : '' }}">
                                 <div class="clr"></div>
                             </div>
                         </div>

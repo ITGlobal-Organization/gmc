@@ -48,7 +48,7 @@
                                 <span>&times;</span>
                             </button>
                             <div class="box-img card-image">
-                            <img src="{{ isset($Blog->media[0]->image_url) ? $Blog->media[0]->image_url : asset('/media/image-not-found.png') }}" alt=""
+                            <img src="{{ isset($Blog->media[0]->image_url) ? $Blog->media[0]->image_url : asset('/media/image-not-found.png') }}" alt="Blog Image"
                                 data-id="{{ isset($Blog->media[0]->id) ? $Blog->media[0]->id : "" }}" class="box-img">
                             </div>
                             <div class="clr"></div>
