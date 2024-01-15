@@ -97,16 +97,29 @@ const blade_config = {
 	baseUrl : "{{ config('app.url') }}"
 }
 </script>
+
 <script src="{{ custom_asset('common.js','scripts')}}"></script>
 <script src="{{ custom_asset('owl.carousel.js','scripts') }}"></script>
 <script src="{{ custom_asset('utils.js','scripts') }}"></script>
 
-<script>
-		// $(document).ready(function(){
-		// 	$('select').select2();
-		// })
+<script type="module">
 
-	</script>
+import Echo from '../node_modules/laravel-echo';
+import io from '../node_modules/socket.io-client';
+
+const echo = new Echo({
+    broadcaster: 'socket.io',
+    host: blade_config.baseUrl+':6001',
+});
+
+echo.channel('chat')
+    .listen('ChatMessageSent', (event) => {
+        console.log('New message:', event);
+        // Update your UI with the new message
+    });
+	
+</script>
+<script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
 @yield('scripts')
 
 </body>

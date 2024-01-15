@@ -108,6 +108,10 @@ Route::prefix('developer')->group(function () {
 });
 
 
+// web socket authentication
+Route::post('/broadcasting/auth', function () {
+    return auth()->check() ? auth()->user() : abort(403);
+});
 require __DIR__ . '/auth.php';
 
 

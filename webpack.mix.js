@@ -8,6 +8,11 @@ mix.copyDirectory('resources/js/custom', 'public/js/scripts');
 
 mix.options({ runtimeChunkPath: '.' });
 
+mix.webpackConfig({
+    stats: {
+      children: true,
+    },
+  });
 
 
 

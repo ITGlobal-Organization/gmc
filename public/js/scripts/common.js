@@ -1,3 +1,5 @@
+
+
 show_password = false;
 config = {
     timeout: 3000,
@@ -368,3 +370,4 @@ function ajaxDelete(url,id,succssContainer='',errorContainer='') {
         }
     })
 }
+

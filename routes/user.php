@@ -8,6 +8,7 @@ use App\Http\Controllers\EventCalenderController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\MessageController;
 // use App\Http\Controllers\DashboardController;
 // use App\Http\Controllers\OrderController;
 // use App\Http\Controllers\QuoteController;
@@ -97,6 +98,10 @@ Route::prefix('employees')->group(function(){
         return view('user.employee.create');
     })->name('user.employees.create');
     // Route::delete('/media/delete/{id}',[EmployeeController::class,'deleteFiles'])->name('user.events.media-upload');
+});
+
+Route::prefix('chat')->group(function(){
+    Route::get('/', [MessageController::class, 'index'])->name('user.chat.index');
 });
 
 // Route::get('/checkout',[CheckoutController::class,'renderCheckOutView'])->name('user.checkout.index');
