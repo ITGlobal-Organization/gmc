@@ -45,9 +45,9 @@ Route::prefix('blogs')->group(function () {
 
 // Directiories
 Route::prefix('directories')->group(function () {
-    Route::get('/categories',[CategoryController::class,'renderCategoriesView'])->name('directories.category.index');
+    Route::get('/categories',[CategoryController::class,'renderCategoriesView'])->name('directories.category.index')->middleware('auth');
     Route::get('/categories/ajax',[CategoryController::class,'getCategoriesListing'])->name('directories.category.ajax');
-    Route::get('/',[DirectoryController::class,'directories'])->name('directories.index');
+    Route::get('/',[DirectoryController::class,'directories'])->name('directories.index')->middleware('auth');
     Route::get('/ajax',[DirectoryController::class,'getDirectoryListing'])->name('directories.ajax');
     Route::get('/{slug}',[DirectoryController::class,'getDirectory'])->name('directories.get')->middleware('auth');
 });

@@ -1,4 +1,8 @@
 <!--Start Banner Area-->
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<!-- <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"> -->
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
 
@@ -156,13 +160,13 @@
    <li>
        @if($sidebar['check_login'] == true)
         @if(isset($User))
-           <a href="{{ route($sidebar['route']) }}"><i class="fa fa-chevron-right"></i> {{ trans($sidebar['name'])}}</a>
+           <a href="{{ route($sidebar['route']) }}"> {{ trans($sidebar['name'])}}</a>
            @endif
        @else
            @if($sidebar['static_route'] == "")
-               <a href="{{ ($sidebar['parameter'] == '') ? route($sidebar['route']) :  route($sidebar['route'],$sidebar['parameter'])}}"><i class="fa fa-chevron-right"></i> {{ trans($sidebar['name'])}}</a>
+               <a href="{{ ($sidebar['parameter'] == '') ? route($sidebar['route']) :  route($sidebar['route'],$sidebar['parameter'])}}"> {{ trans($sidebar['name'])}}</a>
            @else
-               <a href="{{ $sidebar['static_route'] }}"><i class="fa fa-chevron-right"></i> {{ trans($sidebar['name'])}}</a>
+               <a href="{{ $sidebar['static_route'] }}"> {{ trans($sidebar['name'])}}</a>
            @endif
        @endif
    </li>
@@ -179,10 +183,7 @@
 <!--End Nav Desktop Area-->
 
 
-<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+
 <script>
 function openNav() {
   document.getElementById("mySidenav").style.width = "300px";
