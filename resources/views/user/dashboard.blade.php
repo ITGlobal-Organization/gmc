@@ -87,6 +87,7 @@
                                     <li>&nbsp; {{ trans('lang.events')}} &nbsp;</li>
                                     <li>&nbsp; {{ trans('lang.space_finders')}} &nbsp;</li>
                                     <li>&nbsp; {{ trans('lang.news')}} &nbsp;</li>
+                                    <li>&nbsp; {{ trans('lang.offers')}} &nbsp;</li>
 
                                 </ul>
                                 </div>
@@ -109,6 +110,12 @@
                                     <div class="clr"></div>
                                 </div>
                                 <!--End Calendar View listing-->
+                                <!--Start Offers View listing-->
+                                <div>
+                                    <div class="offers"></div>
+                                    <div class="clr"></div>
+                                </div>
+                                <!--End Offers View listing-->
                             </div>
                         </div>
 
@@ -172,6 +179,7 @@
           await ajaxGet("{{route('event-calenders.ajax')}}",{length:10,order_by:'created_at',order:'desc',view_type:'box'},".events",responseType='html');
           await ajaxGet("{{route('space-finders.ajax')}}",{length:10,order_by:'created_at',order:'desc'},".spacefinders",responseType='html');
           await ajaxGet("{{route('blogs.ajax')}}",{length:10,order_by:'created_at',order:'desc'},".news",responseType='html');
+          await ajaxGet("{{route('offers.ajax')}}",{length:10,order_by:'created_at',order:'desc'},".offers",responseType='html');
      }
      $(function (e) {
         getMylistings();
