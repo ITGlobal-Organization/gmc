@@ -19,7 +19,7 @@
                     @php$price = explode('-', $Event->price);
                                                                 $Event->price = '€' . $price[0] . '-€' . $price[1]; @endphp ?> ?> ?>
                 @else
-                    @php $Event->price = "€".$Event->price; @endphp
+                    @php $Event->price = $Event->price; @endphp
                 @endif
                 <tr>
                     <td class="list10">{{ date('d-M-Y', strtotime($Event->event_date)) }}</td>
