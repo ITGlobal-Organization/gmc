@@ -1802,7 +1802,7 @@ text-decoration: none;
 }
 
 .event-tabs-cal-list{display: flex;justify-content: end;margin: 56px;}
-
+.mid-box .event-tabs-cal-list{display: flex;justify-content: center;margin: 56px;}
 .select2-container{width: 100% !important;}
 .select2-container .select2-selection--single{height: 49px !important;}
 
