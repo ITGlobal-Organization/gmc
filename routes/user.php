@@ -102,6 +102,9 @@ Route::prefix('employees')->group(function(){
 
 Route::prefix('chat')->group(function(){
     Route::get('/', [MessageController::class, 'index'])->name('user.chat.index');
+    Route::get('/search', [MessageController::class, 'searchUser'])->name('user.chat.search');
+    Route::post('/', [MessageController::class, 'send'])->name('user.chat.send');
+    Route::get('/messages',[MessageController::class, 'userMessages'])->name('user.chat.messages');
 });
 
 // Route::get('/checkout',[CheckoutController::class,'renderCheckOutView'])->name('user.checkout.index');

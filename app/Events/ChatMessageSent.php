@@ -3,25 +3,28 @@
 namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class ChatMessageSent implements ShouldBroadcast
+class ChatMessageSent implements ShouldBroadcastNow
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    private $message;
+    public function __construct($message)
     {
         //
+        $this->message = $message;
     }
 
     /**
@@ -31,6 +34,20 @@ class ChatMessageSent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('chat');
+        return new Channel('chat');
+    }
+    public function broadcastAs()
+    {
+        return 'ChatEvent';
+    }
+    /**
+     * The event's broadcast name.
+     *
+     * @return string
+     */
+    public function broadcastWith()
+    {
+        
+        return ['title'=>'This notification from '];
     }
 }

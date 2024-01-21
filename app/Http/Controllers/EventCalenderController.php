@@ -130,7 +130,7 @@ class EventCalenderController extends BaseController
             'message'=>'Updated Successfully'
         ];
 
-        return response()->json($response, 200);
+        return $this->sendResponse($response);
     }
     public function destroy(Request $request,$id){
         parent::destroy($request,$id);
@@ -141,7 +141,7 @@ class EventCalenderController extends BaseController
             ],
             'message'=>'Deleted Successfully'
         ];
-        return response()->json($response, 200);
+        return $this->sendResponse($response);
     }
 
     // public function searchEventsListing(Request $request){
@@ -195,7 +195,7 @@ class EventCalenderController extends BaseController
             ],
             'message'=>'Created Successfully'
         ];
-        return response()->json($response, 200);
+        return $this->sendResponse($response);
     }
 
 

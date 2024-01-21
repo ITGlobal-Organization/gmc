@@ -6,7 +6,7 @@
 	<meta name="robots" content="noindex,nofollow">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link href="{{ custom_asset('bootstrap.css','css') }} " rel="stylesheet" type="text/css">
-	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<!-- <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"> -->
 	<link href="{{ custom_asset('style.css','css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ custom_asset('extra.css','css') }}" rel="stylesheet" type="text/css">
 
@@ -93,33 +93,28 @@
     <!-- Select2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script>
+	@php 
+		$User = auth()->user();
+	@endphp
 const blade_config = {
-	baseUrl : "{{ config('app.url') }}"
+	baseUrl : "{{ config('app.url') }}",
+	laravel_echo_port:'{{env("LARAVEL_ECHO_PORT")}}',
+	user_id: "{{ isset($User)?$User->id:null }}",
 }
 </script>
 
 <script src="{{ custom_asset('common.js','scripts')}}"></script>
 <script src="{{ custom_asset('owl.carousel.js','scripts') }}"></script>
+<!-- <script src="//{{ Request::getHost() }}:{{env('LARAVEL_ECHO_PORT')}}/socket.io/socket.io.js"></script> -->
 <script src="{{ custom_asset('utils.js','scripts') }}"></script>
+<!-- <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script> -->
+<script src="{{ custom_asset('socket.js','js')}}"></script>
 
-<script type="module">
+<script>
 
-import Echo from '../node_modules/laravel-echo';
-import io from '../node_modules/socket.io-client';
 
-const echo = new Echo({
-    broadcaster: 'socket.io',
-    host: blade_config.baseUrl+':6001',
-});
-
-echo.channel('chat')
-    .listen('ChatMessageSent', (event) => {
-        console.log('New message:', event);
-        // Update your UI with the new message
-    });
-	
 </script>
-<script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+<!--  -->
 @yield('scripts')
 
 </body>

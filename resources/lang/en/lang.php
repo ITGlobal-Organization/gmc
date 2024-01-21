@@ -212,5 +212,6 @@ return [
     'here' => "Here",
     'clear-filter' => "Back",
     'view-categories' => "View Categories",
+    'messages' => "Messages",
 
 ];

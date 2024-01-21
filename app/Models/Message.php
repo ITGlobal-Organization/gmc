@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\BaseModel;
+use DB;
+use Log;
 
 class Message extends BaseModel
 {
@@ -44,5 +46,33 @@ class Message extends BaseModel
             }
 
         });
+    }
+
+    public function getMessagesUsers($user,$page=0,$pages=0){
+        try{
+            $params = [$user,$page,$pages];
+            // dd($params);
+            $data = $this->callProcedure("users_mesage_list",$params);
+            if(isset($data))
+                return $data;
+            else 
+                return [];
+        }catch(Exception $e){
+            return [];
+        }
+    }
+
+    public function getMessages($user){
+        try{
+            $params = [auth()->user()->id,$user];
+            // dd($params);
+            $data = $this->callProcedure("messages",$params);
+            if(isset($data))
+                return $data;
+            else 
+                return [];
+        }catch(Exception $e){
+            return [];
+        }
     }
 }

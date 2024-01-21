@@ -137,7 +137,7 @@ class M2MOfferController extends BaseController
             ],
             'message'=>'Updated Successfully'
         ];
-        return response()->json($response, 200);
+        return $this->sendResponse($response);
     }
 
     public function destroy(Request $request,$id){
@@ -149,7 +149,7 @@ class M2MOfferController extends BaseController
             ],
             'message'=>'Deleted Successfully'
         ];
-        return response()->json($response, 200);
+        return $this->sendResponse($response);
     }
 
     public function store(Request $request){
@@ -168,7 +168,7 @@ class M2MOfferController extends BaseController
             ],
             'message'=>'Created Successfully'
         ];
-        return response()->json($response, 200);
+        return $this->sendResponse($response);
     }
 
     public function setGeneralFilters(Request $request)

@@ -447,4 +447,17 @@ class BaseModel extends Model
         return $this->hasMany(Media::class,'model_id')->where('model',$this->class_name);
     }
 
+
+    public function callProcedure($procedure,$params){
+        try{
+            // dd($params);
+            $Params = implode(',',$params);
+            // dd($Params);
+            return DB::select("call ".$procedure."(" .$Params . ")");
+        }catch(Exception $e){
+            Log::error($e->getMessage());
+            return false;
+        }
+    }
+
 }
