@@ -48,6 +48,6 @@ class ChatMessageSent implements ShouldBroadcastNow
     public function broadcastWith()
     {
         
-        return ['title'=>'This notification from '];
+        return $this->message;
     }
 }

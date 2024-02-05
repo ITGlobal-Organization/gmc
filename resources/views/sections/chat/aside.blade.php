@@ -21,15 +21,18 @@
 									<input type="hidden" id="user_id" value="{{ $Users[0]->id }}"/>
                                     @foreach($Users as $User)
 									<li class="tyn-aside-item js-toggle-main active">
-										<div class="tyn-media-group">
+										<div class="tyn-media-group chat-user" data-id="{{ $User->id}}">
 											<div class="tyn-media tyn-size-lg">
-												<img src="/images/avatar/1.jpg" alt="">
+											@include('components.image',[
+
+											'image' => $User->image_url
+											])
 											</div>
 											<div class="tyn-media-col">
 												<div class="tyn-media-row">
 													<h6 class="name">{{ $User->name}}</h6>
 													@if(isset($User->message))
-													<span class="message-typing-{{$User->id}}">typing ...</span>
+													<span class="message-typing-{{$User->id}}"></span>
 													@endif
 												</div>
 												@if(isset($User->message))
@@ -42,6 +45,7 @@
 										</div>
 									</li>
                                     @endforeach
+										
                                     @endif
 									<!-- .tyn-aside-item -->
 									

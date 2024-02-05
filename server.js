@@ -53,6 +53,10 @@ io.on('connection', function(socket){
        /// users.splice(i,1,8);
         //io.emit('updateUserStatus',users);
     });
+
+    // socket.on('user_typing',function(user){
+    //     console.log(user);
+    // })
 })
 
 

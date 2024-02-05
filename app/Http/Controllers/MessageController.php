@@ -25,7 +25,7 @@ class MessageController extends BaseController
         $this->sender_id = Auth::user()->id;
         $Users = $this->message->getMessagesUsers($this->sender_id);           
         
-       
+        //  dd($Users,$this->sender_id);
         return view('pages.chat',[
             'title' => 'Chat',
             'Users' => $Users
@@ -40,11 +40,14 @@ class MessageController extends BaseController
           
             $data = [
                 'message' => $request->message,
-                'sender' => auth()->user()->id,
-                'reciever' => $request->user_id,
-                'sender_name' => auth()->user()->name,
+                'sender_id' => auth()->user()->id,
+                'reciever_id' => $request->reciever_id,
+                // 'sender_name' => auth()->user()->name,
             ];
+            $this->message->store($data);
             // event(new ChatMessageSent($data));
+            $data['sender_name'] =  auth()->user()->name;
+            $data['image_url'] =  $this->user->first('id',auth()->user()->id)->media[0]->image_url;
             broadcast(new ChatMessageSent($data));
             return $this->sendResponse($data,'');
         }catch(Exception $e){
@@ -58,7 +61,7 @@ class MessageController extends BaseController
             // $this->sender_id = Auth::user()->id;
             $Messages = $this->message->getMessages($request->user_id);           
             
-            $User = $this->user->first($request->user_id);
+            $User = $this->user->first('id',$request->user_id);
             return view('sections.chat.chatbox',[
                 'User' => $User,
                 'Messages' => $Messages
