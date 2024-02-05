@@ -85,4 +85,28 @@ class MessageController extends BaseController
             return $this->sendError(trans('messages.error_msg'));
         }
     }
+
+    // user message typing
+    public function userTyping(Request $request){
+        broadcast(new ChatMessageSent([
+            'typing' => true,
+            'user_id' => $request->user_id
+        ]));
+        return auth()->check() ? $this->sendResponse([],'') : $this->sendError(trans('messages.error_msg'));
+    }
+
+    public function updateMsg(Request $request){
+        try{
+          
+            $data = [
+                'is_read' =>1
+                // 'sender_name' => auth()->user()->name,
+            ];
+            $status = $this->message->markasReadMessage($data,$request->sender_id,$request->reciever_id);
+            // broadcast(new ChatMessageSent($data));
+            return $this->sendResponse($data,'');
+        }catch(Exception $e){
+            return $this->sendError(trans('messages.error_msg',['action' => trans('lang.sending')]));
+        }
+    }
 }

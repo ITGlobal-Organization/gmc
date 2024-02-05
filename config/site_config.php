@@ -12,6 +12,8 @@ return [
         'layouts' => 'layouts.',
         'home_pages' => 'homes.',
         'pages' => 'pages.',
+        'assets' => 'assets/',
+        'sounds' => 'assests/sounds/',
         'logo'=>'media/D7dyke6ZUUPb64P8j09mGyKL5w6XU5.png',
         'image-not-found'=>'images/image-not-found.png',
 

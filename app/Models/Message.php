@@ -5,8 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Builder;
 use DB;
 use Log;
+use Auth;
+use URL;
 
 class Message extends BaseModel
 {
@@ -64,15 +67,38 @@ class Message extends BaseModel
 
     public function getMessages($user){
         try{
+            DB::enableQueryLog();
             $params = [auth()->user()->id,$user];
             // dd($params);
             $data = $this->callProcedure("messages",$params);
+            Log::debug(DB::getQueryLog());
             if(isset($data))
                 return $data;
             else 
                 return [];
         }catch(Exception $e){
+            Log::error($e->getMessages());
             return [];
         }
+    }
+
+    public function markasReadMessage($data,$sender,$reciever){
+        try{
+            DB::enableQueryLog();
+           $status = static::where([
+                'sender_id' => $sender,
+                'reciever_id' => $reciever
+            ])->where('is_read','=',0)
+            ->update($data);
+            // dd(DB::getQueryLog());
+        
+            Log::debug(DB::getQueryLog());
+            return $status;
+        }catch(Exception $e){
+            // dd($e);
+            Log::error($e->getMessages());
+            return 0;
+        }
+        
     }
 }

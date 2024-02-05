@@ -5,11 +5,21 @@ window.io = require('socket.io-client');
 window.socket = window.io('http://localhost:3000');
 window.socket.on('new-message_'+blade_config.user_id, (message) => {
 	appendMessage(message)
+	increaseUnreadMessages(message.sender_id)
+	playSound()
 });
 
 
-window.socket.on('user_typing',function(user) {
-	console.log(user)
+window.socket.on('typing',function(message) {
+	if(message.user_id != blade_config.user_id)
+	{	console.log(message)
+		$('.message-typing-'+message.user_id).text('typing...');
+		$('.message-typing-'+message.user_id).css('color','#0e6e1e');
+		$('.message-typing-'+message.user_id).css('font-weight','bold');
+	}
+	setTimeout(() => {
+		$('.message-typing-'+message.user_id).text('');
+	},2000);
 });
 
 
@@ -22,16 +32,40 @@ function appendMessage(message){
 				</div>
 				<div class="tyn-reply-group">
 				
-				<!-- .tyn-reply-bubble -->
+				
 				<div class="tyn-reply-bubble">
 					<div class="tyn-reply-text"> ${message.message} </div>
 				
-					<!-- .tyn-reply-tools -->
+					
 				</div>
-				<!-- .tyn-reply-bubble -->
+				
 				</div>
-				<!-- .tyn-reply-group -->
+				
 			</div></div>`;
 		
 	$('.chat-msg').append(html);
+}
+
+
+function playSound(){
+	let notify = $('.message-notification')[0];
+	if (notify.paused) {
+		notify.play();
+	} else {
+		notify.pause();
+		notify.currentTime = 0; // Reset playback to the beginning
+	}
+}
+
+function increaseUnreadMessages(user_id){
+	let msgCount = $('.message-count'+user_id);
+	if(msgCount){
+		msgCount.addClass('message-count');
+		let count = msgCount.text();
+		if(count != ''){
+			count = parseInt(count);
+			count += 1;
+			msgCount.text(count);
+		}
+	}
 }

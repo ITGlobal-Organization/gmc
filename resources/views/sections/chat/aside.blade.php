@@ -33,6 +33,9 @@
 													<h6 class="name">{{ $User->name}}</h6>
 													@if(isset($User->message))
 													<span class="message-typing-{{$User->id}}"></span>
+													@if($User->unread_messages > 0)
+														<span class="message-count message-count-{{ $User->id}}">{{ $User->unread_messages }}</span>
+													@endif
 													@endif
 												</div>
 												@if(isset($User->message))

@@ -8,6 +8,8 @@ use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\SpaceFinderController;
 use App\Http\Controllers\PlatinumPartnerController;
 use App\Http\Controllers\CategoryController;
+use App\Events\ChatMessageSent;
+use Illuminate\Http\Request;
 use Artisan;
 
 
@@ -108,10 +110,7 @@ Route::prefix('developer')->group(function () {
 });
 
 
-// web socket authentication
-Route::post('/broadcasting/auth', function () {
-    return auth()->check() ? auth()->user() : abort(403);
-});
+
 require __DIR__ . '/auth.php';
 
 

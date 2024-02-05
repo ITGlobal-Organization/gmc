@@ -22,27 +22,31 @@
 @section('scripts')
 <script>
 	$(document).on('click','#tynChatSend',function(){
-		var user_id = $('#user_id').val();
-		// window.echo.channel('chat').whisper('typing', { user: "{{ auth()->user()->name }}" });
-		let data = new FormData();
-            data.append("message", $('#tynChatInput').text());
-            data.append("sender_id", '{{ auth()->user()->id }}');
-			data.append("reciever_id", user_id);
-		ajaxPost("{{ prefix_route('chat.send') }}", data, '.contact-success', '.contact-error',false);
-		$('.chat-msg').append(appendMessage($('#tynChatInput').text()));
+		sendMessage();
+		$('#tynChatInput').text('');
 	})
 
 	// User typing
-	$(document).on('keyup', '#user_id',function(){
-		window.io.emit('user_typing',{
-			user_id:'{{ auth()->user()->id }}'
-		});
+	$(document).on('keyup', '#tynChatInput',function(event){
+
+		if(event.key === "Enter" || event.keyCode === 13){
+			sendMessage();
+			return
+		}else{
+			let data = new FormData();
+            data.append("user_id", '{{ auth()->user()->id }}');
+		
+			ajaxPost("{{ prefix_route('chat.typing') }}", data, '.contact-success', '.contact-error',false);
+		}
+		
 	});
 	// get users message
 	$(document).ready(function() {
 		var user_id = $('#user_id').val();
 		if(user_id)
 			getUserMessages(user_id);
+		// scrolled down a chatbox
+	
 	})
 
 	$(document).on('keyup', '.message-search-user',function(){
@@ -63,12 +67,39 @@
 		getUserMessages(user_id);
 	});
 
-	function getUserMessages(user){
-		ajaxGet("{{ prefix_route('chat.messages') }}", {
+	async function getUserMessages(user){
+		await ajaxGet("{{ prefix_route('chat.messages') }}", {
 			user_id:user
 		}, ".tyn-chat-content", responseType = 'html',null,true);
+		let scrolled = false;
+		$('#tynChatBody').scroll(function() {
+		// alert('herere')
+            // Check if the div is scrolled to the bottom
+			
+            if (($(this).scrollTop() + $(this).innerHeight() - $(this)[0].scrollHeight) >= -5 && !scrolled) {
+				let data = new FormData();
+				var user_id = $('#user_id').val();
+				data.append("message", $('#tynChatInput').text());
+				data.append("sender_id", user_id);
+				data.append("reciever_id", '{{ auth()->user()->id }}');
+				ajaxPost("{{ prefix_route('chat.readed') }}", data, '.contact-success', '.contact-error',false);
+				scrolled = true;
+                $('.message-count-'+user_id).text('');
+				$('.message-count-'+user_id).removeClass('message-count');
+            }
+        });
 	}
 
+	function sendMessage(){
+		var user_id = $('#user_id').val();
+		// window.echo.channel('chat').whisper('typing', { user: "{{ auth()->user()->name }}" });
+		let data = new FormData();
+            data.append("message", $('#tynChatInput').text());
+            data.append("sender_id", '{{ auth()->user()->id }}');
+			data.append("reciever_id", user_id);
+		ajaxPost("{{ prefix_route('chat.send') }}", data, '.contact-success', '.contact-error',false);
+		$('.chat-msg').append(appendMessage($('#tynChatInput').text()));
+	}
 	function appendMessage(message){
 		let html = '<div class="tyn-reply" id="tynReply"><div class="tyn-reply-item outgoing">'+
          '<div class="tyn-reply-group">'+
@@ -83,6 +114,7 @@
 		return html;
 	}
 
+	
 	
 </script>
 @endsection

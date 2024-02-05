@@ -105,7 +105,12 @@ Route::prefix('chat')->group(function(){
     Route::get('/search', [MessageController::class, 'searchUser'])->name('user.chat.search');
     Route::post('/', [MessageController::class, 'send'])->name('user.chat.send');
     Route::get('/messages',[MessageController::class, 'userMessages'])->name('user.chat.messages');
+    Route::post('/readed',[MessageController::class, 'updateMsg'])->name('user.chat.readed');
+    // web socket authentication
+    Route::post('/typing',[MessageController::class, 'userTyping'])->name('user.chat.typing');
 });
+
+
 
 // Route::get('/checkout',[CheckoutController::class,'renderCheckOutView'])->name('user.checkout.index');
 // Route::get('/', [DashboardController::class, 'dashboard'])->name('user.dashboard');

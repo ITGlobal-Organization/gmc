@@ -3394,7 +3394,7 @@ textarea.form-control-lg {
 }
 
 .form-group {
-  --tyn-size: 2.5rem;
+  --tyn-size: 3.5rem;
 }
 [data-bs-theme=dark] .form-label {
   color: var(--bs-gray-400);
@@ -4191,7 +4191,7 @@ button {
   --tyn-size: var(--bs-size-sm);
 }
 .btn.btn-md {
-  --tyn-icon-size: 0.875rem;
+  --tyn-icon-size: 1.275rem;
   --tyn-size: var(--bs-size-md);
 }
 .btn.btn-lg, .btn-group-lg > .btn {

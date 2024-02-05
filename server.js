@@ -56,6 +56,7 @@ io.on('connection', function(socket){
 
     // socket.on('user_typing',function(user){
     //     console.log(user);
+    //     io.emit('typing',user)
     // })
 })
 
@@ -65,9 +66,15 @@ redis.on('message',function(channel,message){
     console.log(channel);
     if(channel == 'chat'){
         console.log(message)
+
+        
       
         var message = JSON.parse(message)
         var data = message.data;
+        if(data.typing){
+            io.emit('typing',data);
+            return true;
+        }
         let reciever_id = data.reciever_id;
         let event = message.event;
         io.emit('new-message_'+reciever_id,data);
