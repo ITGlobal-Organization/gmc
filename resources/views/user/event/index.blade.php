@@ -85,11 +85,19 @@
         });
         $(document).on('keyup', '.search-box', function() {
             search = $(this).val();
-            if (search.length > 2) {
-                ajaxGet("{{ route('user.event-calenders.search') }}", {
-                    search
-                }, ".events", responseType = 'html');
-            }
+              
+            setTimeout(() => {
+            // console.log(filters.search)
+                if (search.length > 2) {
+                    ajaxGet("{{ route('user.event-calenders.search') }}", {
+                        search
+                    }, ".events", responseType = 'html');
+                } 
+            }, 1000);
+            // setInterval(() => {
+                
+            // }, 3000);
+            
         });
         $(document).on('click','.edit' ,function(e) {
             e.preventDefault();
