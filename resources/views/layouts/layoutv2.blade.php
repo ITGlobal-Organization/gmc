@@ -9,6 +9,7 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="{{ custom_asset('style.css','css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ custom_asset('extra.css','css') }}" rel="stylesheet" type="text/css">
+    <link  href="{{custom_asset('style-banner.css','css')}}" rel="stylesheet" type="text/css">
 
 	<link href="{{ custom_asset('easy-responsive-tabs.css','css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset(config('site_config.assets.plugins').'select2/css/select2.css') }}" rel="stylesheet" />
@@ -27,7 +28,7 @@
 
     <link href="{{ custom_asset('owl.carousel.css','css') }}" rel="stylesheet" type="text/css">
     <link href="{{ custom_asset('owl.theme.css','css') }}" rel="stylesheet" type="text/css">
-<!-- 
+<!--
 	<link href="{{ custom_asset('easy-responsive-tabs.css','css') }}" rel="stylesheet" type="text/css"> -->
 
 
@@ -37,7 +38,7 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
-	
+
 
 	<title>{{ config('app.name')}} | {{ isset($title)?$title:'Page'}}</title>
 </head>
@@ -106,7 +107,7 @@ const blade_config = {
 <script src="{{ custom_asset('common.js','scripts')}}"></script>
 <script src="{{ custom_asset('owl.carousel.js','scripts') }}"></script>
 <script src="{{ custom_asset('utils.js','scripts') }}"></script>
-
+<script src="{{ custom_asset('banner-script.js','scripts') }}"></script>
 <script>
 		// $(document).ready(function(){
 		// 	$('select').select2();

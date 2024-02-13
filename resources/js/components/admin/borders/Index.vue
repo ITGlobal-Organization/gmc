@@ -22,7 +22,7 @@
 
     <!-- Default box -->
     <div class="card card-secondary card-outline">
-        
+
         <div class="card-body p-0">
             <div class="row">
                 <div class="col-12 col-md-5 card card-box-shadow">
@@ -63,13 +63,13 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
-        
+
         <!-- /.card-body -->
     </div>
     <!-- /.card -->
-    
+
     </section>
 
 <!-- /.content -->
@@ -159,7 +159,7 @@ mounted(){
             sorted:false,
             has_html:true,
         },
-        
+
         {
             label:Language.created_at,
             field:'created_at',
@@ -184,7 +184,7 @@ mounted(){
                         return 'fa fa-edit mr-2'
                     },
                     action:(row) =>{
-                        
+
                         ref.edit(row.id);
                     }
                 },
@@ -196,7 +196,7 @@ mounted(){
                         return 'fa fa-trash mr-2'
                     },
                     action:(row) =>{
-                        
+
                         ref._delete(row.id);
                     }
                 }
@@ -252,7 +252,7 @@ mounted(){
                     searchable:true,
                     options:function(){
                             if(this.isdynamic){
-                                return ref.options;            
+                                return ref.options;
                             }
                             return [
                                 {
@@ -268,7 +268,7 @@ mounted(){
                     placeholder:function(){
                         return Language.placholder_msg(this.label)
                     },
-                    
+
                     required:true,
                 },
                 {
@@ -280,14 +280,14 @@ mounted(){
                     placeholder:function(){
                         return "Upload"+this.label
                     },
-                    multiple:false,
+                    multiple:true,
                     model:`App\\Models\\Border`,
                     required:false,
                     fileType:"image/jpeg, image/png",
-                    maxFiles:1
+                    maxFiles:10
             },
-            
-            
+
+
         ]
     this.getBorders(this.pageNo,this.pageSize,this.filter);
 },
@@ -363,19 +363,19 @@ methods:{
 
         this.errors = [];
         let ref = this;
-  
 
-            
-        this.loader =true;   
+
+
+        this.loader =true;
                 await update(this.id,this.FormData).then((response) => {
                     successAlert(Language.success_msg.replace(':attribute',Language.border).replace(':action',Language.updated));
                     ref.id = 0;
                     ref.getBorders();
                 }).catch((e) => {
-                    
+
                     if(e.response.status === 422){
                         ref.errors = e.response.data.errors
-                        
+
                     }else if(e.response.status == 500){
                         errorAlert(e.message)
                     }else{
@@ -385,11 +385,11 @@ methods:{
                 })
                 this.loader =false;
                 clearForm();
-                
-            
+
+
     },
     async store(){
-        
+
             const {store,errors} = useBorders();
             const {successAlert,errorAlert} = useService();
             this.loader =true;
@@ -411,9 +411,9 @@ methods:{
             this.loader =false;
             clearForm();
             // this.errors = errors.value;
-      
-        
-        
+
+
+
 
     },
     async edit(id){
@@ -425,8 +425,8 @@ methods:{
         this.FormData.price = record.value.price;
         this.FormData.description = record.value.description;
         this.FormData.is_active = record.value.is_active;
-        
-   
+
+
     },
     clearForm(){
         ref = this
