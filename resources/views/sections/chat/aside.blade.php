@@ -18,9 +18,20 @@
 							<div class="tab-pane show active" id="all-chats" tabindex="0" role="tabpanel">
 								<ul class="tyn-aside-list">
                                     @if(count($Users))
-									<input type="hidden" id="user_id" value="{{ $Users[0]->id }}"/>
-                                    @foreach($Users as $User)
-									<li class="tyn-aside-item js-toggle-main active">
+									<input type="hidden" id="user_id" value="{{ request()->user_id?request()->user_id:$Users[0]->id }}"/>
+                                    @foreach($Users as $key =>  $User)
+									@php 
+										$active = '';
+										if(request()->user_id){
+											if($User->id == request()->user_id)
+												$active = 'active';
+										}else if($key == 0){
+											$active = 'active';
+										}
+									@endphp
+									<li class="tyn-aside-item js-toggle-main {{ 
+										$active
+									}}">
 										<div class="tyn-media-group chat-user" data-id="{{ $User->id}}">
 											<div class="tyn-media tyn-size-lg">
 											@include('components.image',[

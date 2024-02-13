@@ -2489,7 +2489,7 @@ blockquote{border: none !important;}
   .tyn-media img {
     height: 100%;
     width: 100%;
-    border-radius: calc(var(--tyn-shape) - 1px);
+    border-radius: 50% !important;
     object-fit: cover;
   }
   .tyn-media svg, .tyn-media .icon {

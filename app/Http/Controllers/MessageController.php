@@ -24,7 +24,7 @@ class MessageController extends BaseController
     public function index(Request $request){
         $this->sender_id = Auth::user()->id;
         $Users = $this->message->getMessagesUsers($this->sender_id);           
-        
+      
         //  dd($Users,$this->sender_id);
         return view('pages.chat',[
             'title' => 'Chat',
@@ -59,7 +59,21 @@ class MessageController extends BaseController
     public function userMessages(Request $request){
         try{
             // $this->sender_id = Auth::user()->id;
-            $Messages = $this->message->getMessages($request->user_id);           
+            $Messages = $this->message->getMessages($request->user_id); 
+            
+            if(count($Messages) == 0){
+                $data = [
+                    'message' => trans('messages.first-msg'),
+                    'sender_id' => auth()->user()->id,
+                    'reciever_id' => $request->user_id,
+                    // 'sender_name' => auth()->user()->name,
+                ];
+                $this->message->store($data);
+                // event(new ChatMessageSent($data));
+                $data['sender_name'] =  auth()->user()->name;
+                $data['image_url'] =  $this->user->first('id',auth()->user()->id)->media[0]->image_url;
+                broadcast(new ChatMessageSent($data));
+            }
             
             $User = $this->user->first('id',$request->user_id);
             return view('sections.chat.chatbox',[
@@ -108,5 +122,15 @@ class MessageController extends BaseController
         }catch(Exception $e){
             return $this->sendError(trans('messages.error_msg',['action' => trans('lang.sending')]));
         }
+    }
+
+    public function chatList(Request $request){
+        $this->sender_id = Auth::user()->id;
+        $Users = $this->message->getMessagesUsers($this->sender_id,1,10);           
+        
+        //  dd($Users,$this->sender_id);
+        return view('sections.chat.recent',[
+            'Users' => $Users
+        ]);
     }
 }
