@@ -20,5 +20,6 @@
     "/js/scripts/slicarousel.js": "/js/scripts/slicarousel.js",
     "/js/scripts/socket.js": "/js/scripts/socket.js",
     "/js/scripts/toast.min.js": "/js/scripts/toast.min.js",
-    "/js/scripts/utils.js": "/js/scripts/utils.js"
+    "/js/scripts/utils.js": "/js/scripts/utils.js",
+    "/js/scripts/banner-script.js": "/js/scripts/banner-script.js"
 }
