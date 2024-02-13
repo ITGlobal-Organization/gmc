@@ -126,9 +126,14 @@
 
                     <div class="mid-box">
 
-                        <h5 class="mb-20">Your Chats</h5>
+                        <h5 class="mb-20">{{ trans('lang.recent-chats')}}</h5>   
 
-                        Location for links to chat/messages
+                        <div class="border-all"></div>
+
+                        
+                        <div class="chat-list">
+
+                        </div>
 
                     </div>
 
@@ -142,7 +147,7 @@
 
                 <!--Start Mid Box 4-->
 
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border">
+                <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border">
 
                     <div class="mid-box">
 
@@ -151,7 +156,7 @@
                     </div>
 
                     <div class="clr"></div>
-                </div>
+                </div> -->
 
                 <!--End Mid Box 4-->
 
@@ -171,7 +176,7 @@
      async function getMylistings(){
           await ajaxGet("{{route('event-calenders.ajax')}}",{length:10,order_by:'created_at',order:'desc',view_type:'box'},".events",responseType='html');
           await ajaxGet("{{route('space-finders.ajax')}}",{length:10,order_by:'created_at',order:'desc'},".spacefinders",responseType='html');
-          await ajaxGet("{{route('blogs.ajax')}}",{length:10,order_by:'created_at',order:'desc'},".news",responseType='html');
+          await ajaxGet("{{prefix_route('chat.list')}}",{},".chat-list",responseType='html');
      }
      $(function (e) {
         getMylistings();

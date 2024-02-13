@@ -22,6 +22,7 @@ return [
     'welcome_msg' => 'Hi, :attribute',
     'edit_msg' => 'Edit :attribute',
     'count_msg' => 'Total :attribute',
+    'first-msg' => 'Hi',
     'errors' => [
         '500' => [
             'code'  => '500',
