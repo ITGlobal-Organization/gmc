@@ -395,4 +395,23 @@ class Helper
             return $str;
         }
     }
+
+    public static function formatHeading($str,$sep,$class){
+        try{
+            $textArr = explode($sep,$str);    
+            $formatStr = "";
+            $count = 1;
+            foreach($textArr as $key => $txt){
+                if($count %2 == 0 )
+                    $formatStr .= '<span class="'.$class.'">'.$txt. '</span>';
+                else
+                    $formatStr .= $txt;
+                $count++;
+            }
+            return $formatStr;
+        }catch(Exception $e){
+            Log::error($e->getMessage());
+            return $str;
+        }
+    }
 }

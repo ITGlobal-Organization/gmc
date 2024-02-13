@@ -349,11 +349,11 @@ class BaseModel extends Model
             }
         }
 
-        if (count($this->getFilters()) > 0) {
-            foreach ($this->getFilters() as $condition) {
-                $data->where($condition[0], $condition[1], $condition[2]);
-            }
-        }
+        // if (count($this->getFilters()) > 0) {
+        //     foreach ($this->getFilters() as $condition) {
+        //         $data->where($condition[0], $condition[1], $condition[2]);
+        //     }
+        // }
 
         if (count($join) > 0) {
             foreach ($join as $index => $rel){
@@ -445,6 +445,19 @@ class BaseModel extends Model
 
     public function images(){
         return $this->hasMany(Media::class,'model_id')->where('model',$this->class_name);
+    }
+
+
+    public function callProcedure($procedure,$params){
+        try{
+            // dd($params);
+            $Params = implode(',',$params);
+            // dd($Params);
+            return DB::select("call ".$procedure."(" .$Params . ")");
+        }catch(Exception $e){
+            Log::error($e->getMessage());
+            return false;
+        }
     }
 
 }

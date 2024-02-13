@@ -8,6 +8,7 @@ use App\Http\Controllers\EventCalenderController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\MessageController;
 // use App\Http\Controllers\DashboardController;
 // use App\Http\Controllers\OrderController;
 // use App\Http\Controllers\QuoteController;
@@ -98,6 +99,18 @@ Route::prefix('employees')->group(function(){
     })->name('user.employees.create');
     // Route::delete('/media/delete/{id}',[EmployeeController::class,'deleteFiles'])->name('user.events.media-upload');
 });
+
+Route::prefix('chat')->group(function(){
+    Route::get('/', [MessageController::class, 'index'])->name('user.chat.index');
+    Route::get('/search', [MessageController::class, 'searchUser'])->name('user.chat.search');
+    Route::post('/', [MessageController::class, 'send'])->name('user.chat.send');
+    Route::get('/messages',[MessageController::class, 'userMessages'])->name('user.chat.messages');
+    Route::post('/readed',[MessageController::class, 'updateMsg'])->name('user.chat.readed');
+    // web socket authentication
+    Route::post('/typing',[MessageController::class, 'userTyping'])->name('user.chat.typing');
+});
+
+
 
 // Route::get('/checkout',[CheckoutController::class,'renderCheckOutView'])->name('user.checkout.index');
 // Route::get('/', [DashboardController::class, 'dashboard'])->name('user.dashboard');
