@@ -77,10 +77,10 @@ class DirectoryController extends BaseController
                 $CategoryId = $value;
                 $this->directory->setFilters(['directory_categories.id','=',$value]);
 
-
             }
             else if(isset($value) && $value != ""){
-                $this->directory->setFilters([$key,'like','%'.$value.'%']);
+
+                $this->directory->setFilters(["directories.".$key,'like','%'.$value.'%']);
             }
         }
 
@@ -89,7 +89,6 @@ class DirectoryController extends BaseController
             ['category_directory','directories.id','=','category_directory.directory_id'],
             ['directory_categories','category_directory.category_id','=','directory_categories.id'],
         ],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
-
         return view('sections.directories',[
             'Directories' => $Directories,
             'count' => $this->directory->getCount(),

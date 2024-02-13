@@ -349,11 +349,11 @@ class BaseModel extends Model
             }
         }
 
-        if (count($this->getFilters()) > 0) {
-            foreach ($this->getFilters() as $condition) {
-                $data->where($condition[0], $condition[1], $condition[2]);
-            }
-        }
+        // if (count($this->getFilters()) > 0) {
+        //     foreach ($this->getFilters() as $condition) {
+        //         $data->where($condition[0], $condition[1], $condition[2]);
+        //     }
+        // }
 
         if (count($join) > 0) {
             foreach ($join as $index => $rel){
