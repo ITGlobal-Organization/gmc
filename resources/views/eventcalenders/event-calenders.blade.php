@@ -107,10 +107,13 @@
 	})
     $(document).on('keyup','.search-box',function(){
         filters.search = $(this).val();
-        getEventsListing()
-        // setInterval(() => {
-        //     getEventsListing()
-        // },2000)
+        
+        setTimeout(() => {
+            // console.log(filters.search)
+                if (filters.search.length > 2) {
+                    getEventsListing()
+                } 
+            }, 1000);
     });
     $(document).on('change', '#end-date',async function (ev) {
         filters.start_date = $('#start-date').val();

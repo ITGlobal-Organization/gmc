@@ -19,9 +19,9 @@
 <div class="text-center mtb-25">
 
 @if (isset($PlatinumPartner->media[0]))
-    <img src="{{ $PlatinumPartner->media[0]->image_url }}" alt="" class="blog-img" />
+    <img src="{{ $PlatinumPartner->media[0]->image_url }}" alt="Logo" class="blog-img" />
 @else
-    <img src="{{ custom_asset('image-not-found.png')}}" alt="" class="blog-img" />
+    <img src="{{ custom_asset('image-not-found.png')}}" alt="Logo" class="blog-img" />
 @endif
 
 </div>
@@ -29,7 +29,6 @@
 <p>
 
 {!! $PlatinumPartner->description !!}
-<a href="{{ $PlatinumPartner->web_url }}" target="_blank"/> {{ trans('lang.here')}}</a>
 
 </p>
 

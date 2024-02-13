@@ -77,9 +77,9 @@
                             <div class="clr"></div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                            <label for="youtube_url">Youtube Url</label>
+                            <label for="youtube_url">Twitter Url</label>
                             <input type="text" class="serch-input" value="{{ $SpaceFinder->youtube_url }}"
-                                placeholder="Youtube Url" name="youtube_url">
+                                placeholder="Twitter Url" name="youtube_url">
                                 <div class="error-youtube_url"></div>
                             <div class="clr"></div>
                         </div>
@@ -109,7 +109,7 @@
                                 <button class="close AClass" type="button">
                                     <span>&times;</span>
                                 </button>
-                                <img src="{{ isset($SpaceFinder->media[0]->image_url) ? $SpaceFinder->media[0]->image_url : asset('/media/image-not-found.png') }}" alt=""
+                                <img src="{{ isset($SpaceFinder->media[0]->image_url) ? $SpaceFinder->media[0]->image_url : asset('/media/image-not-found.png') }}" alt="Logo"
                                     data-id="{{ isset($SpaceFinder->media[0]->id) ?  $SpaceFinder->media[0]->id : ""}}">
                                 <div class="clr"></div>
                             </div>

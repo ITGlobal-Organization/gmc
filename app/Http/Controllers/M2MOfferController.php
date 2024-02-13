@@ -71,7 +71,7 @@ class M2MOfferController extends BaseController
         }
 
         $offers = $this->offer->getAll([],['m2m_offers.*','images.image_url']);
-        if(isset($user) && !$user->hasRole('admin') && str_contains($this->url,"user")){
+        if(isset($user) && $user->hasRole('user') && str_contains($this->url,"user")){
             $view='user.offer.listing';
         }else{
             $view='sections.offers';
