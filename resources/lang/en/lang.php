@@ -213,6 +213,8 @@ return [
     'clear-filter' => "Back",
     'view-categories' => "View Categories",
     'messages' => "Messages",
+    'recent-chats' => "Recent Chats",
+    'open_chat' => "Open Chat",
     'member_dashboard' => "Member Dashboard",
 
 ];
