@@ -47,7 +47,14 @@ class MessageController extends BaseController
             $this->message->store($data);
             // event(new ChatMessageSent($data));
             $data['sender_name'] =  auth()->user()->name;
-            $data['image_url'] =  $this->user->first('id',auth()->user()->id)->media[0]->image_url;
+            $image = $this->user->first('id',auth()->user()->id)->media;
+                if(isset( $image )){
+                    $image = $this->user->first('id',auth()->user()->id)->media[0]->image_url;
+                }else{
+                    $image = asset('media/image-not-found.png');
+                }
+
+                $data['image_url'] =  $image;
             broadcast(new ChatMessageSent($data));
             return $this->sendResponse($data,'');
         }catch(Exception $e){
@@ -71,7 +78,14 @@ class MessageController extends BaseController
                 $this->message->store($data);
                 // event(new ChatMessageSent($data));
                 $data['sender_name'] =  auth()->user()->name;
-                $data['image_url'] =  $this->user->first('id',auth()->user()->id)->media[0]->image_url;
+                $image = $this->user->first('id',auth()->user()->id)->media;
+                if(isset( $image )){
+                    $image = $this->user->first('id',auth()->user()->id)->media[0]->image_url;
+                }else{
+                    $image = asset('media/image-not-found.png');
+                }
+
+                $data['image_url'] =  $image;
                 broadcast(new ChatMessageSent($data));
             }
             
