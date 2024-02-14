@@ -30,7 +30,7 @@ const io=require('socket.io')(server,{
 
 // server.listen(8080);
 var users = [];
-server.listen(80,function(){
+server.listen(3000,function(){
     console.log('listen on port 3000');
 })
 
