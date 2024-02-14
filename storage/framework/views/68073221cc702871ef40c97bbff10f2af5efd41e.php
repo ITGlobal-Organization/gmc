@@ -15,9 +15,9 @@
 <div class="text-center mtb-25">
 
 <?php if(isset($PlatinumPartner->media[0])): ?>
-    <img src="<?php echo e($PlatinumPartner->media[0]->image_url); ?>" alt="" class="blog-img" />
+    <img src="<?php echo e($PlatinumPartner->media[0]->image_url); ?>" alt="Logo" class="blog-img" />
 <?php else: ?>
-    <img src="<?php echo e(custom_asset('image-not-found.png')); ?>" alt="" class="blog-img" />
+    <img src="<?php echo e(custom_asset('image-not-found.png')); ?>" alt="Logo" class="blog-img" />
 <?php endif; ?>
 
 </div>
@@ -26,7 +26,6 @@
 
 <?php echo $PlatinumPartner->description; ?>
 
-<a href="<?php echo e($PlatinumPartner->web_url); ?>" target="_blank"/> <?php echo e(trans('lang.here')); ?></a>
 
 </p>
 
