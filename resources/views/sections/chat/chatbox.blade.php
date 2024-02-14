@@ -13,7 +13,7 @@
       <div class="tyn-media tyn-size-lg d-none d-sm-inline-flex">
          @include('components.image',[
 
-                                        'image' => $User->media[0]->image_url
+                                        'image' => count($User->media) > 0 ?$User->media[0]->image_url:null
                                     ])
       </div>
       <div class="tyn-media tyn-size-rg d-sm-none">
