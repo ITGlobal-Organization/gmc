@@ -48,7 +48,7 @@ class MessageController extends BaseController
             // event(new ChatMessageSent($data));
             $data['sender_name'] =  auth()->user()->name;
             $image = $this->user->first('id',auth()->user()->id)->media;
-                if(isset( $image )){
+                if(count( $image ) > 0){
                     $image = $this->user->first('id',auth()->user()->id)->media[0]->image_url;
                 }else{
                     $image = asset('media/image-not-found.png');
@@ -79,7 +79,7 @@ class MessageController extends BaseController
                 // event(new ChatMessageSent($data));
                 $data['sender_name'] =  auth()->user()->name;
                 $image = $this->user->first('id',auth()->user()->id)->media;
-                if(isset( $image )){
+                if(count( $image ) > 0){
                     $image = $this->user->first('id',auth()->user()->id)->media[0]->image_url;
                 }else{
                     $image = asset('media/image-not-found.png');
