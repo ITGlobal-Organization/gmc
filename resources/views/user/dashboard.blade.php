@@ -11,6 +11,7 @@
 
 
                         $directory = new App\Models\Directory();
+                        dd($user);
                         $Directory=$directory->first('user_id',$user->id,'=');
 
                     @endphp
