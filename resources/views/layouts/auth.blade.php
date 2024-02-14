@@ -114,6 +114,7 @@ const blade_config = {
 <script src="{{ custom_asset('common.js','scripts')}}"></script>
 <script src="{{ custom_asset('owl.carousel.js','scripts') }}"></script>
 <script src="{{ custom_asset('utils.js','scripts') }}"></script>
+<script src="{{ custom_asset('banner-script.js','scripts') }}"></script>
 
 <script>
 		// $(document).ready(function(){
