@@ -2,7 +2,7 @@
 window.io = require('socket.io-client');
 
 
-window.socket = window.io('https://perthshirecc.co.uk:80');
+window.socket = window.io('https://perthshirecc.co.uk:3000');
 window.socket.on('new-message_'+blade_config.user_id, (message) => {
 	appendMessage(message)
 	increaseUnreadMessages(message.sender_id)
