@@ -126,6 +126,7 @@ p {
     top: 0;
     left: 16%;
     border: 0px solid red;
+    z-index: 100;
 }
 .top-nav {
     margin: 25px 0px 0px 0px;
@@ -176,6 +177,7 @@ p {
     height: auto;
     background-color: #2b9acb;
     border: 0px solid red;
+    z-index: 100;
 }
 .list2 ul {
     list-style: none;
