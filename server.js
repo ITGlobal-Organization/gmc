@@ -22,7 +22,7 @@ const options = {
     cert: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/fullchain.pem'),
   };
 
-  const server = https.createServer(options, (req, res) => {
+  const server = require('https').createServer(options, (req, res) => {
     // Your application logic here
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Hello, secure world!\n');
