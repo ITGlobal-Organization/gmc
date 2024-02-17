@@ -38,7 +38,7 @@ const io=require('socket.io')(server,{
 
 
 // server.listen(8080);
-const port =443;
+const port =3000;
 var users = [];
 server.listen(port,function(){
     console.log('listen on port 3000');
