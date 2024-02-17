@@ -17,8 +17,17 @@ const redis = new Redis();
 //     requestCert: false,
 //     rejectUnauthorized: false
 // }
+const options = {
+    key: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/fullchain.pem'),
+  };
 
-const server = require('http').createServer(app);
+  const server = https.createServer(options, (req, res) => {
+    // Your application logic here
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Hello, secure world!\n');
+  });
+// const server = require('http').createServer(app);
 const io=require('socket.io')(server,{
     cors: {
         origin: '*',
@@ -29,8 +38,9 @@ const io=require('socket.io')(server,{
 
 
 // server.listen(8080);
+const port =443;
 var users = [];
-server.listen(3000,function(){
+server.listen(port,function(){
     console.log('listen on port 3000');
 })
 
