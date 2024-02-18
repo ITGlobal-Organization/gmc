@@ -192,7 +192,7 @@
 
     <!--Start Nav Desktop Area-->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nav1 none">
-    <div class="middle">
+    <div class="middle-header">
      <div class="list2">
         @php
              $User = auth()->user();
