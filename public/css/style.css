@@ -118,6 +118,11 @@ p {
     width: 1395px;
     border: 0px solid red;
 }
+.middle-header {
+  margin: auto;
+  width: 1370px;
+  border: 0px solid red;
+}
 .header {
     margin: auto;
     width: 1300px;
@@ -1085,7 +1090,7 @@ table {
 
 td, th {
 
-    border: 2px solid #fff;
+    border: 2px solid #fff !important;
 
     padding: 20px !important;
 
