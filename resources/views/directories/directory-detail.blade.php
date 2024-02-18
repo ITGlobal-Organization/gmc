@@ -80,7 +80,7 @@
 
 
                     <!--Start Box 7-->
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
                         <i class="fas fa-share-alt" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Social Info </b> :
 
                         <span class="social-media2"> <a href="{{ $Directory->facebook_url }}"><i class="fab fa-facebook-f"
