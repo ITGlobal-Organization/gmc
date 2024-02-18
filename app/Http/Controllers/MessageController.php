@@ -105,6 +105,7 @@ class MessageController extends BaseController
             $this->user->setFilters(['email','like', '%'.$request->search.'%']);
 
             $Users = $this->user->getAll([],['users.*','users.first_name as name','images.image_url']);
+            // dd($Users);
             return view('sections.chat.aside',[
                 'Users' => $Users,
             

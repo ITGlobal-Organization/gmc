@@ -20,7 +20,7 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-server.js
+server.*
 public/js/app.js
 public/mix-manifest.json
 
