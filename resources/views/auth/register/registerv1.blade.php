@@ -563,9 +563,10 @@
         },
         success: function(response) {
             if(response.status){
-                console.log(response.message)
+                window.location.href="/";
             }else{
-                console.log(response)
+                $('.error').addClass("alert alert-danger");
+                $('.error').text(response.message);
             }
             $('.success').addClass("alert alert-success");
             $('.success').text(response.message);
