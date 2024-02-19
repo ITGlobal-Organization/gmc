@@ -32,7 +32,7 @@ Route::middleware('guest')->group(function () {
         ->name('register');
 
     Route::post('login', [AuthenticatedSessionController::class, 'auth'])->name('login.post');
-    Route::post('register', [ZohoController::class, 'initialize'])->name('register.post');
+    Route::post('register', [ZohoController::class, 'register'])->name('register.post');
 
 
 

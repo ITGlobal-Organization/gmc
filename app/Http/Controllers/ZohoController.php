@@ -12,220 +12,226 @@ use com\zoho\api\logger\Levels;
 use com\zoho\crm\api\SDKConfigBuilder;
 use com\zoho\crm\api\ProxyBuilder;
 use Illuminate\Support\Facades\Http;
-
+use GuzzleHttp\Client;
+use App\Models\User;
+use App\Models\Directory;
+use DB;
+use Log;
+use Illuminate\Support\Facades\Hash;
+use Auth;
+// use GuzzleHttp\Client;
 // use App\Helpers\OAuthToken;
 
-class ZohoController extends Controller
+class ZohoController extends BaseController
 {
-    // public static function initialize()
-    // {
-    //     $environment = USDataCenter::PRODUCTION();
-    //     $tokenstore = (new DBBuilder())
-    //     ->host(env('DB_HOST'))
-    //     ->databaseName(env('DB_DATABASE'))
-    //     ->userName(env('DB_USERNAME'))
-    //     ->portNumber(env('DB_PORT'))
-    //     ->tableName("oauthtoken")
-    //     ->password(env('DB_PASSWORD'))
-    //     ->build();
-    //     dd($tokenstore);
-    //     // $token= new Token.Builder()
-    //     // .clientID(env("ZOHO_CLIENT_ID"))
-    //     // .clientSecret(env("ZOHO_CLIENT_SECRET"))
-    //     // .grantToken("1000.a59d0617ff0142ee47ed5f2cb64631a2.6abc2560b18621ff29a474d7f87c7256")
-    //     // .redirectURL("http://gmc.test")
-    //     // .build();
-    //     // (new InitializeBuilder())
-    //     //     ->environment($environment)
-    //     //     ->token($token)
-    //     //     ->initialize();
-    //     //     $moduleAPIName = "Leads";
-    //     //     $this->createRecords($moduleAPIName);
-    // }
-    // public static function initialize()
-    // {
-    //     $environment = USDataCenter::PRODUCTION();
-    //     $token = (new OAuthBuilder())
-    //     ->clientId("clientId")
-    //     ->clientSecret("clientSecret")
-    //     ->refreshToken("grantToken")
-    //     ->redirectURL("redirectURL")
-    //     ->build();
-    //     dd($token);
 
-    //     $tokenstore = (new DBBuilder())
-    //         ->host(env('DB_HOST'))
-    //         ->databaseName(env('DB_DATABASE'))
-    //         ->userName(env('DB_USERNAME'))
-    //         ->password(env('DB_PASSWORD'))
-    //         ->portNumber(env('DB_PORT'))
-    //         ->tableName('oauthtoken')
-    //         ->build();
+    private $user,$Media,$authUser;
+    private  $zohoAuthToken = '1000.1baf1559dd09adcc65ebcc2ffff02fc0.675dec9e4a1a83b5501847c2640590e6';
+    private $refreshToken = '1000.dbf2e2f5d89607e359667ad4db6c0afe.14af10121266ce8d2ab7436d1fc283e1';
+    private $leadData;
 
-    //         $autoRefreshFields = false;
-    //     $pickListValidation = false;
-    //     $connectionTimeout = 2; //The number of seconds to wait while trying to connect. Use 0 to wait indefinitely.
-    //     $timeout = 2; //The maximum number of seconds to allow cURL functions to execute.
-    //     $enableSSLVerification = false;
-    //     $sdkConfig = (new SDKConfigBuilder())
-    //         ->autoRefreshFields($autoRefreshFields)
-    //         ->pickListValidation($pickListValidation)
-    //         ->sslVerification($enableSSLVerification)
-    //         ->connectionTimeout($connectionTimeout)
-    //         ->timeout($timeout)
-    //         ->build();
+    public function __construct(User $user,Directory $directory){
+        $this->user = $user;
+        $this->directory = $directory;
+        $this->user->setRules();
+        $this->directory->setRules();
+        $this->setModel( $this->directory);
+        $this->client = new \GuzzleHttp\Client();
+        $this->authUser;
 
-    //     $resourcePath = "/users/php-application";
+    }
 
-    //     $resourcePath = "/users/php-application";
+    public function register(Request $request){
 
-    //     $requestProxy = (new ProxyBuilder())
-    //         ->host("proxyHost")
-    //         ->port(0)
-    //         ->user("proxyUser")
-    //         ->password("password")
-    //         ->build();
-
-    //     (new InitializeBuilder())
-    //         ->environment($environment)
-    //         ->token($token)
-    //         ->store($tokenstore)
-    //         ->SDKConfig($sdkConfig)
-    //         ->resourcePath($resourcePath)
-    //         ->logger($logger)
-    //         ->requestProxy($requestProxy)
-    //         ->initialize();
-
-    //         // $token= new OAuthToken.Builder();
-    //         // .clientID(env('ZOHO_CLIENT_ID'))
-    //         // .clientSecret(env('ZOHO_CLIENT_SECRET'))
-    //         // .grantToken("grantToken")
-    //         // .refreshToken("refreshToken")
-    //         // .redirectURL("redirectURL")
-    //         // .id("")
-    //         // .accessToken("")
-    //         // .userSignature("")
-    //         // .findUser(false)
-    //         // .build();
-    //         dd($environment);
-    // }
-    // $moduleAPIName = "us";
-    // public static function createRecords($moduleAPIName)
-    // {
-    //     $recordOperations = new RecordOperations("Users");
-    //     $bodyWrapper = new BodyWrapper();
-    //     $records = array();
-    //     $record1 = new Record();
-    //     $record1->addFieldValue(Leads::City(), "City");
-    //     $record1->addFieldValue(Leads::Company(), "company");
-    //     $record1->addFieldValue(Leads::LastName(), "FROm PHP");
-    //     $record1->addFieldValue(Leads::FirstName(), "First Name");
-    //     $record1->addFieldValue(Leads::Email(), "abc@zoho.com");
-    //     $tagList = array();
-    //     $tag = new Tag();
-    //     $tag->setName("TestTask");
-    //     array_push($tagList, $tag);
-    //     $record1->setTag($tagList);
-    //     array_push($records, $record1);
-    //     $bodyWrapper->setData($records);
-    //     $headerInstance = new HeaderMap();
-    //     $response = $recordOperations->createRecords($bodyWrapper, $headerInstance);
-    //     if ($response != null) {
-    //         echo ("Status Code: " . $response->getStatusCode() . "\n");
-    //         if ($response->isExpected()) {
-    //             $actionHandler = $response->getObject();
-    //             if ($actionHandler instanceof ActionWrapper) {
-    //                 $actionWrapper = $actionHandler;
-    //                 $actionResponses = $actionWrapper->getData();
-    //                 foreach ($actionResponses as $actionResponse) {
-    //                     if ($actionResponse instanceof SuccessResponse) {
-    //                         $successResponse = $actionResponse;
-    //                         echo ("Status: " . $successResponse->getStatus()->getValue() . "\n");
-    //                         echo ("Code: " . $successResponse->getCode()->getValue() . "\n");
-    //                         echo ("Details: ");
-    //                         foreach ($successResponse->getDetails() as $key => $value) {
-    //                             echo ($key . " : ");
-    //                             print_r($value);
-    //                             echo ("\n");
-    //                         }
-    //                         echo ("Message: " . ($successResponse->getMessage() instanceof Choice ? $successResponse->getMessage()->getValue() : $successResponse->getMessage()) . "\n");
-    //                     }
-    //                     else if ($actionResponse instanceof APIException) {
-    //                         $exception = $actionResponse;
-    //                         echo ("Status: " . $exception->getStatus()->getValue() . "\n");
-    //                         echo ("Code: " . $exception->getCode()->getValue() . "\n");
-    //                         echo ("Details: ");
-    //                         foreach ($exception->getDetails() as $key => $value) {
-    //                             echo ($key . " : "); print_r($value); echo("\n");
-    //                         }
-    //                         echo ("Message : " . ($exception->getMessage() instanceof Choice ? $exception->getMessage()->getValue() : $exception->getMessage()) . "\n");
-    //                     }
-    //                 }
-    //             }
-    //             else if ($actionHandler instanceof APIException) {
-    //                 $exception = $actionHandler;
-    //                 echo ("Status: " . $exception->getStatus()->getValue() . "\n");
-    //                 echo ("Code: " . $exception->getCode()->getValue() . "\n");
-    //                 echo ("Details: ");
-    //                 foreach ($exception->getDetails() as $key => $value) {
-    //                     echo ($key . " : " . $value . "\n");
-    //                 }
-    //                 echo ("Message : " . ($exception->getMessage() instanceof Choice ? $exception->getMessage()->getValue() : $exception->getMessage()) . "\n");
-    //             }
-    //         } else {
-    //             print_r($response);
-    //         }
-    //     }
-    // }
-
-    // CreateRecords::initialize();
-    // CreateRecords::createRecords($moduleAPIName);
-
-    public function initialize(){
-        // $response = Http::post('https://accounts.zoho.com/oauth/v2/token', [
-        //     'client_id' => 'Steve',
-        //     'client_secret' => 'Network Administrator',
-        //     'code'=>'1000.b28c04e367470aa3885b796686339c9b.25354e71b41ed260ee20b80b25efb313',
-        //     'redirect_uri'=>'http://gmc.test',
-        //     'grant_type'=>'authorization_code'
-        // ]);
-        // if($response->failed();)
-        // dd($response->getStatus());
-        try{
-            $client = new \GuzzleHttp\Client();
-            $response = $client->request('POST', 'https://accounts.zoho.com/oauth/v2/token', [
-                'form_params' => [
-                    'client_id' => '1000.P08UGDQT441NYYAJ8NQ034VZ2ECI4L',
-                    'client_secret' => 'd3e8bceecf3a73d528dc2745f6fe00a09963355590',
-                    'code' => '1000.b28c04e367470aa3885b796686339c9b.25354e71b41ed260ee20b80b25efb313',
-                    'redirect_uri' =>'http://gmc.test',
-                    'grant_type'=>'authorization_code'
-                ]
-
-            ]);
-            // $response= json_decode($response->getBody()->getContents(),true);
-            dd(($response));
-            if($response->getStatusCode() != "200"){
-
-                $response = $client->request('POST', 'https://accounts.zoho.com/oauth/v2/token', [
-
-                        'form_params' => [
-                            'client_id' => '1000.P08UGDQT441NYYAJ8NQ034VZ2ECI4L',
-                            'client_secret' => 'd3e8bceecf3a73d528dc2745f6fe00a09963355590',
-                            'refresh_token' => '1000.d80be97fcda9ad48f0bcf5a98cd7a403.19076b71082ac384a3f58936ade17940',
-                            'redirect_uri' =>'http://gmc.test',
-                            'grant_type'=>'refresh_token'
-                        ]
-
-                    ]);
-            }
-            $response= json_decode($response->getBody()->getContents(),true);
-            dd(($a['access_token']));
-
-        }catch (GuzzleHttp\Exception\ClientException $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
+        $request->validate($this->user->getRules());
+        $request->validate($this->directory->getRules());
+        if(!isset($request->category_ids)){
+            return $this->sendError('categories are required',['category_ids'=>'Categories are required']);
         }
+        $website = $request->web_url;
+        $request->merge(['website'=>$website]);
+        $userData = $request->except(['_token','password_confirmation','title','category_ids','web_url']);
+        $userData['password'] = Hash::make($request->password);
+        $user = $this->user->store($userData);
+        $this->authUser = $this->user->where('id',$user)->firstOrFail();
+
+        if($user == "" || $user == 0){
+            return $this->sendError('User did not created');
+        }
+
+        $request->merge(["user_id"=>$user,"mobile_no"=>$request->tel_no]);
+        $directoryData = $request->except(['_token','password_confirmation','password','company','category_ids','postalcode','tel_no','website']);
+        $directory = $this->directory->store($directoryData);
+        foreach($request->category_ids as $Category){
+            $this->directory->addRelTableRecord($Category,'category_directory','category_id');
+        }
+
+        $response = $this->registerLead($request);
+
+        if($response['status'] != true){
+            $this->user->where('id',$this->authUser)->delete();
+        }else{
+            $response = $this->registerUser($request);
+            if($response['status'] != true){
+                $this->user->where('id',$this->authUser)->delete();
+            }
+        }
+
+        return response()->json($response);
+
+    }
+    public function registerLead($request){
+
+            $this->leadData = [
+                'data' => [
+                [
+                    // "Lead_Source"=> "PCC FLONIX",
+                    'Company' => $request->title,
+                    'Last_Name' =>$request->last_name,
+                    'First_Name' => $request->first_name,
+                    'Email' => $request->email,
+                    'Website' => $request->web_url,
+                    'Phone' => $request->tel_no,
+                    'Facebook_page_n_a_if_none' => $request->facebook_url,
+                    'Instagram_page_n_a_if_none' => $request->instagram_url,
+                    'Linked_In_page_n_a_if_none' => $request->linkedin_url,
+                    'Mobile'=>$request->phone,
+                    'Address'=>$request->address,
+                    'State'=>'Texas'
+                ]
+            ]
+        ];
+
+        $response = $this->createLead();
+
+        return $this->checkResponse($response);
+    }
+    public function registerUser($request){
+
+        $this->userData = [
+            'data' => [
+            [
+                'First_name' => $request->first_name,
+                'Last_Name' => $request->first_name,
+                'Email' => $request->email,
+                'Address' => $request->address,
+                'Phone' => $request->tel_no,
+            ]
+            ]
+        ];
+
+    $response = $this->createUser();
+
+    return $this->checkResponse($response);
+}
+
+    public function createLead(){
+
+       $response= Http::withBody(json_encode($this->leadData), 'application/json')
+        ->withHeaders([
+            'Authorization' => 'Zoho-oauthtoken '.$this->zohoAuthToken,
+            'Scope'=>'ZohoCRM.modules.ALL'
+        ])
+        ->post('https://www.zohoapis.eu/crm/v2/Leads');
+        $response = json_decode($response->getBody(),true);
+
+        return $response;
+
+
+    }
+
+    public function createUser(){
+
+
+        $response= Http::withBody(json_encode($this->userData), 'application/json')
+         ->withHeaders([
+            'Authorization' => 'Zoho-oauthtoken '.$this->zohoAuthToken,
+             'Scope'=>'ZohoCRM.modules.ALL'
+         ])
+         ->post('https://www.zohoapis.eu/crm/v2/Contacts');
+
+         $response = json_decode($response->getBody(),true);
+
+         return $response;
+
+
+     }
+
+
+    public function checkResponse($response){
+
+        if (isset($response['data'][0]['code']) && $response['data'][0]['code'] == "SUCCESS"){
+
+            $id = $response['data'][0]['details']['id'];
+            Auth::login($this->authUser);
+            return $this->Response(true,$id,'',$response);
+
+        }
+
+        if(isset($response['status']) && $response['status'] == "error"){
+
+            if(($response['code']) && ($response['code'] == "AUTHENTICATION_FAILURE" || $response['code'] == "INVALID_TOKEN")){
+
+                $response = $this->getToken();
+
+                if(isset($response['access_token'])){
+
+                    $this->zohoAuthToken = $response['access_token'];
+                    $response = $this->createLead();
+                    if (isset($response['data'][0]['code']) && $response['data'][0]['code'] == "SUCCESS"){
+
+                        $id = $response['data'][0]['details']['id'];
+                        Auth::login($this->authUser);
+                        return $this->Response(true,$id,'',$response);
+
+                    }else{
+                        return $this->Response(false,'','Unknown error.',$response);
+
+                    }
+
+                }else{
+                    return $this->Response(false,'','Refresh token is invalid.',$response);
+
+                }
+
+            }else if(isset($response['error']) && $response['error'] == "invalid_code"){
+                return $this->Response(false,'','Token is invalid.',$response);
+
+            }else{
+                return $this->Response(false,'','Unknown error.',$response);
+
+            }
+
+        }else{
+            return $this->Response(false,'','Could not create lead.',$response);
+
+        }
+    }
+
+    public function getToken(){
+
+        $response= Http::asForm()
+                ->post('https://accounts.zoho.eu/oauth/v2/token', [
+                    'client_id'=>env('ZOHO_CLIENT_ID'),
+                    'client_secret'=>env('ZOHO_CLIENT_SECRET'),
+                    'refresh_token'=>$this->refreshToken,
+                    'grant_type'=>'refresh_token',
+                    'redirect_uri'=>'http://gmc.test'
+                ]);
+        $response = json_decode($response->getBody(),true);
+        return $response;
+    }
+
+    public function Response($status,$id='',$error='',$response){
+
+        $response = [
+            'status'=>$status,
+            'id'=>$id,
+            'error'=>$error,
+            'message'=>$response
+        ];
+        return $response;
+
     }
 }
 
