@@ -10,12 +10,16 @@
         <div class="success"></div>
         <!--Start search Area-->
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-6 border padding border">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border border text-right">
+                <div class="addnew-btn clear-filters"><a href="#">Clear Filters</a></div>
+                <div class="clr"></div>
+            </div>
 
-            <div class="search-oh search-box1">
+            {{-- <div class="search-oh search-box1">
                 <input type="image" class="oh-btn" img="" src="{{ asset('media/brn-search.png') }}">
                 <input type="text" placeholder="Search" class="oh-input search-box">
                 <div class="clr"></div>
-            </div>
+            </div> --}}
             <div class="clr"></div>
         </div>
         <!--End search Area-->
@@ -81,11 +85,19 @@
         });
         $(document).on('keyup', '.search-box', function() {
             search = $(this).val();
-            if (search.length > 2) {
-                ajaxGet("{{ route('user.event-calenders.search') }}", {
-                    search
-                }, ".events", responseType = 'html');
-            }
+              
+            setTimeout(() => {
+            // console.log(filters.search)
+                if (search.length > 2) {
+                    ajaxGet("{{ route('user.event-calenders.search') }}", {
+                        search
+                    }, ".events", responseType = 'html');
+                } 
+            }, 1000);
+            // setInterval(() => {
+                
+            // }, 3000);
+            
         });
         $(document).on('click','.edit' ,function(e) {
             e.preventDefault();
@@ -98,6 +110,11 @@
             let id = $(this).attr('data-id');
             let url = "{{ route('user.events.destroy', '') }}" + "/" + id;
             destroy(url);
+        });
+
+        $(document).on('click', '.clear-filters',function(e) {
+            e.preventDefault();
+            getEventsListing();
         });
 
         $(document).on('change', '#end-date', function(ev) {

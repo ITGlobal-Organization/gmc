@@ -228,7 +228,7 @@
                     label-idle="Drop files here..."
                     :allow-multiple=true
                     accepted-file-types="image/jpeg, image/png"
-                    max-files="1"
+                    max-files="10"
                     :server=fileServer()
                     :files="form.gallery"
 

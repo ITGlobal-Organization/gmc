@@ -175,7 +175,7 @@ return [
     'offers'=>'Offers',
     'previous' =>'Previous',
     'next' =>'Next',
-    'search_filter' => 'Search Filter',
+    'search_filter' => 'Search',
     'filters_title' => 'What are you looking for?',
     'apply_filters' => 'Apply Filters',
     'space_finder' => 'Space Finder',
@@ -209,6 +209,12 @@ return [
     'not-approved' => "Not Approved",
     'status' => "Status",
     'action' => "Action",
-    'here' => "Here"
+    'here' => "Here",
+    'clear-filter' => "Back",
+    'view-categories' => "View Categories",
+    'messages' => "Messages",
+    'recent-chats' => "Recent Chats",
+    'open_chat' => "Open Chat",
+    'member_dashboard' => "Member Dashboard",
 
 ];

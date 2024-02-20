@@ -9,9 +9,9 @@
                 <h1 class="mtb-25">{{ $Directory->title }}</h1>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding ">
                     @if(isset($Directory->media[0]))
-                    <img src="{{ $Directory->media[0]->image_url }}" alt="" class="blog-img"/>
+                    <img src="{{ $Directory->media[0]->image_url }}" alt="Logo" class="blog-img"/>
                     @else
-                    <img src="{{ custom_asset('image-not-found.png') }}" alt="" class="blog-img"/>
+                    <img src="{{ custom_asset('image-not-found.png') }}" alt="Logo" class="blog-img"/>
                     @endif
                 </div>
 
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding ">
-                    @foreach($Directory->categories as $Category)
+                    @foreach($Directory->relatedCategories as $Category)
                     <a href="{{ route('directories.index',[
                             'category' => $Category->slug
                         ]) }}">{{ $Category->name.', '}}</a>
@@ -37,7 +37,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
                         <i class="fas fa-map-marker-alt"
                             style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Address</b> : {{ $Directory->address }}
-                       
+
                         <div class="clr"></div>
                     </div>
                     <!--End Box 1-->
@@ -73,14 +73,14 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
                         <a href="{{ $Directory->web_url }}" target="_blank"><i class="fas fa-globe" style="color: #ffffff;"></a></i>&nbsp;&nbsp;<b>Website </b> :
                         {{ $Directory->web_url }}
-                        <div class="clr"></div> 
+                        <div class="clr"></div>
                     </div>
                     <!--End Box 5-->
 
-                  
+
 
                     <!--Start Box 7-->
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
                         <i class="fas fa-share-alt" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Social Info </b> :
 
                         <span class="social-media2"> <a href="{{ $Directory->facebook_url }}"><i class="fab fa-facebook-f"

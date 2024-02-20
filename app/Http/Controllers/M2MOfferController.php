@@ -48,7 +48,7 @@ class M2MOfferController extends BaseController
         if(isset($user) && $user->hasRole('user') && str_contains($this->url,"user")){
             $view = 'user.offer.index';
         }else{
-            $view = 'offers.offers';
+            $view = 'offers.offer';
         }
 
         return view($view,[
@@ -71,7 +71,7 @@ class M2MOfferController extends BaseController
         }
 
         $offers = $this->offer->getAll([],['m2m_offers.*','images.image_url']);
-        if(isset($user) && !$user->hasRole('admin') && str_contains($this->url,"user")){
+        if(isset($user) && $user->hasRole('user') && str_contains($this->url,"user")){
             $view='user.offer.listing';
         }else{
             $view='sections.offers';
@@ -84,16 +84,16 @@ class M2MOfferController extends BaseController
         ]);
     }
 
-    // public function getOffers(Request $request,$slug){
-    //     $offers = $this->offer->first('slug',$slug,'=',['user'],[],['space_finders.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
+    public function getOffer(Request $request,$id){
+        $offer = $this->offer->first('slug',$id,'=',['user'],[],['m2m_offers.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
 
-    //     $this->offer->setLength(config('site_confing.constants.item_per_page'));
-
-    //     return view('space-finders.space-finder-detail',[
-    //         'SpaceFinder' => $offers,
-    //         'title' => trans('lang.directory').' | '. $offer->title
-    //     ]);
-    // }
+        $this->offer->setLength(config('site_config.constants.item_per_page'));
+        // dd($offer);
+        return view('offers.offer-details',[
+            'Offer' => $offer,
+            'title' => trans('lang.directory').' | '. $offer->title
+        ]);
+    }
 
     // public function searchOffers(Request $request){
     //     $user = Auth::user();
@@ -137,7 +137,7 @@ class M2MOfferController extends BaseController
             ],
             'message'=>'Updated Successfully'
         ];
-        return response()->json($response, 200);
+        return $this->sendResponse($response);
     }
 
     public function destroy(Request $request,$id){
@@ -149,7 +149,7 @@ class M2MOfferController extends BaseController
             ],
             'message'=>'Deleted Successfully'
         ];
-        return response()->json($response, 200);
+        return $this->sendResponse($response);
     }
 
     public function store(Request $request){
@@ -168,7 +168,7 @@ class M2MOfferController extends BaseController
             ],
             'message'=>'Created Successfully'
         ];
-        return response()->json($response, 200);
+        return $this->sendResponse($response);
     }
 
     public function setGeneralFilters(Request $request)

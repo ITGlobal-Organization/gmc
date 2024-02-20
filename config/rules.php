@@ -188,6 +188,11 @@ return [
             'is_approved' => 'required|numeric|min:0|max:1',
         ]
     ],
+    'messages' => [
+        'store' => [
+            'message' => 'required',
+        ]
+    ]
 
 
 ];

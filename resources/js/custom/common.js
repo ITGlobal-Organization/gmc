@@ -1,3 +1,5 @@
+
+
 show_password = false;
 config = {
     timeout: 3000,
@@ -75,7 +77,7 @@ $('.get-a-quote-form').on('submit', (e) => {
     ajaxPost('/custom-form/get-a-quote',form,'.quote-success','.quote-error')
 });
 
-function ajaxPost(url,data,succssContainer,errorContainer) {
+function ajaxPost(url,data,succssContainer,errorContainer,loader=true) {
     $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -89,7 +91,8 @@ function ajaxPost(url,data,succssContainer,errorContainer) {
         contentType: false,
         processData: false,
         beforeSend: function() {
-            setLoader(true);
+            if(loader)
+                setLoader(true);
         },
         success: function(response) {
             console.log(response)
@@ -144,7 +147,7 @@ function ajaxPost(url,data,succssContainer,errorContainer) {
 }
 
 // Ajax get
-async function ajaxGet(url,data,dataContainer,responseType='html',callback=null){
+async function ajaxGet(url,data,dataContainer,responseType='html',callback=null,loader=true){
     $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -157,7 +160,8 @@ async function ajaxGet(url,data,dataContainer,responseType='html',callback=null)
         data:data,
 
         beforeSend: function() {
-            setLoader(true);
+            if(loader)
+                setLoader(true);
         },
         success: function(response) {
 
@@ -368,3 +372,4 @@ function ajaxDelete(url,id,succssContainer='',errorContainer='') {
         }
     })
 }
+

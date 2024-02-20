@@ -35,7 +35,7 @@
             start:1
 
         }
-        
+
         $(document).on("change", '.sort_by', function() {
             let sort_by = $(this).val();
             filters.order_by = sort_by.split('-')[0];
@@ -52,15 +52,19 @@
             filters.category = $('.category').val();
             getDirectoryListing();
         });
-        $(document).ready(function() {
-           
+        $(document).on('click','.clear-filters',function(){
+            filters = {};
             getDirectoryListing();
-           
+        });
+        $(document).ready(function() {
+
+            getDirectoryListing();
+
         });
 
         function getDirectoryListing() {
             ajaxGet("{{ route('directories.ajax') }}", filters, ".directories", responseType = 'html');
-            
+
         }
 
 

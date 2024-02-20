@@ -8,6 +8,7 @@ use App\Http\Controllers\EventCalenderController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\MessageController;
 // use App\Http\Controllers\DashboardController;
 // use App\Http\Controllers\OrderController;
 // use App\Http\Controllers\QuoteController;
@@ -99,29 +100,16 @@ Route::prefix('employees')->group(function(){
     // Route::delete('/media/delete/{id}',[EmployeeController::class,'deleteFiles'])->name('user.events.media-upload');
 });
 
-// Route::get('/checkout',[CheckoutController::class,'renderCheckOutView'])->name('user.checkout.index');
-// Route::get('/', [DashboardController::class, 'dashboard'])->name('user.dashboard');
-// // Orders
-// Route::get('/place-order', [DashboardController::class,'renderPlaceOrder'])->name('user.place-order');
-// Route::post('/place-order', [OrderController::class,'store'])->name('user.orders.store');
-// Route::get('/orders', [DashboardController::class,'renderOrdersHistory'])->name('user.orders.history');
-// Route::get('/orders/inprogress', [DashboardController::class,'renderInProgressOrders'])->name('user.orders.inprogress');
-// // api request
-// Route::get('/orders/ajax', [OrderController::class,'getAllOrders'])->name('user.orders.history.ajax');
-// Route::get('/inprogress-orders/ajax', [OrderController::class,'getAllInProgressOrders'])->name('user.inprogress-orders.ajax');
+Route::prefix('chat')->group(function(){
+    Route::get('/', [MessageController::class, 'index'])->name('user.chat.index');
+    Route::get('/search', [MessageController::class, 'searchUser'])->name('user.chat.search');
+    Route::post('/', [MessageController::class, 'send'])->name('user.chat.send');
+    Route::get('/messages',[MessageController::class, 'userMessages'])->name('user.chat.messages');
+    Route::post('/readed',[MessageController::class, 'updateMsg'])->name('user.chat.readed');
+    // web socket authentication
+    Route::post('/typing',[MessageController::class, 'userTyping'])->name('user.chat.typing');
+    Route::get('/list',[MessageController::class, 'chatList'])->name('user.chat.list');
+});
 
-// // Invoice
-// Route::get('/invoice', [DashboardController::class,'renderInvoice'])->name('user.invoice');
-// // quotes
-// Route::get('/place-quote', [DashboardController::class,'renderPlaceQuote'])->name('user.place-quote');
-// Route::post('/place-quote', [QuoteController::class,'store'])->name('user.quotes.store');
-// Route::get('/quotes', [DashboardController::class,'renderQuotesHistory'])->name('user.quotes.history');
-// Route::get('/quotes/ajax', [QuoteController::class,'getAllOrders'])->name('user.quotes.history.ajax');
 
-// // Add Card
-// Route::get('/payment/charge', [CustomerController::class,'chargeStripePayment'])->name('user.payment.charge');
-// Route::post('/create-payment-intent', [CustomerController::class,'createPaymentIntent'])->name('payment.intent');
 
-// // Proceed Order
-// Route::post('/order',[CheckoutController::class,'orderProceed'])->name('user.order.proceed');
-// Route::get('/order/thankyou',[CheckoutController::class,'thankyou'])->name('user.order.thankyou');

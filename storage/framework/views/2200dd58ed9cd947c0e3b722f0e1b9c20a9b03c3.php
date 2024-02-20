@@ -1,0 +1,1 @@
+<div class="loading deactive" id="loader">Loading</div><?php /**PATH /var/www/staging/resources/views/components/loader.blade.php ENDPATH**/ ?>
