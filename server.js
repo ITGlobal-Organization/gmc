@@ -17,14 +17,14 @@ const redis = new Redis();
 //     requestCert: false,
 //     rejectUnauthorized: false
 // }
-const options = {
-    key: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/fullchain.pem'),
-  };
+// const options = {
+//     key: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/privkey.pem'),
+//     cert: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/fullchain.pem'),
+//   };
 
-  const server = require('https').createServer(options, (req, res) => {
+  const server = require('http').createServer((req, res) => {
     // Your application logic here
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    // res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Hello, secure world!\n');
   });
 // const server = require('http').createServer(app);

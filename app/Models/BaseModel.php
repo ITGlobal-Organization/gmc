@@ -327,7 +327,7 @@ class BaseModel extends Model
 
     public function getAll($join = [], $select = ['*'], $where = [])
     {
-
+        DB::enableQueryLog();
         $data =  static::selectRaw(implode(',', $select));
           // dd($this->has_images);
           if($this->has_images){
@@ -366,7 +366,7 @@ class BaseModel extends Model
 
 
 
-        $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
+        // $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
 
 
 
@@ -375,7 +375,7 @@ class BaseModel extends Model
         if($this->getLength() > 0 )
            return $data->skip($this->getLength() * ($this->getStart() - 1))->take($this->getLength())->orderBy($this->table.'.'.$this->getOrderBy(), $this->getOrder())->groupBy($this->table.'.'.$this->getGroupBy())->get();
 
-
+        Log::debug(DB::getQueryLog());
         return $data->groupBy($this->table.'.'.$this->getGroupBy())->get();
 
 
