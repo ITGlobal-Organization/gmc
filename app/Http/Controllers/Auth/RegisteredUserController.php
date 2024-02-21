@@ -16,7 +16,7 @@ use DB;
 use Carbon\Carbon;
 use App\Helpers\Helper;
 use App\Models\Media;
-
+use App\Models\Category;
 
 
 
@@ -100,16 +100,16 @@ class RegisteredUserController extends BaseController
     }
 
     public function create(Request $request){
-
         if(auth()->user()){
             return view('admin.crud.create',[
                 'title' => trans('lang.users').' | '.trans('lang.create'),
                 'name' => 'blog',
             ]);
         }
-
+        $categories = Category::get();
         return view('auth.register.'.config('site_config.auth.register_view'),[
-            'title' => trans('lang.register')
+            'title' => trans('lang.register'),
+            'Categories' => $categories
         ]);
     }
 

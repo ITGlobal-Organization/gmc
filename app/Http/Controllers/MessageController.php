@@ -46,7 +46,7 @@ class MessageController extends BaseController
             ];
             $this->message->store($data);
             // event(new ChatMessageSent($data));
-            $data['sender_name'] =  auth()->user()->name;
+            $data['sender_name'] =  auth()->user()->first_name;
             $image = $this->user->first('id',auth()->user()->id)->media;
                 if(count( $image ) > 0){
                     $image = $this->user->first('id',auth()->user()->id)->media[0]->image_url;
@@ -105,6 +105,7 @@ class MessageController extends BaseController
             $this->user->setFilters(['email','like', '%'.$request->search.'%']);
 
             $Users = $this->user->getAll([],['users.*','users.first_name as name','images.image_url']);
+            // dd($Users);
             return view('sections.chat.aside',[
                 'Users' => $Users,
             

@@ -235,6 +235,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Helper' => App\Helpers\Helper::class,
+        // 'ZCRMRestClient' => Zoho\CRM\Library\ZCRMRestClient::class,
         // 'PDF' => Barryvdh\DomPDF\Facade::class,
         // 'Share' => Jorenvh\Share\ShareFacade::class,
 
