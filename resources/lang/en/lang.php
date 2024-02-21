@@ -216,5 +216,7 @@ return [
     'recent-chats' => "Recent Chats",
     'open_chat' => "Open Chat",
     'member_dashboard' => "Member Dashboard",
+    'topic'=>'Topic',
+    'topics'=>'Topics'
 
 ];

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\TopicController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\DirectoryController;
@@ -30,6 +31,18 @@ Route::prefix('blogs')->group(function(){
     Route::put('/update/{id}',[BlogController::class, 'update'])->name('admin.blogs.update');
     Route::delete('/delete/{id}',[BlogController::class, 'destroy'])->name('admin.blogs.destroy');
 });
+
+// Topics
+Route::prefix('topics')->group(function(){
+    Route::get('/',[TopicController::class, 'index'])->name('admin.topics.index');
+    Route::get('/ajax', [TopicController::class, 'render'])->name('admin.topics.ajax');
+    Route::get('/create',[TopicController::class, 'create'])->name('admin.topics.create');
+    Route::post('/',[TopicController::class, 'store'])->name('admin.topics.store');
+    Route::get('/{id}',[TopicController::class, 'get'])->name('admin.topics.get');
+    Route::get('/edit/{id}',[TopicController::class, 'edit'])->name('admin.topics.edit');
+    Route::put('/update/{id}',[TopicController::class, 'update'])->name('admin.topics.update');
+    Route::delete('/delete/{id}',[TopicController::class, 'destroy'])->name('admin.topics.destroy');
+});
 //Directory
 Route::prefix('directory')->group(function(){
 
@@ -45,7 +58,7 @@ Route::prefix('directory')->group(function(){
         Route::delete('/delete/{id}',[CategoryController::class, 'destroy'])->name('admin.directory-categories.destroy');
     });
 
-    
+
     Route::get('/',[DirectoryController::class, 'index'])->name('admin.directory.index');
     Route::get('/ajax', [DirectoryController::class, 'render'])->name('admin.directory.ajax');
     Route::get('/create',[DirectoryController::class, 'create'])->name('admin.directory.create');
@@ -57,7 +70,7 @@ Route::prefix('directory')->group(function(){
     Route::put('/update/{id}',[DirectoryController::class, 'update'])->name('admin.directory.update');
     Route::delete('/delete/{id}',[DirectoryController::class, 'destroy'])->name('admin.directory.destroy');
 
-    
+
 });
 
 //PlatinumPartners

@@ -49,8 +49,13 @@ import OfferIndex from '../components/admin/offers/Index.vue';
 import OfferCreate from '../components/admin/offers/Create.vue';
 import OfferEdit from '../components/admin/offers/Edit.vue';
 
+
+
 // Directory Category
 import CategoryIndex from '../components/admin/categories/Index.vue';
+
+//Form Post
+import TopicIndex from '../components/admin/topics/Index.vue';
 
 
 const routes = [
@@ -154,6 +159,13 @@ const routes = [
         path: "/admin/directory/categories",
         name: "admin.directory.category",
         component: CategoryIndex,
+        props: true,
+    },
+       // Topic
+       {
+        path: "/admin/topics",
+        name: "admin.topics",
+        component: TopicIndex,
         props: true,
     },
     {
@@ -264,7 +276,7 @@ const routes = [
         component: OfferEdit,
         props: true,
     },
- 
+
 
 
 
