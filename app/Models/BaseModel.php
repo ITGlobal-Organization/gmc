@@ -399,7 +399,10 @@ class BaseModel extends Model
                 $result->leftjoin($rel[0],$rel[1],$rel[2],$rel[3]);
             }
         }
-        $result = $result->firstorfail();
+        $result = $result->first();
+        if(!isset($result)){
+            abort(403);
+        }
         $result['media'] = Media::where('model',$this->class_name)->where('model_id',  $result->id)->get();
 
         return $result;
