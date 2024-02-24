@@ -144,19 +144,23 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label>Last Name <span class="red">*</span></label>
                             <input type="text" class="join-input" value="" placeholder="Last Name *" name="last_name">
+                            <div class="error-last_name"></div>
                         </div>
                     </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label>Password<span class="red">*</span></label>
                             <input type="password" class="join-input" value="" placeholder="Password *" name="password">
+                            <div class="error-password"></div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label>Password Confirmation<span class="red">*</span></label>
                             <input type="text" class="join-input" value="" placeholder="Password Confirmation *" name="password_confirmation">
+                            <div class="error-password_confirmation"></div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label>Company Name <span class="red">*</span></label>
                             <input type="text" class="join-input" value="" placeholder="Company Name *" name="title">
+                            <div class="error-company"></div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label>Trading As <span class="red">*</span></label>
@@ -334,6 +338,7 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label>Address 1<span class="red"> *</span></label>
                             <input type="text" class="join-input" value="" placeholder="Address 1" name="address">
+                            <div class="error-address"></div>
                         </div>
                         {{-- <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label>Address 2<span class="red"> *</span></label>
@@ -358,19 +363,23 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label>Postcode<span class="red"> *</span></label>
                             <input type="text" class="join-input" value="" placeholder="Postcode" name="postalcode">
+                            <div class="error-postalcode"></div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label>Email Address<span class="red"> *</span></label>
                             <input type="text" class="join-input" value="" placeholder="Email Address" name="email">
+                            <div class="error-email"></div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label>Telephone No<span class="red"> *</span></label>
                             <input type="text" class="join-input" value="" placeholder="Telephone No" name="tel_no">
+                            <div class="error-tel_no"></div>
                         </div>
 
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label>Mobile Number<span class="red"> *</span></label>
                             <input type="text" class="join-input" value="" placeholder="Mobile Number" name="phone">
+                            <div class="error-phone"></div>
                         </div>
 
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12 border mb-20">
@@ -392,6 +401,7 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label>Website Url<span class="red"> *</span></label>
                             <input type="text" class="join-input" value="" placeholder="Website Url" name="web_url">
+                            <div class="error-web_url"></div>
                         </div>
 
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
@@ -402,10 +412,13 @@
                                 <option value="{{$Category->id}}">{{$Category->name}}</option>
                             @endforeach
                         </select>
+                        <div class="error-category_ids[]"></div>
+                        </div>
 
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label>Facebiook page (n/a if none)<span class="red"> *</span></label>
                             <input type="text" class="join-input" value="" placeholder="Facebiook page" name="facebook_url">
+                            <div class="error-facebook_url"></div>
                         </div>
 
                         {{-- <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
@@ -416,11 +429,13 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label>Instagram page (n/a if none)<span class="red"> *</span></label>
                             <input type="text" class="join-input" value="" placeholder="Instagram page" name="instagram_url">
+                            <div class="error-instagram_url"></div>
                         </div>
 
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label>Your LinkedIn page (n/a if none)<span class="red"> *</span></label>
                             <input type="text" class="join-input" value="" placeholder="LinkedIn page" name="linkedin_url">
+                            <div class="error-linkedin_url"></div>
                         </div>
 
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12 border mb-20">
