@@ -67,4 +67,7 @@ class TopicController extends BaseController
         ]);
     }
 
+    public function forum(Request $request){
+        return view('user.forum.index');
+    }
 }

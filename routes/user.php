@@ -9,6 +9,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\TopicController;
 // use App\Http\Controllers\DashboardController;
 // use App\Http\Controllers\OrderController;
 // use App\Http\Controllers\QuoteController;
@@ -109,6 +110,16 @@ Route::prefix('chat')->group(function(){
     // web socket authentication
     Route::post('/typing',[MessageController::class, 'userTyping'])->name('user.chat.typing');
     Route::get('/list',[MessageController::class, 'chatList'])->name('user.chat.list');
+});
+Route::prefix('forum')->group(function(){
+    Route::get('/', [TopicController::class, 'forum'])->name('user.forum.index');
+    // Route::get('/search', [MessageController::class, 'searchUser'])->name('user.chat.search');
+    // Route::post('/', [MessageController::class, 'send'])->name('user.chat.send');
+    // Route::get('/messages',[MessageController::class, 'userMessages'])->name('user.chat.messages');
+    // Route::post('/readed',[MessageController::class, 'updateMsg'])->name('user.chat.readed');
+    // // web socket authentication
+    // Route::post('/typing',[MessageController::class, 'userTyping'])->name('user.chat.typing');
+    // Route::get('/list',[MessageController::class, 'chatList'])->name('user.chat.list');
 });
 
 
