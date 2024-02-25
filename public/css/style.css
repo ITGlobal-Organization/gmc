@@ -3750,3 +3750,5 @@ blockquote{border: none !important;}
 .threads-reply-new .threads-flex a {font-size: 18px;}
 }
 /* RESPONSIVE CSS END */
+.dashboard-layout .middle{width: 95% !important;}
+.topic-con .select2-container--default .select2-selection--single{background-color: #F2F2F2 !important; border: none !important;}

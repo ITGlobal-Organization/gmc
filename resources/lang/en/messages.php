@@ -23,6 +23,7 @@ return [
     'edit_msg' => 'Edit :attribute',
     'count_msg' => 'Total :attribute',
     'first-msg' => 'Hi',
+    'post-something' => 'Post?',
     'errors' => [
         '500' => [
             'code'  => '500',

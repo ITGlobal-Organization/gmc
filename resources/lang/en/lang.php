@@ -217,6 +217,9 @@ return [
     'open_chat' => "Open Chat",
     'member_dashboard' => "Member Dashboard",
     'topic'=>'Topic',
-    'topics'=>'Topics'
-
+    'topics'=>'Topics',
+    'post' => 'Post',
+    'posts'=>'Posts',
+    'title' => 'Title',
+    'description' => 'Description',
 ];
