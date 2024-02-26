@@ -87,19 +87,8 @@ export default {
                     label:Language.slug,
                     field:"slug",
                     class:"form-control",
-                    grid:"col-md-12 col-12",
+                    grid:"col-md-6 col-12",
                     type:"text",
-                    placeholder:function(){
-                        return "Enter "+this.label
-                    },
-                    required:true,
-                },
-                {
-                    label:Language.description,
-                    field:"description",
-                    class:"form-control",
-                    type:"textarea",
-                    grid:"col-md-12 col-12",
                     placeholder:function(){
                         return "Enter "+this.label
                     },
@@ -109,7 +98,7 @@ export default {
                     label:Language.author,
                     field:"author",
                     class:"vue-select1",
-                    grid:"col-md-4 col-12",
+                    grid:"col-md-6 col-12",
                     type:"select",
                     isdynamic:true,
                     searchable:true,
@@ -126,10 +115,22 @@ export default {
                     required:true,
                 },
                 {
+                    label:Language.description,
+                    field:"description",
+                    class:"form-control",
+                    type:"textarea",
+                    grid:"col-md-12 col-12",
+                    placeholder:function(){
+                        return "Enter "+this.label
+                    },
+                    required:true,
+                },
+                
+                {
                     label:Language.publisher,
                     field:"publisher",
                     class:"form-control",
-                    grid:"col-md-4 col-12",
+                    grid:"col-md-6 col-12",
                     type:"text",
                     placeholder:function(){
                         return "Enter "+this.label
@@ -140,7 +141,7 @@ export default {
                     label:Language.published_at,
                     field:"publish_at",
                     class:"form-control",
-                    grid:"col-md-4 col-12",
+                    grid:"col-md-6 col-12",
                     type:"date",
                     placeholder:function(){
                         return "Enter "+this.label
@@ -151,7 +152,7 @@ export default {
                     label:Language.is_approved,
                     field:"is_approved",
                     class:"vue-select1",
-                    grid:"col-md-2 col-12",
+                    grid:"col-md-6 col-12",
                     type:"select",
                     isdynamic:false,
                     searchable:true,
