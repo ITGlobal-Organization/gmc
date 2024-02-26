@@ -36,7 +36,7 @@
                     <!--Start Box 1-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
                         <i class="fas fa-map-marker-alt"
-                            style="color: #ffffff;"></i>&nbsp;&nbsp;<b>{{ trans('lang.address')}}</b> : {{ $Directory->address }}
+                            style="color: #ffffff;"></i>&nbsp;&nbsp;<b></b>  {{ $Directory->address }}
 
                         <div class="clr"></div>
                     </div>
@@ -44,7 +44,7 @@
 
                     <!--Start Box 2-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
-                        <a href="tel://{{ $Directory->phone }}"><i class="fas fa-tty" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>{{ trans('lang.phone')}}</b> :
+                        <a href="tel://{{ $Directory->phone }}"><i class="fas fa-tty" style="color: #ffffff;"></i>&nbsp;&nbsp;<b></b>
                         {{ $Directory->phone }} </a>
                         <div class="clr"></div>
                     </div>
@@ -62,7 +62,7 @@
                     <!--Start Box 4-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
 
-                        <a href="mailto://{{ $Directory->email }}"><i class="fas fa-envelope-open-text" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>{{ trans('lang.email') }}</b> :
+                        <a href="mailto://{{ $Directory->email }}"><i class="fas fa-envelope-open-text" style="color: #ffffff;"></i>&nbsp;&nbsp;<b></b>
 
                         {{ $Directory->email }}</a>
                         <div class="clr"></div>
@@ -71,7 +71,7 @@
 
                     <!--Start Box 5-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
-                        <a href="{{ $Directory->web_url }}" target="_blank"><i class="fas fa-globe" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>{{ trans('lang.website')}} </b> :
+                        <a href="{{ $Directory->web_url }}" target="_blank"><i class="fas fa-globe" style="color: #ffffff;"></i>&nbsp;&nbsp;<b> </b>
                         {{ $Directory->web_url }} </a>
                         <div class="clr"></div>
                     </div>
@@ -81,7 +81,7 @@
 
                     <!--Start Box 7-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
-                        <i class="fas fa-share-alt" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>{{ trans('lang.social_info')}} </b> :
+                        <i class="fas fa-share-alt" style="color: #ffffff;"></i>&nbsp;&nbsp;<b> </b>
 
                         <span class="social-media2"> <a href="{{ $Directory->facebook_url }}"><i class="fab fa-facebook-f"
                                     title="Facebook"></i></a> </span>
