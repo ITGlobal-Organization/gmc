@@ -43,7 +43,7 @@ class DashboardController extends BaseController
                         'attribute' => trans('lang.directories')
                     ]),
                     'count' => $Directories,
-                    'link' => prefix_route('directories.index'),
+                    'link' => prefix_route('directory.index'),
                     'bg_color' => 'bg-warning'
                 ],
                 [
