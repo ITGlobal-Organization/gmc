@@ -78,7 +78,7 @@
                         </div>
                     </div>
                     <div class="col-12 d-flex justify-content-end">
-                        <router-link class="btn btn-secondary" to="/admin/directories">
+                        <router-link class="btn btn-secondary" to="/admin/directory">
                             {{ Lang.view_all }}
                         </router-link>
 

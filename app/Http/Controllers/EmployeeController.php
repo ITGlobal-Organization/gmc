@@ -17,7 +17,7 @@ class EmployeeController extends BaseController
     private $spaceFinder,$media,$user;
     public function __construct(User $user,Media $media) {
         $this->user = $user;
-
+        // $this->user = $user;
         // $this->setModel($user);
         // $this->setMedia($media);
     }
@@ -58,12 +58,11 @@ class EmployeeController extends BaseController
 
     public function getEmployeesListing(Request $request){
 
+        $this->user = Auth::user();
         $this->user->setGeneralFilters($request);
         $this->user->removeGeneralFilters($request);
 
-
         $Employees = $this->user->getAll([],['users.*','images.image_url'],[['user_id','=',$this->user->id]]);
-        // dd($Employees);
         return view('user.employee.listing',[
             'Employees' => $Employees,
             'count' => $this->user->getCount(),
