@@ -61,6 +61,7 @@ export default {
                 publish_at:new Date(),
                 author:'',
                 publisher:'',
+                is_approved:'',
                 media:[],
                 gallery:[]
             },
@@ -144,6 +145,35 @@ export default {
                     placeholder:function(){
                         return "Enter "+this.label
                     },
+                    required:true,
+                },
+                {
+                    label:Language.is_approved,
+                    field:"is_approved",
+                    class:"vue-select1",
+                    grid:"col-md-2 col-12",
+                    type:"select",
+                    isdynamic:false,
+                    searchable:true,
+                    options:function(){
+                            if(this.isdynamic){
+                                return ref.options;
+                            }
+                            return [
+                                {
+                                    text:Language.yes,
+                                    id:1
+                                },
+                                {
+                                    text:Language.no,
+                                    id:0
+                                }
+                            ];
+                    },
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+
                     required:true,
                 },
 
