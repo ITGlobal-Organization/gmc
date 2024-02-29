@@ -94,7 +94,7 @@
                 <div class="col-6 col-md-6 col-12 mb-3">
                     <div class="form-group">
                         <label class="form-label">{{ Language.web_url }}</label>
-                        <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.web_url)" :class="'form-control'" name="web_url"  v-model="FormData.web_url" :required="true" >
+                        <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.web_url)" :class="'form-control'" name="web_url"  v-model="FormData.web_url" :required="false" >
                         <div v-if="errors['web_url']">
                             <ul>
                                 <li class="text-danger" style="list-style:none;" v-for="(error,index) in errors['web_url']" :key="index">{{ error }}</li>
@@ -105,7 +105,7 @@
                 <div class="col-6 col-md-6 col-12 mb-3">
                     <div class="form-group">
                         <label class="form-label">{{ Language.facebook_url }}</label>
-                        <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.facebook_url)" :class="'form-control'" name="facebook_url"  v-model="FormData.facebook_url" :required="true" >
+                        <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.facebook_url)" :class="'form-control'" name="facebook_url"  v-model="FormData.facebook_url" :required="false" >
                         <div v-if="errors['facebook_url']">
                             <ul>
                                 <li class="text-danger" style="list-style:none;" v-for="(error,index) in errors['facebook_url']" :key="index">{{ error }}</li>
@@ -116,7 +116,7 @@
                 <div class="col-6 col-md-6 col-12 mb-3">
                     <div class="form-group">
                         <label class="form-label">{{ Language.youtube_url }}</label>
-                        <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.youtube_url)" :class="'form-control'" name="youtube_url"  v-model="FormData.youtube_url" :required="true" >
+                        <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.youtube_url)" :class="'form-control'" name="youtube_url"  v-model="FormData.youtube_url" :required="false" >
                         <div v-if="errors['youtube_url']">
                             <ul>
                                 <li class="text-danger" style="list-style:none;" v-for="(error,index) in errors['youtube_url']" :key="index">{{ error }}</li>
@@ -127,7 +127,7 @@
                 <div class="col-6 col-md-6 col-12 mb-3">
                     <div class="form-group">
                         <label class="form-label">{{ Language.linkedin_url }}</label>
-                        <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.linkedin_url)" :class="'form-control'" name="linkedin_url"  v-model="FormData.linkedin_url" :required="true" >
+                        <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.linkedin_url)" :class="'form-control'" name="linkedin_url"  v-model="FormData.linkedin_url" :required="false" >
                         <div v-if="errors['linkedin_url']">
                             <ul>
                                 <li class="text-danger" style="list-style:none;" v-for="(error,index) in errors['linkedin_url']" :key="index">{{ error }}</li>
@@ -138,7 +138,7 @@
                 <div class="col-6 col-md-6 col-12 mb-3">
                     <div class="form-group">
                         <label class="form-label">{{ Language.instagram_url }}</label>
-                        <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.instagram_url)" :class="'form-control'" name="instagram_url"  v-model="FormData.instagram_url" :required="true" >
+                        <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.instagram_url)" :class="'form-control'" name="instagram_url"  v-model="FormData.instagram_url" :required="false" >
                         <div v-if="errors['instagram_url']">
                             <ul>
                                 <li class="text-danger" style="list-style:none;" v-for="(error,index) in errors['instagram_url']" :key="index">{{ error }}</li>
