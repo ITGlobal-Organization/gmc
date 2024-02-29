@@ -45,4 +45,29 @@ class PostController extends BaseController
          return $this->sendError(trans('validation.custom.errors.server-errors'));
         
     }
+
+    public function getPosts(Request $request){
+        try{
+           
+            $this->setGeneralFilters($request);
+            $this->removeGeneralFilters($request);
+            if($request->user_id && $request->user_id != 0){
+                $this->post->setFilters(['user_id' ,'=', $request->user_id]);
+            }
+      
+            $Posts = $this->post->getPosts();
+            return view('user.forum.listing',[
+                'Posts' => $Posts,
+                'count' => $this->post->getCount(),
+                'page' => $this->post->getStart(),
+            ]);
+        }catch(Exception $e){
+            dd($e);
+            return view([
+                'Posts' => [],
+                'count' => 0,
+                'page' => 0,
+            ]);
+        }
+    }
 }

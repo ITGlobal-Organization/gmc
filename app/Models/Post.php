@@ -89,6 +89,18 @@ class Post extends BaseModel
         return $result;
     }
 
+
+    public function getPosts(){
+        $this->setGroupBy('id');
+       
+        $Posts = $this->getAll([
+            ['forum_replies','forum_replies.forum_post_id','=','forum_post.id'],
+            ['users','forum_post.user_id','=','users.id'],
+        ],[$this->table . '.title',$this->table . '.created_at','COUNT(forum_replies.reply) as replies','users.first_name as user'],[],'leftjoin');
+        
+        return $Posts;
+    }
+
     // public function getIdFromColumn($column,$value){
     //     return $this->first($column,$value,'=')->id;
     // }

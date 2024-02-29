@@ -116,6 +116,7 @@ Route::prefix('forum')->group(function(){
     Route::get('/', [PostController::class, 'forum'])->name('user.forum.index');
     Route::get('/create', [PostController::class, 'create'])->name('user.forum.create');
     Route::post('/', [PostController::class, 'store'])->name('user.forum.store');
+    Route::get('/listings', [PostController::class, 'getPosts'])->name('user.forum.listings');
     // Route::get('/search', [MessageController::class, 'searchUser'])->name('user.chat.search');
     // Route::post('/', [MessageController::class, 'send'])->name('user.chat.send');
     // Route::get('/messages',[MessageController::class, 'userMessages'])->name('user.chat.messages');

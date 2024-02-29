@@ -222,4 +222,7 @@ return [
     'posts'=>'Posts',
     'title' => 'Title',
     'description' => 'Description',
+    'threads' => 'Threads',
+    'replies' => 'Replies',
+    'content' => 'Content',
 ];

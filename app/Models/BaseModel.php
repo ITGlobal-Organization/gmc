@@ -325,9 +325,12 @@ class BaseModel extends Model
 
     }
 
-    public function getAll($join = [], $select = ['*'], $where = [])
-    {
+    public function getAll($join = [], $select = ['*'], $where = [],$joinOp='join')
+    {       
+        try{
+        DB::enableQueryLog();
 
+       
         $data =  static::selectRaw(implode(',', $select));
           // dd($this->has_images);
           if($this->has_images){
@@ -357,7 +360,7 @@ class BaseModel extends Model
 
         if (count($join) > 0) {
             foreach ($join as $index => $rel){
-                $data->join($rel[0],$rel[1],$rel[2],$rel[3]);
+                $data->{$joinOp}($rel[0],$rel[1],$rel[2],$rel[3]);
             }
             // $data = static::with($relation)->selectRaw(implode(',', $select));
         }
@@ -366,17 +369,27 @@ class BaseModel extends Model
 
 
 
-        $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
+        // $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
 
 
 
 
+       
+        if($this->getLength() > 0 ){
+            Log::debug(DB::getQueryLog());
+            return $data->skip($this->getLength() * ($this->getStart() - 1))->take($this->getLength())->orderBy($this->table.'.'.$this->getOrderBy(), $this->getOrder())->groupBy($this->table.'.'.$this->getGroupBy())->get();
+        }
+           
 
-        if($this->getLength() > 0 )
-           return $data->skip($this->getLength() * ($this->getStart() - 1))->take($this->getLength())->orderBy($this->table.'.'.$this->getOrderBy(), $this->getOrder())->groupBy($this->table.'.'.$this->getGroupBy())->get();
-
-
+       
+        Log::debug(DB::getQueryLog());
         return $data->groupBy($this->table.'.'.$this->getGroupBy())->get();
+    }catch(Exception $e){
+        
+        Log::error($e);
+       
+        return [];
+    }
 
 
 
