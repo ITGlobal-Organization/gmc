@@ -44,7 +44,8 @@
 
                     <!--Start Box 2-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
-                        <a href="tel://{{ $Directory->phone }}"><i class="fas fa-tty" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>{{ trans('lang.phone')}}</b> :
+                    <i class="fas fa-tty" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>{{ trans('lang.phone')}}</b> :
+                        <a href="tel://{{ $Directory->phone }}">
                         {{ $Directory->phone }} </a>
                         <div class="clr"></div>
                     </div>
@@ -61,8 +62,8 @@
 
                     <!--Start Box 4-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
-
-                        <a href="mailto://{{ $Directory->email }}"><i class="fas fa-envelope-open-text" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>{{ trans('lang.email') }}</b> :
+                    <i class="fas fa-envelope-open-text" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>{{ trans('lang.email') }}</b> :
+                        <a href="mailto://{{ $Directory->email }}">
 
                         {{ $Directory->email }}</a>
                         <div class="clr"></div>
@@ -71,7 +72,8 @@
 
                     <!--Start Box 5-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
-                        <a href="{{ $Directory->web_url }}" target="_blank"><i class="fas fa-globe" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>{{ trans('lang.website')}} </b> :
+                    <i class="fas fa-globe" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>{{ trans('lang.website')}} </b> :
+                        <a href="{{ $Directory->web_url }}" target="_blank">
                         {{ $Directory->web_url }} </a>
                         <div class="clr"></div>
                     </div>
