@@ -31,7 +31,7 @@ class CategoryController extends BaseController
         if(isset($request->search) && $request->search != ""){
             $this->category->setFilters(['name','like','%'.$request->search.'%']);
         }
-        $this->categories->setLength(100000);
+        $this->category->setLength(100000);
         $Category = $this->category->getAll([],['id','name as text']);
         return $this->sendResponse($Category);
     }
