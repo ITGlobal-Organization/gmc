@@ -40,6 +40,7 @@ class DirectoryController extends BaseController
         $user = auth()->user();
         if(isset($user)){
             $result = $this->directory->first('user_id',$user->id,'=',['relatedCategories']);
+            $this->category->setLength(100000);
             $categories = $this->category->getAll();
             return view('user.company.edit',[
                 'Company'=>$result,
