@@ -123,7 +123,7 @@
                         </div>
                     </div>
                     <div class="col-12 d-flex justify-content-end">
-                        <router-link class="btn btn-secondary" to="/admin/spacefinders">
+                        <router-link class="btn btn-secondary" to="/admin/spacefinder">
                             {{ Lang.view_all }}
                         </router-link>
 
@@ -168,7 +168,7 @@
                         </div>
                     </div>
                     <div class="col-12 d-flex justify-content-end">
-                        <router-link class="btn btn-secondary" to="/admin/eventcalenders">
+                        <router-link class="btn btn-secondary" to="/admin/eventcalender">
                             {{ Lang.view_all }}
                         </router-link>
 
