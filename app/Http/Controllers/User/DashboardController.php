@@ -45,7 +45,6 @@ class DashboardController extends Controller
     // }
 
     public function update(Request $request,$id){
-        dd($request);
         try{
 
             $rules = config('rules.users.edit');
