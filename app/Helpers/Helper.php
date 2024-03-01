@@ -121,6 +121,7 @@ class Helper
     public static function saveMedia($files,$model='',$file_type='main',$id=0)
     {
         $public_path = "";
+
         $directory = time();
         (int)$random = random_int(100,999);
 
@@ -141,7 +142,9 @@ class Helper
                         @unlink(public_path('media/'.$file->getClientOriginalName()));
                     }
                     $path = public_path('media/');
-                    $public_path = asset('media/'.$file->getClientOriginalName());
+                    $public_path = '/media/'.$file->getClientOriginalName();
+
+                    // $public_path = asset('media/'.$file->getClientOriginalName());
                     $file->move($path,$file->getClientOriginalName());
 
                     $media = Media::where('id',$id)->first();
@@ -164,11 +167,12 @@ class Helper
                             'extension' => $file->getClientOriginalExtension()
                         ]);
                     }
-                    
+
 
                 }
 
             }else{
+
                 // dd($files->getClientOriginalName());
                 $exitMedia = Media::where('model',$model)->where('image_name',$files->getClientOriginalName())->
                 where('model_id',$id)->first();
@@ -180,10 +184,11 @@ class Helper
                     if (file_exists(public_path('media/'.$files->getClientOriginalName()))) {
                         @unlink(public_path('media/'.$files->getClientOriginalName()));
                     }
+
                     $path = public_path('media/');
-                    $public_path = asset('media/'.$files->getClientOriginalName());
+                    $public_path = '/media/'.$files->getClientOriginalName();
+                    // $public_path = asset('media/'.$files->getClientOriginalName());
                     $files->move($path,$files->getClientOriginalName());
-                    // dd($id);s
                     $media = Media::where('id',$id)->first();
                     if(isset($media)){
                         $updated = Media::where('id',$id)->update([
@@ -204,7 +209,7 @@ class Helper
                             'extension' => $files->getClientOriginalExtension()
                         ]);
                     }
-                   
+
 
             }
 
@@ -398,7 +403,7 @@ class Helper
 
     public static function formatHeading($str,$sep,$class){
         try{
-            $textArr = explode($sep,$str);    
+            $textArr = explode($sep,$str);
             $formatStr = "";
             $count = 1;
             foreach($textArr as $key => $txt){
