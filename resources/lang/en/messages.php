@@ -24,6 +24,7 @@ return [
     'count_msg' => 'Total :attribute',
     'first-msg' => 'Hi',
     'post-something' => 'Post?',
+    'reply-msg' => ' Your email address will not be published. Required fields are marked *',
     'errors' => [
         '500' => [
             'code'  => '500',

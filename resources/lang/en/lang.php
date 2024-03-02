@@ -225,4 +225,11 @@ return [
     'threads' => 'Threads',
     'replies' => 'Replies',
     'content' => 'Content',
+    'comments' => 'Comments',
+    'latest-posts' => 'Latest Posts',
+    'leave-a-reply' => 'Leave a Reply',
+    'post' => 'Post',
+    'comment' => 'Comment',
+    'trending' => 'Trending',
+    'new' => 'New',
 ];

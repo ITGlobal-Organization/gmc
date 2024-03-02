@@ -365,25 +365,30 @@ class BaseModel extends Model
             // $data = static::with($relation)->selectRaw(implode(',', $select));
         }
 
-        $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
+       
 
 
 
         // $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
-
-
-
-
        
         if($this->getLength() > 0 ){
-            Log::debug(DB::getQueryLog());
-            return $data->skip($this->getLength() * ($this->getStart() - 1))->take($this->getLength())->orderBy($this->table.'.'.$this->getOrderBy(), $this->getOrder())->groupBy($this->table.'.'.$this->getGroupBy())->get();
+            // Log::debug(DB::getQueryLog());
+            $data = $data->skip($this->getLength() * ($this->getStart() - 1))->take($this->getLength());
         }
-           
+        
+        if($this->getOrderBy() != ''){
+            $data = $data->orderBy($this->table.'.'.$this->getOrderBy(), $this->getOrder());
+        }
 
+        if($this->getGroupBy() != ''){
+          
+            $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
+            $data = $data->groupBy($this->table.'.'.$this->getGroupBy());
+          
+        }
        
         Log::debug(DB::getQueryLog());
-        return $data->groupBy($this->table.'.'.$this->getGroupBy())->get();
+        return $data->get();
     }catch(Exception $e){
         
         Log::error($e);

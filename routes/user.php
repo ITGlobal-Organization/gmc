@@ -117,13 +117,9 @@ Route::prefix('forum')->group(function(){
     Route::get('/create', [PostController::class, 'create'])->name('user.forum.create');
     Route::post('/', [PostController::class, 'store'])->name('user.forum.store');
     Route::get('/listings', [PostController::class, 'getPosts'])->name('user.forum.listings');
-    // Route::get('/search', [MessageController::class, 'searchUser'])->name('user.chat.search');
-    // Route::post('/', [MessageController::class, 'send'])->name('user.chat.send');
-    // Route::get('/messages',[MessageController::class, 'userMessages'])->name('user.chat.messages');
-    // Route::post('/readed',[MessageController::class, 'updateMsg'])->name('user.chat.readed');
-    // // web socket authentication
-    // Route::post('/typing',[MessageController::class, 'userTyping'])->name('user.chat.typing');
-    // Route::get('/list',[MessageController::class, 'chatList'])->name('user.chat.list');
+    Route::get('/post/{slug}', [PostController::class, 'getPost'])->name('user.forum.post');
+    Route::post('/post/replies', [PostController::class, 'addReply'])->name('user.forum.replies.store');
+    Route::get('/replies', [PostController::class, 'getReplies'])->name('user.forum.replies.listing');
 });
 
 

@@ -1,16 +1,21 @@
-<h6 class="mb-25">Latest Posts</h6>
+@php
+    $post = new App\Models\Post();
+    $post->setLength(10);
+    $Posts = $post->getPosts();
+@endphp
+<h6 class="mb-25">{{ trans('lang.latest-posts')}}</h6>
 
 
-<?php for($i=1;$i<=8;$i++) : ?>
+@foreach ($Posts as $Post)
 <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12 padding">
 
-<a href="#"><img src="./images/latest-posts/<?php echo $i ?>.jpg" alt="" width="100%" class="latest-img" /></a>
+<a href="{{ prefix_route('forum.post',$Post->slug) }}"><img src="{{ $Post->user_image?$Post->user_image:custom_asset('image-not-found.png') }}" alt="" width="100%" class="latest-img" /></a>
 <div class="latest-text">
-<a href="#">This is a standard embedded video post</a>
+<a href="#">{{ $Post->title }}</a>
 </div>
-<span class="p-date">October 01, 2023<div></div></span>
+<span class="p-date">{{ $Post->created_at }}<div></div></span>
 <div class="border-bot"></div>
 	
 <div class="clr"></div>
 </div>
-<?php endfor; ?>
+@endforeach

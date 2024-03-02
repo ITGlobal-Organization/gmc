@@ -11,10 +11,10 @@
 <div class="threads-reply threads-reply-new {{ ($key+1) % 2 == 0?'threads-flex-three':'' }}">
    <div class="threads-flex">
       <p><i class="fa fa-laptop" aria-hidden="true"></i> {{ trans('lang.content')}}</p>
-      <a href="{{ prefix_route('forum.listings') }}">{!! $Post->title !!}</a>
+      <a href="{{ prefix_route('forum.post',$Post->slug) }}">{!! $Post->title !!}</a>
    </div>
    <div class="threads-reply-flex">
-      <h6>{{ $Post->replies == 0?'-':$Post->replies}}</h6>
+      <h6>{{ $Post->replies == 0?'-':Helper::padtoLeft($Post->replies,2)}}</h6>
    </div>
 </div>
 <!-- <div class="threads-reply threads-reply-new threads-flex-three">

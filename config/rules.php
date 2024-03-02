@@ -198,6 +198,9 @@ return [
             'title' => 'required',
             'description' => 'required',
             'topic' => 'required|exists:topics,id',
+        ],
+        'reply' => [
+            'reply' => 'required'
         ]
     ]
 

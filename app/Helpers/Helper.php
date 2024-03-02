@@ -12,6 +12,7 @@ use Mail;
 use App\Models\Media;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
+use Carbon\Carbon;
 
 
 class Helper
@@ -413,5 +414,20 @@ class Helper
             Log::error($e->getMessage());
             return $str;
         }
+    }
+
+
+    public static function getDate($date,$format){
+        return Carbon::parse($date)->format($format);
+    }
+    
+    public static function padtoLeft($number,$length=2){
+        $paddedNumber = "";
+        for($i=strlen($number);$i<$length;$i++){
+            $paddedNumber .= '0';
+        }
+        $paddedNumber .= $number;
+
+        return $paddedNumber;
     }
 }

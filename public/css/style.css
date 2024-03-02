@@ -657,10 +657,15 @@ display: flex;
     font-size: 18px!important;
     color: #000 !important;
 }
-.img-thumbnail1 {
+.replies .img-thumbnail1 {
     float: left;
     margin-right: 20px !important;
-    width: 150px !important;
+    width: 100px !important;
+}
+.img-thumbnail1 {
+  float: left;
+  margin-right: 20px !important;
+  width: 150px !important;
 }
 .comment-block {
     background: #f4f4f4;
@@ -747,8 +752,8 @@ display: flex;
 .latest-img {
     margin: 0px 0px 0px 0px;
     padding: 5px 5px 5px 5px;
-    width: 80px;
-    height: 80px;
+    width: 55px;
+    height: 55px;
     float: left;
     border-radius: 4px;
     border: 1px solid #eee !important;
@@ -3752,3 +3757,4 @@ blockquote{border: none !important;}
 /* RESPONSIVE CSS END */
 .dashboard-layout .middle{width: 95% !important;}
 .topic-con .select2-container--default .select2-selection--single{background-color: #F2F2F2 !important; border: none !important;}
+.topics li{cursor: pointer;}
