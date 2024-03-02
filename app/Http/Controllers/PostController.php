@@ -48,9 +48,11 @@ class PostController extends BaseController
         $request->merge([
             'user_image' => count($User->media) > 0?$User->media[0]->image_url:custom_asset('image-not-found.png')
         ]);
+
+
         $status = parent::store($request);
         if($status->getStatusCode() == 200){
-           
+           $this->user->forumNotification();
             return $this->sendResponse([
                 'route'=>prefix_route('forum.index')
             ],trans('messages.success_msg',['action'=> trans('lang.saved')]));

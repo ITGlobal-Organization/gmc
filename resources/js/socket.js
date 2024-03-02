@@ -1,71 +1,78 @@
 
-// window.io = require('socket.io-client');
+window.io = require('socket.io-client');
+import { createToaster } from "@meforma/vue-toaster";
+
+const toaster = createToaster({ /* options */ });
+
+window.socket = window.io('http://localhost:3000');
+window.socket.on('new-message_'+blade_config.user_id, (message) => {
+	appendMessage(message)
+	increaseUnreadMessages(message.sender_id)
+	toaster.info("New Message from: " + message.sender_name);
+	playSound()
+});
 
 
-// window.socket = window.io('https://perthshirecc.co.uk:3000');
-// window.socket.on('new-message_'+blade_config.user_id, (message) => {
-// 	appendMessage(message)
-// 	increaseUnreadMessages(message.sender_id)
-// 	playSound()
-// });
+window.socket.on('typing',function(message) {
+	if(message.user_id != blade_config.user_id)
+	{	console.log(message)
+		$('.message-typing-'+message.user_id).text('typing...');
+		$('.message-typing-'+message.user_id).css('color','#0e6e1e');
+		$('.message-typing-'+message.user_id).css('font-weight','bold');
+	}
+	setTimeout(() => {
+		$('.message-typing-'+message.user_id).text('');
+	},2000);
+});
+
+window.socket.on('new-post',function(message){
+    toaster.info(message.message);
+    playSound();
+});
+
+function appendMessage(message){
+	let html = `<div class="tyn-reply" id="tynReply"><div class="tyn-reply-item incoming">
+				<div class="tyn-reply-avatar">
+				<div class="tyn-media tyn-size-md tyn-circle">
+					<img src="${message.image_url}" alt="">
+				</div>
+				</div>
+				<div class="tyn-reply-group">
+				
+				
+				<div class="tyn-reply-bubble">
+					<div class="tyn-reply-text"> ${message.message} </div>
+				
+					
+				</div>
+				
+				</div>
+				
+			</div></div>`;
+		
+	$('.chat-msg').append(html);
+}
 
 
-// window.socket.on('typing',function(message) {
-// 	if(message.user_id != blade_config.user_id)
-// 	{	console.log(message)
-// 		$('.message-typing-'+message.user_id).text('typing...');
-// 		$('.message-typing-'+message.user_id).css('color','#0e6e1e');
-// 		$('.message-typing-'+message.user_id).css('font-weight','bold');
-// 	}
-// 	setTimeout(() => {
-// 		$('.message-typing-'+message.user_id).text('');
-// 	},2000);
-// });
+function playSound(){
+	let notify = $('.message-notification')[0];
+	if (notify.paused) {
+		notify.play();
+	} else {
+		notify.pause();
+		notify.currentTime = 0; // Reset playback to the beginning
+	}
+}
 
-
-// function appendMessage(message){
-// 	let html = `<div class="tyn-reply" id="tynReply"><div class="tyn-reply-item incoming">
-// 				<div class="tyn-reply-avatar">
-// 				<div class="tyn-media tyn-size-md tyn-circle">
-// 					<img src="${message.image_url}" alt="">
-// 				</div>
-// 				</div>
-// 				<div class="tyn-reply-group">
-
-
-// 				<div class="tyn-reply-bubble">
-// 					<div class="tyn-reply-text"> ${message.message} </div>
-
-
-// 				</div>
-
-// 				</div>
-
-// 			</div></div>`;
-
-// 	$('.chat-msg').append(html);
-// }
-
-
-// function playSound(){
-// 	let notify = $('.message-notification')[0];
-// 	if (notify.paused) {
-// 		notify.play();
-// 	} else {
-// 		notify.pause();
-// 		notify.currentTime = 0; // Reset playback to the beginning
-// 	}
-// }
-
-// function increaseUnreadMessages(user_id){
-// 	let msgCount = $('.message-count'+user_id);
-// 	if(msgCount){
-// 		msgCount.addClass('message-count');
-// 		let count = msgCount.text();
-// 		if(count != ''){
-// 			count = parseInt(count);
-// 			count += 1;
-// 			msgCount.text(count);
-// 		}
-// 	}
-// }
+function increaseUnreadMessages(user_id){
+	let msgCount = $('.message-count'+user_id);
+	if(msgCount){
+		msgCount.addClass('message-count');
+		let count = msgCount.text();
+		if(count != ''){
+			count = parseInt(count);
+			count += 1;
+			msgCount.text(count);
+		}
+	}
+}

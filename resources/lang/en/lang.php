@@ -232,4 +232,5 @@ return [
     'comment' => 'Comment',
     'trending' => 'Trending',
     'new' => 'New',
+    'view' => 'View'
 ];
