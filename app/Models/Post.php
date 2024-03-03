@@ -189,7 +189,7 @@ class Post extends BaseModel
         
 
 
-
+            $this->setCount(count($data->groupBy($this->getGroupBy())->get()));
             // $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
         
             if($this->getLength() > 0 ){
@@ -203,7 +203,7 @@ class Post extends BaseModel
 
             if($this->getGroupBy() != ''){
             
-                $this->setCount(count($data->groupBy($this->getGroupBy())->get()));
+               
                 $data = $data->groupBy($this->getGroupBy());
             
             }

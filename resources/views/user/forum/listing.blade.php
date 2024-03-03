@@ -64,3 +64,4 @@
 </div> -->
 @endforeach
 @endif
+@include('sections.pagination.paginationv1')

@@ -17,10 +17,10 @@ const redis = new Redis();
 //     requestCert: false,
 //     rejectUnauthorized: false
 // }
-const options = {
-    key: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/fullchain.pem'),
-  };
+// const options = {
+//     key: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/privkey.pem'),
+//     cert: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/fullchain.pem'),
+//   };
 
   const server = require('http').createServer((req, res) => {
     // Your application logic here
@@ -94,6 +94,7 @@ redis.on('message',function(channel,message){
         io.emit('new-message_'+reciever_id,data);
         
     }else if(channel == 'forum'){
+        console.log(message)
         var message = JSON.parse(message)
         var data = message.data;
 

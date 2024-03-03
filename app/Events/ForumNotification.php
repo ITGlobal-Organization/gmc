@@ -9,10 +9,11 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class ForumNotification
+class ForumNotification implements ShouldBroadcastNow
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
@@ -34,7 +35,12 @@ class ForumNotification
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('forum');
+        return new Channel('forum');
+    }
+
+    public function broadcastAs()
+    {
+        return 'ForumEvent';
     }
 
     public function broadcastWith()

@@ -9,6 +9,7 @@ use App\Models\Media;
 use App\Models\Topic;
 use App\Models\User;
 use App\Models\PostReply;
+use App\Events\ForumNotification;
 
 class PostController extends BaseController
 {
@@ -52,7 +53,20 @@ class PostController extends BaseController
 
         $status = parent::store($request);
         if($status->getStatusCode() == 200){
-           $this->user->forumNotification();
+            try{
+                // $this->user->forumNotification();
+            }catch(Exception $e){
+                Log::error($e);
+                
+            }
+            broadcast(new ForumNotification([
+                'name' => $User->first_name,
+                'message' => trans('messages.post_notification_title',[
+                    'attribute' => $User->first_name,
+                ]),
+                'user_id' => $User->id,
+                'route' => prefix_route('forum.index')
+              ]));
             return $this->sendResponse([
                 'route'=>prefix_route('forum.index')
             ],trans('messages.success_msg',['action'=> trans('lang.saved')]));

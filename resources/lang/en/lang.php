@@ -232,5 +232,6 @@ return [
     'comment' => 'Comment',
     'trending' => 'Trending',
     'new' => 'New',
-    'view' => 'View'
+    'view' => 'View',
+    'forum' => 'Forum',
 ];

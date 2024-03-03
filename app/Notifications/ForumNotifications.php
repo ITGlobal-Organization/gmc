@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\Events\ForumNotification;
+use Log;
 
 class ForumNotifications extends Notification
 {
@@ -43,13 +44,19 @@ class ForumNotifications extends Notification
      */
     public function toMail($notifiable)
     {   
-        event(new ForumNotification($data));
-        return (new MailMessage)
-                    ->line(trans('message.post_notification_title',[
-                        'attribute' => $this->data['name']
-                    ]) )
-                    ->action(trans('lang.view'), prefix_route('user.forum.index'))
-                    ->line(trans('messages.thanks_msg'));
+        event(new ForumNotification($this->data));
+        try{
+            return (new MailMessage)
+            ->line(trans('message.post_notification_title',[
+                'attribute' => $this->data['name']
+            ]) )
+            ->action(trans('lang.view'), prefix_route('forum.index'))
+            ->line(trans('messages.thanks_msg'));
+        }catch(\Exception $e){
+            Log::eror($e);
+            return [];
+        }
+       
     }
 
     /**

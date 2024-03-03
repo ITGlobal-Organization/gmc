@@ -48,7 +48,7 @@
         </div>
  
 </div>
-@include('sections.pagination.paginationv1')
+
 @endsection
 @section('scripts')
 <script>

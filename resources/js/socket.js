@@ -26,7 +26,9 @@ window.socket.on('typing',function(message) {
 });
 
 window.socket.on('new-post',function(message){
-    toaster.info(message.message);
+	console.log(message);
+    toaster.info(message.message+'<a href="' + message.route + '"> Click Here </a>'); 
+	
     playSound();
 });
 
