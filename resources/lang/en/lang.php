@@ -234,4 +234,6 @@ return [
     'new' => 'New',
     'view' => 'View',
     'forum' => 'Forum',
+    'social_info' => "Social Info"
+
 ];

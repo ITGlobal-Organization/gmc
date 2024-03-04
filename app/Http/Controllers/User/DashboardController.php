@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
 use App\Helpers\Helper;
+use Illuminate\Support\Facades\Hash;
 
 class DashboardController extends Controller
 {
@@ -58,7 +59,14 @@ class DashboardController extends Controller
             if($request->hasFile('image')){
                 $media =  Helper::saveMedia($request->image,"App\Models\User",'main',$id);
             }
-            $result = $this->user->whereId($id)->update($request->except(['image','filename']));
+
+            if (!empty($request['password'])) {
+                $request['password'] = Hash::make($request['password']);
+            }
+            else {
+                unset($request['password']);
+            }
+            $result = $this->user->whereId($id)->update($request->except(['image','filename','password_confirmation']));
             $response = [
                 'success' => true,
                 'data'=>[
@@ -74,6 +82,6 @@ class DashboardController extends Controller
         }
     }
 
-   
+
 
 }

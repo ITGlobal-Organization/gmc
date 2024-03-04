@@ -73,7 +73,7 @@
 
 <!-- Frontpage Demo -->
     <!--End Platinum Partners Area-->
-    <!--<script src="js/jquery-1.9.1.min.js"></script>-->
+    <!-- <script src="<?php echo e(custom_asset('jquery-1.9.1.min.js', 'scripts')); ?>"></script> -->
     <script src="<?php echo e(custom_asset('owl.carousel.min.js', 'scripts')); ?> "></script>
     <script>
         $(document).ready(function() {
@@ -170,10 +170,10 @@
                     responseType = 'html');
             });
 
-            var owl = $(".wl-carousel");
+            var owl = $("#owl-demo");
 
             owl.owlCarousel({
-                items: 2, //10 items above 1000px browser width
+                items: 5, //10 items above 1000px browser width
                 itemsDesktop: [1199, 5], //5 items between 1000px and 901px
                 itemsDesktopSmall: [900, 5], // betweem 900px and 601px
                 itemsTablet: [768, 4], //2 items between 600 and 0

@@ -16,9 +16,9 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding ">
                     <?php if(isset($SpaceFinder->media[0])): ?>
-                        <img src="<?php echo e($SpaceFinder->media[0]->image_url); ?>" alt="" class="blog-img" />
+                        <img src="<?php echo e($SpaceFinder->media[0]->image_url); ?>" alt="Logo" class="blog-img" />
                     <?php else: ?>
-                        <img src="" alt="" class="blog-img" />
+                        <img src="" alt="Logo" class="blog-img" />
                     <?php endif; ?>
                 </div>
 

@@ -36,7 +36,7 @@
                     <!--Start Box 1-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
                         <i class="fas fa-map-marker-alt"
-                            style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Address</b> : {{ $Directory->address }}
+                            style="color: #ffffff;"></i>&nbsp;&nbsp;<b>{{ trans('lang.address')}}</b> : {{ $Directory->address }}
 
                         <div class="clr"></div>
                     </div>
@@ -44,8 +44,9 @@
 
                     <!--Start Box 2-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
-                        <a href="tel://{{ $Directory->phone }}"><i class="fas fa-tty" style="color: #ffffff;"></a></i>&nbsp;&nbsp;<b>Telephone</b> :
-                        {{ $Directory->phone }}
+                    <i class="fas fa-tty" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>{{ trans('lang.phone')}}</b> :
+                        <a href="tel://{{ $Directory->phone }}">
+                        {{ $Directory->phone }} </a>
                         <div class="clr"></div>
                     </div>
                     <!--End Box 2-->
@@ -61,18 +62,19 @@
 
                     <!--Start Box 4-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
+                    <i class="fas fa-envelope-open-text" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>{{ trans('lang.email') }}</b> :
+                        <a href="mailto://{{ $Directory->email }}">
 
-                        <a href="mailto://{{ $Directory->email }}"><i class="fas fa-envelope-open-text" style="color: #ffffff;"></a></i>&nbsp;&nbsp;<b>Email</b> :
-
-                        {{ $Directory->email }}
+                        {{ $Directory->email }}</a>
                         <div class="clr"></div>
                     </div>
                     <!--End Box 4-->
 
                     <!--Start Box 5-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list2">
-                        <a href="{{ $Directory->web_url }}" target="_blank"><i class="fas fa-globe" style="color: #ffffff;"></a></i>&nbsp;&nbsp;<b>Website </b> :
-                        {{ $Directory->web_url }}
+                    <i class="fas fa-globe" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>{{ trans('lang.website')}} </b> :
+                        <a href="{{ $Directory->web_url }}" target="_blank">
+                        {{ $Directory->web_url }} </a>
                         <div class="clr"></div>
                     </div>
                     <!--End Box 5-->
@@ -81,7 +83,7 @@
 
                     <!--Start Box 7-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contact-list1">
-                        <i class="fas fa-share-alt" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>Social Info </b> :
+                        <i class="fas fa-share-alt" style="color: #ffffff;"></i>&nbsp;&nbsp;<b>{{ trans('lang.social_info')}} </b> :
 
                         <span class="social-media2"> <a href="{{ $Directory->facebook_url }}"><i class="fab fa-facebook-f"
                                     title="Facebook"></i></a> </span>
