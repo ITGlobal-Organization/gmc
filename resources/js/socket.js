@@ -4,7 +4,7 @@ import { createToaster } from "@meforma/vue-toaster";
 
 const toaster = createToaster({ /* options */ });
 
-window.socket = window.io('https://perthshirecc.co.uk:3000');
+window.socket = window.io('http://localhost:3000');
 window.socket.on('new-message_'+blade_config.user_id, (message) => {
 	appendMessage(message)
 	increaseUnreadMessages(message.sender_id)
@@ -25,6 +25,12 @@ window.socket.on('typing',function(message) {
 	},2000);
 });
 
+window.socket.on('new-post',function(message){
+	console.log(message);
+    toaster.info(message.message+'<a href="' + message.route + '"> Click Here </a>'); 
+	
+    playSound();
+});
 
 function appendMessage(message){
 	let html = `<div class="tyn-reply" id="tynReply"><div class="tyn-reply-item incoming">
