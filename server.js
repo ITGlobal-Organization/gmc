@@ -6,23 +6,12 @@ const redis = new Redis();
  
 
 
-// var privateKey = fs.readFileSync('../../../laragon/etc/ssl/laragon.key').toString();
-// var certificate = fs.readFileSync('../../../laragon/etc/ssl/laragon.crt').toString();
-// var pca = fs.readFileSync('../../../laragon/etc/ssl/cacert.pem').toString();
+const options = {
+    key: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/fullchain.pem'),
+  };
 
-// var credentials = {
-//     key:privateKey,
-//     cert:certificate,
-//     pca:pca,
-//     requestCert: false,
-//     rejectUnauthorized: false
-// }
-// const options = {
-//     key: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/privkey.pem'),
-//     cert: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/fullchain.pem'),
-//   };
-
-  const server = require('http').createServer((req, res) => {
+  const server = require('https').createServer(options, (req, res) => {
     // Your application logic here
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Hello, secure world!\n');
