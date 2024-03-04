@@ -23,6 +23,10 @@ return [
     'edit_msg' => 'Edit :attribute',
     'count_msg' => 'Total :attribute',
     'first-msg' => 'Hi',
+    'post-something' => 'Post?',
+    'post_notification_title' => ':attribute has post on forum',
+    'thanks_msg' => 'Thank you for using our application!',
+    'reply-msg' => ' Your email address will not be published. Required fields are marked *',
     'errors' => [
         '500' => [
             'code'  => '500',

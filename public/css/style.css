@@ -657,10 +657,15 @@ display: flex;
     font-size: 18px!important;
     color: #000 !important;
 }
-.img-thumbnail1 {
+.replies .img-thumbnail1 {
     float: left;
     margin-right: 20px !important;
-    width: 150px !important;
+    width: 100px !important;
+}
+.img-thumbnail1 {
+  float: left;
+  margin-right: 20px !important;
+  width: 150px !important;
 }
 .comment-block {
     background: #f4f4f4;
@@ -747,8 +752,8 @@ display: flex;
 .latest-img {
     margin: 0px 0px 0px 0px;
     padding: 5px 5px 5px 5px;
-    width: 80px;
-    height: 80px;
+    width: 55px;
+    height: 55px;
     float: left;
     border-radius: 4px;
     border: 1px solid #eee !important;
@@ -3671,6 +3676,106 @@ blockquote{border: none !important;}
   }
 /* Chat css end */
 /* banner-css */
+
+/* forum css */
+.sec-mumnsnet {padding: 70px 120px;}
+.talk-sec h2 {color: #175e9f;display: flex;align-items: center;gap: 15px;font-size: 40px;font-weight: 700;}
+.talk-sec span {border: 1px solid #175e9f;display: flex;align-items: center;justify-content: center;width: 30px;height: 30px;border-radius: 50%;font-size: 26px;}
+.talk-flex {display: flex;align-items: center;justify-content: space-between;}
+.advanced-search a {background-color: #6d1a70 !important;font-size: 17px;font-weight: 500;color: #fff !important;border-color: #6d1a70 !important;box-shadow: none !important;padding: 6px 20px;border-radius: 0;}
+.display-listing {margin: 8px 0 0;}
+.display-listing ul {padding-left: 0;list-style: none;}
+.display-listing li {display: inline;padding: 0 7px 0 4px;border-right: 1px solid #000;color: #175e9f;font-size: 15px;font-weight: 500;}
+.display-listing li:last-child {border-right: 0;}
+.tabs-change-box .nav-tabs .nav-link {margin-bottom: 0px;border: 1px solid transparent;border-top-left-radius: 0;border-top-right-radius: 0;color: #1d1d1db3;font-size: 18px;font-weight: 500;}
+.tabs-change-box .nav-tabs .nav-link.active {color: #000;background-color: #fff;border-color: transparent;border-bottom: 3px solid #175e9f !important;}
+.tabs-change-box .nav-item {padding: 0 20px 0 0;}
+.tabs-change-box  .nav-tabs {border-bottom: 2px solid #73727747;margin-bottom: 15px;}
+.threads-reply {display: flex;align-items: center;gap: 3px;margin-top: 5px;}
+.threads-flex {background-color: #eef6fd;text-align: center;border-radius: 4px;padding: 15px 20px 20px;width: 85%;height: 110px;display: flex;align-items: center;justify-content: center;}
+.threads-flex h6 {font-size: 18px;color: #000;font-weight: 500;}
+.threads-reply-flex {background-color: #eef6fd;text-align: center;border-radius: 4px;padding: 20px 20px;width: 15%;height: 110px;display: flex;align-items: center;justify-content: center;}
+.threads-reply-flex h6 {font-size: 18px;color: #000;font-weight: 500;}
+.threads-reply-new .threads-flex {text-align: left;justify-content: center;flex-direction: column;align-items: flex-start;background-color: #fff;}
+.threads-reply-new .threads-flex p {margin-bottom: 0;color: #000;font-weight: 500;}
+.threads-reply-new .threads-flex a {color: #175e9f;font-size: 20px;font-weight: 700;text-decoration: none;line-height: 22px;}
+.threads-reply-new .threads-reply-flex {background-color: #fff;}
+.threads-flex-three .threads-flex {background-color: #eef6fd;}
+.threads-flex-three .threads-reply-flex {background-color: #eef6fd;}
+.trending-right {background-color: #f6f8fa;padding-bottom: 15px;}
+.trending-right h2 {background-color: #165f9d;padding: 11px 20px;font-size: 22px;font-weight: 500;color: #fff;margin-bottom: 0;}
+.trending-right p {color: #175e9f;font-size: 16px;font-weight: 400;line-height: 22px;padding: 20px 22px 0px;}
+.trending-right a {color: #175e9f;text-decoration: none;padding: 0 28px;}
+.main-pin-flex {background-color: #165f9d;padding: 7px 20px;display: flex;align-items: center;justify-content: space-between;}
+.main-icon a {color: #fff;font-size: 17px;font-weight: 600;line-height: 22px;text-decoration: none;}
+.main-icon span {display: block;text-align: center;font-size: 22px;}
+.mumsnet-text {background-color: #737277;padding: 5px 20px;margin: 20px 0 15px;}
+.mumsnet-text h4 {font-size: 22px;font-weight: 500;color: #fff;display: flex;align-items: center;justify-content: space-between;}
+.mumsnet-text span {float: right;font-size: 29px;}
+.mumsnet-flex {display: flex;gap: 20px;padding: 0 0 10px 0px;align-items: center;border-bottom: 1px solid #00000036;margin-bottom: 10px;}
+.mumsnet-cont {width: 17%;}
+.mumsnet-cont h6 {color: #175e9f;font-size: 16px;font-weight: 500;line-height: 18px;width: 93%;}
+.mumscontent-new {width: 83%;}
+.sec-mumnsnet a {text-decoration: none;}
+
+/* RESPONSIVE CSS BEGIN */
+@media only screen and (min-width: 320px) and (max-width: 529px) {
+.sec-mumnsnet {padding: 50px 0px;}
+.tabs-change-box .nav-item {padding: 0 7px 0 0;}
+.tabs-change-box .nav-link {padding: 0.5rem 0.7rem;}
+.threads-flex {padding: 15px 20px 20px;width: 100%;height: auto;}
+.threads-reply {display: block;margin-top: 5px;}
+.threads-reply-flex {width: 100%;height: auto;margin: 10px 0 0;}
+.talk-sec h2 {font-size: 30px;}
+.talk-sec span {width: 25px;height: 25px;font-size: 20px;}
+.trending-right {margin-top: 40px;}
+.trending-right h2 {font-size: 19px;}
+.main-icon a {font-size: 15px;}
+.mumsnet-text h4 {font-size: 19px;}
+.threads-reply-new .threads-flex a {font-size: 18px;}
+}
+@media only screen and (min-width: 530px) and (max-width: 767px) {
+.sec-mumnsnet {padding: 50px 0px;}
+.tabs-change-box .nav-item {padding: 0 7px 0 0;}
+.tabs-change-box .nav-link {padding: 0.5rem 0.7rem;}
+.threads-flex {padding: 15px 20px 20px;width: 100%;height: auto;}
+.threads-reply {display: block;margin-top: 5px;}
+.threads-reply-flex {width: 100%;height: auto;margin: 10px 0 0;}
+.talk-sec h2 {font-size: 30px;}
+.talk-sec span {width: 25px;height: 25px;font-size: 20px;}
+.trending-right {margin-top: 40px;}
+.trending-right h2 {font-size: 19px;}
+.main-icon a {font-size: 15px;}
+.mumsnet-text h4 {font-size: 19px;}
+.threads-reply-new .threads-flex a {font-size: 18px;}
+}
+@media only screen and (min-width:768px) and (max-width: 991px) {
+.sec-mumnsnet {padding: 50px 0px;}
+.tabs-change-box .nav-item {padding: 0 7px 0 0;}
+.tabs-change-box .nav-link {padding: 0.5rem 0.7rem;}
+.talk-sec h2 {font-size: 30px;}
+.talk-sec span {width: 25px;height: 25px;font-size: 20px;}
+.trending-right {margin-top: 40px;}
+.trending-right h2 {font-size: 19px;}
+.main-icon a {font-size: 15px;}
+.mumsnet-text h4 {font-size: 19px;}
+.threads-reply-new .threads-flex a {font-size: 18px;}
+}
+@media only screen and (min-width:992px) and (max-width: 1199px) {
+.sec-mumnsnet {padding: 50px 0px;}
+.tabs-change-box .nav-item {padding: 0 7px 0 0;}
+.tabs-change-box .nav-link {padding: 0.5rem 0.7rem;}
+.talk-sec h2 {font-size: 30px;}
+.talk-sec span {width: 25px;height: 25px;font-size: 20px;}
+.trending-right h2 {font-size: 19px;}
+.main-icon a {font-size: 15px;}
+.mumsnet-text h4 {font-size: 19px;}
+.threads-reply-new .threads-flex a {font-size: 18px;}
+}
+/* RESPONSIVE CSS END */
+.dashboard-layout .middle{width: 95% !important;}
+.topic-con .select2-container--default .select2-selection--single{background-color: #F2F2F2 !important; border: none !important;}
+.topics li{cursor: pointer;}
 .dashboard-layout .middle{
     width: 95% !important;
 }
