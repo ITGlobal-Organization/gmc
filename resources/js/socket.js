@@ -3,6 +3,7 @@ window.io = require('socket.io-client');
 import { createToaster } from "@meforma/vue-toaster";
 
 const toaster = createToaster({ /* options */ });
+window.toaster = toaster;
 
 window.socket = window.io('https://perthshirecc.co.uk:3000');
 window.socket.on('new-message_'+blade_config.user_id, (message) => {
@@ -34,18 +35,18 @@ function appendMessage(message){
 				</div>
 				</div>
 				<div class="tyn-reply-group">
-				
-				
+
+
 				<div class="tyn-reply-bubble">
 					<div class="tyn-reply-text"> ${message.message} </div>
-				
-					
+
+
 				</div>
-				
+
 				</div>
-				
+
 			</div></div>`;
-		
+
 	$('.chat-msg').append(html);
 }
 
