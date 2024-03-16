@@ -269,7 +269,7 @@ display: none;
 
 .middle {
   margin: auto;
-  width: 1300px;
+  width: 75%;
   border: 0px solid red;
 }
 .block {
@@ -293,7 +293,7 @@ display: none;
 }
 #list40 ul li a {
 	margin:0px 0px 0px -20px;
-	padding:15px 15px 15px 15px;
+	padding:15px 15px 15px 22px;
 	width:118%;
 	height:auto;
     font-family: 'Montserrat-Regular' !important;

@@ -4,7 +4,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding events">
         <div class="middle mtb-60">
             <h1 class="text-center mb-25">{{ trans('messages.edit_msg',[
-                    'attribute' => trans('lang.space_finder')
+                    'attribute' => trans('lang.employee')
                 ])}}</h1>
             <div class="contact-success"></div>
             <div class="contact-error"></div>

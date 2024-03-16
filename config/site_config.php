@@ -31,7 +31,9 @@ return [
         'general_string_length' => '100',
         'base_layout' => 'layouts.layoutv2',
         'item_per_page' => 44,
-        'events_month_range' => 3
+        'events_month_range' => 3,
+        'long-date-format' => 'F j, Y \a\t g:i a',
+       
     ],
     'auth'  => [
         'login_view' => 'loginv1',

@@ -290,5 +290,7 @@ export const Language = {
     view_all:"View All",
     recent_msg:function(attribute){
         return "Recently Added " + attribute
-    }
+    },
+    topics:"Topics",
+    topic:"Topic"
 };

@@ -30,6 +30,15 @@ return [
                 'submenu' => [],
             ],
             [
+                'name' => 'topics',
+                'route' => 'topics.index',
+                'icon' => 'nav-icon fas fa-users',
+                'has_submenu' => false,
+                'submenu_icon' => '',
+                'access' => 'admin',
+                'submenu' => [],
+            ],
+            [
                 'name' => 'directory',
                 'route' => 'directory.index',
                 'icon' => 'nav-icon fas fa-tachometer-alt',

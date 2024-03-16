@@ -54,6 +54,7 @@
 <!--End Header-->
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
 @include('components.loader')
+<audio class="message-notification" src="{{ asset(config('site_config.assets.sounds'). 'message.mp3') }}" autoplay></audio>
 </div>
 
 
@@ -107,21 +108,23 @@
     <!-- Select2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script>
+
+@php 
+		$User = auth()->user();
+	@endphp
 const blade_config = {
-	baseUrl : "{{ config('app.url') }}"
+	baseUrl : "{{ config('app.url') }}",
+	laravel_echo_port:'{{env("LARAVEL_ECHO_PORT")}}',
+	user_id: "{{ isset($User)?$User->id:null }}",
 }
 </script>
+
 <script src="{{ custom_asset('common.js','scripts')}}"></script>
 <script src="{{ custom_asset('owl.carousel.js','scripts') }}"></script>
+<!-- <script src="//{{ Request::getHost() }}:{{env('LARAVEL_ECHO_PORT')}}/socket.io/socket.io.js"></script> -->
 <script src="{{ custom_asset('utils.js','scripts') }}"></script>
-<script src="{{ custom_asset('banner-script.js','scripts') }}"></script>
-
-<script>
-		// $(document).ready(function(){
-		// 	$('select').select2();
-		// })
-
-	</script>
+<!-- <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script> -->
+<script src="{{ custom_asset('socket.js','js')}}"></script>
 @yield('scripts')
 
 </body>

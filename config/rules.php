@@ -192,7 +192,18 @@ return [
         'store' => [
             'message' => 'required',
         ]
+    ],
+    'forum_posts' => [
+        'store' => [
+            'title' => 'required',
+            'description' => 'required',
+            'topic' => 'required|exists:topics,id',
+        ],
+        'reply' => [
+            'reply' => 'required'
+        ]
     ]
+
 
 
 ];

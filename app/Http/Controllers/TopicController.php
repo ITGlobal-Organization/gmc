@@ -5,16 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
-use App\Models\Category;
+use App\Models\Topic;
 use App\Models\Media;
 
-class CategoryController extends BaseController
+class TopicController extends BaseController
 {
-    private $category,$media;
-    public function __construct(Category $category,Media $media) {
+    private $topic,$media;
+    public function __construct(Topic $topic,Media $media) {
 
-        $this->category = $category;
-        $this->setModel($category);
+        $this->topic = $topic;
+        $this->setModel($topic);
         $this->setMedia($media);
     }
 
@@ -27,26 +27,24 @@ class CategoryController extends BaseController
     }
 
 
-    public function categories(Request $request){
+    public function topics(Request $request){
         if(isset($request->search) && $request->search != ""){
-            $this->category->setFilters(['name','like','%'.$request->search.'%']);
+            $this->topic->setFilters(['name','like','%'.$request->search.'%']);
         }
-        $this->category->setLength(100000);
-        $Category = $this->category->getAll([],['id','name as text']);
-        return $this->sendResponse($Category);
+        $Topic = $this->topic->getAll([],['id','name as text']);
+        return $this->sendResponse($Topic);
     }
 
-    public function renderCategoriesView(Request $request){
-
-        if($request->ajax()){
-            // dd('here');
-            return $this->categories($request);
-        }
-        return view('directories.categories.categories',[
-            'title' => trans('lang.directories').' | '.trans('lang.categories'),
-            'count' => 0
-        ]);
-    }
+    // public function renderCategoriesView(Request $request){
+    //     if($request->ajax()){
+    //         // dd('here');
+    //         return $this->categories($request);
+    //     }
+    //     return view('directories.categories.categories',[
+    //         'title' => trans('lang.directories').' | '.trans('lang.categories'),
+    //         'count' => 0
+    //     ]);
+    // }
 
     public function getCategoriesListing(Request $request){
         ///dd('hrer');
@@ -69,4 +67,5 @@ class CategoryController extends BaseController
         ]);
     }
 
+   
 }

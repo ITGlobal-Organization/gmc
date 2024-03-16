@@ -6,17 +6,6 @@ const redis = new Redis();
  
 
 
-// var privateKey = fs.readFileSync('../../../laragon/etc/ssl/laragon.key').toString();
-// var certificate = fs.readFileSync('../../../laragon/etc/ssl/laragon.crt').toString();
-// var pca = fs.readFileSync('../../../laragon/etc/ssl/cacert.pem').toString();
-
-// var credentials = {
-//     key:privateKey,
-//     cert:certificate,
-//     pca:pca,
-//     requestCert: false,
-//     rejectUnauthorized: false
-// }
 const options = {
     key: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/privkey.pem'),
     cert: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/fullchain.pem'),
@@ -46,6 +35,10 @@ server.listen(port,function(){
 
 
 redis.subscribe('chat',function(){
+    console.log('suscribe');
+});
+
+redis.subscribe('forum',function(){
     console.log('suscribe');
 });
 
@@ -89,5 +82,11 @@ redis.on('message',function(channel,message){
         let event = message.event;
         io.emit('new-message_'+reciever_id,data);
         
+    }else if(channel == 'forum'){
+        console.log(message)
+        var message = JSON.parse(message)
+        var data = message.data;
+
+        io.emit('new-post',data);
     }
 })
