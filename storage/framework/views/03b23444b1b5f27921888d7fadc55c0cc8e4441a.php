@@ -22,6 +22,7 @@
                     <div class="brand-img">
                         <?php
                             $User = auth()->user();
+                          
                         ?>
 
                         <?php if(!isset($User)): ?>
@@ -32,21 +33,19 @@
                              
                             </a>
                         <?php else: ?>
-                            <a href="<?php echo e(route('offers.get', $Offer->id)); ?>">
+                       
+                            <a href="<?php echo e(route('offers.get', $Offer->slug)); ?>">
                                 <?php echo $__env->make('components.image', [
                                     'image' => $Offer->image_url,
                                 ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                             </a>
                         <?php endif; ?>
                     </div>
-                    <div class="brand-name">
-                        <?php
-                            $User = auth()->user();
-                        ?>
+                    <div class="box-name home home-text">
                         <?php if(!isset($User)): ?>
                             <a href="<?php echo e(route('login')); ?>">
                             <?php else: ?>
-                                <a href="<?php echo e(route('offers.get', $Offer->id)); ?>">
+                                <a href="<?php echo e(route('offers.get', $Offer->slug)); ?>">
                         <?php endif; ?>
                         <?php echo e(shortenTextLength($Offer->company_name)); ?> </a>
                     </div>

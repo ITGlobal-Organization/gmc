@@ -45,9 +45,9 @@ return [
             // 'youtube_url' => '',
             // 'facebook_url' => '',
             // 'linked_url' => '',
-            'user_id' => 'required|exists:users,id',
+            // 'user_id' => 'required|exists:users,id',
             'is_approved'=>'required',
-            'description' => 'required'
+            // 'description' => 'required'
         ],
         'edit' => [
             'title' => 'required',
@@ -188,6 +188,11 @@ return [
             'is_approved' => 'required|numeric|min:0|max:1',
         ]
     ],
+    'messages' => [
+        'store' => [
+            'message' => 'required',
+        ]
+    ]
 
 
 ];

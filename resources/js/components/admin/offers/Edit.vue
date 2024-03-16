@@ -248,11 +248,11 @@ mounted(){
                     placeholder:function(){
                         return "Upload"+this.label
                     },
-                    multiple:false,
+                    multiple:true,
                     model:`App\\Models\\M2MOffer`,
                     required:false,
                     fileType:"image/jpeg, image/png",
-                    maxFiles:1
+                    maxFiles:10
                 },
 
         ]

@@ -1,6 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/socket.js": "/js/socket.js",
     "/css/app.css": "/css/app.css",
+    "/js/scripts/banner-script.js": "/js/scripts/banner-script.js",
     "/js/scripts/calendar-gc.js": "/js/scripts/calendar-gc.js",
     "/js/scripts/calendar-gc.min.js": "/js/scripts/calendar-gc.min.js",
     "/js/scripts/common.js": "/js/scripts/common.js",
@@ -18,6 +20,7 @@
     "/js/scripts/script.js": "/js/scripts/script.js",
     "/js/scripts/scripts.js": "/js/scripts/scripts.js",
     "/js/scripts/slicarousel.js": "/js/scripts/slicarousel.js",
+    "/js/scripts/socket.js": "/js/scripts/socket.js",
     "/js/scripts/toast.min.js": "/js/scripts/toast.min.js",
     "/js/scripts/utils.js": "/js/scripts/utils.js"
 }

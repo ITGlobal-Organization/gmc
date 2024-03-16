@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="row p-3">
             <div class="col-md-5 col-sm-5 col-12">
-            <select class="records-cls custom-select" v-model="pageSize">
+            <select class="records-cls custom-select" :value="pageSize" @change="$emit('update:pageSize', $event)">
                 <option :value="10">10</option>
                 <option :value="25">25</option>
                 <option :value="50">50</option>
@@ -30,7 +30,7 @@
                     <tr>
                         <th v-for="(item,index) in columns" :key="index" >
                                 <div>
-                                    <input type="checkbox" v-if="checkbox && index == 0"  v-model="bulk_checked" @click="setBulkChecked()"/>
+                                    <input type="checkbox" v-if="checkbox && index == 0"  :value="bulk_checked" @input="$emit('update:bulk_checked', $event)" @click="setBulkChecked()"/>
                                     <label v-else style="cursor:pointer;">
                                         <span class="mr-1">{{ item.label}}</span>
                                         <span v-if="item.sorted" @click="setOrder(item.field)">
@@ -111,11 +111,13 @@
             <div class="row p-4" v-if="rows.length >0">
                 <div class="col-md-12 col-12 d-flex justify-content-center">
                 <v-pagination
-                    v-model="pageNo"
+                    :value="pageNo"
                     :pages="pages"
                     :range-size="pageSize"
                     active-color="#DCEDFF"
                     @update:modelValue="updatePageNo"
+
+                    @click="$emit('update:pageNo', $event)"
                 />
                 </div>
             </div>

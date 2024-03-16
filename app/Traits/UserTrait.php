@@ -6,6 +6,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\Media;
+use Log;
 // use App\Models\User;
 
 trait UserTrait
@@ -303,10 +305,17 @@ trait UserTrait
     public function getAll($join = [], $select = ['*'], $where = [])
     {
         // dd($where);
+        DB::enableQueryLog();
         $data =  static::selectRaw(implode(',', $select));
           // dd($this->has_images);
+          $class = $this->class_name;
+            $table = $this->table;
           if($this->has_images){
-            $data->leftjoin('images','images.model_id','users.id')->where('images.model','like',str_replace('\\','%',$this->class_name));
+            $data->leftjoin('images',function($leftJoin) use ($class,$table){
+                $leftJoin->on($table.'.id','=','images.model_id')
+                ->where('images.model','like',str_replace('\\','%',$class))
+                ->orwhereNull('images.model');
+            });
 
         }
 
@@ -330,18 +339,11 @@ trait UserTrait
 
         $this->setCount(count($data->groupBy('users.'.$this->getGroupBy())->get()));
 
-
-
-        $this->setCount(count($data->groupBy('users.'.$this->getGroupBy())->get()));
-
-
-
-
-
+        Log::debug(DB::getQueryLog());
         if($this->getLength() > 0 )
            return $data->skip($this->getLength() * ($this->getStart() - 1))->take($this->getLength())->orderBy($this->table.'.'.$this->getOrderBy(), $this->getOrder())->groupBy($this->table.'.'.$this->getGroupBy())->get();
 
-
+          
         return $data->groupBy('users.'.$this->getGroupBy())->get();
 
     }

@@ -71,7 +71,7 @@ class M2MOfferController extends BaseController
         }
 
         $offers = $this->offer->getAll([],['m2m_offers.*','images.image_url']);
-        if(isset($user) && !$user->hasRole('admin') && str_contains($this->url,"user")){
+        if(isset($user) && $user->hasRole('user') && str_contains($this->url,"user")){
             $view='user.offer.listing';
         }else{
             $view='sections.offers';
@@ -137,7 +137,7 @@ class M2MOfferController extends BaseController
             ],
             'message'=>'Updated Successfully'
         ];
-        return response()->json($response, 200);
+        return $this->sendResponse($response);
     }
 
     public function destroy(Request $request,$id){
@@ -149,7 +149,7 @@ class M2MOfferController extends BaseController
             ],
             'message'=>'Deleted Successfully'
         ];
-        return response()->json($response, 200);
+        return $this->sendResponse($response);
     }
 
     public function store(Request $request){
@@ -168,7 +168,7 @@ class M2MOfferController extends BaseController
             ],
             'message'=>'Created Successfully'
         ];
-        return response()->json($response, 200);
+        return $this->sendResponse($response);
     }
 
     public function setGeneralFilters(Request $request)

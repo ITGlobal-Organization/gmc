@@ -1,7 +1,14 @@
-<div class="filter-btn show_hide"><i class="fas fa-filter fa-spin" style="color: #ff8000;"></i>&nbsp;&nbsp;
+<div class="row">
+<div class="filter-btn show_hide col-md-7"><i class="fas fa-filter fa-spin" style="color: #ff8000;"></i>&nbsp;&nbsp;
     <?php echo e(trans('lang.search_filter')); ?>
 
 </div>
+<div class="filter-btn clear-filters col-md-5">&nbsp;&nbsp;
+               <?php echo e(trans('lang.clear-filter')); ?>
+
+            </div>
+</div>
+
 <div class="slidingDiv">
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 padding border mb-25">
         <h6><?php echo e(trans('lang.search_filter')); ?></h6>

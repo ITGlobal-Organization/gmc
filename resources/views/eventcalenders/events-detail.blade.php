@@ -10,10 +10,10 @@
             <div class="clr"></div>
             <div class="addnew-btn clear-filters"><a href="#">{{ trans('lang.clear-filter')}}</a></div>
         </div>
-       
+
         <!--End search Area-->
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border padding border">
-                
+
                 <div class="col-3">
                     <div class="search-ohch">
                         <input class="ohch-input" name="date" id="start-date" placeholder="Date for visit DD-MM-YYYY"
@@ -58,7 +58,7 @@
                     <td class="list20">{{ $Event->venue }}</td>
 
                     <td class="list20">{{ $Event->city }}</td>
-                    <td class="list20">${{ $Event->price }}</td>
+                    <td class="list20">{{ $Event->price }}</td>
                     <td class=" list30"><span class="btn-download"><a href="{{ $Event->booking_link }}"
                                 target="_blank">Book Here</a></span></td>
 

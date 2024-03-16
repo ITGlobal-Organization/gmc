@@ -8,6 +8,8 @@ use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\SpaceFinderController;
 use App\Http\Controllers\PlatinumPartnerController;
 use App\Http\Controllers\CategoryController;
+use App\Events\ChatMessageSent;
+use Illuminate\Http\Request;
 use Artisan;
 
 
@@ -40,16 +42,16 @@ Route::prefix('blogs')->group(function () {
     Route::get('/',[BlogController::class,'blogs'])->name('blogs.index');
     Route::get('/ajax',[BlogController::class,'getBlogsListing'])->name('blogs.ajax');
 
-    Route::get('/{slug}',[BlogController::class,'getBlog'])->name('blogs.get')->middleware('user');
+    Route::get('/{slug}',[BlogController::class,'getBlog'])->name('blogs.get')->middleware('auth');
 });
 
 // Directiories
 Route::prefix('directories')->group(function () {
-    Route::get('/categories',[CategoryController::class,'renderCategoriesView'])->name('directories.category.index');
+    Route::get('/categories',[CategoryController::class,'renderCategoriesView'])->name('directories.category.index')->middleware('auth');
     Route::get('/categories/ajax',[CategoryController::class,'getCategoriesListing'])->name('directories.category.ajax');
-    Route::get('/',[DirectoryController::class,'directories'])->name('directories.index');
+    Route::get('/',[DirectoryController::class,'directories'])->name('directories.index')->middleware('auth');
     Route::get('/ajax',[DirectoryController::class,'getDirectoryListing'])->name('directories.ajax');
-    Route::get('/{slug}',[DirectoryController::class,'getDirectory'])->name('directories.get')->middleware('user');
+    Route::get('/{slug}',[DirectoryController::class,'getDirectory'])->name('directories.get')->middleware('auth');
 });
 Route::get('/search-directories',[DirectoryController::class,'searchDirectories'])->name('directories.search');
 
@@ -57,7 +59,7 @@ Route::get('/search-directories',[DirectoryController::class,'searchDirectories'
 Route::prefix('space-finders')->group(function () {
     Route::get('/',[SpaceFinderController::class,'spaceFinders'])->name('space-finders.index');
     Route::get('/ajax',[SpaceFinderController::class,'getSpaceFindersListing'])->name('space-finders.ajax');
-    Route::get('/{slug}',[SpaceFinderController::class,'getSpaceFinder'])->name('space-finders.get')->middleware('user');
+    Route::get('/{slug}',[SpaceFinderController::class,'getSpaceFinder'])->name('space-finders.get');
 });
 Route::get('/search-spacefinders',[SpaceFinderController::class,'searchSpaceFinders'])->name('space-finders.search');
 
@@ -65,7 +67,7 @@ Route::get('/search-spacefinders',[SpaceFinderController::class,'searchSpaceFind
 Route::prefix('event-calenders')->group(function () {
     Route::get('/',[EventCalenderController::class,'eventCalenders'])->name('event-calenders.index');
     Route::get('/ajax',[EventCalenderController::class,'getEventsListing'])->name('event-calenders.ajax');
-    Route::get('/{slug}',[EventCalenderController::class,'getEvent'])->name('event-calenders.get')->middleware('user');
+    Route::get('/{slug}',[EventCalenderController::class,'getEvent'])->name('event-calenders.get')->middleware('auth');
     Route::get('/{view}/{slug}',[EventCalenderController::class,'getEvent'])->name('event-calenders.get');
 });
 Route::get('/search-events',[EventCalenderController::class,'getEventsListing'])->name('event-calenders.search');
@@ -85,14 +87,14 @@ Route::get('/platinum-partners-tab',[SitePageController::class,'platinumPartners
 Route::prefix('platinum-partners')->group(function () {
     Route::get('/',[PlatinumPartnerController::class,'platinumPartners'])->name('platinum-partners.index');
     Route::get('/ajax',[PlatinumPartnerController::class,'getPlatinumPartnersListing'])->name('platinum-partners.ajax');
-    Route::get('/{slug}',[PlatinumPartnerController::class,'getPlatinumPartner'])->name('platinum-partners.get')->middleware('user');
+    Route::get('/{slug}',[PlatinumPartnerController::class,'getPlatinumPartner'])->name('platinum-partners.get')->middleware('auth');
 });
 
 // M2MOffers
 Route::prefix('offers')->group(function () {
     Route::get('/',[M2MOfferController::class,'Offers'])->name('offers.index');
     Route::get('/ajax',[M2MOfferController::class,'getOffersListing'])->name('offers.ajax');
-    Route::get('/{slug}',[M2MOfferController::class,'getOffer'])->name('offers.get')->middleware('user');
+    Route::get('/{slug}',[M2MOfferController::class,'getOffer'])->name('offers.get')->middleware('auth');
 });
 Route::prefix('developer')->group(function () {
     Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
@@ -106,6 +108,7 @@ Route::prefix('developer')->group(function () {
         dd('clear');
     });
 });
+
 
 
 require __DIR__ . '/auth.php';

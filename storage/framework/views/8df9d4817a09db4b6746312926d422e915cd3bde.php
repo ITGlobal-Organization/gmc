@@ -35,7 +35,7 @@
                     <div class="main-box">
                     <div class="<?php echo e($SpaceFinder->is_approved==1?'approved':'notapproved'); ?>"><?php echo e($SpaceFinder->is_approved==1?trans('lang.approved'):trans('lang.not-approved')); ?></div>
                         <div class="box-img card-image">
-                            <a href="spacefinder-details.php"><img src="<?php echo e($SpaceFinder->image_url); ?>" alt=""
+                            <a href="spacefinder-details.php"><img src="<?php echo e($SpaceFinder->image_url); ?>" alt="Logo"
                                     width="100%" class="box-img" /></a>
                         </div>
                         <!--<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>-->
