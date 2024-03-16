@@ -345,7 +345,6 @@
         });
         $('.register').submit(function(e) {
             e.preventDefault();
-            alert("form")
             let formData = new FormData(this);
             let url = "{{ route('register.post') }}";
             $.ajaxSetup({
