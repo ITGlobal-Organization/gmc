@@ -45,7 +45,7 @@ class ZohoController extends BaseController
     }
 
     public function register(Request $request){
-        // $this->zohoAuthToken = DB::table('tokens')->where('id', '=', 1)->pluck('access_token')[0];
+        $this->zohoAuthToken = DB::table('tokens')->where('id', '=', 1)->pluck('access_token')[0];
         $request->validate($this->user->getRules());
         $request->validate($this->directory->getRules());
         if(!isset($request->category_ids)){
@@ -74,17 +74,14 @@ class ZohoController extends BaseController
 
 
         $response = $this->registerLead($this->requestData);
-
-        if($response['status'] != true){
+        if(isset($response['status']) && $response['status'] != true){
             $this->user->where('id',$this->authUser->id)->delete();
         }else{
-            // dd($response);
             $response = $this->registerUser($request);
             if($response['status'] != true){
                 $this->user->where('id',$this->authUser->id)->delete();
             }
         }
-
         return response()->json($response);
 
     }
@@ -109,16 +106,18 @@ class ZohoController extends BaseController
                 ]
             ]
         ];
-        $response= $this->leadApi($this->leadData);
+        $response = $this->leadApi($this->leadData);
 
         $response = json_decode($response->getBody(),true);
 
-        return $this->checkResponse($response);
+        return  $this->checkResponse($response,"directory");
+
     }
-    public function checkResponse($response){
+
+    public function checkResponse($response,$table){
         if (isset($response['data'][0]['code']) && $response['data'][0]['code'] == "SUCCESS"){
             $id = $response['data'][0]['details']['id'];
-            $this->updateZohoId($id,"directory");
+            $this->updateZohoId($id,$table);
             $response = $this->Response(true,$id,'',$response);
             return $response;
 
@@ -126,15 +125,18 @@ class ZohoController extends BaseController
             $response = $this->updateToken();
 
             if($response == true){
-                $response = $this->leadApi($this->leadData);
+                if($table == "directory"){
+                    $response = $this->leadApi($this->leadData);
+                }else{
+                    $response = $this->userApi($this->userData);
+                }
                 $response = json_decode($response->getBody(),true);
                 $id = $response['data'][0]['details']['id'];
-                $this->updateZohoId($id,"directory");
+                $this->updateZohoId($id,$table);
                 $response = $this->Response(true,$id,'',$response);
                 return $response;
-            }else{
-                return false;
             }
+            return false;
 
         }else{
             return false;
@@ -155,38 +157,13 @@ class ZohoController extends BaseController
             ]
             ]
         ];
-        $response= $this->userApi($this->userData);
+       $response = $this->userApi($this->userData);
+        // $response= $this->userApi($this->userData);
 
         $response = json_decode($response->getBody(),true);
 
-
-    return $this->checkUserResponse($response);
+    return $this->checkResponse($response,"user");
 }
-    public function checkUserResponse($response){
-        if (isset($response['data'][0]['code']) && $response['data'][0]['code'] == "SUCCESS"){
-            $id = $response['data'][0]['details']['id'];
-            $this->updateZohoId($id,"user");
-            $response = $this->Response(true,$id,'',$response);
-            return $response;
-
-        }else if ($response['code'] && ($response['code'] == "AUTHENTICATION_FAILURE" || $response['code'] == "INVALID_TOKEN")){
-            $response = $this->updateToken();
-
-            if($response == true){
-                $response = $this->userApi($this->userData);
-                $response = json_decode($response->getBody(),true);
-                $id = $response['data'][0]['details']['id'];
-                $this->updateZohoId($id,"user");
-                $response = $this->Response(true,$id,'',$response);
-                return $response;
-            }else{
-                return false;
-            }
-
-        }else{
-            return false;
-        }
-    }
 
     public function updateToken(){
 
@@ -201,7 +178,7 @@ class ZohoController extends BaseController
         $response = json_decode($response->getBody(),true);
         if(isset($response['access_token'])){
             $this->zohoAuthToken = $response['access_token'];
-            // DB::table('tokens')->where('id', '=', 1)->update(['access_token'=>$this->zohoAuthToken]);
+            DB::table('tokens')->where('id', '=', 1)->update(['access_token'=>$this->zohoAuthToken]);
             return true;
         }
         return false;
@@ -226,7 +203,7 @@ class ZohoController extends BaseController
             $this->user->where('id',$this->authUser->id)->update(['zoho_id'=>$id]);
             Auth::login($this->authUser);
         }
-        return $id;
+        return ;
     }
     public function leadApi($leadData){
         $response = Http::withBody(json_encode($this->leadData), 'application/json')
