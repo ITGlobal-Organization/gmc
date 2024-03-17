@@ -45,6 +45,7 @@ class EventCalenderController extends BaseController
 
     public function eventCalenders(Request $request){
         $user = Auth::user();
+        $Categories = $this->eventCalender->getCategories();
         if(isset($user) && $user->hasRole('user')  && str_contains($this->url,"user")){
             $view= 'user.event.index';
         }else{
@@ -52,7 +53,8 @@ class EventCalenderController extends BaseController
         }
         return view($view,[
             'title' => trans('lang.eventcalenders'),
-            'count' => 0
+            'count' => 0,
+            'Categories' => $Categories
         ]);
     }
     public function getEventsListing(Request $request){
@@ -60,7 +62,7 @@ class EventCalenderController extends BaseController
         $user = Auth::user();
         $this->setGeneralFilters($request);
         $this->removeGeneralFilters($request);
-
+        $Categories = $this->eventCalender->getCategories();
         // $search = "tit";
         $AllEvents = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
         // DB::enableQueryLog();
@@ -68,6 +70,10 @@ class EventCalenderController extends BaseController
 
         if(isset($request->search) && $request->search != '') {
             $this->eventCalender->setFilters(['title','like','%'.$request->search.'%']);
+        }
+
+        if(isset($request->category_id) && $request->category_id != 0) {
+            $this->eventCalender->setFilters(['category_id','=',$request->category_id]);
         }
 
         if((isset($request->end_date) && $request->end_date != '')  ){
@@ -107,13 +113,15 @@ class EventCalenderController extends BaseController
             'Events' => $Events,
             'AllEvents' => $AllEvents,
             'count' => $this->eventCalender->getCount(),
-            'page' => $this->eventCalender->getStart()
+            'page' => $this->eventCalender->getStart(),
+            'Categories' => $Categories
         ]);
     }
     public function renderForm(Request $request,$id){
         $Event = $this->eventCalender->first('id',$id,'=',['user'],[],['event_calenders.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
+        $Categories = $this->eventCalender->getCategories();
         // $Event=$this->eventCalender->where('id',$request->id)->first();
-        return view('user.event.edit',['Event'=>$Event]);
+        return view('user.event.edit',['Event'=>$Event,'Categories' => $Categories]);
     }
 
     public function update(Request $request,$id){
@@ -195,7 +203,9 @@ class EventCalenderController extends BaseController
             ],
             'message'=>'Created Successfully'
         ];
-        return $this->sendResponse($response);
+        return $this->sendResponse($response,trans('messages.success_msg',[
+            'attribute'=> trans('lang.event')
+        ]));
     }
 
 
@@ -227,6 +237,20 @@ class EventCalenderController extends BaseController
         }
     }
 
+    public function getCategories(Request $request){
+        $categories = $this->eventCalender->getCategories();
+        //dd($categories);
+        return $this->sendResponse($categories);
+    }
 
-
+    public function userCreateEvent(Request $request){
+        $Categories = $this->eventCalender->getCategories();
+        return view('user.event.create',[
+            'title' => trans('messages.create_msg',[
+                'attribute' => trans('lang.event'),
+                
+            ]),
+            'Categories' => $Categories
+        ]);
+    }
 }

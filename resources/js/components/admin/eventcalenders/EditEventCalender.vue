@@ -47,6 +47,7 @@ data(){
         errors:{},
         FormFields:[],
         users:[],
+        categories:[],
         form:{
                 title:'',
                 slug:'',
@@ -59,6 +60,7 @@ data(){
                 price:'',
                 booking_link:'',
                 is_approved:'',
+                category_id:0,
                 media:[],
                 gallery:[]
             },
@@ -69,7 +71,7 @@ mounted(){
     let ref = this;
 
     ref.getAllUsers();
-
+    ref.getAllCategories()
     ref.FormFields = [
                 {
                     label:Language.title,
@@ -211,10 +213,30 @@ mounted(){
                     required:true,
                 },
                 {
+                    label:Language.category,
+                    field:"category_id",
+                    class:"vue-select1",
+                    grid:"col-md-4 col-12",
+                    type:"select",
+                    isdynamic:true,
+                    searchable:true,
+                    options:function(){
+                            if(this.isdynamic){
+                                return ref.categories;
+                            }
+                            return [];
+                    },
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+
+                    required:true,
+                },
+                {
                     label:Language.is_approved,
                     field:"is_approved",
                     class:"vue-select1",
-                    grid:"col-md-2 col-12",
+                    grid:"col-md-4 col-12",
                     type:"select",
                     isdynamic:false,
                     searchable:true,
@@ -310,6 +332,7 @@ methods:{
             this.form.slug = record.value.slug;
             this.form.is_approved = record.value.is_approved;
             this.form.booking_link = record.value.booking_link;
+            this.form.category_id = record.value.category_id;
             this.form.description = record.value.description?record.value.description:"";
 
             this.form.gallery = record.value.media;
@@ -329,6 +352,12 @@ methods:{
             const {records,getAllPublic} = useUsers();
             await getAllPublic();
             this.users = records.value;
+
+    },
+    async getAllCategories(){
+            const {categories,getAllCategories} = useEventCalender();
+            await getAllCategories();
+            this.categories = categories.value;
 
     }
 
