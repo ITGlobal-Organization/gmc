@@ -1055,7 +1055,7 @@ box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 .search-oh {
     padding: 10px 10px 10px 10px !important;
     margin: 5px 0px 10px 16px;
-    width: 50%;
+    width: 90%;
     height: auto;
     text-align: left;
     border-radius: 10px;
@@ -3776,6 +3776,5 @@ blockquote{border: none !important;}
 .dashboard-layout .middle{width: 95% !important;}
 .topic-con .select2-container--default .select2-selection--single{background-color: #F2F2F2 !important; border: none !important;}
 .topics li{cursor: pointer;}
-.dashboard-layout .middle{
-    width: 95% !important;
-}
+.dashboard-layout .middle{width: 95% !important;}
+.addnew-btn.clear-filters{margin: 8px 0 0 0;}

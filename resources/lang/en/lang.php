@@ -234,6 +234,9 @@ return [
     'new' => 'New',
     'view' => 'View',
     'forum' => 'Forum',
-    'social_info' => "Social Info"
+    'social_info' => "Social Info",
+    "to" => "TO",
+    "upcoming_first"=>"Upcoming First",
+    "distant_first"=>"Distant First"
 
 ];

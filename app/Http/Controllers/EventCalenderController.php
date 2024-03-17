@@ -227,6 +227,10 @@ class EventCalenderController extends BaseController
         }
     }
 
-
+    public function getCategories(Request $request){
+        $categories = $this->eventCalender->getCategories();
+        //dd($categories);
+        return $this->sendResponse($categories);
+    }
 
 }
