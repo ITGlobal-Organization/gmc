@@ -30,9 +30,7 @@ Route::prefix('events')->group(function(){
     Route::post('/update/{id}',[EventCalenderController::class, 'update'])->name('user.events.update');
     Route::post('/delete/{id}',[EventCalenderController::class, 'destroy'])->name('user.events.destroy');
     Route::get('/search-events',[EventCalenderController::class,'getEventsListing'])->name('user.event-calenders.search');
-    Route::get('/create',function(){
-        return view('user.event.create');
-    })->name('user.events.create');
+    Route::get('/create',[EventCalenderController::class,'userCreateEvent'])->name('user.events.create');
     Route::delete('/media/delete/{id}',[EventCalenderController::class,'deleteFiles'])->name('user.events.media-upload');
 });
 //SpaceFinders

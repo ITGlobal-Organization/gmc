@@ -1074,6 +1074,20 @@ box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
     font-family: 'Montserrat-Regular' !important;
     border: 0px solid red;
 }
+.oh-select {
+  margin: 3px 0px 0px 19px;
+  padding: 15px 12px 11px 12px;
+  WIDTH: 92%;
+  height: 54px;
+  outline: 0;
+  font-size: 14px;
+  color: #000;
+  float: left;
+  background-color: #F5F5F5;
+  font-family: 'Montserrat-Regular' !important;
+  border-radius: 8px;
+  border: 0px;
+}
 .search-ohch {
     padding: 10px 10px 10px 10px !important;
     margin: 5px 5px 10px 5px;
@@ -1963,8 +1977,8 @@ text-decoration: none;
     font-weight: bold;
 }
 
-.list30 .row .edit-btn{margin: 20px 11px 0 0;}
-.list30 .row .delete-btn{margin: 20px 11px 0 0;}
+.list30 .row .edit-btn{margin: 0px 11px 0 0;width: 100%;}
+.list30 .row .delete-btn{margin: 0px 11px 0 0;width: 100%;}
 .dashboard-layout .events-tab .main-box{min-height: 500px !important;}
 blockquote{border: none !important;}
 .platinum-partners-card {padding-top: 50px !important;height: 200px !important;}

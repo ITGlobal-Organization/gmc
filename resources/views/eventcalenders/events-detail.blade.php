@@ -1,6 +1,16 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding margin-tb35">
     <div class="row search-con">
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border padding border ">
+        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 border padding border ">
+            
+                <select class="category oh-select search-box">
+                    <option value="">{{ trans('lang.select_msg',['attribute' => trans('lang.category')]) }}</option>
+                @foreach($Categories as $Category)
+                    <option value="{{ $Category->id }}">{{ $Category->text }}</option>
+                @endforeach
+                </select>
+            
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-4 border padding border ">
             <div class="search-oh search-box1">
                 <input type="image" class="oh-btn" img="" src="{{ custom_asset('brn-search.png') }}">
                 <input type="text" placeholder="Search" class="oh-input search-box">
@@ -23,7 +33,7 @@
                 <div class="clr"></div>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 border padding border">
+        <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1 border padding border">
             <div class="addnew-btn clear-filters"><a href="#">{{ trans('lang.clear-filter')}}</a></div>
         </div>
         
