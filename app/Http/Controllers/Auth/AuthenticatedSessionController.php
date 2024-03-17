@@ -10,6 +10,10 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Jenssegers\Agent\Facades\Agent;
+use DB;
+use Illuminate\Support\Facades\Log;
+use App\Notifications\NewUserNotification;
 
 class AuthenticatedSessionController extends BaseController
 {
@@ -26,8 +30,8 @@ class AuthenticatedSessionController extends BaseController
     }
 
     public function createAdmin()
-    {   
-       
+    {
+
         return view('auth.login.adminlogin',[
             'title' => trans('lang.login')
         ]);
@@ -41,6 +45,7 @@ class AuthenticatedSessionController extends BaseController
      */
     public function auth(LoginRequest $request)
     {
+        // Auth::logout();
         $request->authenticate();
 
         $request->session()->regenerate();
@@ -57,6 +62,23 @@ class AuthenticatedSessionController extends BaseController
         if(!isset($redirect_route)){
             $redirect_route = route(strtolower(auth()->user()->roles[0]->name).'.dashboard');
         }
+        $device = Agent::device();
+        $savedDevice = DB::table('devices')->where('user_id',$user->id)->where('device',$device)->first();
+
+        if($savedDevice == ""){
+            try{
+                $user->notify(new NewUserNotification("You have logged in from a new device"));
+                DB::table('devices')->insert([
+                    'user_id'=>$user->id,
+                    'device'=>$device
+                ]);
+            }catch(\Exception $e){
+                dd($e->getMessage());
+                Log::error($e);
+            }
+
+        }
+
         return $this->sendResponse([
             'token' => auth()->user()->createToken('API Token')->plainTextToken,
             'user' => json_encode($user),
