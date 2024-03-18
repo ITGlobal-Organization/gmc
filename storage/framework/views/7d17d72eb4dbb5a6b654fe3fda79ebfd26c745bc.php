@@ -78,14 +78,9 @@
                             <div class="error-website"></div>
                             <div class="clr"></div>
                         </div>
+                        
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
                             <label for="categories">Categories:</label>
-                            <input type="text" class="serch-input" value="<?php echo e($Company->categories); ?>"
-                                placeholder="Categories:" name="categories">
-                            <div class="error-categories"></div>
-                            <div class="clr"></div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
                         <select class="select2-multiple form-control serch-input" name="category_ids[]" multiple="multiple"
                             id="select2Multiple">
                             <?php $__currentLoopData = $Categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$Category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

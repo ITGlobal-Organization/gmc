@@ -54,6 +54,7 @@
 <!--End Header-->
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
 <?php echo $__env->make('components.loader', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<audio class="message-notification" src="<?php echo e(asset(config('site_config.assets.sounds'). 'message.mp3')); ?>" autoplay></audio>
 </div>
 
 
@@ -107,21 +108,23 @@
     <!-- Select2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script>
+
+<?php 
+		$User = auth()->user();
+	?>
 const blade_config = {
-	baseUrl : "<?php echo e(config('app.url')); ?>"
+	baseUrl : "<?php echo e(config('app.url')); ?>",
+	laravel_echo_port:'<?php echo e(env("LARAVEL_ECHO_PORT")); ?>',
+	user_id: "<?php echo e(isset($User)?$User->id:null); ?>",
 }
 </script>
+
 <script src="<?php echo e(custom_asset('common.js','scripts')); ?>"></script>
 <script src="<?php echo e(custom_asset('owl.carousel.js','scripts')); ?>"></script>
+<!-- <script src="//<?php echo e(Request::getHost()); ?>:<?php echo e(env('LARAVEL_ECHO_PORT')); ?>/socket.io/socket.io.js"></script> -->
 <script src="<?php echo e(custom_asset('utils.js','scripts')); ?>"></script>
-<script src="<?php echo e(custom_asset('banner-script.js','scripts')); ?>"></script>
-
-<script>
-		// $(document).ready(function(){
-		// 	$('select').select2();
-		// })
-
-	</script>
+<!-- <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script> -->
+<script src="<?php echo e(custom_asset('socket.js','js')); ?>"></script>
 <?php echo $__env->yieldContent('scripts'); ?>
 
 </body>

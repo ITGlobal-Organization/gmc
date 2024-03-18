@@ -5,8 +5,8 @@
             <option value="title-asc">A to Z</option>
             <option value="title-desc">Z to A</option>
 
-            <option value="event_date-asc">Upcoming First</option>
-            <option value="event_date-desc">Distant First</option>
+            <option value="event_date-asc"><?php echo e(trans('lang.upcoming_first')); ?></option>
+            <option value="event_date-desc"><?php echo e(trans('lang.distant_first')); ?></option>
         </select>
     </div>
 
