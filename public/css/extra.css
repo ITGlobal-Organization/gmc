@@ -17695,6 +17695,11 @@ pre[class*=language-] {
 }
 .snackbar-notify .snackbar-heading{
   font-weight: bold;
+  color:#000;
+}
+.snackbar-notify .snackbar-description{
+
+  color:#000000;
 }
 .snackbar-icon {
   display: inline-block;
