@@ -73,7 +73,7 @@ class AuthenticatedSessionController extends BaseController
                     'device'=>$device
                 ]);
             }catch(\Exception $e){
-                dd($e->getMessage());
+                // dd($e->getMessage());
                 Log::error($e);
             }
 

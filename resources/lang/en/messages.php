@@ -27,6 +27,9 @@ return [
     'post_notification_title' => ':attribute has post on forum',
     'thanks_msg' => 'Thank you for using our application!',
     'reply-msg' => ' Your email address will not be published. Required fields are marked *',
+    'user-login-btn' => 'User Login',
+    'new-member' => 'New Member? Join Now!',
+    'existing-member' => 'Existing Member? Access Now!',
     'errors' => [
         '500' => [
             'code'  => '500',

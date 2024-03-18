@@ -31,8 +31,8 @@
 									@endphp
 									<li class="tyn-aside-item js-toggle-main {{ 
 										$active
-									}}">
-										<div class="tyn-media-group chat-user" data-id="{{ $User->id}}">
+									}} chat-user" data-id="{{ $User->id}}">
+										<div class="tyn-media-group" >
 											<div class="tyn-media tyn-size-lg">
 											@include('components.image',[
 
