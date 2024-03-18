@@ -9,7 +9,7 @@ window.socket = window.io('https://perthshirecc.co.uk:3000');
 window.socket.on('new-message_'+blade_config.user_id, (message) => {
 	appendMessage(message)
 	increaseUnreadMessages(message.sender_id)
-	notify("New Message from: " + message.sender_name,'notify',message);
+	notify("New Message from: " + message.sender_name,'notify',message.messae);
 	playSound()
 });
 
