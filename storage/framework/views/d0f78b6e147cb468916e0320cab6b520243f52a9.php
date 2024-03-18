@@ -29,7 +29,7 @@
     <link href="<?php echo e(custom_asset('owl.theme.css','css')); ?>" rel="stylesheet" type="text/css">
 
 	<link href="<?php echo e(custom_asset('easy-responsive-tabs.css','css')); ?>" rel="stylesheet" type="text/css">
-
+	<link rel="manifest" href="<?php echo e(asset('manifest.json')); ?>" />
 
 	<!-- <script src="<?php echo e(asset(config('site_config.assets.plugins').'jquery/jquery.js')); ?>"></script>  -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -54,7 +54,7 @@
 <!--End Header-->
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
 <?php echo $__env->make('components.loader', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<audio class="message-notification" src="<?php echo e(asset(config('site_config.assets.sounds'). 'message.mp3')); ?>" autoplay></audio>
+<audio class="message-notification" src="<?php echo e(asset(config('site_config.assets.sounds'). 'message.mp3')); ?>"></audio>
 </div>
 
 
