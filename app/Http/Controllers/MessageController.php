@@ -55,7 +55,14 @@ class MessageController extends BaseController
                 }
 
                 $data['image_url'] =  $image;
-            broadcast(new ChatMessageSent($data));
+            
+                broadcast(new ChatMessageSent($data));
+            $Reciever = this->user->first('id',$request->reciever_id);
+            $Reciever->newMessageNotification([
+                'sender_name' => $data['sender_name'],
+                'url' => prefix_route('chat.index'),
+                'message' => $data['message'],
+            ]);
             return $this->sendResponse($data,'');
         }catch(Exception $e){
             return $this->sendError(trans('messages.error_msg',['action' => trans('lang.sending')]));
