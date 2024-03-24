@@ -8,6 +8,7 @@ use App\Models\Message;
 use App\Models\User;
 use App\Events\ChatMessageSent;
 use Auth;
+use Log;
 class MessageController extends BaseController
 {
     //
@@ -59,11 +60,16 @@ class MessageController extends BaseController
             broadcast(new ChatMessageSent($data));
             $Reciever = $this->user->first('id',$request->reciever_id);
            //dd($Reciever);
+           try{
             $Reciever->newMessageNotification([
                 'sender_name' => $data['sender_name'],
                 'url' => prefix_route('chat.index'),
                 'message' => $data['message'],
             ]);
+           }catch(\Exception $e){
+                Log::error($e);
+           } 
+          
             return $this->sendResponse($data,'');
         }catch(Exception $e){
             return $this->sendError(trans('messages.error_msg',['action' => trans('lang.sending')]));
