@@ -292,7 +292,7 @@ display: none;
     background-size: cover !important;
 }
 #list40 ul li a {
-	margin:0px 0px 0px -20px;
+	margin:0px 0px 0px 0px;
 	padding:15px 15px 15px 22px;
 	width:118%;
 	height:auto;
@@ -345,7 +345,7 @@ display: none;
     list-style: none;
 }
 #list2 ul li a {
-    margin: 0px 0px 5px -30px;
+    margin: 0px 0px 5px -12px;
     padding: 0px 20px 0px 20px;
     width: 115.5%;
     height: auto;
