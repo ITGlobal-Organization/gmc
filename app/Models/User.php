@@ -408,13 +408,13 @@ class User extends Authenticatable
 
     public function newMessageNotification($message){
         try{
-            $this->notify([
+            $this->notify(new NewMessageNotification([
                 'sender_name' => $message['sender_name'],
                 'url' => $message['url'],
                 'message' => $message['message'],
-            ]);
+            ]));
         }catch(\Exception $e){
-            echo $e;
+            // echo $e;
             Log::error($e);
         }
         return ;   

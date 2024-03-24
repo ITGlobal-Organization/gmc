@@ -43,9 +43,9 @@ class NewMessageNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('New Message From ' . $message['sender_name'])
-                    ->line($message['message'])
-                    ->action('Notification Action', $message['url'])
+                    ->line('New Message From ' . $this->message['sender_name'])
+                    ->line($this->message['message'])
+                    ->action('Notification Action', $this->message['url'])
                     ->line('Thank you for using our application!');
     }
 
