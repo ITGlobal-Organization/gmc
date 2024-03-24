@@ -56,8 +56,9 @@ class MessageController extends BaseController
 
                 $data['image_url'] =  $image;
             
-                broadcast(new ChatMessageSent($data));
+            broadcast(new ChatMessageSent($data));
             $Reciever = $this->user->first('id',$request->reciever_id);
+           dd($Reciever);
             $Reciever->newMessageNotification([
                 'sender_name' => $data['sender_name'],
                 'url' => prefix_route('chat.index'),
