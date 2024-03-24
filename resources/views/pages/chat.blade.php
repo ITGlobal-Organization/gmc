@@ -64,6 +64,7 @@
 	// get users chat
 	$(document).on('click', '.chat-user',function(e){
 		let user_id = $(this).attr('data-id');
+		$('#user_id').val(user_id);
 		$(this).addClass('active');
 		getUserMessages(user_id);
 	});

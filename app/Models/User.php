@@ -16,6 +16,7 @@ use App\Models\Role;
 use App\Models\Media;
 use App\Traits\UserTrait;
 use App\Notifications\ForumNotifications;
+use App\Notifications\NewMessageNotification;
 use Auth;
 use Log;
 class User extends Authenticatable
@@ -399,10 +400,24 @@ class User extends Authenticatable
                 ]));
             }
         }catch(Exception $e){
-            Log::errr($e);
+            
         }
        
         return ;
+    }
+
+    public function newMessageNotification($message){
+        try{
+            $this->notify(new NewMessageNotification([
+                'sender_name' => $message['sender_name'],
+                'url' => $message['url'],
+                'message' => $message['message'],
+            ]));
+        }catch(\Exception $e){
+            // echo $e;
+            Log::error($e);
+        }
+        return ;   
     }
 
 }

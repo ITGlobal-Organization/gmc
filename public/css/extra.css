@@ -17689,7 +17689,18 @@ pre[class*=language-] {
 .snackbar-error {
   background-color: #d9534f; /* Error background color */
 }
+.snackbar-notify{
+  background-color: #fff;
+  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
+}
+.snackbar-notify .snackbar-heading{
+  font-weight: bold;
+  color:#000;
+}
+.snackbar-notify .snackbar-description{
 
+  color:#000000;
+}
 .snackbar-icon {
   display: inline-block;
   margin-right: 10px;
