@@ -9,6 +9,7 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="{{ custom_asset('style.css','css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ custom_asset('extra.css','css') }}" rel="stylesheet" type="text/css">
+    <link  href="{{custom_asset('style-banner.css','css')}}" rel="stylesheet" type="text/css">
 
 	<link href="{{ custom_asset('easy-responsive-tabs.css','css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset(config('site_config.assets.plugins').'select2/css/select2.css') }}" rel="stylesheet" />
@@ -100,7 +101,8 @@
     <!-- <script src="{{ asset(config('site_config.assets.plugins').'jquery/jquery.min.js') }}"></script> -->
 
 
-<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.all.min.js"></script>
 
 <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
@@ -130,6 +132,7 @@ const blade_config = {
 
 <script src="{{ custom_asset('app1c4a.js','js')}}"></script>
 	<script src="{{ custom_asset('bundle1c4a.js','js')}}"></script>
+<script src="{{ custom_asset('banner-script.js','scripts') }}"></script>
 @yield('scripts')
 
 </body>
