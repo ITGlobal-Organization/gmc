@@ -414,6 +414,7 @@ class User extends Authenticatable
                 'message' => $message['message'],
             ]);
         }catch(\Exception $e){
+            echo $e;
             Log::error($e);
         }
         return ;   
