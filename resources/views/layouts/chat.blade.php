@@ -56,6 +56,7 @@
 <!--Start Middle-->
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
 @include('components.loader')
+@include('components.snackbar')
 @yield('content')
 <audio class="message-notification" src="{{ asset(config('site_config.assets.sounds'). 'message.mp3') }}"></audio>
 </div>

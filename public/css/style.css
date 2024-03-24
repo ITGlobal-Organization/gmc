@@ -2109,3 +2109,7 @@ blockquote{border: none !important;}
 .topics li{cursor: pointer;}
 .dashboard-layout .middle{width: 95% !important;}
 .addnew-btn.clear-filters{margin: 8px 0 0 0;}
+.tyn-list-inline{padding-left: 0px !important;}
+.tyn-list-inline button{border: none !important;background-color: #fff;}
+.message-count{float: left;margin: 2px 23px 0 auto;background-color: #414ebd;padding: 5px 7px;color: #fff;border-radius: 50%;}
+

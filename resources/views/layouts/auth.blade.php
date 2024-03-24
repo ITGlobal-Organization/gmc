@@ -36,7 +36,8 @@
 	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-
+<link href="{{ custom_asset('app1c4a.css','css') }}" rel="stylesheet" type="text/css">
+	<!-- <link href="{{ custom_asset('bundle1c4a.css','css') }}" rel="stylesheet" type="text/css"> -->
 	<title>{{ config('app.name')}} | {{ isset($title)?$title:'Page'}}</title>
 </head>
 <body>
@@ -54,6 +55,7 @@
 <!--End Header-->
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
 @include('components.loader')
+@include('components.snackbar')
 <audio class="message-notification" src="{{ asset(config('site_config.assets.sounds'). 'message.mp3') }}"></audio>
 </div>
 
@@ -125,6 +127,9 @@ const blade_config = {
 <script src="{{ custom_asset('utils.js','scripts') }}"></script>
 <!-- <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script> -->
 <script src="{{ custom_asset('socket.js','js')}}"></script>
+
+<script src="{{ custom_asset('app1c4a.js','js')}}"></script>
+	<script src="{{ custom_asset('bundle1c4a.js','js')}}"></script>
 @yield('scripts')
 
 </body>

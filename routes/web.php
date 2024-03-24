@@ -119,7 +119,7 @@ Route::prefix('admin')->middleware(['auth:sanctum','admin'])->group(function () 
     require __DIR__ . '/admin.php';
 });
 //User
-Route::prefix('user')->middleware(['auth:sanctum','user'])->group(function () {
+Route::prefix('user')->middleware(['auth:sanctum','user','profile'])->group(function () {
     require __DIR__ . '/user.php';
 });
 

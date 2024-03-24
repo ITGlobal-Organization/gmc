@@ -381,7 +381,8 @@ function notify(heading,type,description=''){
     let classMapper = {
         success:"snackbar-success",
         warning:"snackbar-warning",
-        error:"snackbar-error"
+        error:"snackbar-error",
+        notify:"snackbar-notify"
     }
     headingEl.text(heading);
     snackbarEl.addClass('show');
