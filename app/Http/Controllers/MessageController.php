@@ -59,7 +59,8 @@ class MessageController extends BaseController
             
             broadcast(new ChatMessageSent($data));
             $Reciever = $this->user->first('id',$request->reciever_id);
-            dd($Reciever->id);
+           echo $Reciever->id;
+           die;
            //dd($Reciever);
            try{
             $Reciever->newMessageNotification([
