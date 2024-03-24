@@ -59,6 +59,7 @@ class MessageController extends BaseController
             
             broadcast(new ChatMessageSent($data));
             $Reciever = $this->user->first('id',$request->reciever_id);
+            dd($Reciever->id);
            //dd($Reciever);
            try{
             $Reciever->newMessageNotification([
@@ -66,7 +67,7 @@ class MessageController extends BaseController
                 'url' => prefix_route('chat.index'),
                 'message' => $data['message'],
             ]);
-           }catch(\Exception $e){
+           }catch(Exception $e){
                 Log::error($e);
            } 
           
