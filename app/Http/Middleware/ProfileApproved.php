@@ -2,32 +2,26 @@
 
 namespace App\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Directory;
 
-class RedirectIfAuthenticated
+class ProfileApproved
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @param  string|null  ...$guards
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, ...$guards)
+    public function handle(Request $request, Closure $next)
     {
-
-        $guards = empty($guards) ? [null] : $guards;
-
-        foreach ($guards as $guard) {
-
-            if (Auth::guard($guard)->check()) {
-                return redirect(prefix_route('dashboard'));
-            }
+        $directory = \DB::table('directories')->where('user_id',auth()->user()->id)->first();
+        if($directory->is_approved == 0 || auth()->user()->is_approved == 0){
+            return abort(403);
         }
+
 
         return $next($request);
     }
