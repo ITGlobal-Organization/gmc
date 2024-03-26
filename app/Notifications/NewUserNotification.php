@@ -16,9 +16,9 @@ class NewUserNotification extends Notification
      *
      * @return void
      */
-    public function __construct($msg)
+    public function __construct($otp)
     {
-        $this->my_notification = $msg;
+        $this->otp = $otp;
     }
 
     /**
@@ -41,9 +41,9 @@ class NewUserNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line($this->my_notification)
+                    ->line("You are logging from a new device")
                     ->action('Welcome to Our Website', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('Your OTP is:'.$this->otp);
     }
 
     /**

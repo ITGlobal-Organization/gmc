@@ -49,11 +49,17 @@ class AuthenticatedSessionController extends BaseController
         $request->authenticate();
 
         $request->session()->regenerate();
-        auth()->user()->login_at = Carbon::now();
-        auth()->user()->is_login = 1;
-        auth()->user()->save();
 
+
+        $device = Agent::device();
+        $savedDevice = DB::table('devices')->where('user_id',auth()->user()->id)->where('device',$device)->where('is_otp_validated',1)->first();
+        if($savedDevice != ""){
+            auth()->user()->is_login = 1;
+        }
+        auth()->user()->login_at = Carbon::now();
+        auth()->user()->save();
         $user = auth()->user();
+
 
         if(!$user->hasRole('admin')){
             $user[auth()->user()->roles[0]->name] = auth()->user()->{auth()->user()->roles[0]->name};
@@ -62,22 +68,7 @@ class AuthenticatedSessionController extends BaseController
         if(!isset($redirect_route)){
             $redirect_route = route(strtolower(auth()->user()->roles[0]->name).'.dashboard');
         }
-        $device = Agent::device();
-        $savedDevice = DB::table('devices')->where('user_id',$user->id)->where('device',$device)->first();
 
-        if($savedDevice == ""){
-            try{
-                $user->notify(new NewUserNotification("You have logged in from a new device"));
-                DB::table('devices')->insert([
-                    'user_id'=>$user->id,
-                    'device'=>$device
-                ]);
-            }catch(\Exception $e){
-                dd($e->getMessage());
-                Log::error($e);
-            }
-
-        }
 
         return $this->sendResponse([
             'token' => auth()->user()->createToken('API Token')->plainTextToken,
@@ -87,6 +78,39 @@ class AuthenticatedSessionController extends BaseController
 
     }
 
+    public function verifyOTP(Request $request){
+        $user = auth()->user();
+
+        $otp = DB::table('otp')->where('otp',$request->otp)->where('user_id',$user->id)->first();
+
+        if($otp != "" && Carbon::parse($otp->validated_till)->gt(Carbon::now())){
+            $device = Agent::device();
+            DB::table('devices')->where('device',$device)->where('user_id',$user->id)->update(['is_otp_validated'=>1]);
+            DB::table('users')->where('id',$user->id)->update(['is_login'=>1]);
+            $redirect_route = route(strtolower(auth()->user()->roles[0]->name).'.dashboard');
+
+            return $this->sendResponse([
+                'route' => $redirect_route,
+            ],trans('messages.logged_in'));
+
+        }else if($otp != "" && Carbon::parse($otp->validated_till)->lt(Carbon::now())){
+
+            $otp = random_int(100000, 999999);
+                DB::table('otp')->updateOrInsert(
+                    ['user_id' => $user->id],
+                    ['otp' => $otp,'validated_till'=>Carbon::now()->addMinutes(2)]
+                 );
+                DB::table('notifications')->where('notifiable_id',$user->id)->delete();
+                $user->notify(new NewUserNotification($otp));
+
+                return $this->sendResponse([
+                    'route' => route('auth.otp'),
+                ],'Your OTP has been expired. A new OTP has been sent to your email.');
+        }else{
+            return $this->sendError('OTP is invalid');
+        }
+
+    }
 
     /**
      * Destroy an authenticated session.
@@ -107,5 +131,13 @@ class AuthenticatedSessionController extends BaseController
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+    public function getOTP(Request $request){
+        if(auth()->user() && auth()->user()->is_login == 1){
+            return redirect()->route(strtolower(auth()->user()->roles[0]->name).'.dashboard');
+        }else if(!auth()->user()){
+            return redirect('/');
+        }
+        return view('auth.otp');
     }
 }
