@@ -193,6 +193,7 @@ class EventCalenderController extends BaseController
 
     public function store(Request $request){
         parent::store($request);
+       
         if($request->hasFile('image')){
             $media =  Helper::saveMedia($request->image,"App\Models\EventCalender",'main',$this->eventCalender->id);
         }
@@ -204,7 +205,7 @@ class EventCalenderController extends BaseController
             'message'=>'Created Successfully'
         ];
         return $this->sendResponse($response,trans('messages.success_msg',[
-            'attribute'=> trans('lang.event')
+            'action'=> trans('lang.events')
         ]));
     }
 

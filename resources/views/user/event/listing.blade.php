@@ -41,15 +41,15 @@
 
                     <td class="list30">
                         <div class="row">
-                        <div class="col-xs-4 col-sm-6 col-md-6 col-lg-6 text-center edit-btn">
+                        <div class="col-2 col-xs-2 col-sm-6 col-md-6 col-lg-6 text-center edit-btn">
 
-                            <a href="#" style="font-size: 12px;width:100%" class="edit"
-                                data-id="{{ $Event->id }}">{{ trans('lang.edit')}}</a>
+                            <a href="#" style="" class="edit"
+                                data-id="{{ $Event->id }}"><i class="fa fa-edit"></i></a>
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center delete-btn">
+                        <div class="col-2 col-xs-2 col-md-6 col-lg-6 text-center delete-btn">
 
-                            <a href="#" style="font-size: 12px;width:100%" class="delete"
-                                data-id="{{ $Event->id }}">{{ trans('lang.delete')}}</a>
+                            <a href="#" style="" class="delete"
+                                data-id="{{ $Event->id }}"><i class="fa fa-delete"></i></a>
                         </div>
 
                         </div>
