@@ -3,7 +3,7 @@ return [
     'placeholder' => 'Enter :attribute',
     'register_successfully' => "Register Successfully",
     'edit' => 'Edit :attribute',
-    'success_msg' => ':action Successfully',
+    'success_msg' => ':attribute :action Successfully',
      'logged_in' => 'LoggedIn Successfully',
     'contact_placeholder_msg' => 'How can we help you? Feel free to get in touch!',
     'error_msg' => 'Error while :action',

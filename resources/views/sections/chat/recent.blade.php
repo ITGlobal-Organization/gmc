@@ -28,7 +28,7 @@
 											</div>
 											<div class="addnew-btn"><a href="{{ prefix_route('chat.index',[
 											'user_id' => $User->id
-											]) }}">{{ trans('lang.open_chat')}}</a></div>
+											]) }}" target="_blank">{{ trans('lang.open_chat')}}</a></div>
 										<div class="clr"></div>
 										</div>
 										

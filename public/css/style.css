@@ -752,7 +752,7 @@ display: flex;
 .latest-img {
     margin: 0px 0px 0px 0px;
     padding: 5px 5px 5px 5px;
-    width: 55px;
+    width: 50px;
     height: 55px;
     float: left;
     border-radius: 4px;
@@ -762,7 +762,7 @@ display: flex;
     margin: 0px 0px 10px 0px;
     padding: 5px 5px 5px 5px;
     width: 70%;
-    height: 50px;
+    /* height: 50px; */
     float: right;
     font-family: 'MontserratAlternates-SemiBold';
     font-size: 14px;
@@ -1561,7 +1561,7 @@ box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2
 	margin:0px 0px 0px 0px;
 }
 #list40 ul li a {
-	margin:0px 0px 0px -30px;
+	margin:0px 0px 0px 0px;
 	padding:15px 15px 15px 22px;
 	width:118%;
 	height:auto;
@@ -1890,7 +1890,7 @@ text-decoration: none;
   /* User dashboard listing styling */
 
   .addnew-btn a{
-    margin: 0px 0px 15px 0px;
+    margin: 0px 0px 2px 0px;
     padding: 15px 25px 15px 25px !important;
     width: auto;
     height: auto;
@@ -1909,7 +1909,7 @@ text-decoration: none;
   }
 
 .edit-btn a{
-    margin: 0px 0px 15px 0px;
+    margin: 0px 0px 3px 0px;
     padding: 15px 15px 15px 15px !important;
     width: auto;
     height: auto;
@@ -1928,7 +1928,7 @@ text-decoration: none;
   }
 
 .delete-btn a{
-    margin: 0px 0px 15px 0px;
+    margin: 0px 0px 3px 0px;
     padding: 15px 15px 15px 15px !important;
     width: auto;
     height: auto;
@@ -2113,3 +2113,29 @@ blockquote{border: none !important;}
 .tyn-list-inline button{border: none !important;background-color: #fff;}
 .message-count{float: left;margin: 2px 23px 0 auto;background-color: #414ebd;padding: 5px 7px;color: #fff;border-radius: 50%;}
 
+/* Reverting issues css starts */
+@media only screen and (max-width: 768px) {
+    /* Adjust the max-width value as per your specific mobile breakpoint */
+    .delete-btn a {
+      top: 0px;
+      font-size: 9px !important;
+      padding: 5px !important;
+    }
+
+    .approved{
+        top: 0px;
+        font-size: 6px !important;
+        padding: 3px !important;
+    }
+
+    .notapproved{
+        top: 0px;
+        font-size: 6px !important;
+        padding: 3px !important;
+    }
+    .edit-btn a {
+        top: 0px;
+        font-size: 9px !important;
+        padding: 5px !important;
+      }
+  }
