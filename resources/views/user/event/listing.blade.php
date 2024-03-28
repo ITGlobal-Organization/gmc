@@ -49,7 +49,7 @@
                         <div class="col-2 col-xs-2 col-md-6 col-lg-6 text-center delete-btn">
 
                             <a href="#" style="" class="delete"
-                                data-id="{{ $Event->id }}"><i class="fa fa-delete"></i></a>
+                                data-id="{{ $Event->id }}"><i class="fa fa-trash"></i></a>
                         </div>
 
                         </div>
