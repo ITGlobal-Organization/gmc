@@ -36,7 +36,7 @@
             <div class="brand-text">
                 {!!$PlatinumPartner->description!!}
             </div>
-
+           
         </div>
 
         <div class="clr"></div>

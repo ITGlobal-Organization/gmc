@@ -48,13 +48,13 @@
 
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center edit-btn">
 
-                            <a href="#" style="font-size: 16px;" class="edit"
-                                data-id="{{ $SpaceFinder->id }}">{{ trans('lang.edit')}}</a>
+                            <a href="#"  class="edit"
+                                data-id="{{ $SpaceFinder->id }}"><i class="fa fa-edit"></i></a>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center delete-btn">
 
-                            <a href="#" style="font-size: 16px;" class="delete"
-                                data-id="{{ $SpaceFinder->id }}">{{ trans('lang.delete')}}</a>
+                            <a href="#"  class="delete"
+                                data-id="{{ $SpaceFinder->id }}"><i class="fa fa-trash"></i></a>
                         </div>
 
                         <div class="clr"></div>

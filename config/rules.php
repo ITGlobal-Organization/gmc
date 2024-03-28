@@ -77,7 +77,7 @@ return [
             'venue' => 'required',
             'description' => 'required',
             'booking_link' => '',
-            'category_id' => 'required|exists:event_categories,id',
+            // 'category_id' => 'required|exists:event_categories,id',
         ],
         'edit' => [
             'title' => 'required',
@@ -89,7 +89,7 @@ return [
             'venue' => 'required',
             'description' => 'required',
             'booking_link' => '',
-            'category_id' => 'required|exists:event_categories,id',
+            // 'category_id' => 'required|exists:event_categories,id',
         ]
     ],
     'space_finders' => [

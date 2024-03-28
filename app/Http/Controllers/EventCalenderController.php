@@ -128,6 +128,11 @@ class EventCalenderController extends BaseController
         if($request->hasFile('image')){
             $media =  Helper::saveMedia($request->image,"App\Models\EventCalender",'main',$id);
         }
+        if(!auth()->user()->hasRole('admin')){
+            $request->merge([
+                'category_id' => 2
+            ]);
+        }
         parent::update($request,$id);
 
         $response = [
@@ -193,6 +198,12 @@ class EventCalenderController extends BaseController
 
     public function store(Request $request){
         parent::store($request);
+        
+        if(!auth()->user()->hasRole('admin')){
+            $request->merge([
+                'category_id' => 2
+            ]);
+        }
         if($request->hasFile('image')){
             $media =  Helper::saveMedia($request->image,"App\Models\EventCalender",'main',$this->eventCalender->id);
         }
@@ -204,8 +215,9 @@ class EventCalenderController extends BaseController
             'message'=>'Created Successfully'
         ];
         return $this->sendResponse($response,trans('messages.success_msg',[
-            'attribute'=> trans('lang.event')
-        ]));
+            'action'=> trans('lang.save'),
+            'attribute' => trans('lang.event')
+         ]));
     }
 
 
