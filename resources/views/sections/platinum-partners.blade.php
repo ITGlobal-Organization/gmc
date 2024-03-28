@@ -36,7 +36,7 @@
             <div class="brand-text">
                 {!!$PlatinumPartner->description!!}
             </div>
-            <a href="{{  isset($PlatinumPartner->website->url)?$PlatinumPartner->website->url:'javascript:void(0);' }}" target="_blank"> here</a>
+           
         </div>
 
         <div class="clr"></div>
