@@ -87,7 +87,7 @@ Route::get('/platinum-partners-tab',[SitePageController::class,'platinumPartners
 Route::prefix('platinum-partners')->group(function () {
     Route::get('/',[PlatinumPartnerController::class,'platinumPartners'])->name('platinum-partners.index');
     Route::get('/ajax',[PlatinumPartnerController::class,'getPlatinumPartnersListing'])->name('platinum-partners.ajax');
-    Route::get('/{slug}',[PlatinumPartnerController::class,'getPlatinumPartner'])->name('platinum-partners.get')->middleware('auth');
+    Route::get('/{slug}',[PlatinumPartnerController::class,'getPlatinumPartner'])->name('platinum-partners.get');
 });
 
 // M2MOffers
