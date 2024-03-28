@@ -752,7 +752,7 @@ display: flex;
 .latest-img {
     margin: 0px 0px 0px 0px;
     padding: 5px 5px 5px 5px;
-    width: 55px;
+    width: 50px;
     height: 55px;
     float: left;
     border-radius: 4px;
@@ -762,7 +762,7 @@ display: flex;
     margin: 0px 0px 10px 0px;
     padding: 5px 5px 5px 5px;
     width: 70%;
-    height: 50px;
+    /* height: 50px; */
     float: right;
     font-family: 'MontserratAlternates-SemiBold';
     font-size: 14px;
@@ -1909,7 +1909,7 @@ text-decoration: none;
   }
 
 .edit-btn a{
-    margin: 0px 0px 15px 0px;
+    margin: 0px 0px 3px 0px;
     padding: 15px 15px 15px 15px !important;
     width: auto;
     height: auto;
@@ -1928,7 +1928,7 @@ text-decoration: none;
   }
 
 .delete-btn a{
-    margin: 0px 0px 15px 0px;
+    margin: 0px 0px 3px 0px;
     padding: 15px 15px 15px 15px !important;
     width: auto;
     height: auto;
@@ -2118,13 +2118,24 @@ blockquote{border: none !important;}
     /* Adjust the max-width value as per your specific mobile breakpoint */
     .delete-btn a {
       top: 0px;
-      font-size: 6px !important;
-      padding: 3px !important;
+      font-size: 9px !important;
+      padding: 5px !important;
     }
 
-    .edit-btn a {
+    .approved{
         top: 0px;
         font-size: 6px !important;
         padding: 3px !important;
+    }
+
+    .notapproved{
+        top: 0px;
+        font-size: 6px !important;
+        padding: 3px !important;
+    }
+    .edit-btn a {
+        top: 0px;
+        font-size: 9px !important;
+        padding: 5px !important;
       }
   }

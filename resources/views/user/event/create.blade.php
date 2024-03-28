@@ -58,17 +58,7 @@
                         <div class="error-booking_link"></div>
                         <div class="clr"></div>
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
-                        <label for="booking_link">{{ trans('lang.category')}}</label>
-                        <select class="category_id oh-select search-box" name="category_id">
-                            <option value="">{{ trans('lang.select_msg',['attribute' => trans('lang.category')]) }}</option>
-                        @foreach($Categories as $Category)
-                            <option value="{{ $Category->id }}">{{ $Category->text }}</option>
-                        @endforeach
-                        </select>
-                        <div class="error-category_id"></div>
-                        <div class="clr"></div>
-                    </div>
+                  
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mb-20">
                         <label for="description">Description</label>
                         <textarea id="w3review" class="text-area" rows="4" name="description" value=""></textarea>
