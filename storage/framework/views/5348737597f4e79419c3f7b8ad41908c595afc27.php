@@ -89,7 +89,7 @@
 	$(document).ready(async function(){
 		let events = await getEventsListing();
         let ref = $("#calendar");
-        $('.category').select2();
+        // $('.category').select2();
         let eventModal = $('#itglobal-modal');
             var calendar = ref.calendarGC({
                         dayBegin: 0,
