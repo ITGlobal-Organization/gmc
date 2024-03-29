@@ -5,9 +5,17 @@
             <option value="title-asc">A to Z</option>
             <option value="title-desc">Z to A</option>
 
-            <option value="event_date-asc">Upcoming First</option>
-            <option value="event_date-desc">Distant First</option>
+            <option value="event_date-asc">{{ trans('lang.upcoming_first')}}</option>
+            <option value="event_date-desc">{{ trans('lang.distant_first')}}</option>
         </select>
+    </div>
+    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 padding border mb-25">
+            <select class="category pd-sort ml-2">
+                    <option value="">{{ trans('lang.select_msg',['attribute' => trans('lang.category')]) }}</option>
+                @foreach($Categories as $Category)
+                    <option value="{{ $Category->id }}">{{ $Category->text }}</option>
+                @endforeach
+                </select>
     </div>
 
 <!--Start calendar Area-->

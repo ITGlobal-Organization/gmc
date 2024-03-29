@@ -14,7 +14,7 @@
       <a href="#">Reply</a>						
       </span> -->
       <p class="p-author mtb-15">{!! $Reply->reply !!}.</p>
-      <div class="pt-right">{{ Helper::getDate($Reply->created_at,config('site_config.constants.long-date-format')) }}</div>
+      <div class="pt-right">{{$Reply->created_at }}</div>
    </div>
    <div class="clr"></div>
 </div>

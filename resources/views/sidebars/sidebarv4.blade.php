@@ -15,14 +15,15 @@
                         style="color: #ffffff;"></i>&nbsp;Edit Profile</a></li>
                         <li><a href="{{ route('user.company.edit') }}" ><i class="fas fa-arrow-right"
                             style="color: #ffffff;"></i>&nbsp;Edit Company</a></li>
-            <li><a href="{{ route('user.chat.index') }}" ><i class="fas fa-arrow-right"
-                            style="color: #ffffff;"></i>&nbsp;Messages</a></li>
+
+            <li><a href="{{ route('user.chat.index') }}" target="_blank"><i class="fas fa-arrow-right"
+                            style="color: #ffffff;" ></i>&nbsp;Messages</a></li>
             <li><a href="{{ route('user.forum.index') }}" ><i class="fas fa-arrow-right"
                                 style="color: #ffffff;"></i>&nbsp;Forum</a></li>
-            <li><a href="#"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;About</a></li>
+            <!-- <li><a href="#"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;About</a></li>
             <li><a href="#"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;International</a></li>
             <li><a href="#"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;Mentoring</a></li>
-            <li><a href="#"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;Contact Us</a></li>
+            <li><a href="#"><i class="fas fa-arrow-right" style="color: #ffffff;"></i>&nbsp;Contact Us</a></li> -->
         </ul>
         <div class="clr"></div>
     </div>

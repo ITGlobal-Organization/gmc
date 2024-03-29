@@ -64,10 +64,13 @@
 	// get users chat
 	$(document).on('click', '.chat-user',function(e){
 		let user_id = $(this).attr('data-id');
+		$('#user_id').val(user_id);
+		$(this).addClass('active');
 		getUserMessages(user_id);
 	});
 
 	async function getUserMessages(user){
+		$('.tyn-chat-content').addClass('main-shown');
 		await ajaxGet("{{ prefix_route('chat.messages') }}", {
 			user_id:user
 		}, ".tyn-chat-content", responseType = 'html',null,true);
@@ -114,7 +117,11 @@
 		return html;
 	}
 
-	
+	$(document).on('click','.btn.js-toggle-main',function(){
+		$(this).addClass('active');
+		$('.chat-user').removeClass('active');
+		$('.tyn-chat-content').removeClass('main-shown')
+	})
 	
 </script>
 @endsection

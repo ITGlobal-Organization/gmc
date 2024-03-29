@@ -31,7 +31,7 @@
 {!! $PlatinumPartner->description !!}
 
 </p>
-
+<a href="{{  isset($PlatinumPartner->website->url)?$PlatinumPartner->website->url:'javascript:void(0);' }}" target="_blank"> {{ trans('lang.click-here')}}</a>
 </div>
 
 <div class="clr"></div>

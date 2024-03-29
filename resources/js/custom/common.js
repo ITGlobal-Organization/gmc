@@ -373,3 +373,24 @@ function ajaxDelete(url,id,succssContainer='',errorContainer='') {
     })
 }
 
+function notify(heading,type,description=''){
+    let snackbarEl = $('.custom-snackbar');
+    let headingEl =  $('.snackbar-heading');
+    let descriptionEl = $('.snackbar-description');
+    let iconEl = $('.snackbar-icon');
+    let classMapper = {
+        success:"snackbar-success",
+        warning:"snackbar-warning",
+        error:"snackbar-error",
+        notify:"snackbar-notify"
+    }
+    headingEl.text(heading);
+    snackbarEl.addClass('show');
+    snackbarEl.addClass(classMapper[type]);
+    iconEl.addClass(classMapper[type]);
+   
+    descriptionEl.text(description);
+    setTimeout(function(){
+        snackbarEl.removeClass('show');
+    },config.timeout)
+}

@@ -106,12 +106,17 @@ Route::prefix('eventcalender')->group(function(){
     Route::get('/ajax', [EventCalenderController::class, 'render'])->name('admin.eventcalender.ajax');
     Route::get('/create',[EventCalenderController::class, 'create'])->name('admin.eventcalender.create');
     Route::post('/',[EventCalenderController::class, 'store'])->name('admin.eventcalender.store');
+    Route::get('/categories',[EventCalenderController::class, 'getCategories'])->name('admin.eventcalender.categories');
     Route::get('/{id}',[EventCalenderController::class, 'get'])->name('admin.eventcalender.header');
     Route::get('/edit/{id}',[EventCalenderController::class, 'edit'])->name('admin.eventcalender.edit');
          //    update status
     Route::post('/update/status',[EventCalenderController::class, 'updateStatus'])->name('admin.eventcalender.update.status');
     Route::put('/update/{id}',[EventCalenderController::class, 'update'])->name('admin.eventcalender.update');
     Route::delete('/delete/{id}',[EventCalenderController::class, 'destroy'])->name('admin.eventcalender.destroy');
+
+    // Event Categories
+ 
+
 });
 // Users
 Route::prefix('users')->group(function(){

@@ -70,6 +70,7 @@ class AuthenticatedSessionController extends BaseController
         }
 
 
+
         return $this->sendResponse([
             'token' => auth()->user()->createToken('API Token')->plainTextToken,
             'user' => json_encode($user),

@@ -66,6 +66,7 @@
                             <div class="error-booking_link"></div>
                         <div class="clr"></div>
                     </div>
+                
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border mb-20">
                         <label for="description">Description</label>
                         <textarea id="w3review"  class="text-area" rows="4" name="description"
@@ -90,7 +91,7 @@
                             <div class="clr"></div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
                         <input type="submit" class="ct-submit" value="Submit">
                     </div>
                 </div>

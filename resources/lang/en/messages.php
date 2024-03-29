@@ -3,7 +3,7 @@ return [
     'placeholder' => 'Enter :attribute',
     'register_successfully' => "Register Successfully",
     'edit' => 'Edit :attribute',
-    'success_msg' => ':action Successfully',
+    'success_msg' => ':attribute :action Successfully',
      'logged_in' => 'LoggedIn Successfully',
     'contact_placeholder_msg' => 'How can we help you? Feel free to get in touch!',
     'error_msg' => 'Error while :action',
@@ -27,6 +27,9 @@ return [
     'post_notification_title' => ':attribute has post on forum',
     'thanks_msg' => 'Thank you for using our application!',
     'reply-msg' => ' Your email address will not be published. Required fields are marked *',
+    'user-login-btn' => 'User Login',
+    'new-member' => 'New Member? Join Now!',
+    'existing-member' => 'Existing Member? Access Now!',
     'errors' => [
         '500' => [
             'code'  => '500',

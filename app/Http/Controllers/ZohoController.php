@@ -57,7 +57,7 @@ class ZohoController extends BaseController
         $userData['password'] = Hash::make($request->password);
         $user = $this->user->store($userData);
         $this->authUser = $this->user->where('id',$user)->firstOrFail();
-
+        $this->authUser->assignRole("6");
         if($user == "" || $user == 0){
             return $this->sendError('User did not created');
         }

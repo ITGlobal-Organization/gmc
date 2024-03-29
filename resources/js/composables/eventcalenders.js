@@ -7,7 +7,7 @@ export default function useEventCalender() {
     const records = ref([]);
     const errors = ref([]);
     const record = ref({});
-
+    const categories = ref([]);
 
     const { errorAlert } = useService();
     const getAll = async(pageNo, limit, orderBy, order, data) => {
@@ -44,6 +44,14 @@ export default function useEventCalender() {
         })
     }
 
+    const getAllCategories = async () =>{
+        await axiosWrapper.get(`/admin/eventcalender/categories`).then((response) => {
+            categories.value = response.data.data
+        }).catch((e) => {
+            errorAlert(e.message);
+        })
+    }
+
     const _delete  =async(id) => {
         await axiosWrapper.destroy(`/admin/eventcalender/delete/${id}`);
     }
@@ -57,6 +65,8 @@ export default function useEventCalender() {
         record,
         update,
         errors,
-        _delete
+        _delete,
+        getAllCategories,
+        categories
     }
 }

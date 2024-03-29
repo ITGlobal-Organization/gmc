@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\BaseModel;
+use App\Models\EventCategory;
 use Carbon\Carbon;
 use Auth;
 use URL;
+use Log;
 
 class EventCalender extends BaseModel
 {
@@ -19,6 +21,7 @@ class EventCalender extends BaseModel
     public $class_dynamic = true;
     protected $has_images = true;
     public $status_col = 'is_approved';
+    private $eventCategory;
 
     protected $fillable = [
         'title','description','is_active','is_delete','is_approved','event_date','price','venue','user_id',
@@ -31,6 +34,7 @@ class EventCalender extends BaseModel
         $this->setRules();
         $this->setOrderBy('event_date');
         $this->setOrder('asc');
+        $this->eventCategory = new EventCategory();
     }
 
     public static function boot()
@@ -176,5 +180,15 @@ class EventCalender extends BaseModel
         }
         $this->attributes['slug'] = $slug;
         $this->attributes['title'] = $title;
+    }
+
+    public function getCategories(){
+        try{
+            $this->eventCategory->setLength(1000);
+            return $this->eventCategory->getAll([],['id','name as text']);
+        }catch(Exception $e){
+            Log::error($e);
+            return [];
+        }
     }
 }
