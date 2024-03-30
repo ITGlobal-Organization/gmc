@@ -5,29 +5,57 @@ namespace App\Traits;
 use App\Models\Subscription;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Models\Payment;
 use Stripe;
+use Log;
+use Stripe\Event;
+use Stripe\Refund;
+
 
 trait StripeTrait
 {
 
 
-    public function addStripeCustomer()
+    public function addStripeCustomer($name = '',$email = '')
     {
 
         $customer = $this->stripe->customers->create([
             'description' => $this->name,
+            'name' =>$name,
+            'email' => $email
         ]);
         $this->stripe_id = $customer->id;
-        $this->save();
+        // $this->save();
+        return $customer->id;
+    }
+
+    public function addGuestCustomer($name)
+    {
+
+        $customer = $this->stripe->customers->create([
+            'description' => $name,
+        ]);
+        // $this->stripe_id = $customer->id;
+        // $this->save();
+        return $customer->id;
+    }
+    public function setApiKey(){
+        $this->stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+        // dd(env('STRIPE_SECRET'));
     }
 
     public function addNewPaymentMethod($paymentMethodId)
     {
+        try{
 
-        $this->stripe->paymentMethods->attach(
-            $paymentMethodId,
-            ['customer' => $this->stripe_id]
-        );
+            return $this->stripe->paymentMethods->attach(
+                $paymentMethodId,
+                ['customer' => $this->stripe_id]
+            );
+        }catch(Exception $e){
+            return false;
+        }
+        
     }
 
     public function updateDefaultPaymentMethod($paymentMethodId)
@@ -104,13 +132,21 @@ trait StripeTrait
         DB::commit();
         return $subscription_id;
     }
-    public function createPaymentIntent()
+    public function createPaymentIntent($amount,$customer='')
     {
         if ($this->stripe == null) {
             $this->stripe = new Stripe\StripeClient(env('STRIPE_SECRET'));
         }
-        $paymentIntent = $this->stripe->setupIntents->create([
-            'payment_method_types' => ['card'],
+        // $paymentMethod = $this->createPaymentMethod();
+        // dd($amount);
+        $paymentIntent = $this->stripe->paymentIntents->create([
+            'amount' => $amount,
+            'currency' => 'gbp',
+            'customer' => ($customer != '')?$customer: $this->addGuestCustomer('Guest'),
+            // 'payment_method' => $paymentMethod,
+            'automatic_payment_methods' => [
+                'enabled' => true,
+            ],
         ]);
 
         return $paymentIntent;
@@ -194,4 +230,125 @@ trait StripeTrait
         $charge['description'] = $data['description'];
         return $this->stripe->charges->create($charge);
     }
+
+    public function reterieveCharge($chargeId)
+    {
+
+        try{
+            
+            $charge = $this->stripe->charges->retrieve($chargeId);
+        
+            return $charge;
+            
+        }catch(\Exception $e){
+            Log::error($e);
+            return false;
+        }
+    }
+
+    public function createPaymentMethod($card=[]){
+        try{
+            if(count($card) > 0){
+                $paymentMethod = $this->stripe->paymentMethods->create([
+                    'type' => 'card',
+                    'card' => $card
+                ]);
+            }else{
+                $paymentMethod = $this->stripe->paymentMethods->create([
+                    'type' => 'card',
+                    'card' => $card
+                ]);
+            }
+
+            return $paymentMethod;
+            
+        }catch(\Exception $e){
+            Log::error($e);
+            return false;
+        }
+       
+    }
+
+    public function confirmIntent($intentId,$return_url=''){
+        try{
+            $intent=$this->stripe->paymentIntents->confirm(
+                $intentId,
+                [
+                    'return_url' => $return_url,
+                    'customer' => $this->stripe_id
+                ],
+                // ['payment_method' => 'pm_card_visa']
+            );
+            return $intent;
+        }catch(\Exception $e){
+            Log::error($e);
+            dd($e);
+            return false;
+        }
+    }
+
+    public function retrievePaymentIntent($intentId){
+        try{
+            $intent=$this->stripe->paymentIntents->retrieve(
+                $intentId,
+                // ['payment_method' => 'pm_card_visa']
+            );
+            return $intent;
+        }catch(\Exception $e){
+            Log::error($e);
+           // dd($e);
+            return false;
+        }
+    }
+
+    public function addPaymentLog($data){
+        try{
+            $payment = new Payment();
+            return $payment->store($data);
+            DB::commit();
+        }catch(\Exception $e){
+            Log::error($e);
+            return false;
+        }
+    }
+
+    public function refundCharge($chargeId){
+        try{
+            $refund = Refund::create([
+                'charge' => 'ch_123456789', // Charge ID
+            ]);
+            if ($refund->status === 'succeeded') {
+                // Refund was successful
+                $payment = Payment::where('transaction_id',$chargeId)->first();
+                return $payment->update([
+                    'status' => 'CANCELLED',
+                    'payment_status' => 'REFUND'
+                ]);
+                DB::commit();
+            } else {
+               return false;
+            }
+            
+           
+        }catch(\Exception $e){
+            Log::error($e);
+            return false;
+        }
+    }
+
+    public function refundPayment($paymentId){
+        try{
+            $payment = Payment::where('stripe_payment_id',$paymentId)->first();
+            return $payment->update([
+                'status' => 'CANCELLED',
+                'payment_status' => 'REFUND'
+            ]);
+            DB::commit();
+        }catch(\Exception $e){
+            Log::error($e);
+            return false;
+        }
+        
+    }
+  
 }

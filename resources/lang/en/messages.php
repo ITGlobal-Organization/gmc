@@ -22,6 +22,7 @@ return [
     'welcome_msg' => 'Hi, :attribute',
     'edit_msg' => 'Edit :attribute',
     'count_msg' => 'Total :attribute',
+    'payment_charged_successfully' => 'Your payment has been charged successfully',
     'first-msg' => 'Hi',
     'post-something' => 'Post?',
     'post_notification_title' => ':attribute has post on forum',
@@ -30,6 +31,7 @@ return [
     'user-login-btn' => 'User Login',
     'new-member' => 'New Member? Join Now!',
     'existing-member' => 'Existing Member? Access Now!',
+    'book_msg' => 'Book :attribute',
     'errors' => [
         '500' => [
             'code'  => '500',

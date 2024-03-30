@@ -2139,3 +2139,55 @@ blockquote{border: none !important;}
         padding: 5px !important;
       }
   }
+
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Modal Content */
+.modal-content {
+    padding: 40px 30px 40px 30px;
+    background-color: #fefefe;
+    margin: auto;
+    border: 0px solid #888;
+    width: 25%;
+    height: auto;
+    border-radius: 5px;
+    top: 125px;
+    position: relative;
+    bottom: 0px;
+}
+.cursor {
+    cursor: pointer;
+}
+.close {
+    color: red !important;
+    float: right;
+    font-size: 50px;
+    font-weight: bold;
+}
+.close:hover, .close:focus {
+    color: #dd0b0b !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+.close {
+    margin: -20px -10px 0px 0px;
+    float: right;
+    font-size: 35px !important;
+    font-weight: bold !important;
+    line-height: 1 !important;
+    color: #333 !important;
+    text-shadow: 0 0px 0 #fff !important;
+    filter: alpha(opacity=50) !important;
+    opacity: 5 !important;
+}

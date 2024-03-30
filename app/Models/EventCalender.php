@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Auth;
 use URL;
 use Log;
+use DB;
 
 class EventCalender extends BaseModel
 {
@@ -189,6 +190,20 @@ class EventCalender extends BaseModel
         }catch(Exception $e){
             Log::error($e);
             return [];
+        }
+    }
+
+    public function addBookings($data){
+        try{
+            DB::enableQueryLog();
+            // $data['event_id'] = $this->id;
+            $status = DB::table('bookings')->insertGetId($data);
+            Log::debug(DB::getQueryLog());
+            DB::commit();
+            return $status;
+        }catch(\Exception $e){
+            Log::error($e);
+            return 0;
         }
     }
 }

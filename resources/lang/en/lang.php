@@ -237,6 +237,11 @@ return [
     'social_info' => "Social Info",
     "to" => "TO",
     "upcoming_first"=>"Upcoming First",
-    "distant_first"=>"Distant First"
+    "distant_first"=>"Distant First",
+    "continue" => "Continue",
+    "book_now" => "Book Now",
+    'first_name' => "First Name",
+    'last_name' => "Last Name",
+    'booking' => "Booking"
 
 ];
