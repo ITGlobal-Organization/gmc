@@ -235,6 +235,7 @@ return [
     'view' => 'View',
     'forum' => 'Forum',
     'social_info' => "Social Info",
+    'otp'=>"OTP",
     "to" => "TO",
     "upcoming_first"=>"Upcoming First",
     "distant_first"=>"Distant First"
