@@ -12,6 +12,17 @@
 
             <div class="clr"></div>
             <div id="container">
+                @if(session('success'))
+                  <div class="alert alert-success">
+                     {!! session('success')  !!}
+                  </div>
+               @endif
+
+               @if(session('error'))
+                  <div class="alert alert-danger">
+                     {!! session('error')  !!}
+                  </div>
+               @endif
                <div id="parentHorizontalTab" class="parentHorizontalTab">
                     <div class="event-tabs-cal-list">
                     <ul class="resp-tabs-list hor_1 resp-tabs-list1">
@@ -48,9 +59,14 @@
             </div>
         </div>
         <div class="clr"></div>
+       
+                
+               <!--End Visa Credit Card POPUP		
+               <div class="clr"></div>
+            </div>
     </div>
 
-    <!--End Middle-->
+    End Middle-->
 @endsection
 @section('scripts')
 <link rel="stylesheet" href="{{ custom_asset('calendar-gc.css','css') }}">
@@ -217,8 +233,7 @@
         }
 </script>
 <script src="{{ custom_asset('pagination.js','scripts')}}"></script>
-
-
-
-
+		
+ 
+      
 @endsection

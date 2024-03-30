@@ -49,8 +49,18 @@
                                 <b>Date:</b> {{ date('d-M-Y', strtotime($Event->event_date)) }} <b>Time:</b> {{\Carbon\Carbon::createFromFormat('H:i:s',$Event->time)->format('h:i A')}}<br>
                                 <b>Venue:</b> {{ $Event->venue }}
                                 <b>Price:</b> {{ $Event->price }}<br><br>
+                                
+                            </div>
+                            @if($Event->category_id == 2)
+                            <div class="text-center">
                                 <span class="btn-download"><a href="{{$Event->booking_link}}" target="_blank">Book Now</a>
                             </div>
+                            @else
+                            <div class="text-center">
+                                <span class="btn-download"><a href="{{ route('event.book',$Event->slug) }}" class="btn-vcc" data-id="{{ $Event->price }}">Book Now</a>
+                            </div>
+                            @endif
+                           
                         </div>
                         <div class="clr"></div>
                     </div>

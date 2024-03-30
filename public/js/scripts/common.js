@@ -77,13 +77,13 @@ $('.get-a-quote-form').on('submit', (e) => {
     ajaxPost('/custom-form/get-a-quote',form,'.quote-success','.quote-error')
 });
 
-function ajaxPost(url,data,succssContainer,errorContainer,loader=true) {
+async function ajaxPost(url,data,succssContainer,errorContainer,loader=true) {
     $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
      });
-    $.ajax({
+    await $.ajax({
         url: url,
         method: 'POST',
         data:data,
@@ -101,6 +101,9 @@ function ajaxPost(url,data,succssContainer,errorContainer,loader=true) {
             if(response.data.route){
                 window.location.href = response.data.route;
             }
+            // else if(callback){
+            //     callback(response);
+            // }
 
         },
         error:function(error){

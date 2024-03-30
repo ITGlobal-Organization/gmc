@@ -68,8 +68,12 @@
 
                     <td class="list20">{{ $Event->city }}</td>
                     <td class="list20">{{ $Event->price }}</td>
+                    @if($Event->category_id == 2)
                     <td class=" list30"><span class="btn-download"><a href="{{ $Event->booking_link }}"
                                 target="_blank">Book Here</a></span></td>
+                    @else
+                        <td class=" list30"><span class="btn-download" ><a href="{{ route('event.book',$Event->slug) }}" class="btn-vcc" data-id="{{ $Event->price }}">Book Here</a></span></td>
+                    @endif
 
                 </tr>
             @endforeach

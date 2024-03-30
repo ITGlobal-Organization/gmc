@@ -90,6 +90,13 @@ return [
             'description' => 'required',
             'booking_link' => '',
             // 'category_id' => 'required|exists:event_categories,id',
+        ],
+        'bookings' => [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required|min:11|numeric',
+            'address' => 'required'
         ]
     ],
     'space_finders' => [
