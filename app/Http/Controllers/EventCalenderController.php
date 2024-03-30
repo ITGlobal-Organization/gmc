@@ -5,18 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Models\EventCalender;
+use App\Models\Payment;
 use App\Models\Media;
 use Auth;
 use App\Helpers\Helper;
 use URL;
 use DB;
+use Log;
 
 class EventCalenderController extends BaseController
 {
     private $eventCalender,$media,$url;
 
-    public function __construct(EventCalender $eventCalender,Media $media,URL $url) {
+    public function __construct(EventCalender $eventCalender,Media $media,URL $url,Payment $payment) {
         $this->eventCalender = $eventCalender;
+        $this->payment = $payment;
         $this->setModel($eventCalender);
         $this->setMedia($media);
         $this->url = $url::current();
@@ -264,5 +267,40 @@ class EventCalenderController extends BaseController
             ]),
             'Categories' => $Categories
         ]);
+    }
+
+    // book now 
+
+    public function bookEventView(Request $request,$slug){
+        $Event = $this->eventCalender->first('slug',$slug,'=');
+        return view('eventcalenders.book',[
+            'title' => trans('lang.event') . ' | '. trans('lang.book'),
+            'Event' => $Event,
+        ]);
+    }
+
+    public function bookEvent(Request $request){
+        $this->eventCalender->setRules(config('rules.event_calenders.bookings'),true);
+        $request->validate($this->eventCalender->getRules());
+        try{
+            
+            // $this->eventCalender->first('id',$request->event_id);
+            $data = $request->except('_token');
+          //  dd($data);
+            $status=$this->eventCalender->addBookings($data);
+            if($status > 0){
+                $customer =$this->payment->addStripeCustomer($data['first_name'].' '.$data['last_name'],$data['email']);
+                session(['customer' => $customer]);
+                session(['booking_id' => $status]);
+                return $this->sendResponse([],trans('messages.success_msg',[
+                    'attribute' => trans('lang.booking'),
+                    'action' => trans('lang.saved')
+                ]));
+            }
+          
+        }catch(\Exception $e){
+            Log::error($e);
+            return $this->sendError(trans('messages.error_msg',['action' => trans('lang.saving')]));
+        }
     }
 }

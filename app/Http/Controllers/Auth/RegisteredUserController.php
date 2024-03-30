@@ -71,6 +71,9 @@ class RegisteredUserController extends BaseController
 
             DB::commit();
             $user->assignRole($request->role_id);
+
+              // Adding Stripe Customer
+            //   $user->addStripeCustomer();
             DB::commit();
 
             if ($request->has('media')) {
