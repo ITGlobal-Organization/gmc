@@ -1,7 +1,7 @@
 var addmodal = document.getElementById( "vcc" );
 var addbtn = document.getElementById( "btn-vcc" );
 var addspan = document.getElementById( "close1" );
-var event_id = 0;
+var price = 0;
 
 $(document).on('click','.btn-vcc',function(){
    addmodal.style.display = "block";
@@ -23,7 +23,7 @@ async function initialize() {
       method: "POST",
       headers: { "Content-Type": "application/json",'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
       body: JSON.stringify({
-         'price':stripeConfig.price
+           'price':stripeConfig.price
       }),
    });
    const data = await response.json();
