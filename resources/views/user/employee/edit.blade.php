@@ -78,7 +78,7 @@
                                 <button class="close AClass" type="button">
                                     <span>&times;</span>
                                 </button>
-                                <img src="{{isset($User->image->image_url) ? $User->image->image_url : asset('/media/image-not-found.png')}}" alt="not found"
+                                <img src="{{isset($User->image->image_url) ? $User->image->image_url : asset('/media/image-not-found.png')}}" alt="Profile Picture"
                                     data-id="{{isset($User->image->id) ? $User->image->id : ""}}">
                                 <div class="clr"></div>
                             </div>
