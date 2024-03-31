@@ -50,7 +50,7 @@ data(){
         categories:[],
         form:{
                 title:'',
-                slug:'',
+                // slug:'',
                 user_id:'',
                 description:'',
                 venue:'',
@@ -329,7 +329,7 @@ methods:{
             this.form.user_id = record.value.user_id;
             this.form.price = record.value.price;
             this.form.city = record.value.city;
-            this.form.slug = record.value.slug;
+            // this.form.slug = record.value.slug;
             this.form.is_approved = record.value.is_approved;
             this.form.booking_link = record.value.booking_link;
             this.form.category_id = record.value.category_id;
