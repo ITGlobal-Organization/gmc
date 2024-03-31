@@ -200,13 +200,14 @@ class EventCalenderController extends BaseController
     // }
 
     public function store(Request $request){
-        parent::store($request);
-        
         if(!auth()->user()->hasRole('admin')){
             $request->merge([
                 'category_id' => 2
             ]);
         }
+        parent::store($request);
+        
+        
         if($request->hasFile('image')){
             $media =  Helper::saveMedia($request->image,"App\Models\EventCalender",'main',$this->eventCalender->id);
         }
