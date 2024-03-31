@@ -59,7 +59,7 @@ export default {
             citiesOptions:[],
             FormData:{
                 title:'',
-                slug:'',
+                // slug:'',
                 user_id:'',
                 description:'',
                 venue:'',
