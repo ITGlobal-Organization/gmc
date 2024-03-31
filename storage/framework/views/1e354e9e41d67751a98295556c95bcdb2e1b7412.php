@@ -69,8 +69,12 @@
 
                     <td class="list20"><?php echo e($Event->city); ?></td>
                     <td class="list20"><?php echo e($Event->price); ?></td>
+                    <?php if($Event->category_id == 2): ?>
                     <td class=" list30"><span class="btn-download"><a href="<?php echo e($Event->booking_link); ?>"
                                 target="_blank">Book Here</a></span></td>
+                    <?php else: ?>
+                        <td class=" list30"><span class="btn-download" ><a href="<?php echo e(route('event.book',$Event->slug)); ?>" class="btn-vcc" data-id="<?php echo e($Event->price); ?>">Book Here</a></span></td>
+                    <?php endif; ?>
 
                 </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

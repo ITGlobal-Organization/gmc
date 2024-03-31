@@ -51,8 +51,18 @@
                                 <b>Venue:</b> <?php echo e($Event->venue); ?>
 
                                 <b>Price:</b> <?php echo e($Event->price); ?><br><br>
+                                
+                            </div>
+                            <?php if($Event->category_id == 2): ?>
+                            <div class="text-center">
                                 <span class="btn-download"><a href="<?php echo e($Event->booking_link); ?>" target="_blank">Book Now</a>
                             </div>
+                            <?php else: ?>
+                            <div class="text-center">
+                                <span class="btn-download"><a href="<?php echo e(route('event.book',$Event->slug)); ?>" class="btn-vcc" data-id="<?php echo e($Event->price); ?>">Book Now</a>
+                            </div>
+                            <?php endif; ?>
+                           
                         </div>
                         <div class="clr"></div>
                     </div>

@@ -137,7 +137,7 @@ class EventCalenderController extends BaseController
             ]);
         }
         parent::update($request,$id);
-
+	
         $response = [
             'success' => true,
             'data'=>[

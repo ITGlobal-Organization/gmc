@@ -167,8 +167,7 @@ class EventCalender extends BaseModel
     public function setTitleAttribute($title)
     {
         $slug = preg_replace("![^a-z0-9]+!i", "-", strtolower($title));
-
-        if(isset($this->id)){
+	        if(isset($this->id)){
             $obj = self::where('slug',$slug)->where('id','!=',$this->id)->first();
             $this->attributes['slug'] = $slug.'-'.((int)$this->id);
            
