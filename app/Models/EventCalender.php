@@ -26,7 +26,7 @@ class EventCalender extends BaseModel
 
     protected $fillable = [
         'title','description','is_active','is_delete','is_approved','event_date','price','venue','user_id',
-        'slug','time','city','booking_link'
+        'slug','time','city','booking_link','category_id'
     ];
 
     protected $rules = [];
