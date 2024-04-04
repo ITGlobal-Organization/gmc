@@ -24,7 +24,6 @@ class OTP
 
         $user = auth()->user();
         $device = Agent::device();
-        $device = "Iphone";
 
         $savedDevice = DB::table('devices')->where('user_id',$user->id)->where('device',$device)->where('is_otp_validated',1)->first();
         if($savedDevice == ""){
