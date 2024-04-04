@@ -88,6 +88,7 @@ class AuthenticatedSessionController extends BaseController
 
         if($otp != "" && Carbon::parse($otp->validated_till)->gt(Carbon::now())){
             $device = Agent::device();
+            $device = "Iphone";
             DB::table('devices')->where('device',$device)->where('user_id',$user->id)->update(['is_otp_validated'=>1]);
             DB::table('users')->where('id',$user->id)->update(['is_login'=>1]);
             $redirect_route = route(strtolower(auth()->user()->roles[0]->name).'.dashboard');
