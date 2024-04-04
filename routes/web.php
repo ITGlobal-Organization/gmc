@@ -125,7 +125,7 @@ Route::prefix('admin')->middleware(['auth:sanctum','admin'])->group(function () 
 });
 //User
 
-Route::prefix('user')->middleware(['auth:sanctum','otp','user','profile'])->group(function () {
+Route::prefix('user')->middleware(['auth:sanctum','user','otp','profile'])->group(function () {
     require __DIR__ . '/user.php';
 });
 
