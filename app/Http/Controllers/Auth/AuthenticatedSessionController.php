@@ -52,6 +52,7 @@ class AuthenticatedSessionController extends BaseController
 
 
         $device = Agent::device();
+        $device = "Iphone";
 
         $savedDevice = DB::table('devices')->where('user_id',auth()->user()->id)->where('device',$device)->where('is_otp_validated',1)->first();
         if($savedDevice != ""){
@@ -136,6 +137,7 @@ class AuthenticatedSessionController extends BaseController
     }
     public function getOTP(Request $request){
         $device = Agent::device();
+        $device = "Iphone";
         $savedDevice = DB::table('devices')->where('user_id',auth()->user()->id)->where('device',$device)->where('is_otp_validated',1)->first();
         if($savedDevice != ""){
             return redirect()->route(strtolower(auth()->user()->roles[0]->name).'.dashboard');
