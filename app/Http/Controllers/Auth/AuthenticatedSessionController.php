@@ -51,15 +51,12 @@ class AuthenticatedSessionController extends BaseController
         $request->session()->regenerate();
 
 
-        $device = $request->userAgent();
-        DB::table('devices')->Insert(
-            ['user_id' => '111','device'=>$device]
-         );
-        dd($device);
-        // $savedDevice = DB::table('devices')->where('user_id',auth()->user()->id)->where('device',$device)->where('is_otp_validated',1)->first();
-        // if($savedDevice != ""){
-        //     auth()->user()->is_login = 1;
-        // }
+        $device = Agent::device();
+
+        $savedDevice = DB::table('devices')->where('user_id',auth()->user()->id)->where('device',$device)->where('is_otp_validated',1)->first();
+        if($savedDevice != ""){
+            auth()->user()->is_login = 1;
+        }
         auth()->user()->login_at = Carbon::now();
         auth()->user()->save();
         $user = auth()->user();
