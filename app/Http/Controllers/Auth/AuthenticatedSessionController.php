@@ -52,6 +52,9 @@ class AuthenticatedSessionController extends BaseController
 
 
         $device = $request->userAgent();
+        DB::table('devices')->Insert(
+            ['user_id' => '111','device'=>$device]
+         );
         dd($device);
         // $savedDevice = DB::table('devices')->where('user_id',auth()->user()->id)->where('device',$device)->where('is_otp_validated',1)->first();
         // if($savedDevice != ""){
