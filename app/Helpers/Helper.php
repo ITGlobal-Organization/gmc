@@ -489,6 +489,7 @@ class Helper
                 ['user_id'=> auth()->user()->id,'device'=> $type,
                 'model'=> $model,'platform'=> $platform,'platform_version'=> $platform_version],
             ]);
+            return true;
 
         }catch(\Exception $e){
             return false;
