@@ -30,7 +30,7 @@ class OTP
             return $next($request);
         }
 
-        if(Helper::setDevice($request)){
+        // if(Helper::setDevice($request)){
             $otp = random_int(100000, 999999);
             DB::table('otp')->updateOrInsert(
                 ['user_id' => $user->id],
@@ -40,9 +40,9 @@ class OTP
             $user->notify(new NewUserNotification($otp));
 
             return redirect()->route('auth.otp');
-        }
+        // }
 
-        return Abort(403);
+        // return Abort(403);
 
 
 

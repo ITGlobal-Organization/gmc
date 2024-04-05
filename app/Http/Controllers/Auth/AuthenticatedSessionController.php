@@ -95,7 +95,8 @@ class AuthenticatedSessionController extends BaseController
         $otp = DB::table('otp')->where('otp',$request->otp)->where('user_id',$user->id)->first();
 
         if($otp != "" && Carbon::parse($otp->validated_till)->gt(Carbon::now())){
-            Helper::updateDevice($request,"is_otp_validated",1);
+
+            Helper::setDevice($request);
             // $device = Agent::device();
             // DB::table('devices')->where('device',$device)->where('user_id',$user->id)->update(['is_otp_validated'=>1]);
             DB::table('users')->where('id',$user->id)->update(['is_login'=>1]);
@@ -148,10 +149,8 @@ class AuthenticatedSessionController extends BaseController
         // $device = Agent::device();
 
         // $savedDevice = DB::table('devices')->where('user_id',auth()->user()->id)->where('device',$device)->where('is_otp_validated',1)->first();
-        if(Helper::getDevice($request)){
+        if(Helper::getDevice($request) && isset(auth()->user())){
             return redirect()->route(strtolower(auth()->user()->roles[0]->name).'.dashboard');
-        }else if(!auth()->user()){
-            return redirect('/');
         }
         return view('auth.otp');
     }

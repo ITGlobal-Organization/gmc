@@ -487,7 +487,7 @@ class Helper
 
             $result = DB::table('devices')->insert([
                 ['user_id'=> auth()->user()->id,'device'=> $type,
-                'model'=> $model,'platform'=> $platform,'platform_version'=> $platform_version],
+                'model'=> $model,'platform'=> $platform,'platform_version'=> $platform_version,'is_otp_validated'=>1],
             ]);
             return true;
 
