@@ -47,9 +47,9 @@ class AuthenticatedSessionController extends BaseController
      */
     public function auth(LoginRequest $request)
     {
-        // Auth::logout();
         $device = $request->userAgent();
         $ad = new AgentDetector($device);
+
         if($ad->isBot()){
             return false;
         }
@@ -57,14 +57,6 @@ class AuthenticatedSessionController extends BaseController
 
         $request->session()->regenerate();
 
-        // $device = userAgent();
-
-        // $device = Agent::device();
-
-        // $savedDevice = DB::table('devices')->where('user_id',auth()->user()->id)->where('device',$device)->where('is_otp_validated',1)->first();
-        // if($savedDevice != ""){
-
-        // }
         auth()->user()->login_at = Carbon::now();
         auth()->user()->is_login = 1;
         auth()->user()->save();

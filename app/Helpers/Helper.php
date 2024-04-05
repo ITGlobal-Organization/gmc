@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
 use Karmendra\LaravelAgentDetector\AgentDetector;
 use DB;
-
+// use Carbon\Carbon;
 
 class Helper
 {
@@ -448,24 +448,24 @@ class Helper
         $platform = $ad->platform();
         $platform_version = $ad->platformVersion();
 
-        // $result = DB::table('devices')->whereColumn([
-        //     ['user_id', '=', auth()->user()->id],
-        //     ['device', '=', $type],
-        //     ['model', '=', $model],
-        //     ['platform', '=', $platform],
-        //     ['platform_version', '=', $platform_version],
-        //     ['is_otp_validated', '=', 1],
-        // ])->first();
         $result = DB::table('devices')->where('user_id',auth()->user()->id)
         ->where('user_id',auth()->user()->id)
         ->where('device',$type)
         ->where('model',$model)
         ->where('platform',$platform)
         ->where('platform_version',$platform_version)
+        ->where('created_at',$platform_version)
         ->first();
 
 
         if($result != ""){
+            $createdAt = Carbon::parse($result->created_at);
+            $now = Carbon::now();
+            // Calculate the difference in days
+            $diffInDays = $createdAt->diffInDays($now);
+            if($diffInDays > 30){
+                return false;
+            }
             return true;
         }
 
@@ -487,7 +487,8 @@ class Helper
 
             $result = DB::table('devices')->insert([
                 ['user_id'=> auth()->user()->id,'device'=> $type,
-                'model'=> $model,'platform'=> $platform,'platform_version'=> $platform_version,'is_otp_validated'=>1],
+                'model'=> $model,'platform'=> $platform,'platform_version'=> $platform_version,'is_otp_validated'=>1,
+                'created_at'=>Carbon::now()],
             ]);
             return true;
 
