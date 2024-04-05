@@ -10,6 +10,7 @@ use App\Notifications\NewUserNotification;
 use DB;
 use Auth;
 use Carbon\Carbon;
+use App\Helpers\Helper;
 class OTP
 {
     /**
@@ -24,6 +25,8 @@ class OTP
 
         $user = auth()->user();
         $device = Agent::device();
+        $device = $request->getClientIp();;
+        // $device = $request->ip();
 
         $savedDevice = DB::table('devices')->where('user_id',$user->id)->where('device',$device)->where('is_otp_validated',1)->first();
         if($savedDevice == ""){
