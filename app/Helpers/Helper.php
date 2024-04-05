@@ -449,7 +449,7 @@ class Helper
         $platform_version = $ad->platformVersion();
 
         $result = DB::table('devices')->whereColumn([
-            ['user_id', '=', auth()->user()->id],
+            // ['user_id', '=', auth()->user()->id],
             ['device', '=', $type],
             ['model', '=', $model],
             ['platform', '=', $platform],
