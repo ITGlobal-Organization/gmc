@@ -14,6 +14,7 @@ use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
 use Karmendra\LaravelAgentDetector\AgentDetector;
+use DB;
 
 
 class Helper
