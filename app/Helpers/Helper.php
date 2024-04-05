@@ -448,14 +448,22 @@ class Helper
         $platform = $ad->platform();
         $platform_version = $ad->platformVersion();
 
-        $result = DB::table('devices')->whereColumn([
-            // ['user_id', '=', auth()->user()->id],
-            ['device', '=', $type],
-            ['model', '=', $model],
-            ['platform', '=', $platform],
-            ['platform_version', '=', $platform_version],
-            ['is_otp_validated', '=', 1],
-        ])->first();
+        // $result = DB::table('devices')->whereColumn([
+        //     ['user_id', '=', auth()->user()->id],
+        //     ['device', '=', $type],
+        //     ['model', '=', $model],
+        //     ['platform', '=', $platform],
+        //     ['platform_version', '=', $platform_version],
+        //     ['is_otp_validated', '=', 1],
+        // ])->first();
+        $result = DB::table('devices')->where('user_id',auth()->user()->id)
+        ->where('user_id',auth()->user()->id)
+        ->where('device',$type)
+        ->where('model',$model)
+        ->where('platform',$platform)
+        ->where('platform_version',$platform_version)
+        ->first();
+
 
         if($result != ""){
             return true;
