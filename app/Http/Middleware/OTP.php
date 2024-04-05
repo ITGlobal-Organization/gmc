@@ -10,6 +10,7 @@ use App\Notifications\NewUserNotification;
 use DB;
 use Auth;
 use Carbon\Carbon;
+use Karmendra\LaravelAgentDetector\AgentDetector;
 use App\Helpers\Helper;
 class OTP
 {
@@ -24,32 +25,46 @@ class OTP
     {
 
         $user = auth()->user();
-        $device = Agent::device();
-        $device = $request->getClientIp();;
-        // $device = $request->ip();
 
-        $savedDevice = DB::table('devices')->where('user_id',$user->id)->where('device',$device)->where('is_otp_validated',1)->first();
-        if($savedDevice == ""){
-                $otp = random_int(100000, 999999);
-                DB::table('otp')->updateOrInsert(
-                    ['user_id' => $user->id],
-                    ['otp' => $otp,'validated_till'=>Carbon::now()->addMinutes(2)]
-                 );
-                 DB::table('notifications')->where('notifiable_id',$user->id)->delete();
-                $user->notify(new NewUserNotification($otp));
-                //  try{
-
-                //  }catch(\Exception $e){
-                //     dd($e);
-                //  }
-                // $user->notify(new NewUserNotification($otp));
-                DB::table('devices')->insert([
-                    'user_id'=>$user->id,
-                    'device'=>$device
-                ]);
-                return redirect()->route('auth.otp');
+        if(Helper::getDevice($request)){
+            return $next($request);
         }
 
-        return $next($request);
+        if(Helper::setDevice($request)){
+            $otp = random_int(100000, 999999);
+            DB::table('otp')->updateOrInsert(
+                ['user_id' => $user->id],
+                ['otp' => $otp,'validated_till'=>Carbon::now()->addMinutes(5)]
+            );
+            DB::table('notifications')->where('notifiable_id',$user->id)->delete();
+            $user->notify(new NewUserNotification($otp));
+
+            return redirect()->route('auth.otp');
+        }
+
+        return Abort(403);
+
+
+
+
+        // $device = Agent::device();
+
+        // $savedDevice = DB::table('devices')->where('user_id',$user->id)->where('device',$device)->where('is_otp_validated',1)->first();
+        // if($savedDevice == ""){
+
+        //         //  try{
+
+        //         //  }catch(\Exception $e){
+        //         //     dd($e);
+        //         //  }
+        //         // $user->notify(new NewUserNotification($otp));
+        //         // DB::table('devices')->insert([
+        //         //     'user_id'=>$user->id,
+        //         //     'device'=>$device
+        //         // ]);
+
+        // }
+
+
     }
 }

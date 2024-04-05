@@ -14,6 +14,7 @@ use Jenssegers\Agent\Facades\Agent;
 use DB;
 use Illuminate\Support\Facades\Log;
 use App\Notifications\NewUserNotification;
+use Karmendra\LaravelAgentDetector\AgentDetector;
 use App\Helpers\Helper;
 
 class AuthenticatedSessionController extends BaseController
@@ -47,20 +48,25 @@ class AuthenticatedSessionController extends BaseController
     public function auth(LoginRequest $request)
     {
         // Auth::logout();
+        $device = $request->userAgent();
+        $ad = new AgentDetector($device);
+        if($ad->isBot()){
+            return false;
+        }
         $request->authenticate();
 
         $request->session()->regenerate();
 
+        // $device = userAgent();
 
-        $device = Agent::device();
-        $device = $request->ip();
-        $device = $request->getClientIp();
+        // $device = Agent::device();
 
-        $savedDevice = DB::table('devices')->where('user_id',auth()->user()->id)->where('device',$device)->where('is_otp_validated',1)->first();
-        if($savedDevice != ""){
-            auth()->user()->is_login = 1;
-        }
+        // $savedDevice = DB::table('devices')->where('user_id',auth()->user()->id)->where('device',$device)->where('is_otp_validated',1)->first();
+        // if($savedDevice != ""){
+
+        // }
         auth()->user()->login_at = Carbon::now();
+        auth()->user()->is_login = 1;
         auth()->user()->save();
         $user = auth()->user();
 
@@ -89,10 +95,9 @@ class AuthenticatedSessionController extends BaseController
         $otp = DB::table('otp')->where('otp',$request->otp)->where('user_id',$user->id)->first();
 
         if($otp != "" && Carbon::parse($otp->validated_till)->gt(Carbon::now())){
-            $device = Agent::device();
-            $device = $request->ip();
-            $device = $request->getClientIp();
-            DB::table('devices')->where('device',$device)->where('user_id',$user->id)->update(['is_otp_validated'=>1]);
+            Helper::updateDevice($request,"is_otp_validated",1);
+            // $device = Agent::device();
+            // DB::table('devices')->where('device',$device)->where('user_id',$user->id)->update(['is_otp_validated'=>1]);
             DB::table('users')->where('id',$user->id)->update(['is_login'=>1]);
             $redirect_route = route(strtolower(auth()->user()->roles[0]->name).'.dashboard');
 
@@ -140,11 +145,10 @@ class AuthenticatedSessionController extends BaseController
         return redirect('/');
     }
     public function getOTP(Request $request){
-        $device = Agent::device();
-        $device = $request->ip();
-        $device = $request->getClientIp();
-        $savedDevice = DB::table('devices')->where('user_id',auth()->user()->id)->where('device',$device)->where('is_otp_validated',1)->first();
-        if($savedDevice != ""){
+        // $device = Agent::device();
+
+        // $savedDevice = DB::table('devices')->where('user_id',auth()->user()->id)->where('device',$device)->where('is_otp_validated',1)->first();
+        if(Helper::getDevice($request)){
             return redirect()->route(strtolower(auth()->user()->roles[0]->name).'.dashboard');
         }else if(!auth()->user()){
             return redirect('/');
