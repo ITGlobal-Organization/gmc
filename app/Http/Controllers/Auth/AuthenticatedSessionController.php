@@ -149,7 +149,7 @@ class AuthenticatedSessionController extends BaseController
         // $device = Agent::device();
 
         // $savedDevice = DB::table('devices')->where('user_id',auth()->user()->id)->where('device',$device)->where('is_otp_validated',1)->first();
-        if(Helper::getDevice($request) && isset(auth()->user())){
+        if(Helper::getDevice($request) && auth()->user() != ''){
             return redirect()->route(strtolower(auth()->user()->roles[0]->name).'.dashboard');
         }
         return view('auth.otp');
