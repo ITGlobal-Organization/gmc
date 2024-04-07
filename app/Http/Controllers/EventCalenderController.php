@@ -137,7 +137,7 @@ class EventCalenderController extends BaseController
             ]);
         }
         parent::update($request,$id);
-	
+
         $response = [
             'success' => true,
             'data'=>[
@@ -206,8 +206,8 @@ class EventCalenderController extends BaseController
             ]);
         }
         parent::store($request);
-        
-        
+
+
         if($request->hasFile('image')){
             $media =  Helper::saveMedia($request->image,"App\Models\EventCalender",'main',$this->eventCalender->id);
         }
@@ -264,13 +264,13 @@ class EventCalenderController extends BaseController
         return view('user.event.create',[
             'title' => trans('messages.create_msg',[
                 'attribute' => trans('lang.event'),
-                
+
             ]),
             'Categories' => $Categories
         ]);
     }
 
-    // book now 
+    // book now
 
     public function bookEventView(Request $request,$slug){
         $Event = $this->eventCalender->first('slug',$slug,'=');
@@ -281,25 +281,34 @@ class EventCalenderController extends BaseController
     }
 
     public function bookEvent(Request $request){
+
         $this->eventCalender->setRules(config('rules.event_calenders.bookings'),true);
         $request->validate($this->eventCalender->getRules());
         try{
-            
-            // $this->eventCalender->first('id',$request->event_id);
+
+            $event = $this->eventCalender->first('id',$request->event_id);
             $data = $request->except('_token');
-          //  dd($data);
             $status=$this->eventCalender->addBookings($data);
+
+            $this->eventCalender->where('id',18)->increment('current_bookings');
+
             if($status > 0){
-                $customer =$this->payment->addStripeCustomer($data['first_name'].' '.$data['last_name'],$data['email']);
-                session(['customer' => $customer]);
-                session(['booking_id' => $status]);
-                return $this->sendResponse([],trans('messages.success_msg',[
+                $array = ['route'=>route('event-calenders.index')];
+                if($event->price != "FOC" && $event->price >= 1){
+                    $customer =$this->payment->addStripeCustomer($data['first_name'].' '.$data['last_name'],$data['email']);
+                    session(['customer' => $customer]);
+                    session(['booking_id' => $status]);
+                    $array = [];
+                }
+
+                return $this->sendResponse($array,trans('messages.success_msg',[
                     'attribute' => trans('lang.booking'),
                     'action' => trans('lang.saved')
                 ]));
             }
-          
+
         }catch(\Exception $e){
+            dd($e->getMessage());
             Log::error($e);
             return $this->sendError(trans('messages.error_msg',['action' => trans('lang.saving')]));
         }
