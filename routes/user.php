@@ -19,6 +19,7 @@ use App\Http\Controllers\PostController;
 
 
 Route::get('/', [DashboardController::class, 'dashboard'])->name('user.dashboard');
+Route::get('/employee', [DashboardController::class, 'dashboard'])->name('employee.dashboard');
 
 //Events
 Route::prefix('events')->group(function(){

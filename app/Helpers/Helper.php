@@ -13,7 +13,9 @@ use App\Models\Media;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
-
+use Karmendra\LaravelAgentDetector\AgentDetector;
+use DB;
+// use Carbon\Carbon;
 
 class Helper
 {
@@ -425,7 +427,7 @@ class Helper
     public static function getDate($date,$format){
         return Carbon::parse($date)->format($format);
     }
-    
+
     public static function padtoLeft($number,$length=2){
         $paddedNumber = "";
         for($i=strlen($number);$i<$length;$i++){
@@ -434,5 +436,109 @@ class Helper
         $paddedNumber .= $number;
 
         return $paddedNumber;
+    }
+
+    public static function getDevice($request){
+
+        $device = $request->userAgent();
+        $ad = new AgentDetector($device);
+
+        $type = $ad->device();
+        $model = $ad->deviceModel();
+        $platform = $ad->platform();
+        $platform_version = $ad->platformVersion();
+
+        $result = DB::table('devices')->where('user_id',auth()->user()->id)
+        ->where('user_id',auth()->user()->id)
+        ->where('device',$type)
+        ->where('model',$model)
+        ->where('platform',$platform)
+        ->where('platform_version',$platform_version)
+        ->where('created_at',$platform_version)
+        ->first();
+
+
+        if($result != ""){
+            $createdAt = Carbon::parse($result->created_at);
+            $now = Carbon::now();
+            // Calculate the difference in days
+            $diffInDays = $createdAt->diffInDays($now);
+            if($diffInDays > 30){
+                return false;
+            }
+            return true;
+        }
+
+        return false;
+
+        // $savedDevice = DB::table('devices')->where('user_id',$user->id)->where('device',$type)->where('is_otp_validated',1)->first();
+    }
+
+    public static function setDevice($request){
+
+        try{
+            $device = $request->userAgent();
+            $ad = new AgentDetector($device);
+
+            $type = $ad->device();
+            $model = $ad->deviceModel();
+            $platform = $ad->platform();
+            $platform_version = $ad->platformVersion();
+
+            $result = DB::table('devices')->insert([
+                ['user_id'=> auth()->user()->id,'device'=> $type,
+                'model'=> $model,'platform'=> $platform,'platform_version'=> $platform_version,'is_otp_validated'=>1,
+                'created_at'=>Carbon::now()],
+            ]);
+            return true;
+
+        }catch(\Exception $e){
+            return false;
+        }
+
+        // $savedDevice = DB::table('devices')->where('user_id',$user->id)->where('device',$type)->where('is_otp_validated',1)->first();
+    }
+
+    public static function updateDevice($request,$column,$value){
+
+        try{
+            $device = $request->userAgent();
+            $ad = new AgentDetector($device);
+
+            $type = $ad->device();
+            $model = $ad->deviceModel();
+            $platform = $ad->platform();
+            $platform_version = $ad->platformVersion();
+
+            $result = DB::table('devices')->whereColumn([
+                ['user_id', '=', auth()->user()->id],
+                ['device', '=', $type],
+                ['model', '=', $model],
+                ['platform', '=', $platform],
+                ['platform_version', '=', $platform_version],
+                ['is_otp_validated', '=', 1],
+            ])->update([$column=>$value]);
+
+            return true;
+
+        }catch(\Exception $e){
+            return false;
+        }
+
+    }
+
+    public static function getUserIP($request) {
+        // Get the client's IP address, considering proxies
+        $ip = $request->header('X-Forwarded-For');
+
+        // If X-Forwarded-For header is not present, get the IP from the request object
+        if (empty($ip)) {
+            $ip = $request->ip();
+        } else {
+            // X-Forwarded-For can contain a comma-separated list of IPs; get the first one
+            $ip = explode(',', $ip)[0];
+        }
+
+        return $ip;
     }
 }

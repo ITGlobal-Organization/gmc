@@ -66,14 +66,14 @@ Route::get('/search-spacefinders',[SpaceFinderController::class,'searchSpaceFind
 
 // Event-Calenders
 Route::prefix('event-calenders')->group(function () {
-   
+
     Route::get('/',[EventCalenderController::class,'eventCalenders'])->name('event-calenders.index');
     Route::get('/book/{slug}',[EventCalenderController::class,'bookEventView'])->name('event.book');
     Route::post('/book',[EventCalenderController::class,'bookEvent'])->name('event.book.store');
     Route::get('/ajax',[EventCalenderController::class,'getEventsListing'])->name('event-calenders.ajax');
     Route::get('/{slug}',[EventCalenderController::class,'getEvent'])->name('event-calenders.get')->middleware('auth');
     Route::get('/{view}/{slug}',[EventCalenderController::class,'getEvent'])->name('event-calenders.get');
-    
+
 });
 Route::get('/search-events',[EventCalenderController::class,'getEventsListing'])->name('event-calenders.search');
 
