@@ -72,7 +72,10 @@
                 success: function(response) {
                     console.log(response)
                     if (response.status) {
-                        window.location.href="/";
+                        window.location.href="{{route('login')}}";
+                    }else{
+                        $('.contact-error').text("Oops! We could not update your password, Please try again with correct email.");
+                        $('.contact-error').addClass("alert alert-danger");
                     }
                 },
                 error: function(error) {
