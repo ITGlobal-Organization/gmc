@@ -290,7 +290,7 @@ class EventCalenderController extends BaseController
             $data = $request->except('_token');
             $status=$this->eventCalender->addBookings($data);
 
-            $this->eventCalender->where('id',18)->increment('current_bookings');
+            $this->eventCalender->where('id',$request->event_id)->increment('current_bookings');
 
             if($status > 0){
                 $array = ['route'=>route('event-calenders.index')];
