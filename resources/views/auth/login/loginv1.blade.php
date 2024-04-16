@@ -41,7 +41,7 @@
         @csrf
         <div id="forget" class="modal">
             <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content modal-content-custom"> 
+            <div class="modal-content modal-content-custom">
                 <span class="close" id="close">&times;</span>
                 <div class="clr"></div>
                 <div class="forget-heading">{{ trans('lang.forget_password') }}</div>
@@ -155,7 +155,7 @@
        data.append("email", email);
        data.append("password", password);
        ajaxPost(url, data, '.contact-success', '.contact-error');
-   
+
    });
    $('.forgot-pass').on('click', function(e) {
        e.preventDefault();
@@ -184,10 +184,12 @@
                console.log(response)
                if (response.status) {
                    notify(response.message,'success');
+                   $('#forget').modal('hide')
                    // $('#statusSuccessModal').modal('toggle')
                } else {
-                  
+
                 notify(response.message,'error');
+                $('#forget').modal('hide')
                    // $('#statusErrorsModal').modal('toggle')
                }
            },
@@ -213,22 +215,22 @@
                setTimeout(() => {
                    $(".success").text('');
                    $(".error").text('');
-   
+
                    $(".success").html('');
                    $(".error").html('');
-   
+
                    $(".success").removeClass('alert alert-success');
                    $(".error").removeClass('alert alert-danger');
                    if ($('.errors')) {
-   
+
                        $('.errors').removeClass('text-danger');
                        $('.errors').html('');
-   
+
                    }
-   
-   
+
+
                }, config.timeout)
-   
+
            }
        })
    });
@@ -236,7 +238,7 @@
        e.preventDefault();
        $('#forget').modal('hide');
    });
-   
+
    function swalAlert(message) {
        Swal.fire({
            icon: 'error',
