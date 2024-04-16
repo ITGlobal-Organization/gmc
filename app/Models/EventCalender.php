@@ -26,7 +26,7 @@ class EventCalender extends BaseModel
 
     protected $fillable = [
         'title','description','is_active','is_delete','is_approved','event_date','price','venue','user_id',
-        'slug','time','city','booking_link','category_id'
+        'slug','time','city','booking_link','category_id','limit','current_bookings'
     ];
 
     protected $rules = [];
@@ -170,13 +170,13 @@ class EventCalender extends BaseModel
 	        if(isset($this->id)){
             $obj = self::where('slug',$slug)->where('id','!=',$this->id)->first();
             $this->attributes['slug'] = $slug.'-'.((int)$this->id);
-           
-          
+
+
         }
         $obj = self::where('slug',$slug)->first();
         if(isset($obj)){
             $this->attributes['slug'] = $slug.'-'.((int)$obj->id+1);
-           
+
         }
         $this->attributes['slug'] = $slug;
         $this->attributes['title'] = $title;
@@ -197,6 +197,7 @@ class EventCalender extends BaseModel
             DB::enableQueryLog();
             // $data['event_id'] = $this->id;
             $status = DB::table('bookings')->insertGetId($data);
+            // dd($status);
             Log::debug(DB::getQueryLog());
             DB::commit();
             return $status;

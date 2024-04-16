@@ -448,13 +448,12 @@ class Helper
         $platform = $ad->platform();
         $platform_version = $ad->platformVersion();
 
-        $result = DB::table('devices')->where('user_id',auth()->user()->id)
+        $result = DB::table('devices')
         ->where('user_id',auth()->user()->id)
         ->where('device',$type)
         ->where('model',$model)
         ->where('platform',$platform)
         ->where('platform_version',$platform_version)
-        ->where('created_at',$platform_version)
         ->first();
 
 
@@ -463,6 +462,7 @@ class Helper
             $now = Carbon::now();
             // Calculate the difference in days
             $diffInDays = $createdAt->diffInDays($now);
+
             if($diffInDays > 30){
                 return false;
             }
