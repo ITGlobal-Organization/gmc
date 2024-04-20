@@ -4,10 +4,10 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
         <div class="middle mtb-60">
             <h1 class="text-center mb-40">{{ trans('lang.book_now')}}</h1>
-           
-     
+
+
             <!--Strat Foram Area-->
-         
+
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mtb-25">
                     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 border padding form-none"></div>
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 border join-bg">
@@ -55,9 +55,9 @@
                             <div class="error-address"></div>
                         </div>
                         </div>
-                     
-                       
-                        
+
+
+
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center mtb-40">
                             <button class="ct-submit submit" >{{ trans('lang.submit')}}</button>
                             <!-- <input type="submit"  value=""> -->
@@ -65,7 +65,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 border padding form-none"></div>
                 </div>
-         
+
         </div>
     </div>
     <div id="vcc" class="modal">
@@ -115,9 +115,13 @@
         data.append('phone',$('.phone_no').val());
         data.append('address',$('.address').val());
         data.append('event_id',"{{ $Event->id}}");
-        
+
         await ajaxPost("{{ route('event.book.store') }}",data,'.success','.error',true);
         console.log('here',$('.success').text() != '');
+        let price = "{{ $Event->price }}";
+        if(price == "" || price == "FOC" || price == 0){
+            window.location.href = "{{}}";
+        }
         if($('.success').text() != ''){
             $(this).addClass('btn-vcc')
                 $(this).text('Checkout')
