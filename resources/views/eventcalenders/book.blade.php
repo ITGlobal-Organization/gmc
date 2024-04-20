@@ -120,7 +120,7 @@
         console.log('here',$('.success').text() != '');
         let price = "{{ $Event->price }}";
         if(price == "" || price == "FOC" || price == 0){
-            window.location.href = "{{}}";
+            window.location.href = "{{ route('event-calenders.index') }}";
         }
         if($('.success').text() != ''){
             $(this).addClass('btn-vcc')
