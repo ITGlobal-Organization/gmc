@@ -196,7 +196,8 @@ return [
             ]
 
         ]
-    ]
+    ],
+    'protected-routes' => ['directories.category.index','directories.index','directories.get','event-calenders.get','offers.get','blogs.get']
 
 
 ];

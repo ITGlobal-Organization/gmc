@@ -3,7 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- <meta name="robots" content="noindex,nofollow"> -->
+	$ProtectedRoutes = config('site_config.protected-routes');
+	@if(in_array(route()->currentRouteName(),$ProtectedRoutes))
+	<meta name="robots" content="noindex,nofollow">
+	@endif
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link href="{{ custom_asset('bootstrap.css','css') }} " rel="stylesheet" type="text/css">
 	<!-- <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"> -->
