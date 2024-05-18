@@ -42,7 +42,7 @@
     <li><a href="{{ route('blogs.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.news')}}</a></li>
       <li><a href="{{ route('site-pages','benifits') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.benifits')}}</a></li>
       <li><a href="{{ route('directories.index') }}"><i class="fa fa-chevron-right"></i> {{ trans('lang.directories')}}</a></li>
-      <li><a href="{{ route('space-finders.index') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.spacefinders')}}</a></li>
+      <li><a href="{{ route('space-finders.index') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.space_finders')}}</a></li>
 	        <li><a href="{{ route('event-calenders.index') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.eventcalenders')}}</a></li>
 		      <li><a href="{{ route('platinum-partners.index') }}"><i class="fa fa-chevron-right"></i>{{ trans('lang.platiniumpartners')}}</a></li>
 		      <li><a href="https://pcjh.co.uk/"><i class="fa fa-chevron-right"></i>{{ trans('lang.jobshub')}}</a></li>
@@ -77,7 +77,7 @@
       <li><a href="{{ route('blogs.index') }}">{{ trans('lang.news')}}</a></li>
        <li><a href="{{ route('site-pages','benifits') }}">{{ trans('lang.benifits')}}</a></li>
       <li><a href="{{ route('directories.index') }}">{{ trans('lang.directories')}}</a></li>
-      <li><a href="{{ route('space-finders.index') }}">{{ trans('lang.spacefinders')}}</a></li>
+      <li><a href="{{ route('space-finders.index') }}">{{ trans('lang.space_finders')}}</a></li>
       <li><a href="{{ route('event-calenders.index') }}">{{ trans('lang.eventcalenders')}}</a></li>
       <li><a href="{{ route('platinum-partners.index') }}">{{ trans('lang.platiniumpartners')}}</a></li>
       <li><a href="https://pcjh.co.uk/">{{ trans('lang.jobshub')}}</a></li>

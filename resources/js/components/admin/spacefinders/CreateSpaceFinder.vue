@@ -1,37 +1,34 @@
 <template>
-
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>{{ Lang.create_msg(Lang.spacefinder) }}</h1>
-                </div>
-                <!-- <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#"></a></li>
-                    <li class="breadcrumb-item active">User Profile</li>
-                    </ol>
-                </div> -->
-                </div>
-            </div>
-        </section>
-        <!-- Main content -->
-        <div class="loading" v-if="loader">Loading</div>
-        <section class="content">
-
-        <!-- Default box -->
-        <div class="card card-secondary card-outline">
-
-            <div class="card-body">
-                <Form :fields="FormFields" :data="FormData" :action="store" :name="name" :errors="errors"/>
-            </div>
-
-            <!-- /.card-body -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>{{ Lang.create_msg(Lang.spacefinder) }}</h1>
         </div>
-        <!-- /.card -->
+      </div>
+    </div>
+  </section>
 
-        </section>
+  <!-- Main content -->
+  <div class="loading" v-if="loader">Loading</div>
+  <section class="content">
+    <!-- Default box -->
+    <div class="card card-secondary card-outline">
+      <div class="card-body">
+        <Form :fields="FormFields" :data="FormData" :action="store" :name="name" :errors="errors"/>
+        <!-- Select from gallery link -->
+
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
+    <!-- Modal -->
+
+    <!-- /.modal -->
+  </section>
 </template>
+
 <script>
 import {Language} from '../../../helpers/lang/lang';
 import Form from '../../commons/Form.vue';
@@ -46,9 +43,13 @@ export default {
     },
     data(){
         return {
+
+            // galleryImages: [],
+            // selectedImageId:null,
             Lang:Language,
             loader:false,
             users:[],
+            images:[],
             errors:{},
             FormFields:[],
             developerOptions:[],
@@ -72,12 +73,15 @@ export default {
                 categories:'',
                 // author:'',
                 media:[],
-                gallery:[]
+                gallery:[],
+                thumbnail:[],
+                thumbnailGallery:[],
             },
             name:"Create Space Finder",
         }
     },
     mounted(){
+        // this.fetchGalleryImages();
         let ref = this;
         ref.getAllUsers();
         ref.FormFields = [
@@ -284,52 +288,26 @@ export default {
                     },
                     required:true,
                 },
-                // {
-                //     label:Language.author,
-                //     field:"author",
-                //     class:"vue-select1",
-                //     grid:"col-md-4 col-12",
-                //     type:"select",
-                //     isdynamic:true,
-                //     searchable:true,
-                //     options:function(){
-                //             if(this.isdynamic){
-                //                 return ref.users;
-                //             }
-                //             return [];
-                //     },
-                //     placeholder:function(){
-                //         return Language.placholder_msg(this.label)
-                //     },
 
-                //     required:true,
-                // },
-                // {
-                //     label:Language.publisher,
-                //     field:"publisher",
-                //     class:"form-control",
-                //     grid:"col-md-4 col-12",
-                //     type:"text",
-                //     placeholder:function(){
-                //         return "Enter "+this.label
-                //     },
-                //     required:true,
-                // },
-                // {
-                //     label:Language.published_at,
-                //     field:"publish_at",
-                //     class:"form-control",
-                //     grid:"col-md-4 col-12",
-                //     type:"date",
-                //     placeholder:function(){
-                //         return "Enter "+this.label
-                //     },
-                //     required:true,
-                // },
 
                 {
                     label:Language.image,
                     field:"gallery",
+                    class:"files",
+                    grid:"col-md-12 col-12",
+                    type:"file",
+                    placeholder:function(){
+                        return "Upload"+this.label
+                    },
+                    multiple:true,
+                    model:`App\\Models\\SpaceFinder`,
+                    required:false,
+                    fileType:"image/jpeg, image/png",
+                    maxFiles:10
+                },
+                {
+                    label:Language.thumbnail,
+                    field:"thumbnailGallery",
                     class:"files",
                     grid:"col-md-12 col-12",
                     type:"file",
@@ -351,6 +329,20 @@ export default {
     },
 
     methods:{
+        // async fetchGalleryImages() {
+        //     this.loader = true;
+        //     try {
+        //         const response = await axios.get('https://api.example.com/gallery-images');
+        //         this.galleryImages = response.data;
+        //     } catch (error) {
+        //         console.error('Error fetching gallery images:', error);
+        //     } finally {
+        //         this.loader = false;
+        //     }
+
+        // },
+
+
         async store(){
             const {store,errors} = useSpaceFinder();
             const {successAlert,errorAlert} = useService();
@@ -387,9 +379,158 @@ export default {
             await getAllPublic();
             this.users = records.value;
 
-        }
+        },
+
 
 
    }
 }
 </script>
+<style scoped>
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-contents {
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 80%;
+    max-width: 700px;
+    background-color: #fefefe;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-y: auto; /* Enable vertical scrollbar */
+    max-height: 80%; /* Adjust maximum height */
+}
+
+
+/* Image gallery styles */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px; /* Adjust top margin to separate from close button */
+}
+
+.gallery-item {
+    margin: 10px;
+    cursor: pointer;
+    flex: 0 0 calc(33.33% - 20px); /* Three items per row with margins */
+    max-width: calc(33.33% - 20px); /* Three items per row with margins */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+}
+
+.gallery-item.active {
+    border: 2px solid red; /* Change border color to red */
+}
+
+.add-image-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1; /* Ensure it's above the modal contents */
+    padding: 8px 16px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-image-btn:hover {
+    background-color: #45a049; /* Darker green */
+}
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #888;
+    cursor: pointer;
+    font-family: Arial, sans-serif; /* Specify a common font */
+}
+
+
+/* .uploader-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+} */
+
+/* Input field for selecting images */
+.file-input {
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Style for the upload button */
+.upload-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.upload-button:hover {
+    background-color: #0056b3;
+}
+
+/* Preview area for the selected images */
+.image-preview {
+    /* margin-top: 20px; */
+}
+
+.image-preview-item {
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.image-preview-item img {
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+}
+.close-thumbnail{
+    position: absolute;
+}
+/*
+.close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+} */
+.gallery-img.highlighted {
+  border: 2px solid blue;
+}
+
+</style>

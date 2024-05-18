@@ -115,7 +115,7 @@ Route::prefix('eventcalender')->group(function(){
     Route::delete('/delete/{id}',[EventCalenderController::class, 'destroy'])->name('admin.eventcalender.destroy');
 
     // Event Categories
- 
+
 
 });
 // Users
@@ -136,6 +136,7 @@ Route::prefix('users')->group(function(){
 
 });
 
+Route::get('/images',[DashboardController::class, 'galleryImages'])->name('admin.images');
 // Users
 Route::prefix('offers')->group(function(){
     Route::get('/',[M2MOfferController::class, 'index'])->name('admin.offers.index');

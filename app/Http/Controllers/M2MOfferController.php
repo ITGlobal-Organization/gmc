@@ -20,6 +20,7 @@ class M2MOfferController extends BaseController
         $this->setModel($offer);
         $this->setMedia($media);
         $this->url = $url::current();
+        $this->media=$media;
     }
 
     public function index(Request $request){
@@ -30,6 +31,15 @@ class M2MOfferController extends BaseController
     }
 
     public function create(Request $request){
+        if(auth()->user()->hasRole('user')){
+            // dd("dsf");
+            $galleryImages = $this->media->orderBy('id','desc')->get();
+            return view('user.offer.create',[
+                'title' => trans('lang.offer').' | '.trans('lang.create'),
+                'name' => 'offer',
+                'galleryImages'=>$galleryImages
+            ]);
+        }
         return view('admin.crud.create',[
             'title' => trans('lang.m2m-offers').' | '.trans('lang.create'),
             'name' =>  trans('lang.m2m-offer'),
@@ -119,17 +129,29 @@ class M2MOfferController extends BaseController
 
     public function renderForm(Request $request,$id){
         $offers = $this->offer->first('id',$id,'=',['user'],[],['m2m_offers.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
-        return view('user.offer.edit',['Offers'=>$offers]);
+        $galleryImages = $this->media->orderBy('id','desc')->get();
+
+        return view('user.offer.edit',['Offers'=>$offers,'galleryImages'=>$galleryImages]);
     }
 
     public function update(Request $request,$id){
+        $main_img_id = isset($request->main_img_id) ?  $request->main_img_id : '';
+        unset($request['main_img_id']);
+        $thumbnail_img_id = isset($request->thumbnail_img_id) ?  $request->thumbnail_img_id : '';
+        unset($request['thumbnail_img_id']);
+        parent::update($request,$id);
         if($request->hasFile('image')){
             $media =  Helper::saveMedia($request->image,"App\Models\M2MOffer",'main',$id);
+        }else if($main_img_id != ""){
+            $media =  Helper::updateGalleryImage($main_img_id,"App\Models\M2MOffer",'main',$id);
         }
-        if($request->hasFile('logo')){
-            $media =  Helper::saveMedia($request->logo,"App\Models\M2MOffer",'logo',$id);
+        if($request->hasFile('thumbnail')){
+            $media =  Helper::saveMedia($request->thumbnail,"App\Models\M2MOffer",'thumbnail',$id);
+        }else if($thumbnail_img_id != ""){
+            $media =  Helper::updateGalleryImage($thumbnail_img_id,"App\Models\M2MOffer",'thumbnail',$id);
         }
-        parent::update($request,$id);
+
+
         $response = [
             'success' => true,
             'data'=>[
@@ -154,12 +176,23 @@ class M2MOfferController extends BaseController
 
     public function store(Request $request){
 
+        $main_img_id = isset($request->main_img_id) ?  $request->main_img_id : '';
+        unset($request['main_img_id']);
+        $thumbnail_img_id = isset($request->thumbnail_img_id) ?  $request->thumbnail_img_id : '';
+        unset($request['thumbnail_img_id']);
         parent::store($request);
+        // dd();
+
+
         if($request->hasFile('image')){
             $media =  Helper::saveMedia($request->image,"App\Models\M2MOffer",'main',$this->offer->id);
+        }else if($main_img_id != ""){
+            $media =  Helper::updateGalleryImage($main_img_id,"App\Models\M2MOffer",'main',$this->offer->id);
         }
-        if($request->hasFile('logo')){
-            $media =  Helper::saveMedia($request->logo,"App\Models\M2MOffer",'logo',$this->offer->id);
+        if($request->hasFile('thumbnail')){
+            $media =  Helper::saveMedia($request->thumbnail,"App\Models\M2MOffer",'thumbnail',$this->offer->id);
+        }else if($thumbnail_img_id != ""){
+            $media =  Helper::updateGalleryImage($thumbnail_img_id,"App\Models\M2MOffer",'thumbnail',$this->offer->id);
         }
         $response = [
             'success' => true,

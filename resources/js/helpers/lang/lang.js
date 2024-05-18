@@ -100,6 +100,7 @@ export const Language = {
     company_name: "Company Name",
     slug: "Slug",
     image: "Image",
+    thumbnail:"Thumbnail",
     placeholder_msg: "Enter :attribute",
     select_msg: "Select :attribute",
     edit: "Edit",

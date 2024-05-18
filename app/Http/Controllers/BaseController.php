@@ -152,13 +152,13 @@ class BaseController extends Controller
 
         try {
             DB::beginTransaction();
-            $data = $request->except(['_token','media','gallery','attachment','image','image1','image2','filename','logo']);
+            $data = $request->except(['_token','media','gallery','attachment','image','image1','image2','filename','logo','thumbnail']);
             $result = $this->model->store($data);
             $this->model->id = $result;
 
             if ($request->has('media')) {
                 //$response = Helper::saveMedia($request->image,$this->model->class_name,$result->id);
-              
+
                 foreach($request->media as $media){
                    // dd($this->Media);
                     $this->Media->updateByColumn([
@@ -170,7 +170,7 @@ class BaseController extends Controller
             // return $result;
             return $this->sendResponse([], trans('messages.success_msg',['action' => trans('lang.saved')]));
         } catch (\Exception $e) {
-            // dd($e->getMessage());
+            dd($e->getMessage());
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
@@ -282,7 +282,7 @@ class BaseController extends Controller
                     $this->model->status_col => $request->status
                 ],$id,'id');
             }
-            
+
             return $this->sendResponse([],trans('messages.success_msg',['action' => trans('lang.updated')]));
         }catch(\Exception $e){
             dd($e);

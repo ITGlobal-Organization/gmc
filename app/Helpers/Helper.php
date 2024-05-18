@@ -133,7 +133,6 @@ class Helper
     //    dd($files);
         try{
             if(is_array($files)){
-
                 foreach($files as $file){
                     $exitMedia = Media::where('model',$model)->where('image_name',$file->getClientOriginalName())->
                 where('model_id',$id)->first();
@@ -150,9 +149,10 @@ class Helper
                     // $public_path = asset('media/'.$file->getClientOriginalName());
                     $file->move($path,$file->getClientOriginalName());
 
-                    $media = Media::where('id',$id)->first();
+                    $media = Media::where('model_id',$id)->where('img_type',$file_type)->first();
+                    // dd($media);
                     if(isset($media)){
-                        $updated = Media::where('id',$id)->update([
+                        $updated = Media::where('model_id',$id)->where('img_type',$file_type)->update([
                             'image_url' => $public_path,
                             'model_id' => $id,
                             'model' => $model,
@@ -176,6 +176,7 @@ class Helper
 
             }else{
 
+
                 // dd($files->getClientOriginalName());
                 $exitMedia = Media::where('model',$model)->where('image_name',$files->getClientOriginalName())->
                 where('model_id',$id)->first();
@@ -192,9 +193,10 @@ class Helper
                     $public_path = '/media/'.$files->getClientOriginalName();
                     // $public_path = asset('media/'.$files->getClientOriginalName());
                     $files->move($path,$files->getClientOriginalName());
-                    $media = Media::where('id',$id)->first();
+                    $media = Media::where('model_id',$id)->where('img_type',$file_type)->first();
+
                     if(isset($media)){
-                        $updated = Media::where('id',$id)->update([
+                        $updated = Media::where('model_id',$id)->where('img_type',$file_type)->update([
                             'image_url' => $public_path,
                             'model_id' => $id,
                             'model' => $model,
@@ -220,6 +222,7 @@ class Helper
             return $media;
 
         }catch(\Exception $e){
+            dd($e);
             $public_path = "media/image-not-found.png";
             Log::error($e);
             return false;
@@ -439,7 +442,7 @@ class Helper
     }
 
     public static function getDevice($request){
-
+        return true;
         $device = $request->userAgent();
         $ad = new AgentDetector($device);
 
@@ -540,5 +543,38 @@ class Helper
         }
 
         return $ip;
+    }
+    public static function updateGalleryImage($img_id,$model,$img_type,$modelId){
+        try{
+            $img= Media::where('id',$img_id)->first();
+            $media = Media::where('model_id',$modelId)->where('img_type',$img_type)->first();
+            if(isset($media) ){
+                $$media = Media::where('model_id',$modelId)->where('img_type',$img_type)->update([
+                    'image_url' => $img->image_url,
+                    'model_id' => $modelId,
+                    'model' => $model,
+                    'image_name' => $img->image_name,
+                    'img_type' => $img_type,
+                    'extension' => $img->extension
+                ]);
+            }else{
+                $media = Media::create([
+                    'image_url' => $img->image_url,
+                    'model_id' => $modelId,
+                    'model' => $model,
+                    'image_name' => $img->image_name,
+                    'img_type' => $img_type,
+                    'extension' => $img->extension
+                ]);
+            }
+
+
+            return $media;
+
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            Log::error($e);
+            return false;
+        }
     }
 }
