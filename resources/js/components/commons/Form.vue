@@ -38,8 +38,9 @@
                 </div>
                 <div class="form-group" v-else-if="field.type == 'file'">
                     <label class="form-label">{{ field.label }}</label>
-                    <file-pond
+                    <file-pond   v-if="render"
                         :name=field.label
+                      
                         ref="pond"
                         class-name="my-pond"
                         label-idle="Drop files here..."
@@ -48,7 +49,7 @@
                         :max-files="field.maxFiles"
                         :server=fileServer(field.model)
 
-                        v-bind:files="galleryImages"
+                        v-bind:files="data[field.field]"
 
                     />
                     <a href="#" class="gallery-link"  @click="showField(field)">Select from gallery:</a>
@@ -180,6 +181,7 @@ export default {
         return {
             showModal: false,
             galleryImages: [],
+            testImages:[],
             selectedImage:{},
             Language:Language,
             editor: ClassicEditor,
@@ -190,6 +192,16 @@ export default {
             fileServer:{},
             selectAll:false,
             selectedImagefor:null,
+            render:true,
+            // pondFiles: [
+            //     {
+            //     source: 'http://gmc.test/media/MicrosoftTeams-image.png',
+            //     options: {
+            //         type: 'local'
+            //     }
+            //     }
+            // ],
+            pondInstance: null // Hold the FilePond instance here
         }
     },
     mounted(){
@@ -249,6 +261,7 @@ export default {
         async showField(field){
             this.showModal = true,
             this.selectedImagefor = field
+            this.render = false
         },
         async fetchGalleryImages(){
             const {records,getAllImages} = useUsers();
@@ -256,18 +269,27 @@ export default {
             this.galleryImages = records.value;
         },
         selectImage(imageId,imgSrc) {
+        
             this.selectedImage ={
                 id:imageId,
                 src:imgSrc,
             }
-            console.log("src",imgSrc)
-            this.galleryImages.push(imgSrc);
+            // console.log("src",this.$refs.pond)
+            this.data[this.selectedImagefor.field].push(imgSrc);
+            // const filePond = this.$refs.pond.$el._pond;
+            // this.fileServer(this.data[this.selectedImagefor.model])
+            // this.updatePondFiles(imgSrc);
+            
+            //filePond.setFiles(imgSrc);
             this.showModal=false;
-            console.log("abc",this.data)
+            this.render = true
+            // console.log("abc",this.data)
         },
         store(){
             this.action();
         },
+       
+       
         selectAllMultiSelect(field,options){
             console.log(this.selectAll);
             if(!this.selectAll){
