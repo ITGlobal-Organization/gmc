@@ -152,7 +152,8 @@ class BaseController extends Controller
 
         try {
             DB::beginTransaction();
-            $data = $request->except(['_token','media','gallery','attachment','image','image1','image2','filename','logo','thumbnail']);
+            $data = $request->except(['_token','media','gallery','attachment','image','image1','image2','filename','logo','thumbnail','thumbnailGallery']);
+           // dd($data);
             $result = $this->model->store($data);
             $this->model->id = $result;
 
@@ -170,7 +171,7 @@ class BaseController extends Controller
             // return $result;
             return $this->sendResponse([], trans('messages.success_msg',['action' => trans('lang.saved')]));
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
@@ -220,6 +221,8 @@ class BaseController extends Controller
             $result = $this->model->first('id',$id);
             return $this->sendResponse($result);
         }catch(\Exception $e){
+            dd($e);
+            Log::error($e->getMessage());
             return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
 
@@ -227,14 +230,21 @@ class BaseController extends Controller
 // Save files
     public function saveFiles(Request $request){
         $media = 0;
+        $image_id=0;
         $files = $request->file('files');
+        $type = $request->has('img_type')?$request->img_type:'main';
         if($request->id){
             $id = $request->id;
         }else{
             $id = 0;
         }
+        
+        if($request->image_id > 0){
+            $image_id = $request->image_id;
+        }
+        
         if (isset($request->files)) {
-            $media =  Helper::saveMedia($files,$request->model,'main',$request->id);
+            $media =  Helper::saveMedia($files,$request->model,$type,$request->id,$image_id);
             return $media->id;
         }
         return true;

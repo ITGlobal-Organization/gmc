@@ -121,7 +121,7 @@ class Helper
         }
     }
 
-    public static function saveMedia($files,$model='',$file_type='main',$id=0)
+    public static function saveMedia($files,$model='',$file_type='main',$id=0,$image_id=0)
     {
         $public_path = "";
 
@@ -134,10 +134,25 @@ class Helper
         try{
             if(is_array($files)){
                 foreach($files as $file){
-                    $exitMedia = Media::where('model',$model)->where('image_name',$file->getClientOriginalName())->
-                where('model_id',$id)->first();
+                    if($image_id > 0){
+                        $exitMedia = Media::where('id',$image_id);
+                        
+                    }else{
+                        $exitMedia = Media::where('model',$model)->where('image_name',$files->getClientOriginalName())->where('model_id',$id);
+                    }
+                    $exitMedia = $exitMedia->first();
 
                     if(isset($exitMedia)){
+                        $media = Media::create([
+                            'image_url' => $exitMedia->image_url,
+                            'model_id' =>$id,
+                            'model' => $model,
+                            'image_name' => $exitMedia->image_name,
+                            'img_type' => $file_type,
+                            'extension' => $exitMedia->extension
+                        ]);
+                        return $media;
+
                         return $exitMedia;
                     }
                     if (file_exists(public_path('media/'.$file->getClientOriginalName()))) {
@@ -176,14 +191,28 @@ class Helper
 
             }else{
 
-
+                $exitMedia = null;
                 // dd($files->getClientOriginalName());
-                $exitMedia = Media::where('model',$model)->where('image_name',$files->getClientOriginalName())->
-                where('model_id',$id)->first();
+                if($image_id > 0){
+                    $exitMedia = Media::where('id',$image_id);
+                   // $data = $exitMedia->first();
+
+                }else{
+                    $exitMedia = Media::where('model',$model)->where('image_name',$files->getClientOriginalName())->where('model_id',$id);
+                }
+                $exitMedia = $exitMedia->first();
               //  dd($exitMedia,$model,$files->getClientOriginalName());
 
                     if(isset($exitMedia)){
-                        return $exitMedia;
+                        $media = Media::create([
+                            'image_url' => $exitMedia->image_url,
+                            'model_id' =>$id,
+                            'model' => $model,
+                            'image_name' => $exitMedia->image_name,
+                            'img_type' => $file_type,
+                            'extension' => $exitMedia->extension
+                        ]);
+                        return $media;
                     }
                     if (file_exists(public_path('media/'.$files->getClientOriginalName()))) {
                         @unlink(public_path('media/'.$files->getClientOriginalName()));
@@ -196,7 +225,7 @@ class Helper
                     $media = Media::where('model_id',$id)->where('img_type',$file_type)->first();
 
                     if(isset($media)){
-                        $updated = Media::where('model_id',$id)->where('img_type',$file_type)->update([
+                        $media = Media::create([
                             'image_url' => $public_path,
                             'model_id' => $id,
                             'model' => $model,
@@ -204,6 +233,14 @@ class Helper
                             'img_type' => $file_type,
                             'extension' => $files->getClientOriginalExtension()
                         ]);
+                        // $updated = Media::where('model_id',$id)->where('img_type',$file_type)->update([
+                        //     'image_url' => $public_path,
+                        //     'model_id' => $id,
+                        //     'model' => $model,
+                        //     'image_name' => $files->getClientOriginalName(),
+                        //     'img_type' => $file_type,
+                        //     'extension' => $files->getClientOriginalExtension()
+                        // ]);
                     }else{
                         $media = Media::create([
                             'image_url' => $public_path,

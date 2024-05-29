@@ -289,6 +289,7 @@ export const Language = {
     offer:"M2M Offer",
     offers:"M2M Offers",
     view_all:"View All",
+    gallery:"Gallery",
     recent_msg:function(attribute){
         return "Recently Added " + attribute
     },

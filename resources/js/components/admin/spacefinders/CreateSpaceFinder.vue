@@ -303,6 +303,7 @@ export default {
                     model:`App\\Models\\SpaceFinder`,
                     required:false,
                     fileType:"image/jpeg, image/png",
+                    imageType:'main',
                     maxFiles:10
                 },
                 {
@@ -318,6 +319,7 @@ export default {
                     model:`App\\Models\\SpaceFinder`,
                     required:false,
                     fileType:"image/jpeg, image/png",
+                    imageType:'thumbnail',
                     maxFiles:10
                 },
 
