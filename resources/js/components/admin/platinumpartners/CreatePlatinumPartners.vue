@@ -62,7 +62,9 @@ export default {
                 description:'',
                 // author:'',
                 media:[],
-                gallery:[]
+                gallery:[],
+                thumbnail:[],
+                thumbnailGallery:[],
             },
             name:"Create Platinum Partner",
         }
@@ -147,6 +149,25 @@ export default {
                     model:`App\\Models\\PlatinumPartner`,
                     required:false,
                     fileType:"image/jpeg, image/png",
+                    maxFiles:10,
+                    render:true,
+                },
+                {
+                    label:Language.thumbnail,
+                    field:"thumbnailGallery",
+                    class:"files",
+                    grid:"col-md-12 col-12",
+                    type:"file",
+                    
+                    placeholder:function(){
+                        return "Upload"+this.label
+                    },
+                    multiple:true,
+                    model:`App\\Models\\PlatinumPartner`,
+                    required:false,
+                    render:true,
+                    fileType:"image/jpeg, image/png",
+                    imageType:'thumbnail',
                     maxFiles:10
                 },
 

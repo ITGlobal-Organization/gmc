@@ -171,7 +171,7 @@ class BaseController extends Controller
             // return $result;
             return $this->sendResponse([], trans('messages.success_msg',['action' => trans('lang.saved')]));
         } catch (\Exception $e) {
-            
+            dd($e);
             DB::rollback();
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
@@ -191,7 +191,7 @@ class BaseController extends Controller
 
         try {
             DB::beginTransaction();
-            $data = $request->except(['_token','media','gallery','image','image1','image2','filename','logo']);
+            $data = $request->except(['_token','media','gallery','attachment','image','image1','image2','filename','logo','thumbnail','thumbnailGallery']);
             $this->model->updateByColumn($data,$id);
             $this->model->id = $id;
             if ($request->has('media')) {

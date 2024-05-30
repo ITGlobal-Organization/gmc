@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group" v-else-if="field.type == 'file'">
                     <label class="form-label">{{ field.label }}</label>
-                    <file-pond v-if="render"
+                    <file-pond v-if="field.render"
                         :name=field.label
                       
                         ref="pond"
@@ -123,33 +123,7 @@
         </div>
 
     </form>
-        <!-- <button class="add-image-btn" @click="this.filesever">Add Image</button> -->
-        <!-- <div v-if="showModal" id="myModal" :class="showModal?'modal-overlay':'modal-overlay'">
-            <div class="modal-dialog modal-lg">
-                    <div class="modal-contents">
-                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{{ Language.gallery }}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div> 
-                        <span class="modal-close" @click="showModal = false">&times;</span>
-                        
-                        <div class="gallery">
-                            <div v-for="galleryImage in galleryImages" :key="galleryImage.id" class="gallery-item">
-                                <img
-                                :src="galleryImage.image_url ? galleryImage.image_url : '/media/image-not-found.png'"
-                                :alt="`Image ${galleryImage.id}`"
-                                :data-id="galleryImage.id"
-                                :class="{'highlighted': selectedImage.id === galleryImage.id}"
-                                @click="selectImage(galleryImage.id,galleryImage.image_url)"
-                                class="gallery-img"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </div> -->
+      
                 <ModalV2 :isShowModal="showModal" :images="galleryImages" :getImage="selectImage" :setShowModal="setShowModal"/>
 </template>
 <script>
@@ -228,6 +202,7 @@ export default {
                                     }
                                 }).then((response) =>{
                                     load(response.data);
+                                    console.log(response)
                                     ref.data.media.push(response.data);
                                 }).catch((e) => {
                                     error(e.message);
@@ -267,7 +242,7 @@ export default {
         async showField(field){
             this.showModal = true,
             this.selectedImagefor = field
-            this.render = false
+            this.selectedImagefor.render = false
         },
         async fetchGalleryImages(){
             const {records,getAllImages} = useUsers();
@@ -288,7 +263,7 @@ export default {
             
             //filePond.setFiles(imgSrc);
             this.showModal=false
-            this.render = true
+            this.selectedImagefor.render = true
             // console.log("abc",this.data)
             
         },
@@ -312,6 +287,10 @@ export default {
         },
         setShowModal(modal){
             this.showModal = modal;
+            // alert(modal)
+            if(this.showModal ==false){
+                this.render = true
+            }
         }
         // getLognitudeLatitude(addressData, placeResultData, id){
         //     if('lognitude' in this.data && 'latitude' in this.data){

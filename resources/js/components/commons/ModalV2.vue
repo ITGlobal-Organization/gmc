@@ -5,7 +5,7 @@
          <transition name="modal" v-on:before-enter="beforeEnter"
                 v-on:enter="enter">
              <div v-if="isShowModal">
-                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">{{ Language.gallery }}</h5>
@@ -69,6 +69,7 @@ export default {
     methods:{
         selectImage(id,url){
             this.seletedImage = id;
+            console.log('here',id)
             this.getImage(id,url);
         },
         error(){
@@ -81,19 +82,9 @@ export default {
 }
 </script>
 <style scoped>
-/* .modal { */
-    /* display: none;
-    position: fixed;
-    z-index: 100000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.9);
-}
 
-.modal-contents {
+
+/*.modal-contents {
     position: fixed;
     top: 50% !important;
     left: 50% !important;

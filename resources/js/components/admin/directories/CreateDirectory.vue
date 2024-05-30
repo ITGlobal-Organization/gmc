@@ -221,7 +221,7 @@
                 <div class="col-12 col-12 mb-3">
                     <div class="form-group">
                     <label class="form-label">{{ Language.image }}</label>
-                    <file-pond
+                    <file-pond v-if="renderGallery"
                         :name=Language.image
                         ref="pond"
                         class-name="my-pond"
@@ -229,11 +229,34 @@
                         :allow-multiple=true
                         accepted-file-types="image/jpeg, image/png"
                         max-files="10"
-                        :server=fileServer()
+                        :server=fileServer(imageTypes[0])
                         :files="FormData.gallery"
 
                     />
+                    <a href="#" class="gallery-link"  @click="showField({field:'gallery'})">Select from gallery:</a>
+                    <div v-if="errors['media']">
+                      <ul>
+                          <li class="text-danger" style="list-style:none;" v-for="(error,index) in errors['media']" :key="index">{{ error }}</li>
+                      </ul>
+                    </div>
+                </div>
+                </div>
+                <div class="col-12 col-12 mb-3">
+                    <div class="form-group">
+                    <label class="form-label">{{ Language.thumbnail }}</label>
+                    <file-pond v-if="renderThumb"
+                        :name=Language.thumbnail
+                        ref="pond"
+                        class-name="my-pond"
+                        label-idle="Drop files here..."
+                        :allow-multiple=true
+                        accepted-file-types="image/jpeg, image/png"
+                        max-files="10"
+                        :server=fileServer(imageTypes[1])
+                        :files="FormData.thumbnailGallery"
 
+                    />
+                    <a href="#" class="gallery-link"  @click="showField({field:'thumbnailGallery'})">Select from gallery:</a>
                     <div v-if="errors['media']">
                       <ul>
                           <li class="text-danger" style="list-style:none;" v-for="(error,index) in errors['media']" :key="index">{{ error }}</li>
@@ -257,8 +280,9 @@
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
-
+        <ModalV2 :isShowModal="showModal" :images="galleryImages" :getImage="selectImage" :setShowModal="setShowModal"/>
         </section>
+        
 </template>
 <script>
 import {Language} from '../../../helpers/lang/lang';
@@ -269,6 +293,7 @@ import useCategories from '../../../composables/categories';
 import useService  from '../../../services/index';
 import { axiosWrapper } from '../../../helpers';
 import CKEditor from '@ckeditor/ckeditor5-vue';
+import ModalV2 from '../../commons/ModalV2.vue';
 
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Select2 from 'vue3-select2-component';
@@ -287,6 +312,7 @@ export default {
         ckeditor: CKEditor.component,
         Select2,
         FilePond,
+        ModalV2
     },
     data(){
         return {
@@ -310,7 +336,12 @@ export default {
             editorConfig:[],
             developerOptions:[],
             typesOptions:[],
+            galleryImages: [],
             citiesOptions:[],
+            imageTypes:['main','thumbnail'],
+            renderGallery:true,
+            renderThumb:true,
+            showModal:false,
             FormData:{
                 title:'',
                 slug:'',
@@ -329,18 +360,26 @@ export default {
                 category_ids:[],
                 // author:'',
                 media:[],
-                gallery:[]
+                gallery:[],
+                thumbnail:[],
+                thumbnailGallery:[],
             },
             name:"Create Directory",
             selectAll:false,
             searchMulti:'',
+            selectedImage:{},
             fileServer:function(){},
+            selectAll:false,
+            selectedImagefor:null,
+            render:true,
+            pondInstance: null // Hold the FilePond instance here
         }
     },
     mounted(){
         let ref = this;
         ref.getAllUsers();
         ref.getAllCategories();
+        ref.fetchGalleryImages();
         ref.FormFields = [
                 {
                     label:Language.title,
@@ -568,11 +607,29 @@ export default {
                     model:`App\\Models\\Directory`,
                     required:false,
                     fileType:"image/jpeg, image/png",
-                    maxFiles:1
+                    maxFiles:1,
+                    render:true,
+                },
+                {
+                    label:Language.thumbnail,
+                    field:"thumbnailGallery",
+                    class:"files",
+                    grid:"col-md-12 col-12",
+                    type:"file",
+                    placeholder:function(){
+                        return "Upload"+this.label
+                    },
+                    multiple:true,
+                    render:true,
+                    model:`App\\Models\\Directory`,
+                    required:false,
+                    fileType:"image/jpeg, image/png",
+                    imageType:'thumbnail',
+                    maxFiles:10
                 },
 
         ]
-        this.fileServer = function(){
+        this.fileServer = function(type="main"){
             return {
                             process : async (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
                                 const { uploadMedia } = useGenerals();
@@ -580,6 +637,8 @@ export default {
                                 formData.append('files', file, file.name);
                                 formData.append('model', `App\\Models\\Directory`);
                                 formData.append('id',0)
+                                formData.append('img_type',type)
+                                formData.append('image_id',ref.selectedImage.id?ref.selectedImage.id:0)
 
                                 await uploadMedia(formData,{
                                     onUploadProgress : (e) => {
@@ -684,7 +743,51 @@ export default {
 
         },
 
-
+        async showField(field){
+            this.showModal = true,
+            this.selectedImagefor = field
+            if(this.selectedImagefor.field =="gallery"){
+                this.renderGallery = false;
+            }else{
+                this.renderThumb = false;
+            }
+           // this.selectedImagefor.render = false
+        },
+        async fetchGalleryImages(){
+            const {records,getAllImages} = useUsers();
+            await getAllImages();
+            this.galleryImages = records.value;
+        },
+        async selectImage(imageId,imgSrc) {
+            console.log(imageId,imgSrc)
+            this.selectedImage ={
+                id:imageId,
+                src:imgSrc,
+            }
+            // console.log("src",this.$refs.pond)
+            console.log(this.selectedImagefor.field)
+            await this.FormData[this.selectedImagefor.field].push(imgSrc);
+            // const filePond = this.$refs.pond.$el._pond;
+            // this.fileServer(this.data[this.selectedImagefor.model])
+            // this.updatePondFiles(imgSrc);
+            
+            //filePond.setFiles(imgSrc);
+            this.showModal=false
+            if(this.selectedImagefor.field =="gallery"){
+                this.renderGallery = true;
+            }else{
+                this.renderThumb = true;
+            }
+            // console.log("abc",this.data)
+            
+        },
+        setShowModal(modal){
+            this.showModal = modal;
+            // alert(modal)
+            if(this.showModal ==false){
+                this.render = true
+            }
+        }
 
    },
    watch:{

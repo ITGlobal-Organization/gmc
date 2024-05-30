@@ -63,7 +63,9 @@ export default {
                 publisher:'',
                 is_approved:'',
                 media:[],
-                gallery:[]
+                gallery:[],
+                thumbnail:[],
+                thumbnailGallery:[],
             },
             name:"Create News",
         }
@@ -189,8 +191,27 @@ export default {
                     },
                     multiple:true,
                     model:`App\\Models\\Blog`,
+                    render:true,
                     required:false,
                     fileType:"image/jpeg, image/png",
+                    maxFiles:10
+                },
+                {
+                    label:Language.thumbnail,
+                    field:"thumbnailGallery",
+                    class:"files",
+                    grid:"col-md-12 col-12",
+                    type:"file",
+                    
+                    placeholder:function(){
+                        return "Upload"+this.label
+                    },
+                    multiple:true,
+                    model:`App\\Models\\Blog`,
+                    required:false,
+                    render:true,
+                    fileType:"image/jpeg, image/png",
+                    imageType:'thumbnail',
                     maxFiles:10
                 },
 

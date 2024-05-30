@@ -66,7 +66,9 @@ export default {
                 is_approved:'',
                 // author:'',
                 media:[],
-                gallery:[]
+                gallery:[],
+                thumbnail:[],
+                thumbnailGallery:[],
             },
             name:"Create M2M Offer",
         }
@@ -250,6 +252,7 @@ export default {
                     class:"files",
                     grid:"col-md-12 col-12",
                     type:"file",
+                    render:true,
                     placeholder:function(){
                         return "Upload"+this.label
                     },
@@ -257,6 +260,24 @@ export default {
                     model:`App\\Models\\M2MOffer`,
                     required:false,
                     fileType:"image/jpeg, image/png",
+                    maxFiles:10
+                },
+                {
+                    label:Language.thumbnail,
+                    field:"thumbnailGallery",
+                    class:"files",
+                    grid:"col-md-12 col-12",
+                    type:"file",
+                    
+                    placeholder:function(){
+                        return "Upload"+this.label
+                    },
+                    multiple:true,
+                    model:`App\\Models\\M2MOffer`,
+                    required:false,
+                    render:true,
+                    fileType:"image/jpeg, image/png",
+                    imageType:'thumbnail',
                     maxFiles:10
                 },
 

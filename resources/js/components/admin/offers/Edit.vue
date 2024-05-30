@@ -59,7 +59,9 @@ data(){
                 is_approved:'',
                 // author:'',
                 media:[],
-                gallery:[]
+                gallery:[],
+                thumbnail:[],
+                thumbnailGallery:[],
         },
         name:"Update Space Finder",
     }
@@ -251,9 +253,29 @@ mounted(){
                     multiple:true,
                     model:`App\\Models\\M2MOffer`,
                     required:false,
+                    render:true,
                     fileType:"image/jpeg, image/png",
                     maxFiles:10
                 },
+                {
+                    label:Language.thumbnail,
+                    field:"thumbnailGallery",
+                    class:"files",
+                    grid:"col-md-12 col-12",
+                    type:"file",
+                    
+                    placeholder:function(){
+                        return "Upload"+this.label
+                    },
+                    multiple:true,
+                    model:`App\\Models\\M2MOffer`,
+                    required:false,
+                    render:true,
+                    fileType:"image/jpeg, image/png",
+                    imageType:'thumbnail',
+                    maxFiles:10
+                },
+                
 
         ]
         ref.edit();
@@ -301,12 +323,29 @@ methods:{
 
             this.form.gallery = record.value.media;
             let data = []
+            let thumbnails = [];
             let ref = this;
-            data = this.form.gallery.map(gall => {
-                return gall.image_url;
-            })
-            console.log(data);
+            data = this.form.gallery.filter(gall => {
+                if(gall.img_type == "main")
+                    return gall;
+            }).map(gall => {
+                return gall.image_url
+            });
+           
+
+            thumbnails = this.form.gallery.filter(thumb => {
+                if(thumb.img_type == "thumbnail")
+                    return thumb;
+            }).map(thumb => {
+                return thumb.image_url
+            });
+
+
+           console.log(data,thumbnails)
+
+
             this.form.gallery = data;
+            this.form.thumbnailGallery = thumbnails;
             record.value.media.filter(gallery => {
                 ref.form.media.push(gallery.id);
             })

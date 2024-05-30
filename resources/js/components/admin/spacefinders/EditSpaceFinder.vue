@@ -297,6 +297,7 @@ mounted(){
                     required:false,
                     fileType:"image/jpeg, image/png",
                     imageType:'main',
+                    render:true,
                     maxFiles:10
                 },
                 {
@@ -313,6 +314,7 @@ mounted(){
                     required:false,
                     fileType:"image/jpeg, image/png",
                     imageType:'thumbnail',
+                    render:true,
                     maxFiles:10
                 },
 
