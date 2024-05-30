@@ -1,37 +1,34 @@
 <template>
-
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>{{ Lang.create_msg(Lang.spacefinder) }}</h1>
-                </div>
-                <!-- <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#"></a></li>
-                    <li class="breadcrumb-item active">User Profile</li>
-                    </ol>
-                </div> -->
-                </div>
-            </div>
-        </section>
-        <!-- Main content -->
-        <div class="loading" v-if="loader">Loading</div>
-        <section class="content">
-
-        <!-- Default box -->
-        <div class="card card-secondary card-outline">
-
-            <div class="card-body">
-                <Form :fields="FormFields" :data="FormData" :action="store" :name="name" :errors="errors"/>
-            </div>
-
-            <!-- /.card-body -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>{{ Lang.create_msg(Lang.spacefinder) }}</h1>
         </div>
-        <!-- /.card -->
+      </div>
+    </div>
+  </section>
 
-        </section>
+  <!-- Main content -->
+  <div class="loading" v-if="loader">Loading</div>
+  <section class="content">
+    <!-- Default box -->
+    <div class="card card-secondary card-outline">
+      <div class="card-body">
+        <Form :fields="FormFields" :data="FormData" :action="store" :name="name" :errors="errors"/>
+        <!-- Select from gallery link -->
+
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
+    <!-- Modal -->
+
+    <!-- /.modal -->
+  </section>
 </template>
+
 <script>
 import {Language} from '../../../helpers/lang/lang';
 import Form from '../../commons/Form.vue';
@@ -46,9 +43,13 @@ export default {
     },
     data(){
         return {
+
+            // galleryImages: [],
+            // selectedImageId:null,
             Lang:Language,
             loader:false,
             users:[],
+            images:[],
             errors:{},
             FormFields:[],
             developerOptions:[],
@@ -72,12 +73,15 @@ export default {
                 categories:'',
                 // author:'',
                 media:[],
-                gallery:[]
+                gallery:[],
+                thumbnail:[],
+                thumbnailGallery:[],
             },
             name:"Create Space Finder",
         }
     },
     mounted(){
+        // this.fetchGalleryImages();
         let ref = this;
         ref.getAllUsers();
         ref.FormFields = [
@@ -284,48 +288,7 @@ export default {
                     },
                     required:true,
                 },
-                // {
-                //     label:Language.author,
-                //     field:"author",
-                //     class:"vue-select1",
-                //     grid:"col-md-4 col-12",
-                //     type:"select",
-                //     isdynamic:true,
-                //     searchable:true,
-                //     options:function(){
-                //             if(this.isdynamic){
-                //                 return ref.users;
-                //             }
-                //             return [];
-                //     },
-                //     placeholder:function(){
-                //         return Language.placholder_msg(this.label)
-                //     },
 
-                //     required:true,
-                // },
-                // {
-                //     label:Language.publisher,
-                //     field:"publisher",
-                //     class:"form-control",
-                //     grid:"col-md-4 col-12",
-                //     type:"text",
-                //     placeholder:function(){
-                //         return "Enter "+this.label
-                //     },
-                //     required:true,
-                // },
-                // {
-                //     label:Language.published_at,
-                //     field:"publish_at",
-                //     class:"form-control",
-                //     grid:"col-md-4 col-12",
-                //     type:"date",
-                //     placeholder:function(){
-                //         return "Enter "+this.label
-                //     },
-                //     required:true,
-                // },
 
                 {
                     label:Language.image,
@@ -340,6 +303,25 @@ export default {
                     model:`App\\Models\\SpaceFinder`,
                     required:false,
                     fileType:"image/jpeg, image/png",
+                    imageType:'main',
+                    render:true,
+                    maxFiles:10
+                },
+                {
+                    label:Language.thumbnail,
+                    field:"thumbnailGallery",
+                    class:"files",
+                    grid:"col-md-12 col-12",
+                    type:"file",
+                    placeholder:function(){
+                        return "Upload"+this.label
+                    },
+                    multiple:true,
+                    model:`App\\Models\\SpaceFinder`,
+                    required:false,
+                    fileType:"image/jpeg, image/png",
+                    imageType:'thumbnail',
+                    render:true,
                     maxFiles:10
                 },
 
@@ -351,6 +333,7 @@ export default {
     },
 
     methods:{
+
         async store(){
             const {store,errors} = useSpaceFinder();
             const {successAlert,errorAlert} = useService();
@@ -387,9 +370,11 @@ export default {
             await getAllPublic();
             this.users = records.value;
 
-        }
+        },
+
 
 
    }
 }
 </script>
+

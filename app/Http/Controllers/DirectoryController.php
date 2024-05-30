@@ -19,6 +19,7 @@ class DirectoryController extends BaseController
         $this->category = $category;
         $this->setModel( $this->directory);
         $this->setMedia($media);
+        $this->media=$media;
     }
 
     public function index(Request $request){
@@ -39,12 +40,15 @@ class DirectoryController extends BaseController
     public function edit(Request $request){
         $user = auth()->user();
         if(isset($user)){
+            $galleryImages = $this->media->orderBy('id','desc')->get();
             $result = $this->directory->first('user_id',$user->id,'=',['relatedCategories']);
+            // dd($result);
             $this->category->setLength(100000);
             $categories = $this->category->getAll();
             return view('user.company.edit',[
                 'Company'=>$result,
                 'Categories' => $categories,
+                'galleryImages'=>$galleryImages,
                 'title' => trans('lang.company').' | '.trans('lang.edit'),
             ]);
         }
@@ -56,6 +60,7 @@ class DirectoryController extends BaseController
 
 
     public function directories(Request $request){
+
         $CategoryId = '';
         if($request->has('category') && $request->category != ''){
             $CategoryId = $this->category->getIdFromColumn('slug',$request->category);
@@ -102,6 +107,7 @@ class DirectoryController extends BaseController
         // dd("sdfd");
 
         $Directory = $this->directory->first('slug',$slug,'=',['user','relatedCategories:id,name,slug'],[],['directories.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
+
         // $this->directory->setLength(10);
         // dd($Directory);
         // $LatestBlogs = $this->directory->getAll([['users','users.id','=','directories.user_id']],['directories.title','directories.description','directories.created_at','images.image_url','directories.slug']);
@@ -138,13 +144,29 @@ class DirectoryController extends BaseController
     }
 
     public function update(Request $request,$id){
+        // dd($request);
         $user = auth()->user();
-        if($request->hasFile('image') && isset($user) && $user->hasRole('user') ){
-            $media =  Helper::saveMedia($request->image,"App\Models\Directory",'main',$id);
-        }
+        // if($request->hasFile('image') && isset($user) && $user->hasRole('user') ){
+        //     $media =  Helper::saveMedia($request->image,"App\Models\Directory",'main',$id);
+        // }
+        $main_img_id = isset($request->main_img_id) ?  $request->main_img_id : '';
+        unset($request['main_img_id']);
+        $thumbnail_img_id = isset($request->thumbnail_img_id) ?  $request->thumbnail_img_id : '';
+        unset($request['thumbnail_img_id']);
         $CategoryIds = $request->category_ids;
         $request->request->remove('category_ids');
         $response = parent::update($request,$id);
+        if($request->hasFile('image')){
+            $media =  Helper::saveMedia($request->image,"App\Models\Directory",'main',$id);
+        }else if($main_img_id != ""){
+            $media =  Helper::updateGalleryImage($main_img_id,"App\Models\Directory",'main',$id);
+        }
+        if($request->hasFile('thumbnail')){
+            $media =  Helper::saveMedia($request->thumbnail,"App\Models\Directory",'thumbnail',$id);
+        }else if($thumbnail_img_id != ""){
+
+            $media =  Helper::updateGalleryImage($thumbnail_img_id,"App\Models\Directory",'thumbnail',$id);
+        }
         $this->directory->id = $id;
         $this->directory->deleteRelTableRecord('category_directory');
         try{

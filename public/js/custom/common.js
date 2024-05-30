@@ -236,7 +236,6 @@ function getCities() {
     // });
 }
 function changeFile() {
-    alert("rg")
     $('.file').on('change', function(e) {
         let reader = new FileReader();
         reader.onload = (e) => {

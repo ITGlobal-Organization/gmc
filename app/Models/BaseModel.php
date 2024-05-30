@@ -339,6 +339,7 @@ class BaseModel extends Model
             $data->leftjoin('images',function($leftJoin) use ($class,$table){
                 $leftJoin->on($table.'.id','=','images.model_id')
                 ->where('images.model','like',str_replace('\\','%',$class))
+                ->where('img_type','thumbnail')
                 ->orwhereNull('images.model');
             });
 
@@ -421,7 +422,18 @@ class BaseModel extends Model
         if(!isset($result)){
             abort(403);
         }
-        $result['media'] = Media::where('model',$this->class_name)->where('model_id',  $result->id)->get();
+        $user = Auth::user();
+        if(isset($user)){
+            if($user->hasRole('admin')){
+                $result['media'] = Media::where('model',$this->class_name)->
+                where('model_id',  $result->id)->get();
+            }
+        }else{
+            $result['media'] = Media::where('model',$this->class_name)->
+            where('img_type','main')->
+            where('model_id',  $result->id)->get();
+        }
+       
 
         return $result;
     }

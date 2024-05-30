@@ -62,7 +62,9 @@ data(){
                 is_approved:'',
                 category_id:0,
                 media:[],
-                gallery:[]
+                gallery:[],
+                thumbnail:[],
+                thumbnailGallery:[],
             },
         name:"Update Event",
     }
@@ -273,6 +275,7 @@ mounted(){
                     required:true,
                 },
 
+                
                 {
                     label:Language.image,
                     field:"gallery",
@@ -286,6 +289,24 @@ mounted(){
                     model:`App\\Models\\EventCalender`,
                     required:false,
                     fileType:"image/jpeg, image/png",
+                    render:true,
+                    maxFiles:10
+                },
+                {
+                    label:Language.thumbnail,
+                    field:"thumbnailGallery",
+                    class:"files",
+                    grid:"col-md-12 col-12",
+                    type:"file",
+                    render:true,
+                    placeholder:function(){
+                        return "Upload"+this.label
+                    },
+                    multiple:true,
+                    model:`App\\Models\\EventCalender`,
+                    required:false,
+                    fileType:"image/jpeg, image/png",
+                    imageType:'thumbnail',
                     maxFiles:10
                 },
 
@@ -337,12 +358,30 @@ methods:{
 
             this.form.gallery = record.value.media;
             let data = []
+            let thumbnails = [];
             let ref = this;
-            data = this.form.gallery.map(gall => {
-                return gall.image_url;
-            })
-            console.log(data);
+            data = this.form.gallery.filter(gall => {
+                if(gall.img_type == "main")
+                    return gall;
+            }).map(gall => {
+                return gall.image_url
+            });
+           
+
+            thumbnails = this.form.gallery.filter(thumb => {
+                if(thumb.img_type == "thumbnail")
+                    return thumb;
+            }).map(thumb => {
+                return thumb.image_url
+            });
+
+
+           console.log(data,thumbnails)
+
+
             this.form.gallery = data;
+            this.form.thumbnailGallery = thumbnails;
+
             record.value.media.filter(gallery => {
                 ref.form.media.push(gallery.id);
             })

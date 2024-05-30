@@ -18,6 +18,7 @@ class BlogController extends BaseController
         $this->url = $url::current();
         $this->setModel($blog);
         $this->setMedia($media);
+        $this->media=$media;
     }
 
     public function index(Request $request){
@@ -28,6 +29,14 @@ class BlogController extends BaseController
     }
 
     public function create(Request $request){
+        if(auth()->user()->hasRole('user')){
+            $galleryImages = $this->media->orderBy('id','desc')->get();
+            return view('user.news.create',[
+                'title' => trans('lang.blogs').' | '.trans('lang.create'),
+                'name' => 'news',
+                'galleryImages'=>$galleryImages
+            ]);
+        }
         return view('admin.crud.create',[
             'title' => trans('lang.blogs').' | '.trans('lang.create'),
             'name' => 'blog',
@@ -96,14 +105,31 @@ class BlogController extends BaseController
 
     public function renderForm(Request $request,$id){
         $blog = $this->blog->first('id',$id,'=',['user'],[],['blogs.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
-        return view('user.news.edit',['Blog'=>$blog]);
+        $galleryImages = $this->media->orderBy('id','desc')->get();
+        return view('user.news.edit',['Blog'=>$blog,'galleryImages'=>$galleryImages]);
     }
 
     public function store(Request $request){
 
+        // parent::store($request);
+        // if($request->hasFile('image')){
+        //     $media =  Helper::saveMedia($request->image,"App\Models\Blog",'main',$this->blog->id);
+        // }
+        $main_img_id = isset($request->main_img_id) ?  $request->main_img_id : '';
+        unset($request['main_img_id']);
+        $thumbnail_img_id = isset($request->thumbnail_img_id) ?  $request->thumbnail_img_id : '';
+        unset($request['thumbnail_img_id']);
         parent::store($request);
+
         if($request->hasFile('image')){
             $media =  Helper::saveMedia($request->image,"App\Models\Blog",'main',$this->blog->id);
+        }else if($main_img_id != ""){
+            $media =  Helper::updateGalleryImage($main_img_id,"App\Models\Blog",'main',$this->blog->id);
+        }
+        if($request->hasFile('thumbnail')){
+            $media =  Helper::saveMedia($request->thumbnail,"App\Models\Blog",'thumbnail',$this->blog->id);
+        }else if($thumbnail_img_id != ""){
+            $media =  Helper::updateGalleryImage($thumbnail_img_id,"App\Models\Blog",'thumbnail',$this->blog->id);
         }
         $response = [
             'success' => true,
@@ -116,10 +142,25 @@ class BlogController extends BaseController
     }
 
     public function update(Request $request,$id){
+        // if($request->hasFile('image')){
+        //     $media =  Helper::saveMedia($request->image,"App\Models\Blog",'main',$id);
+        // }
+        // parent::update($request,$id);
+        $main_img_id = isset($request->main_img_id) ?  $request->main_img_id : '';
+        unset($request['main_img_id']);
+        $thumbnail_img_id = isset($request->thumbnail_img_id) ?  $request->thumbnail_img_id : '';
+        unset($request['thumbnail_img_id']);
+        parent::update($request,$id);
         if($request->hasFile('image')){
             $media =  Helper::saveMedia($request->image,"App\Models\Blog",'main',$id);
+        }else if($main_img_id != ""){
+            $media =  Helper::updateGalleryImage($main_img_id,"App\Models\Blog",'main',$id);
         }
-        parent::update($request,$id);
+        if($request->hasFile('thumbnail')){
+            $media =  Helper::saveMedia($request->thumbnail,"App\Models\Blog",'thumbnail',$id);
+        }else if($thumbnail_img_id != ""){
+            $media =  Helper::updateGalleryImage($thumbnail_img_id,"App\Models\Blog",'thumbnail',$id);
+        }
         $response = [
             'success' => true,
             'data'=>[

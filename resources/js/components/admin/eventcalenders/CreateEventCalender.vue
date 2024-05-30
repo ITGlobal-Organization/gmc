@@ -71,7 +71,9 @@ export default {
                 is_approved:'',
                 category_id:0,
                 media:[],
-                gallery:[]
+                gallery:[],
+                thumbnail:[],
+                thumbnailGallery:[],
             },
             name:"Create Event",
         }
@@ -245,6 +247,7 @@ export default {
                     class:"files",
                     grid:"col-md-12 col-12",
                     type:"file",
+                    render:true,
                     placeholder:function(){
                         return "Upload"+this.label
                     },
@@ -252,6 +255,23 @@ export default {
                     model:`App\\Models\\EventCalender`,
                     required:false,
                     fileType:"image/jpeg, image/png",
+                    maxFiles:10
+                },
+                {
+                    label:Language.thumbnail,
+                    field:"thumbnailGallery",
+                    class:"files",
+                    grid:"col-md-12 col-12",
+                    type:"file",
+                    placeholder:function(){
+                        return "Upload"+this.label
+                    },
+                    multiple:true,
+                    render:true,
+                    model:`App\\Models\\EventCalender`,
+                    required:false,
+                    fileType:"image/jpeg, image/png",
+                    imageType:'thumbnail',
                     maxFiles:10
                 },
 

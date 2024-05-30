@@ -38,19 +38,21 @@
                 </div>
                 <div class="form-group" v-else-if="field.type == 'file'">
                     <label class="form-label">{{ field.label }}</label>
-                    <file-pond
+                    <file-pond v-if="field.render"
                         :name=field.label
+                      
                         ref="pond"
                         class-name="my-pond"
                         label-idle="Drop files here..."
                         :allow-multiple=field.multiple
                         :accepted-file-types=field.fileType
                         :max-files="field.maxFiles"
-                        :server=fileServer(field.model)
+                        :server=fileServer(field.model,field.imageType)
 
                         v-bind:files="data[field.field]"
 
                     />
+                    <a href="#" class="gallery-link"  @click="showField(field)">Select from gallery:</a>
 
                     <div v-if="errors[field.field]">
                       <ul>
@@ -58,7 +60,6 @@
                       </ul>
                     </div>
                 </div>
-
                 <div class="form-group" v-else-if="field.type == 'map'">
                     <label class="form-label">{{ field.label }}</label>
                     <vue-google-autocomplete :id="field.field" :placeholder="field.placeholder()" :classname="field.class" ref="address" v-model="data[field.field]"  :country="['pk']"  v-on:placechanged="getLognitudeLatitude">
@@ -70,7 +71,7 @@
                     </div>
                 </div>
                 <div class="form-group" v-else-if="field.type == 'date'">
-                
+
                     <label class="form-label">{{ field.label}}</label>
                                 <Datepicker v-model="data[field.field]" :class="errors[field.field]?'is-invalid ':''" autoApply :enableTimePicker="false" menuClassName="dp-custom-date" :placeholder="field.placeholder()" />
                                 <!-- <input type="text" id="order_date"  :placeholder="Lang.placholder_msg(Lang.order_date)" class="form-control" name="order_date"  v-model="FormData.order_date" required="true" > -->
@@ -96,8 +97,8 @@
                                 </label>
                             </div>
                             </div>
-                            
-                            
+
+
                 </div>
                 <div class="form-group" v-else>
                     <label class="form-label">{{ field.label }}</label>
@@ -122,6 +123,8 @@
         </div>
 
     </form>
+      
+                <ModalV2 :isShowModal="showModal" :images="galleryImages" :getImage="selectImage" :setShowModal="setShowModal"/>
 </template>
 <script>
 import {Language} from '../../helpers/lang/lang';
@@ -139,6 +142,8 @@ const FilePond = vueFilePond(FilePondPluginFileValidateType, FilePondPluginImage
 import useGenerals from '../../composables/general';
 import { axiosWrapper } from '../../helpers';
 import Datepicker from '@vuepic/vue-datepicker';
+import useUsers from '../../composables/users';
+import ModalV2 from './ModalV2.vue';
 export default {
     props:{
         fields:Array,
@@ -153,12 +158,17 @@ export default {
         ckeditor: CKEditor.component,
         Select2,
         FilePond,
-        Datepicker
+        Datepicker,
+        ModalV2
         // VueGoogleAutocomplete
 
     },
     data(){
         return {
+            showModal: false,
+            galleryImages: [],
+            testImages:[],
+            selectedImage:{},
             Language:Language,
             editor: ClassicEditor,
             editorConfig:[],
@@ -167,11 +177,15 @@ export default {
             autocomplet:null,
             fileServer:{},
             selectAll:false,
+            selectedImagefor:null,
+            render:true,
+            pondInstance: null // Hold the FilePond instance here
         }
     },
     mounted(){
-        let ref = this
-        this.fileServer = function(model){
+        let ref = this;
+        this.fetchGalleryImages();
+        this.fileServer = function(model,type="main"){
             return {
                             process : async (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
                                 const { uploadMedia } = useGenerals();
@@ -179,6 +193,8 @@ export default {
                                 formData.append('files', file, file.name);
                                 formData.append('model', model);
                                 formData.append('id',ref.id)
+                                formData.append('img_type',type)
+                                formData.append('image_id',ref.selectedImage.id?ref.selectedImage.id:0)
 
                                 await uploadMedia(formData,{
                                     onUploadProgress : (e) => {
@@ -186,12 +202,13 @@ export default {
                                     }
                                 }).then((response) =>{
                                     load(response.data);
+                                    console.log(response)
                                     ref.data.media.push(response.data);
                                 }).catch((e) => {
                                     error(e.message);
                                 })
 
-
+                                ref.selectedImage = {};
                                 return {
                                     abort: () => {
                                         abort();
@@ -222,9 +239,39 @@ export default {
 
     },
     methods:{
+        async showField(field){
+            this.showModal = true,
+            this.selectedImagefor = field
+            this.selectedImagefor.render = false
+        },
+        async fetchGalleryImages(){
+            const {records,getAllImages} = useUsers();
+            await getAllImages();
+            this.galleryImages = records.value;
+        },
+        async selectImage(imageId,imgSrc) {
+        
+            this.selectedImage ={
+                id:imageId,
+                src:imgSrc,
+            }
+            // console.log("src",this.$refs.pond)
+            await this.data[this.selectedImagefor.field].push(imgSrc);
+            // const filePond = this.$refs.pond.$el._pond;
+            // this.fileServer(this.data[this.selectedImagefor.model])
+            // this.updatePondFiles(imgSrc);
+            
+            //filePond.setFiles(imgSrc);
+            this.showModal=false
+            this.selectedImagefor.render = true
+            // console.log("abc",this.data)
+            
+        },
         store(){
             this.action();
         },
+       
+       
         selectAllMultiSelect(field,options){
             console.log(this.selectAll);
             if(!this.selectAll){
@@ -233,10 +280,17 @@ export default {
                 options.map(op => {
                     ref.data[field].push(op.id)
                })
-            }     
-            else 
-                this.data[field] = [] 
+            }
+            else
+                this.data[field] = []
 
+        },
+        setShowModal(modal){
+            this.showModal = modal;
+            // alert(modal)
+            if(this.showModal ==false){
+                this.render = true
+            }
         }
         // getLognitudeLatitude(addressData, placeResultData, id){
         //     if('lognitude' in this.data && 'latitude' in this.data){
@@ -253,3 +307,4 @@ export default {
 
 }
 </script>
+

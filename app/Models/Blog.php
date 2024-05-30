@@ -65,7 +65,7 @@ class Blog extends BaseModel
 
         $condition = [];
         $result = [];
-        $this->setSelectedColumn(['id','title','slug','publisher','author','publish_at','created_at','is_active','is_approved']);
+        $this->setSelectedColumn(['blogs.id','blogs.title','blogs.slug','blogs.publisher','users.first_name as author','blogs.publish_at','blogs.created_at','blogs.is_active','blogs.is_approved']);
 
         $this->setRenderColumn([
             [
@@ -127,7 +127,7 @@ class Blog extends BaseModel
 
         $result = $this->getAllDatatables([],
         $this->getSelectedColumns(),
-        [],'',[]);
+        [],'',[['users','users.id','=','blogs.author']]);
 
         return $result;
     }
