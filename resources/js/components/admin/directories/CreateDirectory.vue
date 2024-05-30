@@ -730,16 +730,17 @@ export default {
 
         },
         selectAllMultiSelect(field,options){
-            console.log(this.selectAll);
+            let ref = this;
+            // console.log(field,ref.FormData['category_ids']);
             if(!this.selectAll){
-                console.log(field,options);
-                let ref = this;
+                console.log("hrere ",options);
+                
                 options.map(op => {
-                    ref.FormData[field].push(op.id)
+                    ref.FormData['category_ids'].push(op.id)
                })
             }
             else
-            ref.FormData[field] = []
+            ref.FormData['category_ids'] = []
 
         },
 

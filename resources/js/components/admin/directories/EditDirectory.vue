@@ -766,15 +766,16 @@ methods:{
     },
     selectAllMultiSelect(field,options){
             console.log(this.selectAll);
+            let ref = this;
             if(!this.selectAll){
                 console.log(field,options);
-                let ref = this;
+                
                 options.map(op => {
-                    ref.FormData[field].push(op.id)
+                    ref.FormData['category_ids'].push(op.id)
                })
             }
             else
-            ref.FormData[field] = []
+            ref.FormData['category_ids'] = []
 
         },
 
