@@ -326,11 +326,11 @@ class BaseModel extends Model
     }
 
     public function getAll($join = [], $select = ['*'], $where = [],$joinOp='join')
-    {       
+    {
         try{
         DB::enableQueryLog();
 
-       
+
         $data =  static::selectRaw(implode(',', $select));
           // dd($this->has_images);
           if($this->has_images){
@@ -339,7 +339,7 @@ class BaseModel extends Model
             $data->leftjoin('images',function($leftJoin) use ($class,$table){
                 $leftJoin->on($table.'.id','=','images.model_id')
                 ->where('images.model','like',str_replace('\\','%',$class))
-                ->where('img_type','thumbnail')
+                // ->where('img_type','thumbnail')
                 ->orwhereNull('images.model');
             });
 
@@ -366,34 +366,34 @@ class BaseModel extends Model
             // $data = static::with($relation)->selectRaw(implode(',', $select));
         }
 
-       
+
 
 
 
         // $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
-       
+        if($this->getGroupBy() != ''){
+
+            $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
+            $data = $data->groupBy($this->table.'.'.$this->getGroupBy());
+
+        }
         if($this->getLength() > 0 ){
             // Log::debug(DB::getQueryLog());
             $data = $data->skip($this->getLength() * ($this->getStart() - 1))->take($this->getLength());
         }
-        
+
         if($this->getOrderBy() != ''){
             $data = $data->orderBy($this->table.'.'.$this->getOrderBy(), $this->getOrder());
         }
 
-        if($this->getGroupBy() != ''){
-          
-            $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
-            $data = $data->groupBy($this->table.'.'.$this->getGroupBy());
-          
-        }
-       
+
+
         Log::debug(DB::getQueryLog());
         return $data->get();
     }catch(Exception $e){
-        
+
         Log::error($e);
-       
+
         return [];
     }
 
@@ -433,7 +433,7 @@ class BaseModel extends Model
             where('img_type','main')->
             where('model_id',  $result->id)->get();
         }
-       
+
 
         return $result;
     }

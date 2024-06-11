@@ -9,6 +9,7 @@ use App\Http\Controllers\SpaceFinderController;
 use App\Http\Controllers\PlatinumPartnerController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Events\ChatMessageSent;
 use Illuminate\Http\Request;
 use Artisan;
@@ -55,7 +56,7 @@ Route::prefix('directories')->group(function () {
     Route::get('/{slug}',[DirectoryController::class,'getDirectory'])->name('directories.get')->middleware('auth');
 });
 Route::get('/search-directories',[DirectoryController::class,'searchDirectories'])->name('directories.search');
-
+Route::get('/admin/images',[DashboardController::class, 'galleryImages'])->name('admin.images');
 // Space-Finders
 Route::prefix('space-finders')->group(function () {
     Route::get('/',[SpaceFinderController::class,'spaceFinders'])->name('space-finders.index');
