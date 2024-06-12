@@ -136,7 +136,7 @@ Route::prefix('users')->group(function(){
 
 });
 
-Route::get('/images',[DashboardController::class, 'galleryImages'])->name('admin.images');
+
 // Users
 Route::prefix('offers')->group(function(){
     Route::get('/',[M2MOfferController::class, 'index'])->name('admin.offers.index');

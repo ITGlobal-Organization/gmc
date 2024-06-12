@@ -61,13 +61,13 @@ class EventCalenderController extends BaseController
         ]);
     }
     public function getEventsListing(Request $request){
-        // dd($request);
         $user = Auth::user();
         $this->setGeneralFilters($request);
         $this->removeGeneralFilters($request);
         $Categories = $this->eventCalender->getCategories();
         // $search = "tit";
         $AllEvents = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
+        // dd($AllEvents);
         // DB::enableQueryLog();
         // $a=$this->eventCalender->Where('title', 'like', '%' . $search . '%')->get();
 
@@ -308,7 +308,6 @@ class EventCalenderController extends BaseController
             }
 
         }catch(\Exception $e){
-            dd($e->getMessage());
             Log::error($e);
             return $this->sendError(trans('messages.error_msg',['action' => trans('lang.saving')]));
         }
