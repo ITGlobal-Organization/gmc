@@ -40,7 +40,12 @@
                         <!--<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>-->
                         <div class="box-name mtb-15">
                             <a href="spacefinder-details.php">
-                                {{ $Blog->title }}
+                                @if(strlen($Blog->title) > 30)
+                                    {{ substr($Blog->title, 0, 20).'...' }}
+                                @else
+                                    {{ $Blog->title }}
+                                @endif
+
                             </a>
 
                         </div>
