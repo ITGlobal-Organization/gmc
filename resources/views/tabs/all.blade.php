@@ -18,9 +18,8 @@
                                 <a href="{{ $Event->booking_link }}" target="_blank">
                                     {{ $Event->title }}
                                 </a>
-                                <div class="box-text">
-                                    {!! $Event->description !!}
-                                </div>
+                                @php  $Description =$directory->description; @endphp 
+                                @include('sections.wigets.description')
                             </div>
                         </div>
                         <div class="clr"></div>

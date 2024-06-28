@@ -68,9 +68,9 @@
         <a href="{{ route('directories.get', $directory->slug) }}">
       @endif
           {{ shortenTextLength($directory->title) }}        </a>    </div></div>
-                <div class="box-text">
-            {!! $directory->description !!}
-            </div>
+                
+                @php  $Description =$directory->description; @endphp 
+                @include('sections.wigets.description')
 
             </div>
 
