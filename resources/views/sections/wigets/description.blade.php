@@ -4,6 +4,6 @@
                         $Description = htmlspecialchars($Description, ENT_QUOTES, 'UTF-8');
                     
                     @endphp 
-        {!! Description !!}
+        {!! $Description !!}
             
 </div>
