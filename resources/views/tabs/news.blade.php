@@ -18,9 +18,8 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="box-text">
-                                {!! $News->description !!}
-                            </div>
+                            @php  $Description =$News->description; @endphp 
+                            @include('sections.wigets.description')
                         </div>
                         <div class="clr"></div>
                     </div>

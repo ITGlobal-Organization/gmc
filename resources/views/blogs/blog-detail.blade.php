@@ -35,7 +35,8 @@
 </div> -->
 
 <p>
-{!! $Blog->description !!}
+@php  $Description =$Blog->description; @endphp 
+@include('sections.wigets.description')
 
 </p>
 

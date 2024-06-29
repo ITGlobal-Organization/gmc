@@ -37,9 +37,8 @@
 									{{ shortenTextLength($blog->title) }}
 									</a>
 								</div>
-								<div class="box-text">
-									{!! $blog->description !!}
-								</div>
+								@php  $Description =$blog->description; @endphp 
+								@include('sections.wigets.description')
 							</div>
 							<div class="clr"></div>
 						</div>
