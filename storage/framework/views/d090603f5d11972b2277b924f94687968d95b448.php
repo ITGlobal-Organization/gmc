@@ -30,12 +30,12 @@
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <div class="main-box">
                             <div class="box-img card-image">
-                          
+
                                 <a href="<?php echo e($Event->booking_link); ?>" target="_blank">
                                 <?php echo $__env->make('components.image',[
-										
+
                                         'image' => $Event->image_url
-                                    ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?> 
+                                    ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                     </a>
                             </div>
                             <div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i>
@@ -51,18 +51,18 @@
                                 <b>Venue:</b> <?php echo e($Event->venue); ?>
 
                                 <b>Price:</b> <?php echo e($Event->price); ?><br><br>
-                                
+
                             </div>
-                            <?php if($Event->category_id == 2): ?>
+                            <?php if($Event->category_id == 2 && ($Event->limit > $Event->current_bookings)): ?>
                             <div class="text-center">
                                 <span class="btn-download"><a href="<?php echo e($Event->booking_link); ?>" target="_blank">Book Now</a>
                             </div>
-                            <?php else: ?>
+                            <?php elseif(($Event->limit > $Event->current_bookings) && $Event->category_id == 1): ?>
                             <div class="text-center">
                                 <span class="btn-download"><a href="<?php echo e(route('event.book',$Event->slug)); ?>" class="btn-vcc" data-id="<?php echo e($Event->price); ?>">Book Now</a>
                             </div>
                             <?php endif; ?>
-                           
+
                         </div>
                         <div class="clr"></div>
                     </div>

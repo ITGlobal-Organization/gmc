@@ -3,7 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<?php
+	$ProtectedRoutes = config('site_config.protected-routes');
+	?>
+	<?php if(in_array(\Route::currentRouteName(),$ProtectedRoutes)): ?>
 	<meta name="robots" content="noindex,nofollow">
+	<?php endif; ?>
 	<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 	<link href="<?php echo e(custom_asset('bootstrap.css','css')); ?> " rel="stylesheet" type="text/css">
 	<!-- <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"> -->

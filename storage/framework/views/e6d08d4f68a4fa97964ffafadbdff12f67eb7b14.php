@@ -21,10 +21,8 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="brand-text">
-                                    <?php echo $PlatinumPartner->description; ?>
-
-                                </div>
+                                <?php  $Description =$PlatinumPartner->description; ?> 
+                                <?php echo $__env->make('sections.wigets.description', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                             </div>
                             <div class="clr"></div>
                         </div>

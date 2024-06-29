@@ -68,10 +68,9 @@
         <a href="<?php echo e(route('directories.get', $directory->slug)); ?>">
       <?php endif; ?>
           <?php echo e(shortenTextLength($directory->title)); ?>        </a>    </div></div>
-                <div class="box-text">
-            <?php echo $directory->description; ?>
-
-            </div>
+                
+                <?php  $Description =$directory->description; ?> 
+                <?php echo $__env->make('sections.wigets.description', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
             </div>
 

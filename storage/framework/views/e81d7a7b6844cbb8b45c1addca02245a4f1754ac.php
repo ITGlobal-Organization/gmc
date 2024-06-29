@@ -18,10 +18,8 @@
 
                                 </a>
                             </div>
-                            <div class="box-text">
-                                <?php echo $Event->description; ?>
-
-                            </div>
+                            <?php  $Description =$Event->description; ?> 
+                            <?php echo $__env->make('sections.wigets.description', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                         </div>
                         <div class="clr"></div>
                     </div>
