@@ -1,6 +1,6 @@
 <div class="box-text">
                     @php 
-                        $Description = strip_tags($description);
+                        $Description = strip_tags($Description);
                         $Description = htmlspecialchars($Description, ENT_QUOTES, 'UTF-8');
                     
                     @endphp 

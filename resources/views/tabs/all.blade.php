@@ -19,7 +19,7 @@
                                     {{ $Event->title }}
                                 </a>
                                 @php  $Description =$directory->description; @endphp 
-                                @include('sections.wigets.description')
+                                @include('sections.wigets.description',$Description)
                             </div>
                         </div>
                         <div class="clr"></div>
