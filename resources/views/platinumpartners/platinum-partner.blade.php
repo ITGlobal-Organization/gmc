@@ -32,7 +32,7 @@
 
 
 </p>
-<a href="{{  isset($PlatinumPartner->website->url)?$PlatinumPartner->website->url:'javascript:void(0);' }}" target="_blank"> {{ trans('lang.click-here')}}</a>
+<a href="{{  isset($PlatinumPartner->web_url)?$PlatinumPartner->web_url:'javascript:void(0);' }}" target="_blank"> {{ trans('lang.click-here')}}</a>
 </div>
 
 <div class="clr"></div>
