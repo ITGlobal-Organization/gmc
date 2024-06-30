@@ -202,7 +202,7 @@ class SpaceFinderController extends BaseController
     {
         parent::setGeneralFilters($request);
         if($request->has('not_approved')){
-            $this->spaceFinder->setFilters(['is_approved','=',0]);
+            $this->spaceFinder->setFilters(['space_finders.is_approved','=',0]);
         }
     }
 }

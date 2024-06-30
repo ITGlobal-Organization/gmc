@@ -187,7 +187,7 @@ class BlogController extends BaseController
     {
         parent::setGeneralFilters($request);
         if($request->has('not_approved')){
-            $this->blog->setFilters(['is_approved','=',0]);
+            $this->blog->setFilters(['blogs.is_approved','=',0]);
         }
     }
 
