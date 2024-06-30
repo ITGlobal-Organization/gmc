@@ -204,6 +204,11 @@
         onChangeThumbnail(thumbnail_img_div, thumbnail_upload_div, thumbnail_close_btn);
         showgalleryImages(galleryFor);
 
+        $('.select2-multiple').select2({
+                placeholder: "Select options",
+                allowClear: true
+            });
+
     });
 </script>
 <?php $__env->stopSection(); ?>
