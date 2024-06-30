@@ -249,7 +249,7 @@ class EventCalenderController extends BaseController
     {
         parent::setGeneralFilters($request);
         if($request->has('not_approved')){
-            $this->eventCalender->setFilters(['is_approved','=',0]);
+            $this->eventCalender->setFilters(['event_calenders.is_approved','=',0]);
         }
     }
 

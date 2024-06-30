@@ -195,7 +195,7 @@ class DirectoryController extends BaseController
 
         parent::setGeneralFilters($request);
         if($request->has('not_approved')){
-            $this->directory->setFilters(['is_approved','=',0]);
+            $this->directory->setFilters(['directories.is_approved','=',0]);
         }
     }
 
