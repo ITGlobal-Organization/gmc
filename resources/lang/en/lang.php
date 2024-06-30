@@ -243,6 +243,7 @@ return [
     "book_now" => "Book Now",
     'first_name' => "First Name",
     'last_name' => "Last Name",
-    'booking' => "Booking"
+    'booking' => "Booking",
+    'platinum-partner' => "Platinum Partner"
 
 ];
