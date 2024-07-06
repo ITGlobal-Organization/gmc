@@ -67,7 +67,7 @@ class ZohoController extends BaseController
         }
 
         $request->merge(["user_id"=>$user,"mobile_no"=>$request->tel_no]);
-        $directoryData = $request->except(['_token','password_confirmation','password','company','category_ids','postalcode','tel_no','website']);
+        $directoryData = $request->except(['_token','password_confirmation','password','company','category_ids','postalcode','tel_no','website','are-you-happy','mentoring','mentor','exporting','chamber-plan']);
         $directory = $this->directory->store($directoryData);
         $this->directoryId = $directory;
 
