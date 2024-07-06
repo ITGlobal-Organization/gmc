@@ -82,7 +82,7 @@ class ZohoController extends BaseController
             $this->user->where('id',$this->authUser->id)->delete();
         }else{
             $response = $this->registerUser($request);
-            if($response['status'] != true){
+            if($response != true){
                 $this->user->where('id',$this->authUser->id)->delete();
             }
         }
