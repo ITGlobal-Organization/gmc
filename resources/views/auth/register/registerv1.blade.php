@@ -203,6 +203,7 @@
                                 <span class="font-12">No</span>
                             </div>
                         </div>
+                        <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label>Website Url<span class="red"> *</span></label>
                             <input type="text" class="join-input" value="" placeholder="Website Url"
@@ -219,6 +220,7 @@
                             </select>
                             <div class="error-category_ids[]"></div>
                         </div>
+                    </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 border mb-20">
                             <label>Facebiook page (n/a if none)<span class="red"> *</span></label>
                             <input type="text" class="join-input" value="" placeholder="Facebiook page"
