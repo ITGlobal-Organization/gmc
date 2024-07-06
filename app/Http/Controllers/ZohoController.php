@@ -53,7 +53,7 @@ class ZohoController extends BaseController
         }
         $website = $request->web_url;
         $request->merge(['website'=>$website]);
-        $userData = $request->except(['_token','password_confirmation','title','category_ids','web_url']);
+        $userData = $request->except(['_token','password_confirmation','title','category_ids','web_url','are-you-happy','mentoring','mentor','exporting','chamber-plan']);
         $userData['password'] = Hash::make($request->password);
         $user = $this->user->store($userData);
        
