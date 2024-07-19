@@ -74,6 +74,8 @@ class DirectoryController extends BaseController
     }
     public function getDirectoryListing(Request $request){
         $this->setGeneralFilters($request);
+        $orderBy = $request->order_by;
+        $order = $request->order;
         $this->removeGeneralFilters($request);
 
         $data = $request->all();
@@ -99,7 +101,9 @@ class DirectoryController extends BaseController
             'Directories' => $Directories,
             'count' => $this->directory->getCount(),
             'page' => $this->directory->getStart(),
-            'CategoryId' => $CategoryId
+            'CategoryId' => $CategoryId,
+            'orderBy' => isset($orderBy)?$orderBy:"",
+            'order' => isset($order)?$order:""
         ]);
     }
 

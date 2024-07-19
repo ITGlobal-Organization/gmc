@@ -63,6 +63,8 @@ class EventCalenderController extends BaseController
     public function getEventsListing(Request $request){
         $user = Auth::user();
         $this->setGeneralFilters($request);
+        $orderBy = $request->order_by;
+        $order = $request->order;
         $this->removeGeneralFilters($request);
         $Categories = $this->eventCalender->getCategories();
         // $search = "tit";
@@ -117,7 +119,9 @@ class EventCalenderController extends BaseController
             'AllEvents' => $AllEvents,
             'count' => $this->eventCalender->getCount(),
             'page' => $this->eventCalender->getStart(),
-            'Categories' => $Categories
+            'Categories' => $Categories,
+             'orderBy' => isset($orderBy)?$orderBy:"",
+            'order' => isset($order)?$order:""
         ]);
     }
     public function renderForm(Request $request,$id){
