@@ -70,6 +70,8 @@ class M2MOfferController extends BaseController
 
         $user = Auth::user();
         $this->setGeneralFilters($request);
+        $orderBy = $request->order_by;
+        $order = $request->order;
         $this->removeGeneralFilters($request);
 
         $data = $request->all();
@@ -90,7 +92,9 @@ class M2MOfferController extends BaseController
         return view($view,[
             'Offers' => $offers,
             'count' => $this->offer->getCount(),
-            'page' => $this->offer->getStart()
+            'page' => $this->offer->getStart(),
+             'orderBy' => isset($orderBy)?$orderBy:"",
+            'order' => isset($order)?$order:""
         ]);
     }
 

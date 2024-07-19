@@ -71,6 +71,8 @@ class SpaceFinderController extends BaseController
     public function getSpaceFindersListing(Request $request){
         $user = auth::user();
         $this->setGeneralFilters($request);
+        $orderBy = $request->order_by;
+        $order = $request->order;
         $this->removeGeneralFilters($request);
 
         $data = $request->all();
@@ -92,7 +94,9 @@ class SpaceFinderController extends BaseController
         return view($view,[
             'SpaceFinders' => $SpaceFinders,
             'count' => $this->spaceFinder->getCount(),
-            'page' => $this->spaceFinder->getStart()
+            'page' => $this->spaceFinder->getStart(),
+            'orderBy' => isset($orderBy)?$orderBy:"",
+            'order' => isset($order)?$order:""
         ]);
     }
 
