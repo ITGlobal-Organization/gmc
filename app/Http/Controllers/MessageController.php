@@ -123,6 +123,7 @@ class MessageController extends BaseController
             // dd($Users);
             return view('sections.chat.aside',[
                 'Users' => $Users,
+                'search' => $request->search,
             
             ]);
         }catch(Exception $e){
