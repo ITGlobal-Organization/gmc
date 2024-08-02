@@ -180,6 +180,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Karmendra\LaravelAgentDetector\AgentDetectorServiceProvider::class,
+        Ladumor\LaravelPwa\PWAServiceProvider::class,
 
     ],
 
@@ -237,6 +238,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Helper' => App\Helpers\Helper::class,
         'AgentDetector' => Karmendra\LaravelAgentDetector\Facades\AgentDetector::class,
+        'LaravelPwa' => \Ladumor\LaravelPwa\LaravelPwa::class,
         // 'ZCRMRestClient' => Zoho\CRM\Library\ZCRMRestClient::class,
         // 'PDF' => Barryvdh\DomPDF\Facade::class,
         // 'Share' => Jorenvh\Share\ShareFacade::class,

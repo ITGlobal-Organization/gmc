@@ -30,7 +30,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
 
-	<link rel="manifest" href="{{ asset('manifest.json') }}" />
+	<!-- PWA SETING -->
+	<meta name="theme-color" content="#072557"/>
+	<link rel="apple-touch-icon" href="{{ asset('pwa.png') }}">
+	<link rel="manifest" href="{{ asset('/manifest.json') }}">
     <link href="{{ custom_asset('owl.carousel.css','css') }}" rel="stylesheet" type="text/css">
     <link href="{{ custom_asset('owl.theme.css','css') }}" rel="stylesheet" type="text/css">
 <!--
@@ -127,9 +130,22 @@ const blade_config = {
 
 <script src="{{ custom_asset('banner-script.js','scripts') }}"></script>
 
+<script src="{{ asset('/sw.js') }}"></script>
 <script>
-
-
+   if ("serviceWorker" in navigator) {
+      // Register a service worker hosted at the root of the
+      // site using the default scope.
+      navigator.serviceWorker.register("/sw.js").then(
+      (registration) => {
+         console.log("Service worker registration succeeded:", registration);
+      },
+      (error) => {
+         console.error(`Service worker registration failed: ${error}`);
+      },
+    );
+  } else {
+     console.error("Service workers are not supported.");
+  }
 </script>
 <!--  -->
 @yield('scripts')

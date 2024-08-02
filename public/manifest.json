@@ -1,22 +1,33 @@
 {
     "name": "Chamber Of Commerce",
-    "short_name": "CMC",
+    "short_name": "LPT",
+    "start_url": "/index.php",
+    "id":"/index.php",
+    "background_color": "#072557",
     "description": "Chamber Of Commerce",
+    "display": "fullscreen",
+    "theme_color": "#072557",
     "icons": [
         {
-            "src": "media/logo.jpg",
-            "sizes": "32x32",
-            "type": "image/jpg"
-        },
-        
-        {
-            "src": "media/logo512X512.jpg",
-            "sizes": "512X512",
-            "type": "image/jpg"
+            "src": "pwa.png",
+            "sizes": "512x512",
+            "type": "image/png"
+            
         }
     ],
-    "start_url": "/index.php",
-    "display": "standalone",
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff"
+    "screenshots": [
+        {
+         "src": "pwa.png",
+         "sizes": "512x512",
+          "type": "image/png",
+          "form_factor": "wide",
+          "label": "Wonder Widgets"
+        },
+        {
+            "src": "pwa.png",
+            "sizes": "512x512",
+             "type": "image/png",
+             "label": "Wonder Widgets"
+        }
+    ]
 }
