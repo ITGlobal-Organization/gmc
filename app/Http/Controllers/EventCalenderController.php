@@ -65,6 +65,7 @@ class EventCalenderController extends BaseController
         $this->setGeneralFilters($request);
         $orderBy = $request->order_by;
         $order = $request->order;
+        $categoy = 0;
         $this->removeGeneralFilters($request);
         $Categories = $this->eventCalender->getCategories();
         // $search = "tit";
@@ -78,6 +79,7 @@ class EventCalenderController extends BaseController
         }
 
         if(isset($request->category_id) && $request->category_id != 0) {
+            $categoy = $request->category_id;
             $this->eventCalender->setFilters(['category_id','=',$request->category_id]);
         }
 
@@ -121,7 +123,8 @@ class EventCalenderController extends BaseController
             'page' => $this->eventCalender->getStart(),
             'Categories' => $Categories,
              'orderBy' => isset($orderBy)?$orderBy:"",
-            'order' => isset($order)?$order:""
+            'order' => isset($order)?$order:"",
+            "category" => $categoy > 0?$categoy:""
         ]);
     }
     public function renderForm(Request $request,$id){
