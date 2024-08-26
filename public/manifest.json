@@ -5,7 +5,7 @@
     "id":"/index.php",
     "background_color": "#072557",
     "description": "Chamber Of Commerce",
-    "display": "fullscreen",
+    "display": "standalone",
     "theme_color": "#072557",
     "icons": [
         {
