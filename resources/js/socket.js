@@ -5,7 +5,7 @@ import { createToaster } from "@meforma/vue-toaster";
 const toaster = createToaster({ /* options */ });
 window.toaster = toaster;
 
-window.socket = window.io('https://perthshirecc.co.uk:3000');
+window.socket = window.io('https://staging.perthshirecc.co.uk:3000');
 window.socket.on('new-message_'+blade_config.user_id, (message) => {
 	appendMessage(message)
 	increaseUnreadMessages(message.sender_id)
