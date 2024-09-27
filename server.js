@@ -7,8 +7,8 @@ const redis = new Redis();
 
 
 const options = {
-    key: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/perthshirecc.co.uk/fullchain.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/staging.perthshirecc.co.uk/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/staging.perthshirecc.co.uk/fullchain.pem'),
   };
 
   const server = require('https').createServer(options, (req, res) => {
