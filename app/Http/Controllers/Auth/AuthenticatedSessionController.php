@@ -67,13 +67,14 @@ class AuthenticatedSessionController extends BaseController
             $user[auth()->user()->roles[0]->name] = auth()->user()->{auth()->user()->roles[0]->name};
         }
         $redirect_route = session('redirect_route');
+      //  dd($redirect_route);
         if(!isset($redirect_route)){
             $redirect_route = prefix_route('dashboard');
         }
 
-        else{
-            $redirect_route = route($redirect_route);
-        }
+        // else{
+        //     $redirect_route = route($redirect_route);
+        // }
 
 
 

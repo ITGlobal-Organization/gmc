@@ -2,7 +2,7 @@
 
 
 <div class="col-xs-8 col-sm-10 col-md-10 col-lg-10 padding border mb-25">
-				<span class="listin-found"><b><!--{{ trans('lang.blogs')}}--> &nbsp;({{count($Blogs) }})</b> Articles {{ trans('lang.found')}}</span>
+				<span class="listin-found"><b><!--{{ trans('lang.blogs')}}--> &nbsp;({{$count }})</b> Articles {{ trans('lang.found')}}</span>
 			</div>
 
 			<div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 padding border mb-25">

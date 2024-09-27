@@ -14,8 +14,9 @@ class Authenticate extends Middleware
      * @return string|null
      */
     protected function redirectTo($request)
-    {
-        Session::put('redirect_route', $request->route()->getName());
+    {   
+       // dd();
+        Session::put('redirect_route', $request->fullUrl());
         if ($request->expectsJson()) {
             return response()->json(['message' => 'Unauthenticated.'], 401);
         }
