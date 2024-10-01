@@ -168,9 +168,29 @@ const blade_config = {
          console.error(`Service worker registration failed: ${error}`);
       },
     );
-  } else {
+  }
+   else {
      console.error("Service workers are not supported.");
   }
+
+  if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
+    // Show custom guide on how to "Add to Home Screen" on iOS
+    if (!localStorage.getItem("addToHomeScreenDismissed")) {
+        // Show the prompt if the user hasn't opted out
+        document.getElementById("installPrompt").style.display = "block";
+    }
+
+    // Handle the "Don't ask again" button click
+    document.getElementById("dismiss").addEventListener("click", function () {
+        localStorage.setItem("addToHomeScreenDismissed", "true");
+        document.getElementById("installPrompt").style.display = "none";
+    });
+
+    // Handle the "Close" button click
+    document.getElementById("close").addEventListener("click", function () {
+        document.getElementById("installPrompt").style.display = "none";
+    });
+	}
 </script>
 <!--  -->
 @yield('scripts')
