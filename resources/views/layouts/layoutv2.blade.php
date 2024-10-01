@@ -33,6 +33,8 @@
 	<!-- PWA SETING -->
 	<meta name="theme-color" content="#072557"/>
 	<link rel="apple-touch-icon" href="{{ asset('pwa.png') }}">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<link rel="manifest" href="{{ asset('/manifest.json') }}">
     <link href="{{ custom_asset('owl.carousel.css','css') }}" rel="stylesheet" type="text/css">
     <link href="{{ custom_asset('owl.theme.css','css') }}" rel="stylesheet" type="text/css">
