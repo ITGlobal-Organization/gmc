@@ -51,6 +51,24 @@
 
 
 	<title>{{ config('app.name')}} | {{ isset($title)?$title:'Page'}}</title>
+	<style>
+        #installPrompt {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: #fff;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+            z-index: 1000;
+        }
+        #installPrompt button {
+            margin: 10px;
+        }
+    </style>
 </head>
 <body>
 <!--Start Header-->
@@ -69,6 +87,11 @@
 
 <!--Start Middle-->
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
+<div id="installPrompt">
+        <p>To install this app, tap the share icon (the box with an arrow) and then "Add to Home Screen".</p>
+        <button id="dismiss">Don't ask again</button>
+        <button id="close">Close</button>
+    </div>
 @include('components.loader')
 @include('components.snackbar')
 @yield('content')
