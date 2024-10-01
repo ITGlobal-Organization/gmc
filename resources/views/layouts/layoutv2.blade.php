@@ -89,8 +89,8 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
 <div id="installPrompt">
         <p>To install this app, tap the share icon (the box with an arrow) and then "Add to Home Screen".</p>
-        <button id="dismiss">Don't ask again</button>
-        <button id="close">Close</button>
+        <button class="btn btn-primary" id="dismiss">Don't ask again</button>
+        <button class="btn btn-danger" id="close">Close</button>
     </div>
 @include('components.loader')
 @include('components.snackbar')
