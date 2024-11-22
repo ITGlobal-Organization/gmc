@@ -40,7 +40,13 @@
                         <!--<div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i> March 11, 2022</div>-->
                         <div class="box-name mtb-15">
                             <a href="spacefinder-details.php">
-                                <?php echo e($Blog->title); ?>
+                                <?php if(strlen($Blog->title) > 30): ?>
+                                    <?php echo e(substr($Blog->title, 0, 20).'...'); ?>
+
+                                <?php else: ?>
+                                    <?php echo e($Blog->title); ?>
+
+                                <?php endif; ?>
 
                             </a>
 
@@ -48,13 +54,13 @@
 
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center edit-btn">
 
-                            <a href="#" style="font-size: 16px;" class="edit"
-                                data-id="<?php echo e($Blog->id); ?>"><?php echo e(trans('lang.edit')); ?></a>
+                            <a href="#"  class="edit"
+                                data-id="<?php echo e($Blog->id); ?>"><i class="fa fa-edit"></i></a>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center delete-btn">
 
-                            <a href="#" style="font-size: 16px;" class="delete"
-                                data-id="<?php echo e($Blog->id); ?>"><?php echo e(trans('lang.delete')); ?></a>
+                            <a href="#"  class="delete"
+                                data-id="<?php echo e($Blog->id); ?>"><i class="fa fa-trash"></i></a>
                         </div>
 
                         <div class="clr"></div>
