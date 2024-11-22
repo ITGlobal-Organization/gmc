@@ -3,9 +3,15 @@
     <!--Start Middle-->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding events">
         <div class="middle mtb-60">
-            <h1 class="text-center mb-25">{{ trans('messages.edit_msg',[
-                    'attribute' => trans('lang.employee')
-                ])}}</h1>
+            <div class="row">
+                <div class="col-xs-8 col-sm-8 col-md-8">
+                    <h1 class="text-center mb-25">{{ trans('messages.edit_msg',[
+                        'attribute' => trans('lang.employee')
+                    ])}}</h1>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4"><button>Back</button></div>
+            </div>
+            
             <div class="contact-success"></div>
             <div class="contact-error"></div>
             <form action="" class="update" enctype="multipart/form-data">
@@ -34,13 +40,13 @@
                             <div class="clr"></div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                            <label for="phone">Phone</label>
+                            <label for="phone">Mobile</label>
                             <input type="text" class="serch-input" value="{{$User->phone}}" placeholder="Phone" name="phone">
                             <div class="error-phone"></div>
                             <div class="clr"></div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                            <label for="tel_no">Tel:</label>
+                            <label for="tel_no">Tel</label>
                             <input type="text" class="serch-input" value="{{$User->tel_no}}" placeholder="Tel:" name="tel_no">
                             <div class="error-tel_no"></div>
                             <div class="clr"></div>
