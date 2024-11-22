@@ -36,13 +36,13 @@
                             <div class="clr"></div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                            <label for="phone">Phone</label>
+                            <label for="phone">Mobile</label>
                             <input type="text" class="serch-input" value="" placeholder="Phone" name="phone">
                             <div class="error-phone"></div>
                             <div class="clr"></div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                            <label for="tel_no">Tel:</label>
+                            <label for="tel_no">Tel</label>
                             <input type="text" class="serch-input" value="" placeholder="Tel:" name="tel_no">
                             <div class="error-tel_no"></div>
                             <div class="clr"></div>

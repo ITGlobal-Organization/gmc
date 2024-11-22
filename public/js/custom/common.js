@@ -97,6 +97,8 @@ function ajaxPost(url,data,succssContainer,errorContainer) {
             setTimeout(function() {
                 if(response.data.route){
                     window.location.href = response.data.route;
+                }else if (response.data.data.route){
+                    window.location.href = response.data.data.route;
                 }
             },3000)
 

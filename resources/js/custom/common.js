@@ -100,6 +100,8 @@ async function ajaxPost(url,data,succssContainer,errorContainer,loader=true) {
             $(succssContainer).text(response.message);
             if(response.data.route){
                 window.location.href = response.data.route;
+            }else if (response.data.data.route){
+                window.location.href = response.data.data.route;
             }
             // else if(callback){
             //     callback(response);
@@ -330,6 +332,8 @@ function ajaxDelete(url,id,succssContainer='',errorContainer='') {
             $(succssContainer).text(response.message);
             if(response.data.route){
                 window.location.href = response.data.route;
+            }else if (response.data.data.route){
+                window.location.href = response.data.data.route;
             }
 
         },
