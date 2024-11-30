@@ -200,7 +200,6 @@ class SitePageController extends BaseController
         $this->platinumPartners->setOrderBy('id');
         $this->platinumPartners->setOrder('desc');
         $platinumPartners = $this->platinumPartners->getAll([],['platinum_partners.*','images.image_url']);
-        // dd($view);
         return view($view,[
             'PlatinumPartners' => $platinumPartners,
         ]);

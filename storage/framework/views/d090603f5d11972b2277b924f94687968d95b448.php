@@ -1,19 +1,12 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mb-20">
     <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 padding border mb-25">
-        <select class="pd-sort sort_by">
-            <option value=""><?php echo e(trans('lang.sort_by')); ?></option>
-            <option value="title-asc">A to Z</option>
-            <option value="title-desc">Z to A</option>
-
-            <option value="event_date-asc"><?php echo e(trans('lang.upcoming_first')); ?></option>
-            <option value="event_date-desc"><?php echo e(trans('lang.distant_first')); ?></option>
-        </select>
+    <?php echo $__env->make('sections.wigets.selectv1', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </div>
     <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 padding border mb-25">
             <select class="category pd-sort ml-2">
                     <option value=""><?php echo e(trans('lang.select_msg',['attribute' => trans('lang.category')])); ?></option>
                 <?php $__currentLoopData = $Categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option value="<?php echo e($Category->id); ?>"><?php echo e($Category->text); ?></option>
+                    <option value="<?php echo e($Category->id); ?>" <?php echo e($category == $Category->id?'selected':''); ?>><?php echo e($Category->text); ?></option>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
     </div>
@@ -30,12 +23,12 @@
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <div class="main-box">
                             <div class="box-img card-image">
-                          
+
                                 <a href="<?php echo e($Event->booking_link); ?>" target="_blank">
                                 <?php echo $__env->make('components.image',[
-										
+
                                         'image' => $Event->image_url
-                                    ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?> 
+                                    ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                     </a>
                             </div>
                             <div class="box-date"><i class="far fa-calendar-alt" style="color: #ffffff;"></i>
@@ -51,18 +44,18 @@
                                 <b>Venue:</b> <?php echo e($Event->venue); ?>
 
                                 <b>Price:</b> <?php echo e($Event->price); ?><br><br>
-                                
+
                             </div>
-                            <?php if($Event->category_id == 2): ?>
+                            <?php if($Event->category_id == 2 && ($Event->limit > $Event->current_bookings)): ?>
                             <div class="text-center">
                                 <span class="btn-download"><a href="<?php echo e($Event->booking_link); ?>" target="_blank">Book Now</a>
                             </div>
-                            <?php else: ?>
+                            <?php elseif(($Event->limit > $Event->current_bookings) && $Event->category_id == 1): ?>
                             <div class="text-center">
                                 <span class="btn-download"><a href="<?php echo e(route('event.book',$Event->slug)); ?>" class="btn-vcc" data-id="<?php echo e($Event->price); ?>">Book Now</a>
                             </div>
                             <?php endif; ?>
-                           
+
                         </div>
                         <div class="clr"></div>
                     </div>
