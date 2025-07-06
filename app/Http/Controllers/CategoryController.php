@@ -12,14 +12,14 @@ class CategoryController extends BaseController
 {
     private $category,$media;
     public function __construct(Category $category,Media $media) {
-      
+
         $this->category = $category;
         $this->setModel($category);
         $this->setMedia($media);
     }
 
     public function index(Request $request){
-    
+
         return view('admin.crud.index',[
              'title' => trans('lang.categories'),
              'name'  => trans('lang.category'),
@@ -31,11 +31,13 @@ class CategoryController extends BaseController
         if(isset($request->search) && $request->search != ""){
             $this->category->setFilters(['name','like','%'.$request->search.'%']);
         }
+        $this->category->setLength(100000);
         $Category = $this->category->getAll([],['id','name as text']);
         return $this->sendResponse($Category);
     }
 
     public function renderCategoriesView(Request $request){
+
         if($request->ajax()){
             // dd('here');
             return $this->categories($request);
@@ -51,7 +53,7 @@ class CategoryController extends BaseController
         $this->setGeneralFilters($request);
         $this->removeGeneralFilters($request);
 
-       
+
 
         if(isset($request->search) && $request->search != '')
             $this->category->setFilters(['name','like','%'.$request->search.'%']);

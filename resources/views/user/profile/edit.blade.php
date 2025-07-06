@@ -34,6 +34,20 @@
                             <div class="clr"></div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
+                            <label for="password">Password</label>
+                            <input type="password" class="serch-input-pass" value="" placeholder="Password"
+                                name="password">
+                            <div class="error-password"></div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
+                            <label for="password">Confirm Password</label>
+                            <input type="text" class="serch-input-pass" value="" placeholder="Password"
+                                name="password_confirmation">
+                            <div class="error-password_confirmation"></div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
                             <label for="phone">Phone</label>
                             <input type="text" class="serch-input" value="{{ $User->phone }}" placeholder="Mobile No"
                                 name="phone">
@@ -96,13 +110,7 @@
                             <div class="error-tel_no"></div>
                             <div class="clr"></div>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20">
-                            <label for="company">Company</label>
-                            <input type="text" class="serch-input" value="{{ $User->company }}" placeholder="Company"
-                                name="company">
-                            <div class="error-company"></div>
-                            <div class="clr"></div>
-                        </div>
+
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 border mb-20 img-div" style="position:relative;">
                             <button class="close AClass" type="button">
                                 <span>&times;</span>

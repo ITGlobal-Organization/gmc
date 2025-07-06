@@ -51,6 +51,7 @@ export default {
             Lang:Language,
             loader:false,
             users:[],
+            categories:[],
             errors:{},
             FormFields:[],
             developerOptions:[],
@@ -58,7 +59,7 @@ export default {
             citiesOptions:[],
             FormData:{
                 title:'',
-                slug:'',
+                // slug:'',
                 user_id:'',
                 description:'',
                 venue:'',
@@ -68,8 +69,11 @@ export default {
                 price:'',
                 booking_link:'',
                 is_approved:'',
+                category_id:0,
                 media:[],
-                gallery:[]
+                gallery:[],
+                thumbnail:[],
+                thumbnailGallery:[],
             },
             name:"Create Event",
         }
@@ -77,6 +81,7 @@ export default {
     mounted(){
         let ref = this;
         ref.getAllUsers();
+        ref.getAllCategories()
         ref.FormFields = [
                 {
                     label:Language.title,
@@ -176,10 +181,30 @@ export default {
                     required:true,
                 },
                 {
+                    label:Language.category,
+                    field:"category_id",
+                    class:"vue-select1",
+                    grid:"col-md-4 col-12",
+                    type:"select",
+                    isdynamic:true,
+                    searchable:true,
+                    options:function(){
+                            if(this.isdynamic){
+                                return ref.categories;
+                            }
+                            return [];
+                    },
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+
+                    required:true,
+                },
+                {
                     label:Language.is_approved,
                     field:"is_approved",
                     class:"vue-select1",
-                    grid:"col-md-2 col-12",
+                    grid:"col-md-4 col-12",
                     type:"select",
                     isdynamic:false,
                     searchable:true,
@@ -222,6 +247,7 @@ export default {
                     class:"files",
                     grid:"col-md-12 col-12",
                     type:"file",
+                    render:true,
                     placeholder:function(){
                         return "Upload"+this.label
                     },
@@ -229,6 +255,23 @@ export default {
                     model:`App\\Models\\EventCalender`,
                     required:false,
                     fileType:"image/jpeg, image/png",
+                    maxFiles:10
+                },
+                {
+                    label:Language.thumbnail,
+                    field:"thumbnailGallery",
+                    class:"files",
+                    grid:"col-md-12 col-12",
+                    type:"file",
+                    placeholder:function(){
+                        return "Upload"+this.label
+                    },
+                    multiple:true,
+                    render:true,
+                    model:`App\\Models\\EventCalender`,
+                    required:false,
+                    fileType:"image/jpeg, image/png",
+                    imageType:'thumbnail',
                     maxFiles:10
                 },
 
@@ -275,6 +318,12 @@ export default {
             const {records,getAllPublic} = useUsers();
             await getAllPublic();
             this.users = records.value;
+
+        },
+        async getAllCategories(){
+            const {categories,getAllCategories} = useEventCalender();
+            await getAllCategories();
+            this.categories = categories.value;
 
         }
 

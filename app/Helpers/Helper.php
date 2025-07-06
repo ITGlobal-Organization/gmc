@@ -12,7 +12,10 @@ use Mail;
 use App\Models\Media;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
-
+use Carbon\Carbon;
+use Karmendra\LaravelAgentDetector\AgentDetector;
+use DB;
+// use Carbon\Carbon;
 
 class Helper
 {
@@ -118,9 +121,10 @@ class Helper
         }
     }
 
-    public static function saveMedia($files,$model='',$file_type='main',$id=0)
+    public static function saveMedia($files,$model='',$file_type='main',$id=0,$image_id=0)
     {
         $public_path = "";
+
         $directory = time();
         (int)$random = random_int(100,999);
 
@@ -129,24 +133,43 @@ class Helper
     //    dd($files);
         try{
             if(is_array($files)){
-
                 foreach($files as $file){
-                    $exitMedia = Media::where('model',$model)->where('image_name',$file->getClientOriginalName())->
-                where('model_id',$id)->first();
+                    if($image_id > 0){
+                        $exitMedia = Media::where('id',$image_id);
+                        
+                    }else{
+                        $exitMedia = Media::where('model',$model)->where('image_name',$files->getClientOriginalName())->where('model_id',$id);
+                    }
+                    $exitMedia = $exitMedia->first();
 
                     if(isset($exitMedia)){
+                        if($image_id > 0){
+                            $media = Media::create([
+                                'image_url' => $exitMedia->image_url,
+                                'model_id' =>$id,
+                                'model' => $model,
+                                'image_name' => $exitMedia->image_name,
+                                'img_type' => $file_type,
+                                'extension' => $exitMedia->extension
+                            ]);
+
+                            return $media;
+                        }
                         return $exitMedia;
                     }
                     if (file_exists(public_path('media/'.$file->getClientOriginalName()))) {
                         @unlink(public_path('media/'.$file->getClientOriginalName()));
                     }
                     $path = public_path('media/');
-                    $public_path = asset('media/'.$file->getClientOriginalName());
+                    $public_path = '/media/'.$file->getClientOriginalName();
+
+                    // $public_path = asset('media/'.$file->getClientOriginalName());
                     $file->move($path,$file->getClientOriginalName());
 
-                    $media = Media::where('id',$id)->first();
+                    $media = Media::where('model_id',$id)->where('img_type',$file_type)->first();
+                    // dd($media);
                     if(isset($media)){
-                        $updated = Media::where('id',$id)->update([
+                        $updated = Media::where('model_id',$id)->where('img_type',$file_type)->update([
                             'image_url' => $public_path,
                             'model_id' => $id,
                             'model' => $model,
@@ -164,29 +187,51 @@ class Helper
                             'extension' => $file->getClientOriginalExtension()
                         ]);
                     }
-                    
+
 
                 }
 
             }else{
+
+                $exitMedia = null;
                 // dd($files->getClientOriginalName());
-                $exitMedia = Media::where('model',$model)->where('image_name',$files->getClientOriginalName())->
-                where('model_id',$id)->first();
+                if($image_id > 0){
+                    $exitMedia = Media::where('id',$image_id);
+                   // $data = $exitMedia->first();
+
+                }else{
+                    $exitMedia = Media::where('model',$model)->where('image_name',$files->getClientOriginalName())->where('model_id',$id);
+                }
+                $exitMedia = $exitMedia->first();
               //  dd($exitMedia,$model,$files->getClientOriginalName());
 
                     if(isset($exitMedia)){
+                        if($image_id > 0){
+                            $media = Media::create([
+                                'image_url' => $exitMedia->image_url,
+                                'model_id' =>$id,
+                                'model' => $model,
+                                'image_name' => $exitMedia->image_name,
+                                'img_type' => $file_type,
+                                'extension' => $exitMedia->extension
+                            ]);
+                            return $media;
+                        }
                         return $exitMedia;
+                        
                     }
                     if (file_exists(public_path('media/'.$files->getClientOriginalName()))) {
                         @unlink(public_path('media/'.$files->getClientOriginalName()));
                     }
+
                     $path = public_path('media/');
-                    $public_path = asset('media/'.$files->getClientOriginalName());
+                    $public_path = '/media/'.$files->getClientOriginalName();
+                    // $public_path = asset('media/'.$files->getClientOriginalName());
                     $files->move($path,$files->getClientOriginalName());
-                    // dd($id);s
-                    $media = Media::where('id',$id)->first();
+                    $media = Media::where('model_id',$id)->where('img_type',$file_type)->first();
+
                     if(isset($media)){
-                        $updated = Media::where('id',$id)->update([
+                        $media = Media::create([
                             'image_url' => $public_path,
                             'model_id' => $id,
                             'model' => $model,
@@ -194,6 +239,14 @@ class Helper
                             'img_type' => $file_type,
                             'extension' => $files->getClientOriginalExtension()
                         ]);
+                        // $updated = Media::where('model_id',$id)->where('img_type',$file_type)->update([
+                        //     'image_url' => $public_path,
+                        //     'model_id' => $id,
+                        //     'model' => $model,
+                        //     'image_name' => $files->getClientOriginalName(),
+                        //     'img_type' => $file_type,
+                        //     'extension' => $files->getClientOriginalExtension()
+                        // ]);
                     }else{
                         $media = Media::create([
                             'image_url' => $public_path,
@@ -204,7 +257,7 @@ class Helper
                             'extension' => $files->getClientOriginalExtension()
                         ]);
                     }
-                   
+
 
             }
 
@@ -212,6 +265,7 @@ class Helper
             return $media;
 
         }catch(\Exception $e){
+            dd($e);
             $public_path = "media/image-not-found.png";
             Log::error($e);
             return false;
@@ -398,7 +452,7 @@ class Helper
 
     public static function formatHeading($str,$sep,$class){
         try{
-            $textArr = explode($sep,$str);    
+            $textArr = explode($sep,$str);
             $formatStr = "";
             $count = 1;
             foreach($textArr as $key => $txt){
@@ -412,6 +466,158 @@ class Helper
         }catch(Exception $e){
             Log::error($e->getMessage());
             return $str;
+        }
+    }
+
+
+    public static function getDate($date,$format){
+        return Carbon::parse($date)->format($format);
+    }
+
+    public static function padtoLeft($number,$length=2){
+        $paddedNumber = "";
+        for($i=strlen($number);$i<$length;$i++){
+            $paddedNumber .= '0';
+        }
+        $paddedNumber .= $number;
+
+        return $paddedNumber;
+    }
+
+    public static function getDevice($request){
+        return true;
+        $device = $request->userAgent();
+        $ad = new AgentDetector($device);
+
+        $type = $ad->device();
+        $model = $ad->deviceModel();
+        $platform = $ad->platform();
+        $platform_version = $ad->platformVersion();
+
+        $result = DB::table('devices')
+        ->where('user_id',auth()->user()->id)
+        ->where('device',$type)
+        ->where('model',$model)
+        ->where('platform',$platform)
+        ->where('platform_version',$platform_version)
+        ->first();
+
+
+        if($result != ""){
+            $createdAt = Carbon::parse($result->created_at);
+            $now = Carbon::now();
+            // Calculate the difference in days
+            $diffInDays = $createdAt->diffInDays($now);
+
+            if($diffInDays > 30){
+                return false;
+            }
+            return true;
+        }
+
+        return false;
+
+        // $savedDevice = DB::table('devices')->where('user_id',$user->id)->where('device',$type)->where('is_otp_validated',1)->first();
+    }
+
+    public static function setDevice($request){
+
+        try{
+            $device = $request->userAgent();
+            $ad = new AgentDetector($device);
+
+            $type = $ad->device();
+            $model = $ad->deviceModel();
+            $platform = $ad->platform();
+            $platform_version = $ad->platformVersion();
+
+            $result = DB::table('devices')->insert([
+                ['user_id'=> auth()->user()->id,'device'=> $type,
+                'model'=> $model,'platform'=> $platform,'platform_version'=> $platform_version,'is_otp_validated'=>1,
+                'created_at'=>Carbon::now()],
+            ]);
+            return true;
+
+        }catch(\Exception $e){
+            return false;
+        }
+
+        // $savedDevice = DB::table('devices')->where('user_id',$user->id)->where('device',$type)->where('is_otp_validated',1)->first();
+    }
+
+    public static function updateDevice($request,$column,$value){
+
+        try{
+            $device = $request->userAgent();
+            $ad = new AgentDetector($device);
+
+            $type = $ad->device();
+            $model = $ad->deviceModel();
+            $platform = $ad->platform();
+            $platform_version = $ad->platformVersion();
+
+            $result = DB::table('devices')->whereColumn([
+                ['user_id', '=', auth()->user()->id],
+                ['device', '=', $type],
+                ['model', '=', $model],
+                ['platform', '=', $platform],
+                ['platform_version', '=', $platform_version],
+                ['is_otp_validated', '=', 1],
+            ])->update([$column=>$value]);
+
+            return true;
+
+        }catch(\Exception $e){
+            return false;
+        }
+
+    }
+
+    public static function getUserIP($request) {
+        // Get the client's IP address, considering proxies
+        $ip = $request->header('X-Forwarded-For');
+
+        // If X-Forwarded-For header is not present, get the IP from the request object
+        if (empty($ip)) {
+            $ip = $request->ip();
+        } else {
+            // X-Forwarded-For can contain a comma-separated list of IPs; get the first one
+            $ip = explode(',', $ip)[0];
+        }
+
+        return $ip;
+    }
+    public static function updateGalleryImage($img_id,$model,$img_type,$modelId){
+        try{
+            $img= Media::where('id',$img_id)->first();
+            $media = Media::where('model_id',$modelId)->where('img_type',$img_type)->first();
+            if(isset($media) ){
+                $$media = Media::where('model_id',$modelId)->where('img_type',$img_type)->update([
+                    'image_url' => $img->image_url,
+                    'model_id' => $modelId,
+                    'model' => $model,
+                    'image_name' => $img->image_name,
+                    'img_type' => $img_type,
+                    'extension' => $img->extension
+                ]);
+            }else{
+                $media = Media::create([
+                    'image_url' => $img->image_url,
+                    'model_id' => $modelId,
+                    'model' => $model,
+                    'image_name' => $img->image_name,
+                    'img_type' => $img_type,
+                    'extension' => $img->extension
+                ]);
+            }
+
+
+            return $media;
+
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            Log::error($e);
+            return false;
         }
     }
 }

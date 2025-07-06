@@ -1,0 +1,22 @@
+{
+    "name": "Chamber Of Commerce",
+    "short_name": "CMC",
+    "description": "Chamber Of Commerce",
+    "icons": [
+        {
+            "src": "media/logo.jpg",
+            "sizes": "32x32",
+            "type": "image/jpg"
+        },
+        
+        {
+            "src": "media/logo512X512.jpg",
+            "sizes": "512X512",
+            "type": "image/jpg"
+        }
+    ],
+    "start_url": "/index.php",
+    "display": "standalone",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff"
+}

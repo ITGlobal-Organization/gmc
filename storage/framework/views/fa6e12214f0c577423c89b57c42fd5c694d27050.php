@@ -36,7 +36,7 @@
                 <?php echo $PlatinumPartner->description; ?>
 
             </div>
-
+           
         </div>
 
         <div class="clr"></div>

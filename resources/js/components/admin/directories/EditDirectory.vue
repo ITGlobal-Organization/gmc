@@ -94,7 +94,7 @@
             <div class="col-6 col-md-6 col-12 mb-3">
                 <div class="form-group">
                     <label class="form-label">{{ Language.web_url }}</label>
-                    <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.web_url)" :class="'form-control'" name="web_url"  v-model="form.web_url" :required="true" >
+                    <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.web_url)" :class="'form-control'" name="web_url"  v-model="form.web_url" :required="false" >
                     <div v-if="errors['web_url']">
                         <ul>
                             <li class="text-danger" style="list-style:none;" v-for="(error,index) in errors['web_url']" :key="index">{{ error }}</li>
@@ -105,7 +105,7 @@
             <div class="col-6 col-md-6 col-12 mb-3">
                 <div class="form-group">
                     <label class="form-label">{{ Language.facebook_url }}</label>
-                    <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.facebook_url)" :class="'form-control'" name="facebook_url"  v-model="form.facebook_url" :required="true" >
+                    <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.facebook_url)" :class="'form-control'" name="facebook_url"  v-model="form.facebook_url" :required="false" >
                     <div v-if="errors['facebook_url']">
                         <ul>
                             <li class="text-danger" style="list-style:none;" v-for="(error,index) in errors['facebook_url']" :key="index">{{ error }}</li>
@@ -116,7 +116,7 @@
             <div class="col-6 col-md-6 col-12 mb-3">
                 <div class="form-group">
                     <label class="form-label">{{ Language.youtube_url }}</label>
-                    <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.youtube_url)" :class="'form-control'" name="youtube_url"  v-model="form.youtube_url" :required="true" >
+                    <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.youtube_url)" :class="'form-control'" name="youtube_url"  v-model="form.youtube_url" :required="false" >
                     <div v-if="errors['youtube_url']">
                         <ul>
                             <li class="text-danger" style="list-style:none;" v-for="(error,index) in errors['youtube_url']" :key="index">{{ error }}</li>
@@ -127,7 +127,7 @@
             <div class="col-6 col-md-6 col-12 mb-3">
                 <div class="form-group">
                     <label class="form-label">{{ Language.linkedin_url }}</label>
-                    <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.linkedin_url)" :class="'form-control'" name="linkedin_url"  v-model="form.linkedin_url" :required="true" >
+                    <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.linkedin_url)" :class="'form-control'" name="linkedin_url"  v-model="form.linkedin_url" :required="false" >
                     <div v-if="errors['linkedin_url']">
                         <ul>
                             <li class="text-danger" style="list-style:none;" v-for="(error,index) in errors['linkedin_url']" :key="index">{{ error }}</li>
@@ -138,7 +138,7 @@
             <div class="col-6 col-md-6 col-12 mb-3">
                 <div class="form-group">
                     <label class="form-label">{{ Language.instagram_url }}</label>
-                    <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.instagram_url)" :class="'form-control'" name="instagram_url"  v-model="form.instagram_url" :required="true" >
+                    <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.instagram_url)" :class="'form-control'" name="instagram_url"  v-model="form.instagram_url" :required="false" >
                     <div v-if="errors['instagram_url']">
                         <ul>
                             <li class="text-danger" style="list-style:none;" v-for="(error,index) in errors['instagram_url']" :key="index">{{ error }}</li>
@@ -149,7 +149,7 @@
             <div class="col-6 col-md-6 col-12 mb-3">
                 <div class="form-group">
                     <label class="form-label">{{ Language.venue_url }}</label>
-                    <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.venue_url)" :class="'form-control'" name="venue_url"  v-model="form.venue_url" :required="true" >
+                    <input type="text" :id="index"  :placeholder="Language.placholder_msg(Language.venue_url)" :class="'form-control'" name="venue_url"  v-model="form.venue_url" :required="false" >
                     <div v-if="errors['venue_url']">
                         <ul>
                             <li class="text-danger" style="list-style:none;" v-for="(error,index) in errors['venue_url']" :key="index">{{ error }}</li>
@@ -221,7 +221,7 @@
             <div class="col-12 col-12 mb-3">
                 <div class="form-group">
                 <label class="form-label">{{ Language.image }}</label>
-                <file-pond
+                <file-pond v-if="renderGallery"
                     :name=Language.image
                     ref="pond"
                     class-name="my-pond"
@@ -229,36 +229,60 @@
                     :allow-multiple=true
                     accepted-file-types="image/jpeg, image/png"
                     max-files="10"
-                    :server=fileServer()
+                    :server=fileServer(imageTypes[0])
                     :files="form.gallery"
 
-                />
+                    />
+                    <a href="#" class="gallery-link"  @click="showField({field:'gallery'})">Select from gallery:</a>
+                    <div v-if="errors['media']">
+                      <ul>
+                          <li class="text-danger" style="list-style:none;" v-for="(error,index) in errors['media']" :key="index">{{ error }}</li>
+                      </ul>
+                    </div>
+                </div>
+                </div>
+                <div class="col-12 col-12 mb-3">
+                    <div class="form-group">
+                    <label class="form-label">{{ Language.thumbnail }}</label>
+                    <file-pond v-if="renderThumb"
+                        :name=Language.thumbnail
+                        ref="pond"
+                        class-name="my-pond"
+                        label-idle="Drop files here..."
+                        :allow-multiple=true
+                        accepted-file-types="image/jpeg, image/png"
+                        max-files="10"
+                        :server=fileServer(imageTypes[1])
+                        :files="form.thumbnailGallery"
 
-                <div v-if="errors['media']">
-                  <ul>
-                      <li class="text-danger" style="list-style:none;" v-for="(error,index) in errors['media']" :key="index">{{ error }}</li>
-                  </ul>
+                    />
+                    <a href="#" class="gallery-link"  @click="showField({field:'thumbnailGallery'})">Select from gallery:</a>
+                    <div v-if="errors['media']">
+                      <ul>
+                          <li class="text-danger" style="list-style:none;" v-for="(error,index) in errors['media']" :key="index">{{ error }}</li>
+                      </ul>
+                    </div>
                 </div>
-            </div>
-            </div>
-            </div>
-         </div>
-         <div class="row mb-1 ">
-                <div class="col-md-12 text-right">
-                    <button type="submit" class="btn btn-secondary ">
-                                        {{ name.toUpperCase() }}
-                    </button>
                 </div>
+                </div>
+             </div>
+             <div class="row mb-1 ">
+                    <div class="col-md-12 text-right">
+                        <button type="submit" class="btn btn-secondary ">
+                                            {{ name.toUpperCase() }}
+                        </button>
+                    </div>
+                </div>
+            </form>
             </div>
-        </form>
+
+
+            <!-- /.card-body -->
         </div>
-
-
-        <!-- /.card-body -->
-    </div>
-    <!-- /.card -->
-
-    </section>
+        <!-- /.card -->
+        <ModalV2 :isShowModal="showModal" :images="galleryImages" :getImage="selectImage" :setShowModal="setShowModal"/>
+        </section>
+        
 </template>
 <script>
 import {Language} from '../../../helpers/lang/lang';
@@ -268,6 +292,7 @@ import useService  from '../../../services/index';
 import useUsers from '../../../composables/users';
 import useCategories from '../../../composables/categories';
 import CKEditor from '@ckeditor/ckeditor5-vue';
+import ModalV2 from '../../commons/ModalV2.vue';
 
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Select2 from 'vue3-select2-component';
@@ -281,22 +306,23 @@ const FilePond = vueFilePond(FilePondPluginFileValidateType, FilePondPluginImage
 import useGenerals from '../../../composables/general';
 
 export default {
+    props:['id'],
 components:{
     ckeditor: CKEditor.component,
         Select2,
         FilePond,
-},
-props:['id'],
-data(){
-    return {
-        Language:Language,
-        loader:false,
-        errors:{},
-        FormFields:[],
-        users:[],
-        editor: ClassicEditor,
+        ModalV2
+    },
+    data(){
+        return {
+            Language:Language,
+            loader:false,
+            users:[],
+            editor: ClassicEditor,
+            imageTypes:['main','thumbnail'],
             editorConfig:[],
-        approvedOptions:[
+            selectedImage:{},
+            approvedOptions:[
                 {
                     text:Language.yes,
                     id:1
@@ -307,6 +333,9 @@ data(){
                 }
             ],
         categories:[],
+	 renderGallery:true,
+            renderThumb:true,
+            showModal:false,
         form:{
                 title:'',
                 slug:'',
@@ -326,12 +355,15 @@ data(){
                 is_active:0,
                 category_ids:0,
                 media:[],
-                gallery:[]
-        },
-        name:"Update Directory",
-        selectAll:false,
+                gallery:[],
+                thumbnail:[],
+                thumbnailGallery:[],
+            },
+            name:"Update Directory",
+            selectAll:false,
             searchMulti:'',
             fileServer:function(){},
+            errors:{},
     }
 },
 mounted(){
@@ -339,7 +371,7 @@ mounted(){
 
     ref.getAllUsers();
     ref.getAllCategories();
-
+    ref.fetchGalleryImages();
     ref.FormFields = [
                 {
                     label:Language.title,
@@ -567,18 +599,38 @@ mounted(){
                     model:`App\\Models\\Directory`,
                     required:false,
                     fileType:"image/jpeg, image/png",
-                    maxFiles:1
+                    maxFiles:1,
+                    render:true,
+                },
+                {
+                    label:Language.thumbnail,
+                    field:"thumbnailGallery",
+                    class:"files",
+                    grid:"col-md-12 col-12",
+                    type:"file",
+                    placeholder:function(){
+                        return "Upload"+this.label
+                    },
+                    multiple:true,
+                    render:true,
+                    model:`App\\Models\\Directory`,
+                    required:false,
+                    fileType:"image/jpeg, image/png",
+                    imageType:'thumbnail',
+                    maxFiles:10
                 },
 
         ]
-        ref.fileServer = function(){
+        ref.fileServer = function(type="main"){
             return {
                             process : async (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
                                 const { uploadMedia } = useGenerals();
                                 const formData = new FormData();
                                 formData.append('files', file, file.name);
                                 formData.append('model', `App\\Models\\Directory`);
-                                formData.append('id',ref.id)
+                                formData.append('id',ref.id);
+                                formData.append('img_type',type)
+                                formData.append('image_id',ref.selectedImage.id?ref.selectedImage.id:0)
 
                                 await uploadMedia(formData,{
                                     onUploadProgress : (e) => {
@@ -667,7 +719,8 @@ methods:{
             this.form.slug = record.value.slug;
             this.form.categories =record.value.categories;
             this.form.description = record.value.description?record.value.description:"";
-            let data = []
+            let data = [];
+            let thumbnails = [];
             let ref = this;
             // record.value.category_ids.map(cat => {
             //     ref.category_ids.push(cat.id)
@@ -675,11 +728,25 @@ methods:{
             this.form.category_ids = record.value.category_ids?record.value.category_ids:[];
             this.form.gallery = record.value.media;
 
-            data = this.form.gallery.map(gall => {
-                return gall.image_url;
-            })
-            console.log(data);
+            data = this.form.gallery.filter(gall => {
+                if(gall.img_type == "main")
+                    return gall;
+            }).map(gall => {
+                return gall.image_url
+            });
+           
+
+            thumbnails = this.form.gallery.filter(thumb => {
+                if(thumb.img_type == "thumbnail")
+                    return thumb;
+            }).map(thumb => {
+                return thumb.image_url
+            });
+
+
+           console.log(data,thumbnails)
             this.form.gallery = data;
+            this.form.thumbnailGallery = thumbnails;
             record.value.media.filter(gallery => {
                 ref.form.media.push(gallery.id);
             })
@@ -699,18 +766,64 @@ methods:{
     },
     selectAllMultiSelect(field,options){
             console.log(this.selectAll);
+            let ref = this;
             if(!this.selectAll){
                 console.log(field,options);
-                let ref = this;
+                
                 options.map(op => {
-                    ref.FormData[field].push(op.id)
+                    ref.FormData['category_ids'].push(op.id)
                })
             }
             else
-            ref.FormData[field] = []
+            ref.FormData['category_ids'] = []
 
         },
 
+        async showField(field){
+            this.showModal = true,
+            this.selectedImagefor = field
+            if(this.selectedImagefor.field =="gallery"){
+                this.renderGallery = false;
+            }else{
+                this.renderThumb = false;
+            }
+           // this.selectedImagefor.render = false
+        },
+        async fetchGalleryImages(){
+            const {records,getAllImages} = useUsers();
+            await getAllImages();
+            this.galleryImages = records.value;
+        },
+        async selectImage(imageId,imgSrc) {
+            console.log(imageId,imgSrc)
+            this.selectedImage ={
+                id:imageId,
+                src:imgSrc,
+            }
+            // console.log("src",this.$refs.pond)
+            console.log(this.selectedImagefor.field)
+            await this.form[this.selectedImagefor.field].push(imgSrc);
+            // const filePond = this.$refs.pond.$el._pond;
+            // this.fileServer(this.data[this.selectedImagefor.model])
+            // this.updatePondFiles(imgSrc);
+            
+            //filePond.setFiles(imgSrc);
+            this.showModal=false
+            if(this.selectedImagefor.field =="gallery"){
+                this.renderGallery = true;
+            }else{
+                this.renderThumb = true;
+            }
+            // console.log("abc",this.data)
+            
+        },
+        setShowModal(modal){
+            this.showModal = modal;
+            // alert(modal)
+            if(this.showModal ==false){
+                this.render = true
+            }
+        }
 
 },
 watch:{

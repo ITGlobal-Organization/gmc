@@ -4,7 +4,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding events">
         <div class="middle mtb-60">
             <h1 class="text-center mb-25">{{ trans('messages.edit_msg',[
-                    'attribute' => trans('lang.space_finder')
+                    'attribute' => trans('lang.employee')
                 ])}}</h1>
             <div class="contact-success"></div>
             <div class="contact-error"></div>
@@ -78,7 +78,7 @@
                                 <button class="close AClass" type="button">
                                     <span>&times;</span>
                                 </button>
-                                <img src="{{isset($User->image->image_url) ? $User->image->image_url : asset('/media/image-not-found.png')}}" alt="not found"
+                                <img src="{{isset($User->image->image_url) ? $User->image->image_url : asset('/media/image-not-found.png')}}" alt="Profile Picture"
                                     data-id="{{isset($User->image->id) ? $User->image->id : ""}}">
                                 <div class="clr"></div>
                             </div>

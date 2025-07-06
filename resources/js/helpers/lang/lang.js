@@ -100,6 +100,7 @@ export const Language = {
     company_name: "Company Name",
     slug: "Slug",
     image: "Image",
+    thumbnail:"Thumbnail",
     placeholder_msg: "Enter :attribute",
     select_msg: "Select :attribute",
     edit: "Edit",
@@ -288,7 +289,10 @@ export const Language = {
     offer:"M2M Offer",
     offers:"M2M Offers",
     view_all:"View All",
+    gallery:"Gallery",
     recent_msg:function(attribute){
         return "Recently Added " + attribute
-    }
+    },
+    topics:"Topics",
+    topic:"Topic"
 };

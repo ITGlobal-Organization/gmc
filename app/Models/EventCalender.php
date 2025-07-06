@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\BaseModel;
+use App\Models\EventCategory;
 use Carbon\Carbon;
 use Auth;
 use URL;
+use Log;
+use DB;
 
 class EventCalender extends BaseModel
 {
@@ -19,10 +22,11 @@ class EventCalender extends BaseModel
     public $class_dynamic = true;
     protected $has_images = true;
     public $status_col = 'is_approved';
+    private $eventCategory;
 
     protected $fillable = [
         'title','description','is_active','is_delete','is_approved','event_date','price','venue','user_id',
-        'slug','time','city','booking_link'
+        'slug','time','city','booking_link','category_id','limit','current_bookings'
     ];
 
     protected $rules = [];
@@ -31,6 +35,7 @@ class EventCalender extends BaseModel
         $this->setRules();
         $this->setOrderBy('event_date');
         $this->setOrder('asc');
+        $this->eventCategory = new EventCategory();
     }
 
     public static function boot()
@@ -162,19 +167,43 @@ class EventCalender extends BaseModel
     public function setTitleAttribute($title)
     {
         $slug = preg_replace("![^a-z0-9]+!i", "-", strtolower($title));
-
-        if(isset($this->id)){
+	        if(isset($this->id)){
             $obj = self::where('slug',$slug)->where('id','!=',$this->id)->first();
             $this->attributes['slug'] = $slug.'-'.((int)$this->id);
-           
-          
+
+
         }
         $obj = self::where('slug',$slug)->first();
         if(isset($obj)){
             $this->attributes['slug'] = $slug.'-'.((int)$obj->id+1);
-           
+
         }
         $this->attributes['slug'] = $slug;
         $this->attributes['title'] = $title;
+    }
+
+    public function getCategories(){
+        try{
+            $this->eventCategory->setLength(1000);
+            return $this->eventCategory->getAll([],['id','name as text']);
+        }catch(Exception $e){
+            Log::error($e);
+            return [];
+        }
+    }
+
+    public function addBookings($data){
+        try{
+            DB::enableQueryLog();
+            // $data['event_id'] = $this->id;
+            $status = DB::table('bookings')->insertGetId($data);
+            // dd($status);
+            Log::debug(DB::getQueryLog());
+            DB::commit();
+            return $status;
+        }catch(\Exception $e){
+            Log::error($e);
+            return 0;
+        }
     }
 }

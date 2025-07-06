@@ -42,6 +42,14 @@ export default function useUsers() {
             errorAlert(e.message);
         })
     }
+    const getAllImages = async() => {
+        await axiosWrapper.get(`/admin/images`).then((response) => {
+            console.log(response.data.data)
+            records.value = response.data.data
+        }).catch((e) => {
+            errorAlert(e.message);
+        })
+    }
 
     const getRoles =async() => {
         await axiosWrapper.get(`/admin/users/roles`).then((response) => {
@@ -57,6 +65,7 @@ export default function useUsers() {
     return {
         getAll,
         getAllPublic,
+        getAllImages,
         records,
         store,
         udpateStatus,

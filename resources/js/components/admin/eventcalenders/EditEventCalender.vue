@@ -47,9 +47,10 @@ data(){
         errors:{},
         FormFields:[],
         users:[],
+        categories:[],
         form:{
                 title:'',
-                slug:'',
+                // slug:'',
                 user_id:'',
                 description:'',
                 venue:'',
@@ -59,8 +60,11 @@ data(){
                 price:'',
                 booking_link:'',
                 is_approved:'',
+                category_id:0,
                 media:[],
-                gallery:[]
+                gallery:[],
+                thumbnail:[],
+                thumbnailGallery:[],
             },
         name:"Update Event",
     }
@@ -69,7 +73,7 @@ mounted(){
     let ref = this;
 
     ref.getAllUsers();
-
+    ref.getAllCategories()
     ref.FormFields = [
                 {
                     label:Language.title,
@@ -211,10 +215,30 @@ mounted(){
                     required:true,
                 },
                 {
+                    label:Language.category,
+                    field:"category_id",
+                    class:"vue-select1",
+                    grid:"col-md-4 col-12",
+                    type:"select",
+                    isdynamic:true,
+                    searchable:true,
+                    options:function(){
+                            if(this.isdynamic){
+                                return ref.categories;
+                            }
+                            return [];
+                    },
+                    placeholder:function(){
+                        return Language.placholder_msg(this.label)
+                    },
+
+                    required:true,
+                },
+                {
                     label:Language.is_approved,
                     field:"is_approved",
                     class:"vue-select1",
-                    grid:"col-md-2 col-12",
+                    grid:"col-md-4 col-12",
                     type:"select",
                     isdynamic:false,
                     searchable:true,
@@ -251,6 +275,7 @@ mounted(){
                     required:true,
                 },
 
+                
                 {
                     label:Language.image,
                     field:"gallery",
@@ -264,6 +289,24 @@ mounted(){
                     model:`App\\Models\\EventCalender`,
                     required:false,
                     fileType:"image/jpeg, image/png",
+                    render:true,
+                    maxFiles:10
+                },
+                {
+                    label:Language.thumbnail,
+                    field:"thumbnailGallery",
+                    class:"files",
+                    grid:"col-md-12 col-12",
+                    type:"file",
+                    render:true,
+                    placeholder:function(){
+                        return "Upload"+this.label
+                    },
+                    multiple:true,
+                    model:`App\\Models\\EventCalender`,
+                    required:false,
+                    fileType:"image/jpeg, image/png",
+                    imageType:'thumbnail',
                     maxFiles:10
                 },
 
@@ -307,19 +350,38 @@ methods:{
             this.form.user_id = record.value.user_id;
             this.form.price = record.value.price;
             this.form.city = record.value.city;
-            this.form.slug = record.value.slug;
+            // this.form.slug = record.value.slug;
             this.form.is_approved = record.value.is_approved;
             this.form.booking_link = record.value.booking_link;
+            this.form.category_id = record.value.category_id;
             this.form.description = record.value.description?record.value.description:"";
 
             this.form.gallery = record.value.media;
             let data = []
+            let thumbnails = [];
             let ref = this;
-            data = this.form.gallery.map(gall => {
-                return gall.image_url;
-            })
-            console.log(data);
+            data = this.form.gallery.filter(gall => {
+                if(gall.img_type == "main")
+                    return gall;
+            }).map(gall => {
+                return gall.image_url
+            });
+           
+
+            thumbnails = this.form.gallery.filter(thumb => {
+                if(thumb.img_type == "thumbnail")
+                    return thumb;
+            }).map(thumb => {
+                return thumb.image_url
+            });
+
+
+           console.log(data,thumbnails)
+
+
             this.form.gallery = data;
+            this.form.thumbnailGallery = thumbnails;
+
             record.value.media.filter(gallery => {
                 ref.form.media.push(gallery.id);
             })
@@ -329,6 +391,12 @@ methods:{
             const {records,getAllPublic} = useUsers();
             await getAllPublic();
             this.users = records.value;
+
+    },
+    async getAllCategories(){
+            const {categories,getAllCategories} = useEventCalender();
+            await getAllCategories();
+            this.categories = categories.value;
 
     }
 

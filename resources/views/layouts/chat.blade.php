@@ -23,10 +23,11 @@
     <!-- Select2 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
-
+	<link rel="manifest" href="{{ asset('manifest.json') }}" />
 
     <link href="{{ custom_asset('owl.carousel.css','css') }}" rel="stylesheet" type="text/css">
     <link href="{{ custom_asset('owl.theme.css','css') }}" rel="stylesheet" type="text/css">
+
 <!-- 
 	<link href="{{ custom_asset('easy-responsive-tabs.css','css') }}" rel="stylesheet" type="text/css"> -->
 
@@ -36,7 +37,8 @@
 	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-
+<link href="{{ custom_asset('app1c4a.css','css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ custom_asset('bundle1c4a.css','css') }}" rel="stylesheet" type="text/css">
 	
 
 	<title>{{ config('app.name')}} | {{ isset($title)?$title:'Page'}}</title>
@@ -54,8 +56,9 @@
 <!--Start Middle-->
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
 @include('components.loader')
+@include('components.snackbar')
 @yield('content')
-<audio class="message-notification" src="{{ asset(config('site_config.assets.sounds'). 'message.mp3') }}" autoplay></audio>
+<audio class="message-notification" src="{{ asset(config('site_config.assets.sounds'). 'message.mp3') }}"></audio>
 </div>
 <!--End Middle-->
 
@@ -87,6 +90,8 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <!-- Select2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+	<script src="{{ custom_asset('app1c4a.js','js')}}"></script>
+	<script src="{{ custom_asset('bundle1c4a.js','js')}}"></script>
 <script>
 	@php 
 		$User = auth()->user();

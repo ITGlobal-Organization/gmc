@@ -325,9 +325,12 @@ class BaseModel extends Model
 
     }
 
-    public function getAll($join = [], $select = ['*'], $where = [])
+    public function getAll($join = [], $select = ['*'], $where = [],$joinOp='join')
     {
+        try{
         DB::enableQueryLog();
+
+
         $data =  static::selectRaw(implode(',', $select));
           // dd($this->has_images);
           if($this->has_images){
@@ -336,6 +339,7 @@ class BaseModel extends Model
             $data->leftjoin('images',function($leftJoin) use ($class,$table){
                 $leftJoin->on($table.'.id','=','images.model_id')
                 ->where('images.model','like',str_replace('\\','%',$class))
+                // ->where('img_type','thumbnail')
                 ->orwhereNull('images.model');
             });
 
@@ -357,26 +361,41 @@ class BaseModel extends Model
 
         if (count($join) > 0) {
             foreach ($join as $index => $rel){
-                $data->join($rel[0],$rel[1],$rel[2],$rel[3]);
+                $data->{$joinOp}($rel[0],$rel[1],$rel[2],$rel[3]);
             }
             // $data = static::with($relation)->selectRaw(implode(',', $select));
         }
 
-        $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
+
 
 
 
         // $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
+        if($this->getGroupBy() != ''){
+
+            $this->setCount(count($data->groupBy($this->table.'.'.$this->getGroupBy())->get()));
+            $data = $data->groupBy($this->table.'.'.$this->getGroupBy());
+
+        }
+        if($this->getLength() > 0 ){
+            // Log::debug(DB::getQueryLog());
+            $data = $data->skip($this->getLength() * ($this->getStart() - 1))->take($this->getLength());
+        }
+
+        if($this->getOrderBy() != ''){
+            $data = $data->orderBy($this->table.'.'.$this->getOrderBy(), $this->getOrder());
+        }
 
 
-
-
-
-        if($this->getLength() > 0 )
-           return $data->skip($this->getLength() * ($this->getStart() - 1))->take($this->getLength())->orderBy($this->table.'.'.$this->getOrderBy(), $this->getOrder())->groupBy($this->table.'.'.$this->getGroupBy())->get();
 
         Log::debug(DB::getQueryLog());
-        return $data->groupBy($this->table.'.'.$this->getGroupBy())->get();
+        return $data->get();
+    }catch(Exception $e){
+
+        Log::error($e);
+
+        return [];
+    }
 
 
 
@@ -403,7 +422,18 @@ class BaseModel extends Model
         if(!isset($result)){
             abort(403);
         }
-        $result['media'] = Media::where('model',$this->class_name)->where('model_id',  $result->id)->get();
+        $user = Auth::user();
+        if(isset($user)){
+            if($user->hasRole('admin')){
+                $result['media'] = Media::where('model',$this->class_name)->
+                where('model_id',  $result->id)->get();
+            }
+        }else{
+            $result['media'] = Media::where('model',$this->class_name)->
+            where('img_type','main')->
+            where('model_id',  $result->id)->get();
+        }
+
 
         return $result;
     }

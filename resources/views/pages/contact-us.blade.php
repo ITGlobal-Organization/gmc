@@ -54,7 +54,7 @@
 
 
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 border mtb-25">
-                <h5 class="mb-20">Send A Massage</h5>
+                <h5 class="mb-20">Send A Message</h5>
                 <div class="success"></div>
                 <form action="#" id="contact-us" enctype="multipart/form-data" method="post">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mb-20">
@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mb-20">
-                        <textarea class="contact-input" placeholder="Massage" name="message"></textarea>
+                        <textarea class="contact-input" placeholder="Message" name="message"></textarea>
                         <div class="clr"></div>
                     </div>
 

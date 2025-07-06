@@ -12,6 +12,17 @@
 
             <div class="clr"></div>
             <div id="container">
+                @if(session('success'))
+                  <div class="alert alert-success">
+                     {!! session('success')  !!}
+                  </div>
+               @endif
+
+               @if(session('error'))
+                  <div class="alert alert-danger">
+                     {!! session('error')  !!}
+                  </div>
+               @endif
                <div id="parentHorizontalTab" class="parentHorizontalTab">
                     <div class="event-tabs-cal-list">
                     <ul class="resp-tabs-list hor_1 resp-tabs-list1">
@@ -48,9 +59,14 @@
             </div>
         </div>
         <div class="clr"></div>
+
+
+               <!--End Visa Credit Card POPUP
+               <div class="clr"></div>
+            </div>
     </div>
 
-    <!--End Middle-->
+    End Middle-->
 @endsection
 @section('scripts')
 <link rel="stylesheet" href="{{ custom_asset('calendar-gc.css','css') }}">
@@ -71,6 +87,7 @@
         order:"",
         start:1,
         view_type:"",
+        category_id:0
 
     }
 
@@ -81,38 +98,33 @@
 		getEventsListing()
 	});
 
+    $(document).on('change','.category',function(){
+        filters.category_id = $(this).val();
+        getEventsListing()
+    })
+
 	$(document).ready(async function(){
 		let events = await getEventsListing();
         let ref = $("#calendar");
+        // $('.category').select2();
         let eventModal = $('#itglobal-modal');
             var calendar = ref.calendarGC({
                         dayBegin: 0,
                         prevIcon: '',
                         nextIcon: '',
-                        // onPrevMonth: function (e) {
-                        //     console.log("prev");
-                        //     console.log(e);
-                        // },
-                        // onNextMonth: function (e) {
-                        //     console.log("next");
-                        //     console.log(e);
-                        // },
                         events: events,
                         onclickDate: function (e, event) {
-                            console.log(event)
-                            // eventModal.modal()
-                            // alert(event)
                         }
             });
 	})
     $(document).on('keyup','.search-box',function(){
         filters.search = $(this).val();
-        
+
         setTimeout(() => {
             // console.log(filters.search)
                 if (filters.search.length > 2) {
                     getEventsListing()
-                } 
+                }
             }, 1000);
     });
     $(document).on('change', '#end-date',async function (ev) {
@@ -210,7 +222,6 @@
         }
 </script>
 <script src="{{ custom_asset('pagination.js','scripts')}}"></script>
-
 
 
 

@@ -19,6 +19,7 @@ class SpaceFinderController extends BaseController
         $this->url = $url::current();
         $this->setModel($spaceFinder);
         $this->setMedia($media);
+        $this->media=$media;
     }
 
     public function index(Request $request){
@@ -29,6 +30,16 @@ class SpaceFinderController extends BaseController
     }
 
     public function create(Request $request){
+
+        if(auth()->user()->hasRole('user')){
+            $galleryImages = $this->media->orderBy('id','desc')->get();
+            return view('user.space-finder.create',[
+                'title' => trans('lang.space_finder').' | '.trans('lang.create'),
+                'name' => 'spacefinder',
+                'galleryImages'=>$galleryImages
+            ]);
+        }
+
         return view('admin.crud.create',[
             'title' => trans('lang.blogs').' | '.trans('lang.create'),
             'name' => 'blog',
@@ -36,6 +47,7 @@ class SpaceFinderController extends BaseController
     }
 
     public function edit(Request $request){
+
         return view('admin.crud.edit',[
             'title' => trans('lang.blogs').' | '.trans('lang.edit'),
             'name' => 'blog',
@@ -51,7 +63,7 @@ class SpaceFinderController extends BaseController
             $view = 'space-finders.space-finders';
         }
         return view($view,[
-            'title' => trans('lang.spacefinders'),
+            'title' => trans('lang.space_finders'),
             'count' => 0
         ]);
     }
@@ -114,14 +126,29 @@ class SpaceFinderController extends BaseController
 
     public function renderForm(Request $request,$id){
         $SpaceFinder = $this->spaceFinder->first('id',$id,'=',['user'],[],['space_finders.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
+        $galleryImages = $this->media->orderBy('id','desc')->get();
 
-        return view('user.space-finder.edit',['SpaceFinder'=>$SpaceFinder]);
+        return view('user.space-finder.edit',['SpaceFinder'=>$SpaceFinder,'galleryImages'=>$galleryImages]);
     }
     public function update(Request $request,$id){
+
+        $main_img_id = isset($request->main_img_id) ?  $request->main_img_id : '';
+        unset($request['main_img_id']);
+        $thumbnail_img_id = isset($request->thumbnail_img_id) ?  $request->thumbnail_img_id : '';
+        unset($request['thumbnail_img_id']);
+        parent::update($request,$id);
         if($request->hasFile('image')){
             $media =  Helper::saveMedia($request->image,"App\Models\SpaceFinder",'main',$id);
+        }else if($main_img_id != ""){
+            $media =  Helper::updateGalleryImage($main_img_id,"App\Models\SpaceFinder",'main',$id);
         }
-        parent::update($request,$id);
+        if($request->hasFile('thumbnail')){
+            $media =  Helper::saveMedia($request->thumbnail,"App\Models\SpaceFinder",'thumbnail',$id);
+        }else if($thumbnail_img_id != ""){
+            $media =  Helper::updateGalleryImage($thumbnail_img_id,"App\Models\SpaceFinder",'thumbnail',$id);
+        }
+
+
         $response = [
             'success' => true,
             'data'=>[
@@ -143,12 +170,24 @@ class SpaceFinderController extends BaseController
         return response()->json($response, 200);
     }
     public function store(Request $request){
+
+        $main_img_id = isset($request->main_img_id) ?  $request->main_img_id : '';
+        unset($request['main_img_id']);
+        $thumbnail_img_id = isset($request->thumbnail_img_id) ?  $request->thumbnail_img_id : '';
+        unset($request['thumbnail_img_id']);
         parent::store($request);
+
         if($request->hasFile('image')){
-            // dd($request->image);
             $media =  Helper::saveMedia($request->image,"App\Models\SpaceFinder",'main',$this->spaceFinder->id);
+        }else if($main_img_id != ""){
+            $media =  Helper::updateGalleryImage($main_img_id,"App\Models\SpaceFinder",'main',$this->spaceFinder->id);
         }
-        // dd("ergre");
+        if($request->hasFile('thumbnail')){
+            $media =  Helper::saveMedia($request->thumbnail,"App\Models\SpaceFinder",'thumbnail',$this->spaceFinder->id);
+        }else if($thumbnail_img_id != ""){
+            $media =  Helper::updateGalleryImage($thumbnail_img_id,"App\Models\SpaceFinder",'thumbnail',$this->spaceFinder->id);
+        }
+
         $response = [
             'success' => true,
             'data'=>[

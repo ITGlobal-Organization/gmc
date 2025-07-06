@@ -11,6 +11,19 @@
 
             <div class="clr"></div>
             <div id="container">
+                <?php if(session('success')): ?>
+                  <div class="alert alert-success">
+                     <?php echo session('success'); ?>
+
+                  </div>
+               <?php endif; ?>
+
+               <?php if(session('error')): ?>
+                  <div class="alert alert-danger">
+                     <?php echo session('error'); ?>
+
+                  </div>
+               <?php endif; ?>
                <div id="parentHorizontalTab" class="parentHorizontalTab">
                     <div class="event-tabs-cal-list">
                     <ul class="resp-tabs-list hor_1 resp-tabs-list1">
@@ -47,9 +60,14 @@
             </div>
         </div>
         <div class="clr"></div>
+       
+                
+               <!--End Visa Credit Card POPUP		
+               <div class="clr"></div>
+            </div>
     </div>
 
-    <!--End Middle-->
+    End Middle-->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('scripts'); ?>
 <link rel="stylesheet" href="<?php echo e(custom_asset('calendar-gc.css','css')); ?>">
@@ -70,6 +88,7 @@
         order:"",
         start:1,
         view_type:"",
+        category_id:0
 
     }
 
@@ -80,9 +99,15 @@
 		getEventsListing()
 	});
 
+    $(document).on('change','.category',function(){
+        filters.category_id = $(this).val();
+        getEventsListing()
+    })
+
 	$(document).ready(async function(){
 		let events = await getEventsListing();
         let ref = $("#calendar");
+        // $('.category').select2();
         let eventModal = $('#itglobal-modal');
             var calendar = ref.calendarGC({
                         dayBegin: 0,
@@ -209,10 +234,9 @@
         }
 </script>
 <script src="<?php echo e(custom_asset('pagination.js','scripts')); ?>"></script>
-
-
-
-
+		
+ 
+      
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.layoutv2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/staging/resources/views/eventcalenders/event-calenders.blade.php ENDPATH**/ ?>

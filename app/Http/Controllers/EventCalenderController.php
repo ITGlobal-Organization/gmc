@@ -5,18 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Models\EventCalender;
+use App\Models\Payment;
 use App\Models\Media;
 use Auth;
 use App\Helpers\Helper;
 use URL;
 use DB;
+use Log;
 
 class EventCalenderController extends BaseController
 {
     private $eventCalender,$media,$url;
 
-    public function __construct(EventCalender $eventCalender,Media $media,URL $url) {
+    public function __construct(EventCalender $eventCalender,Media $media,URL $url,Payment $payment) {
         $this->eventCalender = $eventCalender;
+        $this->payment = $payment;
         $this->setModel($eventCalender);
         $this->setMedia($media);
         $this->url = $url::current();
@@ -45,6 +48,7 @@ class EventCalenderController extends BaseController
 
     public function eventCalenders(Request $request){
         $user = Auth::user();
+        $Categories = $this->eventCalender->getCategories();
         if(isset($user) && $user->hasRole('user')  && str_contains($this->url,"user")){
             $view= 'user.event.index';
         }else{
@@ -52,22 +56,27 @@ class EventCalenderController extends BaseController
         }
         return view($view,[
             'title' => trans('lang.eventcalenders'),
-            'count' => 0
+            'count' => 0,
+            'Categories' => $Categories
         ]);
     }
     public function getEventsListing(Request $request){
-        // dd($request);
         $user = Auth::user();
         $this->setGeneralFilters($request);
         $this->removeGeneralFilters($request);
-
+        $Categories = $this->eventCalender->getCategories();
         // $search = "tit";
         $AllEvents = $this->eventCalender->getAll([],['event_calenders.*','images.image_url']);
+        // dd($AllEvents);
         // DB::enableQueryLog();
         // $a=$this->eventCalender->Where('title', 'like', '%' . $search . '%')->get();
 
         if(isset($request->search) && $request->search != '') {
             $this->eventCalender->setFilters(['title','like','%'.$request->search.'%']);
+        }
+
+        if(isset($request->category_id) && $request->category_id != 0) {
+            $this->eventCalender->setFilters(['category_id','=',$request->category_id]);
         }
 
         if((isset($request->end_date) && $request->end_date != '')  ){
@@ -107,18 +116,25 @@ class EventCalenderController extends BaseController
             'Events' => $Events,
             'AllEvents' => $AllEvents,
             'count' => $this->eventCalender->getCount(),
-            'page' => $this->eventCalender->getStart()
+            'page' => $this->eventCalender->getStart(),
+            'Categories' => $Categories
         ]);
     }
     public function renderForm(Request $request,$id){
         $Event = $this->eventCalender->first('id',$id,'=',['user'],[],['event_calenders.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
+        $Categories = $this->eventCalender->getCategories();
         // $Event=$this->eventCalender->where('id',$request->id)->first();
-        return view('user.event.edit',['Event'=>$Event]);
+        return view('user.event.edit',['Event'=>$Event,'Categories' => $Categories]);
     }
 
     public function update(Request $request,$id){
         if($request->hasFile('image')){
             $media =  Helper::saveMedia($request->image,"App\Models\EventCalender",'main',$id);
+        }
+        if(!auth()->user()->hasRole('admin')){
+            $request->merge([
+                'category_id' => 2
+            ]);
         }
         parent::update($request,$id);
 
@@ -184,7 +200,14 @@ class EventCalenderController extends BaseController
     // }
 
     public function store(Request $request){
+        if(!auth()->user()->hasRole('admin')){
+            $request->merge([
+                'category_id' => 2
+            ]);
+        }
         parent::store($request);
+
+
         if($request->hasFile('image')){
             $media =  Helper::saveMedia($request->image,"App\Models\EventCalender",'main',$this->eventCalender->id);
         }
@@ -195,7 +218,10 @@ class EventCalenderController extends BaseController
             ],
             'message'=>'Created Successfully'
         ];
-        return $this->sendResponse($response);
+        return $this->sendResponse($response,trans('messages.success_msg',[
+            'action'=> trans('lang.save'),
+            'attribute' => trans('lang.event')
+         ]));
     }
 
 
@@ -227,6 +253,63 @@ class EventCalenderController extends BaseController
         }
     }
 
+    public function getCategories(Request $request){
+        $categories = $this->eventCalender->getCategories();
+        //dd($categories);
+        return $this->sendResponse($categories);
+    }
 
+    public function userCreateEvent(Request $request){
+        $Categories = $this->eventCalender->getCategories();
+        return view('user.event.create',[
+            'title' => trans('messages.create_msg',[
+                'attribute' => trans('lang.event'),
 
+            ]),
+            'Categories' => $Categories
+        ]);
+    }
+
+    // book now
+
+    public function bookEventView(Request $request,$slug){
+        $Event = $this->eventCalender->first('slug',$slug,'=');
+        return view('eventcalenders.book',[
+            'title' => trans('lang.event') . ' | '. trans('lang.book'),
+            'Event' => $Event,
+        ]);
+    }
+
+    public function bookEvent(Request $request){
+
+        $this->eventCalender->setRules(config('rules.event_calenders.bookings'),true);
+        $request->validate($this->eventCalender->getRules());
+        try{
+
+            $event = $this->eventCalender->first('id',$request->event_id);
+            $data = $request->except('_token');
+            $status=$this->eventCalender->addBookings($data);
+
+            $this->eventCalender->where('id',$request->event_id)->increment('current_bookings');
+
+            if($status > 0){
+                $array = ['route'=>route('event-calenders.index')];
+                if($event->price != "FOC" && $event->price >= 1){
+                    $customer =$this->payment->addStripeCustomer($data['first_name'].' '.$data['last_name'],$data['email']);
+                    session(['customer' => $customer]);
+                    session(['booking_id' => $status]);
+                    $array = [];
+                }
+
+                return $this->sendResponse($array,trans('messages.success_msg',[
+                    'attribute' => trans('lang.booking'),
+                    'action' => trans('lang.saved')
+                ]));
+            }
+
+        }catch(\Exception $e){
+            Log::error($e);
+            return $this->sendError(trans('messages.error_msg',['action' => trans('lang.saving')]));
+        }
+    }
 }

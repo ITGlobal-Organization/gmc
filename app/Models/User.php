@@ -15,7 +15,10 @@ use Carbon\Carbon;
 use App\Models\Role;
 use App\Models\Media;
 use App\Traits\UserTrait;
+use App\Notifications\ForumNotifications;
+use App\Notifications\NewMessageNotification;
 use Auth;
+use Log;
 class User extends Authenticatable
 {
 
@@ -380,6 +383,41 @@ class User extends Authenticatable
     public function image()
     {
         return $this->hasOne(Media::class,'model_id')->where('model','App\Models\User');
+    }
+
+    public function forumNotification(){
+        $this->setFilters(['id','!=',$this->id]);
+        $User = $this->where
+        ('id','<>',$this->id)->get();
+        try{
+
+            foreach($User as $user){
+                $user->notify(new ForumNotifications([
+                    'name' => $this->first_name,
+                    'message' => trans('message.post_notification_title',[
+                        'attribute' => $this->first_name
+                    ])
+                ]));
+            }
+        }catch(Exception $e){
+            
+        }
+       
+        return ;
+    }
+
+    public function newMessageNotification($message){
+        try{
+            $this->notify(new NewMessageNotification([
+                'sender_name' => $message['sender_name'],
+                'url' => $message['url'],
+                'message' => $message['message'],
+            ]));
+        }catch(\Exception $e){
+            // echo $e;
+            Log::error($e);
+        }
+        return ;   
     }
 
 }

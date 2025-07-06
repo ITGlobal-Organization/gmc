@@ -9,7 +9,7 @@ window.socket = window.io('https://perthshirecc.co.uk:3000');
 window.socket.on('new-message_'+blade_config.user_id, (message) => {
 	appendMessage(message)
 	increaseUnreadMessages(message.sender_id)
-	toaster.info("New Message from: " + message.sender_name);
+	notify("New Message from: " + message.sender_name,'notify',message.message);
 	playSound()
 });
 
@@ -26,6 +26,12 @@ window.socket.on('typing',function(message) {
 	},2000);
 });
 
+window.socket.on('new-post',function(message){
+	console.log(message);
+    toaster.info(message.message+'<a href="' + message.route + '"> Click Here </a>'); 
+	
+    playSound();
+});
 
 function appendMessage(message){
 	let html = `<div class="tyn-reply" id="tynReply"><div class="tyn-reply-item incoming">

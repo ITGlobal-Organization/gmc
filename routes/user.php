@@ -9,6 +9,8 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\TopicController;
+use App\Http\Controllers\PostController;
 // use App\Http\Controllers\DashboardController;
 // use App\Http\Controllers\OrderController;
 // use App\Http\Controllers\QuoteController;
@@ -17,6 +19,7 @@ use App\Http\Controllers\MessageController;
 
 
 Route::get('/', [DashboardController::class, 'dashboard'])->name('user.dashboard');
+Route::get('/employee', [DashboardController::class, 'dashboard'])->name('employee.dashboard');
 
 //Events
 Route::prefix('events')->group(function(){
@@ -28,9 +31,7 @@ Route::prefix('events')->group(function(){
     Route::post('/update/{id}',[EventCalenderController::class, 'update'])->name('user.events.update');
     Route::post('/delete/{id}',[EventCalenderController::class, 'destroy'])->name('user.events.destroy');
     Route::get('/search-events',[EventCalenderController::class,'getEventsListing'])->name('user.event-calenders.search');
-    Route::get('/create',function(){
-        return view('user.event.create');
-    })->name('user.events.create');
+    Route::get('/create',[EventCalenderController::class,'userCreateEvent'])->name('user.events.create');
     Route::delete('/media/delete/{id}',[EventCalenderController::class,'deleteFiles'])->name('user.events.media-upload');
 });
 //SpaceFinders
@@ -42,9 +43,10 @@ Route::prefix('space-finders')->group(function(){
     Route::get('/edit/{id}',[SpaceFinderController::class, 'renderForm'])->name('user.space-finders.edit');
     Route::post('/update/{id}',[SpaceFinderController::class, 'update'])->name('user.space-finders.update');
     Route::post('/delete/{id}',[SpaceFinderController::class, 'destroy'])->name('user.space-finders.destroy');
-    Route::get('/create',function(){
-        return view('user.space-finder.create');
-    })->name('user.space-finders.create');
+    Route::get('/create',[SpaceFinderController::class, 'create'])->name('user.space-finders.create');
+    // Route::get('/create',function(){
+    //     return view('user.space-finder.create');
+    // })->name('user.space-finders.create');
 });
 //ProfileDetails
 // Route::get('/company/edit', [DashboardController::class, 'editProfile'])->name('user.company.edit');
@@ -67,9 +69,7 @@ Route::prefix('news')->group(function(){
     Route::get('/edit/{id}',[BlogController::class, 'renderForm'])->name('user.news.edit');
     Route::post('/update/{id}',[BlogController::class, 'update'])->name('user.news.update');
     Route::post('/delete/{id}',[BlogController::class, 'destroy'])->name('user.news.destroy');
-    Route::get('/create',function(){
-        return view('user.news.create');
-    })->name('user.news.create');
+    Route::get('/create',[BlogController::class, 'create'])->name('user.news.create');
 });
 //M2MOffers
 Route::prefix('offers')->group(function(){
@@ -79,10 +79,11 @@ Route::prefix('offers')->group(function(){
     Route::get('/listing',[M2MOfferController::class,'getOffersListing'])->name('user.offers.listing');
     Route::get('/edit/{id}',[M2MOfferController::class, 'renderForm'])->name('user.offers.edit');
     Route::post('/update/{id}',[M2MOfferController::class, 'update'])->name('user.offers.update');
+    Route::get('/create',[M2MOfferController::class, 'create'])->name('user.offers.create');
     Route::post('/delete/{id}',[M2MOfferController::class, 'destroy'])->name('user.offers.destroy');
-    Route::get('/create',function(){
-        return view('user.offer.create');
-    })->name('user.offers.create');
+    // Route::get('/create',function(){
+    //     return view('user.offer.create');
+    // })->name('user.offers.create');
 });
 
 //Employees
@@ -109,6 +110,15 @@ Route::prefix('chat')->group(function(){
     // web socket authentication
     Route::post('/typing',[MessageController::class, 'userTyping'])->name('user.chat.typing');
     Route::get('/list',[MessageController::class, 'chatList'])->name('user.chat.list');
+});
+Route::prefix('forum')->group(function(){
+    Route::get('/', [PostController::class, 'forum'])->name('user.forum.index');
+    Route::get('/create', [PostController::class, 'create'])->name('user.forum.create');
+    Route::post('/', [PostController::class, 'store'])->name('user.forum.store');
+    Route::get('/listings', [PostController::class, 'getPosts'])->name('user.forum.listings');
+    Route::get('/post/{slug}', [PostController::class, 'getPost'])->name('user.forum.post');
+    Route::post('/post/replies', [PostController::class, 'addReply'])->name('user.forum.replies.store');
+    Route::get('/replies', [PostController::class, 'getReplies'])->name('user.forum.replies.listing');
 });
 
 

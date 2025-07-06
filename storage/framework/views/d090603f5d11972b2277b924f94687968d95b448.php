@@ -5,9 +5,17 @@
             <option value="title-asc">A to Z</option>
             <option value="title-desc">Z to A</option>
 
-            <option value="event_date-asc">Upcoming First</option>
-            <option value="event_date-desc">Distant First</option>
+            <option value="event_date-asc"><?php echo e(trans('lang.upcoming_first')); ?></option>
+            <option value="event_date-desc"><?php echo e(trans('lang.distant_first')); ?></option>
         </select>
+    </div>
+    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 padding border mb-25">
+            <select class="category pd-sort ml-2">
+                    <option value=""><?php echo e(trans('lang.select_msg',['attribute' => trans('lang.category')])); ?></option>
+                <?php $__currentLoopData = $Categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($Category->id); ?>"><?php echo e($Category->text); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </select>
     </div>
 
 <!--Start calendar Area-->
@@ -43,8 +51,18 @@
                                 <b>Venue:</b> <?php echo e($Event->venue); ?>
 
                                 <b>Price:</b> <?php echo e($Event->price); ?><br><br>
+                                
+                            </div>
+                            <?php if($Event->category_id == 2): ?>
+                            <div class="text-center">
                                 <span class="btn-download"><a href="<?php echo e($Event->booking_link); ?>" target="_blank">Book Now</a>
                             </div>
+                            <?php else: ?>
+                            <div class="text-center">
+                                <span class="btn-download"><a href="<?php echo e(route('event.book',$Event->slug)); ?>" class="btn-vcc" data-id="<?php echo e($Event->price); ?>">Book Now</a>
+                            </div>
+                            <?php endif; ?>
+                           
                         </div>
                         <div class="clr"></div>
                     </div>

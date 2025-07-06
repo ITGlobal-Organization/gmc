@@ -11,7 +11,9 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.8",
+        "jenssegers/agent": "*",
         "jorenvanhocht/laravel-share": "^4.2",
+        "karmendra/laravel-agent-detector": "^1.1",
         "laravel/breeze": "^1.8",
         "laravel/cashier": "^13.8",
         "laravel/framework": "^8.75",
@@ -27,6 +29,7 @@
         "zohocrm/php-sdk": "^3.1",
         "zohocrm/php-sdk-6.0": "1.0.0"
     },
+
     "require-dev": {
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",

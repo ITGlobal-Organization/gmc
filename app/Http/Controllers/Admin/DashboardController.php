@@ -9,20 +9,22 @@ use App\Models\User;
 use App\Models\Directory;
 use App\Models\SpaceFinder;
 use App\Models\EventCalender;
+use App\Models\Media;
 use DB;
 
 class DashboardController extends BaseController
 {
     //
     private $user,$directory,$spaceFinder,$event;
-    public function __construct(User $user,Directory $directory,SpaceFinder $spaceFinder,EventCalender $event){
+    public function __construct(User $user,Directory $directory,SpaceFinder $spaceFinder,EventCalender $event,Media $media){
         $this->user = $user;
         $this->directory = $directory;
         $this->spaceFinder = $spaceFinder;
         $this->event = $event;
+        $this->media=$media;
     }
     public function index(Request $request){
-        
+
         if($request->ajax()){
             $Directories = $this->directory->count();
             $Users = $this->user->count();
@@ -89,7 +91,7 @@ class DashboardController extends BaseController
             ->orderBy('months.id');
         // $db = DB::getQueryLog();
         // dd($PropertiesByDate);
-        
+
 
         $RecentQueries = ContactForm::where('is_delete', 0)
             ->orderBy('created_at', 'desc')
@@ -101,9 +103,19 @@ class DashboardController extends BaseController
                 'PropertiesCount' => $PropertiesByDate->pluck('totalProperties'),
                 'Months' => $PropertiesByDate->pluck('Month'),
             ],
-        
+
             'RecentQueries' => $RecentQueries,
 
         ]);
+    }
+    public function galleryImages(Request $request){
+        try{
+            $result = $this->media->orderBy('id','desc')->get();
+            // dd($result);
+            return $this->sendResponse($result);
+        }catch(\Exception $e){
+            dd($e);
+            return $this->sendError(trans('validation.custom.errors.server-errors'));
+        }
     }
 }

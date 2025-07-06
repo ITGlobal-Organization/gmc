@@ -25,7 +25,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
 
-
+	<link rel="manifest" href="<?php echo e(asset('manifest.json')); ?>" />
     <link href="<?php echo e(custom_asset('owl.carousel.css','css')); ?>" rel="stylesheet" type="text/css">
     <link href="<?php echo e(custom_asset('owl.theme.css','css')); ?>" rel="stylesheet" type="text/css">
 <!--
@@ -60,6 +60,7 @@
 <!--Start Middle-->
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
 <?php echo $__env->make('components.loader', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('components.snackbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php echo $__env->yieldContent('content'); ?>
 
 </div>
@@ -100,7 +101,7 @@
     <!-- Select2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script>
-	<?php 
+	<?php
 		$User = auth()->user();
 	?>
 const blade_config = {

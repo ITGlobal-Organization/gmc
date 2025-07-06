@@ -8,6 +8,8 @@ use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\SpaceFinderController;
 use App\Http\Controllers\PlatinumPartnerController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Events\ChatMessageSent;
 use Illuminate\Http\Request;
 use Artisan;
@@ -54,7 +56,7 @@ Route::prefix('directories')->group(function () {
     Route::get('/{slug}',[DirectoryController::class,'getDirectory'])->name('directories.get')->middleware('auth');
 });
 Route::get('/search-directories',[DirectoryController::class,'searchDirectories'])->name('directories.search');
-
+Route::get('/admin/images',[DashboardController::class, 'galleryImages'])->name('admin.images');
 // Space-Finders
 Route::prefix('space-finders')->group(function () {
     Route::get('/',[SpaceFinderController::class,'spaceFinders'])->name('space-finders.index');
@@ -65,10 +67,14 @@ Route::get('/search-spacefinders',[SpaceFinderController::class,'searchSpaceFind
 
 // Event-Calenders
 Route::prefix('event-calenders')->group(function () {
+
     Route::get('/',[EventCalenderController::class,'eventCalenders'])->name('event-calenders.index');
+    Route::get('/book/{slug}',[EventCalenderController::class,'bookEventView'])->name('event.book');
+    Route::post('/book',[EventCalenderController::class,'bookEvent'])->name('event.book.store');
     Route::get('/ajax',[EventCalenderController::class,'getEventsListing'])->name('event-calenders.ajax');
     Route::get('/{slug}',[EventCalenderController::class,'getEvent'])->name('event-calenders.get')->middleware('auth');
     Route::get('/{view}/{slug}',[EventCalenderController::class,'getEvent'])->name('event-calenders.get');
+
 });
 Route::get('/search-events',[EventCalenderController::class,'getEventsListing'])->name('event-calenders.search');
 
@@ -87,7 +93,7 @@ Route::get('/platinum-partners-tab',[SitePageController::class,'platinumPartners
 Route::prefix('platinum-partners')->group(function () {
     Route::get('/',[PlatinumPartnerController::class,'platinumPartners'])->name('platinum-partners.index');
     Route::get('/ajax',[PlatinumPartnerController::class,'getPlatinumPartnersListing'])->name('platinum-partners.ajax');
-    Route::get('/{slug}',[PlatinumPartnerController::class,'getPlatinumPartner'])->name('platinum-partners.get')->middleware('auth');
+    Route::get('/{slug}',[PlatinumPartnerController::class,'getPlatinumPartner'])->name('platinum-partners.get');
 });
 
 // M2MOffers
@@ -119,7 +125,8 @@ Route::prefix('admin')->middleware(['auth:sanctum','admin'])->group(function () 
     require __DIR__ . '/admin.php';
 });
 //User
-Route::prefix('user')->middleware(['auth:sanctum','user'])->group(function () {
+
+Route::prefix('user')->middleware(['auth:sanctum','user','otp','profile'])->group(function () {
     require __DIR__ . '/user.php';
 });
 
@@ -151,6 +158,10 @@ Route::get('/{page}',[SitePageController::class,'renderSitePages'])->name('site-
 Route::post('/media/upload',[BaseController::class,'saveFiles'])->name('media-upload');
 Route::delete('/media/delete/{id}',[BaseController::class,'deleteFiles'])->name('media-upload');
 
+// Payments
+Route::post('/payment/webhook', [PaymentController::class, 'handleWebhook']);
+Route::get('/payment/charge', [PaymentController::class,'chargeStripePayment'])->name('payment.charge');
+Route::post('/create-payment-intent', [PaymentController::class,'createPaymentIntent'])->name('payment.intent');
 
 
 

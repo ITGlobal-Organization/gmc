@@ -52,8 +52,14 @@ Route::middleware('guest')->group(function () {
 
 });
 
+
+
 Route::middleware(['auth'])->group(function () {
 
+    Route::get('otp', [AuthenticatedSessionController::class, 'getOTP'])
+        ->name('auth.otp');
+    Route::post('otp', [AuthenticatedSessionController::class, 'verifyOTP'])
+        ->name('otp.verify');
 
 
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])

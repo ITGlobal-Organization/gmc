@@ -77,13 +77,13 @@ $('.get-a-quote-form').on('submit', (e) => {
     ajaxPost('/custom-form/get-a-quote',form,'.quote-success','.quote-error')
 });
 
-function ajaxPost(url,data,succssContainer,errorContainer,loader=true) {
+async function ajaxPost(url,data,succssContainer,errorContainer,loader=true) {
     $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
      });
-    $.ajax({
+    await $.ajax({
         url: url,
         method: 'POST',
         data:data,
@@ -101,6 +101,9 @@ function ajaxPost(url,data,succssContainer,errorContainer,loader=true) {
             if(response.data.route){
                 window.location.href = response.data.route;
             }
+            // else if(callback){
+            //     callback(response);
+            // }
 
         },
         error:function(error){
@@ -373,3 +376,131 @@ function ajaxDelete(url,id,succssContainer='',errorContainer='') {
     })
 }
 
+function notify(heading,type,description=''){
+    let snackbarEl = $('.custom-snackbar');
+    let headingEl =  $('.snackbar-heading');
+    let descriptionEl = $('.snackbar-description');
+    let iconEl = $('.snackbar-icon');
+    let classMapper = {
+        success:"snackbar-success",
+        warning:"snackbar-warning",
+        error:"snackbar-error",
+        notify:"snackbar-notify"
+    }
+    headingEl.text(heading);
+    snackbarEl.addClass('show');
+    snackbarEl.addClass(classMapper[type]);
+    iconEl.addClass(classMapper[type]);
+
+    descriptionEl.text(description);
+    setTimeout(function(){
+        snackbarEl.removeClass('show');
+    },config.timeout)
+}
+
+function showgalleryImages(galleryFor){
+    $('.gallery-link').on('click',function(e){
+        e.preventDefault();
+        $('.gallery-item').removeClass('active');
+        $('#myModal').addClass('show');
+        galleryFor = $(this).attr('data-name');
+    });
+    $('.gallery-img').on('click',function(e){
+        e.preventDefault();
+        $('.gallery-item').removeClass('active');
+        $(this).parent().addClass('active');
+        if(galleryFor == "main"){
+            main_img_id = $(this).attr('data-id');
+        }else if(galleryFor == "thumbnail"){
+            thumbnail_img_id = $(this).attr('data-id');
+        }
+
+    });
+    $('.modal-close').on('click',function(e){
+        e.preventDefault();
+        $('#myModal').removeClass('show');
+    });
+    $('.add-image-btn').on('click',function(e){
+        e.preventDefault();
+        const activeGalleryItem = $('.modal-contents .gallery-item.active');
+        const imgSrc = activeGalleryItem.find('img').attr('src');
+        if(imgSrc == "" || imgSrc == undefined){
+            alert("Please Select Image.")
+        }else{
+            if(galleryFor == "main"){
+                $('.img-div').removeClass('hidden');
+                $('.upload-div').addClass("hidden");
+                $('.img-div').children('img').attr("src",imgSrc);
+            }else if (galleryFor == "thumbnail"){
+                $('.thumbnail-img-div').removeClass('hidden');
+                $('.upload-thumbnail-div').addClass("hidden");
+                $('.thumbnail-img-div').children('img').attr("src",imgSrc);
+            }
+
+            $('#myModal').removeClass('show');
+        }
+    });
+}
+
+function onChangeThumbnail(thumbnail_img_div, thumbnail_upload_div, thumbnail_close_btn) {
+    $('.thumbnail').on('change', function(e) {
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            thumbnail_img_div.children('img').attr('src', e.target.result);
+            thumbnail_img_div.removeClass("hidden");
+            thumbnail_upload_div.addClass("hidden");
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
+    thumbnail_close_btn.on('click', function(e) {
+        e.preventDefault();
+        thumbnail_img_div.children('img').attr("src","");
+        thumbnail_img_div.addClass("hidden");
+        thumbnail_upload_div.removeClass('hidden');
+        resetThumbnail();
+    });
+}
+
+function resetThumbnail() {
+    const file = document.querySelector('.thumbnail');
+    var emptyFile = document.createElement('input');
+    emptyFile.type = 'file';
+    file.files = emptyFile.files;
+}
+
+function uploadThumbnail(){
+
+
+    $('.imageInput').on('change',function(e){
+        e.preventDefault();
+        $('.imagePreview').innerHTML('');
+        const files = this.files;
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            if (file.type.match('image.*')) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = document.createElement('div');
+                    img.classList.add('image-preview-item');
+
+                    const closeButton = document.createElement('button');
+                    closeButton.classList.add('close-button');
+                    closeButton.innerHTML = '&times;';
+                    closeButton.addEventListener('click', function() {
+                        img.remove(); // Remove the image preview when close button is clicked
+                    });
+
+                    img.appendChild(closeButton);
+
+                    const imgElem = document.createElement('img');
+                    imgElem.src = event.target.result;
+                    img.appendChild(imgElem);
+
+                    imagePreview.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+    })
+}

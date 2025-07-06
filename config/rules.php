@@ -77,6 +77,7 @@ return [
             'venue' => 'required',
             'description' => 'required',
             'booking_link' => '',
+            // 'category_id' => 'required|exists:event_categories,id',
         ],
         'edit' => [
             'title' => 'required',
@@ -88,6 +89,14 @@ return [
             'venue' => 'required',
             'description' => 'required',
             'booking_link' => '',
+            // 'category_id' => 'required|exists:event_categories,id',
+        ],
+        'bookings' => [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required|min:11|numeric',
+            'address' => 'required'
         ]
     ],
     'space_finders' => [
@@ -192,7 +201,18 @@ return [
         'store' => [
             'message' => 'required',
         ]
+    ],
+    'forum_posts' => [
+        'store' => [
+            'title' => 'required',
+            'description' => 'required',
+            'topic' => 'required|exists:topics,id',
+        ],
+        'reply' => [
+            'reply' => 'required'
+        ]
     ]
+
 
 
 ];
