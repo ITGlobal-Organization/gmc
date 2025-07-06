@@ -63,6 +63,9 @@ class EventCalenderController extends BaseController
     public function getEventsListing(Request $request){
         $user = Auth::user();
         $this->setGeneralFilters($request);
+        $orderBy = $request->order_by;
+        $order = $request->order;
+        $categoy = 0;
         $this->removeGeneralFilters($request);
         $Categories = $this->eventCalender->getCategories();
         // $search = "tit";
@@ -76,6 +79,7 @@ class EventCalenderController extends BaseController
         }
 
         if(isset($request->category_id) && $request->category_id != 0) {
+            $categoy = $request->category_id;
             $this->eventCalender->setFilters(['category_id','=',$request->category_id]);
         }
 
@@ -117,7 +121,10 @@ class EventCalenderController extends BaseController
             'AllEvents' => $AllEvents,
             'count' => $this->eventCalender->getCount(),
             'page' => $this->eventCalender->getStart(),
-            'Categories' => $Categories
+            'Categories' => $Categories,
+             'orderBy' => isset($orderBy)?$orderBy:"",
+            'order' => isset($order)?$order:"",
+            "category" => $categoy > 0?$categoy:""
         ]);
     }
     public function renderForm(Request $request,$id){
@@ -249,7 +256,7 @@ class EventCalenderController extends BaseController
     {
         parent::setGeneralFilters($request);
         if($request->has('not_approved')){
-            $this->eventCalender->setFilters(['is_approved','=',0]);
+            $this->eventCalender->setFilters(['event_calenders.is_approved','=',0]);
         }
     }
 

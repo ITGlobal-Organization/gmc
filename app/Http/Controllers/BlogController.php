@@ -65,6 +65,8 @@ class BlogController extends BaseController
 
         $user = Auth::user();
         $this->setGeneralFilters($request);
+        $orderBy = $request->order_by;
+        $order = $request->order;
         $this->removeGeneralFilters($request);
 
         $data = $request->all();
@@ -86,14 +88,18 @@ class BlogController extends BaseController
         return view($view,[
             'Blogs' => $Blogs,
             'count' => $this->blog->getCount(),
-            'page' => $this->blog->getStart()
+            'page' => $this->blog->getStart(),
+             'orderBy' => isset($orderBy)?$orderBy:"",
+            'order' => isset($order)?$order:""
         ]);
     }
 
     public function getBlog(Request $request,$slug){
         $Blog = $this->blog->first('slug',$slug,'=',['user'],[],['blogs.*','DAY(created_at) as day','MONTHNAME(created_at) as month']);
 
-        $this->blog->setLength(1000);
+        $this->blog->setLength(10);
+        $this->blog->setOrderBy('created_at');
+        $this->blog->setOrder('desc');
         $LatestBlogs = $this->blog->getAll([['users','users.id','=','blogs.author']],['blogs.title','blogs.description','blogs.created_at','images.image_url','blogs.slug']);
 
         return view('blogs.blog-detail',[
@@ -187,7 +193,7 @@ class BlogController extends BaseController
     {
         parent::setGeneralFilters($request);
         if($request->has('not_approved')){
-            $this->blog->setFilters(['is_approved','=',0]);
+            $this->blog->setFilters(['blogs.is_approved','=',0]);
         }
     }
 

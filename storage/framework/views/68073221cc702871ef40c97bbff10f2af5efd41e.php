@@ -27,8 +27,9 @@
 <?php echo $PlatinumPartner->description; ?>
 
 
+
 </p>
-<a href="<?php echo e(isset($PlatinumPartner->website->url)?$PlatinumPartner->website->url:'javascript:void(0);'); ?>" target="_blank"> <?php echo e(trans('lang.click-here')); ?></a>
+<a href="<?php echo e(isset($PlatinumPartner->web_url)?$PlatinumPartner->web_url:'javascript:void(0);'); ?>" target="_blank"> <?php echo e(trans('lang.click-here')); ?></a>
 </div>
 
 <div class="clr"></div>

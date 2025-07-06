@@ -155,6 +155,8 @@ class PostController extends BaseController
             $this->setGeneralFilters($request);
             $this->removeGeneralFilters($request);
             $this->reply->setFilters(['forum_post_id','=',$request->post_id]);
+            $this->reply->setOrderBy('id');
+            $this->reply->setOrder('asc');
             $Replies = $this->reply->getAll([
                 ['users','forum_replies.user_id','=','users.id'],
             ],['forum_replies.*','users.first_name as user']); 

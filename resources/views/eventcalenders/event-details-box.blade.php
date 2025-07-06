@@ -1,19 +1,12 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding mb-20">
     <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 padding border mb-25">
-        <select class="pd-sort sort_by">
-            <option value="">{{ trans('lang.sort_by') }}</option>
-            <option value="title-asc">A to Z</option>
-            <option value="title-desc">Z to A</option>
-
-            <option value="event_date-asc">{{ trans('lang.upcoming_first')}}</option>
-            <option value="event_date-desc">{{ trans('lang.distant_first')}}</option>
-        </select>
+    @include('sections.wigets.selectv1')
     </div>
     <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 padding border mb-25">
             <select class="category pd-sort ml-2">
                     <option value="">{{ trans('lang.select_msg',['attribute' => trans('lang.category')]) }}</option>
                 @foreach($Categories as $Category)
-                    <option value="{{ $Category->id }}">{{ $Category->text }}</option>
+                    <option value="{{ $Category->id }}" {{ $category == $Category->id?'selected':''}}>{{ $Category->text }}</option>
                 @endforeach
                 </select>
     </div>

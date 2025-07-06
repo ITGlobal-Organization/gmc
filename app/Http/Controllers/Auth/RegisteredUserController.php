@@ -130,7 +130,7 @@ class RegisteredUserController extends BaseController
             $response = $this->user->getRecordDataTable($request);
             return $this->sendResponse($response);
         }catch(\Exception $e){
-            dd($e);
+           // dd($e);
             Log::error($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
@@ -146,7 +146,7 @@ class RegisteredUserController extends BaseController
             $result['media'] = Media::where('model','App\\Models\\User')->where('model_id',  $id)->get();
             return $this->sendResponse($result);
         }catch(\Exception $e){
-            dd($e);
+           // dd($e);
             return $this->sendError(trans('validation.custom.errors.server-errors'));
         }
 

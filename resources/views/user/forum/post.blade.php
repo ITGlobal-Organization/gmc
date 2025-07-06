@@ -82,10 +82,10 @@
   $(document).ready(function(){
     getReplies();
   })
-    $('.store').on('submit', function(e) {
+    $('.store').on('submit', async function(e) {
             e.preventDefault();
             var form = new FormData(this);
-            ajaxPost("{{ prefix_route('forum.replies.store') }}", form, '.contact-success', '.contact-error');
+            await ajaxPost("{{ prefix_route('forum.replies.store') }}", form, '.contact-success', '.contact-error');
 
             getReplies(false);
         });

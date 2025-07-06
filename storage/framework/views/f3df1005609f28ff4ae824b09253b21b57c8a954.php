@@ -58,12 +58,12 @@
 
 
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center edit-btn">
-                            <a href="#" style="color: #000;font-size: 16px;" class="edit"
-                                data-id="<?php echo e($Offer->id); ?>"><?php echo e(trans('lang.edit')); ?></a>
+                            <a href="#" class="edit"
+                                data-id="<?php echo e($Offer->id); ?>"><i class="fa fa-edit"></i></a>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mb-25 text-center delete-btn">
-                            <a href="#" style="color: #000;font-size: 16px;" class="delete"
-                                data-id="<?php echo e($Offer->id); ?>"><?php echo e(trans('lang.delete')); ?></a>
+                            <a href="#" class="delete"
+                                data-id="<?php echo e($Offer->id); ?>"><i class="fa fa-trash"></i></a>
                         </div>
 
                         <div class="clr"></div>

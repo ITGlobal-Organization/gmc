@@ -34,8 +34,8 @@
 </div> -->
 
 <p>
-<?php echo $Blog->description; ?>
-
+<?php  $Description =$Blog->description; ?> 
+<?php echo $__env->make('sections.wigets.description', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 </p>
 

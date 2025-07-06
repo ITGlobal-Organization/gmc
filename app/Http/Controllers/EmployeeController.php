@@ -60,13 +60,17 @@ class EmployeeController extends BaseController
 
         $this->user = Auth::user();
         $this->user->setGeneralFilters($request);
+        $orderBy = $request->order_by;
+        $order = $request->order;
         $this->user->removeGeneralFilters($request);
 
         $Employees = $this->user->getAll([],['users.*','images.image_url'],[['user_id','=',$this->user->id]]);
         return view('user.employee.listing',[
             'Employees' => $Employees,
             'count' => $this->user->getCount(),
-            'page' => $this->user->getStart()
+            'page' => $this->user->getStart(),
+            'orderBy' => isset($orderBy)?$orderBy:"",
+            'order' => isset($order)?$order:""
         ]);
     }
 

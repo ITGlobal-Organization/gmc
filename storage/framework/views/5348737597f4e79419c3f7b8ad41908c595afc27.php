@@ -60,9 +60,9 @@
             </div>
         </div>
         <div class="clr"></div>
-       
-                
-               <!--End Visa Credit Card POPUP		
+
+
+               <!--End Visa Credit Card POPUP
                <div class="clr"></div>
             </div>
     </div>
@@ -113,30 +113,19 @@
                         dayBegin: 0,
                         prevIcon: '',
                         nextIcon: '',
-                        // onPrevMonth: function (e) {
-                        //     console.log("prev");
-                        //     console.log(e);
-                        // },
-                        // onNextMonth: function (e) {
-                        //     console.log("next");
-                        //     console.log(e);
-                        // },
                         events: events,
                         onclickDate: function (e, event) {
-                            console.log(event)
-                            // eventModal.modal()
-                            // alert(event)
                         }
             });
 	})
     $(document).on('keyup','.search-box',function(){
         filters.search = $(this).val();
-        
+
         setTimeout(() => {
             // console.log(filters.search)
                 if (filters.search.length > 2) {
                     getEventsListing()
-                } 
+                }
             }, 1000);
     });
     $(document).on('change', '#end-date',async function (ev) {
@@ -234,9 +223,9 @@
         }
 </script>
 <script src="<?php echo e(custom_asset('pagination.js','scripts')); ?>"></script>
-		
- 
-      
+
+
+
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.layoutv2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/staging/resources/views/eventcalenders/event-calenders.blade.php ENDPATH**/ ?>

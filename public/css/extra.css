@@ -269,7 +269,7 @@ display: none;
 
 .middle {
   margin: auto;
-  width: 75%;
+  width: 95%;
   border: 0px solid red;
 }
 .block {
@@ -820,7 +820,7 @@ address {
 
 ol,
 ul {
-  padding-left: 2rem;
+  /* padding-left: 2rem; */
 }
 
 ol,

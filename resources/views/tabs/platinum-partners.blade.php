@@ -20,9 +20,8 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="brand-text">
-                                    {!! $PlatinumPartner->description !!}
-                                </div>
+                                @php  $Description =$PlatinumPartner->description; @endphp 
+                                @include('sections.wigets.description')
                             </div>
                             <div class="clr"></div>
                         </div>

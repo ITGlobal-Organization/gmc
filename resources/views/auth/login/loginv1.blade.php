@@ -196,6 +196,11 @@
            error: function(error) {
                $('.error').text(error.responseJSON.message);
                $('.error').addClass("alert alert-danger");
+               if(error.status === 419){
+                  setTimeout(() => {
+                     location.reload();
+                  }, 100);
+               }
                if (error.status === 422) {
                    let errors = error.responseJSON.errors;
                    let errorsKeys = Object.keys(error.responseJSON.errors)

@@ -17,9 +17,8 @@
                                     {{$Event->title}}
                                 </a>
                             </div>
-                            <div class="box-text">
-                                {!! $Event->description !!}
-                            </div>
+                            @php  $Description =$Event->description; @endphp 
+                            @include('sections.wigets.description')
                         </div>
                         <div class="clr"></div>
                     </div>

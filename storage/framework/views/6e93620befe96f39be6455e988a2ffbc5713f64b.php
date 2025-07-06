@@ -3,7 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<?php
+	$ProtectedRoutes = config('site_config.protected-routes');
+	?>
+	<?php if(in_array(\Route::currentRouteName(),$ProtectedRoutes)): ?>
 	<meta name="robots" content="noindex,nofollow">
+	<?php endif; ?>
 	<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 	<link href="<?php echo e(custom_asset('bootstrap.css','css')); ?> " rel="stylesheet" type="text/css">
 	<!-- <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"> -->
@@ -25,7 +30,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
 
-	<link rel="manifest" href="<?php echo e(asset('manifest.json')); ?>" />
+	<!-- PWA SETING -->
+	<meta name="theme-color" content="#072557"/>
+	<link rel="apple-touch-icon" href="<?php echo e(asset('pwa.png')); ?>">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<link rel="manifest" href="<?php echo e(asset('/manifest.json')); ?>">
     <link href="<?php echo e(custom_asset('owl.carousel.css','css')); ?>" rel="stylesheet" type="text/css">
     <link href="<?php echo e(custom_asset('owl.theme.css','css')); ?>" rel="stylesheet" type="text/css">
 <!--
@@ -41,6 +51,24 @@
 
 
 	<title><?php echo e(config('app.name')); ?> | <?php echo e(isset($title)?$title:'Page'); ?></title>
+	<style>
+        #installPrompt {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: #fff;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+            z-index: 1000;
+        }
+        #installPrompt button {
+            margin: 10px;
+        }
+    </style>
 </head>
 <body>
 <!--Start Header-->
@@ -59,6 +87,11 @@
 
 <!--Start Middle-->
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border padding">
+<div id="installPrompt">
+        <p>To install this app, tap the share icon (the box with an arrow) and then "Add to Home Screen".</p>
+        <button class="btn btn-primary" id="dismiss">Don't ask again</button>
+        <button class="btn btn-danger" id="close">Close</button>
+    </div>
 <?php echo $__env->make('components.loader', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php echo $__env->make('components.snackbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php echo $__env->yieldContent('content'); ?>
@@ -122,9 +155,42 @@ const blade_config = {
 
 <script src="<?php echo e(custom_asset('banner-script.js','scripts')); ?>"></script>
 
+<script src="<?php echo e(asset('/sw.js')); ?>"></script>
 <script>
+   if ("serviceWorker" in navigator) {
+      // Register a service worker hosted at the root of the
+      // site using the default scope.
+      navigator.serviceWorker.register("/sw.js").then(
+      (registration) => {
+         console.log("Service worker registration succeeded:", registration);
+      },
+      (error) => {
+         console.error(`Service worker registration failed: ${error}`);
+      },
+    );
+  }
+   else {
+     console.error("Service workers are not supported.");
+  }
 
+  if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
+    // Show custom guide on how to "Add to Home Screen" on iOS
+    if (!localStorage.getItem("addToHomeScreenDismissed")) {
+        // Show the prompt if the user hasn't opted out
+        document.getElementById("installPrompt").style.display = "block";
+    }
 
+    // Handle the "Don't ask again" button click
+    document.getElementById("dismiss").addEventListener("click", function () {
+        localStorage.setItem("addToHomeScreenDismissed", "true");
+        document.getElementById("installPrompt").style.display = "none";
+    });
+
+    // Handle the "Close" button click
+    document.getElementById("close").addEventListener("click", function () {
+        document.getElementById("installPrompt").style.display = "none";
+    });
+	}
 </script>
 <!--  -->
 <?php echo $__env->yieldContent('scripts'); ?>

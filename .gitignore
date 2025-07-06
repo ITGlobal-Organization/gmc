@@ -24,3 +24,9 @@ server.js
 public/js/app.js
 public/mix-manifest.json
 
+
+
+*_bkp
+
+public/media/*
+

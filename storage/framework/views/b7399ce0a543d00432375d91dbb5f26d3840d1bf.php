@@ -2,18 +2,12 @@
 
 
 <div class="col-xs-8 col-sm-10 col-md-10 col-lg-10 padding border mb-25">
-				<span class="listin-found"><b><!--<?php echo e(trans('lang.blogs')); ?>--> &nbsp;(<?php echo e(count($Blogs)); ?>)</b> Articles <?php echo e(trans('lang.found')); ?></span>
+				<span class="listin-found"><b><!--<?php echo e(trans('lang.blogs')); ?>--> &nbsp;(<?php echo e($count); ?>)</b> Articles <?php echo e(trans('lang.found')); ?></span>
 			</div>
 
 			<div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 padding border mb-25">
 
-				<select class="pd-sort sort_by">
-					<option value=""><?php echo e(trans('lang.sort_by')); ?></option>
-					<option value="title-asc">A to Z</option>
-					<option value="title-desc">Z to A</option>
-					<option value="created_at-asc"><?php echo e(trans('lang.latest_to_oldest')); ?></option>
-					<option value="created_at-desc"><?php echo e(trans('lang.oldest_to_latest')); ?></option>
-				</select>
+			<?php echo $__env->make('sections.wigets.selectv1', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 			</div>
 			
@@ -38,10 +32,8 @@
 
 									</a>
 								</div>
-								<div class="box-text">
-									<?php echo $blog->description; ?>
-
-								</div>
+								<?php  $Description =$blog->description; ?> 
+								<?php echo $__env->make('sections.wigets.description', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 							</div>
 							<div class="clr"></div>
 						</div>

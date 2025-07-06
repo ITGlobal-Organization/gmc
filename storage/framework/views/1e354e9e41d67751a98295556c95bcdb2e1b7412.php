@@ -5,7 +5,7 @@
                 <select class="category oh-select search-box">
                     <option value=""><?php echo e(trans('lang.select_msg',['attribute' => trans('lang.category')])); ?></option>
                 <?php $__currentLoopData = $Categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option value="<?php echo e($Category->id); ?>"><?php echo e($Category->text); ?></option>
+                    <option value="<?php echo e($Category->id); ?>" <?php echo e($category == $Category->id?'selected':''); ?>><?php echo e($Category->text); ?></option>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
             
