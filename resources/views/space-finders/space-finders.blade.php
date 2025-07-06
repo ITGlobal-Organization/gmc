@@ -30,6 +30,7 @@
 
         $(document).on("change", '.sort_by', function() {
             let sort_by = $(this).val();
+            console.log(sort_by)
             filters.order_by = sort_by.split('-')[0];
             filters.order = sort_by.split('-')[1];
             getSpaceFinderListing();

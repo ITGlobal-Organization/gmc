@@ -45,7 +45,14 @@ class ZohoController extends BaseController
     }
 
     public function register(Request $request){
-        $this->zohoAuthToken = DB::table('tokens')->where('id', '=', 1)->pluck('access_token')[0];
+    
+        try{
+            $this->zohoAuthToken = DB::table('tokens')->where('id', '=', 1)->pluck('access_token')[0];
+        }catch(\Exception $e){
+            Log::error($e->getMessage());
+            return $this->sendError("Cannot Store Form Data, token not found");
+        }
+        
         $request->validate($this->user->getRules());
         $request->validate($this->directory->getRules());
         if(!isset($request->category_ids)){
@@ -53,7 +60,7 @@ class ZohoController extends BaseController
         }
         $website = $request->web_url;
         $request->merge(['website'=>$website]);
-        $userData = $request->except(['_token','password_confirmation','title','category_ids','web_url']);
+        $userData = $request->except(['_token','password_confirmation','title','category_ids','web_url','are-you-happy','mentoring','mentor','exporting','chamber-plan']);
         $userData['password'] = Hash::make($request->password);
         $user = $this->user->store($userData);
        
@@ -66,8 +73,8 @@ class ZohoController extends BaseController
             return $this->sendError('User did not created');
         }
 
-        $request->merge(["user_id"=>$user,"mobile_no"=>$request->tel_no]);
-        $directoryData = $request->except(['_token','password_confirmation','password','company','category_ids','postalcode','tel_no','website']);
+        $request->merge(["user_id"=>$user,"mobile_no"=>$request->phone]);
+        $directoryData = $request->except(['_token','password_confirmation','password','company','category_ids','postalcode','tel_no','website','are-you-happy','mentoring','mentor','exporting','chamber-plan']);
         $directory = $this->directory->store($directoryData);
         $this->directoryId = $directory;
 
@@ -82,7 +89,7 @@ class ZohoController extends BaseController
             $this->user->where('id',$this->authUser->id)->delete();
         }else{
             $response = $this->registerUser($request);
-            if($response['status'] != true){
+            if($response != true){
                 $this->user->where('id',$this->authUser->id)->delete();
             }
         }

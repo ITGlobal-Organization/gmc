@@ -57,7 +57,7 @@ class PlatinumPartnerController extends BaseController
     public function getPlatinumPartner(Request $request,$slug){
         $PlatinumPartner = $this->platinumPartner->first('slug',$slug,'=',[],[],['*']);
       
-
+       // dd($PlatinumPartner);
         return view('platinumpartners.platinum-partner',[
             'PlatinumPartner' => $PlatinumPartner,
             // 'LatestBlog' => $LatestBlogs,

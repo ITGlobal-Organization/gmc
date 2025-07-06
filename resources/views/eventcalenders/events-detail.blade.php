@@ -5,7 +5,7 @@
                 <select class="category oh-select search-box">
                     <option value="">{{ trans('lang.select_msg',['attribute' => trans('lang.category')]) }}</option>
                 @foreach($Categories as $Category)
-                    <option value="{{ $Category->id }}">{{ $Category->text }}</option>
+                    <option value="{{ $Category->id }}" {{ $category == $Category->id?'selected':''}}>{{ $Category->text }}</option>
                 @endforeach
                 </select>
             

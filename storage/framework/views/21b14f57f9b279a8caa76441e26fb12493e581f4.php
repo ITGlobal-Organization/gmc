@@ -40,7 +40,7 @@
         <?php echo csrf_field(); ?>
         <div id="forget" class="modal">
             <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content modal-content-custom"> 
+            <div class="modal-content modal-content-custom">
                 <span class="close" id="close">&times;</span>
                 <div class="clr"></div>
                 <div class="forget-heading"><?php echo e(trans('lang.forget_password')); ?></div>
@@ -154,7 +154,7 @@
        data.append("email", email);
        data.append("password", password);
        ajaxPost(url, data, '.contact-success', '.contact-error');
-   
+
    });
    $('.forgot-pass').on('click', function(e) {
        e.preventDefault();
@@ -183,16 +183,23 @@
                console.log(response)
                if (response.status) {
                    notify(response.message,'success');
+                   $('#forget').modal('hide')
                    // $('#statusSuccessModal').modal('toggle')
                } else {
-                  
+
                 notify(response.message,'error');
+                $('#forget').modal('hide')
                    // $('#statusErrorsModal').modal('toggle')
                }
            },
            error: function(error) {
                $('.error').text(error.responseJSON.message);
                $('.error').addClass("alert alert-danger");
+               if(error.status === 419){
+                  setTimeout(() => {
+                     location.reload();
+                  }, 100);
+               }
                if (error.status === 422) {
                    let errors = error.responseJSON.errors;
                    let errorsKeys = Object.keys(error.responseJSON.errors)
@@ -212,22 +219,22 @@
                setTimeout(() => {
                    $(".success").text('');
                    $(".error").text('');
-   
+
                    $(".success").html('');
                    $(".error").html('');
-   
+
                    $(".success").removeClass('alert alert-success');
                    $(".error").removeClass('alert alert-danger');
                    if ($('.errors')) {
-   
+
                        $('.errors').removeClass('text-danger');
                        $('.errors').html('');
-   
+
                    }
-   
-   
+
+
                }, config.timeout)
-   
+
            }
        })
    });
@@ -235,7 +242,7 @@
        e.preventDefault();
        $('#forget').modal('hide');
    });
-   
+
    function swalAlert(message) {
        Swal.fire({
            icon: 'error',
@@ -245,4 +252,5 @@
    }
 </script>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.layoutv2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/staging/resources/views/auth/login/loginv1.blade.php ENDPATH**/ ?>

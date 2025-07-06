@@ -18,9 +18,8 @@
                                 <a href="{{ $Event->booking_link }}" target="_blank">
                                     {{ $Event->title }}
                                 </a>
-                                <div class="box-text">
-                                    {!! $Event->description !!}
-                                </div>
+                                @php  $Description =$Event->description; @endphp 
+                                @include('sections.wigets.description')
                             </div>
                         </div>
                         <div class="clr"></div>
@@ -44,9 +43,8 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="box-text">
-                                {!! $News->description !!}
-                            </div>
+                            @php  $Description =$News->description; @endphp 
+                            @include('sections.wigets.description')
                         </div>
                         <div class="clr"></div>
                     </div>
